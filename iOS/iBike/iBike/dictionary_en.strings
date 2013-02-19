@@ -1,0 +1,80 @@
+/* 
+  dictionary_dk.strings
+  iBike
+
+  Created by Ivan Pavlovic on 31/01/2013.
+  Copyright (c) 2013 Spoiled Milk. All rights reserved.
+*/
+
+"current_position" = "Current position";
+"today" = "Today";
+"tomorrow" = "Tomorrow";
+"accounts" = "Accounts";
+"settings" = "Settings";
+"about_ibikecph" = "About I Bike CPH";
+"contacts" = "CONTACTS";
+"favorites" = "FAVORITES";
+
+"direction_0" = "";
+"direction_1" = "Continue on";
+"direction_2" = "Turn slightly right on";
+"direction_3" = "Turn right on";
+"direction_4" = "Turn sharp right on";
+"direction_5" = "U-Turn on";
+"direction_6" = "Turn sharp left on";
+"direction_7" = "Turn left on";
+"direction_8" = "Turn slightly left on";
+"direction_9" = "Reach via point";
+"direction_10" = "Head on";
+"direction_11" = "Enter roundabout on";
+"direction_12" = "Leave roundabout on";
+"direction_13" = "Stay on roundabout on";
+"direction_14" = "Start on";
+"direction_15" = "You have reached your destination";
+"direction_100" = "Reaching destination";
+
+"direction_N" = "north";
+"direction_NE" = "northeast";
+"direction_E" = "east";
+"direction_SE" = "southeast";
+"direction_S" = "south";
+"direction_SW" = "southwest";
+"direction_W" = "west";
+"direction_NW" = "northwest";
+
+"new_route" = "New route";
+"Stop" = "Stop";
+
+"Error" = "Error";
+"OK" = "OK";
+"error_no_gps_location" = "No GPS location!";
+"error_address_not_found" = "Location of address not found!";
+"error_from_address_not_found" = "Location of START address not found!";
+"error_to_address_not_found" = "Location of END address not found!";
+"error_invalid_email" = "Invalid e-mail!";
+
+"route_stop_title" = "Want to stop the routing?";
+"route_stop_text" = "Stop the routing by tapping the 'Stop'. You can report a problem with the route to us by tapping on 'Report'.";
+"report_error" = "Report";
+"report_wrong_address" = "Address is wrong";
+"report_one_way" = "Street is one way";
+"report_road_closed" = "Road closed";
+"report_illegal_turn" = "Route suggests illegal turn";
+"report_other" = "Other";
+
+"report_subject" = "Error report";
+"report_from" = "Start:";
+"report_to" = "Finish:";
+"report_tbt_instructions" = "Turn by turn instruction list:";
+"report_reason" = "Reason for report:";
+"report_instruction" = "Instruction in question:";
+"report_contact_me" = "Please contact me when the issue is resolved";
+"report_sent" = "Thank you for reporting this error!";
+
+"Done" = "Done";
+"Cancel" = "Cancel";
+
+"error_route_not_found" = "Route not found!";
+
+"calculating" = "Calculating...";
+"recalculating" = "Recalculating...";

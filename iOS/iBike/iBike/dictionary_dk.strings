@@ -1,0 +1,80 @@
+/* 
+  dictionary_dk.strings
+  ibikecph
+
+  Created by Ivan Pavlovic on 31/01/2013.
+  Copyright (c) 2013 Spoiled Milk. All rights reserved.
+*/
+
+"current_position" = "Nuværende position";
+"today" = "I dag";
+"tomorrow" = "I morgen";
+"accounts" = "Konti";
+"settings" = "Indstillinger";
+"about_ibikecph" = "Om ibikecph";
+"contacts" = "Kontakter";
+"favorites" = "Favoriter";
+
+"direction_0" = "";
+"direction_1" = "Fortsæt";
+"direction_2" = "Drej lidt til højre";
+"direction_3" = "Drej til højre";
+"direction_4" = "Drej skarpt til højre";
+"direction_5" = "U-vending";
+"direction_6" = "Drej skarpt til venstre";
+"direction_7" = "Drej til venstre";
+"direction_8" = "Drej lidt til venstre";
+"direction_9" = "Nå via-punkt";
+"direction_10" = "Fortsæt lige frem";
+"direction_11" = "Indkørsel af rundkørsel";
+"direction_12" = "Udkørsel af rundkørsel";
+"direction_13" = "Bliv i rundkørslen";
+"direction_14" = "Bliv på";
+"direction_15" = "Du har nået din destination";
+"direction_100" = "Du er ved at nå din destination";
+
+"direction_N" = "nord";
+"direction_NE" = "nordøst";
+"direction_E" = "øst";
+"direction_SE" = "sydøst";
+"direction_S" = "syd";
+"direction_SW" = "sydvest";
+"direction_W" = "vest";
+"direction_NW" = "nordvest";
+
+"new_route" = "Ny rute";
+"Stop" = "Stop";
+
+"Error" = "Error";
+"OK" = "OK";
+"error_no_gps_location" = "Ingen GPS lokation!";
+"error_address_not_found" = "Adressens lokation kan ikke findes!";
+"error_from_address_not_found" = "START adressens lokation kan ikke findes!";
+"error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
+"error_invalid_email" = "Ugyldig e-mail!";
+
+"route_stop_title" = "Vil du stoppe ruten?";
+"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapportér’.";
+"report_error" = "Rapportér";
+"report_wrong_address" = "Vejnavn er forkert";
+"report_one_way" = "Vejen er ensrettet";
+"report_road_closed" = "Vejen er lukket";
+"report_illegal_turn" = "Ruten foreslår ulovligt sving";
+"report_other" = "Andet";
+
+"report_subject" = "Rapportér";
+"report_from" = "Start:";
+"report_to" = "Slut:";
+"report_tbt_instructions" = "Rutevejledning:";
+"report_reason" = "Begrundelse:";
+"report_instruction" = "Pågældende instruktion:";
+"report_contact_me" = "Jeg vil gerne kontaktes, når problemet er løst";
+"report_sent" = "Tak fordi du rapportérede fejlen!";
+
+"Done" = "Færdig";
+"Cancel" = "Annuller";
+
+"error_route_not_found" = "Ruten blev ikke fundet!";
+
+"calculating" = "Beregner...";
+"recalculating" = "Genberegning...";
