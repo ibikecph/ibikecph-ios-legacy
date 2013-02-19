@@ -10,4 +10,13 @@
 
 @interface SMMapView : RMMapView
 
+/**
+ * Should we trigger update on heading change?
+ */
+@property BOOL triggerUpdateOnHeadingChange;
+/**
+ * Should we rotate the map on heading change?
+ */
+@property BOOL rotateOnHeadingChange;
+
 @end
