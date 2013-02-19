@@ -3,11 +3,11 @@
 
 *.xcuserstate
 
-iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/iBike EN.xcscheme
+.DS_Store
+iOS/.DS_Store
+iOS/iBike/.DS_Store
 
-iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/iBike.xcscheme
-
-iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/xcschememanagement.plist
+iOS/iBike/iBike.xcodeproj/xcuserdata/
 
 iOS/iBike/iBike/Libs/FacebookSDK/
 
