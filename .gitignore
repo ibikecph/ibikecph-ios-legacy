@@ -1,0 +1,23 @@
+
+*.xcworkspacedata
+
+*.xcuserstate
+
+iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/iBike EN.xcscheme
+
+iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/iBike.xcscheme
+
+iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcschemes/xcschememanagement.plist
+
+iOS/iBike/iBike/Libs/FacebookSDK/
+
+iOS/iBike/iBike/Libs/GA v2.0b4/
+
+iOS/iBike/iBike/Libs/MapView/
+
+iOS/iBike/iBike/Libs/Proj4/
+
+iOS/iBike/iBike/Libs/SBJson/
+
+*~
+
