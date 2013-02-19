@@ -162,6 +162,9 @@
 
     CLLocationManager *_locationManager;
 
+    double lastLocUpdatedTime;
+    CLLocation *cachedLocation;
+
     RMAnnotation *_accuracyCircleAnnotation;
     RMAnnotation *_trackingHaloAnnotation;
 
@@ -175,6 +178,7 @@
     NSOperationQueue *_moveDelegateQueue;
     NSOperationQueue *_zoomDelegateQueue;
 }
+
 
 @synthesize decelerationMode = _decelerationMode;
 
@@ -2734,6 +2738,10 @@
 #pragma mark -
 #pragma mark User Location
 
+#define CACHE_UPDATE_INTERVAL 5.0 // in seconds
+#define ACCURACY_GREAT 20.0 // location with accuracy better then this will be updated immediately
+#define ACCURACY_JUNK 50.0 // location with accuracy worse then this will be discarded
+
 - (void)setShowsUserLocation:(BOOL)newShowsUserLocation
 {
     if (newShowsUserLocation == _showsUserLocation)
@@ -2758,6 +2766,8 @@
         _locationManager.headingFilter = kDefaultHeadingFilter;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
         _locationManager.delegate = self;
+        lastLocUpdatedTime = 0.0;
+        cachedLocation = nil;
         [_locationManager startUpdatingLocation];
     }
     else
@@ -2766,6 +2776,8 @@
         [_locationManager stopUpdatingHeading];
         _locationManager.delegate = nil;
         [_locationManager release]; _locationManager = nil;
+        lastLocUpdatedTime = 0.0;
+        cachedLocation = nil;
 
         if (_delegateHasDidStopLocatingUser)
             [_delegate mapViewDidStopLocatingUser:self];
@@ -2981,8 +2993,51 @@
         [_delegate mapView:self didChangeUserTrackingMode:_userTrackingMode animated:animated];
 }
 
+// Filter best locations
+// Returns nil if location should not be processed further
+- (CLLocation *)smoothLocation:(CLLocation *)loc {
+    if (lastLocUpdatedTime == 0.0)
+        lastLocUpdatedTime = CACurrentMediaTime();
+
+    if ((int)loc.coordinate.latitude == 0 && (int)loc.coordinate.longitude == 0) {
+        NSLog(@"Skipping location 0.0, 0.0! (You cannot walk on the water)");
+        return nil;
+    }
+
+    if (loc.horizontalAccuracy > ACCURACY_JUNK) {
+        NSLog(@"Low accuracy! Skipping location %f %f %.1f!", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
+        return nil;
+    }
+
+    // check if we should use/cache this location:
+    if (loc.horizontalAccuracy < 0) {
+        // update with this location but don't cache it
+        NSLog(@"No accuracy!");
+        cachedLocation = nil;
+        lastLocUpdatedTime = CACurrentMediaTime();
+        return loc;
+    }
+    else {
+        if (cachedLocation == nil || loc.horizontalAccuracy < cachedLocation.horizontalAccuracy) {
+            cachedLocation = loc;
+            // caching location:
+			NSLog(@"Caching location: %f %f accuracy: %.1f", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
+        }
+        if ((CACurrentMediaTime() - lastLocUpdatedTime) > CACHE_UPDATE_INTERVAL || (int)cachedLocation.horizontalAccuracy < ACCURACY_GREAT) {
+            NSLog(@"Updating with cached location");
+            lastLocUpdatedTime = CACurrentMediaTime();
+            cachedLocation = nil; // invalidate used location
+            return loc;
+        }
+    }
+    return nil;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    if (![self smoothLocation:newLocation])
+        return;
+    
     if ( ! _showsUserLocation || _mapScrollView.isDragging || ! newLocation || ! CLLocationCoordinate2DIsValid(newLocation.coordinate))
         return;
 
