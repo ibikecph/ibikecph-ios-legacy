@@ -64,7 +64,7 @@
     [self hideDirections];
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
-//    [self.mpView setTriggerUpdateOnHeadingChange:NO];
+    [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
     
 //    [self.mpView zoomByFactor:16 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:YES];

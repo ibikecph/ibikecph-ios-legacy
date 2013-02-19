@@ -942,7 +942,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="ofn-G7-PqS" customClass="RMMapView">
+                                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="ofn-G7-PqS" customClass="SMMapView">
                                                 <rect key="frame" x="0.0" y="49" width="320" height="499"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1279,7 +1279,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="gyv-zh-lni" customClass="RMMapView">
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="gyv-zh-lni" customClass="SMMapView">
                                 <rect key="frame" x="0.0" y="49" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -1963,12 +1963,12 @@ If you choose to be notified your e-mail address will be sent to us</string>
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
-        </class>
-        <class className="SMAccountsController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
             <relationships>
                 <relationship kind="action" name="goBack:"/>
             </relationships>
+        </class>
+        <class className="SMAccountsController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
         </class>
         <class className="SMAutocompleteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteCell.h"/>
@@ -2020,6 +2020,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
                 <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="saveEmail:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2063,6 +2064,9 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="SMMapView" superclassName="RMMapView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMMapView.h"/>
+        </class>
         <class className="SMRadioCheckedCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioCheckedCell.h"/>
             <relationships>
@@ -2091,8 +2095,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMRouteFinishedController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="goToFrontPage:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
@@ -2116,7 +2118,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="labelDistanceToNextTurn" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
+                <relationship kind="outlet" name="mpView" candidateClass="SMMapView"/>
                 <relationship kind="outlet" name="progressBar" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="recalculatingView" candidateClass="UIView"/>
@@ -2129,6 +2131,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showContacts:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
@@ -2148,8 +2151,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="edE-2V-bAg"/>
+        <segue reference="dCm-4o-WFf"/>
+        <segue reference="BMy-9M-oqz"/>
         <segue reference="jXb-wj-fAE"/>
-        <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>
