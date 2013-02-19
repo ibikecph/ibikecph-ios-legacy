@@ -7,7 +7,7 @@
 //
 
 #import "SMAnnotation.h"
-#import "RMMapView.h"
+#import "SMMapView.h"
 
 @implementation SMAnnotation
 

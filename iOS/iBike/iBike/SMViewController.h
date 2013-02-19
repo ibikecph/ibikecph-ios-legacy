@@ -12,7 +12,7 @@
 #import "SMFindAddressController.h"
 #import "SMEvents.h"
 
-#import "RMMapView.h"
+#import "SMMapView.h"
 #import "SMAnnotation.h"
 #import "SMNearbyPlaces.h"
 #import "SMRequestOSRM.h"

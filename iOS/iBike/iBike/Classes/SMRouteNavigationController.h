@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMMapView.h"
+#import "SMMapView.h"
 #import "SMRoute.h"
 #import "SMFindAddressController.h"
 
