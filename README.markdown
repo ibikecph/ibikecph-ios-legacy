@@ -1,22 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1187.34">
-  <style type="text/css">
-    p.p2 {margin: 0.0px 0.0px 15.0px 0.0px; font: 16.0px Helvetica; color: #333333}
-    li.li3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Helvetica; color: #0000ee}
-    li.li4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Helvetica; color: #333333}
-    li.li5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Helvetica; color: #333333; background-color: #ffffff}
-    span.s1 {text-decoration: underline}
-    span.s2 {color: #333333}
-    span.s3 {color: #4183c4}
-    ul.ul1 {list-style-type: disc}
-  </style>
-</head>
 <body>
 <h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Dependent Libraries</b></h2>
 <p class="p2">The I Bike CPH project makes use of several sub-libraries, listed below. For additional dependencies consult the documentation of relevant libraries.</p>
