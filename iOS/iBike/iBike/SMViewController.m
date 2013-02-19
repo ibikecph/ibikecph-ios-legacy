@@ -16,7 +16,7 @@
 #import "SMEventsFacebookCell.h"
 #import "SMEventsHeader.h"
 
-#import "RMMapView.h"
+#import "SMMapView.h"
 #import "RMAnnotation.h"
 #import "RMMarker.h"
 #import "RMShape.h"
@@ -33,7 +33,7 @@
 @interface SMViewController ()
 
 @property (nonatomic, strong) SMContacts *contacts;
-@property (nonatomic, strong) RMMapView *mpView;
+@property (nonatomic, strong) SMMapView *mpView;
 
 /**
  * data sources for tables
@@ -73,7 +73,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [RMMapView class];
+    [SMMapView class];
     
     [SMLocationManager instance];
     
@@ -844,7 +844,7 @@ typedef enum {
 
 #pragma mark - mapView delegate
 
-- (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)afterMapMove:(SMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
         [buttonTrackUser setEnabled:YES];
     }
@@ -861,11 +861,11 @@ typedef enum {
     }
 }
 
-- (void)mapViewRegionDidChange:(RMMapView *)mapView {
+- (void)mapViewRegionDidChange:(SMMapView *)mapView {
     [self checkCallouts];
 }
 
-- (RMMapLayer *)mapView:(RMMapView *)aMapView layerForAnnotation:(SMAnnotation *)annotation {
+- (RMMapLayer *)mapView:(SMMapView *)aMapView layerForAnnotation:(SMAnnotation *)annotation {
     if ([annotation.annotationType isEqualToString:@"marker"]) {
         RMMarker * m = [[RMMarker alloc] initWithUIImage:annotation.annotationIcon anchorPoint:annotation.anchorPoint];
         return m;
@@ -873,18 +873,18 @@ typedef enum {
     return nil;
 }
 
-- (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)afterMapZoom:(SMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
         [buttonTrackUser setEnabled:YES];
     }
     [self checkCallouts];
 }
 
-- (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
+- (void)mapView:(SMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
     [self checkCallouts];
 }
 
-- (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
+- (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(SMMapView *)map {
     if ([annotation.annotationType isEqualToString:@"marker"]) {
         for (id v in self.mpView.subviews) {
             if ([v isKindOfClass:[SMCalloutView class]]) {
