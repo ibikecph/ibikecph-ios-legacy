@@ -638,7 +638,7 @@
 		4C11374316BFF9EF007F483F /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
 		4C11374A16C00636007F483F /* SMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAnnotation.h; sourceTree = "<group>"; };
-		4C11374B16C00636007F483F /* SMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAnnotation.m; sourceTree = "<group>"; };
+		4C11374B16C00636007F483F /* SMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMAnnotation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C16ECF016B17707001545C7 /* iBikeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBikeLogo.png; sourceTree = "<group>"; };
 		4C16ECF116B17707001545C7 /* iBikeLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBikeLogo@2x.png"; sourceTree = "<group>"; };
 		4C16ECF216B17707001545C7 /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
@@ -749,8 +749,8 @@
 		4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C73D22716AEDCDA00AED42A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/EnglishStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C73D22A16AEDCDA00AED42A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		4C73D22C16AEDCDA00AED42A /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMViewController.h; sourceTree = "<group>"; };
-		4C73D22D16AEDCDA00AED42A /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMViewController.m; sourceTree = "<group>"; };
+		4C73D22C16AEDCDA00AED42A /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C73D22D16AEDCDA00AED42A /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C77EF7316CB860E0062360C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		4C77EF7416CB860E0062360C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		4C77EF7516CB860E0062360C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -779,8 +779,8 @@
 		4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsHeader.m; sourceTree = "<group>"; };
 		4C8BB09D16B7FF4F00F1ADF2 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		4C8BB09E16B7FF4F00F1ADF2 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
-		4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteNavigationController.h; sourceTree = "<group>"; };
-		4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteNavigationController.m; sourceTree = "<group>"; };
+		4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMRouteNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMRouteNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C8BB0A316B82C8100F1ADF2 /* btnBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBack.png; sourceTree = "<group>"; };
 		4C8BB0A416B82C8100F1ADF2 /* btnBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnBack@2x.png"; sourceTree = "<group>"; };
 		4C8BB0A516B82C8100F1ADF2 /* progressBarEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressBarEmpty.png; sourceTree = "<group>"; };
@@ -803,7 +803,7 @@
 		4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me_active@2x.png"; sourceTree = "<group>"; };
 		4C90C66116C54C430095B5EF /* icon_locate_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_me.png; sourceTree = "<group>"; };
 		4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me@2x.png"; sourceTree = "<group>"; };
-		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMapView.h; sourceTree = "<group>"; };
+		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMMapView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C92859416D3BBD100BE09CA /* SMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMapView.m; sourceTree = "<group>"; };
 		4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNearbyPlaces.h; sourceTree = "<group>"; };
