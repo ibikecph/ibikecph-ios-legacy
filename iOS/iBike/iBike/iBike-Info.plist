@@ -45,7 +45,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>DanishStoryboard_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>DanishStoryboard_iPad</string>
+	<string>MainStoryboard_iPad</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
