@@ -1222,7 +1222,7 @@
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
 {
-//    NSLog(@"scrollViewWillBeginZooming()");
+//    RMLog(@"scrollViewWillBeginZooming()");
     [self registerZoomEventByUser:(scrollView.pinchGestureRecognizer.state == UIGestureRecognizerStateBegan)];
 
     _mapScrollViewIsZooming = YES;
@@ -1233,7 +1233,7 @@
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale
 {
-//    NSLog(@"scrollViewDidEndZooming()");
+//    RMLog(@"scrollViewDidEndZooming()");
     [_moveDelegateQueue setSuspended:NO];
     [_zoomDelegateQueue setSuspended:NO];
 
@@ -1257,7 +1257,7 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    NSLog(@"scrollViewDidZoom()");
+    RMLog(@"scrollViewDidZoom()");
 
     BOOL wasUserAction = (scrollView.pinchGestureRecognizer.state == UIGestureRecognizerStateChanged);
 
@@ -2638,7 +2638,7 @@
     for (CGFloat i = 0; i < [sortedAnnotations count]; i++)
         ((RMAnnotation *)[sortedAnnotations objectAtIndex:i]).layer.zPosition = (CGFloat)i;
     
-    NSLog(@"Sorted annotations: %@", sortedAnnotations);
+    RMLog(@"Sorted annotations: %@", sortedAnnotations);
 }
 
 - (NSArray *)annotations
@@ -3000,19 +3000,19 @@
         lastLocUpdatedTime = CACurrentMediaTime();
 
     if ((int)loc.coordinate.latitude == 0 && (int)loc.coordinate.longitude == 0) {
-        NSLog(@"Skipping location 0.0, 0.0! (You cannot walk on the water)");
+        RMLog(@"Skipping location 0.0, 0.0! (You cannot walk on the water)");
         return nil;
     }
 
     if (loc.horizontalAccuracy > ACCURACY_JUNK) {
-        NSLog(@"Low accuracy! Skipping location %f %f %.1f!", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
+        RMLog(@"Low accuracy! Skipping location %f %f %.1f!", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
         return nil;
     }
 
     // check if we should use/cache this location:
     if (loc.horizontalAccuracy < 0) {
         // update with this location but don't cache it
-        NSLog(@"No accuracy!");
+        RMLog(@"No accuracy!");
         cachedLocation = nil;
         lastLocUpdatedTime = CACurrentMediaTime();
         return loc;
@@ -3021,10 +3021,10 @@
         if (cachedLocation == nil || loc.horizontalAccuracy < cachedLocation.horizontalAccuracy) {
             cachedLocation = loc;
             // caching location:
-			NSLog(@"Caching location: %f %f accuracy: %.1f", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
+			RMLog(@"Caching location: %f %f accuracy: %.1f", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
         }
         if ((CACurrentMediaTime() - lastLocUpdatedTime) > CACHE_UPDATE_INTERVAL || (int)cachedLocation.horizontalAccuracy < ACCURACY_GREAT) {
-            NSLog(@"Updating with cached location");
+            RMLog(@"Updating with cached location");
             lastLocUpdatedTime = CACurrentMediaTime();
             cachedLocation = nil; // invalidate used location
             return loc;
