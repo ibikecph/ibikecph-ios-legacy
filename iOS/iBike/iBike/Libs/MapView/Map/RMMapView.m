@@ -65,6 +65,12 @@
 
 #pragma mark --- end constants ----
 
+@interface RMMapView()
+
+@property (nonatomic, retain) CLLocation *cachedLocation;
+
+@end
+
 @interface RMMapView (PrivateMethods) <UIScrollViewDelegate, UIGestureRecognizerDelegate, RMMapScrollViewDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, retain) RMUserLocation *userLocation;
@@ -163,7 +169,6 @@
     CLLocationManager *_locationManager;
 
     double lastLocUpdatedTime;
-    CLLocation *cachedLocation;
 
     RMAnnotation *_accuracyCircleAnnotation;
     RMAnnotation *_trackingHaloAnnotation;
@@ -202,6 +207,8 @@
 @synthesize debugTiles = _debugTiles;
 @synthesize triggerUpdateOnHeadingChange = _triggerUpdateOnHeadingChange;
 @synthesize rotateOnHeadingChange = _rotateOnHeadingChange;
+@synthesize cachedLocation = _cachedLocation;
+
 
 #pragma mark -
 #pragma mark Initialization
@@ -2767,7 +2774,7 @@
         _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
         _locationManager.delegate = self;
         lastLocUpdatedTime = 0.0;
-        cachedLocation = nil;
+        self.cachedLocation = nil;
         [_locationManager startUpdatingLocation];
     }
     else
@@ -2777,7 +2784,7 @@
         _locationManager.delegate = nil;
         [_locationManager release]; _locationManager = nil;
         lastLocUpdatedTime = 0.0;
-        cachedLocation = nil;
+        self.cachedLocation = nil;
 
         if (_delegateHasDidStopLocatingUser)
             [_delegate mapViewDidStopLocatingUser:self];
@@ -2996,6 +3003,7 @@
 // Filter best locations
 // Returns nil if location should not be processed further
 - (CLLocation *)smoothLocation:(CLLocation *)loc {
+    
     if (lastLocUpdatedTime == 0.0)
         lastLocUpdatedTime = CACurrentMediaTime();
 
@@ -3013,20 +3021,20 @@
     if (loc.horizontalAccuracy < 0) {
         // update with this location but don't cache it
         RMLog(@"No accuracy!");
-        cachedLocation = nil;
+        self.cachedLocation = nil;
         lastLocUpdatedTime = CACurrentMediaTime();
         return loc;
     }
     else {
-        if (cachedLocation == nil || loc.horizontalAccuracy < cachedLocation.horizontalAccuracy) {
-            cachedLocation = loc;
+        if (self.cachedLocation == nil || loc.horizontalAccuracy < self.cachedLocation.horizontalAccuracy) {
+            self.cachedLocation = loc;
             // caching location:
 			RMLog(@"Caching location: %f %f accuracy: %.1f", loc.coordinate.latitude, loc.coordinate.longitude, loc.horizontalAccuracy);
         }
-        if ((CACurrentMediaTime() - lastLocUpdatedTime) > CACHE_UPDATE_INTERVAL || (int)cachedLocation.horizontalAccuracy < ACCURACY_GREAT) {
+        if ((CACurrentMediaTime() - lastLocUpdatedTime) > CACHE_UPDATE_INTERVAL || (int)self.cachedLocation.horizontalAccuracy < ACCURACY_GREAT) {
             RMLog(@"Updating with cached location");
             lastLocUpdatedTime = CACurrentMediaTime();
-            cachedLocation = nil; // invalidate used location
+            self.cachedLocation = nil; // invalidate used location
             return loc;
         }
     }
@@ -3035,7 +3043,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if (![self smoothLocation:newLocation])
+    if (!newLocation || ![self smoothLocation:newLocation])
         return;
     
     if ( ! _showsUserLocation || _mapScrollView.isDragging || ! newLocation || ! CLLocationCoordinate2DIsValid(newLocation.coordinate))
