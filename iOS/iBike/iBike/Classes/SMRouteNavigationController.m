@@ -8,12 +8,12 @@
 
 #import "SMRouteNavigationController.h"
 
-#import "../Libs/MapView/Map/RMMapView.h"
-#import "../Libs/MapView/Map/RMShape.h"
-#import "../Libs/MapView/Map/RMPath.h"
-#import "../Libs/MapView/Map/RMMarker.h"
-#import "../Libs/MapView/Map/RMAnnotation.h"
-#import "../Libs/MapView/Map/RMUserLocation.h"
+#import "RMMapView.h"
+#import "RMShape.h"
+#import "RMPath.h"
+#import "RMMarker.h"
+#import "RMAnnotation.h"
+#import "RMUserLocation.h"
 
 #import "SMiBikeCPHMapTileSource.h"
 #import "SMOpenStreetMapTileSource.h"

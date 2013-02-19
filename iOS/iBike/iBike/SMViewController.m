@@ -16,10 +16,10 @@
 #import "SMEventsFacebookCell.h"
 #import "SMEventsHeader.h"
 
-#import "./Libs/MapView/Map/RMMapView.h"
-#import "./Libs/MapView/Map/RMAnnotation.h"
-#import "./Libs/MapView/Map/RMMarker.h"
-#import "./Libs/MapView/Map/RMShape.h"
+#import "RMMapView.h"
+#import "RMAnnotation.h"
+#import "RMMarker.h"
+#import "RMShape.h"
 
 #import "SMiBikeCPHMapTileSource.h"
 #import "SMOpenStreetMapTileSource.h"

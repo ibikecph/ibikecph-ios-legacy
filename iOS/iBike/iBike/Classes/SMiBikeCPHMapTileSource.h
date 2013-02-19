@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "../Libs/MapView/Map/RMAbstractWebMapSource.h"
+#import "RMAbstractWebMapSource.h"
 
 @interface SMiBikeCPHMapTileSource : RMAbstractWebMapSource
 

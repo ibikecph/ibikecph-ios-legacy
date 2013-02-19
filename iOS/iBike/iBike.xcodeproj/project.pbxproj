@@ -25,7 +25,6 @@
 		4B97307516CB93D500D07314 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B97307316CB93D500D07314 /* libGoogleAnalytics.a */; };
 		4B97307C16CBC6BB00D07314 /* SMiBikeCPHMapTileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */; };
 		4B9EF33D16B6BA6700DE5787 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9EF33C16B6BA6700DE5787 /* SMRoute.m */; };
-		4BA9158816AFE966004E04A4 /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9158016AFE95D004E04A4 /* libMapView.a */; };
 		4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915C816AFF798004E04A4 /* CoreLocation.framework */; };
 		4BA915CB16AFF7E4004E04A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */; };
 		4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CC16AFF809004E04A4 /* QuartzCore.framework */; };
@@ -204,7 +203,6 @@
 		4C6C483216CD3C5200E57F59 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0116B188C4001545C7 /* AddressBookUI.framework */; };
 		4C6C483316CD3C5200E57F59 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CC16AFF809004E04A4 /* QuartzCore.framework */; };
 		4C6C483416CD3C5200E57F59 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915C816AFF798004E04A4 /* CoreLocation.framework */; };
-		4C6C483516CD3C5200E57F59 /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA9158016AFE95D004E04A4 /* libMapView.a */; };
 		4C6C483616CD3C5200E57F59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73D20E16AEDCDA00AED42A /* UIKit.framework */; };
 		4C6C483716CD3C5200E57F59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73D21016AEDCDA00AED42A /* Foundation.framework */; };
 		4C6C483816CD3C5200E57F59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C73D21216AEDCDA00AED42A /* CoreGraphics.framework */; };
@@ -480,6 +478,10 @@
 		4C90C66416C54C430095B5EF /* icon_locate_me_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */; };
 		4C90C66516C54C430095B5EF /* icon_locate_me.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66116C54C430095B5EF /* icon_locate_me.png */; };
 		4C90C66616C54C430095B5EF /* icon_locate_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */; };
+		4C92859516D3BBD100BE09CA /* SMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92859416D3BBD100BE09CA /* SMMapView.m */; };
+		4C92859616D3BBD100BE09CA /* SMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92859416D3BBD100BE09CA /* SMMapView.m */; };
+		4C9287CE16D3C0CC00BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
+		4C9287CF16D3C16100BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
 		4C9A6A3616C293E4000AACC6 /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */; };
 		4C9A6A3916C29B1E000AACC6 /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */; };
 		4C9D151E16BA6C8000B73393 /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D151D16BA6C8000B73393 /* SMTranslation.m */; };
@@ -516,25 +518,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4BA9157F16AFE95D004E04A4 /* PBXContainerItemProxy */ = {
+		4C9287CC16D3BF9100BE09CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */;
+			containerPortal = 4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 17F31EFA1331050A00122B16;
-			remoteInfo = MapView;
-		};
-		4BA9158616AFE962004E04A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
-			remoteInfo = MapView;
-		};
-		4C6C47F416CD3C5200E57F59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
 			remoteInfo = MapView;
 		};
 /* End PBXContainerItemProxy section */
@@ -574,7 +562,6 @@
 		4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMiBikeCPHMapTileSource.m; path = ../Classes/SMiBikeCPHMapTileSource.m; sourceTree = "<group>"; };
 		4B9EF33B16B6BA6700DE5787 /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
 		4B9EF33C16B6BA6700DE5787 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
-		4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		4BA915C616AFF14C004E04A4 /* SMLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
 		4BA915C716AFF14C004E04A4 /* SMLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLocationManager.m; sourceTree = "<group>"; };
 		4BA915C816AFF798004E04A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -816,6 +803,9 @@
 		4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me_active@2x.png"; sourceTree = "<group>"; };
 		4C90C66116C54C430095B5EF /* icon_locate_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_me.png; sourceTree = "<group>"; };
 		4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me@2x.png"; sourceTree = "<group>"; };
+		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMapView.h; sourceTree = "<group>"; };
+		4C92859416D3BBD100BE09CA /* SMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMapView.m; sourceTree = "<group>"; };
+		4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNearbyPlaces.h; sourceTree = "<group>"; };
 		4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNearbyPlaces.m; sourceTree = "<group>"; };
 		4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRequestOSRM.h; sourceTree = "<group>"; };
@@ -861,6 +851,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9287CE16D3C0CC00BE09CA /* libMapView.a in Frameworks */,
 				4C6C482716CD3C5200E57F59 /* CoreData.framework in Frameworks */,
 				4C6C482816CD3C5200E57F59 /* SystemConfiguration.framework in Frameworks */,
 				4C6C482916CD3C5200E57F59 /* MapKit.framework in Frameworks */,
@@ -875,7 +866,6 @@
 				4C6C483216CD3C5200E57F59 /* AddressBookUI.framework in Frameworks */,
 				4C6C483316CD3C5200E57F59 /* QuartzCore.framework in Frameworks */,
 				4C6C483416CD3C5200E57F59 /* CoreLocation.framework in Frameworks */,
-				4C6C483516CD3C5200E57F59 /* libMapView.a in Frameworks */,
 				4C6C483616CD3C5200E57F59 /* UIKit.framework in Frameworks */,
 				4C6C483716CD3C5200E57F59 /* Foundation.framework in Frameworks */,
 				4C6C483816CD3C5200E57F59 /* CoreGraphics.framework in Frameworks */,
@@ -889,6 +879,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9287CF16D3C16100BE09CA /* libMapView.a in Frameworks */,
 				4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */,
 				4C77EF8416CB8E7B0062360C /* SystemConfiguration.framework in Frameworks */,
 				4C6C083816C3C33E002EA499 /* MapKit.framework in Frameworks */,
@@ -903,7 +894,6 @@
 				4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */,
 				4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */,
 				4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */,
-				4BA9158816AFE966004E04A4 /* libMapView.a in Frameworks */,
 				4C73D20F16AEDCDA00AED42A /* UIKit.framework in Frameworks */,
 				4C73D21116AEDCDA00AED42A /* Foundation.framework in Frameworks */,
 				4C73D21316AEDCDA00AED42A /* CoreGraphics.framework in Frameworks */,
@@ -943,14 +933,6 @@
 				4B0E9C6316AFE14900D6D9C2 /* SBJsonWriter.m */,
 			);
 			path = SBJson;
-			sourceTree = "<group>";
-		};
-		4BA9157016AFE95D004E04A4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4BA9158016AFE95D004E04A4 /* libMapView.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4BA9162016B14655004E04A4 /* route-me */ = {
@@ -1043,8 +1025,8 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
+				4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */,
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
-				4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */,
 				4C73D21416AEDCDA00AED42A /* iBike */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
 				4C73D20D16AEDCDA00AED42A /* Frameworks */,
@@ -1262,6 +1244,8 @@
 				4C6C083216C3AA55002EA499 /* SMGeocoder.m */,
 				4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */,
 				4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */,
+				4C92859316D3BBD100BE09CA /* SMMapView.h */,
+				4C92859416D3BBD100BE09CA /* SMMapView.m */,
 			);
 			name = Libs;
 			path = iBike/Libs;
@@ -1374,6 +1358,14 @@
 			name = Autocomplete;
 			sourceTree = "<group>";
 		};
+		4C9287C916D3BF9100BE09CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C9287CD16D3BF9100BE09CA /* libMapView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4C9D152216BAB94700B73393 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1403,7 +1395,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4C6C47F316CD3C5200E57F59 /* PBXTargetDependency */,
 			);
 			name = "iBike EN";
 			productName = iBike;
@@ -1421,7 +1412,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4BA9158716AFE962004E04A4 /* PBXTargetDependency */,
 			);
 			name = iBike;
 			productName = iBike;
@@ -1450,8 +1440,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4BA9157016AFE95D004E04A4 /* Products */;
-					ProjectRef = 4BA9156F16AFE95D004E04A4 /* MapView.xcodeproj */;
+					ProductGroup = 4C9287C916D3BF9100BE09CA /* Products */;
+					ProjectRef = 4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1463,11 +1453,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4BA9158016AFE95D004E04A4 /* libMapView.a */ = {
+		4C9287CD16D3BF9100BE09CA /* libMapView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMapView.a;
-			remoteRef = 4BA9157F16AFE95D004E04A4 /* PBXContainerItemProxy */;
+			remoteRef = 4C9287CC16D3BF9100BE09CA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1909,6 +1899,7 @@
 				4C6C482416CD3C5200E57F59 /* SMiBikeCPHMapTileSource.m in Sources */,
 				4C6C482516CD3C5200E57F59 /* SMOpenStreetMapTileSource.m in Sources */,
 				4CB150A616D26CEA00943E0C /* SMCustomCheckbox.m in Sources */,
+				4C92859616D3BBD100BE09CA /* SMMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1965,23 +1956,11 @@
 				4B97307C16CBC6BB00D07314 /* SMiBikeCPHMapTileSource.m in Sources */,
 				4C6C47EC16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m in Sources */,
 				4CB150A516D26CEA00943E0C /* SMCustomCheckbox.m in Sources */,
+				4C92859516D3BBD100BE09CA /* SMMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4BA9158716AFE962004E04A4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MapView;
-			targetProxy = 4BA9158616AFE962004E04A4 /* PBXContainerItemProxy */;
-		};
-		4C6C47F316CD3C5200E57F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MapView;
-			targetProxy = 4C6C47F416CD3C5200E57F59 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C6C47ED16CD3BF500E57F59 /* DanishStoryboard_iPhone.storyboard */ = {
@@ -2022,6 +2001,7 @@
 		4C6C48F216CD3C5200E57F59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2035,6 +2015,7 @@
 					WORLD_ROUTING,
 					"DEBUG=1",
 				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2050,6 +2031,7 @@
 		4C6C48F316CD3C5200E57F59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2062,6 +2044,7 @@
 					ENGLISH_VERSION,
 					WORLD_ROUTING,
 				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2129,14 +2112,17 @@
 		4C73D23216AEDCDA00AED42A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
+					"$(SRCROOT)/iBike/Libs/MapView/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2152,14 +2138,17 @@
 		4C73D23316AEDCDA00AED42A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
+					"$(SRCROOT)/iBike/Libs/MapView/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (

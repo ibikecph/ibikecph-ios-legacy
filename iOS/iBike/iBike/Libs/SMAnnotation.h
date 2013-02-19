@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "./MapView/Map/RMAnnotation.h"
+#import "RMAnnotation.h"
 #import "SMCalloutView.h"
 
 @class SMAnnotation;
