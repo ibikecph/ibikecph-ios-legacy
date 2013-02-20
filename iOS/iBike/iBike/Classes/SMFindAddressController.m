@@ -51,8 +51,8 @@
         [routeTo setText:@""];
     }
     
-    [routeFrom setText:@"Grundtvigsvej 19, 1864 Frederiksberg"];
-    [routeTo setText:@"Vodroffsvej 53C, 1900 Frederiksberg"];
+//    [routeFrom setText:@"Grundtvigsvej 19, 1864 Frederiksberg"];
+//    [routeTo setText:@"Vodroffsvej 53C, 1900 Frederiksberg"];
 //    [routeTo setText:@" Acaciavej 4, 1867 Frederiksberg"];
 
     if (self.autocompleteArr == nil) {
