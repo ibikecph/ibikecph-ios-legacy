@@ -26,7 +26,7 @@
 "direction_8" = "Turn slightly left on";
 "direction_9" = "Reach via point";
 "direction_10" = "Head on";
-"direction_11" = "Enter roundabout on";
+"direction_11" = "Enter roundabout and take %@ exit to";
 "direction_12" = "Leave roundabout on";
 "direction_13" = "Stay on roundabout on";
 "direction_14" = "Start on";
@@ -41,6 +41,18 @@
 "direction_SW" = "southwest";
 "direction_W" = "west";
 "direction_NW" = "northwest";
+
+"direction_number_1" = "1st";
+"direction_number_2" = "2nd";
+"direction_number_3" = "3rd";
+"direction_number_4" = "4th";
+"direction_number_5" = "5th";
+"direction_number_6" = "6th";
+"direction_number_7" = "7th";
+"direction_number_8" = "8th";
+"direction_number_9" = "9th";
+"direction_number_10" = "10th";
+"direction_number_11" = "11th";
 
 "new_route" = "New route";
 "Stop" = "Stop";

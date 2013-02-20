@@ -350,7 +350,14 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         for (id jsonObject in routeInstructions) {
             SMTurnInstruction *instruction = [[SMTurnInstruction alloc] init];
 
-            instruction.drivingDirection = [(NSNumber *)[jsonObject objectAtIndex:0] intValue];
+            NSArray * arr = [[NSString stringWithFormat:@"%@", [jsonObject objectAtIndex:0]] componentsSeparatedByString:@"-"];
+            int pos = [(NSString*)[arr objectAtIndex:0] intValue];
+            instruction.drivingDirection = pos;
+            if ([arr count] > 1 && [arr objectAtIndex:1]) {
+                instruction.ordinalDirection = [arr objectAtIndex:1];
+            } else {
+                instruction.ordinalDirection = @"";
+            }
             instruction.wayName = (NSString *)[jsonObject objectAtIndex:1];
             instruction.lengthInMeters = prevlengthInMeters;
             prevlengthInMeters = [(NSNumber *)[jsonObject objectAtIndex:2] intValue];

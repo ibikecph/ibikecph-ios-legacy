@@ -1991,6 +1991,7 @@
 					ENGLISH_VERSION,
 					WORLD_ROUTING,
 					"DEBUG=1",
+					START_DIRECTIONS,
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";
@@ -2021,6 +2022,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					ENGLISH_VERSION,
 					WORLD_ROUTING,
+					START_DIRECTIONS,
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";

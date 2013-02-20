@@ -38,6 +38,7 @@ typedef enum {
 }
 
 @property TurnDirection drivingDirection;
+@property (nonatomic, strong) NSString * ordinalDirection;
 @property (nonatomic, strong) NSString *wayName;
 @property int lengthInMeters;
 @property int timeInSeconds;
