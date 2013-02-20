@@ -16,7 +16,7 @@
 #import "RMUserLocation.h"
 
 #import "SMiBikeCPHMapTileSource.h"
-#import "SMOpenStreetMapTileSource.h"
+#import "RMOpenStreetMapSource.h"
 
 #import "SMLocationManager.h"
 #import "SMFindAddressController.h"
