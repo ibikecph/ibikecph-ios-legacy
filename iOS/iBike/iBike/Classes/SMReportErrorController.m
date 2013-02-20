@@ -99,6 +99,14 @@
 #pragma mark - custom methods
 
 - (void)sendEmail {
+    if (currentSelection < 0) {
+        return;
+    }
+    
+    if ((self.reportedSegment == nil) || ([self.reportedSegment isEqualToString:@""])) {
+        return;
+    }
+    
     MFMailComposeViewController * mvc = [[MFMailComposeViewController alloc] init];
     [mvc setSubject:translateString(@"report_subject")];
     [mvc setToRecipients:MAIL_RECIPIENTS];
@@ -177,7 +185,7 @@
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"report_sent") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
         [self dismissModalViewControllerAnimated:YES];
-        [self goBack:nil];
+//        [self goBack:nil];
     } else {
         [controller dismissModalViewControllerAnimated:YES];
     }
