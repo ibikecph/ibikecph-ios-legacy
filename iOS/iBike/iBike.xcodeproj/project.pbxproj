@@ -476,8 +476,6 @@
 		4C90C66416C54C430095B5EF /* icon_locate_me_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */; };
 		4C90C66516C54C430095B5EF /* icon_locate_me.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66116C54C430095B5EF /* icon_locate_me.png */; };
 		4C90C66616C54C430095B5EF /* icon_locate_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */; };
-		4C92859516D3BBD100BE09CA /* SMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92859416D3BBD100BE09CA /* SMMapView.m */; };
-		4C92859616D3BBD100BE09CA /* SMMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C92859416D3BBD100BE09CA /* SMMapView.m */; };
 		4C9287CE16D3C0CC00BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
 		4C9287CF16D3C16100BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
 		4C9A6A3616C293E4000AACC6 /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */; };
@@ -800,8 +798,6 @@
 		4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me_active@2x.png"; sourceTree = "<group>"; };
 		4C90C66116C54C430095B5EF /* icon_locate_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_me.png; sourceTree = "<group>"; };
 		4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me@2x.png"; sourceTree = "<group>"; };
-		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SMMapView.h; path = ../Libs/SMMapView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4C92859416D3BBD100BE09CA /* SMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMMapView.m; path = ../Libs/SMMapView.m; sourceTree = "<group>"; };
 		4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMNearbyPlaces.h; path = ../Libs/SMNearbyPlaces.h; sourceTree = "<group>"; };
 		4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMNearbyPlaces.m; path = ../Libs/SMNearbyPlaces.m; sourceTree = "<group>"; };
@@ -961,8 +957,6 @@
 				4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */,
 				4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */,
 				4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */,
-				4C92859316D3BBD100BE09CA /* SMMapView.h */,
-				4C92859416D3BBD100BE09CA /* SMMapView.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1909,7 +1903,6 @@
 				4C6C482416CD3C5200E57F59 /* SMiBikeCPHMapTileSource.m in Sources */,
 				4C6C482516CD3C5200E57F59 /* SMOpenStreetMapTileSource.m in Sources */,
 				4CB150A616D26CEA00943E0C /* SMCustomCheckbox.m in Sources */,
-				4C92859616D3BBD100BE09CA /* SMMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1966,7 +1959,6 @@
 				4B97307C16CBC6BB00D07314 /* SMiBikeCPHMapTileSource.m in Sources */,
 				4C6C47EC16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m in Sources */,
 				4CB150A516D26CEA00943E0C /* SMCustomCheckbox.m in Sources */,
-				4C92859516D3BBD100BE09CA /* SMMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import "SMRouteNavigationController.h"
 
-#import "SMMapView.h"
+#import "RMMapView.h"
 #import "RMShape.h"
 #import "RMPath.h"
 #import "RMMarker.h"
@@ -33,7 +33,7 @@
 
 @interface SMRouteNavigationController ()
 @property (nonatomic, strong) SMRoute *route;
-@property (nonatomic, strong) IBOutlet SMMapView * mpView;
+@property (nonatomic, strong) IBOutlet RMMapView * mpView;
 @property int directionsShownCount; // How many directions are shown in the directions table at the moment:
                                     // -1 means no direction is shown and minimized directions view is not shown (this happens before first call to showDirections())
                                     // 0 means no direction is shown and minimized directions view is shown
@@ -44,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [SMMapView class];
+    [RMMapView class];
     
     currentlyRouting = NO;
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -275,7 +275,7 @@
 
 #pragma mark - mapView delegate
 
-- (RMMapLayer *)mapView:(SMMapView *)aMapView layerForAnnotation:(RMAnnotation *)annotation {
+- (RMMapLayer *)mapView:(RMMapView *)aMapView layerForAnnotation:(RMAnnotation *)annotation {
     if ([annotation.annotationType isEqualToString:@"path"]) {
         RMShape *path = [[RMShape alloc] initWithView:aMapView];
         [path setZPosition:-MAXFLOAT];
@@ -323,7 +323,7 @@
     return nil;
 }
 
-- (void)mapView:(SMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
+- (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
    if (currentlyRouting && self.route) {
        debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
@@ -352,14 +352,14 @@
     }
 }
 
-- (void)afterMapMove:(SMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
         [buttonTrackUser setEnabled:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     }
 }
 
-- (void)beforeMapZoom:(SMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)beforeMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"beforeMapZoom() wasUserAction = %@", wasUserAction ? @"YES" : @"NO");
     if (wasUserAction) {
         [buttonTrackUser setEnabled:YES];
@@ -367,7 +367,7 @@
     }
 }
 
-- (void)afterMapZoom:(SMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"After map zoom!!!! wasUserAction = %d", wasUserAction);
     if (wasUserAction) {
         [buttonTrackUser setEnabled:YES];
