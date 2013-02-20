@@ -549,14 +549,14 @@
 		4B0E9C6316AFE14900D6D9C2 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		4B27061116B6805300FF9DD6 /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
 		4B27061216B6805300FF9DD6 /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
-		4B7DC93216BA847C00198F72 /* SMUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMUtil.h; path = ../Classes/SMUtil.h; sourceTree = "<group>"; };
-		4B7DC93316BA847C00198F72 /* SMUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMUtil.m; path = ../Classes/SMUtil.m; sourceTree = "<group>"; };
+		4B7DC93216BA847C00198F72 /* SMUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUtil.h; sourceTree = "<group>"; };
+		4B7DC93316BA847C00198F72 /* SMUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUtil.m; sourceTree = "<group>"; };
 		4B7DC93816BBD73A00198F72 /* SMDirectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionCell.h; sourceTree = "<group>"; };
 		4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionCell.m; sourceTree = "<group>"; };
 		4B97307216CB93D500D07314 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		4B97307316CB93D500D07314 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMiBikeCPHMapTileSource.h; path = ../Classes/SMiBikeCPHMapTileSource.h; sourceTree = "<group>"; };
-		4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMiBikeCPHMapTileSource.m; path = ../Classes/SMiBikeCPHMapTileSource.m; sourceTree = "<group>"; };
+		4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMiBikeCPHMapTileSource.h; sourceTree = "<group>"; };
+		4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMiBikeCPHMapTileSource.m; sourceTree = "<group>"; };
 		4B9EF33B16B6BA6700DE5787 /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
 		4B9EF33C16B6BA6700DE5787 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
 		4BA915C616AFF14C004E04A4 /* SMLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
@@ -634,8 +634,8 @@
 		4C11374216BFF9EF007F483F /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
 		4C11374316BFF9EF007F483F /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
-		4C11374A16C00636007F483F /* SMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAnnotation.h; sourceTree = "<group>"; };
-		4C11374B16C00636007F483F /* SMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMAnnotation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C11374A16C00636007F483F /* SMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMAnnotation.h; path = ../Libs/SMAnnotation.h; sourceTree = "<group>"; };
+		4C11374B16C00636007F483F /* SMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SMAnnotation.m; path = ../Libs/SMAnnotation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C16ECF016B17707001545C7 /* iBikeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iBikeLogo.png; sourceTree = "<group>"; };
 		4C16ECF116B17707001545C7 /* iBikeLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iBikeLogo@2x.png"; sourceTree = "<group>"; };
 		4C16ECF216B17707001545C7 /* menuBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuBar.png; sourceTree = "<group>"; };
@@ -664,10 +664,10 @@
 		4C6A0DBB16C93B6A00106FCF /* calloutBubbleRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calloutBubbleRight@2x.png"; sourceTree = "<group>"; };
 		4C6A0DC216C93F6400106FCF /* MapDisclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MapDisclosure.png; sourceTree = "<group>"; };
 		4C6A0DC316C93F6400106FCF /* MapDisclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MapDisclosure@2x.png"; sourceTree = "<group>"; };
-		4C6C083116C3AA55002EA499 /* SMGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGeocoder.h; sourceTree = "<group>"; };
-		4C6C083216C3AA55002EA499 /* SMGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGeocoder.m; sourceTree = "<group>"; };
-		4C6C083416C3AE1A002EA499 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
-		4C6C083516C3AE1A002EA499 /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
+		4C6C083116C3AA55002EA499 /* SMGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMGeocoder.h; path = ../Libs/SMGeocoder.h; sourceTree = "<group>"; };
+		4C6C083216C3AA55002EA499 /* SMGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMGeocoder.m; path = ../Libs/SMGeocoder.m; sourceTree = "<group>"; };
+		4C6C083416C3AE1A002EA499 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncode.h"; path = "../Libs/NSString+URLEncode.h"; sourceTree = "<group>"; };
+		4C6C083516C3AE1A002EA499 /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncode.m"; path = "../Libs/NSString+URLEncode.m"; sourceTree = "<group>"; };
 		4C6C083716C3C33E002EA499 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4C6C083916C3DFA1002EA499 /* iconsBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconsBackground.png; sourceTree = "<group>"; };
 		4C6C083A16C3DFA1002EA499 /* iconsBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconsBackground@2x.png"; sourceTree = "<group>"; };
@@ -683,8 +683,8 @@
 		4C6C084A16C3E47C002EA499 /* tableViewBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableViewBG@2x.png"; sourceTree = "<group>"; };
 		4C6C085116C3EDF4002EA499 /* emailButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emailButton.png; sourceTree = "<group>"; };
 		4C6C085216C3EDF4002EA499 /* emailButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailButton@2x.png"; sourceTree = "<group>"; };
-		4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMOpenStreetMapTileSource.h; sourceTree = "<group>"; };
-		4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMOpenStreetMapTileSource.m; sourceTree = "<group>"; };
+		4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMOpenStreetMapTileSource.h; path = ../Libs/SMOpenStreetMapTileSource.h; sourceTree = "<group>"; };
+		4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMOpenStreetMapTileSource.m; path = ../Libs/SMOpenStreetMapTileSource.m; sourceTree = "<group>"; };
 		4C6C47EE16CD3BF500E57F59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DanishStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_en.strings; sourceTree = "<group>"; };
 		4C6C48F416CD3C5200E57F59 /* iBikeEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBikeEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -774,8 +774,8 @@
 		4C8BB08D16B7D21D00F1ADF2 /* eventsRowOddBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventsRowOddBG@2x.png"; sourceTree = "<group>"; };
 		4C8BB09816B7D2BC00F1ADF2 /* SMEventsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsHeader.h; sourceTree = "<group>"; };
 		4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsHeader.m; sourceTree = "<group>"; };
-		4C8BB09D16B7FF4F00F1ADF2 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
-		4C8BB09E16B7FF4F00F1ADF2 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		4C8BB09D16B7FF4F00F1ADF2 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncImageView.h; path = ../Libs/AsyncImageView.h; sourceTree = "<group>"; };
+		4C8BB09E16B7FF4F00F1ADF2 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncImageView.m; path = ../Libs/AsyncImageView.m; sourceTree = "<group>"; };
 		4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMRouteNavigationController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMRouteNavigationController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C8BB0A316B82C8100F1ADF2 /* btnBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBack.png; sourceTree = "<group>"; };
@@ -800,15 +800,15 @@
 		4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me_active@2x.png"; sourceTree = "<group>"; };
 		4C90C66116C54C430095B5EF /* icon_locate_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_me.png; sourceTree = "<group>"; };
 		4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me@2x.png"; sourceTree = "<group>"; };
-		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMMapView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4C92859416D3BBD100BE09CA /* SMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMapView.m; sourceTree = "<group>"; };
+		4C92859316D3BBD100BE09CA /* SMMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SMMapView.h; path = ../Libs/SMMapView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C92859416D3BBD100BE09CA /* SMMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMMapView.m; path = ../Libs/SMMapView.m; sourceTree = "<group>"; };
 		4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
-		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNearbyPlaces.h; sourceTree = "<group>"; };
-		4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNearbyPlaces.m; sourceTree = "<group>"; };
-		4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRequestOSRM.h; sourceTree = "<group>"; };
-		4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRequestOSRM.m; sourceTree = "<group>"; };
-		4C9D151C16BA6C8000B73393 /* SMTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslation.h; sourceTree = "<group>"; };
-		4C9D151D16BA6C8000B73393 /* SMTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslation.m; sourceTree = "<group>"; };
+		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMNearbyPlaces.h; path = ../Libs/SMNearbyPlaces.h; sourceTree = "<group>"; };
+		4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMNearbyPlaces.m; path = ../Libs/SMNearbyPlaces.m; sourceTree = "<group>"; };
+		4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMRequestOSRM.h; path = ../Libs/SMRequestOSRM.h; sourceTree = "<group>"; };
+		4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMRequestOSRM.m; path = ../Libs/SMRequestOSRM.m; sourceTree = "<group>"; };
+		4C9D151C16BA6C8000B73393 /* SMTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMTranslation.h; path = ../Libs/SMTranslation.h; sourceTree = "<group>"; };
+		4C9D151D16BA6C8000B73393 /* SMTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMTranslation.m; path = ../Libs/SMTranslation.m; sourceTree = "<group>"; };
 		4C9D151F16BA6DCE00B73393 /* dictionary_dk.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_dk.strings; sourceTree = "<group>"; };
 		4C9D152316BAB96C00B73393 /* SMSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSettingsController.h; sourceTree = "<group>"; };
 		4C9D152416BAB96C00B73393 /* SMSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSettingsController.m; sourceTree = "<group>"; };
@@ -929,6 +929,42 @@
 				4B0E9C6316AFE14900D6D9C2 /* SBJsonWriter.m */,
 			);
 			path = SBJson;
+			sourceTree = "<group>";
+		};
+		4B4E9AB516D4CA49002A6766 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C9D151C16BA6C8000B73393 /* SMTranslation.h */,
+				4C9D151D16BA6C8000B73393 /* SMTranslation.m */,
+				4B7DC93216BA847C00198F72 /* SMUtil.h */,
+				4B7DC93316BA847C00198F72 /* SMUtil.m */,
+				4C6C083416C3AE1A002EA499 /* NSString+URLEncode.h */,
+				4C6C083516C3AE1A002EA499 /* NSString+URLEncode.m */,
+				4C8BB09D16B7FF4F00F1ADF2 /* AsyncImageView.h */,
+				4C8BB09E16B7FF4F00F1ADF2 /* AsyncImageView.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		4B4E9AB616D4CAA3002A6766 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4C11374A16C00636007F483F /* SMAnnotation.h */,
+				4C11374B16C00636007F483F /* SMAnnotation.m */,
+				4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */,
+				4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */,
+				4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */,
+				4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */,
+				4C6C083116C3AA55002EA499 /* SMGeocoder.h */,
+				4C6C083216C3AA55002EA499 /* SMGeocoder.m */,
+				4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */,
+				4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */,
+				4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */,
+				4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */,
+				4C92859316D3BBD100BE09CA /* SMMapView.h */,
+				4C92859416D3BBD100BE09CA /* SMMapView.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		4BA9162016B14655004E04A4 /* route-me */ = {
@@ -1218,30 +1254,8 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */,
-				4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */,
-				4B7DC93216BA847C00198F72 /* SMUtil.h */,
-				4B7DC93316BA847C00198F72 /* SMUtil.m */,
 				4C77EF7216CB860E0062360C /* GA v2.0b4 */,
-				4C6C083416C3AE1A002EA499 /* NSString+URLEncode.h */,
-				4C6C083516C3AE1A002EA499 /* NSString+URLEncode.m */,
-				4C8BB09D16B7FF4F00F1ADF2 /* AsyncImageView.h */,
-				4C8BB09E16B7FF4F00F1ADF2 /* AsyncImageView.m */,
 				4B0E9C4D16AFE14900D6D9C2 /* SBJson */,
-				4C9D151C16BA6C8000B73393 /* SMTranslation.h */,
-				4C9D151D16BA6C8000B73393 /* SMTranslation.m */,
-				4C11374A16C00636007F483F /* SMAnnotation.h */,
-				4C11374B16C00636007F483F /* SMAnnotation.m */,
-				4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */,
-				4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */,
-				4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */,
-				4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */,
-				4C6C083116C3AA55002EA499 /* SMGeocoder.h */,
-				4C6C083216C3AA55002EA499 /* SMGeocoder.m */,
-				4C6C47EA16CCF62E00E57F59 /* SMOpenStreetMapTileSource.h */,
-				4C6C47EB16CCF62E00E57F59 /* SMOpenStreetMapTileSource.m */,
-				4C92859316D3BBD100BE09CA /* SMMapView.h */,
-				4C92859416D3BBD100BE09CA /* SMMapView.m */,
 			);
 			name = Libs;
 			path = iBike/Libs;
@@ -1252,8 +1266,10 @@
 			children = (
 				4C9D152216BAB94700B73393 /* Menus */,
 				4C90468B16B94E96004BA3DD /* Autocomplete */,
+				4B4E9AB616D4CAA3002A6766 /* Map */,
 				4C90468916B91154004BA3DD /* Turn by  Turn & Navigation */,
 				4C90468816B91140004BA3DD /* Contacts & Events */,
+				4B4E9AB516D4CA49002A6766 /* Utils */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

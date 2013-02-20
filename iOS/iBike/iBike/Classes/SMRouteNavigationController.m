@@ -31,9 +31,6 @@
 
 #import "SMUtil.h"
 
-#define DEFAULT_MAP_ZOOM 17
-#define DEFAULT_TURN_ZOOM 18
-
 @interface SMRouteNavigationController ()
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet SMMapView * mpView;
