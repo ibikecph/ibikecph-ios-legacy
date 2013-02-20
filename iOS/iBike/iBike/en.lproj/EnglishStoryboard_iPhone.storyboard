@@ -1963,6 +1963,9 @@ If you choose to be notified your e-mail address will be sent to us</string>
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
@@ -1987,7 +1990,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMContactsHeader" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
@@ -2055,18 +2057,12 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMFindAddressController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
-                <relationship kind="action" name="findRoute:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="swapFromAndTo:"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="routeFrom" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="routeTo" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
-        </class>
-        <class className="SMMapView" superclassName="RMMapView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMMapView.h"/>
         </class>
         <class className="SMRadioCheckedCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioCheckedCell.h"/>
@@ -2084,12 +2080,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMReportErrorController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="action" name="pickerCancel:"/>
-                <relationship kind="action" name="pickerDone:"/>
-                <relationship kind="action" name="sendReport:"/>
-                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2139,16 +2129,10 @@ If you choose to be notified your e-mail address will be sent to us</string>
         </class>
         <class className="SMSettingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>

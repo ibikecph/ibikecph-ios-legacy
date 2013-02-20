@@ -476,8 +476,6 @@
 		4C90C66416C54C430095B5EF /* icon_locate_me_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */; };
 		4C90C66516C54C430095B5EF /* icon_locate_me.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66116C54C430095B5EF /* icon_locate_me.png */; };
 		4C90C66616C54C430095B5EF /* icon_locate_me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */; };
-		4C9287CE16D3C0CC00BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
-		4C9287CF16D3C16100BE09CA /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9287CD16D3BF9100BE09CA /* libMapView.a */; };
 		4C9A6A3616C293E4000AACC6 /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */; };
 		4C9A6A3916C29B1E000AACC6 /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9A6A3816C29B1E000AACC6 /* SMRequestOSRM.m */; };
 		4C9D151E16BA6C8000B73393 /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D151D16BA6C8000B73393 /* SMTranslation.m */; };
@@ -485,6 +483,7 @@
 		4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152416BAB96C00B73393 /* SMSettingsController.m */; };
 		4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152716BAB97D00B73393 /* SMAboutController.m */; };
 		4C9D152B16BAB98C00B73393 /* SMAccountsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152A16BAB98C00B73393 /* SMAccountsController.m */; };
+		4CAF95C416D50BC0002C047B /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CB1509B16D26CC100943E0C /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509716D26CC100943E0C /* checkboxChecked.png */; };
 		4CB1509C16D26CC100943E0C /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509716D26CC100943E0C /* checkboxChecked.png */; };
 		4CB1509D16D26CC100943E0C /* checkboxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */; };
@@ -514,9 +513,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4C9287CC16D3BF9100BE09CA /* PBXContainerItemProxy */ = {
+		4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */;
+			containerPortal = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 17F31EFA1331050A00122B16;
 			remoteInfo = MapView;
@@ -798,7 +797,6 @@
 		4C90C66016C54C430095B5EF /* icon_locate_me_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me_active@2x.png"; sourceTree = "<group>"; };
 		4C90C66116C54C430095B5EF /* icon_locate_me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_me.png; sourceTree = "<group>"; };
 		4C90C66216C54C430095B5EF /* icon_locate_me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_me@2x.png"; sourceTree = "<group>"; };
-		4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = iBike/Libs/MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		4C9A6A3416C293E4000AACC6 /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMNearbyPlaces.h; path = ../Libs/SMNearbyPlaces.h; sourceTree = "<group>"; };
 		4C9A6A3516C293E4000AACC6 /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMNearbyPlaces.m; path = ../Libs/SMNearbyPlaces.m; sourceTree = "<group>"; };
 		4C9A6A3716C29B1E000AACC6 /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMRequestOSRM.h; path = ../Libs/SMRequestOSRM.h; sourceTree = "<group>"; };
@@ -812,6 +810,7 @@
 		4C9D152716BAB97D00B73393 /* SMAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAboutController.m; sourceTree = "<group>"; };
 		4C9D152916BAB98C00B73393 /* SMAccountsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAccountsController.h; sourceTree = "<group>"; };
 		4C9D152A16BAB98C00B73393 /* SMAccountsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAccountsController.m; sourceTree = "<group>"; };
+		4CAF95BE16D50B39002C047B /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "../../../route-me/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
 		4CB1509716D26CC100943E0C /* checkboxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxChecked.png; sourceTree = "<group>"; };
 		4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxChecked@2x.png"; sourceTree = "<group>"; };
 		4CB1509916D26CC100943E0C /* checkboxUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxUnchecked.png; sourceTree = "<group>"; };
@@ -844,7 +843,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C9287CE16D3C0CC00BE09CA /* libMapView.a in Frameworks */,
 				4C6C482716CD3C5200E57F59 /* CoreData.framework in Frameworks */,
 				4C6C482816CD3C5200E57F59 /* SystemConfiguration.framework in Frameworks */,
 				4C6C482916CD3C5200E57F59 /* MapKit.framework in Frameworks */,
@@ -872,7 +870,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C9287CF16D3C16100BE09CA /* libMapView.a in Frameworks */,
+				4CAF95C416D50BC0002C047B /* libMapView.a in Frameworks */,
 				4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */,
 				4C77EF8416CB8E7B0062360C /* SystemConfiguration.framework in Frameworks */,
 				4C6C083816C3C33E002EA499 /* MapKit.framework in Frameworks */,
@@ -1051,7 +1049,7 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
-				4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */,
+				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
 				4C73D21416AEDCDA00AED42A /* iBike */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
@@ -1364,14 +1362,6 @@
 			name = Autocomplete;
 			sourceTree = "<group>";
 		};
-		4C9287C916D3BF9100BE09CA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4C9287CD16D3BF9100BE09CA /* libMapView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4C9D152216BAB94700B73393 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1385,6 +1375,14 @@
 				4C64781A16C102FE00D055DC /* SMEnterEmailController.m */,
 			);
 			name = Menus;
+			sourceTree = "<group>";
+		};
+		4CAF95BF16D50B39002C047B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4CAF95C316D50B3A002C047B /* libMapView.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1446,8 +1444,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4C9287C916D3BF9100BE09CA /* Products */;
-					ProjectRef = 4C9287C816D3BF9100BE09CA /* MapView.xcodeproj */;
+					ProductGroup = 4CAF95BF16D50B39002C047B /* Products */;
+					ProjectRef = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1459,11 +1457,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4C9287CD16D3BF9100BE09CA /* libMapView.a */ = {
+		4CAF95C316D50B3A002C047B /* libMapView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libMapView.a;
-			remoteRef = 4C9287CC16D3BF9100BE09CA /* PBXContainerItemProxy */;
+			remoteRef = 4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2009,6 +2007,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
+					"$(SRCROOT)/iBike/Libs/MapView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
@@ -2039,6 +2038,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
+					"$(SRCROOT)/iBike/Libs/MapView",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
