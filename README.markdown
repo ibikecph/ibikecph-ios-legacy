@@ -4,7 +4,7 @@
 <p>The I Bike CPH project makes use of several sub-libraries, listed below. For additional dependencies consult the documentation of relevant libraries.</p>
 <p>See the individual license files in the sub-libraries for more information on each.</p>
 <ul>
-  <li><a href="https://github.com/Alpstein/route-me">Route-Me (Alpstein fork)</a></li>
+  <li><a href="https://github.com/ivan-pavlovic/route-me">Route-Me (I Bike CPH fork)</a></li>
   <li><a href="https://github.com/stig/json-framework">SBJson</a></li>
   <li><a href="https://github.com/ccgus/fmdb">FMDB</a> by Gus Mueller (SQLite for caching and MBTiles)</li>
   <li><a href="https://github.com/downloads/facebook/facebook-ios-sdk/FacebookSDK-3.1.1.pkg">Facebook SDK</a></li>
