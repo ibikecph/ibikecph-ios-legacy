@@ -109,7 +109,7 @@ NSString *formatDistance(float meters) {
 
 // Format time duration string (choose between seconds and hours)
 NSString *formatTime(float seconds) {
-    return seconds > 1000.0f ? [NSString stringWithFormat:@"%.0f min", seconds/60.0f] : [NSString stringWithFormat:@"%.0f s", seconds];
+    return seconds > 60.0f ? [NSString stringWithFormat:@"%.0f min", seconds/60.0f] : [NSString stringWithFormat:@"%.0f s", seconds];
 }
 
 // Format time passed between two dates
