@@ -15,8 +15,8 @@
 	if (!(self = [super init]))
         return nil;
 
-    self.minZoom = 1;
-    self.maxZoom = 18;
+    self.minZoom = 9;
+    self.maxZoom = 17;
 
 	return self;
 }
@@ -27,7 +27,6 @@
 			  @"%@ tried to retrieve tile with zoomLevel %d, outside source's defined range %f to %f",
 			  self, tile.zoom, self.minZoom, self.maxZoom);
 
-//    // debug
 	return [NSURL URLWithString:[NSString stringWithFormat:@"http://tiles.ibikecph.dk/tiles/%d/%d/%d.png", tile.zoom, tile.x, tile.y]];
 }
 
