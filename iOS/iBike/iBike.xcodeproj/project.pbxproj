@@ -484,6 +484,7 @@
 		4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152716BAB97D00B73393 /* SMAboutController.m */; };
 		4C9D152B16BAB98C00B73393 /* SMAccountsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152A16BAB98C00B73393 /* SMAccountsController.m */; };
 		4CAF95C416D50BC0002C047B /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
+		4CAF95C616D50F80002C047B /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CB1509B16D26CC100943E0C /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509716D26CC100943E0C /* checkboxChecked.png */; };
 		4CB1509C16D26CC100943E0C /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509716D26CC100943E0C /* checkboxChecked.png */; };
 		4CB1509D16D26CC100943E0C /* checkboxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */; };
@@ -811,6 +812,7 @@
 		4C9D152916BAB98C00B73393 /* SMAccountsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAccountsController.h; sourceTree = "<group>"; };
 		4C9D152A16BAB98C00B73393 /* SMAccountsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAccountsController.m; sourceTree = "<group>"; };
 		4CAF95BE16D50B39002C047B /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "../../../route-me/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
+		4CAF95C516D50E2E002C047B /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keys.h; sourceTree = "<group>"; };
 		4CB1509716D26CC100943E0C /* checkboxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxChecked.png; sourceTree = "<group>"; };
 		4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxChecked@2x.png"; sourceTree = "<group>"; };
 		4CB1509916D26CC100943E0C /* checkboxUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxUnchecked.png; sourceTree = "<group>"; };
@@ -843,6 +845,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CAF95C616D50F80002C047B /* libMapView.a in Frameworks */,
 				4C6C482716CD3C5200E57F59 /* CoreData.framework in Frameworks */,
 				4C6C482816CD3C5200E57F59 /* SystemConfiguration.framework in Frameworks */,
 				4C6C482916CD3C5200E57F59 /* MapKit.framework in Frameworks */,
@@ -1123,6 +1126,7 @@
 				4C73D22016AEDCDA00AED42A /* Default.png */,
 				4C73D22216AEDCDA00AED42A /* Default@2x.png */,
 				4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */,
+				4CAF95C516D50E2E002C047B /* keys.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2001,13 +2005,13 @@
 		4C6C48F216CD3C5200E57F59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
-					"$(SRCROOT)/iBike/Libs/MapView",
+					"$(SRCROOT)/iBike/Libs/MapView/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
@@ -2032,13 +2036,13 @@
 		4C6C48F316CD3C5200E57F59 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
-					"$(SRCROOT)/iBike/Libs/MapView",
+					"$(SRCROOT)/iBike/Libs/MapView/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
