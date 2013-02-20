@@ -22,7 +22,7 @@
 #import "RMShape.h"
 
 #import "SMiBikeCPHMapTileSource.h"
-#import "SMOpenStreetMapTileSource.h"
+#import "RMOpenStreetMapSource.h"
 
 #import "SMRouteNavigationController.h"
 #import "SMAppDelegate.h"
