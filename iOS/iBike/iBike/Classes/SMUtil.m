@@ -104,12 +104,12 @@ double distanceFromPathInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D
 
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float meters) {
-    return meters > 1000.0f ? [NSString stringWithFormat:@"%.1f km", meters/1000.0f] : [NSString stringWithFormat:@"%.0f m", meters];
+    return meters > 1000.0f ? [NSString stringWithFormat:@"%.1f %@", meters/1000.0f, DISTANCE_KM_SHORT] : [NSString stringWithFormat:@"%.0f %@", meters, DISTANCE_M_SHORT];
 }
 
 // Format time duration string (choose between seconds and hours)
 NSString *formatTime(float seconds) {
-    return seconds > 60.0f ? [NSString stringWithFormat:@"%.0f min", seconds/60.0f] : [NSString stringWithFormat:@"%.0f s", seconds];
+    return seconds > 60.0f ? [NSString stringWithFormat:@"%.0f %@", seconds/60.0f, TIME_MINUTES_SHORT] : [NSString stringWithFormat:@"%.0f %@", seconds, TIME_MINUTES_SHORT];
 }
 
 // Format time passed between two dates
@@ -119,16 +119,16 @@ NSString *formatTimePassed(NSDate *startDate, NSDate *endDate) {
 
     NSString * timestr = @"";
     if (comp.day > 0) {
-        timestr = [timestr stringByAppendingFormat:@"%dd ", comp.day];
+        timestr = [timestr stringByAppendingFormat:@"%d%@ ", comp.day, TIME_DAYS_SHORT];
     }
     if (comp.hour > 0) {
-        timestr = [timestr stringByAppendingFormat:@"%dh ", comp.hour];
+        timestr = [timestr stringByAppendingFormat:@"%d%@ ", comp.hour, TIME_HOURS_SHORT];
     }
     if (comp.minute > 0) {
-        timestr = [timestr stringByAppendingFormat:@"%dm ", comp.minute];
+        timestr = [timestr stringByAppendingFormat:@"%d%@ ", comp.minute, TIME_MINUTES_SHORT];
     }
     if (comp.second > 0) {
-        timestr = [timestr stringByAppendingFormat:@"%ds", comp.second];
+        timestr = [timestr stringByAppendingFormat:@"%d%@", comp.second, TIME_SECONDS_SHORT];
     }
     return timestr;
 }
