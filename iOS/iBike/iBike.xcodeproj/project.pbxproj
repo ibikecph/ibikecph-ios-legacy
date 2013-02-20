@@ -22,7 +22,6 @@
 		4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */; };
 		4B97307416CB93D500D07314 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B97307216CB93D500D07314 /* libGoogleAnalytics_debug.a */; };
 		4B97307516CB93D500D07314 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B97307316CB93D500D07314 /* libGoogleAnalytics.a */; };
-		4B97307C16CBC6BB00D07314 /* SMiBikeCPHMapTileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */; };
 		4B9EF33D16B6BA6700DE5787 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9EF33C16B6BA6700DE5787 /* SMRoute.m */; };
 		4BA5295E16D52634000CA4A2 /* SMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5294F16D522ED000CA4A2 /* SMAnnotation.m */; };
 		4BA5295F16D52659000CA4A2 /* SMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295116D522ED000CA4A2 /* SMGeocoder.m */; };
@@ -185,7 +184,6 @@
 		4C6C481D16CD3C5200E57F59 /* SMDirectionTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */; };
 		4C6C482216CD3C5200E57F59 /* SMRadioCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8216C404A3006931CC /* SMRadioCheckedCell.m */; };
 		4C6C482316CD3C5200E57F59 /* SMRadioUncheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */; };
-		4C6C482416CD3C5200E57F59 /* SMiBikeCPHMapTileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */; };
 		4C6C482716CD3C5200E57F59 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8116CB8E7B0062360C /* CoreData.framework */; };
 		4C6C482816CD3C5200E57F59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */; };
 		4C6C482916CD3C5200E57F59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C6C083716C3C33E002EA499 /* MapKit.framework */; };
@@ -545,8 +543,6 @@
 		4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionCell.m; sourceTree = "<group>"; };
 		4B97307216CB93D500D07314 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		4B97307316CB93D500D07314 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMiBikeCPHMapTileSource.h; sourceTree = "<group>"; };
-		4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMiBikeCPHMapTileSource.m; sourceTree = "<group>"; };
 		4B9EF33B16B6BA6700DE5787 /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
 		4B9EF33C16B6BA6700DE5787 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
 		4BA5294E16D522ED000CA4A2 /* SMAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMAnnotation.h; sourceTree = "<group>"; };
@@ -944,8 +940,6 @@
 				4BA5295316D522ED000CA4A2 /* SMNearbyPlaces.m */,
 				4BA5295416D522ED000CA4A2 /* SMRequestOSRM.h */,
 				4BA5295516D522ED000CA4A2 /* SMRequestOSRM.m */,
-				4B97307A16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.h */,
-				4B97307B16CBC6BA00D07314 /* SMiBikeCPHMapTileSource.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -1888,7 +1882,6 @@
 				4C6C481D16CD3C5200E57F59 /* SMDirectionTopCell.m in Sources */,
 				4C6C482216CD3C5200E57F59 /* SMRadioCheckedCell.m in Sources */,
 				4C6C482316CD3C5200E57F59 /* SMRadioUncheckedCell.m in Sources */,
-				4C6C482416CD3C5200E57F59 /* SMiBikeCPHMapTileSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1940,7 +1933,6 @@
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
 				4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */,
-				4B97307C16CBC6BB00D07314 /* SMiBikeCPHMapTileSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
