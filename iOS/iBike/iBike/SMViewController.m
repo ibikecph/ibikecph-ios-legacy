@@ -906,16 +906,8 @@ typedef enum {
     self.findFrom = @"";
     self.findTo = annotation.title;
     self.findMatches = annotation.nearbyObjects;
-//    [self performSegueWithIdentifier:@"goToFinderSegue" sender:nil];
     
-    for (SMAnnotation * annotation in self.mpView.annotations) {
-        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
-            if (annotation.calloutShown) {
-                [annotation hideCallout];
-            }
-        }
-    }
-    
+#ifdef START_DIRECTIONS
     [UIView animateWithDuration:0.4f animations:^{
         [fadeView setAlpha:1.0f];
     }];
@@ -926,6 +918,18 @@ typedef enum {
     [r setRequestIdentifier:@"rowSelectRoute"];
     [r setAuxParam:@"TEST"];
     [r findNearestPointForStart:cStart andEnd:cEnd];
+#else
+    [self performSegueWithIdentifier:@"goToFinderSegue" sender:nil];
+#endif
+
+    for (SMAnnotation * annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
+            if (annotation.calloutShown) {
+                [annotation hideCallout];
+            }
+        }
+    }
+    
 
 }
 

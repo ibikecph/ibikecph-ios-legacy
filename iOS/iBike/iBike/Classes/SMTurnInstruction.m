@@ -67,7 +67,7 @@ NSString *directionString(NSString *abbreviation) {
 // Returns only string representation of the driving direction
 - (NSString *)descriptionString {
     NSString *key = [@"direction_" stringByAppendingFormat:@"%d", self.drivingDirection];
-    NSString *desc = translateString(key);
+    NSString *desc = [NSString stringWithFormat:translateString(key), translateString([@"direction_number_" stringByAppendingString:self.ordinalDirection])];
 //    if (self.drivingDirection == ReachedYourDestination) {
 //        [desc substringToIndex:[desc ]]
 //    }

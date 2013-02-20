@@ -42,6 +42,18 @@
 "direction_W" = "vest";
 "direction_NW" = "nordvest";
 
+"direction_number_1" = "1st";
+"direction_number_2" = "2nd";
+"direction_number_3" = "3rd";
+"direction_number_4" = "4th";
+"direction_number_5" = "5th";
+"direction_number_6" = "6th";
+"direction_number_7" = "7th";
+"direction_number_8" = "8th";
+"direction_number_9" = "9th";
+"direction_number_10" = "10th";
+"direction_number_11" = "11th";
+
 "new_route" = "Ny rute";
 "Stop" = "Stop";
 
@@ -78,3 +90,4 @@
 
 "calculating" = "Beregner...";
 "recalculating" = "Genberegning...";
+
