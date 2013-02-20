@@ -752,13 +752,15 @@
 - (void)showDirections:(NSInteger)segments {
     self.directionsShownCount = segments;
 
+    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
+        [instructionsView setHidden:YES];
+        [minimizedInstructionsView setHidden:YES];
+        return;
+    }
+
     if (segments == 0) {
         [instructionsView setHidden:YES];
-        if (self.route && self.route.turnInstructions && ((self.route.turnInstructions.count - 1) > 0)) { // remove -1 if you want to see "Finished instruction"
-            [minimizedInstructionsView setHidden:NO];
-        } else {
-            [minimizedInstructionsView setHidden:YES];
-        }
+        [minimizedInstructionsView setHidden:NO];
         [self repositionInstructionsView:self.view.frame.size.height];
     } else {
         [instructionsView setHidden:NO];
@@ -824,7 +826,13 @@
 }
 
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
-    
+
+    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
+        [instructionsView setHidden:YES];
+        [minimizedInstructionsView setHidden:YES];
+        return;
+    }
+
     [tblDirections scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [instructionsView setHidden:NO];
     [minimizedInstructionsView setHidden:YES];
@@ -839,7 +847,6 @@
             [self showDirections:cellCount];
             return;
         }
-
         
         /**
          * dynamic row height repositioning
