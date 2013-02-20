@@ -327,11 +327,11 @@
 }
 
 - (void)mapView:(SMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
-    // Moved to refreshPosition(), mapView is triggering loc. change for heading changes too, which we don't need
    if (currentlyRouting && self.route) {
        debugLog(@"didUpdateUserLocation()");
-        [self.route visitLocation:userLocation.location];
+       [self.route visitLocation:userLocation.location];
        [self renderMinimizedDirectionsViewFromInstruction];
+       [self showDirections:self.directionsShownCount];
        
        float distanceLeft = [self.route calculateDistanceToNextTurn:userLocation.location];
        [labelDistanceLeft setText:formatDistance(distanceLeft)];
