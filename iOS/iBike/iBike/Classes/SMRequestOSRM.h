@@ -29,7 +29,7 @@
 - (id)initWithDelegate:(id<SMRequestOSRMDelegate>)dlg;
 
 - (void)findNearestPointForLocation:(CLLocation*)loc;
-- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end;
+- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints;
 - (void)findNearestPointForStart:(CLLocation*)start andEnd:(CLLocation*)end;
 
 @end

@@ -45,9 +45,17 @@
     [self.conn start];
 }
 
-- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end {
-    self.currentRequest = @"getRouteFrom:to:";
-    NSString * s = [NSString stringWithFormat:@"%@/viaroute?loc=%g,%g&loc=%g,%g&instructions=true", OSRM_SERVER, start.latitude, start.longitude, end.latitude, end.longitude];
+// via may be null
+- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints {
+    self.currentRequest = @"getRouteFrom:to:via:";
+
+    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?loc=%g,%g", OSRM_SERVER, start.latitude, start.longitude];
+    if (viaPoints) {
+        for (CLLocation *point in viaPoints)
+            [s1 appendFormat:@"&loc=%g,%g", point.coordinate.latitude, point.coordinate.longitude];
+    }
+    NSString *s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true", s1, end.latitude, end.longitude];
+
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     if (self.conn) {
         [self.conn cancel];

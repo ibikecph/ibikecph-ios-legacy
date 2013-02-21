@@ -827,11 +827,11 @@
 
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
 
-    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
-        [instructionsView setHidden:YES];
-        [minimizedInstructionsView setHidden:YES];
-        return;
-    }
+//    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
+//        [instructionsView setHidden:YES];
+//        [minimizedInstructionsView setHidden:YES];
+//        return;
+//    }
 
     [tblDirections scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [instructionsView setHidden:NO];
