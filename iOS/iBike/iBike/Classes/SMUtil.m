@@ -133,6 +133,54 @@ NSString *formatTimePassed(NSDate *startDate, NSDate *endDate) {
     return timestr;
 }
 
+NSString *formatTimeString(NSDate *startDate, NSDate *endDate) {
+    NSCalendar * cal = [NSCalendar currentCalendar];
+    NSDateComponents * comp = [cal components:(NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit) fromDate:startDate toDate:endDate options:0];
+    
+    NSMutableArray * arr = [NSMutableArray array];
+    
+    if (comp.day > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", comp.day]];
+    }
+    if (comp.hour > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", comp.day]];
+    }
+    if (comp.minute > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", comp.day]];
+    }
+    if (comp.second > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", comp.day]];
+    }
+    return [arr componentsJoinedByString:@":"];
+}
+
+NSString *formatTimeLeft(NSInteger seconds) {
+    NSMutableArray * arr = [NSMutableArray array];
+
+    NSInteger x = seconds / 86400;
+    if (x > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", x]];
+    }
+    seconds = seconds % 86400;
+    x = seconds / 3600;
+    if (x > 0 || [arr count] > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", x]];
+    }
+    seconds = seconds % 3600;
+    x = seconds / 60;
+    if (x > 0 || [arr count] > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", x]];
+    }
+    seconds = seconds % 60;
+    if ([arr count] > 0) {
+        [arr addObject:[NSString stringWithFormat:@"%02d", seconds]];
+    } else {
+        [arr addObject:@"00"];
+        [arr addObject:[NSString stringWithFormat:@"%02d", seconds]];
+    }    
+    return [arr componentsJoinedByString:@":"];
+}
+
 // Calculate how many calories are burned given speed and time spent cycling
 float caloriesBurned(float avgSpeed, float timeSpent){
     float calBurned = 0.0f;

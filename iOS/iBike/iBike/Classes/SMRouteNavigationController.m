@@ -344,7 +344,7 @@
 //           [labelTimeLeft setText:@""];
 //       else {
            CGFloat time = distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
-           [labelTimeLeft setText:formatTime(time)];
+           [labelTimeLeft setText:formatTimeLeft(time)];
 //       }
 
        [tblDirections reloadData];
@@ -410,6 +410,9 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
+    
+    [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
+    [labelTimeLeft setText:formatTimeLeft(self.route.estimatedTimeForRoute)];
     
     [recalculatingView setAlpha:1.0f];
     [UIView animateWithDuration:0.3f animations:^{

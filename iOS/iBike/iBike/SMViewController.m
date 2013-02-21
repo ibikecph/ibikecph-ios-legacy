@@ -909,7 +909,7 @@ typedef enum {
 
 - (void)annotationActivated:(SMAnnotation *)annotation {
     self.findFrom = @"";
-    self.findTo = annotation.title;
+    self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
     
 #ifdef START_DIRECTIONS

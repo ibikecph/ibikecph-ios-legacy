@@ -22,6 +22,8 @@ NSString *formatTimePassed(NSDate *startDate, NSDate *endDate);
 // Calculate how many calories are burned given speed and time spent cycling
 float caloriesBurned(float avgSpeed, float timeSpent);
 
+NSString *formatTimeLeft(NSInteger seconds);
+
 /**
  * creates filename from current timestamp
  */
