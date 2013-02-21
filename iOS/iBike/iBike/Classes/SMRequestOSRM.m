@@ -47,15 +47,33 @@
 
 // via may be null
 - (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints {
-    self.currentRequest = @"getRouteFrom:to:via:";
+    [self getRouteFrom:start to:end via:viaPoints checksum:nil destinationHint:nil];    
+}
 
+- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum {
+    [self getRouteFrom:start to:end via:viaPoints checksum:chksum destinationHint:nil];
+}
+
+- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum destinationHint:(NSString*)hint {
+    self.currentRequest = @"getRouteFrom:to:via:";
+    
     NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?loc=%g,%g", OSRM_SERVER, start.latitude, start.longitude];
     if (viaPoints) {
         for (CLLocation *point in viaPoints)
             [s1 appendFormat:@"&loc=%g,%g", point.coordinate.latitude, point.coordinate.longitude];
     }
-    NSString *s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true", s1, end.latitude, end.longitude];
-
+    NSString *s = @"";
+    
+    if (chksum) {
+        if (hint) {
+            s = [NSString stringWithFormat:@"%@&loc=%g,%g&hint=%@&instructions=true&cheksum=%@", s1, end.latitude, end.longitude, [hint urlEncode], chksum];
+        } else {
+            s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true&cheksum=%@", s1, end.latitude, end.longitude, chksum];
+        }
+    } else {
+        s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true", s1, end.latitude, end.longitude];
+    }
+    
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     if (self.conn) {
         [self.conn cancel];
@@ -66,6 +84,7 @@
     self.responseData = [NSMutableData data];
     [self.conn start];
 }
+
 
 - (void)findNearestPointForStart:(CLLocation*)start andEnd:(CLLocation*)end {
     self.currentRequest = @"findNearestPointForStart:andEnd:";
