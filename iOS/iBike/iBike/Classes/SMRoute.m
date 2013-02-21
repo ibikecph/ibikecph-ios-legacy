@@ -16,6 +16,7 @@
 
 @interface SMRoute()
 @property (nonatomic, strong) SMRequestOSRM * request;
+@property (nonatomic, strong) CLLocation * lastRecalcLocation;
 @end
 
 @implementation SMRoute {
@@ -32,6 +33,7 @@
         approachingTurn = NO;
         lastVisitedWaypointIndex = -1;
         self.recalculationInProgress = NO;
+        self.lastRecalcLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
     }
     return self;
 }
@@ -107,8 +109,17 @@
         if (self.recalculationInProgress) {
             return;
         }
+        
+        CGFloat distance = [loc distanceFromLocation:self.lastRecalcLocation];
+        if (distance < MIN_DISTANCE_FOR_RECALCULATION) {
+            return;
+        }
+        NSLog(@"Distance: %f", distance);
+        self.lastRecalcLocation = loc;
+            
         self.recalculationInProgress = YES;
         NSLog(@"Recalculating route!");
+        
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationStarted)]) {
             [self.delegate routeRecalculationStarted];
@@ -352,35 +363,41 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 
             NSArray * arr = [[NSString stringWithFormat:@"%@", [jsonObject objectAtIndex:0]] componentsSeparatedByString:@"-"];
             int pos = [(NSString*)[arr objectAtIndex:0] intValue];
-            instruction.drivingDirection = pos;
-            if ([arr count] > 1 && [arr objectAtIndex:1]) {
-                instruction.ordinalDirection = [arr objectAtIndex:1];
-            } else {
-                instruction.ordinalDirection = @"";
-            }
-            instruction.wayName = (NSString *)[jsonObject objectAtIndex:1];
-            instruction.lengthInMeters = prevlengthInMeters;
-            prevlengthInMeters = [(NSNumber *)[jsonObject objectAtIndex:2] intValue];
-            instruction.timeInSeconds = [(NSNumber *)[jsonObject objectAtIndex:4] intValue];
-            instruction.lengthWithUnit = prevlengthWithUnit;
-            /**
-             * Save length to next turn with units so we don't have to generate it each time
-             * It's formatted just the way we like it 
-             */
-            instruction.fixedLengthWithUnit = formatDistance(prevlengthInMeters);
-            prevlengthWithUnit = (NSString *)[jsonObject objectAtIndex:5];
-            instruction.directionAbrevation = (NSString *)[jsonObject objectAtIndex:6];
-            instruction.azimuth = [(NSNumber *)[jsonObject objectAtIndex:7] floatValue];
-
-            int position = [(NSNumber *)[jsonObject objectAtIndex:3] intValue];
-//          instruction.waypointsIndex = position;
-//          instruction->waypoints = route;
-
-            if (self.waypoints && position >= 0 && position < self.waypoints.count)
-                instruction.loc = [self.waypoints objectAtIndex:position];
-
-            @synchronized(self.turnInstructions) {
-                [self.turnInstructions addObject:instruction];
+            
+            NSLog(@"Pos: %d", pos);
+            NSLog(@"Arr: %@", arr);
+            NSLog(@"JSONObject: %@", jsonObject);
+            if (pos <= 15) {
+                instruction.drivingDirection = pos;
+                if ([arr count] > 1 && [arr objectAtIndex:1]) {
+                    instruction.ordinalDirection = [arr objectAtIndex:1];
+                } else {
+                    instruction.ordinalDirection = @"";
+                }
+                instruction.wayName = (NSString *)[jsonObject objectAtIndex:1];
+                instruction.lengthInMeters = prevlengthInMeters;
+                prevlengthInMeters = [(NSNumber *)[jsonObject objectAtIndex:2] intValue];
+                instruction.timeInSeconds = [(NSNumber *)[jsonObject objectAtIndex:4] intValue];
+                instruction.lengthWithUnit = prevlengthWithUnit;
+                /**
+                 * Save length to next turn with units so we don't have to generate it each time
+                 * It's formatted just the way we like it
+                 */
+                instruction.fixedLengthWithUnit = formatDistance(prevlengthInMeters);
+                prevlengthWithUnit = (NSString *)[jsonObject objectAtIndex:5];
+                instruction.directionAbrevation = (NSString *)[jsonObject objectAtIndex:6];
+                instruction.azimuth = [(NSNumber *)[jsonObject objectAtIndex:7] floatValue];
+                
+                int position = [(NSNumber *)[jsonObject objectAtIndex:3] intValue];
+                //          instruction.waypointsIndex = position;
+                //          instruction->waypoints = route;
+                
+                if (self.waypoints && position >= 0 && position < self.waypoints.count)
+                    instruction.loc = [self.waypoints objectAtIndex:position];
+                
+                @synchronized(self.turnInstructions) {
+                    [self.turnInstructions addObject:instruction];
+                }
             }
 
 //          [route.turnInstructions addObject:[SMTurnInstruction parseInstructionFromJson:obj withRoute:route.waypoints]];
@@ -530,6 +547,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 
     } else if ([req.auxParam isEqualToString:@"routeRecalc"]) {
         NSString * response = [[NSString alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", response);
         if (response) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 
