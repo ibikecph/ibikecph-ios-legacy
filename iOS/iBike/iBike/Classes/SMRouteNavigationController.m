@@ -72,7 +72,7 @@
     }
 
     NSArray * a = [self.destination componentsSeparatedByString:@","];
-    [labelDestination setText:[[a objectAtIndex:0] uppercaseString]];
+    [labelDestination setText:[a objectAtIndex:0]];
     [labelTimeLeft setText:@"---"];
     [labelDistanceLeft setText:@"---"];
 
