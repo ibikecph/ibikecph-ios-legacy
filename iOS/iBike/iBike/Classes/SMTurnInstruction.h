@@ -40,7 +40,7 @@ typedef enum {
 }
 
 @property TurnDirection drivingDirection;
-@property (nonatomic, strong) NSString * ordinalDirection;
+@property (nonatomic, strong) NSString *ordinalDirection;
 @property (nonatomic, strong) NSString *wayName;
 @property int lengthInMeters;
 @property int timeInSeconds;
@@ -52,7 +52,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *fixedLengthWithUnit;
 @property (nonatomic, strong) NSString *directionAbrevation; // N: north, S: south, E: east, W: west, NW: North West, ...
 @property float azimuth;
-//@property int waypointsIndex;
+@property int waypointsIndex;
 @property (nonatomic, strong) CLLocation *loc;
 
 - (CLLocation *)getLocation;

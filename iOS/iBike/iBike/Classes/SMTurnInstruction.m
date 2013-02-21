@@ -95,8 +95,9 @@ NSString *directionString(NSString *abbreviation) {
 
 // Full textual representation of the object, used mainly for debugging
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ [SMTurnInstruction: %d, %d, %@, %@, %f, (%f, %f)]",
+    return [NSString stringWithFormat:@"%@ %@ [SMTurnInstruction: %d, %d, %@, %@, %f, (%f, %f)]",
             [self descriptionString],
+            self.wayName,
             self.lengthInMeters,
             self.timeInSeconds,
             self.lengthWithUnit,

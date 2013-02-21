@@ -52,6 +52,28 @@
     return self;
 }
 
+- (BOOL) isTooFarFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB maxDistance:(double)maxDistance {
+    for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
+        CLLocation *a = [self.waypoints objectAtIndex:i];
+        CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
+        double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
+        if (d <= maxDistance)
+            return FALSE;
+    }
+    return TRUE;
+}
+//- (double) distanceFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB {
+//    double min = 1000.0;
+//    for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
+//        CLLocation *a = [self.waypoints objectAtIndex:i];
+//        CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
+//        double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
+//        if (d <= min)
+//            min = d;
+//    }
+//    return min;
+//}
+
 - (BOOL) isTooFarFromRoute:(CLLocation *)loc maxDistance:(int)maxDistance {
 //    debugLog(@"\nisTooFarFromRoute()");
     SMTurnInstruction *lastTurn = [self.pastTurnInstructions lastObject];
@@ -68,9 +90,10 @@
                  * It will now check against the first route point and recalculate if neccessary
                  */
                 nextTurn = [self.turnInstructions objectAtIndex:i];
-                double d = distanceFromPathInMeters(loc.coordinate, [prevTurn getLocation].coordinate, [nextTurn getLocation].coordinate);
-                if (d <= maxDistance) {
-                    debugLog(@"distance from path: %g ok", d);
+                if ([self isTooFarFromRouteSegment:loc from:prevTurn to:nextTurn maxDistance:maxDistance]) {
+//                double d = [self distanceFromRouteSegment:loc from:prevTurn to:nextTurn];
+//                if (d <= maxDistance) {
+//                    debugLog(@"distance from path: %g ok", d);
                     if (i > 0)
                         debugLog(@"correcting segment to %@", nextTurn.wayName);
                     for (int k = 0; k < i; k++)
@@ -85,7 +108,7 @@
 
             nextTurn = [self.turnInstructions objectAtIndex:i];
 
-            double d = distanceFromPathInMeters(loc.coordinate, [prevTurn getLocation].coordinate, [nextTurn getLocation].coordinate);
+            double d = distanceFromLineInMeters(loc.coordinate, [prevTurn getLocation].coordinate, [nextTurn getLocation].coordinate);
 
             if (d <= maxDistance) {// && (loc.course < 0.0 || fabs(loc.course - lastTurn.azimuth) <= 20.0)) {
                 debugLog(@"distance from path: %g ok", d);
@@ -368,7 +391,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                 instruction.azimuth = [(NSNumber *)[jsonObject objectAtIndex:7] floatValue];
                 
                 int position = [(NSNumber *)[jsonObject objectAtIndex:3] intValue];
-                //          instruction.waypointsIndex = position;
+                instruction.waypointsIndex = position;
                 //          instruction->waypoints = route;
                 
                 if (self.waypoints && position >= 0 && position < self.waypoints.count)

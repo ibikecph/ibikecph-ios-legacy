@@ -11,7 +11,7 @@
 @interface SMUtil : NSObject
 
 // Calculates distance between location C and path AB in meters.
-double distanceFromPathInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B);
+double distanceFromLineInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B);
 
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float distance);

@@ -90,7 +90,7 @@ double arcInRadians(CLLocationCoordinate2D A, CLLocationCoordinate2D B) {
 //}
 
 // Calculates distance between location C and path AB in meters.
-double distanceFromPathInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B) {
+double distanceFromLineInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B) {
     double dA = arcInRadians(C, A);
     double dB = arcInRadians(C, B);
     double dAB = arcInRadians(A, B);
