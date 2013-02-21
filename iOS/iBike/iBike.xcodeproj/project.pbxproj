@@ -33,6 +33,7 @@
 		4BA5296516D5269C000CA4A2 /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295516D522ED000CA4A2 /* SMRequestOSRM.m */; };
 		4BA5296616D5269C000CA4A2 /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295B16D5230B000CA4A2 /* SMTranslation.m */; };
 		4BA5296716D526BC000CA4A2 /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295516D522ED000CA4A2 /* SMRequestOSRM.m */; };
+		4BA5296E16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */; };
 		4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915C816AFF798004E04A4 /* CoreLocation.framework */; };
 		4BA915CB16AFF7E4004E04A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */; };
 		4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CC16AFF809004E04A4 /* QuartzCore.framework */; };
@@ -561,6 +562,7 @@
 		4BA5295B16D5230B000CA4A2 /* SMTranslation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTranslation.m; sourceTree = "<group>"; };
 		4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCustomCheckbox.h; sourceTree = "<group>"; };
 		4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMCustomCheckbox.m; sourceTree = "<group>"; };
+		4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = kopenhagen2_withtimestamps.gpx; sourceTree = "<group>"; };
 		4BA915C616AFF14C004E04A4 /* SMLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
 		4BA915C716AFF14C004E04A4 /* SMLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLocationManager.m; sourceTree = "<group>"; };
 		4BA915C816AFF798004E04A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1034,8 +1036,9 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
-				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
+				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
+				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4C73D21416AEDCDA00AED42A /* iBike */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
 				4C73D20D16AEDCDA00AED42A /* Frameworks */,
@@ -1828,6 +1831,7 @@
 				4CB1509D16D26CC100943E0C /* checkboxChecked@2x.png in Resources */,
 				4CB1509F16D26CC100943E0C /* checkboxUnchecked.png in Resources */,
 				4CB150A116D26CC100943E0C /* checkboxUnchecked@2x.png in Resources */,
+				4BA5296E16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
