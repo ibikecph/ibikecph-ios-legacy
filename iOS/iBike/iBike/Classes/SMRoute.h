@@ -44,6 +44,8 @@
 @property CLLocationCoordinate2D locationStart;
 @property CLLocationCoordinate2D locationEnd;
 @property BOOL recalculationInProgress;
+@property NSInteger estimatedTimeForRoute;
+@property NSInteger estimatedRouteDistance;
 
 
 - (void) visitLocation:(CLLocation *)loc;

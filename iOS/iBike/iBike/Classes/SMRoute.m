@@ -331,6 +331,8 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     @synchronized(self.turnInstructions) {
         self.turnInstructions = [NSMutableArray array];
     }
+    self.estimatedTimeForRoute = [[[jsonRoot objectForKey:@"route_summary"] objectForKey:@"total_time"] integerValue];
+    self.estimatedRouteDistance = [[[jsonRoot objectForKey:@"route_summary"] objectForKey:@"total_distance"] integerValue];
     NSArray *routeInstructions = [jsonRoot objectForKey:@"route_instructions"];
     if (routeInstructions && routeInstructions.count > 0) {
         int prevlengthInMeters = 0;
