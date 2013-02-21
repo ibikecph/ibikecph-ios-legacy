@@ -27,4 +27,9 @@ float caloriesBurned(float avgSpeed, float timeSpent);
  */
 + (NSString*)routeFilenameFromTimestampForExtension:(NSString*) ext;
 
+/**
+ * Compares coordinates of two CLLocations - returnns true if they are the same
+ */
+BOOL sameCoordinates(CLLocation *loc1, CLLocation *loc2);
+
 @end

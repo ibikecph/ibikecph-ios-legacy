@@ -550,22 +550,47 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 //                        [self mergeWithRoute:rt];
                         int i = 0;
                         if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
-                            CLLocation *lastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
-                            [self.pastTurnInstructions removeAllObjects];
-                            SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
+                            CLLocation *lastTurnLoc = nil; //((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
 
-                            while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
-                                [self.pastTurnInstructions addObject:turn];
-                                [self.turnInstructions removeObjectAtIndex:0];
+                            for (int i = 0, j = 0; j < self.turnInstructions.count;) {
+                                CLLocation *pastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions objectAtIndex:i]).loc;
+                                CLLocation *newTurnLoc = ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:j]).loc;
+                                if (sameCoordinates(pastTurnLoc, newTurnLoc)) {
+                                    lastTurnLoc = pastTurnLoc;
+                                    i++;
+                                    j++;
+                                } else {
+                                    j++;
+                                }
+                                if (j == self.pastTurnInstructions.count) {
+                                    if (lastTurnLoc) {
+                                        break;
+                                    } else {
+                                        j = 0;
+                                        i++;
+                                    }
+                                }
 
-                                if (!self.turnInstructions.count)
-                                    break;
-                                turn = [self.turnInstructions objectAtIndex:0];
-                                i++;
                             }
-                            if (self.turnInstructions.count) {
-                                [self.pastTurnInstructions addObject:turn];
-                                [self.turnInstructions removeObjectAtIndex:0];
+
+                            [self.pastTurnInstructions removeAllObjects];
+
+                            if (lastTurnLoc) {
+                                // TODO replace loop with single transfer of i objects
+                                SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
+                                while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
+                                    [self.pastTurnInstructions addObject:turn];
+                                    [self.turnInstructions removeObjectAtIndex:0];
+
+                                    if (!self.turnInstructions.count)
+                                        break;
+                                    turn = [self.turnInstructions objectAtIndex:0];
+                                    i++;
+                                }
+                                if (self.turnInstructions.count) {
+                                    [self.pastTurnInstructions addObject:turn];
+                                    [self.turnInstructions removeObjectAtIndex:0];
+                                }
                             }
                         }
                         // update segment

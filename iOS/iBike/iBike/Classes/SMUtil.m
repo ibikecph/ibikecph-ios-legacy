@@ -188,4 +188,8 @@ float caloriesBurned(float avgSpeed, float timeSpent){
     return path;
 }
 
+BOOL sameCoordinates(CLLocation *loc1, CLLocation *loc2) {
+    return loc1.coordinate.latitude == loc2.coordinate.latitude && loc1.coordinate.longitude == loc2.coordinate.longitude;
+}
+
 @end
