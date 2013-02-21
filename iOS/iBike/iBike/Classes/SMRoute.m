@@ -545,18 +545,18 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                             [self updateDistanceToNextTurn:[SMLocationManager instance].lastValidLocation];
                         }
 //                        [self mergeWithRoute:rt];
-                        int i = 0;
+//                        int i = 0;
                         if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
                             CLLocation *lastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
-                            SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:i];
+                            SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
 
                             while (![turn.loc isEqual:lastTurnLoc]) {
                                 [self.pastTurnInstructions addObject:turn];
-                                [self.turnInstructions removeObjectAtIndex:i];
+                                [self.turnInstructions removeObjectAtIndex:0];
 
-                                if (i == self.turnInstructions.count)
+                                if (!self.turnInstructions.count)
                                     break;
-                                turn = [self.turnInstructions objectAtIndex:i++];
+                                turn = [self.turnInstructions objectAtIndex:0];
                             }
                         }
                         // update segment
