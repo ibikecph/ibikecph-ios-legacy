@@ -204,13 +204,13 @@
         frame.size.width = 306.0f * percent;
         [progressBar setFrame:frame];
 
-        float avgSpeed = [self.route calculateAverageSpeed];
-        if (!avgSpeed)
-            [labelTimeLeft setText:@""];
-        else {
-            CGFloat time = distanceLeft / avgSpeed;
+//        float avgSpeed = [self.route calculateAverageSpeed];
+//        if (!avgSpeed)
+//            [labelTimeLeft setText:@""];
+//        else {
+            CGFloat time = distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
             [labelTimeLeft setText:formatTime(time)];
-        }
+//        }
 
         [tblDirections reloadData];
         [self renderMinimizedDirectionsViewFromInstruction];
@@ -339,13 +339,13 @@
        [progressBar setFrame:frame];
        
        
-       float avgSpeed = [self.route calculateAverageSpeed];
-       if (!avgSpeed)
-           [labelTimeLeft setText:@""];
-       else {
-           CGFloat time = distanceLeft / avgSpeed;
+//       float avgSpeed = [self.route calculateAverageSpeed];
+//       if (!avgSpeed)
+//           [labelTimeLeft setText:@""];
+//       else {
+           CGFloat time = distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
            [labelTimeLeft setText:formatTime(time)];
-       }
+//       }
 
        [tblDirections reloadData];
        [self renderMinimizedDirectionsViewFromInstruction];
