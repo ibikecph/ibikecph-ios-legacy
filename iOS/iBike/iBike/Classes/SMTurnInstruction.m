@@ -28,6 +28,8 @@ NSString *iconsSmall[] = {
     @"direction_small_continue_in_roundabout",
     @"direction_small_start_at_end_of_street",
     @"direction_small_pin_b",
+    @"direction_small_start_pushing_bike_one_way",
+    @"direction_small_stop_pushing_bike_one_way",
     @"direction_small_pin_b",
 };
 
@@ -48,6 +50,8 @@ NSString *iconsLarge[] = {
     @"direction_large_continue_in_roundabout",
     @"direction_large_start_at_end_of_street",
     @"direction_large_pin_b",
+    @"direction_large_start_pushing_bike_one_way",
+    @"direction_large_stop_pushing_bike_one_way",
     @"direction_large_pin_b",
 };
 
@@ -68,9 +72,6 @@ NSString *directionString(NSString *abbreviation) {
 - (NSString *)descriptionString {
     NSString *key = [@"direction_" stringByAppendingFormat:@"%d", self.drivingDirection];
     NSString *desc = [NSString stringWithFormat:translateString(key), translateString([@"direction_number_" stringByAppendingString:self.ordinalDirection])];
-//    if (self.drivingDirection == ReachedYourDestination) {
-//        [desc substringToIndex:[desc ]]
-//    }
     return desc;
 }
 

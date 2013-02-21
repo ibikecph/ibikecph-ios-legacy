@@ -26,6 +26,8 @@ typedef enum {
     StayOnRoundAbout = 13,
     StartAtEndOfStreet = 14,
     ReachedYourDestination = 15,
+    StartPushingBikeInOneway = 16,
+    StopPushingBikeInOneway = 17,
     ReachingDestination = 100
 } TurnDirection;
 

@@ -31,6 +31,8 @@
 "direction_13" = "Stay on roundabout on";
 "direction_14" = "Start on";
 "direction_15" = "You have reached your destination";
+"direction_16" = "Start pushing your bike on";
+"direction_17" = "Stop pushing your bike";
 "direction_100" = "Reaching destination";
 
 "direction_N" = "north";
