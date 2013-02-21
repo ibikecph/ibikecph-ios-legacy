@@ -134,7 +134,8 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-    [self.mpView zoomByFactor:16 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
+    [self.mpView setZoom:16];
+    [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
     [self readjustViewsForRotation:self.interfaceOrientation];
     
     self.findFrom = @"";
