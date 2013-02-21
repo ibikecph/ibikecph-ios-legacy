@@ -53,26 +53,21 @@
 }
 
 - (BOOL) isTooFarFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB maxDistance:(double)maxDistance {
+// min is for debugging, it can be used to log distances.
+//    double min = 1000.0;
     for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
         CLLocation *a = [self.waypoints objectAtIndex:i];
         CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
         double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
         if (d <= maxDistance)
             return FALSE;
+//          if (d <= min)
+//              min = d;
     }
     return TRUE;
+//    debugLog(@"Distance from route segment: %g", min);
+//    return min <= maxDistance;
 }
-//- (double) distanceFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB {
-//    double min = 1000.0;
-//    for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
-//        CLLocation *a = [self.waypoints objectAtIndex:i];
-//        CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
-//        double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
-//        if (d <= min)
-//            min = d;
-//    }
-//    return min;
-//}
 
 - (BOOL) isTooFarFromRoute:(CLLocation *)loc maxDistance:(int)maxDistance {
 //    debugLog(@"\nisTooFarFromRoute()");
@@ -82,36 +77,29 @@
         SMTurnInstruction *prevTurn = lastTurn;
         SMTurnInstruction *nextTurn;
         for (int i = 0; i < self.turnInstructions.count; i++, prevTurn = nextTurn) {
-            if (i == 0 && !lastTurn) {
-                /**
-                 * Had to fix this
-                 * If you start routing but never pass through the first instruction location
-                 * the routing will always return false.
-                 * It will now check against the first route point and recalculate if neccessary
-                 */
-                nextTurn = [self.turnInstructions objectAtIndex:i];
-                if ([self isTooFarFromRouteSegment:loc from:prevTurn to:nextTurn maxDistance:maxDistance]) {
-//                double d = [self distanceFromRouteSegment:loc from:prevTurn to:nextTurn];
-//                if (d <= maxDistance) {
-//                    debugLog(@"distance from path: %g ok", d);
-                    if (i > 0)
-                        debugLog(@"correcting segment to %@", nextTurn.wayName);
-                    for (int k = 0; k < i; k++)
-                        [self updateSegment];
-                    if (approachingTurn)
-                        approachingTurn = approachingTurn || i > 0;
-                    return NO;
-                }
-                return YES;
-            }
-            
-
             nextTurn = [self.turnInstructions objectAtIndex:i];
 
-            double d = distanceFromLineInMeters(loc.coordinate, [prevTurn getLocation].coordinate, [nextTurn getLocation].coordinate);
+            /**
+             * Check if we are (significantly) moving away from the start.
+             * If you start routing but never pass through the first instruction location
+             * the routing will always return false.
+             * It will now check against the first route point and recalculate if neccessary
+             */
+            if (i == 0 && !lastTurn) {
+                if (self.visitedLocations && self.visitedLocations.count > 0) {
+                    double initialDistanceFromStart = [loc distanceFromLocation:nextTurn.loc];
+                    double currentDistanceFromStart = [loc distanceFromLocation:nextTurn.loc];
+                    debugLog(@"Initial distance from start: %g", initialDistanceFromStart);
+                    debugLog(@"Current distance from start: %g", currentDistanceFromStart);
+                    return currentDistanceFromStart > initialDistanceFromStart + maxDistance;
+                }
+                return FALSE;
+            }
 
-            if (d <= maxDistance) {// && (loc.course < 0.0 || fabs(loc.course - lastTurn.azimuth) <= 20.0)) {
-                debugLog(@"distance from path: %g ok", d);
+//            double d = [self distanceFromRouteSegment:loc from:prevTurn to:nextTurn];
+//            if (d <= maxDistance) {// && (loc.course < 0.0 || fabs(loc.course - lastTurn.azimuth) <= 20.0)) {
+            if (![self isTooFarFromRouteSegment:loc from:prevTurn to:nextTurn maxDistance:maxDistance]) {
+//                debugLog(@"distance from path: %g ok", d);
                 if (i > 0)
                     debugLog(@"correcting segment to %@", nextTurn.wayName);
                 for (int k = 0; k < i; k++)
@@ -119,8 +107,9 @@
                 if (approachingTurn)
                     approachingTurn = approachingTurn || i > 0;
                 return NO;
-            } else
-                debugLog(@"distance from path: %g too far (limit is %d)", d, maxDistance);
+            } else {
+//                debugLog(@"distance from path: %g too far (limit is %d)", d, maxDistance);
+            }
         }
         return YES;
     }
