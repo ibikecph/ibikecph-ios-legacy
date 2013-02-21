@@ -146,17 +146,18 @@
         // Merge route waypoints
         [self.waypoints removeAllObjects];
         // Add already traversed path
-        @synchronized(self.visitedLocations) {
-            for (NSDictionary * d in self.visitedLocations) {
-                [self.waypoints addObject:[d objectForKey:@"location"]];
-            }            
-        }
-        
-        // Join with new path
-        [self.waypoints removeLastObject];
-        [self.waypoints addObjectsFromArray:route.waypoints];
-        lastVisitedWaypointIndex = self.visitedLocations.count - 1;
-        //    lastVisitedWaypointIndex = 0;
+//        @synchronized(self.visitedLocations) {
+//            for (NSDictionary * d in self.visitedLocations) {
+//                [self.waypoints addObject:[d objectForKey:@"location"]];
+//            }            
+//        }
+//        
+//        // Join with new path
+//        [self.waypoints removeLastObject];
+//        [self.waypoints addObjectsFromArray:route.waypoints];
+//        lastVisitedWaypointIndex = self.visitedLocations.count - 1;
+        self.waypoints = route.waypoints;
+        lastVisitedWaypointIndex = 0;
     }
 
     @synchronized(self.turnInstructions) {
@@ -364,10 +365,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
             NSArray * arr = [[NSString stringWithFormat:@"%@", [jsonObject objectAtIndex:0]] componentsSeparatedByString:@"-"];
             int pos = [(NSString*)[arr objectAtIndex:0] intValue];
             
-            NSLog(@"Pos: %d", pos);
-            NSLog(@"Arr: %@", arr);
-            NSLog(@"JSONObject: %@", jsonObject);
-            if (pos <= 15) {
+            if (pos <= 17) {
                 instruction.drivingDirection = pos;
                 if ([arr count] > 1 && [arr objectAtIndex:1]) {
                     instruction.ordinalDirection = [arr objectAtIndex:1];

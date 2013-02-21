@@ -31,6 +31,8 @@
 "direction_13" = "Bliv i rundkørslen";
 "direction_14" = "Bliv på";
 "direction_15" = "Du har nået din destination";
+"direction_16" = "Start pushing your bike on";
+"direction_17" = "Stop pushing your bike";
 "direction_100" = "Du er ved at nå din destination";
 
 "direction_N" = "nord";
