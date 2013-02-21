@@ -1,6 +1,6 @@
 //
 //  SMAutocomplete.h
-//  iBike
+//  I Bike CPH
 //
 //  Created by Ivan Pavlovic on 30/01/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  SMContactsHeader.m
-//  iBike
+//  I Bike CPH
 //
 //  Created by Ivan Pavlovic on 25/01/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
