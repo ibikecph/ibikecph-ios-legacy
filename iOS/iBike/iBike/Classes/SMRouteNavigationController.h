@@ -14,7 +14,6 @@
 @interface SMRouteNavigationController : UIViewController <RMMapViewDelegate, SMRouteDelegate, RouteFinderDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
     __weak IBOutlet UITableView *tblDirections;
     __weak IBOutlet UIButton *buttonNewStop;
-    BOOL currentlyRouting;
     __weak IBOutlet UIView *instructionsView;
     __weak IBOutlet UIView *minimizedInstructionsView;
     __weak IBOutlet UIView *progressView;
@@ -30,6 +29,8 @@
     __weak IBOutlet UILabel *finishTime;
     __weak IBOutlet UIView *recalculatingView;
 }
+
+@property BOOL currentlyRouting;
 
 @property (nonatomic, strong) CLLocation *startLocation, *endLocation;
 @property (nonatomic, strong) NSString * destination;

@@ -46,8 +46,7 @@
     [super viewDidLoad];
     [RMMapView class];
     
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    self.currentlyRouting = NO;
     self.directionsShownCount = -1;
 
     [SMLocationManager instance];
@@ -80,6 +79,8 @@
     [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
 //    [self.mpView setOrderMarkersByYPosition:YES];
+    
+    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,7 +90,7 @@
 
     [buttonTrackUser setEnabled:NO];
     
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -103,6 +104,7 @@
 }
 
 - (void)viewDidUnload {
+    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     self.mpView.delegate = nil;
     self.mpView = nil;
     self.route.delegate = nil;
@@ -137,8 +139,6 @@
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  {
     
-    [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
-    
     if (self.mpView.delegate == nil) {
         self.mpView.delegate = self;
     }
@@ -172,7 +172,7 @@
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(from.latitude,from.longitude)];
 //    [self showDirections:1];
 //
-//    currentlyRouting = YES;
+//    self.currentlyRouting = YES;
 //    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
@@ -187,7 +187,7 @@
 }
 
 - (void) refreshPosition {
-    if (currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
+    if (self.currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
 
         CLLocation *location = [SMLocationManager instance].lastValidLocation;
         if (location.speed > 0 || location.course >= 0)
@@ -324,7 +324,7 @@
 }
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
-   if (currentlyRouting && self.route) {
+   if (self.currentlyRouting && self.route) {
        debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        [self renderMinimizedDirectionsViewFromInstruction];
@@ -378,9 +378,7 @@
 #pragma mark - route delegate
 
 - (void)routeNotFound {
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+    self.currentlyRouting = NO;
     
     [labelDistanceLeft setText:@"--"];
     [labelTimeLeft setText:@"--"];
@@ -406,8 +404,7 @@
     
     [self showDirections:1];
     
-    currentlyRouting = YES;
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    self.currentlyRouting = YES;
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
     
@@ -451,9 +448,7 @@
     
     [self saveRoute];
     
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+    self.currentlyRouting = NO;
     
     [labelDistanceLeft setText:@"--"];
     [labelTimeLeft setText:@"--"];
@@ -519,8 +514,7 @@
 }
 
 - (IBAction)goBack:(id)sender {
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
@@ -534,7 +528,7 @@
 }
 
 -(IBAction)buttonPressed:(id)sender {
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"route_stop_title") message:translateString(@"route_stop_text") delegate:self cancelButtonTitle:nil otherButtonTitles:translateString(@"report_error"), translateString(@"Stop"), nil];
         [av show];
     } else {
@@ -558,7 +552,7 @@
     else
         center = self.startLocation.coordinate;
 
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
         if ([SMLocationManager instance].hasValidLocation) {
@@ -711,8 +705,7 @@
             [self performSegueWithIdentifier:@"reportError" sender:nil];
             break;
         case 1: {
-            currentlyRouting = NO;
-            [UIApplication sharedApplication].idleTimerDisabled = NO;
+            self.currentlyRouting = NO;
             [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
             
             [labelDistanceLeft setText:@"--"];
@@ -880,6 +873,23 @@
     }
 }
 
+#pragma mark - hiding progress bar etc when not routing
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self && [keyPath isEqualToString:@"currentlyRouting"]) {
+        if (self.currentlyRouting) {
+            [progressView setHidden:NO];
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
+            [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
+        } else {
+            [self showDirections:0];
+            [minimizedInstructionsView setHidden:YES];
+            [progressView setHidden:YES];
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
+            [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+        }
+        NSLog(@"OtherVC: The value of self.currentlyRouting has changed");
+    }
+}
 
 @end
