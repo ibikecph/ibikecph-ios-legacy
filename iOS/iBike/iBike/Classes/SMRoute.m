@@ -137,6 +137,7 @@
         NSMutableArray *viaPoints = [NSMutableArray array];
         for (SMTurnInstruction *turn in self.pastTurnInstructions)
             [viaPoints addObject:turn.loc];
+        [viaPoints addObject:loc];
 
         [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
     }
@@ -547,21 +548,28 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                             [self updateDistanceToNextTurn:[SMLocationManager instance].lastValidLocation];
                         }
 //                        [self mergeWithRoute:rt];
-//                        int i = 0;
+                        int i = 0;
                         if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
                             CLLocation *lastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
+                            [self.pastTurnInstructions removeAllObjects];
                             SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
 
-                            while (![turn.loc isEqual:lastTurnLoc]) {
+                            while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
                                 [self.pastTurnInstructions addObject:turn];
                                 [self.turnInstructions removeObjectAtIndex:0];
 
                                 if (!self.turnInstructions.count)
                                     break;
                                 turn = [self.turnInstructions objectAtIndex:0];
+                                i++;
+                            }
+                            if (self.turnInstructions.count) {
+                                [self.pastTurnInstructions addObject:turn];
+                                [self.turnInstructions removeObjectAtIndex:0];
                             }
                         }
                         // update segment
+                        
 //                        lastVisitedWaypointIndex = i;
 
                         dispatch_async(dispatch_get_main_queue(), ^{
