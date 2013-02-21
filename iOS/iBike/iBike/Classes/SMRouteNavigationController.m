@@ -31,6 +31,8 @@
 
 #import "SMUtil.h"
 
+#import "SMAnnotation.h"
+
 @interface SMRouteNavigationController ()
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
@@ -156,16 +158,27 @@
 //    // Display new path
 //    [self addRouteAnnotation:self.route];
 
-    RMAnnotation *startMarkerAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
+    SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
     startMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerStart"];
     startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    NSMutableArray * arr = [[self.source componentsSeparatedByString:@","] mutableCopy];
+    startMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([startMarkerAnnotation.title isEqualToString:@""]) {
+        startMarkerAnnotation.title = translateString(@"marker_start");
+    }
+    [arr removeObjectAtIndex:0];
+    startMarkerAnnotation.subtitle = [[arr componentsJoinedByString:@","] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.mpView addAnnotation:startMarkerAnnotation];
 
-    RMAnnotation *endMarkerAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
+    SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
     endMarkerAnnotation.annotationType = @"marker";
     endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
     endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    arr = [[self.destination componentsSeparatedByString:@","] mutableCopy];
+    endMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [arr removeObjectAtIndex:0];
+    endMarkerAnnotation.subtitle = [[arr componentsJoinedByString:@","] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.mpView addAnnotation:endMarkerAnnotation];
     
 
@@ -275,6 +288,36 @@
 
 #pragma mark - mapView delegate
 
+- (void)checkCallouts {
+    for (SMAnnotation * annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
+            if (annotation.calloutShown) {
+                [annotation showCallout];
+            }
+        }
+    }
+}
+
+- (void)mapViewRegionDidChange:(RMMapView *)mapView {
+    [self checkCallouts];
+}
+
+- (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
+    if ([annotation.annotationType isEqualToString:@"marker"]) {
+        for (id v in self.mpView.subviews) {
+            if ([v isKindOfClass:[SMCalloutView class]]) {
+                [v removeFromSuperview];
+            }
+        }
+        
+        if ([annotation calloutShown]) {
+            [annotation hideCallout];
+        } else {
+            [annotation showCallout];
+        }
+    }
+}
+
 - (RMMapLayer *)mapView:(RMMapView *)aMapView layerForAnnotation:(RMAnnotation *)annotation {
     if ([annotation.annotationType isEqualToString:@"path"]) {
         RMShape *path = [[RMShape alloc] initWithView:aMapView];
@@ -357,6 +400,7 @@
         [buttonTrackUser setEnabled:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     }
+    [self checkCallouts];
 }
 
 - (void)beforeMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
@@ -373,6 +417,7 @@
         [buttonTrackUser setEnabled:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     }
+    [self checkCallouts];
 }
 
 #pragma mark - route delegate
