@@ -2005,7 +2005,7 @@
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 				);
 				PRODUCT_NAME = iBikeEN;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3168281F-16AC-4372-9839-D6A009780F82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CA87F67-8D7A-4B9B-B2F7-0F95DB98B089";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2036,7 +2036,7 @@
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 				);
 				PRODUCT_NAME = iBikeEN;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3168281F-16AC-4372-9839-D6A009780F82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CA87F67-8D7A-4B9B-B2F7-0F95DB98B089";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2116,7 +2116,7 @@
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3168281F-16AC-4372-9839-D6A009780F82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CA87F67-8D7A-4B9B-B2F7-0F95DB98B089";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2142,7 +2142,7 @@
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3168281F-16AC-4372-9839-D6A009780F82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0CA87F67-8D7A-4B9B-B2F7-0F95DB98B089";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
