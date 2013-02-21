@@ -137,6 +137,8 @@
         NSMutableArray *viaPoints = [NSMutableArray array];
         for (SMTurnInstruction *turn in self.pastTurnInstructions)
             [viaPoints addObject:turn.loc];
+
+        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
     }
 }
 
