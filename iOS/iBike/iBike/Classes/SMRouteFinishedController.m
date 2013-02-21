@@ -42,7 +42,7 @@
     [labelCalories setText:[NSString stringWithFormat:@"%.0f", self.caloriesBurned]];
     
     NSArray * a = [self.destination componentsSeparatedByString:@","];
-    [labelDestination setText:[[a objectAtIndex:0] uppercaseString]];
+    [labelDestination setText:[a objectAtIndex:0]];
 }
 
 - (void)didReceiveMemoryWarning

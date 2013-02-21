@@ -31,6 +31,8 @@
 
 #import "SMUtil.h"
 
+#import "SMAnnotation.h"
+
 @interface SMRouteNavigationController ()
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
@@ -46,8 +48,7 @@
     [super viewDidLoad];
     [RMMapView class];
     
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    self.currentlyRouting = NO;
     self.directionsShownCount = -1;
 
     [SMLocationManager instance];
@@ -73,13 +74,15 @@
     }
 
     NSArray * a = [self.destination componentsSeparatedByString:@","];
-    [labelDestination setText:[[a objectAtIndex:0] uppercaseString]];
+    [labelDestination setText:[a objectAtIndex:0]];
     [labelTimeLeft setText:@"---"];
     [labelDistanceLeft setText:@"---"];
 
     [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
 //    [self.mpView setOrderMarkersByYPosition:YES];
+    
+    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,7 +92,7 @@
 
     [buttonTrackUser setEnabled:NO];
     
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -103,6 +106,7 @@
 }
 
 - (void)viewDidUnload {
+    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     self.mpView.delegate = nil;
     self.mpView = nil;
     self.route.delegate = nil;
@@ -137,8 +141,6 @@
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  {
     
-    [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
-    
     if (self.mpView.delegate == nil) {
         self.mpView.delegate = self;
     }
@@ -156,23 +158,34 @@
 //    // Display new path
 //    [self addRouteAnnotation:self.route];
 
-    RMAnnotation *startMarkerAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
+    SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
     startMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerStart"];
     startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    NSMutableArray * arr = [[self.source componentsSeparatedByString:@","] mutableCopy];
+    startMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([startMarkerAnnotation.title isEqualToString:@""]) {
+        startMarkerAnnotation.title = translateString(@"marker_start");
+    }
+    [arr removeObjectAtIndex:0];
+    startMarkerAnnotation.subtitle = [[arr componentsJoinedByString:@","] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.mpView addAnnotation:startMarkerAnnotation];
 
-    RMAnnotation *endMarkerAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
+    SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
     endMarkerAnnotation.annotationType = @"marker";
     endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
     endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    arr = [[self.destination componentsSeparatedByString:@","] mutableCopy];
+    endMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [arr removeObjectAtIndex:0];
+    endMarkerAnnotation.subtitle = [[arr componentsJoinedByString:@","] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.mpView addAnnotation:endMarkerAnnotation];
     
 
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(from.latitude,from.longitude)];
 //    [self showDirections:1];
 //
-//    currentlyRouting = YES;
+//    self.currentlyRouting = YES;
 //    [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
@@ -187,7 +200,7 @@
 }
 
 - (void) refreshPosition {
-    if (currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
+    if (self.currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
 
         CLLocation *location = [SMLocationManager instance].lastValidLocation;
         if (location.speed > 0 || location.course >= 0)
@@ -275,6 +288,36 @@
 
 #pragma mark - mapView delegate
 
+- (void)checkCallouts {
+    for (SMAnnotation * annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
+            if (annotation.calloutShown) {
+                [annotation showCallout];
+            }
+        }
+    }
+}
+
+- (void)mapViewRegionDidChange:(RMMapView *)mapView {
+    [self checkCallouts];
+}
+
+- (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
+    if ([annotation.annotationType isEqualToString:@"marker"]) {
+        for (id v in self.mpView.subviews) {
+            if ([v isKindOfClass:[SMCalloutView class]]) {
+                [v removeFromSuperview];
+            }
+        }
+        
+        if ([annotation calloutShown]) {
+            [annotation hideCallout];
+        } else {
+            [annotation showCallout];
+        }
+    }
+}
+
 - (RMMapLayer *)mapView:(RMMapView *)aMapView layerForAnnotation:(RMAnnotation *)annotation {
     if ([annotation.annotationType isEqualToString:@"path"]) {
         RMShape *path = [[RMShape alloc] initWithView:aMapView];
@@ -324,7 +367,7 @@
 }
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
-   if (currentlyRouting && self.route) {
+   if (self.currentlyRouting && self.route) {
        debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        [self renderMinimizedDirectionsViewFromInstruction];
@@ -357,6 +400,7 @@
         [buttonTrackUser setEnabled:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     }
+    [self checkCallouts];
 }
 
 - (void)beforeMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
@@ -373,14 +417,13 @@
         [buttonTrackUser setEnabled:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     }
+    [self checkCallouts];
 }
 
 #pragma mark - route delegate
 
 - (void)routeNotFound {
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+    self.currentlyRouting = NO;
     
     [labelDistanceLeft setText:@"--"];
     [labelTimeLeft setText:@"--"];
@@ -406,8 +449,7 @@
     
     [self showDirections:1];
     
-    currentlyRouting = YES;
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    self.currentlyRouting = YES;
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
     
@@ -451,9 +493,7 @@
     
     [self saveRoute];
     
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+    self.currentlyRouting = NO;
     
     [labelDistanceLeft setText:@"--"];
     [labelTimeLeft setText:@"--"];
@@ -519,8 +559,7 @@
 }
 
 - (IBAction)goBack:(id)sender {
-    currentlyRouting = NO;
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
@@ -534,7 +573,7 @@
 }
 
 -(IBAction)buttonPressed:(id)sender {
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"route_stop_title") message:translateString(@"route_stop_text") delegate:self cancelButtonTitle:nil otherButtonTitles:translateString(@"report_error"), translateString(@"Stop"), nil];
         [av show];
     } else {
@@ -558,7 +597,7 @@
     else
         center = self.startLocation.coordinate;
 
-    if (currentlyRouting) {
+    if (self.currentlyRouting) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
         if ([SMLocationManager instance].hasValidLocation) {
@@ -711,8 +750,7 @@
             [self performSegueWithIdentifier:@"reportError" sender:nil];
             break;
         case 1: {
-            currentlyRouting = NO;
-            [UIApplication sharedApplication].idleTimerDisabled = NO;
+            self.currentlyRouting = NO;
             [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
             
             [labelDistanceLeft setText:@"--"];
@@ -880,6 +918,23 @@
     }
 }
 
+#pragma mark - hiding progress bar etc when not routing
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self && [keyPath isEqualToString:@"currentlyRouting"]) {
+        if (self.currentlyRouting) {
+            [progressView setHidden:NO];
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
+            [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
+        } else {
+            [self showDirections:0];
+            [minimizedInstructionsView setHidden:YES];
+            [progressView setHidden:YES];
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
+            [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+        }
+        NSLog(@"OtherVC: The value of self.currentlyRouting has changed");
+    }
+}
 
 @end

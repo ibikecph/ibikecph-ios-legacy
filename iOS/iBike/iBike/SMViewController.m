@@ -524,13 +524,13 @@ typedef enum {
             NSDateFormatter * df = [[NSDateFormatter alloc] init];
             [df setDateFormat:TIME_FORMAT];
             [cell.timeLabel setText:[NSString stringWithFormat:@"%@ - %@", [df stringFromDate:[currentRow objectForKey:@"startDate"]], [df stringFromDate:[currentRow objectForKey:@"endDate"]]]];
-            [cell.nameLabel setText:[[currentRow objectForKey:@"name"] uppercaseString]];
+            [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
             [cell.addressLabel setText:[currentRow objectForKey:@"address"]];
 
             [df setDateFormat:@"dd"];
             [cell.dayLabel setText:[df stringFromDate:[currentRow objectForKey:@"startDate"]]];
             [df setDateFormat:@"MMM"];
-            [cell.monthLabel setText:[[df stringFromDate:[currentRow objectForKey:@"startDate"]] uppercaseString]];
+            [cell.monthLabel setText:[df stringFromDate:[currentRow objectForKey:@"startDate"]]];
 
             return cell;
         } else {
@@ -549,7 +549,7 @@ typedef enum {
             NSDateFormatter * df = [[NSDateFormatter alloc] init];
             [df setDateFormat:TIME_FORMAT];
             [cell.timeLabel setText:[NSString stringWithFormat:@"%@ - %@", [df stringFromDate:[currentRow objectForKey:@"startDate"]], [df stringFromDate:[currentRow objectForKey:@"endDate"]]]];
-            [cell.nameLabel setText:[[currentRow objectForKey:@"name"] uppercaseString]];
+            [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
             [cell.addressLabel setText:[currentRow objectForKey:@"address"]];
             
             return cell;
