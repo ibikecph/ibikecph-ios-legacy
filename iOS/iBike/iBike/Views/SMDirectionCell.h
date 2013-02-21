@@ -1,6 +1,6 @@
 //
 //  SMDirectionCell.h
-//  iBike
+//  I Bike CPH
 //
 //  Created by Petra Markovic on 2/1/13.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.

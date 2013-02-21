@@ -1,6 +1,6 @@
 //
 //  SMTurnInstructions.h
-//  iBike
+//  I Bike CPH
 //
 //  Created by Petra Markovic on 1/28/13.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
