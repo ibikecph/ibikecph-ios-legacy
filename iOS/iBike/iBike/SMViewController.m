@@ -87,7 +87,7 @@ typedef enum {
     /**
      * removed for alpha
      */
-    [self performSelector:@selector(getPhoneContacts) withObject:nil afterDelay:0.001f];
+//    [self performSelector:@selector(getPhoneContacts) withObject:nil afterDelay:0.001f];
     /**
      * end alpha remove
      */
@@ -155,20 +155,24 @@ typedef enum {
             if (d) {
                 NSString * from = [[[d objectForKey:@"fromName"] componentsSeparatedByString:@","] objectAtIndex:0];
                 NSString * to = [[[d objectForKey:@"toName"] componentsSeparatedByString:@","] objectAtIndex:0];
-                [rts addObject:@{
-                 @"name" : [NSString stringWithFormat:@"%@ - %@", from, to],
-                 @"address" : [d objectForKey:@"toName"],
-                 @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
-                 @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
-                 @"source" : @"pastRoutes"
-                 }];
-                [rts addObject:@{
-                 @"name" : [NSString stringWithFormat:@"%@ - %@", to, from],
-                 @"address" : [d objectForKey:@"fromName"],
-                 @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
-                 @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
-                 @"source" : @"pastRoutes"
-                 }];
+                if (([from isEqualToString:@""] == NO) && ([[d objectForKey:@"toName"] isEqualToString:@""] == NO)  && ([[d objectForKey:@"toName"] isEqualToString:CURRENT_POSITION_STRING] == NO)){
+                    [rts addObject:@{
+                     @"name" : [NSString stringWithFormat:@"%@ - %@", from, to],
+                     @"address" : [d objectForKey:@"toName"],
+                     @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
+                     @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
+                     @"source" : @"pastRoutes"
+                     }];
+                }
+                if (([to isEqualToString:@""] == NO) && ([[d objectForKey:@"fromName"] isEqualToString:@""] == NO)  && ([[d objectForKey:@"fromName"] isEqualToString:CURRENT_POSITION_STRING] == NO)){
+                    [rts addObject:@{
+                     @"name" : [NSString stringWithFormat:@"%@ - %@", to, from],
+                     @"address" : [d objectForKey:@"fromName"],
+                     @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
+                     @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
+                     @"source" : @"pastRoutes"
+                     }];
+                }
             }
         }
         SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;

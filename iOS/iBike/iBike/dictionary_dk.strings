@@ -66,6 +66,7 @@
 "error_from_address_not_found" = "START adressens lokation kan ikke findes!";
 "error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
 "error_invalid_email" = "Ugyldig e-mail!";
+"error_invalid_to_address" = "The destination address is invalid!";
 
 "route_stop_title" = "Vil du stoppe ruten?";
 "route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapportér’.";

@@ -66,6 +66,7 @@
 "error_from_address_not_found" = "Location of START address not found!";
 "error_to_address_not_found" = "Location of END address not found!";
 "error_invalid_email" = "Invalid e-mail!";
+"error_invalid_to_address" = "The destination address is invalid!";
 
 "route_stop_title" = "Want to stop the routing?";
 "route_stop_text" = "Stop the routing by tapping the 'Stop'. You can report a problem with the route to us by tapping on 'Report'.";

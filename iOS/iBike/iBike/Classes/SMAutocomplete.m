@@ -27,6 +27,10 @@
     return self;
 }
 
+- (void)getAutocomplete:(NSString*)str {
+    [self getGooglePlacesAutocomplete:str];
+}
+
 - (void)getOiorestAutocomplete:(NSString*)str {
     completeType = autocompleteOiorest;
     self.srchString = str;

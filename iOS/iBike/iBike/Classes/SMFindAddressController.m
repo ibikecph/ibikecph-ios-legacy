@@ -117,11 +117,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (routeFrom.isFirstResponder) {
-        routeFrom.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];
-    } else {
-        routeTo.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];
-    }    
+    self.currentTextField.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];
     if (routeTo.isFirstResponder || routeFrom.isFirstResponder) {
         [routeTo resignFirstResponder];
         [routeFrom resignFirstResponder];
@@ -150,6 +146,13 @@
     NSString * str = routeFrom.text;
     routeFrom.text = routeTo.text;
     routeTo.text = str;
+    
+    if (self.currentTextField == routeFrom) {
+        self.currentTextField = routeTo;
+    } else {
+        self.currentTextField = routeFrom;
+    }
+    [self.currentTextField becomeFirstResponder];
 }
 
 - (IBAction)findRoute:(id)sender {
@@ -157,50 +160,16 @@
         return;
     }
     
+    if ([routeTo.text isEqualToString:CURRENT_POSITION_STRING]) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_invalid_to_address") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return;
+    }
+    
     [UIView animateWithDuration:0.2f animations:^{
         [fadeView setAlpha:1.0f];
     }];
     if (self.delegate) {
-        if ([routeTo.text isEqualToString:CURRENT_POSITION_STRING]) {
-            if ([SMLocationManager instance].hasValidLocation) {
-                if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
-                    if ([SMLocationManager instance].hasValidLocation) {
-                        CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
-                        CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
-                        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-                        [r findNearestPointForStart:cStart andEnd:cEnd];
-                    } else {
-                        UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-                        [av show];
-                    }
-                    [UIView animateWithDuration:0.2f animations:^{
-                        [fadeView setAlpha:0.0f];
-                    }];
-                } else {
-                    [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                        if ([placemarks count] > 0) {
-                            MKPlacemark *coordFrom = [placemarks objectAtIndex:0];
-                            if (coordFrom == nil) {
-                                UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_from_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-                                [av show];
-                                [UIView animateWithDuration:0.2f animations:^{
-                                    [fadeView setAlpha:0.0f];
-                                }];
-                                return;
-                            }
-                            CLLocation * cStart = [[CLLocation alloc] initWithLatitude:coordFrom.coordinate.latitude longitude:coordFrom.coordinate.longitude];
-                            CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
-                            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-                            [r findNearestPointForStart:cStart andEnd:cEnd];                            
-                        } else {
-                            [UIView animateWithDuration:0.2f animations:^{
-                                [fadeView setAlpha:0.0f];
-                            }];
-                        }
-                    }];
-                }
-            }
-        } else {
             [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
                 //Error checking
                 if ([placemarks count] > 0) {
@@ -257,11 +226,16 @@
                     }];
                 }
             }];
-        }
     }
 }
 
 #pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    self.currentTextField = textField;
+    [self.autocomp getAutocomplete:textField.text];
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == routeFrom) {
@@ -276,8 +250,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//    [self.autocomp getOiorestAutocomplete:s];
-    [self.autocomp getGooglePlacesAutocomplete:s];
+    [self.autocomp getAutocomplete:s];
     
     UITextField * other = nil;
     if (textField == routeFrom) {
@@ -305,18 +278,45 @@
     NSMutableArray * r = [NSMutableArray array];
     for (NSDictionary * d in appd.pastRoutes) {
         if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            [r addObject:d];
+            BOOL found = NO;
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO) {
+                [r addObject:d];
+            }
         }
     }
     
     for (NSDictionary * d in appd.currentContacts) {
         if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            [r addObject:d];
+            BOOL found = NO;
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO) {
+                [r addObject:d];
+            }
         }
     }
     for (NSDictionary * d in appd.currentEvents) {
         if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            [r addObject:d];
+            BOOL found = NO;
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO) {
+                [r addObject:d];
+            }
         }
     }
     for (NSDictionary * d in arr) {

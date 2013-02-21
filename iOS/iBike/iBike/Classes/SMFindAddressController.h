@@ -32,6 +32,7 @@
 
 @property (nonatomic, strong) CLLocation * startLocation;
 @property (nonatomic, strong) CLLocation * endLocation;
+@property (nonatomic, weak) UITextField * currentTextField;
 
 - (void)loadMatches:(NSArray*)nearby;
 
