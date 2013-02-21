@@ -134,12 +134,14 @@
         [self setRequest:r];
         [r setAuxParam:@"routeRecalc"];
 
-        NSMutableArray *viaPoints = [NSMutableArray array];
-        for (SMTurnInstruction *turn in self.pastTurnInstructions)
-            [viaPoints addObject:turn.loc];
-        [viaPoints addObject:loc];
+        // Uncomment code below is if we want to display the previous part of the route.
+//        NSMutableArray *viaPoints = [NSMutableArray array];
+//        for (SMTurnInstruction *turn in self.pastTurnInstructions)
+//            [viaPoints addObject:turn.loc];
+//        [viaPoints addObject:loc];
+//        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
 
-        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
+        [r getRouteFrom:loc.coordinate to:end.coordinate via:nil];
     }
 }
 
@@ -547,52 +549,54 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                         if ([SMLocationManager instance].hasValidLocation) {
                             [self updateDistanceToNextTurn:[SMLocationManager instance].lastValidLocation];
                         }
-//                        [self mergeWithRoute:rt];
-                        int i = 0;
-                        if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
-                            CLLocation *lastTurnLoc = nil; //((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
 
-                            for (int i = 0, j = 0; j < self.turnInstructions.count;) {
-                                CLLocation *pastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions objectAtIndex:i]).loc;
-                                CLLocation *newTurnLoc = ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:j]).loc;
-                                if (sameCoordinates(pastTurnLoc, newTurnLoc)) {
-                                    lastTurnLoc = pastTurnLoc;
-                                    i++;
-                                    j++;
-                                } else {
-                                    j++;
-                                }
-                                if (j == self.pastTurnInstructions.count) {
-                                    if (lastTurnLoc) {
-                                        break;
-                                    } else {
-                                        j = 0;
-                                        i++;
-                                    }
-                                }
-
-                            }
-
-                            [self.pastTurnInstructions removeAllObjects];
-
-                            if (lastTurnLoc) {
-                                // TODO replace loop with single transfer of i objects
-                                SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
-                                while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
-                                    [self.pastTurnInstructions addObject:turn];
-                                    [self.turnInstructions removeObjectAtIndex:0];
-
-                                    if (!self.turnInstructions.count)
-                                        break;
-                                    turn = [self.turnInstructions objectAtIndex:0];
-                                    i++;
-                                }
-                                if (self.turnInstructions.count) {
-                                    [self.pastTurnInstructions addObject:turn];
-                                    [self.turnInstructions removeObjectAtIndex:0];
-                                }
-                            }
-                        }
+                        // Uncomment code below is if we want to display the previous part of the route.
+////                        [self mergeWithRoute:rt];
+//                        int i = 0;
+//                        if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
+//                            CLLocation *lastTurnLoc = nil; //((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
+//
+//                            for (int i = 0, j = 0; j < self.turnInstructions.count;) {
+//                                CLLocation *pastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions objectAtIndex:i]).loc;
+//                                CLLocation *newTurnLoc = ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:j]).loc;
+//                                if (sameCoordinates(pastTurnLoc, newTurnLoc)) {
+//                                    lastTurnLoc = pastTurnLoc;
+//                                    i++;
+//                                    j++;
+//                                } else {
+//                                    j++;
+//                                }
+//                                if (j == self.pastTurnInstructions.count) {
+//                                    if (lastTurnLoc) {
+//                                        break;
+//                                    } else {
+//                                        j = 0;
+//                                        i++;
+//                                    }
+//                                }
+//
+//                            }
+//
+//                            [self.pastTurnInstructions removeAllObjects];
+//
+//                            if (lastTurnLoc) {
+//                                // TODO replace loop with single transfer of i objects
+//                                SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
+//                                while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
+//                                    [self.pastTurnInstructions addObject:turn];
+//                                    [self.turnInstructions removeObjectAtIndex:0];
+//
+//                                    if (!self.turnInstructions.count)
+//                                        break;
+//                                    turn = [self.turnInstructions objectAtIndex:0];
+//                                    i++;
+//                                }
+//                                if (self.turnInstructions.count) {
+//                                    [self.pastTurnInstructions addObject:turn];
+//                                    [self.turnInstructions removeObjectAtIndex:0];
+//                                }
+//                            }
+//                        }
                         // update segment
                         
 //                        lastVisitedWaypointIndex = i;
