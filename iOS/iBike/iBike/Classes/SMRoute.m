@@ -98,7 +98,8 @@
              */
             if (i == 0 && !lastTurn) {
                 if (self.visitedLocations && self.visitedLocations.count > 0) {
-                    double initialDistanceFromStart = [loc distanceFromLocation:nextTurn.loc];
+                    CLLocation *firstLoc = [[self.visitedLocations objectAtIndex:0] objectForKey:@"lcoation"];
+                    double initialDistanceFromStart = [firstLoc distanceFromLocation:nextTurn.loc];
                     double currentDistanceFromStart = [loc distanceFromLocation:nextTurn.loc];
                     debugLog(@"Initial distance from start: %g", initialDistanceFromStart);
                     debugLog(@"Current distance from start: %g", currentDistanceFromStart);
