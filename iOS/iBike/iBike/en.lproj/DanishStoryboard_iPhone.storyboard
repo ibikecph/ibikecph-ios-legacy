@@ -1879,6 +1879,18 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                     <outlet property="delegate" destination="QJC-bX-hzQ" id="oer-cQ-Fe6"/>
                                 </connections>
                             </textField>
+                            <view alpha="0.0" contentMode="scaleToFill" id="PIk-SM-5AO">
+                                <rect key="frame" x="0.0" y="135" width="320" height="413"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="w09-C4-WVd">
+                                        <rect key="frame" x="142" y="120" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="rRi-Bg-2uT">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1903,6 +1915,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="autocompleteFade" destination="PIk-SM-5AO" id="1ab-zJ-O4d"/>
                         <outlet property="btnStart" destination="Pww-ZM-Yz3" id="WIc-el-R9v"/>
                         <outlet property="fadeView" destination="rRi-Bg-2uT" id="pvZ-v8-lcV"/>
                         <outlet property="routeFrom" destination="IRJ-BY-Z8H" id="B1B-Jm-T8f"/>
@@ -1963,6 +1976,9 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
@@ -2058,15 +2074,13 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="action" name="findRoute:"/>
                 <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="swapFromAndTo:"/>
+                <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="routeFrom" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="routeTo" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
-        </class>
-        <class className="SMMapView" superclassName="RMMapView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMMapView.h"/>
         </class>
         <class className="SMRadioCheckedCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioCheckedCell.h"/>
@@ -2114,8 +2128,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
                 <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
                 <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>

@@ -24,6 +24,7 @@
     __weak IBOutlet UITextField *routeTo;
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UIButton *btnStart;
+    __weak IBOutlet UIView *autocompleteFade;
 }
 
 @property (nonatomic, weak) id<RouteFinderDelegate> delegate;
