@@ -46,6 +46,8 @@
 @property BOOL recalculationInProgress;
 @property NSInteger estimatedTimeForRoute;
 @property NSInteger estimatedRouteDistance;
+@property NSString * routeChecksum;
+@property NSString * destinationHint;
 
 
 - (void) visitLocation:(CLLocation *)loc;
