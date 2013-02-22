@@ -1,0 +1,92 @@
+//
+// Prefix header for all source files of the 'I Bike CPH' target in the 'I Bike CPH' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "AsyncImageView.h"
+    #import "SMTranslation.h"
+    #import "NSString+URLEncode.h"
+    #import "GAI.h"
+    #import "SMCustomCheckbox.h"
+    #import "keys.h"
+#endif
+
+#if DISTRIBUTION_VERSION
+#define debugLog(args...)    // NO logs
+#else
+#define debugLog(args...)    NSLog(@"%@", [NSString stringWithFormat: args])
+#endif
+
+#define translateString(txt) [SMTranslation decodeString:(txt)]
+
+#define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]
+
+#ifdef WORLD_ROUTING
+    #define OSRM_SERVER @"http://router.project-osrm.org"
+#else
+    #define OSRM_SERVER @"http://routes.ibikecph.dk"
+#endif
+
+//#ifdef WORLD_ROUTING
+#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
+//#else
+//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
+//#endif
+
+
+#define TIME_FORMAT @"HH.mm"
+#define TIME_DAYS_SHORT @"d"
+#define TIME_HOURS_SHORT @"h"
+#define TIME_MINUTES_SHORT @"min"
+#define TIME_SECONDS_SHORT @"s"
+#define DISTANCE_KM_SHORT @"km"
+#define DISTANCE_M_SHORT @"m"
+
+#define CALENDAR_MAX_DAYS 15
+
+#ifdef ENGLISH_VERSION
+    #define DEFAULT_LANGUAGE @"en"
+#else
+    #define DEFAULT_LANGUAGE @"dk"
+#endif
+
+
+#define MAX_HEIGHT_FOR_EVENTS_TABLE 170.0f
+#define MAIL_RECIPIENTS @[@"ivan@spoiledmilk.com"]
+#define ZOOM_TO_TURN_DURATION 4 // in seconds
+#define DEFAULT_MAP_ZOOM 17
+#define DEFAULT_TURN_ZOOM 18
+#define PATH_COLOR [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:225.0f/255.0f alpha:1.0f]
+#define PATH_OPACITY 0.8f
+
+#define GEOCODING_SEARCH_RADIUS 50000.0f
+
+#define PLACES_SEARCH_RADIUS @"50000"
+#define PLACES_SEARCH_RADIUS @"50000"
+#define PLACES_LANGUAGE @"da"
+#define OIOREST_SEARCH_RADIUS @"50"
+
+#define GOOGLE_ANALYTICS_DISPATCH_INTERVAL 120
+#define GOOGLE_ANALYTICS_SAMPLE_RATE 100
+#define GOOGLE_ANALYTICS_SESSION_TIMEOUT 1800
+#define GOOGLE_ANALYTICS_ANONYMIZE YES
+
+#define DIRECTION_FONT_SIZE 17.0f
+#define WAYPOINT_FONT_SIZE 17.0f
+#define INSTRUCTIONS_LABEL_WIDTH 240.0f
+
+#define USE_APPLE_GEOCODER YES
+
+#define MIN_DISTANCE_FOR_RECALCULATION 20.0
+
+#define BUILD_VERSION @"20130222"
+
+#define BUILD_STRING [NSString stringWithFormat:@"%@: %@", translateString(@"Build"), BUILD_VERSION]
