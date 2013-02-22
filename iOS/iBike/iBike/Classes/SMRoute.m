@@ -27,6 +27,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.distanceLeft = -1;
         self.tripDistance = -1;
         self.caloriesBurned = -1;
         self.averageSpeed = -1;
@@ -200,13 +201,8 @@
     if (self.turnInstructions.count <= 0)
         return;
 
-    [self updateDistanceToNextTurn:loc];
+    [self updateDistances:loc];
 
-    if (self.tripDistance < 0)
-        self.tripDistance = 0;
-    if (self.visitedLocations.count > 0)
-        self.tripDistance += [loc distanceFromLocation:[[self.visitedLocations lastObject] objectForKey:@"location"]];
-    
     @synchronized(self.visitedLocations) {
         if (!self.visitedLocations)
             self.visitedLocations = [NSMutableArray array];
@@ -409,7 +405,15 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     return YES;
 }
 
-- (void)updateDistanceToNextTurn:(CLLocation *)loc {
+- (void)updateDistances:(CLLocation *)loc {
+    if (self.tripDistance < 0.0)
+        self.tripDistance = 0.0;
+    if (self.visitedLocations.count > 0)
+        self.tripDistance += [loc distanceFromLocation:[[self.visitedLocations lastObject] objectForKey:@"location"]];
+
+    if (self.distanceLeft < 0.0)
+        self.distanceLeft = self.estimatedRouteDistance;
+
     if (self.turnInstructions.count > 0) {
         SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
         nextTurn.lengthInMeters = [self calculateDistanceToNextTurn:loc];
@@ -417,7 +421,14 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         @synchronized(self.turnInstructions) {
             [self.turnInstructions setObject:nextTurn atIndexedSubscript:0];
         }
+        self.distanceLeft = nextTurn.lengthInMeters;
     }
+
+    // calculate distance from next turn to the end of the route
+    for (int i = 1; i < self.turnInstructions.count; i++) {
+        self.distanceLeft += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
+    }
+    debugLog(@"distance left: %.1f", self.distanceLeft);
 }
 
 - (NSData*) save {
@@ -447,24 +458,6 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     }
 
     debugLog(@"distance to next turn: %.1f", distance);
-    return distance;
-}
-
-/*
- * Calculates distance from given location to next turn
- */
-- (CGFloat)calculateDistanceLeft:(CLLocation *)loc {
-    // TODO: for now this is called only after updateDistanceToNextTurn, so the updated distance to next turn is already
-    // present in next turn's lengthInMeters. Use this to avoid calculating this twice: add distanceLeft member and implement
-    // method  updateDistances, which would calculate both distances in one run.
-    CGFloat distance = [self calculateDistanceToNextTurn:loc];
-
-    // calculate distance from next turn to the end of the route
-    for (int i = 1; i < self.turnInstructions.count; i++) {
-        distance += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
-    }
-
-    debugLog(@"distance left: %.1f", distance);
     return distance;
 }
 
@@ -555,7 +548,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                 }
                 
                 if ([SMLocationManager instance].hasValidLocation) {
-                    [self updateDistanceToNextTurn:[SMLocationManager instance].lastValidLocation];
+                    [self updateDistances:[SMLocationManager instance].lastValidLocation];
                 }
                 if (self.delegate && [self.delegate respondsToSelector:@selector(startRoute)]) {
                     [self.delegate startRoute];
@@ -586,7 +579,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 //                        }
 
                         if ([SMLocationManager instance].hasValidLocation) {
-                            [self updateDistanceToNextTurn:[SMLocationManager instance].lastValidLocation];
+                            [self updateDistances:[SMLocationManager instance].lastValidLocation];
                         }
 
                         // Uncomment code below is if we want to display the previous part of the route.

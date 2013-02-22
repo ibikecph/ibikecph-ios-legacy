@@ -37,6 +37,7 @@
 @property (nonatomic, strong) NSMutableArray *visitedLocations;
 //@property (nonatomic, strong) SMTurnInstruction *lastTurn;
 
+@property CGFloat distanceLeft;
 @property CGFloat tripDistance;
 @property CGFloat averageSpeed;
 @property CGFloat caloriesBurned;
@@ -55,7 +56,6 @@
 - (CLLocation *) getLastVisitedLocation;
 - (NSData*) save;
 
-- (CGFloat)calculateDistanceLeft:(CLLocation *)loc;
 - (CGFloat)calculateDistanceTraveled;
 - (CGFloat)calculateAverageSpeed;
 - (CGFloat)calculateCaloriesBurned;

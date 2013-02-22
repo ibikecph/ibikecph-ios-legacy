@@ -345,13 +345,12 @@
    if (self.currentlyRouting && self.route) {
 //       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
-       [self renderMinimizedDirectionsViewFromInstruction];
+//       [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];
        
-       float distanceLeft = [self.route calculateDistanceLeft:userLocation.location];
-       [labelDistanceLeft setText:formatDistance(distanceLeft)];
+       [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
        
-       CGFloat percent = self.route.tripDistance / (distanceLeft + self.route.tripDistance);
+       CGFloat percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);
        CGRect frame = progressBar.frame;
        frame.size.width = 306.0f * percent;
        [progressBar setFrame:frame];
@@ -361,12 +360,12 @@
 //       if (!avgSpeed)
 //           [labelTimeLeft setText:@""];
 //       else {
-           CGFloat time = distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
+           CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
            [labelTimeLeft setText:formatTimeLeft(time)];
 //       }
 
        [tblDirections reloadData];
-//       [self renderMinimizedDirectionsViewFromInstruction];
+       [self renderMinimizedDirectionsViewFromInstruction];
     }
 }
 
