@@ -861,7 +861,8 @@
         float cellCount = self.route.turnInstructions.count - 1; // remove -1 if you want to see "Finished instruction"
         float newY = [sender locationInView:self.view].y;
 
-        if ((cellCount <= 3) && (cellCount >=0)) {
+        if (cellCount < self.directionsShownCount) {
+            self.directionsShownCount = cellCount;
             [self showDirections:cellCount];
             return;
         }
