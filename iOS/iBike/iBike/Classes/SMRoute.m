@@ -53,20 +53,21 @@
 }
 
 - (BOOL) isTooFarFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB maxDistance:(double)maxDistance {
-// min is for debugging, it can be used to log distances.
-//    double min = 1000.0;
+    double min = 100000.0;
     for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
         CLLocation *a = [self.waypoints objectAtIndex:i];
         CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
         double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
-        if (d <= maxDistance)
-            return FALSE;
-//          if (d <= min)
-//              min = d;
+//      if (d <= maxDistance)
+//          return FALSE;
+        if (d <= min) {
+            min = d;
+            lastVisitedWaypointIndex = i;
+        }
     }
-    return TRUE;
-//    debugLog(@"Distance from route segment: %g", min);
-//    return min <= maxDistance;
+//    return TRUE;
+    debugLog(@"Distance from route segment: %g", min);
+    return min > maxDistance;
 }
 
 - (BOOL) isTooFarFromRoute:(CLLocation *)loc maxDistance:(int)maxDistance {
@@ -146,7 +147,7 @@
         [self setRequest:r];
         [r setAuxParam:@"routeRecalc"];
 
-        // Uncomment code below is if we want to display the previous part of the route.
+        // Uncomment code below if previous part of the route needs to be displayed.
 //        NSMutableArray *viaPoints = [NSMutableArray array];
 //        for (SMTurnInstruction *turn in self.pastTurnInstructions)
 //            [viaPoints addObject:turn.loc];
@@ -417,27 +418,34 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     return [NSKeyedArchiver archivedDataWithRootObject:self.visitedLocations];
 }
 
+/*
+ * Calculates distance from given location to next turn
+ */
 - (CGFloat)calculateDistanceToNextTurn:(CLLocation *)loc {
-//    SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
-//
-//    CGFloat distance = 0.0f;
-//
-//    CLLocation *prevLoc = loc;
-//    for (int i = lastVisitedWaypointIndex + 1; i <= nextTurn.waypointsIndex; i++) {
-//        CLLocation *nextLoc = [[self.waypoints objectAtIndex:i] objectForKey:@"location"];
-//        distance += [prevLoc distanceFromLocation:nextLoc];
-//        prevLoc = nextLoc;
-//    }
-//
-//    return distance;
+    if (self.turnInstructions.count == 0)
+        return 0.0f;
+
+    SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
 
     CGFloat distance = 0.0f;
-    CLLocation *prevLoc = loc;
-    for (int i = 0; i < self.turnInstructions.count; i++) {
-        CLLocation *nextLoc = [[self.turnInstructions objectAtIndex:i] getLocation];
-        distance += [prevLoc distanceFromLocation:nextLoc];
-        prevLoc = nextLoc;
+    for (int i = lastVisitedWaypointIndex >= 0 ? lastVisitedWaypointIndex : 0; i < nextTurn.waypointsIndex; i++) {
+        distance += [((CLLocation *)[self.waypoints objectAtIndex:i]) distanceFromLocation:[self.waypoints objectAtIndex:(i + 1)]];
     }
+
+    return distance;
+}
+
+/*
+ * Calculates distance from given location to next turn
+ */
+- (CGFloat)calculateDistanceLeft:(CLLocation *)loc {
+    CGFloat distance = [self calculateDistanceToNextTurn:loc];
+
+    // calculate distance from next turn to the end of the route
+    for (int i = 1; i < self.turnInstructions.count; i++) {
+        distance += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
+    }
+
     return distance;
 }
 

@@ -55,7 +55,7 @@
 - (CLLocation *) getLastVisitedLocation;
 - (NSData*) save;
 
-- (CGFloat)calculateDistanceToNextTurn:(CLLocation *)loc;
+- (CGFloat)calculateDistanceLeft:(CLLocation *)loc;
 - (CGFloat)calculateDistanceTraveled;
 - (CGFloat)calculateAverageSpeed;
 - (CGFloat)calculateCaloriesBurned;

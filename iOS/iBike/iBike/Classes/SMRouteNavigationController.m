@@ -199,36 +199,12 @@
     }
 }
 
-- (void) refreshPosition {
-    if (self.currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
-
-        CLLocation *location = [SMLocationManager instance].lastValidLocation;
-        if (location.speed > 0 || location.course >= 0)
-            debugLog(@"refreshPosition() speed = %f, course = %f, acc = %f", location.speed, location.course, location.horizontalAccuracy);
-
-        [self.route visitLocation:location];
-        [self renderMinimizedDirectionsViewFromInstruction];
-
-        float distanceLeft = [self.route calculateDistanceToNextTurn:location];
-        [labelDistanceLeft setText:formatDistance(distanceLeft)];
-
-        CGFloat percent = self.route.tripDistance / (distanceLeft + self.route.tripDistance);
-        CGRect frame = progressBar.frame;
-        frame.size.width = 306.0f * percent;
-        [progressBar setFrame:frame];
-
-//        float avgSpeed = [self.route calculateAverageSpeed];
-//        if (!avgSpeed)
-//            [labelTimeLeft setText:@""];
-//        else {
-            CGFloat time = distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
-            [labelTimeLeft setText:formatTime(time)];
-//        }
-
-        [tblDirections reloadData];
-        [self renderMinimizedDirectionsViewFromInstruction];
-    }
-}
+//- (void) refreshPosition {
+//    if (self.currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
+//
+//        CLLocation *location = [SMLocationManager instance].lastValidLocation;
+//    }
+//}
 
 //- (void) addLineAnnotation:(CLLocation *)start end:(CLLocation *)end {
 //    if (!start || !end)
@@ -373,7 +349,7 @@
        [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];
        
-       float distanceLeft = [self.route calculateDistanceToNextTurn:userLocation.location];
+       float distanceLeft = [self.route calculateDistanceLeft:userLocation.location];
        [labelDistanceLeft setText:formatDistance(distanceLeft)];
        
        CGFloat percent = self.route.tripDistance / (distanceLeft + self.route.tripDistance);
