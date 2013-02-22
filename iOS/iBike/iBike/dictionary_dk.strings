@@ -1,6 +1,6 @@
 /* 
   dictionary_dk.strings
-  ibikecph
+  I Bike CPH
 
   Created by Ivan Pavlovic on 31/01/2013.
   Copyright (c) 2013 Spoiled Milk. All rights reserved.
@@ -13,27 +13,27 @@
 "settings" = "Indstillinger";
 "about_ibikecph" = "Om I Bike CPH";
 "contacts" = "Kontakter";
-"favorites" = "Favoriter";
+"favorites" = "Favoritter";
 
 "direction_0" = "";
-"direction_1" = "Fortsæt";
-"direction_2" = "Drej lidt til højre";
-"direction_3" = "Drej til højre";
-"direction_4" = "Drej skarpt til højre";
+"direction_1" = "Fortsæt ad";
+"direction_2" = "Drej lidt til højre ad";
+"direction_3" = "Drej til højre ad";
+"direction_4" = "Drej skarpt til højre ad";
 "direction_5" = "U-vending";
-"direction_6" = "Drej skarpt til venstre";
-"direction_7" = "Drej til venstre";
-"direction_8" = "Drej lidt til venstre";
-"direction_9" = "Nå via-punkt";
-"direction_10" = "Fortsæt lige frem";
-"direction_11" = "Indkørsel af rundkørsel";
-"direction_12" = "Udkørsel af rundkørsel";
+"direction_6" = "Drej skarpt til venstre ad";
+"direction_7" = "Drej til venstre ad";
+"direction_8" = "Drej lidt til venstre ad";
+"direction_9" = "Via-punkt";
+"direction_10" = "Fortsæt ad";
+"direction_11" = "Kør in i rundkørslen ad";
+"direction_12" = "Kør fra rundkørslen ad";
 "direction_13" = "Bliv i rundkørslen";
 "direction_14" = "Bliv på";
-"direction_15" = "Du har nået din destination";
+"direction_15" = "Ankomst til destinationen";
 "direction_16" = "Start pushing your bike on";
 "direction_17" = "Stop pushing your bike";
-"direction_100" = "Du er ved at nå din destination";
+"direction_100" = "Du nærmer dig destinationen";
 
 "direction_N" = "nord";
 "direction_NE" = "nordøst";
@@ -44,55 +44,42 @@
 "direction_W" = "vest";
 "direction_NW" = "nordvest";
 
-"direction_number_1" = "1st";
-"direction_number_2" = "2nd";
-"direction_number_3" = "3rd";
-"direction_number_4" = "4th";
-"direction_number_5" = "5th";
-"direction_number_6" = "6th";
-"direction_number_7" = "7th";
-"direction_number_8" = "8th";
-"direction_number_9" = "9th";
-"direction_number_10" = "10th";
-"direction_number_11" = "11th";
-
 "new_route" = "Ny rute";
 "Stop" = "Stop";
 
 "Error" = "Error";
 "OK" = "OK";
-"error_no_gps_location" = "Ingen GPS lokation!";
-"error_address_not_found" = "Adressens lokation kan ikke findes!";
-"error_from_address_not_found" = "START adressens lokation kan ikke findes!";
-"error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
-"error_invalid_email" = "Ugyldig e-mail!";
+"error_no_gps_location" = "No GPS location!"; = "Ingen GPS lokation!";
+"error_address_not_found" = "Location of address not found!"; = "Adressens lokation kan ikke findes!";
+"error_from_address_not_found" = "Location of START address not found!"; = "START adressens lokation kan ikke findes!";
+"error_to_address_not_found" = "Location of END address not found!"; = "SLUT adressens lokation kan ikke findes!";
+"error_invalid_email" = "Invalid e-mail!"; = "Ugyldig e-mail!";
 "error_invalid_to_address" = "The destination address is invalid!";
 
 "route_stop_title" = "Vil du stoppe ruten?";
-"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapportér’.";
-"report_error" = "Rapportér";
+"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
+"report_error" = "Rapporter";
 "report_wrong_address" = "Vejnavn er forkert";
 "report_one_way" = "Vejen er ensrettet";
 "report_road_closed" = "Vejen er lukket";
 "report_illegal_turn" = "Ruten foreslår ulovligt sving";
 "report_other" = "Andet";
 
-"report_subject" = "Rapportér";
-"report_from" = "Start:";
-"report_to" = "Slut:";
-"report_tbt_instructions" = "Rutevejledning:";
-"report_reason" = "Begrundelse:";
-"report_instruction" = "Pågældende instruktion:";
-"report_contact_me" = "Jeg vil gerne kontaktes, når problemet er løst";
-"report_sent" = "Tak fordi du rapportérede fejlen!";
+"report_subject" = "Error report"; = "Rapporter";
+"report_from" = "Start:"; = "Start:";
+"report_to" = "Finish:"; = "Slut:";
+"report_tbt_instructions" = "Turn by turn instruction list:"; = "Rutevejledning:";
+"report_reason" = "Reason for report:"; = "Begrundelse:";
+"report_instruction" = "Instruction in question:"; = "Pågældende instruktion:";
+"report_contact_me" = "Please contact me when the issue is resolved"; = "Jeg vil gerne kontaktes, når problemet er løst";
+"report_sent" = "Thank you for reporting this error!"; = "Tak fordi du rapporterede fejlen!";
 
-"Done" = "Færdig";
-"Cancel" = "Annuller";
+"Done" = "Done"; "Færdig";
+"Cancel" = "Cancel"; "Annullere";
 
-"error_route_not_found" = "Ruten blev ikke fundet!";
+"error_route_not_found" = "Route not found!"; = "Ruten blev ikke fundet!";
 
-"calculating" = "Beregner...";
-"recalculating" = "Genberegning...";
+"calculating" = "Calculating..."; = "Beregner...";
+"recalculating" = "Recalculating..."; = "Genberegner...";
 
 "marker_start" = "Start";
-

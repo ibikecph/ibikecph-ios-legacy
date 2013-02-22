@@ -42,8 +42,10 @@
     [super viewWillAppear:animated];
     if (self.locationFrom && ([self.locationFrom isEqualToString:@""] == NO)) {
         [routeFrom setText:self.locationFrom];
+        [routeFrom setTextColor:[UIColor blackColor]];
     } else {
         [routeFrom setText:CURRENT_POSITION_STRING];
+        [routeFrom setTextColor:[UIColor blueColor]];
     }
     if (self.locationTo && ([self.locationTo isEqualToString:@""] == NO)) {
         [routeTo setText:self.locationTo];
@@ -149,6 +151,13 @@
     } else {
         [btnStart setEnabled:NO];
     }
+    
+    if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+        [routeFrom setTextColor:[UIColor blueColor]];
+    } else {
+        [routeFrom setTextColor:[UIColor blackColor]];
+    }
+    
 
 }
 
@@ -291,6 +300,20 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     [self performSelector:@selector(showFade) withObject:nil afterDelay:0.01f];
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (textField == routeFrom) {
+        if ([s isEqualToString:CURRENT_POSITION_STRING]) {
+            [textField setTextColor:[UIColor blueColor]];
+        } else {
+            [textField setTextColor:[UIColor blackColor]];
+        }
+        
+        if ([textField.text isEqualToString:CURRENT_POSITION_STRING] && s.length < textField.text.length) {
+            textField.text = @"";
+            s = @"";
+        }
+    }
+    
+    
     [self.autocomp getAutocomplete:s];
     
     if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
