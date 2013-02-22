@@ -439,7 +439,6 @@
 - (void) updateTurn:(BOOL)firstElementRemoved {
     
     @synchronized(self.route.turnInstructions) {
-        [self renderMinimizedDirectionsViewFromInstruction];
         
         if (firstElementRemoved) {
             if ([tblDirections numberOfRowsInSection:0] > 0) {
@@ -451,6 +450,7 @@
             [self showDirections:self.route.turnInstructions.count-1]; // remove -1 if you want to see "Finished instruction"
         
         [tblDirections performSelector:@selector(reloadData) withObject:nil afterDelay:0.4];        
+        [self renderMinimizedDirectionsViewFromInstruction];
     }
 }
 
@@ -768,9 +768,10 @@
 - (void)showDirections:(NSInteger)segments {
     self.directionsShownCount = segments;
 
-    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
+    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count <= 1) { // replace 1 with 0 if you want to see "Finished instruction"
         [instructionsView setHidden:YES];
         [minimizedInstructionsView setHidden:YES];
+        [self repositionInstructionsView:self.view.frame.size.height];
         return;
     }
 
@@ -835,10 +836,11 @@
     
     [self resizeMap];
 
-    if (newY < progressView.frame.origin.y + progressView.frame.size.height)
-        [progressView setHidden:YES];
-    else
-        [progressView setHidden:NO];
+//    if ((newY < progressView.frame.origin.y + progressView.frame.size.height) && self.currentlyRouting) {
+//        [progressView setHidden:YES];
+//    } else {
+//        [progressView setHidden:NO];
+//    }
 }
 
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
@@ -908,7 +910,6 @@
             [UIApplication sharedApplication].idleTimerDisabled = NO;
             [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
         }
-        NSLog(@"OtherVC: The value of self.currentlyRouting has changed");
     }
 }
 

@@ -1313,6 +1313,42 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                     <outlet property="delegate" destination="m0B-4B-35u" id="B5z-sg-vLq"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" id="VcC-Op-m4E" userLabel="Progress View">
+                                <rect key="frame" x="7" y="67" width="306" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="progressBarEmpty.png" id="DFd-Wm-s5E">
+                                        <rect key="frame" x="0.0" y="0.0" width="306" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" image="progressBarFull.png" id="aIL-WP-QoV">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="EhT-1A-rVx">
+                                        <rect key="frame" x="6" y="6" width="50" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="epK-0N-7fw">
+                                        <rect key="frame" x="56" y="6" width="195" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="lUh-yF-WfB">
+                                        <rect key="frame" x="250" y="6" width="50" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="Oxx-Mn-VT8" userLabel="Table View">
                                 <rect key="frame" x="0.0" y="400" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1533,42 +1569,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                             <action selector="buttonPressed:" destination="m0B-4B-35u" eventType="touchUpInside" id="7uC-SB-fbn"/>
                                         </connections>
                                     </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="VcC-Op-m4E" userLabel="Progress View">
-                                <rect key="frame" x="7" y="67" width="306" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="progressBarEmpty.png" id="DFd-Wm-s5E">
-                                        <rect key="frame" x="0.0" y="0.0" width="306" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" image="progressBarFull.png" id="aIL-WP-QoV">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="EhT-1A-rVx">
-                                        <rect key="frame" x="6" y="6" width="50" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="epK-0N-7fw">
-                                        <rect key="frame" x="56" y="6" width="195" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="lUh-yF-WfB">
-                                        <rect key="frame" x="250" y="6" width="50" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -1984,9 +1984,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
@@ -2011,7 +2008,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMContactsHeader" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
@@ -2041,6 +2037,8 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMEnterEmailController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="saveEmail:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2113,8 +2111,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMRouteFinishedController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="goToFrontPage:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
@@ -2126,6 +2122,11 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMRouteNavigationController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
@@ -2173,6 +2174,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
     <inferredMetricsTieBreakers>
         <segue reference="jXb-wj-fAE"/>
         <segue reference="edE-2V-bAg"/>
-        <segue reference="3hG-OG-Ecn"/>
+        <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>
