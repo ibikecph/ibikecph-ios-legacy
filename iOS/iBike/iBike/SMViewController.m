@@ -206,6 +206,21 @@ typedef enum {
     if ([[NSFileManager defaultManager] fileExistsAtPath: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]]) {
         NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]];
         [self findRouteFrom:CLLocationCoordinate2DMake([[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue]) to:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) fromAddress:@"" toAddress:[d objectForKey:@"destination"]];
+        
+        
+        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
+        
+        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+        [r setRequestIdentifier:@"getNearestForPinDrop"];
+        [r findNearestPointForLocation:loc];
+        
+        [self.mpView removeAllAnnotations];
+        SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
+        endMarkerAnnotation.annotationType = @"marker";
+        endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
+        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+        [self.mpView addAnnotation:endMarkerAnnotation];
+        [self setDestinationPin:endMarkerAnnotation];
     }
     
 }
