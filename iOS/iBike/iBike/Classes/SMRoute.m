@@ -164,7 +164,7 @@
 //        [viaPoints addObject:loc];
 //        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
 
-        [r getRouteFrom:loc.coordinate to:end.coordinate via:nil];
+        [r getRouteFrom:loc.coordinate to:end.coordinate via:nil checksum:self.routeChecksum destinationHint:self.destinationHint];
     }
 }
 
@@ -354,6 +354,17 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     }
     self.estimatedTimeForRoute = [[[jsonRoot objectForKey:@"route_summary"] objectForKey:@"total_time"] integerValue];
     self.estimatedRouteDistance = [[[jsonRoot objectForKey:@"route_summary"] objectForKey:@"total_distance"] integerValue];
+    self.routeChecksum = nil;
+    self.destinationHint = nil;
+    
+    if ([jsonRoot objectForKey:@"hint_data"] && [[jsonRoot objectForKey:@"hint_data"] objectForKey:@"checksum"]) {
+        self.routeChecksum = [NSString stringWithFormat:@"%@", [[jsonRoot objectForKey:@"hint_data"] objectForKey:@"checksum"]];
+    }
+    
+    if ([jsonRoot objectForKey:@"hint_data"] && [[jsonRoot objectForKey:@"hint_data"] objectForKey:@"locations"] && [[[jsonRoot objectForKey:@"hint_data"] objectForKey:@"locations"] isKindOfClass:[NSArray class]]) {
+        self.destinationHint = [NSString stringWithFormat:@"%@", [[[jsonRoot objectForKey:@"hint_data"] objectForKey:@"locations"] lastObject]];
+    }
+    
     NSArray *routeInstructions = [jsonRoot objectForKey:@"route_instructions"];
     if (routeInstructions && routeInstructions.count > 0) {
         int prevlengthInMeters = 0;

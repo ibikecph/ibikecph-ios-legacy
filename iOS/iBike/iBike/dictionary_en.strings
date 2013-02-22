@@ -95,3 +95,25 @@
 "recalculating" = "Recalculating...";
 
 "marker_start" = "Start";
+
+// these are in the storyboard
+
+"where_are_we_going" = "Where should we go?";
+"ibikecph_route_planner" = "I Bike CPH";
+"Cancel" = "Cancel";
+"calculating_new_route" = "Calculating new route...";
+"Distance" = "Distance";
+"Time" = "Time";
+"you_have_arrived_to" = "You have arrived to";
+"to_homepage" = "To homepage";
+"report_a_problem" = "Report a problem";
+"From:" = "From:";
+"To:" = "To:";
+"hello_cyclist" = "Hello cyclist";
+"thanks_for_testing_text" = "Tak fordi du hjælper os med at teste.";
+"start_text" = "Cykelruteplanlæggeren.\nVi er glade for du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-addresse:";
+"e_mail_address" = "E-mail address";
+"start_app" = "Start";
+"notify_me_when_fixed" = "Notify me when fixed";
+"report" = "Report";
+"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";

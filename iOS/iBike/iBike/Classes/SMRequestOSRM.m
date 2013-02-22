@@ -8,6 +8,7 @@
 
 #import "SMRequestOSRM.h"
 #import "SBJson.h"
+#import "NSString+URLEncode.h"
 
 @interface SMRequestOSRM()
 @property (nonatomic, strong) NSURLConnection * conn;
@@ -66,9 +67,9 @@
     
     if (chksum) {
         if (hint) {
-            s = [NSString stringWithFormat:@"%@&loc=%g,%g&hint=%@&instructions=true&cheksum=%@", s1, end.latitude, end.longitude, [hint urlEncode], chksum];
+            s = [NSString stringWithFormat:@"%@&loc=%g,%g&hint=%@&instructions=true&checksum=%@", s1, end.latitude, end.longitude, hint, chksum];
         } else {
-            s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true&cheksum=%@", s1, end.latitude, end.longitude, chksum];
+            s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true&checksum=%@", s1, end.latitude, end.longitude, chksum];
         }
     } else {
         s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true", s1, end.latitude, end.longitude];

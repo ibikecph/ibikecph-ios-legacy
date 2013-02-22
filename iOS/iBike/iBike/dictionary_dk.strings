@@ -49,11 +49,11 @@
 
 "Error" = "Error";
 "OK" = "OK";
-"error_no_gps_location" = "No GPS location!"; = "Ingen GPS lokation!";
-"error_address_not_found" = "Location of address not found!"; = "Adressens lokation kan ikke findes!";
-"error_from_address_not_found" = "Location of START address not found!"; = "START adressens lokation kan ikke findes!";
-"error_to_address_not_found" = "Location of END address not found!"; = "SLUT adressens lokation kan ikke findes!";
-"error_invalid_email" = "Invalid e-mail!"; = "Ugyldig e-mail!";
+"error_no_gps_location" = "Ingen GPS lokation!";
+"error_address_not_found" = "Adressens lokation kan ikke findes!";
+"error_from_address_not_found" = "START adressens lokation kan ikke findes!";
+"error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
+"error_invalid_email" = "Ugyldig e-mail!";
 "error_invalid_to_address" = "The destination address is invalid!";
 
 "route_stop_title" = "Vil du stoppe ruten?";
@@ -65,21 +65,44 @@
 "report_illegal_turn" = "Ruten foreslår ulovligt sving";
 "report_other" = "Andet";
 
-"report_subject" = "Error report"; = "Rapporter";
-"report_from" = "Start:"; = "Start:";
-"report_to" = "Finish:"; = "Slut:";
-"report_tbt_instructions" = "Turn by turn instruction list:"; = "Rutevejledning:";
-"report_reason" = "Reason for report:"; = "Begrundelse:";
-"report_instruction" = "Instruction in question:"; = "Pågældende instruktion:";
-"report_contact_me" = "Please contact me when the issue is resolved"; = "Jeg vil gerne kontaktes, når problemet er løst";
-"report_sent" = "Thank you for reporting this error!"; = "Tak fordi du rapporterede fejlen!";
+"report_subject" = "Rapporter";
+"report_from" = "Start:";
+"report_to" = "Slut:";
+"report_tbt_instructions" = "Rutevejledning:";
+"report_reason" = "Begrundelse:";
+"report_instruction" = "Pågældende instruktion:";
+"report_contact_me" = "Jeg vil gerne kontaktes, når problemet er løst";
+"report_sent" = "Tak fordi du rapporterede fejlen!";
 
-"Done" = "Done"; "Færdig";
-"Cancel" = "Cancel"; "Annullere";
+"Done" = "Færdig";
+"Cancel" = "Annullere";
 
-"error_route_not_found" = "Route not found!"; = "Ruten blev ikke fundet!";
+"error_route_not_found" = "Ruten blev ikke fundet!";
 
-"calculating" = "Calculating..."; = "Beregner...";
-"recalculating" = "Recalculating..."; = "Genberegner...";
+"calculating" = "Beregner...";
+"recalculating" = "Genberegner...";
 
 "marker_start" = "Start";
+
+// these are in the storyboard
+
+"where_are_we_going" = "Hvor skal vi hen?";
+"ibikecph_route_planner" = "Cykelruteplanlægger";
+"Cancel" = "Fortryd";
+"calculating_new_route" = "Beregner ny rute..";
+"Distance" = "Distance";
+"Time" = "Tid";
+"you_have_arrived_to" = "Du er nu fremme ved";
+"to_homepage" = "Til forsiden";
+"report_a_problem" = "Rapportér problem";
+"From:" = "Fra:";
+"To:" = "Til:";
+"hello_cyclist" = "Hej cyklist";
+"thanks_for_testing_text" = "Tak fordi du hjælper os med at teste.";
+"start_text" = "Cykelruteplanlæggeren.\nVi er glade for du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-addresse:";
+"e_mail_address" = "E-mail address";
+"start_app" = "Sæt igang";
+"notify_me_when_fixed" = "Få besked når fejlen er udbedret";
+"report" = "Rapporter";
+"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
+

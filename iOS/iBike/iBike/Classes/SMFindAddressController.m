@@ -224,6 +224,7 @@
                             CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
                             CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:coordTo.coordinate.latitude longitude:coordTo.coordinate.longitude];
                             SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                            [r setAuxParam:@"nearestPoint"];
                             [r findNearestPointForStart:cStart andEnd:cEnd];
                         } else {
                             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
@@ -249,6 +250,7 @@
                                 CLLocation * cStart = [[CLLocation alloc] initWithLatitude:coordFrom.coordinate.latitude longitude:coordFrom.coordinate.longitude];
                                 CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:coordTo.coordinate.latitude longitude:coordTo.coordinate.longitude];
                                 SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                                [r setAuxParam:@"nearestPoint"];
                                 [r findNearestPointForStart:cStart andEnd:cEnd];
                             } else {
                                 [UIView animateWithDuration:0.2f animations:^{
@@ -478,10 +480,12 @@
 }
 
 - (void)request:(SMRequestOSRM *)req finishedWithResult:(id)res {
-    CLLocation * s = [res objectForKey:@"start"];
-    CLLocation * e = [res objectForKey:@"end"];
-    [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
-    [self dismissModalViewControllerAnimated:YES];
+    if ([req.auxParam isEqualToString:@"nearestPoint"]) {
+        CLLocation * s = [res objectForKey:@"start"];
+        CLLocation * e = [res objectForKey:@"end"];
+        [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
+        [self dismissModalViewControllerAnimated:YES];
+    }
     [UIView animateWithDuration:0.2f animations:^{
         [fadeView setAlpha:0.0f];
     }];

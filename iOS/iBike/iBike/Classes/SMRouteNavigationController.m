@@ -298,7 +298,7 @@
         RMShape *path = [[RMShape alloc] initWithView:aMapView];
         [path setZPosition:-MAXFLOAT];
         [path setLineColor:[annotation.userInfo objectForKey:@"lineColor"]];
-        [path setOpacity:0.5f];
+        [path setOpacity:PATH_OPACITY];
         [path setFillColor:[annotation.userInfo objectForKey:@"fillColor"]];
         [path setLineWidth:[[annotation.userInfo objectForKey:@"lineWidth"] floatValue]];
         path.scaleLineWidth = NO;
@@ -319,7 +319,7 @@
         RMShape *line = [[RMShape alloc] initWithView:aMapView];
         [line setZPosition:-MAXFLOAT];
         [line setLineColor:[annotation.userInfo objectForKey:@"lineColor"]];
-        [line setOpacity:0.5f];
+        [line setOpacity:PATH_OPACITY];
         [line setFillColor:[annotation.userInfo objectForKey:@"fillColor"]];
         [line setLineWidth:[[annotation.userInfo objectForKey:@"lineWidth"] floatValue]];
         line.scaleLineWidth = YES;
