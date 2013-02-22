@@ -29,8 +29,8 @@
     [self.lblWayname setFrame:frame];
 //    debugLog(@"%@ %@", self.lblWayname.text, NSStringFromCGSize(size));
 
-    [self.lblDistance setText:turn.fixedLengthWithUnit]; // fixed distance
-//    [self.lblDistance setText:formatDistance(turn.lengthInMeters)]; // dynamic distance
+//    [self.lblDistance setText:turn.fixedLengthWithUnit]; // fixed distance
+    [self.lblDistance setText:formatDistance(turn.lengthInMeters)]; // dynamic distance
     
     
     [self.imgDirection setImage:[turn largeDirectionIcon]];

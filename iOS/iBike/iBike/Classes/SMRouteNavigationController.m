@@ -106,7 +106,6 @@
 }
 
 - (void)viewDidUnload {
-    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     self.mpView.delegate = nil;
     self.mpView = nil;
     self.route.delegate = nil;
@@ -535,6 +534,7 @@
 }
 
 - (IBAction)goBack:(id)sender {
+    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];

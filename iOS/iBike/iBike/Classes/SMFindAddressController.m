@@ -75,6 +75,7 @@
     routeTo = nil;
     fadeView = nil;
     btnStart = nil;
+    autocompleteFade = nil;
     [super viewDidUnload];
 }
 
@@ -118,10 +119,37 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.currentTextField.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];
-    if (routeTo.isFirstResponder || routeFrom.isFirstResponder) {
-        [routeTo resignFirstResponder];
-        [routeFrom resignFirstResponder];
+//    if (routeTo.isFirstResponder || routeFrom.isFirstResponder) {
+//        [routeTo resignFirstResponder];
+//        [routeFrom resignFirstResponder];
+//    }
+    
+    if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
+        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+            [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                if ([placemarks count] == 0) {
+                    [btnStart setEnabled:NO];
+                } else {
+                    [btnStart setEnabled:YES];
+                }
+            }];
+        } else {
+            [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                if ([placemarks count] > 0) {
+                    [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                        if ([placemarks count] == 0) {
+                            [btnStart setEnabled:NO];
+                        }
+                    }];
+                } else {
+                    [btnStart setEnabled:NO];
+                }
+            }];
+        }
+    } else {
+        [btnStart setEnabled:NO];
     }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -248,20 +276,67 @@
     return YES;
 }
 
+- (void)showFade {
+    [UIView animateWithDuration:0.2f animations:^{
+        [autocompleteFade setAlpha:1.0f];
+    }];
+}
+
+- (void)hideFade {
+    [UIView animateWithDuration:0.2f animations:^{
+        [autocompleteFade setAlpha:0.0f];
+    }];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    [self performSelector:@selector(showFade) withObject:nil afterDelay:0.01f];
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
     [self.autocomp getAutocomplete:s];
     
-    UITextField * other = nil;
-    if (textField == routeFrom) {
-        other = routeTo;
-    } else {
-        other = routeFrom;
-    }
-    if (([s isEqualToString:@""] == NO) && ([other.text isEqualToString:@""] == NO)) {
-        [btnStart setEnabled:YES];
+    if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
+        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+            [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                if ([placemarks count] == 0) {
+                    [btnStart setEnabled:NO];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                    });
+                } else {
+                    [btnStart setEnabled:YES];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                    });
+                }
+            }];
+        } else {
+            [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                if ([placemarks count] > 0) {
+                    [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                        if ([placemarks count] == 0) {
+                            [btnStart setEnabled:NO];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                            });
+                        } else {
+                            [btnStart setEnabled:YES];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                            });
+                        }
+                    }];
+                } else {
+                    [btnStart setEnabled:NO];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                    });
+                }
+            }];
+        }
     } else {
         [btnStart setEnabled:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+        });
     }
     return YES;
 }
@@ -326,6 +401,32 @@
          @"address" : [NSString stringWithFormat:@"%@, %@ %@", [d objectForKey:@"street"], [d objectForKey:@"zip"], [d objectForKey:@"city"]]
          }];
     }
+    
+    if (([r count] == 0) && ([self.currentTextField.text isEqualToString:@""])) {
+        for (NSDictionary * d in appd.pastRoutes) {
+            BOOL found = NO;
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO) {
+                [r addObject:d];
+            }
+        }
+    }
+    
+    if (self.currentTextField == routeFrom) {
+        [r insertObject:@{
+         @"name" : CURRENT_POSITION_STRING,
+         @"address" : CURRENT_POSITION_STRING,
+         @"startDate" : [NSDate date],
+         @"endDate" : [NSDate date],
+         @"source" : @"pastRoutes"
+         } atIndex:0];        
+    }
+    
     self.autocompleteArr = r;
     [tblView reloadData];
 }

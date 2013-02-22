@@ -12,6 +12,7 @@
 #import <MapKit/MapKit.h>
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "SMLocationManager.h"
 
 
 @implementation SMGeocoder
@@ -60,7 +61,13 @@
     [cl geocodeAddressString:str completionHandler:^(NSArray *placemarks, NSError *error) {
         NSMutableArray * ret = [NSMutableArray array];
         for (CLPlacemark * pl in placemarks) {
-            [ret addObject:[[MKPlacemark alloc] initWithPlacemark:pl]];
+            if ([SMLocationManager instance].hasValidLocation) {
+                if ([pl.location distanceFromLocation:[SMLocationManager instance].lastValidLocation] <= GEOCODING_SEARCH_RADIUS) {
+                    [ret addObject:[[MKPlacemark alloc] initWithPlacemark:pl]];
+                }
+            } else {
+                [ret addObject:[[MKPlacemark alloc] initWithPlacemark:pl]];
+            }
         }
         handler(ret, error);
     }];
