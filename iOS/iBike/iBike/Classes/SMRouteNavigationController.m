@@ -126,6 +126,7 @@
     finishDistance = nil;
     finishTime = nil;
     recalculatingView = nil;
+    finishDestination = nil;
     [super viewDidUnload];
 }
 
@@ -472,6 +473,8 @@
     [labelDistanceLeft setText:@"--"];
     [labelTimeLeft setText:@"--"];
     [labelDestination setText:@""];
+    NSArray * a = [self.destination componentsSeparatedByString:@","];
+    [finishDestination setText:[a objectAtIndex:0]];
     
     CGRect frame = progressBar.frame;
     frame.size.width = 0.0f;
@@ -744,6 +747,8 @@
             CGFloat distance = [self.route calculateDistanceTraveled];
             [finishDistance setText:formatDistance(distance)];
             [finishTime setText:[self.route timePassed]];
+            NSArray * a = [self.destination componentsSeparatedByString:@","];
+            [finishDestination setText:[a objectAtIndex:0]];
             [UIView animateWithDuration:0.4f animations:^{
                 [finishFadeView setAlpha:1.0f];
             } completion:^(BOOL finished) {
