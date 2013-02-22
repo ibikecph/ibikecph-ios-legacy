@@ -273,7 +273,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                                 <rect key="frame" x="117" y="58" width="86" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Report" backgroundImage="emailButton.png">
+                                                <state key="normal" title="Rapporter" backgroundImage="emailButton.png">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -297,7 +297,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Report a problem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0TT-jA-kgC">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rapportér problem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0TT-jA-kgC">
                                         <rect key="frame" x="20" y="9" width="280" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -523,7 +523,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M15-9z-4kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="-41"/>
+            <point key="canvasLocation" x="93" y="-41"/>
         </scene>
         <!--Accounts Controller-->
         <scene sceneID="jkS-gT-ciB">
@@ -1473,7 +1473,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <rect key="frame" x="24" y="21" width="52" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
                                         <rect key="frame" x="0.0" y="76" width="101" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1984,6 +1984,9 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
@@ -2008,6 +2011,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMContactsHeader" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
@@ -2109,6 +2113,8 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMRouteFinishedController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="goToFrontPage:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
@@ -2165,8 +2171,8 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BMy-9M-oqz"/>
-        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
+        <segue reference="edE-2V-bAg"/>
+        <segue reference="3hG-OG-Ecn"/>
     </inferredMetricsTieBreakers>
 </document>
