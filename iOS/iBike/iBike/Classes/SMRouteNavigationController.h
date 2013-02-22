@@ -27,6 +27,7 @@
     __weak IBOutlet UIView *finishFadeView;
     __weak IBOutlet UILabel *finishDistance;
     __weak IBOutlet UILabel *finishTime;
+    __weak IBOutlet UILabel *finishDestination;
     __weak IBOutlet UIView *recalculatingView;
 }
 
