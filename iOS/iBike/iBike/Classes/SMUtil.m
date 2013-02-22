@@ -32,7 +32,7 @@ double distanceFromArc(double dA, double dB, double dAB) {
 
     // First, we calculate angles alpha and beta in spherical triangle ABC
     // and based on them we decide how to calculate the distance:
-    if (sin(a) == 0.0 || sin(b) == 0.0 || sin(c) == 0.0) {
+    if (sin(b) * sin(c) == 0.0 || sin(c) * sin(a) == 0.0) {
         // TODO figure out what to do with this case, and if it is possible to happen in our cases.
         // It probably means that one of distance is n*pi, which gives around 20000km for n = 1,
         // unlikely for Denmark, so we should be fine.
@@ -41,6 +41,23 @@ double distanceFromArc(double dA, double dB, double dAB) {
 
     double alpha = acos((cos(a) - cos(b) * cos(c)) / (sin(b) * sin(c)));
     double beta  = acos((cos(b) - cos(c) * cos(a)) / (sin(c) * sin(a)));
+
+    // It is possible that both sinuses are too small so we can get nan when dividing with them
+    if (isnan(alpha) || isnan(beta)) {
+//        double cosa = cos(a);
+//        double cosbc = cos(b) * cos(c);
+//        double minus1 = cosa - cosbc;
+//        double sinbc = sin(b) * sin(c);
+//        double div1 = minus1 / sinbc;
+//
+//        double cosb = cos(b);
+//        double cosca = cos(a) * cos(c);
+//        double minus2 = cosb - cosca;
+//        double sinca = sin(a) * sin(c);
+//        double div2 = minus2 / sinca;
+
+        return -1.0;
+    }
 
     // If alpha or beta are zero or pi, it means that C is on the same circle as arc AB,
     // we just need to figure out if it is between AB:

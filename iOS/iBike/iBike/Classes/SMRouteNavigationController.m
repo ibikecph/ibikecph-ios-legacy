@@ -343,7 +343,7 @@
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
    if (self.currentlyRouting && self.route) {
-       debugLog(@"didUpdateUserLocation()");
+//       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];
@@ -366,7 +366,7 @@
 //       }
 
        [tblDirections reloadData];
-       [self renderMinimizedDirectionsViewFromInstruction];
+//       [self renderMinimizedDirectionsViewFromInstruction];
     }
 }
 

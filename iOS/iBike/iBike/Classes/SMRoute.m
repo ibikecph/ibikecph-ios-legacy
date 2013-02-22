@@ -54,19 +54,28 @@
 
 - (BOOL) isTooFarFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB maxDistance:(double)maxDistance {
     double min = 100000.0;
-    for (int i = turnA.waypointsIndex; i < turnB.waypointsIndex; i++) {
+
+    for (int i = lastVisitedWaypointIndex; i < turnB.waypointsIndex; i++) {
         CLLocation *a = [self.waypoints objectAtIndex:i];
         CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
         double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
+        if (d < 0.0)
+            continue;
+
 //      if (d <= maxDistance)
 //          return FALSE;
         if (d <= min) {
             min = d;
             lastVisitedWaypointIndex = i;
         }
+
+        if (min < 2) {
+            // Close enough :)
+            break;
+        }
     }
 //    return TRUE;
-    debugLog(@"Distance from route segment: %g", min);
+//    debugLog(@"lastVisitedWaypointIndex = %d. Distance from route segment: %g", lastVisitedWaypointIndex, min);
     return min > maxDistance;
 }
 
@@ -403,9 +412,8 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 - (void)updateDistanceToNextTurn:(CLLocation *)loc {
     if (self.turnInstructions.count > 0) {
         SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
-        int distanceToStart = [loc distanceFromLocation:nextTurn.loc];
-        nextTurn.lengthInMeters = distanceToStart;
-        nextTurn.lengthWithUnit = formatDistance(distanceToStart);
+        nextTurn.lengthInMeters = [self calculateDistanceToNextTurn:loc];
+        nextTurn.lengthWithUnit = formatDistance(nextTurn.lengthInMeters);
         @synchronized(self.turnInstructions) {
             [self.turnInstructions setObject:nextTurn atIndexedSubscript:0];
         }
@@ -427,11 +435,18 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 
     SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
 
+    // If first turn still hasn't been reached, return linear distance to it.
+    if (self.pastTurnInstructions.count == 0)
+        return [loc distanceFromLocation:nextTurn.loc];
+
     CGFloat distance = 0.0f;
     for (int i = lastVisitedWaypointIndex >= 0 ? lastVisitedWaypointIndex : 0; i < nextTurn.waypointsIndex; i++) {
-        distance += [((CLLocation *)[self.waypoints objectAtIndex:i]) distanceFromLocation:[self.waypoints objectAtIndex:(i + 1)]];
+        double d = [((CLLocation *)[self.waypoints objectAtIndex:i]) distanceFromLocation:[self.waypoints objectAtIndex:(i + 1)]];
+        debugLog(@"[%d - %d] = %.1f", i, i + 1, d);
+        distance += d;
     }
 
+    debugLog(@"distance to next turn: %.1f", distance);
     return distance;
 }
 
@@ -439,6 +454,9 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
  * Calculates distance from given location to next turn
  */
 - (CGFloat)calculateDistanceLeft:(CLLocation *)loc {
+    // TODO: for now this is called only after updateDistanceToNextTurn, so the updated distance to next turn is already
+    // present in next turn's lengthInMeters. Use this to avoid calculating this twice: add distanceLeft member and implement
+    // method  updateDistances, which would calculate both distances in one run.
     CGFloat distance = [self calculateDistanceToNextTurn:loc];
 
     // calculate distance from next turn to the end of the route
@@ -446,6 +464,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         distance += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
     }
 
+    debugLog(@"distance left: %.1f", distance);
     return distance;
 }
 
