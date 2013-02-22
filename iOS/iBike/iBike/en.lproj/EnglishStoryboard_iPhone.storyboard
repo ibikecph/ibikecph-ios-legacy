@@ -1242,6 +1242,13 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXb-DZ-Kpu">
+                                <rect key="frame" x="20" y="511" width="217" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1252,6 +1259,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                         <outlet property="addressView" destination="8z4-jF-da8" id="DYA-wy-0cp"/>
                         <outlet property="buttonTrackUser" destination="FSD-PE-lob" id="aml-T6-B6J"/>
                         <outlet property="centerView" destination="3yz-md-642" id="d3k-J0-6bV"/>
+                        <outlet property="debugLabel" destination="QXb-DZ-Kpu" id="2tY-fL-J62"/>
                         <outlet property="eventsView" destination="Uzp-UI-Y81" id="Cuo-x9-IcW"/>
                         <outlet property="fadeView" destination="xRk-fp-BvU" id="zZR-B8-Dv0"/>
                         <outlet property="menuView" destination="KIv-Bk-2qG" id="FiP-Yy-UOJ"/>
@@ -2029,8 +2037,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMEnterEmailController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="saveEmail:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2091,12 +2097,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMReportErrorController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="action" name="pickerCancel:"/>
-                <relationship kind="action" name="pickerDone:"/>
-                <relationship kind="action" name="sendReport:"/>
-                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2120,7 +2120,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMRouteNavigationController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
@@ -2142,16 +2141,10 @@ If you choose to be notified your e-mail address will be sent to us</string>
         </class>
         <class className="SMSettingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
@@ -2171,7 +2164,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Wd-f4-uGc"/>
+        <segue reference="dCm-4o-WFf"/>
         <segue reference="BMy-9M-oqz"/>
         <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>

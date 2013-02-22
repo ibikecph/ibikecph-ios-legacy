@@ -1242,6 +1242,13 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iqL-K9-CLg">
+                                <rect key="frame" x="20" y="511" width="217" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1252,6 +1259,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                         <outlet property="addressView" destination="8z4-jF-da8" id="DYA-wy-0cp"/>
                         <outlet property="buttonTrackUser" destination="FSD-PE-lob" id="aml-T6-B6J"/>
                         <outlet property="centerView" destination="3yz-md-642" id="d3k-J0-6bV"/>
+                        <outlet property="debugLabel" destination="iqL-K9-CLg" id="8MO-mv-N9W"/>
                         <outlet property="eventsView" destination="Uzp-UI-Y81" id="Cuo-x9-IcW"/>
                         <outlet property="fadeView" destination="xRk-fp-BvU" id="zZR-B8-Dv0"/>
                         <outlet property="menuView" destination="KIv-Bk-2qG" id="FiP-Yy-UOJ"/>
@@ -1976,9 +1984,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         </class>
         <class className="SMAboutController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
@@ -2003,7 +2008,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMContactsHeader" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
@@ -2033,8 +2037,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMEnterEmailController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="saveEmail:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2071,9 +2073,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMFindAddressController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
-                <relationship kind="action" name="findRoute:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="swapFromAndTo:"/>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2098,12 +2097,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMReportErrorController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideKeyboard:"/>
-                <relationship kind="action" name="pickerCancel:"/>
-                <relationship kind="action" name="pickerDone:"/>
-                <relationship kind="action" name="sendReport:"/>
-                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2127,9 +2120,6 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <class className="SMRouteNavigationController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
@@ -2151,19 +2141,14 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         </class>
         <class className="SMSettingsController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="debugLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="eventsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="menuView" candidateClass="UIView"/>

@@ -128,6 +128,7 @@ typedef enum {
     eventsView = nil;
     tblMenu = nil;
     fadeView = nil;
+    debugLabel = nil;
     [super viewDidUnload];
 }
 
@@ -179,6 +180,7 @@ typedef enum {
         [appd setPastRoutes:rts];
     }
 
+    [debugLabel setText:BUILD_STRING];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
