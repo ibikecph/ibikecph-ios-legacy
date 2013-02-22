@@ -32,8 +32,6 @@
     [[GAI sharedInstance].defaultTracker setAnonymize:GOOGLE_ANALYTICS_ANONYMIZE];
     [[GAI sharedInstance].defaultTracker setSampleRate:GOOGLE_ANALYTICS_SAMPLE_RATE];
     [[GAI sharedInstance].defaultTracker setSessionTimeout:GOOGLE_ANALYTICS_SESSION_TIMEOUT];
-//    [[GAI sharedInstance].defaultTracker setCustom:1 dimension:[dict objectForKey:@"DID"]];
-//    [[GAI sharedInstance].defaultTracker setCustom:3 dimension:[GAI sharedInstance].defaultTracker.clientId];
     
 #ifdef ENGLISH_VERSION
     UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"EnglishStoryboard_iPhone" bundle:nil];

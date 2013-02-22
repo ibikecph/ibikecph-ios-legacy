@@ -1996,6 +1996,7 @@
 					WORLD_ROUTING,
 					"DEBUG=1",
 					START_DIRECTIONS,
+					TEST_VERSION,
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";
@@ -2027,6 +2028,7 @@
 					ENGLISH_VERSION,
 					WORLD_ROUTING,
 					START_DIRECTIONS,
+					TEST_VERSION,
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike copy-Info.plist";
@@ -2108,6 +2110,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					TEST_VERSION,
+				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2134,6 +2140,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = TEST_VERSION;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
