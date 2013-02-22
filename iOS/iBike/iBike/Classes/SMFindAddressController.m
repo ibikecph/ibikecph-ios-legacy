@@ -120,12 +120,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.currentTextField.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];
-//    if (routeTo.isFirstResponder || routeFrom.isFirstResponder) {
-//        [routeTo resignFirstResponder];
-//        [routeFrom resignFirstResponder];
-//    }
-    
+    self.currentTextField.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];    
     if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
         if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
             [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -141,6 +136,8 @@
                     [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
                         if ([placemarks count] == 0) {
                             [btnStart setEnabled:NO];
+                        } else {
+                            [btnStart setEnabled:YES];
                         }
                     }];
                 } else {
