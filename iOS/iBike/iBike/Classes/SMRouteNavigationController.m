@@ -795,7 +795,7 @@
          */
         CGFloat tblHeight = 0.0f;
         @synchronized(self.route.turnInstructions) {
-            for (int i = 0; i < segments; i++) {
+            for (int i = 0; i < MIN(segments, [self.route.turnInstructions count] - 1); i++) {  // replace 1 with 0 if you want to see "Finished instruction"
                 SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
                 if (i == 0) {
                     tblHeight += [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
