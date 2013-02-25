@@ -1242,8 +1242,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXb-DZ-Kpu">
-                                <rect key="frame" x="20" y="511" width="217" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="QXb-DZ-Kpu">
+                                <rect key="frame" x="13" y="511" width="247" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1362,13 +1362,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                             <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="X2v-aS-AvQ"/>
                                         </connections>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="T3R-KA-f82">
-                                        <rect key="frame" x="9" y="9" width="303" height="11"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="K9w-q7-kVs"/>
-                                        </connections>
-                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dPo-Xj-3qL">
                                         <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1461,6 +1454,14 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                             <outlet property="delegate" destination="m0B-4B-35u" id="BbH-NY-krL"/>
                                         </connections>
                                     </tableView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="pullHandle.png" id="T3R-KA-f82">
+                                        <rect key="frame" x="9" y="9" width="303" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="K9w-q7-kVs"/>
+                                        </connections>
+                                    </imageView>
                                     <view alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1491,16 +1492,18 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                 <gestureRecognizers/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
-                                <rect key="frame" x="109" y="447" width="101" height="101"/>
+                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="directionsSmallBox.png" id="YuV-kS-kb9">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="pullHandle.png" id="HoE-GJ-gw4">
-                                        <rect key="frame" x="0.0" y="5" width="101" height="92"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
+                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
                                         </connections>
@@ -1517,7 +1520,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="pAY-2y-bkW" userLabel="Header View">
@@ -1950,7 +1953,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <image name="contactsEdit.png" width="68" height="30"/>
         <image name="contactsHeaderSeparator.png" width="260" height="2"/>
         <image name="contactsList.png" width="16" height="14"/>
-        <image name="directionsSmallBox.png" width="101" height="101"/>
         <image name="emailButton.png" width="86" height="30"/>
         <image name="eventFBIcon.png" width="16" height="16"/>
         <image name="eventsCalendar.png" width="50" height="50"/>
@@ -2175,7 +2177,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="0Wd-f4-uGc"/>
+        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>
 </document>
