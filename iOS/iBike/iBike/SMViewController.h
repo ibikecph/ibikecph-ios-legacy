@@ -17,6 +17,8 @@
 #import "SMNearbyPlaces.h"
 #import "SMRequestOSRM.h"
 
+#import "SMGPSTrackButton.h"
+
 typedef enum {
     screenMenu,
     screenMap,
@@ -35,9 +37,10 @@ typedef enum {
     __weak IBOutlet UITableView *tblEvents;
     __weak IBOutlet UITableView *tblContacts;
     __weak IBOutlet UITableView *tblMenu;
-    __weak IBOutlet UIButton *buttonTrackUser;
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UILabel *debugLabel;
+
+    __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
 }
 
 /**

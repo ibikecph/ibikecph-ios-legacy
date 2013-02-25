@@ -127,6 +127,7 @@
     finishTime = nil;
     recalculatingView = nil;
     finishDestination = nil;
+    buttonTrackUser = nil;
     [super viewDidUnload];
 }
 

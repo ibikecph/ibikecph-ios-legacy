@@ -129,6 +129,7 @@ typedef enum {
     tblMenu = nil;
     fadeView = nil;
     debugLabel = nil;
+    buttonTrackUser = nil;
     [super viewDidUnload];
 }
 
@@ -400,9 +401,9 @@ typedef enum {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
         [self.mpView setCenterCoordinate:[SMLocationManager instance].lastValidLocation.coordinate];
-        [buttonTrackUser setEnabled:NO];
+//        [buttonTrackUser setEnabled:NO];
     } else {
-        [buttonTrackUser setEnabled:NO];
+//        [buttonTrackUser setEnabled:NO];
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     }
 }
@@ -868,7 +869,7 @@ typedef enum {
 
 - (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-        [buttonTrackUser setEnabled:YES];
+//        [buttonTrackUser setEnabled:YES];
     }
     [self checkCallouts];
 }
@@ -897,7 +898,7 @@ typedef enum {
 
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-        [buttonTrackUser setEnabled:YES];
+//        [buttonTrackUser setEnabled:YES];
     }
     [self checkCallouts];
 }

@@ -51,6 +51,8 @@
 		4BA9164D16B14F02004E04A4 /* TrackingHeading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9164316B14F01004E04A4 /* TrackingHeading@2x.png */; };
 		4BA9164E16B14F02004E04A4 /* TrackingLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9164416B14F02004E04A4 /* TrackingLocation.png */; };
 		4BA9164F16B14F02004E04A4 /* TrackingLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9164516B14F02004E04A4 /* TrackingLocation@2x.png */; };
+		4BB6F95616DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */; };
+		4BB6F95716DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */; };
 		4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */; };
 		4BCDB03116C3F7E700E0C313 /* direction_large_continue.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCDB00116C3F7E700E0C313 /* direction_large_continue.png */; };
 		4BCDB03216C3F7E700E0C313 /* direction_large_continue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCDB00216C3F7E700E0C313 /* direction_large_continue@2x.png */; };
@@ -581,6 +583,8 @@
 		4BA9164316B14F01004E04A4 /* TrackingHeading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackingHeading@2x.png"; path = "../Libs/MapView/Map/Resources/TrackingHeading@2x.png"; sourceTree = "<group>"; };
 		4BA9164416B14F02004E04A4 /* TrackingLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TrackingLocation.png; path = ../Libs/MapView/Map/Resources/TrackingLocation.png; sourceTree = "<group>"; };
 		4BA9164516B14F02004E04A4 /* TrackingLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TrackingLocation@2x.png"; path = "../Libs/MapView/Map/Resources/TrackingLocation@2x.png"; sourceTree = "<group>"; };
+		4BB6F95416DB6CCE004A3889 /* SMGPSTrackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGPSTrackButton.h; sourceTree = "<group>"; };
+		4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSTrackButton.m; sourceTree = "<group>"; };
 		4BCDAFF516C2808A00E0C313 /* SMDirectionTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionTopCell.h; sourceTree = "<group>"; };
 		4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionTopCell.m; sourceTree = "<group>"; };
 		4BCDB00116C3F7E700E0C313 /* direction_large_continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction_large_continue.png; sourceTree = "<group>"; };
@@ -1283,6 +1287,8 @@
 				4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */,
 				4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */,
 				4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */,
+				4BB6F95416DB6CCE004A3889 /* SMGPSTrackButton.h */,
+				4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1886,6 +1892,7 @@
 				4C6C481D16CD3C5200E57F59 /* SMDirectionTopCell.m in Sources */,
 				4C6C482216CD3C5200E57F59 /* SMRadioCheckedCell.m in Sources */,
 				4C6C482316CD3C5200E57F59 /* SMRadioUncheckedCell.m in Sources */,
+				4BB6F95716DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1937,6 +1944,7 @@
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
 				4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */,
+				4BB6F95616DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

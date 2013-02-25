@@ -10,6 +10,7 @@
 #import "RMMapView.h"
 #import "SMRoute.h"
 #import "SMFindAddressController.h"
+#import "SMGPSTrackButton.h"
 
 @interface SMRouteNavigationController : UIViewController <RMMapViewDelegate, SMRouteDelegate, RouteFinderDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
     __weak IBOutlet UITableView *tblDirections;
@@ -23,12 +24,12 @@
     __weak IBOutlet UILabel *labelDistanceLeft;
     __weak IBOutlet UILabel *labelDistanceToNextTurn;
     __weak IBOutlet UIImageView *imgNextTurnDirection;
-    __weak IBOutlet UIButton *buttonTrackUser;
     __weak IBOutlet UIView *finishFadeView;
     __weak IBOutlet UILabel *finishDistance;
     __weak IBOutlet UILabel *finishTime;
     __weak IBOutlet UILabel *finishDestination;
     __weak IBOutlet UIView *recalculatingView;
+    __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
 }
 
 @property BOOL currentlyRouting;
