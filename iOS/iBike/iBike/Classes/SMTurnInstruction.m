@@ -28,8 +28,8 @@ NSString *iconsSmall[] = {
     @"direction_small_continue_in_roundabout",
     @"direction_small_start_at_end_of_street",
     @"direction_small_pin_b",
-    @"direction_small_start_pushing_bike_one_way",
-    @"direction_small_stop_pushing_bike_one_way",
+    @"direction_small_walk",
+    @"direction_small_bike",
     @"direction_small_pin_b",
 };
 
@@ -50,8 +50,8 @@ NSString *iconsLarge[] = {
     @"direction_large_continue_in_roundabout",
     @"direction_large_start_at_end_of_street",
     @"direction_large_pin_b",
-    @"direction_large_start_pushing_bike_one_way",
-    @"direction_large_stop_pushing_bike_one_way",
+    @"direction_large_walk",
+    @"direction_large_bike",
     @"direction_large_pin_b",
 };
 
