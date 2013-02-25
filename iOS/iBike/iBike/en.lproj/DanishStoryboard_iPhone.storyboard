@@ -1236,8 +1236,8 @@
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iqL-K9-CLg">
-                                <rect key="frame" x="20" y="511" width="217" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="iqL-K9-CLg">
+                                <rect key="frame" x="13" y="511" width="247" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -2140,6 +2140,9 @@
         </class>
         <class className="SMSettingsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMTranslatedViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
@@ -2167,8 +2170,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="edE-2V-bAg"/>
+        <segue reference="BMy-9M-oqz"/>
+        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
-        <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>

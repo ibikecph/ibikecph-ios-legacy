@@ -1242,8 +1242,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXb-DZ-Kpu">
-                                <rect key="frame" x="20" y="511" width="217" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="QXb-DZ-Kpu">
+                                <rect key="frame" x="13" y="511" width="247" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -2177,7 +2177,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="0Wd-f4-uGc"/>
+        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>
 </document>

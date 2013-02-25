@@ -88,6 +88,6 @@
 
 #define MIN_DISTANCE_FOR_RECALCULATION 20.0
 
-#define BUILD_VERSION @"20130222"
+#define BUILD_VERSION [NSString stringWithUTF8String:__DATE__" "__TIME__"\x0"]
 
 #define BUILD_STRING [NSString stringWithFormat:@"%@: %@", translateString(@"Build"), BUILD_VERSION]
