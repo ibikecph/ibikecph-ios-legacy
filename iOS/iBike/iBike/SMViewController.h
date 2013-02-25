@@ -25,7 +25,7 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : UIViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, RouteFinderDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, RouteFinderDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;

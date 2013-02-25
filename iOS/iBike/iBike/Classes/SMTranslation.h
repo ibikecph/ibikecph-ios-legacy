@@ -13,4 +13,6 @@
 + (SMTranslation *)instance;
 +(NSString*)decodeString:(NSString*) txt;
 
++ (void) translateView:(id) view;
+
 @end

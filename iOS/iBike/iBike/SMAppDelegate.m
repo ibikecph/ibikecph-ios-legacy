@@ -38,7 +38,7 @@
 #else
     UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"DanishStoryboard_iPhone" bundle:nil];
 #endif
-    UIViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
+    SMTranslatedViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController  = initialViewController;
     [self.window makeKeyAndVisible];

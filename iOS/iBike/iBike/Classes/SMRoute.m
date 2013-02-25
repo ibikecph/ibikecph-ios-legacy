@@ -138,11 +138,11 @@
         if (distance < MIN_DISTANCE_FOR_RECALCULATION) {
             return;
         }
-        NSLog(@"Distance: %f", distance);
+        debugLog(@"Distance: %f", distance);
         self.lastRecalcLocation = loc;
             
         self.recalculationInProgress = YES;
-        NSLog(@"Recalculating route!");
+        debugLog(@"Recalculating route!");
         
         
         if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationStarted)]) {
@@ -581,7 +581,6 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 
     } else if ([req.auxParam isEqualToString:@"routeRecalc"]) {
         NSString * response = [[NSString alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", response);
         if (response) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 

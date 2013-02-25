@@ -12,7 +12,7 @@
 #import "SMFindAddressController.h"
 #import "SMGPSTrackButton.h"
 
-@interface SMRouteNavigationController : UIViewController <RMMapViewDelegate, SMRouteDelegate, RouteFinderDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
+@interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, RouteFinderDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
     __weak IBOutlet UITableView *tblDirections;
     __weak IBOutlet UIButton *buttonNewStop;
     __weak IBOutlet UIView *instructionsView;

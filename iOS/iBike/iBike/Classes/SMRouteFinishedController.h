@@ -10,7 +10,7 @@
 #import "SMFindAddressController.h"
 #import "SMRouteNavigationController.h"
 
-@interface SMRouteFinishedController : UIViewController <RouteFinderDelegate> {
+@interface SMRouteFinishedController : SMTranslatedViewController <RouteFinderDelegate> {
     
     __weak IBOutlet UILabel *labelTrip;
     __weak IBOutlet UILabel *labelAvgSpeed;

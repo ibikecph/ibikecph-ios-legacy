@@ -1,10 +1,10 @@
-/* 
-  dictionary_dk.strings
-  I Bike CPH
-
-  Created by Ivan Pavlovic on 31/01/2013.
-  Copyright (c) 2013 Spoiled Milk. All rights reserved.
-*/
+/*
+ dictionary_dk.strings
+ I Bike CPH
+ 
+ Created by Ivan Pavlovic on 31/01/2013.
+ Copyright (c) 2013 Spoiled Milk. All rights reserved.
+ */
 
 "current_position" = "Nuværende position";
 "today" = "I dag";
@@ -35,7 +35,6 @@
 "direction_17" = "Stop pushing your bike";
 "direction_100" = "Du nærmer dig destinationen";
 
-
 "first_direction_0" = "";
 "first_direction_1" = "Head %@ and continue on";
 "first_direction_2" = "Head %@ and turn slightly right on";
@@ -56,7 +55,6 @@
 "first_direction_17" = "Head %@ and stop pushing your bike";
 "first_direction_100" = "Reaching destination";
 
-
 "direction_N" = "nord";
 "direction_NE" = "nordøst";
 "direction_E" = "øst";
@@ -76,15 +74,15 @@
 "error_from_address_not_found" = "START adressens lokation kan ikke findes!";
 "error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
 "error_invalid_email" = "Ugyldig e-mail!";
-"error_invalid_to_address" = "The destination address is invalid!";
+"error_invalid_to_address" = "Destinationsadressen er ugyldig!";
 
 "route_stop_title" = "Vil du stoppe ruten?";
-"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
+"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
 "report_error" = "Rapporter";
-"report_wrong_address" = "Vejnavn er forkert";
+"report_wrong_address" = "Vejnavnet er forkert";
 "report_one_way" = "Vejen er ensrettet";
 "report_road_closed" = "Vejen er lukket";
-"report_illegal_turn" = "Ruten foreslår ulovligt sving";
+"report_illegal_turn" = "Ruten foreslår ulovligt sving";
 "report_other" = "Andet";
 
 "report_subject" = "Rapporter";
@@ -106,12 +104,13 @@
 
 "marker_start" = "Start";
 
+
 // these are in the storyboard
 
-"where_are_we_going" = "Hvor skal vi hen?";
+"where_are_we_going" = "Ny rute?";
 "ibikecph_route_planner" = "Cykelruteplanlægger";
 "Cancel" = "Fortryd";
-"calculating_new_route" = "Beregner ny rute..";
+"calculating_new_route" = "Beregner ny rute...";
 "Distance" = "Distance";
 "Time" = "Tid";
 "you_have_arrived_to" = "Du er nu fremme ved";
@@ -121,10 +120,12 @@
 "To:" = "Til:";
 "hello_cyclist" = "Hej cyklist";
 "thanks_for_testing_text" = "Tak fordi du hjælper os med at teste.";
-"start_text" = "Cykelruteplanlæggeren.\nVi er glade for du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-addresse:";
-"e_mail_address" = "E-mail address";
-"start_app" = "Sæt igang";
-"notify_me_when_fixed" = "Få besked når fejlen er udbedret";
+"start_text" = "Cykelruteplanlæggeren.\nVi er glade for, at du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-adresse:";
+"e_mail_address" = "E-mail adresse";
+"start_app" = "Start";
+"notify_me_when_fixed" = "Få besked når fejlen er udbedret";
 "report" = "Rapporter";
-"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
-
+"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt til os, så vi kan kontakte dig.";
+"choose_a_route_step" = "Vælg et trin i ruten at rapportere";
+"cancel_picker" = "Annullere";
+"done_picker" = "Gjort";

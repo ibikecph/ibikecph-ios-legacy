@@ -50,5 +50,37 @@
     return [[SMTranslation instance] decodeString:txt];
 }
 
++ (void) translateView:(id) view {
+    if ([view isKindOfClass:[UILabel class]]) {
+        NSString * response = [self decodeString:((UILabel*)view).text];
+        [(UILabel*)view setText:response];
+    } else if ([view isKindOfClass:[UITextView class]]) {
+        NSString * response = [self decodeString:((UITextView*)view).text];
+        [(UITextView*)view setText:response];
+    } else if ([view isKindOfClass:[UISearchBar class]]) {
+        NSString * response = [self decodeString:((UISearchBar*)view).placeholder];
+        [(UISearchBar*)view setPlaceholder:response];
+    } else if ([view isKindOfClass:[UITextField class]]) {
+        NSString * response = [self decodeString:((UITextField*)view).placeholder];
+        [(UITextField*)view setPlaceholder:response];
+        response = [self decodeString:((UITextField*)view).text];
+        [(UITextField*)view setText:response];
+    } else if ([view isKindOfClass:[UIButton class]]) {
+        NSString * response = [self decodeString:((UIButton*)view).titleLabel.text];
+        [((UIButton*)view) setTitle:response forState:UIControlStateNormal];
+        [((UIButton*)view) setTitle:response forState:UIControlStateHighlighted];
+    } else if ([view isKindOfClass:[UISegmentedControl class]]) {
+        UISegmentedControl * c = (UISegmentedControl*)view;
+        for (int i = 0; i < c.numberOfSegments; i++) {
+            [c setTitle:[self decodeString:[c titleForSegmentAtIndex:i]] forSegmentAtIndex:i];
+        }
+    }
+    if (((UIView*)view).subviews) {
+        for (id v in ((UIView*)view).subviews) {
+            [SMTranslation translateView:v];
+        }
+    }
+}
+
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMAccountsController : UIViewController
+@interface SMAccountsController : SMTranslatedViewController
 
 @end

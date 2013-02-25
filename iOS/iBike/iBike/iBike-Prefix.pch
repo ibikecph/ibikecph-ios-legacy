@@ -17,6 +17,7 @@
     #import "GAI.h"
     #import "SMCustomCheckbox.h"
     #import "keys.h"
+    #import "SMTranslatedViewController.h"
 #endif
 
 #if DISTRIBUTION_VERSION

@@ -480,6 +480,13 @@
     if ([req.auxParam isEqualToString:@"nearestPoint"]) {
         CLLocation * s = [res objectForKey:@"start"];
         CLLocation * e = [res objectForKey:@"end"];
+        
+        NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", routeFrom.text, s.coordinate.latitude, s.coordinate.longitude, routeTo.text, e.coordinate.latitude, e.coordinate.longitude];
+        debugLog(@"%@", st);
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
+            debugLog(@"error in trackPageview");
+        }
+        
         [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
         [self dismissModalViewControllerAnimated:YES];
     }

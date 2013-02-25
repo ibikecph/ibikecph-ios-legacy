@@ -42,7 +42,6 @@
 						<int key="NSvFlags">276</int>
 						<string key="NSFrameSize">{11, 53}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="765207936"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="783286100">
 							<int key="NSColorSpace">3</int>
@@ -63,7 +62,6 @@
 						<int key="NSvFlags">277</int>
 						<string key="NSFrame">{{11, 0}, {155, 53}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="662727368"/>
 						<reference key="IBUIBackgroundColor" ref="783286100"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -81,8 +79,6 @@
 						<int key="NSvFlags">273</int>
 						<string key="NSFrame">{{166, 0}, {11, 53}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<reference key="IBUIBackgroundColor" ref="783286100"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -99,7 +95,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{11, 3}, {128, 15}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="426259303"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -126,7 +121,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{11, 17}, {128, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="768858755"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -153,7 +147,6 @@
 						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{139, 3}, {38, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="926796815"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -190,7 +183,6 @@
 				</array>
 				<string key="NSFrameSize">{177, 53}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="535262503"/>
 				<reference key="IBUIBackgroundColor" ref="783286100"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -345,63 +337,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">33</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">SMCalloutView</string>
-					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">buttonClicked:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">buttonClicked:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">buttonClicked:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="bgLeft">UIImageView</string>
-						<string key="bgMiddle">UIImageView</string>
-						<string key="bgRight">UIImageView</string>
-						<string key="calloutButton">UIButton</string>
-						<string key="calloutLabel">UILabel</string>
-						<string key="calloutSublabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="bgLeft">
-							<string key="name">bgLeft</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bgMiddle">
-							<string key="name">bgMiddle</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="bgRight">
-							<string key="name">bgRight</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="calloutButton">
-							<string key="name">calloutButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="calloutLabel">
-							<string key="name">calloutLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="calloutSublabel">
-							<string key="name">calloutSublabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SMCalloutView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

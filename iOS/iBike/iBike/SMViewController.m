@@ -206,6 +206,13 @@ typedef enum {
     
     if ([[NSFileManager defaultManager] fileExistsAtPath: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]]) {
         NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]];
+        
+        NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)",CURRENT_POSITION_STRING, [[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue], [d objectForKey:@"destination"], [[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]];
+        debugLog(@"%@", st);
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Crash" withLabel:st withValue:0]) {
+            debugLog(@"error in trackPageview");
+        }
+        
         [self findRouteFrom:CLLocationCoordinate2DMake([[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue]) to:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) fromAddress:@"" toAddress:[d objectForKey:@"destination"]];
         
         
@@ -993,6 +1000,13 @@ typedef enum {
     } else if ([req.requestIdentifier isEqualToString:@"rowSelectRoute"]) {
         CLLocation * s = [res objectForKey:@"start"];
         CLLocation * e = [res objectForKey:@"end"];
+        
+        NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", @"", s.coordinate.latitude, s.coordinate.longitude, @"", e.coordinate.latitude, e.coordinate.longitude];
+        debugLog(@"%@", st);
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
+            debugLog(@"error in trackPageview");
+        }
+        
         [self findRouteFrom:s.coordinate to:e.coordinate  fromAddress:[NSString stringWithFormat:@"(%f,%f)", s.coordinate.latitude, s.coordinate.longitude] toAddress:(NSString*)req.auxParam];
         [UIView animateWithDuration:0.4f animations:^{
             [fadeView setAlpha:0.0f];
