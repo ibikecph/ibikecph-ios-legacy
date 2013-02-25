@@ -781,6 +781,7 @@
         return;
     }
 
+    BOOL fullscreen = NO;
     if (segments == 0) {
         [instructionsView setHidden:YES];
         [minimizedInstructionsView setHidden:NO];
@@ -789,12 +790,6 @@
         [instructionsView setHidden:NO];
         [minimizedInstructionsView setHidden:YES];
         int maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
-//        int topCellHeight = [SMDirectionTopCell getHeight];
-//        int cellHeight = [SMDirectionCell getHeight];
-//        int newY = maxY - topCellHeight - (segments - 1) * cellHeight;
-//        if (newY < self.mpView.frame.origin.y || segments > 3)
-//            newY = self.mpView.frame.origin.y;
-
         /**
          * dynamic cell resizing
          */
@@ -810,14 +805,15 @@
             }
         }
         int newY = maxY - tblHeight;
-        if (newY < self.mpView.frame.origin.y || segments > 3) {
+        if (newY < self.mpView.frame.origin.y || (newY - self.mpView.frame.origin.y) < 50.0f) {
             newY = self.mpView.frame.origin.y;
+            fullscreen = YES;
         }
         
         [self repositionInstructionsView:newY + 1];
     }
 
-    if (segments > 3) {
+    if (fullscreen) {
         CGRect frame = tblDirections.frame;
         frame.size.height = instructionsView.frame.size.height - tblDirections.frame.origin.y;
         [tblDirections setFrame:frame];
@@ -841,28 +837,13 @@
     [instructionsView setFrame:frame];
     
     [self resizeMap];
-
-//    if ((newY < progressView.frame.origin.y + progressView.frame.size.height) && self.currentlyRouting) {
-//        [progressView setHidden:YES];
-//    } else {
-//        [progressView setHidden:NO];
-//    }
 }
 
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
-
-//    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count < 1) { // replace 1 with 0 if you want to see "Finished instruction"
-//        [instructionsView setHidden:YES];
-//        [minimizedInstructionsView setHidden:YES];
-//        return;
-//    }
-
     [tblDirections scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [instructionsView setHidden:NO];
     [minimizedInstructionsView setHidden:YES];
     if (sender.state == UIGestureRecognizerStateEnded) {
-//        float topCellHeight = [SMDirectionTopCell getHeight];
-//        float cellHeight = [SMDirectionCell getHeight];
         float maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
         float cellCount = self.route.turnInstructions.count - 1; // remove -1 if you want to see "Finished instruction"
         float newY = [sender locationInView:self.view].y;
@@ -879,7 +860,7 @@
         CGFloat tblHeight = 0.0f;
         CGFloat height = 0.0f;
         @synchronized(self.route.turnInstructions) {
-            for (int i = 0; i < MAX(4, cellCount); i++) {
+            for (int i = 0; i < cellCount; i++) {
                 SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
                 if (i == 0) {
                     height = [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
