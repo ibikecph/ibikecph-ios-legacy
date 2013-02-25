@@ -254,11 +254,12 @@ We are glad you are helping us test the app, and for that we can get in touch wi
                                                 <rect key="frame" x="13" y="7" width="27" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
+                                                <state key="normal" image="checkboxUnchecked.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="selected" image="checkboxChecked.png"/>
+                                                <state key="highlighted" image="checkboxUnchecked.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
@@ -1943,6 +1944,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <image name="btnGray.png" width="66" height="30"/>
         <image name="btnGreen.png" width="63" height="30"/>
         <image name="btnMenu.png" width="51" height="30"/>
+        <image name="checkboxChecked.png" width="27" height="27"/>
+        <image name="checkboxUnchecked.png" width="27" height="27"/>
         <image name="contactsCellBG.png" width="260" height="45"/>
         <image name="contactsDisclosure.png" width="10" height="14"/>
         <image name="contactsEdit.png" width="68" height="30"/>
@@ -1983,10 +1986,10 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
-        <class className="SMAboutController" superclassName="UIViewController">
+        <class className="SMAboutController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
         </class>
-        <class className="SMAccountsController" superclassName="UIViewController">
+        <class className="SMAccountsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
         </class>
         <class className="SMAutocompleteCell" superclassName="UITableViewCell">
@@ -2035,7 +2038,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMEnterEmailController" superclassName="UIViewController">
+        <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
@@ -2071,7 +2074,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMFindAddressController" superclassName="UIViewController">
+        <class className="SMFindAddressController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
@@ -2095,9 +2098,15 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMReportErrorController" superclassName="UIViewController">
+        <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideKeyboard:"/>
+                <relationship kind="action" name="pickerCancel:"/>
+                <relationship kind="action" name="pickerDone:"/>
+                <relationship kind="action" name="sendReport:"/>
+                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2107,7 +2116,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="SMRouteFinishedController" superclassName="UIViewController">
+        <class className="SMRouteFinishedController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
@@ -2118,7 +2127,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="labelTrip" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMRouteNavigationController" superclassName="UIViewController">
+        <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
@@ -2141,10 +2150,13 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="tblDirections" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="SMSettingsController" superclassName="UIViewController">
+        <class className="SMSettingsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
         </class>
-        <class className="SMViewController" superclassName="UIViewController">
+        <class className="SMTranslatedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
+        </class>
+        <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>

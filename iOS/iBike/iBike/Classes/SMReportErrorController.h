@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface SMReportErrorController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
+@interface SMReportErrorController : SMTranslatedViewController <UIPickerViewDataSource, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
     
     __weak IBOutlet UIButton *btnSelectRouteSegment;
     __weak IBOutlet SMCustomCheckbox *switchContactMe;

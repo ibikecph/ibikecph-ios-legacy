@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMSettingsController : UIViewController
+@interface SMSettingsController : SMTranslatedViewController
 
 @end

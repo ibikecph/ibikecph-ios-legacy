@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMEnterEmailController : UIViewController <UITextFieldDelegate> {
+@interface SMEnterEmailController : SMTranslatedViewController <UITextFieldDelegate> {
     
     __weak IBOutlet UITextField *emailField;
     __weak IBOutlet UIScrollView *scrlView;

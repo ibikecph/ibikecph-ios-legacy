@@ -43,18 +43,16 @@
                                 <rect key="frame" x="0.0" y="49" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tak fordi du hjælper os med at teste." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MUb-Ng-NlM">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="thanks_for_testing_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MUb-Ng-NlM">
                                         <rect key="frame" x="19" y="38" width="282" height="54"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oAH-jn-qT7">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="start_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oAH-jn-qT7">
                                         <rect key="frame" x="19" y="81" width="282" height="117"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <string key="text">Cykelruteplanlæggeren.
-Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-addresse:</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -68,7 +66,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                             <outlet property="delegate" destination="TI3-0U-bH8" id="ObP-Ri-nPF"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hej cyklist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7tI-t9-23H">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="hello_cyclist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7tI-t9-23H">
                                         <rect key="frame" x="19" y="19" width="282" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -79,7 +77,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                         <rect key="frame" x="117" y="255" width="86" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Sæt igang" backgroundImage="emailButton.png">
+                                        <state key="normal" title="start_app" backgroundImage="emailButton.png">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -92,7 +90,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                     </button>
                                 </subviews>
                             </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vNS-hY-y0m">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vNS-hY-y0m">
                                 <rect key="frame" x="53" y="16" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -146,7 +144,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                     <action selector="goBack:" destination="952-I1-lqI" eventType="touchUpInside" id="zCu-0S-pCH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GNC-Nl-0Uz">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GNC-Nl-0Uz">
                                 <rect key="frame" x="53" y="16" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -162,7 +160,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="26" maxY="0.0"/>
-                                        <state key="normal" title="Vælg et trin i ruten at rapportere" backgroundImage="reportSelector.png">
+                                        <state key="normal" title="choose_a_route_step" backgroundImage="reportSelector.png">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -262,7 +260,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Få besked når fejlen er udbedret" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hi2-5H-je0">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="notify_me_when_fixed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hi2-5H-je0">
                                                 <rect key="frame" x="58" y="10" width="210" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -273,7 +271,7 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                                 <rect key="frame" x="117" y="58" width="86" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Rapporter" backgroundImage="emailButton.png">
+                                                <state key="normal" title="report" backgroundImage="emailButton.png">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -284,12 +282,9 @@ Vi er glade for du hjælper os med at teste app’en, og for at vi kan komme i k
                                                     <action selector="sendReport:" destination="952-I1-lqI" eventType="touchUpInside" id="0f8-3Z-1RV"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1UN-vn-5Ol">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="report_text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1UN-vn-5Ol">
                                                 <rect key="frame" x="37" y="118" width="247" height="116"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <string key="text">Ved tryk på “Rapportér” sendes teknisk information om ruten til os.
-
-Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -297,7 +292,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rapportér problem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0TT-jA-kgC">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="report_a_problem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0TT-jA-kgC">
                                         <rect key="frame" x="20" y="9" width="280" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -325,13 +320,13 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <rect key="frame" x="0.0" y="288" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
-                                            <barButtonItem title="Annullere" id="fiZ-HU-IFX">
+                                            <barButtonItem title="cancel_picker" id="fiZ-HU-IFX">
                                                 <connections>
                                                     <action selector="pickerCancel:" destination="952-I1-lqI" id="bNs-d3-DN9"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="3zc-nh-v7x"/>
-                                            <barButtonItem title="Gjort" style="done" id="yjg-l8-nvu">
+                                            <barButtonItem title="done_picker" style="done" id="yjg-l8-nvu">
                                                 <connections>
                                                     <action selector="pickerDone:" destination="952-I1-lqI" id="h3c-Yf-dsw"/>
                                                 </connections>
@@ -378,7 +373,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Wj-RS-8Ni">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Wj-RS-8Ni">
                                         <rect key="frame" x="53" y="16" width="215" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -556,7 +551,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                     <action selector="goBack:" destination="f2Y-Sq-gsS" eventType="touchUpInside" id="Z5d-b0-qQu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mj4-Y1-E0F">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mj4-Y1-E0F">
                                 <rect key="frame" x="53" y="14" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -611,7 +606,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                     <action selector="goBack:" destination="f2Y-Sq-gsS" eventType="touchUpInside" id="y7V-7O-FTx"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="piH-bF-e3Y">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="piH-bF-e3Y">
                                 <rect key="frame" x="53" y="14" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -649,7 +644,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qsN-ok-NAU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qsN-ok-NAU">
                                 <rect key="frame" x="53" y="14" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -976,7 +971,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                                                     </imageView>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7JQ-Ya-pcI">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7JQ-Ya-pcI">
                                                         <rect key="frame" x="53" y="16" width="215" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1212,7 +1207,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="57" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Hvor skal vi hen?" backgroundImage="searchBG.png">
+                                                <state key="normal" title="where_are_we_going" backgroundImage="searchBG.png">
                                                     <color key="titleColor" white="0.79561491939999995" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1530,7 +1525,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ebl-ve-Ftq">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ebl-ve-Ftq">
                                         <rect key="frame" x="53" y="16" width="215" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -1586,7 +1581,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OrY-1H-uXZ">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OrY-1H-uXZ">
                                                 <rect key="frame" x="53" y="16" width="215" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -1598,7 +1593,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-66" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Fortryd" image="btnGray.png">
+                                                <state key="normal" title="Cancel" image="btnGray.png">
                                                     <color key="titleColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1634,7 +1629,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <color key="textColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Du er nu fremme ved" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O65-oG-pn9">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="you_have_arrived_to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O65-oG-pn9">
                                         <rect key="frame" x="51" y="81" width="220" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1648,7 +1643,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <color key="textColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1QH-28-7ee">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1QH-28-7ee">
                                         <rect key="frame" x="200" y="195" width="100" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1666,7 +1661,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <rect key="frame" x="106" y="268" width="110" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Til forsiden" backgroundImage="routeFinishedBtn.png">
+                                        <state key="normal" title="to_homepage" backgroundImage="routeFinishedBtn.png">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1682,7 +1677,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                         <rect key="frame" x="84" y="420" width="164" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Rapportér problem">
+                                        <state key="normal" title="report_a_problem">
                                             <color key="titleColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1829,7 +1824,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="-66" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Fortryd" image="btnGray.png">
+                                <state key="normal" title="Cancel" image="btnGray.png">
                                     <color key="titleColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1911,7 +1906,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.55000000000000004" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cykelruteplanlægger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vCd-Fk-ngP">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ibikecph_route_planner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vCd-Fk-ngP">
                                 <rect key="frame" x="53" y="16" width="215" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -1983,11 +1978,14 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
-        <class className="SMAboutController" superclassName="UIViewController">
+        <class className="SMAboutController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
         </class>
-        <class className="SMAccountsController" superclassName="UIViewController">
+        <class className="SMAccountsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAutocompleteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteCell.h"/>
@@ -2035,7 +2033,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMEnterEmailController" superclassName="UIViewController">
+        <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
@@ -2071,7 +2069,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMFindAddressController" superclassName="UIViewController">
+        <class className="SMFindAddressController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
@@ -2095,7 +2093,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMReportErrorController" superclassName="UIViewController">
+        <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
@@ -2107,7 +2105,7 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="SMRouteFinishedController" superclassName="UIViewController">
+        <class className="SMRouteFinishedController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
@@ -2118,14 +2116,9 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="labelTrip" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="SMRouteNavigationController" superclassName="UIViewController">
+        <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
@@ -2146,10 +2139,13 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
                 <relationship kind="outlet" name="tblDirections" candidateClass="UITableView"/>
             </relationships>
         </class>
-        <class className="SMSettingsController" superclassName="UIViewController">
+        <class className="SMSettingsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
         </class>
-        <class className="SMViewController" superclassName="UIViewController">
+        <class className="SMTranslatedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
+        </class>
+        <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
@@ -2172,8 +2168,8 @@ Vælger du at få besked når fejlen er udbedret, bliver din email-adresse sen
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jXb-wj-fAE"/>
         <segue reference="edE-2V-bAg"/>
+        <segue reference="jXb-wj-fAE"/>
         <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>

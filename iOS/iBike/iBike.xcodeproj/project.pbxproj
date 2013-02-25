@@ -103,6 +103,14 @@
 		4BCDB06C16C4FCC200E0C313 /* direction_large_pin_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCDB06B16C4FCC200E0C313 /* direction_large_pin_b@2x.png */; };
 		4BCDB07016C4FF9E00E0C313 /* direction_small_pin_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCDB06F16C4FF9E00E0C313 /* direction_small_pin_b@2x.png */; };
 		4BCDB07316C534E000E0C313 /* direction_large_pin_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BCDB07216C534E000E0C313 /* direction_large_pin_b.png */; };
+		4C044D3E16DB735B00C0303C /* SMTranslatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */; };
+		4C044D3F16DB735B00C0303C /* SMTranslatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */; };
+		4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */; };
+		4C044D4216DB7AE000C0303C /* SMCustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */; };
+		4C044D4316DB7B0200C0303C /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295916D5230B000CA4A2 /* NSString+URLEncode.m */; };
+		4C044D4416DB7B0300C0303C /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295916D5230B000CA4A2 /* NSString+URLEncode.m */; };
+		4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295716D5230B000CA4A2 /* AsyncImageView.m */; };
+		4C044D4616DB7B0800C0303C /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295716D5230B000CA4A2 /* AsyncImageView.m */; };
 		4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C11374316BFF9EF007F483F /* SMCalloutView.m */; };
 		4C11374616BFF9EF007F483F /* SMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C11374416BFF9EF007F483F /* SMCalloutView.xib */; };
 		4C16ECF416B17707001545C7 /* iBikeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C16ECF016B17707001545C7 /* iBikeLogo.png */; };
@@ -635,6 +643,8 @@
 		4BCDB06E16C4FD5F00E0C313 /* direction_small_pin_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction_small_pin_b.png; sourceTree = "<group>"; };
 		4BCDB06F16C4FF9E00E0C313 /* direction_small_pin_b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direction_small_pin_b@2x.png"; sourceTree = "<group>"; };
 		4BCDB07216C534E000E0C313 /* direction_large_pin_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction_large_pin_b.png; sourceTree = "<group>"; };
+		4C044D3C16DB735B00C0303C /* SMTranslatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslatedViewController.h; sourceTree = "<group>"; };
+		4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslatedViewController.m; sourceTree = "<group>"; };
 		4C11374216BFF9EF007F483F /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
 		4C11374316BFF9EF007F483F /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
@@ -927,6 +937,8 @@
 				4BA5295B16D5230B000CA4A2 /* SMTranslation.m */,
 				4B7DC93216BA847C00198F72 /* SMUtil.h */,
 				4B7DC93316BA847C00198F72 /* SMUtil.m */,
+				4C044D3C16DB735B00C0303C /* SMTranslatedViewController.h */,
+				4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1886,6 +1898,10 @@
 				4C6C481D16CD3C5200E57F59 /* SMDirectionTopCell.m in Sources */,
 				4C6C482216CD3C5200E57F59 /* SMRadioCheckedCell.m in Sources */,
 				4C6C482316CD3C5200E57F59 /* SMRadioUncheckedCell.m in Sources */,
+				4C044D3F16DB735B00C0303C /* SMTranslatedViewController.m in Sources */,
+				4C044D4216DB7AE000C0303C /* SMCustomCheckbox.m in Sources */,
+				4C044D4416DB7B0300C0303C /* NSString+URLEncode.m in Sources */,
+				4C044D4616DB7B0800C0303C /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1937,6 +1953,10 @@
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
 				4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */,
+				4C044D3E16DB735B00C0303C /* SMTranslatedViewController.m in Sources */,
+				4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */,
+				4C044D4316DB7B0200C0303C /* NSString+URLEncode.m in Sources */,
+				4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,7 @@
 
 @end
 
-@interface SMFindAddressController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SMAutocompleteDelegate, UIScrollViewDelegate, SMRequestOSRMDelegate> {
+@interface SMFindAddressController : SMTranslatedViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SMAutocompleteDelegate, UIScrollViewDelegate, SMRequestOSRMDelegate> {
     
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UITextField *routeFrom;
