@@ -136,6 +136,7 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+    [self setButtonFollowing:TRUE];
     [self.mpView setZoom:16];
     [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
     [self readjustViewsForRotation:self.interfaceOrientation];
@@ -400,19 +401,30 @@ typedef enum {
 
 - (void)trackingOn {
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-    
 }
 
+- (void)setButtonFollowing:(BOOL)following {
+    if (following) {
+        [buttonTrackUser setEnabled:FALSE];
+        buttonTrackUser.gpsTrackState = SMGPSTrackButtonStateFollowing;
+    } else {
+        [buttonTrackUser setEnabled:TRUE];
+        buttonTrackUser.gpsTrackState = SMGPSTrackButtonStateNotFollowing_fromfollow;
+    }
+}
 - (IBAction)trackUser:(id)sender {
+    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing_fromfollow)
+        debugLog(@"Warning: trackUser button state was invalid: 0x%0x", buttonTrackUser.gpsTrackState);
+
     if ([SMLocationManager instance].hasValidLocation) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
         [self.mpView setCenterCoordinate:[SMLocationManager instance].lastValidLocation.coordinate];
-//        [buttonTrackUser setEnabled:NO];
     } else {
-//        [buttonTrackUser setEnabled:NO];
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     }
+
+    [self setButtonFollowing:TRUE];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -876,7 +888,7 @@ typedef enum {
 
 - (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-//        [buttonTrackUser setEnabled:YES];
+        [self setButtonFollowing:FALSE];
     }
     [self checkCallouts];
 }
@@ -905,7 +917,7 @@ typedef enum {
 
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-//        [buttonTrackUser setEnabled:YES];
+        [self setButtonFollowing:FALSE];
     }
     [self checkCallouts];
 }

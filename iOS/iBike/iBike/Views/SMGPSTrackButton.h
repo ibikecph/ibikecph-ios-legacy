@@ -11,9 +11,10 @@
 @interface SMGPSTrackButton : UIButton
 
 enum {
-    SMGPSTrackButtonStateFollow = 0x00010000,
-    SMGPSTrackButtonStateFollowWithHeading = 0x00020000,
-    SMGPSTrackButtonStateDoNotFollow = 0x00030000
+    SMGPSTrackButtonStateFollowing = 0x00011000,
+    SMGPSTrackButtonStateFollowingWithHeading = 0x00012000,
+    SMGPSTrackButtonStateNotFollowing_fromfollow = 0x00013000,
+    SMGPSTrackButtonStateNotFollowing_fromfollowwithheading = 0x00014000
 };
 
 @property (nonatomic,assign) NSInteger gpsTrackState;
