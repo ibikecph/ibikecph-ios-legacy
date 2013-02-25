@@ -426,7 +426,8 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     if (self.distanceLeft < 0.0)
         self.distanceLeft = self.estimatedRouteDistance;
 
-    if (self.turnInstructions.count > 0) {
+    else if (self.turnInstructions.count > 0) {
+        // calculate distance from location to the next turn
         SMTurnInstruction *nextTurn = [self.turnInstructions objectAtIndex:0];
         nextTurn.lengthInMeters = [self calculateDistanceToNextTurn:loc];
         nextTurn.lengthWithUnit = formatDistance(nextTurn.lengthInMeters);
@@ -434,13 +435,13 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
             [self.turnInstructions setObject:nextTurn atIndexedSubscript:0];
         }
         self.distanceLeft = nextTurn.lengthInMeters;
-    }
 
-    // calculate distance from next turn to the end of the route
-    for (int i = 1; i < self.turnInstructions.count; i++) {
-        self.distanceLeft += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
+        // calculate distance from next turn to the end of the route
+        for (int i = 1; i < self.turnInstructions.count; i++) {
+            self.distanceLeft += ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:i]).lengthInMeters;
+        }
+        debugLog(@"distance left: %.1f", self.distanceLeft);
     }
-    debugLog(@"distance left: %.1f", self.distanceLeft);
 }
 
 - (NSData*) save {
