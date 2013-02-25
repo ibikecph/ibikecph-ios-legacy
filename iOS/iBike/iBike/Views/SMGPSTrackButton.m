@@ -16,7 +16,7 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.gpsTrackState = SMGPSTrackButtonStateFollowingWithHeading;
+        _gpsTrackState = SMGPSTrackButtonStateFollowingWithHeading;
     }
     return self;
 }
@@ -24,14 +24,12 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
 - (void)awakeFromNib {
     [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateFollowingWithHeading];
     [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateFollowing];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateNotFollowing_fromfollow];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateNotFollowing_fromfollowwithheading];
+    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateNotFollowing];
     [self setImage:[UIImage imageNamed:@"icon_locate_me"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateDisabled)];
 
     NSAssert(SMGPSTrackButtonStateFollowingWithHeading & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
     NSAssert(SMGPSTrackButtonStateFollowing & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
-    NSAssert(SMGPSTrackButtonStateNotFollowing_fromfollow & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
-    NSAssert(SMGPSTrackButtonStateNotFollowing_fromfollowwithheading & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
+    NSAssert(SMGPSTrackButtonStateNotFollowing & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
 
     [self addObserver:self forKeyPath:@"gpsTrackState" options:NSKeyValueObservingOptionOld context:kGPSTrackButtonStateObservingContext];
 }
@@ -52,6 +50,13 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
+}
+
+- (void)newGpsTrackState:(NSInteger)gpsTrackState {
+    debugLog(@"new GPS tracking button state: %@", gpsTrackState == SMGPSTrackButtonStateFollowing ? @"SMGPSTrackButtonStateFollowing" : (gpsTrackState == SMGPSTrackButtonStateFollowingWithHeading ? @"SMGPSTrackButtonStateFollowingWithHeading" : @"SMGPSTrackButtonStateNotFollowing"));
+
+    _prevGpsTrackState = self.gpsTrackState;
+    _gpsTrackState = gpsTrackState;
 }
 
 @end

@@ -13,10 +13,12 @@
 enum {
     SMGPSTrackButtonStateFollowing = 0x00011000,
     SMGPSTrackButtonStateFollowingWithHeading = 0x00012000,
-    SMGPSTrackButtonStateNotFollowing_fromfollow = 0x00013000,
-    SMGPSTrackButtonStateNotFollowing_fromfollowwithheading = 0x00014000
+    SMGPSTrackButtonStateNotFollowing = 0x00013000,
 };
 
-@property (nonatomic,assign) NSInteger gpsTrackState;
+@property (nonatomic,assign,readonly) NSInteger prevGpsTrackState;
+@property (nonatomic,assign,readonly) NSInteger gpsTrackState;
+
+- (void)newGpsTrackState:(NSInteger)gpsTrackState;
 
 @end

@@ -406,14 +406,15 @@ typedef enum {
 - (void)setButtonFollowing:(BOOL)following {
     if (following) {
         [buttonTrackUser setEnabled:FALSE];
-        buttonTrackUser.gpsTrackState = SMGPSTrackButtonStateFollowing;
+        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];
     } else {
         [buttonTrackUser setEnabled:TRUE];
-        buttonTrackUser.gpsTrackState = SMGPSTrackButtonStateNotFollowing_fromfollow;
+        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
     }
 }
+
 - (IBAction)trackUser:(id)sender {
-    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing_fromfollow)
+    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing)
         debugLog(@"Warning: trackUser button state was invalid: 0x%0x", buttonTrackUser.gpsTrackState);
 
     if ([SMLocationManager instance].hasValidLocation) {

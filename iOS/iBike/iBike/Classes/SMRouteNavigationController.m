@@ -62,6 +62,7 @@
     [self hideDirections];
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+    [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowingWithHeading];
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
     
@@ -90,8 +91,8 @@
     [tblDirections reloadData];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPosition) name:@"refreshPosition" object:nil];
 
-    [buttonTrackUser setEnabled:NO];
-    
+//    [buttonTrackUser setEnabled:NO];
+
     if (self.currentlyRouting) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
     } else {
@@ -117,7 +118,6 @@
     labelTimeLeft = nil;
     labelDestination = nil;
     labelDistanceLeft = nil;
-    buttonTrackUser = nil;
     progressView = nil;
     minimizedInstructionsView = nil;
     labelDistanceToNextTurn = nil;
@@ -371,27 +371,31 @@
     }
 }
 
-- (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
+- (void)beforeMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-        [buttonTrackUser setEnabled:YES];
+        debugLog(@"after map move");
+//        [buttonTrackUser setEnabled:YES];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
     [self checkCallouts];
 }
 
-- (void)beforeMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
-    debugLog(@"beforeMapZoom() wasUserAction = %@", wasUserAction ? @"YES" : @"NO");
-    if (wasUserAction) {
-        [buttonTrackUser setEnabled:YES];
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-    }
-}
+//- (void)beforeMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
+//    debugLog(@"beforeMapZoom() wasUserAction = %@", wasUserAction ? @"YES" : @"NO");
+//    if (wasUserAction) {
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+//        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
+//    }
+//}
 
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"After map zoom!!!! wasUserAction = %d", wasUserAction);
     if (wasUserAction) {
-        [buttonTrackUser setEnabled:YES];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
     [self checkCallouts];
 }
@@ -561,13 +565,23 @@
 }
 
 - (void)trackingOn {
-    [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+    debugLog(@"trackingOn()");
+    if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing ||
+        (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing && buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowingWithHeading)) {
+        // next state is follow with heading
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowingWithHeading];
+    } else {
+        // next state is follow
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowing];
+    }
 }
 
 -(IBAction)trackUser:(id)sender {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-    [buttonTrackUser setEnabled:NO];
-
+    // TODO: trackingOn() can probably be called directly now
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
     [self resetZoom];
 
     CLLocationCoordinate2D center;
@@ -575,19 +589,9 @@
         center = [SMLocationManager instance].lastValidLocation.coordinate;
     else
         center = self.startLocation.coordinate;
+    [self.mpView setCenterCoordinate:center];
 
-    if (self.currentlyRouting) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
-        [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
-        if ([SMLocationManager instance].hasValidLocation) {
-            [buttonTrackUser setEnabled:NO];
-        }
-        [self.mpView setCenterCoordinate:center];
-    } else {
-        [self.mpView setCenterCoordinate:center];
-    }
-
-    [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -715,10 +719,12 @@
     [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:selectedTurn.loc.coordinate] animated:YES];
     [self.mpView setCenterCoordinate:selectedTurn.loc.coordinate];
 
-    [buttonTrackUser setEnabled:YES];
+    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing) {
+        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
 
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-    [self performSelector:@selector(resetZoomTurn) withObject:nil afterDelay:ZOOM_TO_TURN_DURATION];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+        [self performSelector:@selector(resetZoomTurn) withObject:nil afterDelay:ZOOM_TO_TURN_DURATION];
+    }
 }
 
 #pragma mark - alert view delegate
