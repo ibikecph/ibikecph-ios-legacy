@@ -69,20 +69,28 @@ NSString *directionString(NSString *abbreviation) {
 }
 
 // Returns only string representation of the driving direction
-- (NSString *)descriptionString {
+- (void)generateDescriptionString {
     NSString *key = [@"direction_" stringByAppendingFormat:@"%d", self.drivingDirection];
     NSString *desc = [NSString stringWithFormat:translateString(key), translateString([@"direction_number_" stringByAppendingString:self.ordinalDirection])];
-    return desc;
+    self.descriptionString = desc;
 }
 
+- (void)generateStartDescriptionString {
+    NSString *key = [@"first_direction_" stringByAppendingFormat:@"%d", self.drivingDirection];
+    NSString *desc = [NSString stringWithFormat:translateString(key), translateString([@"direction_" stringByAppendingString:self.directionAbrevation]), translateString([@"direction_number_" stringByAppendingString:self.ordinalDirection])];
+    self.descriptionString = desc;
+}
+
+
 // Returns only string representation of the driving direction including wayname
-- (NSString *)fullDescriptionString {
+- (void)generateFullDescriptionString {
     NSString *key = [@"direction_" stringByAppendingFormat:@"%d", self.drivingDirection];
 
-    if (self.drivingDirection != 0 && self.drivingDirection != 15 && self.drivingDirection != 100)
-        return [NSString stringWithFormat:@"%@ %@", translateString(key), self.wayName];
-
-    return [NSString stringWithFormat:@"%@", translateString(key)];
+    if (self.drivingDirection != 0 && self.drivingDirection != 15 && self.drivingDirection != 100) {
+        self.fullDescriptionString = [NSString stringWithFormat:@"%@ %@", translateString(key), self.wayName];
+        return;
+    }
+    self.fullDescriptionString = [NSString stringWithFormat:@"%@", translateString(key)];
 }
 
 - (UIImage *)smallDirectionIcon {

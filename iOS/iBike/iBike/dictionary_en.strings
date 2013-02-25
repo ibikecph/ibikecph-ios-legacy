@@ -35,6 +35,27 @@
 "direction_17" = "Stop pushing your bike";
 "direction_100" = "Reaching destination";
 
+"first_direction_0" = "";
+"first_direction_1" = "Head %@ and continue on";
+"first_direction_2" = "Head %@ and turn slightly right on";
+"first_direction_3" = "Head %@ and turn right on";
+"first_direction_4" = "Head %@ and turn sharp right on";
+"first_direction_5" = "Head %@ and make a U-Turn on";
+"first_direction_6" = "Head %@ and turn sharp left on";
+"first_direction_7" = "Head %@ and turn left on";
+"first_direction_8" = "Head %@ and turn slightly left on";
+"first_direction_9" = "Head %@ and reach via point";
+"first_direction_10" = "Head %@ to";
+"first_direction_11" = "Head %@ and enter roundabout and take %@ exit to";
+"first_direction_12" = "Head %@ and leave roundabout on";
+"first_direction_13" = "Head %@ and stay on roundabout on";
+"first_direction_14" = "Head %@ and start on";
+"first_direction_15" = "You have reached your destination";
+"first_direction_16" = "Head %@ and start pushing your bike on";
+"first_direction_17" = "Head %@ and stop pushing your bike";
+"first_direction_100" = "Reaching destination";
+
+
 "direction_N" = "north";
 "direction_NE" = "northeast";
 "direction_E" = "east";

@@ -55,6 +55,9 @@ typedef enum {
 @property int waypointsIndex;
 @property (nonatomic, strong) CLLocation *loc;
 
+@property (nonatomic, strong) NSString * descriptionString;
+@property (nonatomic, strong) NSString * fullDescriptionString;
+
 - (CLLocation *)getLocation;
 
 // Returns only string representation of the driving direction
@@ -64,5 +67,9 @@ typedef enum {
 
 - (UIImage *)smallDirectionIcon;
 - (UIImage *)largeDirectionIcon;
+
+- (void)generateDescriptionString;
+- (void)generateStartDescriptionString;
+- (void)generateFullDescriptionString;
 
 @end

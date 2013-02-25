@@ -370,6 +370,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     if (routeInstructions && routeInstructions.count > 0) {
         int prevlengthInMeters = 0;
         NSString *prevlengthWithUnit = @"";
+        BOOL isFirst = YES;
         for (id jsonObject in routeInstructions) {
             SMTurnInstruction *instruction = [[SMTurnInstruction alloc] init];
 
@@ -397,6 +398,14 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                 instruction.directionAbrevation = (NSString *)[jsonObject objectAtIndex:6];
                 instruction.azimuth = [(NSNumber *)[jsonObject objectAtIndex:7] floatValue];
                 
+                if (isFirst) {
+                    [instruction generateStartDescriptionString];
+                    isFirst = NO;
+                } else {
+                    [instruction generateDescriptionString];
+                }
+                [instruction generateFullDescriptionString];
+                
                 int position = [(NSNumber *)[jsonObject objectAtIndex:3] intValue];
                 instruction.waypointsIndex = position;
                 //          instruction->waypoints = route;
@@ -410,6 +419,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
             }
 
 //          [route.turnInstructions addObject:[SMTurnInstruction parseInstructionFromJson:obj withRoute:route.waypoints]];
+            
         }
     }
 
