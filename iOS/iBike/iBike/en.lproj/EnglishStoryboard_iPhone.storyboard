@@ -1492,16 +1492,18 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                 <gestureRecognizers/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
-                                <rect key="frame" x="109" y="447" width="101" height="101"/>
+                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="directionsSmallBox.png" id="YuV-kS-kb9">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="pullHandle.png" id="HoE-GJ-gw4">
-                                        <rect key="frame" x="0.0" y="5" width="101" height="92"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
+                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
                                         </connections>
@@ -1518,7 +1520,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="pAY-2y-bkW" userLabel="Header View">
@@ -1951,7 +1953,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <image name="contactsEdit.png" width="68" height="30"/>
         <image name="contactsHeaderSeparator.png" width="260" height="2"/>
         <image name="contactsList.png" width="16" height="14"/>
-        <image name="directionsSmallBox.png" width="101" height="101"/>
         <image name="emailButton.png" width="86" height="30"/>
         <image name="eventFBIcon.png" width="16" height="16"/>
         <image name="eventsCalendar.png" width="50" height="50"/>

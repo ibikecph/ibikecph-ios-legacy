@@ -1360,7 +1360,7 @@
                                         <rect key="frame" x="9" y="9" width="303" height="11"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="K9w-q7-kVs"/>
+                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="C6O-nn-ZQf"/>
                                         </connections>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dPo-Xj-3qL">
@@ -1484,26 +1484,28 @@
                                 </subviews>
                                 <gestureRecognizers/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
-                                <rect key="frame" x="109" y="447" width="101" height="101"/>
+                            <view hidden="YES" contentMode="scaleToFill" id="OXh-z0-rmJ" userLabel="Small Directions View">
+                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="directionsSmallBox.png" id="YuV-kS-kb9">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TCW-0F-bTx">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="pullHandle.png" id="HoE-GJ-gw4">
-                                        <rect key="frame" x="0.0" y="5" width="101" height="92"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="w75-Td-CQ1">
+                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
+                                            <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="g9p-B5-GSW"/>
                                         </connections>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" id="KP4-Zs-9wS">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" id="axZ-Q5-ohy">
                                         <rect key="frame" x="24" y="21" width="52" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rUH-ju-UbN">
                                         <rect key="frame" x="0.0" y="76" width="101" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1511,7 +1513,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="pAY-2y-bkW" userLabel="Header View">
@@ -1702,13 +1704,13 @@
                         <outlet property="finishDistance" destination="aQH-eB-ymG" id="E78-Rx-i3l"/>
                         <outlet property="finishFadeView" destination="wi1-4L-g5X" id="sG4-gG-KKW"/>
                         <outlet property="finishTime" destination="gmX-lA-nca" id="GwB-nL-1sO"/>
-                        <outlet property="imgNextTurnDirection" destination="KP4-Zs-9wS" id="LTd-VN-fxa"/>
+                        <outlet property="imgNextTurnDirection" destination="axZ-Q5-ohy" id="aaW-j6-FMZ"/>
                         <outlet property="instructionsView" destination="Oxx-Mn-VT8" id="0sI-N8-HJZ"/>
                         <outlet property="labelDestination" destination="epK-0N-7fw" id="kTC-S5-NKK"/>
                         <outlet property="labelDistanceLeft" destination="EhT-1A-rVx" id="8mC-6C-roc"/>
-                        <outlet property="labelDistanceToNextTurn" destination="g0W-v8-YaN" id="JBH-5B-GiG"/>
+                        <outlet property="labelDistanceToNextTurn" destination="rUH-ju-UbN" id="bPq-SE-1US"/>
                         <outlet property="labelTimeLeft" destination="lUh-yF-WfB" id="VyN-w1-wQd"/>
-                        <outlet property="minimizedInstructionsView" destination="DmY-Jj-zs5" id="M98-Yy-ePn"/>
+                        <outlet property="minimizedInstructionsView" destination="OXh-z0-rmJ" id="wO9-Ky-2oJ"/>
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
                         <outlet property="progressBar" destination="aIL-WP-QoV" id="Xw5-gb-m5Q"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
@@ -1942,7 +1944,6 @@
         <image name="contactsEdit.png" width="68" height="30"/>
         <image name="contactsHeaderSeparator.png" width="260" height="2"/>
         <image name="contactsList.png" width="16" height="14"/>
-        <image name="directionsSmallBox.png" width="101" height="101"/>
         <image name="emailButton.png" width="86" height="30"/>
         <image name="eventFBIcon.png" width="16" height="16"/>
         <image name="eventsCalendar.png" width="50" height="50"/>
@@ -2106,8 +2107,6 @@
         <class className="SMRouteFinishedController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="goToFrontPage:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
@@ -2141,9 +2140,6 @@
         </class>
         <class className="SMSettingsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMTranslatedViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
