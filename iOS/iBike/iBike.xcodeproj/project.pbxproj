@@ -684,7 +684,7 @@
 		4C6C47EE16CD3BF500E57F59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DanishStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_en.strings; sourceTree = "<group>"; };
 		4C6C48F416CD3C5200E57F59 /* iBikeEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBikeEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6C48F516CD3C5200E57F59 /* iBike copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iBike copy-Info.plist"; path = "/Users/ivanpavlovic/Prog/iBike/ibikecph App/trunk/iOS/iBike/iBike copy-Info.plist"; sourceTree = "<absolute>"; };
+		4C6C48F516CD3C5200E57F59 /* iBike copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iBike copy-Info.plist"; sourceTree = SOURCE_ROOT; };
 		4C73A1EB16B284B500050349 /* SMContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContacts.h; sourceTree = "<group>"; };
 		4C73A1EC16B284B500050349 /* SMContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContacts.m; sourceTree = "<group>"; };
 		4C73A1F716B2900600050349 /* SMContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContactsCell.h; sourceTree = "<group>"; };
