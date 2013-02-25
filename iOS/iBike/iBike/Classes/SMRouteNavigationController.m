@@ -373,9 +373,9 @@
 
 - (void)beforeMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
     if (wasUserAction) {
-        debugLog(@"after map move");
+        debugLog(@"before map move");
 //        [buttonTrackUser setEnabled:YES];
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
@@ -393,7 +393,7 @@
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"After map zoom!!!! wasUserAction = %d", wasUserAction);
     if (wasUserAction) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
@@ -565,7 +565,7 @@
 }
 
 - (void)trackingOn {
-    debugLog(@"trackingOn()");
+    debugLog(@"trackingOn() btn state = 0x%0x, prev btn state = 0x%0x", buttonTrackUser.gpsTrackState, buttonTrackUser.prevGpsTrackState);
     if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing ||
         (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing && buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowingWithHeading)) {
         // next state is follow with heading
@@ -580,8 +580,7 @@
 
 -(IBAction)trackUser:(id)sender {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-    // TODO: trackingOn() can probably be called directly now
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
     [self resetZoom];
 
     CLLocationCoordinate2D center;
@@ -591,7 +590,9 @@
         center = self.startLocation.coordinate;
     [self.mpView setCenterCoordinate:center];
 
-    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
+    // TODO test if trackingOn() can be called directly
+    [self trackingOn];
+//    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

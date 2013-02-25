@@ -59,10 +59,12 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
 }
 
 - (void)newGpsTrackState:(NSInteger)gpsTrackState {
-    debugLog(@"new GPS tracking button state: %@", gpsTrackState == SMGPSTrackButtonStateFollowing ? @"SMGPSTrackButtonStateFollowing" : (gpsTrackState == SMGPSTrackButtonStateFollowingWithHeading ? @"SMGPSTrackButtonStateFollowingWithHeading" : @"SMGPSTrackButtonStateNotFollowing"));
+    if (_gpsTrackState != gpsTrackState) {
+        debugLog(@"new GPS tracking button state: %@", gpsTrackState == SMGPSTrackButtonStateFollowing ? @"SMGPSTrackButtonStateFollowing" : (gpsTrackState == SMGPSTrackButtonStateFollowingWithHeading ? @"SMGPSTrackButtonStateFollowingWithHeading" : @"SMGPSTrackButtonStateNotFollowing"));
 
-    _prevGpsTrackState = self.gpsTrackState;
-    _gpsTrackState = gpsTrackState;
+        _prevGpsTrackState = self.gpsTrackState;
+        _gpsTrackState = gpsTrackState;
+    }
 }
 
 @end
