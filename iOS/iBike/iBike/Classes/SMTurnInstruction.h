@@ -61,9 +61,9 @@ typedef enum {
 - (CLLocation *)getLocation;
 
 // Returns only string representation of the driving direction
-- (NSString *)descriptionString;
+//- (NSString *)descriptionString;
 // Returns only string representation of the driving direction including wayname
-- (NSString *)fullDescriptionString; // including wayname
+//- (NSString *)fullDescriptionString; // including wayname
 
 - (UIImage *)smallDirectionIcon;
 - (UIImage *)largeDirectionIcon;

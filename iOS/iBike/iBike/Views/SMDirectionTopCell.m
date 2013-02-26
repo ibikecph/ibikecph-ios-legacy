@@ -18,6 +18,7 @@
     
     CGSize size = [self.lblDescription.text sizeWithFont:[UIFont systemFontOfSize:DIRECTION_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
     CGRect frame = self.lblDescription.frame;
+    frame.origin.y = frame.size.height + frame.origin.y - size.height;
     frame.size.height = size.height;
     [self.lblDescription setFrame:frame];
 
@@ -36,6 +37,7 @@
 }
 
 + (CGFloat)getHeightForDescription:(NSString*) desc andWayname:(NSString*) wayname {
+    return 100.0f;
     CGFloat height = 12.0f;
     CGSize size = [desc sizeWithFont:[UIFont systemFontOfSize:WAYPOINT_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
     height += size.height;

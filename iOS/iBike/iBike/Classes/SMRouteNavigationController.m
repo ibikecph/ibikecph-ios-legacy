@@ -485,8 +485,8 @@
             }
         }
         
-        if ((self.route.turnInstructions.count - 1) < self.directionsShownCount && self.directionsShownCount <= 3) // remove -1 if you want to see "Finished instruction"
-            [self showDirections:self.route.turnInstructions.count-1]; // remove -1 if you want to see "Finished instruction"
+        if (self.route.turnInstructions.count < self.directionsShownCount && self.directionsShownCount <= 3) 
+            [self showDirections:self.route.turnInstructions.count];
         
         [tblDirections performSelector:@selector(reloadData) withObject:nil afterDelay:0.4];        
         [self renderMinimizedDirectionsViewFromInstruction];
@@ -576,6 +576,7 @@
 
 - (IBAction)goBack:(id)sender {
     [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
+    [swipableView removeObserver:self forKeyPath:@"hidden" context:nil];
     self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];
@@ -694,7 +695,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.route.turnInstructions.count - 1; // remove -1 if you want to see "Finished instruction"
+    return self.route.turnInstructions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -703,10 +704,17 @@
 
     if (i >= 0 && i < self.route.turnInstructions.count) {
         SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
+        /**
+         * Replace "Destination reached" message with your address
+         */
+        if (turn.drivingDirection == 15) {
+            turn.descriptionString = self.destination;
+        }
         if (i == 0)
             [(SMDirectionTopCell *)cell renderViewFromInstruction:turn];
         else
             [(SMDirectionCell *)cell renderViewFromInstruction:turn];
+        
     }
 
     return cell;
@@ -813,7 +821,7 @@
 - (void)showDirections:(NSInteger)segments {
     self.directionsShownCount = segments;
 
-    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count <= 1) { // replace 1 with 0 if you want to see "Finished instruction"
+    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count <= 0) {
         [instructionsView setHidden:YES];
         [minimizedInstructionsView setHidden:YES];
         [self repositionInstructionsView:self.view.frame.size.height];
@@ -843,6 +851,7 @@
                 }
             }
         }
+//        tblHeight = MAX(100.0f, tblHeight);
         int newY = maxY - tblHeight;
         if (newY < self.mpView.frame.origin.y || (newY - self.mpView.frame.origin.y) < 50.0f) {
             newY = self.mpView.frame.origin.y;
@@ -895,7 +904,7 @@
     [minimizedInstructionsView setHidden:YES];
     if (sender.state == UIGestureRecognizerStateEnded) {
         float maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
-        float cellCount = self.route.turnInstructions.count - 1; // remove -1 if you want to see "Finished instruction"
+        float cellCount = self.route.turnInstructions.count;
         float newY = [sender locationInView:self.view].y;
 
         if (cellCount < self.directionsShownCount) {
@@ -944,8 +953,7 @@
     } else {
         [self.recycledItems removeObject:cell];
     }
-    [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
-
+    [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];    
     return cell;
 }
 
@@ -992,8 +1000,8 @@
                 if ([self isVisible:i] == NO) {
                     cell = [self getRecycledItemOrCreate];
                     cell.position = i;
-                    [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0.0f, swipableView.frame.size.width, swipableView.frame.size.height)];
                     SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:i];
+                    [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0, swipableView.frame.size.width, [SMDirectionTopCell getHeightForDescription:turn.descriptionString andWayname:turn.wayName])];
                     [cell renderViewFromInstruction:turn];
                     [swipableView addSubview:cell];
                     [self.activeItems addObject:cell];
@@ -1021,6 +1029,7 @@
                 self.updateSwipableView = NO;
             }            
         }
+    [swipableView setContentSize:CGSizeMake(swipableView.contentSize.width, swipableView.frame.size.height)];
     }
 }
 
