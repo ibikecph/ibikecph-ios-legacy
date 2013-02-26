@@ -256,6 +256,21 @@
     [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:[SMLocationManager instance].lastValidLocation.coordinate] animated:YES];
 }
 
+- (void)zoomToLocation:(CLLocation*)loc temporary:(BOOL)isTemp {
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    [self.mpView setZoom:DEFAULT_TURN_ZOOM];
+    [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:loc.coordinate] animated:YES];
+    [self.mpView setCenterCoordinate:loc.coordinate];
+    
+    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing) {
+        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
+        if (isTemp) {
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+            [self performSelector:@selector(resetZoomTurn) withObject:nil afterDelay:ZOOM_TO_TURN_DURATION];
+        }
+    }
+}
+
 - (void)saveRoute {
     if (self.route && self.route.visitedLocations && ([self.route.visitedLocations count] > 0)) {
         NSData * data = [self.route save];
@@ -729,20 +744,18 @@
         return;
     SMTurnInstruction *selectedTurn = [self.route.turnInstructions objectAtIndex:i];
 
-    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-
+    [self zoomToLocation:selectedTurn.loc temporary:YES];
+//    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+//    [self.mpView setZoom:DEFAULT_TURN_ZOOM];
+//    [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:selectedTurn.loc.coordinate] animated:YES];
 //    [self.mpView setCenterCoordinate:selectedTurn.loc.coordinate];
-//    [self.mpView zoomInToNextNativeZoomAt:[self.mpView coordinateToPixel:selectedTurn.loc.coordinate] animated:YES];
-    [self.mpView setZoom:DEFAULT_TURN_ZOOM];
-    [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:selectedTurn.loc.coordinate] animated:YES];
-    [self.mpView setCenterCoordinate:selectedTurn.loc.coordinate];
-
-    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing) {
-        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
-
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-        [self performSelector:@selector(resetZoomTurn) withObject:nil afterDelay:ZOOM_TO_TURN_DURATION];
-    }
+//
+//    if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing) {
+//        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
+//
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+//        [self performSelector:@selector(resetZoomTurn) withObject:nil afterDelay:ZOOM_TO_TURN_DURATION];
+//    }
 }
 
 #pragma mark - alert view delegate
@@ -936,7 +949,9 @@
 
 - (void)reloadSwipableView {
     [swipableView setFrame:tblDirections.frame];
-    self.instructionsForScrollview = [NSArray arrayWithArray:self.route.turnInstructions];
+    @synchronized(self.instructionsForScrollview) {
+        self.instructionsForScrollview = [NSArray arrayWithArray:self.route.turnInstructions];
+    }
     for (SMDirectionTopCell * cell in self.activeItems) {
         [cell removeFromSuperview];
         cell.position = 0;
@@ -957,38 +972,56 @@
 }
 
 - (void)showVisible {
-    NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
-    NSUInteger end = MIN(ceil(swipableView.contentOffset.x / self.view.frame.size.width), [self.instructionsForScrollview count] - 1);
-    debugLog(@"pos1 active:%@ recycled:%@", self.activeItems, self.recycledItems);
-    for (SMDirectionTopCell * cell in self.activeItems) {
-        if (cell.position < start || cell.position > end) {
-            cell.position = 0;
-            [self.recycledItems addObject:cell];
-            [cell removeFromSuperview];
+    @synchronized(self.instructionsForScrollview) {
+        NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
+        NSUInteger end = MIN(ceil(swipableView.contentOffset.x / self.view.frame.size.width), [self.instructionsForScrollview count] - 1);
+        for (SMDirectionTopCell * cell in self.activeItems) {
+            if (cell.position < start || cell.position > end) {
+                cell.position = 0;
+                [self.recycledItems addObject:cell];
+                [cell removeFromSuperview];
+            }
         }
-    }
-    [self.activeItems minusSet:self.recycledItems];
-    
-    for (int i = start; i <= end; i++) {
-        SMDirectionTopCell * cell = nil;
-        if ([self isVisible:i] == NO) {
-            cell = [self getRecycledItemOrCreate];
-            cell.position = i;
-            [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0.0f, swipableView.frame.size.width, swipableView.frame.size.height)];
-            SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:i];
-            [cell renderViewFromInstruction:turn];
-            [swipableView addSubview:cell];
-            [self.activeItems addObject:cell];
-        }
+        [self.activeItems minusSet:self.recycledItems];
         
+        if (start < [self.instructionsForScrollview count] && end < [self.instructionsForScrollview count]) {
+            for (int i = start; i <= end; i++) {
+                SMDirectionTopCell * cell = nil;
+                if ([self isVisible:i] == NO) {
+                    cell = [self getRecycledItemOrCreate];
+                    cell.position = i;
+                    [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0.0f, swipableView.frame.size.width, swipableView.frame.size.height)];
+                    SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:i];
+                    [cell renderViewFromInstruction:turn];
+                    [swipableView addSubview:cell];
+                    [self.activeItems addObject:cell];
+                }
+                
+            }
+            
+            if (start == end) {
+                if (start == 0) {
+                    /**
+                     * start tracking the user if we're back to first instruction
+                     * we also start updating the swipable view
+                     */
+                    //TODO: tracking button
+                    self.updateSwipableView = YES;
+                    [self resetZoomTurn];
+                } else {
+                    /**
+                     * we're not on the first instruction
+                     */
+                    //TODO: tracking button
+                    self.updateSwipableView = NO;
+                    SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:start];
+                    [self zoomToLocation:turn.loc temporary:NO];
+                }
+            } else {
+                self.updateSwipableView = NO;
+            }            
+        }
     }
-    
-    if (start == end && start == 0) {
-        self.updateSwipableView = YES;
-    } else {
-        self.updateSwipableView = NO;
-    }
-
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
