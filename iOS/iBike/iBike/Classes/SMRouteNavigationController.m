@@ -54,7 +54,7 @@
     self.activeItems = [NSMutableSet set];
 //    [swipableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
     [instructionsView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
-    updateSwipableView = YES;
+    self.updateSwipableView = YES;
     
     [RMMapView class];
     
@@ -94,6 +94,7 @@
 //    [self.mpView setOrderMarkersByYPosition:YES];
     
     [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
+    [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -983,9 +984,9 @@
     }
     
     if (start == end && start == 0) {
-        updateSwipableView = YES;
+        self.updateSwipableView = YES;
     } else {
-        updateSwipableView = NO;
+        self.updateSwipableView = NO;
     }
 
 }
@@ -998,6 +999,9 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self && [keyPath isEqualToString:@"currentlyRouting"]) {
+        /**
+         * hide/show views depending onwhether we're currently routing or not
+         */
         if (self.currentlyRouting) {
             [progressView setHidden:NO];
             [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -1008,6 +1012,15 @@
             [progressView setHidden:YES];
             [UIApplication sharedApplication].idleTimerDisabled = NO;
             [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
+        }
+    } else if (object == swipableView && [keyPath isEqualToString:@"hidden"]) {
+        /**
+         * observer that hides directions table when swipable view is shown
+         */
+        if (swipableView.hidden) {
+            [tblDirections setAlpha:1.0f];
+        } else {
+            [tblDirections setAlpha:0.0f];
         }
     }
 }

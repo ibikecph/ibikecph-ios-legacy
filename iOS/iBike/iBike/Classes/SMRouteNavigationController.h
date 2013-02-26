@@ -31,11 +31,10 @@
     __weak IBOutlet UIView *recalculatingView;
     __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
     __weak IBOutlet UIScrollView *swipableView;
-    
-    BOOL updateSwipableView;
 }
 
 @property BOOL currentlyRouting;
+@property BOOL updateSwipableView;
 
 @property (nonatomic, strong) CLLocation *startLocation, *endLocation;
 @property (nonatomic, strong) NSString * destination;
