@@ -117,6 +117,7 @@ typedef enum {
     [self.mpView addGestureRecognizer:lp];
     [self.mpView setZoom:16];
     [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
+    [self.mpView setEnableBouncing:TRUE];
 }
 
 - (void)viewDidUnload {

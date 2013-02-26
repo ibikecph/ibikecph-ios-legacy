@@ -75,6 +75,7 @@
     [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowingWithHeading];
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
+    [self.mpView setEnableBouncing:TRUE];
     
 //    [self.mpView zoomByFactor:16 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:YES];
     [self.mpView setZoom:DEFAULT_MAP_ZOOM];
