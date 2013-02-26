@@ -1349,38 +1349,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
-                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
-                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
-                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
-                                        </connections>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" id="KP4-Zs-9wS">
-                                        <rect key="frame" x="24" y="21" width="52" height="56"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
-                                        <rect key="frame" x="0.0" y="76" width="101" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                            </view>
                             <view contentMode="scaleToFill" id="Oxx-Mn-VT8" userLabel="Table View - multiple rows">
                                 <rect key="frame" x="0.0" y="400" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1400,35 +1368,42 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topDirectionCell" rowHeight="75" id="cU0-86-SgD" customClass="SMDirectionTopCell">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="75"/>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topDirectionCell" rowHeight="100" id="cU0-86-SgD" customClass="SMDirectionTopCell">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eKs-kI-FJS">
-                                                            <rect key="frame" x="70" y="12" width="240" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <rect key="frame" x="70" y="0.0" width="240" height="46"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVf-eE-axd">
-                                                            <rect key="frame" x="70" y="41" width="240" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <rect key="frame" x="70" y="54" width="240" height="45"/>
+                                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="center" id="POZ-ie-GoI">
-                                                            <rect key="frame" x="15" y="9" width="40" height="40"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="4Ry-gU-N48">
-                                                            <rect key="frame" x="0.0" y="48" width="71" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
+                                                        <view contentMode="scaleToFill" id="l3d-2S-MFX">
+                                                            <rect key="frame" x="0.0" y="17" width="71" height="65"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="center" id="POZ-ie-GoI">
+                                                                    <rect key="frame" x="15" y="0.0" width="40" height="40"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="4Ry-gU-N48">
+                                                                    <rect key="frame" x="0.0" y="42" width="71" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -1441,7 +1416,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="directionCell" rowHeight="60" id="67i-DW-ezf" customClass="SMDirectionCell">
-                                                <rect key="frame" x="0.0" y="97" width="320" height="60"/>
+                                                <rect key="frame" x="0.0" y="122" width="320" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -1502,7 +1477,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                             <outlet property="delegate" destination="m0B-4B-35u" id="UBH-ZR-c0Z"/>
                                         </connections>
                                     </scrollView>
-                                    <view alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
+                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -1529,6 +1504,38 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <gestureRecognizers/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
+                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
+                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" id="KP4-Zs-9wS">
+                                        <rect key="frame" x="24" y="21" width="52" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
+                                        <rect key="frame" x="0.0" y="76" width="101" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="pAY-2y-bkW" userLabel="Header View">
@@ -2135,6 +2142,11 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
@@ -2185,8 +2197,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Wkv-iv-Dub"/>
         <segue reference="BMy-9M-oqz"/>
         <segue reference="0Wd-f4-uGc"/>
-        <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>
 </document>
