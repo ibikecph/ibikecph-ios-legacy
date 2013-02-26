@@ -476,7 +476,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     CGFloat distance = 0.0f;
     for (int i = lastVisitedWaypointIndex >= 0 ? lastVisitedWaypointIndex : 0; i < nextTurn.waypointsIndex; i++) {
         double d = [((CLLocation *)[self.waypoints objectAtIndex:i]) distanceFromLocation:[self.waypoints objectAtIndex:(i + 1)]];
-        debugLog(@"[%d - %d] = %.1f", i, i + 1, d);
+//        debugLog(@"[%d - %d] = %.1f", i, i + 1, d);
         distance += d;
     }
 

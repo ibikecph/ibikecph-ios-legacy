@@ -386,7 +386,7 @@
     if (wasUserAction) {
         debugLog(@"before map move");
 //        [buttonTrackUser setEnabled:YES];
-//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
@@ -404,7 +404,7 @@
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"After map zoom!!!! wasUserAction = %d", wasUserAction);
     if (wasUserAction) {
-//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
@@ -596,7 +596,7 @@
 
 -(IBAction)trackUser:(id)sender {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
     [self resetZoom];
 
     CLLocationCoordinate2D center;
@@ -606,9 +606,9 @@
         center = self.startLocation.coordinate;
     [self.mpView setCenterCoordinate:center];
 
-    // TODO vrati da se tracking poziva nakon 1s
-    [self trackingOn];
-//    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
+    // trackingOn is called with 1s delay beacuse map view has some strage looking
+    // map scroll effect (when you scroll and click gps button to center).
+    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
