@@ -258,6 +258,7 @@
 
 - (void)zoomToLocation:(CLLocation*)loc temporary:(BOOL)isTemp {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
     [self.mpView setZoom:DEFAULT_TURN_ZOOM];
     [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:loc.coordinate] animated:YES];
     [self.mpView setCenterCoordinate:loc.coordinate];
@@ -1005,14 +1006,12 @@
                      * start tracking the user if we're back to first instruction
                      * we also start updating the swipable view
                      */
-                    //TODO: tracking button
                     self.updateSwipableView = YES;
                     [self resetZoomTurn];
                 } else {
                     /**
                      * we're not on the first instruction
                      */
-                    //TODO: tracking button
                     self.updateSwipableView = NO;
                     SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:start];
                     [self zoomToLocation:turn.loc temporary:NO];
