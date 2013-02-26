@@ -40,12 +40,22 @@
                                     // -1 means no direction is shown and minimized directions view is not shown (this happens before first call to showDirections())
                                     // 0 means no direction is shown and minimized directions view is shown
                                     // > 3 means directions table is maximized
+@property (nonatomic, strong) NSMutableSet * recycledItems;
+@property (nonatomic, strong) NSMutableSet * activeItems;
+@property (nonatomic, strong) NSArray * instructionsForScrollview;
 @end
 
 @implementation SMRouteNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.recycledItems = [NSMutableSet set];
+    self.activeItems = [NSMutableSet set];
+//    [swipableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
+    [instructionsView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
+    updateSwipableView = YES;
+    
     [RMMapView class];
     
     self.currentlyRouting = NO;
@@ -128,6 +138,7 @@
     recalculatingView = nil;
     finishDestination = nil;
     buttonTrackUser = nil;
+    swipableView = nil;
     [super viewDidUnload];
 }
 
@@ -431,6 +442,8 @@
     
     self.currentlyRouting = YES;
     
+    [self reloadSwipableView];
+    
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
     
     [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
@@ -445,6 +458,8 @@
 - (void) updateTurn:(BOOL)firstElementRemoved {
     
     @synchronized(self.route.turnInstructions) {
+        
+        [self reloadSwipableView];
         
         if (firstElementRemoved) {
             if ([tblDirections numberOfRowsInSection:0] > 0) {
@@ -526,6 +541,7 @@
 - (void)routeRecalculationDone {
     dispatch_async(dispatch_get_main_queue(), ^{
         [recalculatingView setAlpha:1.0f];
+        [self reloadSwipableView];
         [UIView animateWithDuration:0.3f animations:^{
             [recalculatingView setAlpha:0.0f];
         }];
@@ -826,6 +842,10 @@
         [tblDirections setFrame:frame];
         [tblDirections setScrollEnabled:YES];
     } else {
+        if (segments == 1) {
+            [swipableView setHidden:NO];
+            [swipableView setFrame:tblDirections.frame];
+        }
         [tblDirections setScrollEnabled:NO];
     }
 }
@@ -844,6 +864,13 @@
     [instructionsView setFrame:frame];
     
     [self resizeMap];
+}
+
+- (void)repositionSwipableView:(CGFloat)newY {
+    CGRect frame = swipableView.frame;
+    frame.size.height += frame.origin.y - newY;
+    frame.origin.y = newY;
+    [swipableView setFrame:frame];
 }
 
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
@@ -887,7 +914,84 @@
         
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         [self repositionInstructionsView:MAX([sender locationInView:self.view].y, self.mpView.frame.origin.y)];
+    } else if (sender.state == UIGestureRecognizerStateBegan) {
+        [swipableView setHidden:YES];
     }
+}
+
+#pragma mark - swipable view
+
+- (SMDirectionTopCell*)getRecycledItemOrCreate {
+    SMDirectionTopCell * cell = [self.recycledItems anyObject];
+    if (cell == nil) {
+        cell = [tblDirections dequeueReusableCellWithIdentifier:@"topDirectionCell"];
+    } else {
+        [self.recycledItems removeObject:cell];
+    }
+    [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
+
+    return cell;
+}
+
+- (void)reloadSwipableView {
+    [swipableView setFrame:tblDirections.frame];
+    self.instructionsForScrollview = [NSArray arrayWithArray:self.route.turnInstructions];
+    for (SMDirectionTopCell * cell in self.activeItems) {
+        [cell removeFromSuperview];
+        cell.position = 0;
+        [self.recycledItems addObject:cell];
+    }
+    [self.activeItems minusSet:self.recycledItems];
+    [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
+    [self showVisible];
+}
+
+- (BOOL)isVisible:(NSUInteger)index {
+    for (SMDirectionTopCell * cell in self.activeItems) {
+        if (cell.position == index) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)showVisible {
+    NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
+    NSUInteger end = MIN(ceil(swipableView.contentOffset.x / self.view.frame.size.width), [self.instructionsForScrollview count] - 1);
+    debugLog(@"pos1 active:%@ recycled:%@", self.activeItems, self.recycledItems);
+    for (SMDirectionTopCell * cell in self.activeItems) {
+        if (cell.position < start || cell.position > end) {
+            cell.position = 0;
+            [self.recycledItems addObject:cell];
+            [cell removeFromSuperview];
+        }
+    }
+    [self.activeItems minusSet:self.recycledItems];
+    
+    for (int i = start; i <= end; i++) {
+        SMDirectionTopCell * cell = nil;
+        if ([self isVisible:i] == NO) {
+            cell = [self getRecycledItemOrCreate];
+            cell.position = i;
+            [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0.0f, swipableView.frame.size.width, swipableView.frame.size.height)];
+            SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:i];
+            [cell renderViewFromInstruction:turn];
+            [swipableView addSubview:cell];
+            [self.activeItems addObject:cell];
+        }
+        
+    }
+    
+    if (start == end && start == 0) {
+        updateSwipableView = YES;
+    } else {
+        updateSwipableView = NO;
+    }
+
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self showVisible];
 }
 
 #pragma mark - hiding progress bar etc when not routing

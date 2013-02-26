@@ -20,18 +20,13 @@
     CGRect frame = self.lblDescription.frame;
     frame.size.height = size.height;
     [self.lblDescription setFrame:frame];
-//    debugLog(@"%@ %@", self.lblDescription.text, NSStringFromCGSize(size));
 
     size = [self.lblWayname.text sizeWithFont:[UIFont boldSystemFontOfSize:WAYPOINT_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
     frame = self.lblWayname.frame;
     frame.size.height = size.height;
     frame.origin.y = self.lblDescription.frame.origin.y + self.lblDescription.frame.size.height + 2.0f;
     [self.lblWayname setFrame:frame];
-//    debugLog(@"%@ %@", self.lblWayname.text, NSStringFromCGSize(size));
-
-//    [self.lblDistance setText:turn.fixedLengthWithUnit]; // fixed distance
     [self.lblDistance setText:formatDistance(turn.lengthInMeters)]; // dynamic distance
-    
     
     [self.imgDirection setImage:[turn largeDirectionIcon]];
 }

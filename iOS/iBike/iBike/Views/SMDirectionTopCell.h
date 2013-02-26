@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblDistance;
 @property (weak, nonatomic) IBOutlet UILabel *lblWayname;
 
+@property NSUInteger position;
+
 - (void)renderViewFromInstruction:(SMTurnInstruction *)turn;
 
 + (CGFloat)getHeight;

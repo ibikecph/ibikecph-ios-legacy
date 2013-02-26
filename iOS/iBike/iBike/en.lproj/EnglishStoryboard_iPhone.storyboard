@@ -1349,14 +1349,46 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="Oxx-Mn-VT8" userLabel="Table View">
+                            <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
+                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
+                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" id="KP4-Zs-9wS">
+                                        <rect key="frame" x="24" y="21" width="52" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
+                                        <rect key="frame" x="0.0" y="76" width="101" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Oxx-Mn-VT8" userLabel="Table View - multiple rows">
                                 <rect key="frame" x="0.0" y="400" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView contentMode="scaleToFill" image="tableViewBG.png" id="Wxl-7E-taK">
+                                    <imageView contentMode="scaleToFill" id="Wxl-7E-taK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="X2v-aS-AvQ"/>
@@ -1375,13 +1407,13 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eKs-kI-FJS">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eKs-kI-FJS">
                                                             <rect key="frame" x="70" y="12" width="240" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVf-eE-axd">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVf-eE-axd">
                                                             <rect key="frame" x="70" y="41" width="240" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1389,11 +1421,11 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" id="POZ-ie-GoI">
                                                             <rect key="frame" x="15" y="9" width="40" height="40"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="4Ry-gU-N48">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="4Ry-gU-N48">
                                                             <rect key="frame" x="0.0" y="48" width="71" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
@@ -1415,13 +1447,13 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jkI-kj-dsf">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jkI-kj-dsf">
                                                             <rect key="frame" x="70" y="9" width="240" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpH-I9-lHk">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpH-I9-lHk">
                                                             <rect key="frame" x="70" y="30" width="240" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1429,11 +1461,11 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" id="tba-BH-rVL">
                                                             <rect key="frame" x="19" y="5" width="34" height="31"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="rXx-Cf-vjP">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="rXx-Cf-vjP">
                                                             <rect key="frame" x="0.0" y="35" width="72" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
@@ -1455,13 +1487,21 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         </connections>
                                     </tableView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" image="pullHandle.png" id="T3R-KA-f82">
-                                        <rect key="frame" x="9" y="9" width="303" height="20"/>
+                                        <rect key="frame" x="0.0" y="9" width="320" height="20"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="K9w-q7-kVs"/>
                                         </connections>
                                     </imageView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="I3c-cD-65h">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="m0B-4B-35u" id="UBH-ZR-c0Z"/>
+                                        </connections>
+                                    </scrollView>
                                     <view alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1489,38 +1529,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <gestureRecognizers/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="DmY-Jj-zs5" userLabel="Small Directions View">
-                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YuV-kS-kb9">
-                                        <rect key="frame" x="0.0" y="0.0" width="101" height="101"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="HoE-GJ-gw4">
-                                        <rect key="frame" x="139" y="69" width="43" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Yh5-AX-SAA" appends="YES" id="0Am-4s-uqa"/>
-                                        </connections>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" id="KP4-Zs-9wS">
-                                        <rect key="frame" x="24" y="21" width="52" height="56"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g0W-v8-YaN">
-                                        <rect key="frame" x="0.0" y="76" width="101" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="pAY-2y-bkW" userLabel="Header View">
@@ -1722,6 +1730,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                         <outlet property="progressBar" destination="aIL-WP-QoV" id="Xw5-gb-m5Q"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
                         <outlet property="recalculatingView" destination="3vS-az-zZ1" id="nhe-Qd-HZW"/>
+                        <outlet property="swipableView" destination="I3c-cD-65h" id="99I-qg-isd"/>
                         <outlet property="tblDirections" destination="dPo-Xj-3qL" id="EvY-ZN-TQJ"/>
                         <segue destination="f2Y-Sq-gsS" kind="push" identifier="routeFinished" id="yYr-h0-ylV"/>
                         <segue destination="QJC-bX-hzQ" kind="modal" identifier="newRouteSegue" id="0Wd-f4-uGc"/>
@@ -1729,12 +1738,12 @@ If you choose to be notified your e-mail address will be sent to us</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccY-gm-5el" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="yAb-z7-8vZ">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="yAb-z7-8vZ" userLabel="recognizer 1">
                     <connections>
                         <action selector="onPanGestureDirections:" destination="m0B-4B-35u" id="x65-Ta-22j"/>
                     </connections>
                 </panGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="Yh5-AX-SAA">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Yh5-AX-SAA" userLabel="recognizer 2">
                     <connections>
                         <action selector="onPanGestureDirections:" destination="m0B-4B-35u" id="Zzb-Hu-ACe"/>
                     </connections>
@@ -1974,7 +1983,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <image name="searchFieldBG.png" width="266" height="31"/>
         <image name="searchSwap.png" width="30" height="29"/>
         <image name="searchViewBG.png" width="320" height="84"/>
-        <image name="tableViewBG.png" width="320" height="518"/>
     </resources>
     <classes>
         <class className="AsyncImageView" superclassName="UIImageView">
@@ -2144,6 +2152,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="progressBar" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="recalculatingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipableView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="tblDirections" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -2177,7 +2186,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="dCm-4o-WFf"/>
+        <segue reference="0Wd-f4-uGc"/>
         <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>
 </document>
