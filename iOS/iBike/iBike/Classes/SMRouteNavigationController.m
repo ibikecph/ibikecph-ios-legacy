@@ -404,8 +404,8 @@
     if (wasUserAction) {
         debugLog(@"before map move");
 //        [buttonTrackUser setEnabled:YES];
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
     [self checkCallouts];
@@ -422,8 +422,8 @@
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
     debugLog(@"After map zoom!!!! wasUserAction = %d", wasUserAction);
     if (wasUserAction) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateNotFollowing];
     }
     [self checkCallouts];
@@ -735,7 +735,8 @@
 //        [self.mpView setCenterCoordinate:self.startLocation.coordinate];
 //
 //    [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
-    [self trackUser:nil];
+    if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing)
+        [self trackUser:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
