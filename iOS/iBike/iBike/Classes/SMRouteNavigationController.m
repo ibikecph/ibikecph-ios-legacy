@@ -344,7 +344,7 @@
 }
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
-   if (self.currentlyRouting && self.route) {
+   if (self.currentlyRouting && self.route && userLocation) {
 //       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
 //       [self renderMinimizedDirectionsViewFromInstruction];
@@ -590,7 +590,7 @@
         center = self.startLocation.coordinate;
     [self.mpView setCenterCoordinate:center];
 
-    // TODO test if trackingOn() can be called directly
+    // TODO vrati da se tracking poziva nakon 1s
     [self trackingOn];
 //    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
 }
