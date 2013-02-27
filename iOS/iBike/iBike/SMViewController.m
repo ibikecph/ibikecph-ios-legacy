@@ -986,16 +986,7 @@ typedef enum {
     [self.destinationPin setTitle:owner.title];
     [self.destinationPin setDelegate:self];
     [self.destinationPin setRoutingCoordinate:owner.coord];
-    
-//    [self.mpView removeAllAnnotations];
-//    SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:owner.coord.coordinate andTitle:owner.title];
-//    [endMarkerAnnotation setNearbyObjects:locations];
-//    [endMarkerAnnotation setSubtitle:owner.subtitle];
-//    [endMarkerAnnotation setDelegate:self];
-//    endMarkerAnnotation.annotationType = @"marker";
-//    endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-//    endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
-//    [self.mpView addAnnotation:endMarkerAnnotation];
+    [self.destinationPin showCallout];
 }
 
 #pragma mark - osrm request delegate
