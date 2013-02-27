@@ -131,6 +131,10 @@
 		4C044D6016DBA2AA00C0303C /* direction_small_bike.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5916DBA2AA00C0303C /* direction_small_bike.png */; };
 		4C044D6116DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */; };
 		4C044D6216DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */; };
+		4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09001216DE446600DCAB64 /* SMSwipableView.m */; };
+		4C09001416DE446600DCAB64 /* SMSwipableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09001216DE446600DCAB64 /* SMSwipableView.m */; };
+		4C09001716DE448300DCAB64 /* SMSwipableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C09001616DE448300DCAB64 /* SMSwipableView.xib */; };
+		4C09001816DE448300DCAB64 /* SMSwipableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C09001616DE448300DCAB64 /* SMSwipableView.xib */; };
 		4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C11374316BFF9EF007F483F /* SMCalloutView.m */; };
 		4C11374616BFF9EF007F483F /* SMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C11374416BFF9EF007F483F /* SMCalloutView.xib */; };
 		4C16ECF416B17707001545C7 /* iBikeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C16ECF016B17707001545C7 /* iBikeLogo.png */; };
@@ -676,6 +680,9 @@
 		4C044D5816DBA2AA00C0303C /* direction_large_walk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direction_large_walk@2x.png"; sourceTree = "<group>"; };
 		4C044D5916DBA2AA00C0303C /* direction_small_bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction_small_bike.png; sourceTree = "<group>"; };
 		4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direction_small_bike@2x.png"; sourceTree = "<group>"; };
+		4C09001116DE446600DCAB64 /* SMSwipableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwipableView.h; sourceTree = "<group>"; };
+		4C09001216DE446600DCAB64 /* SMSwipableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwipableView.m; sourceTree = "<group>"; };
+		4C09001616DE448300DCAB64 /* SMSwipableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSwipableView.xib; sourceTree = "<group>"; };
 		4C11374216BFF9EF007F483F /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
 		4C11374316BFF9EF007F483F /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
@@ -1337,6 +1344,9 @@
 				4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */,
 				4BB6F95416DB6CCE004A3889 /* SMGPSTrackButton.h */,
 				4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */,
+				4C09001116DE446600DCAB64 /* SMSwipableView.h */,
+				4C09001216DE446600DCAB64 /* SMSwipableView.m */,
+				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1705,6 +1715,7 @@
 				4C044D5E16DBA2AA00C0303C /* direction_large_walk@2x.png in Resources */,
 				4C044D6016DBA2AA00C0303C /* direction_small_bike.png in Resources */,
 				4C044D6216DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */,
+				4C09001816DE448300DCAB64 /* SMSwipableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1904,6 +1915,7 @@
 				4C044D5D16DBA2AA00C0303C /* direction_large_walk@2x.png in Resources */,
 				4C044D5F16DBA2AA00C0303C /* direction_small_bike.png in Resources */,
 				4C044D6116DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */,
+				4C09001716DE448300DCAB64 /* SMSwipableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1963,6 +1975,7 @@
 				4C044D4216DB7AE000C0303C /* SMCustomCheckbox.m in Sources */,
 				4C044D4416DB7B0300C0303C /* NSString+URLEncode.m in Sources */,
 				4C044D4616DB7B0800C0303C /* AsyncImageView.m in Sources */,
+				4C09001416DE446600DCAB64 /* SMSwipableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2019,6 +2032,7 @@
 				4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */,
 				4C044D4316DB7B0200C0303C /* NSString+URLEncode.m in Sources */,
 				4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */,
+				4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

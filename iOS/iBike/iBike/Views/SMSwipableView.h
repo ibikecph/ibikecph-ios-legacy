@@ -1,16 +1,15 @@
 //
-//  SMDirectionTopCell.h
-//  I Bike CPH
+//  SMSwipableView.h
+//  iBike
 //
-//  Created by Petra Markovic on 2/6/13.
+//  Created by Ivan Pavlovic on 27/02/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-
 #import "SMTurnInstruction.h"
 
-@interface SMDirectionTopCell : UITableViewCell
+@interface SMSwipableView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *imgDirection;
@@ -19,9 +18,10 @@
 
 @property NSInteger position;
 
++ (SMSwipableView*) getFromNib;
+
 - (void)renderViewFromInstruction:(SMTurnInstruction *)turn;
 
 + (CGFloat)getHeight;
-+ (CGFloat)getHeightForDescription:(NSString*) desc andWayname:(NSString*) wayname;
 
 @end

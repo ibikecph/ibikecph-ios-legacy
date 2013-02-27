@@ -32,6 +32,7 @@
 #import "SMUtil.h"
 
 #import "SMAnnotation.h"
+#import "SMSwipableView.h"
 
 @interface SMRouteNavigationController ()
 @property (nonatomic, strong) SMRoute *route;
@@ -947,10 +948,10 @@
 
 #pragma mark - swipable view
 
-- (SMDirectionTopCell*)getRecycledItemOrCreate {
-    SMDirectionTopCell * cell = [self.recycledItems anyObject];
+- (SMSwipableView*)getRecycledItemOrCreate {
+    SMSwipableView * cell = [self.recycledItems anyObject];
     if (cell == nil) {
-        cell = [tblDirections dequeueReusableCellWithIdentifier:@"topDirectionCell"];
+        cell = [SMSwipableView getFromNib];
     } else {
         [self.recycledItems removeObject:cell];
     }
@@ -962,19 +963,20 @@
     [swipableView setFrame:tblDirections.frame];
     @synchronized(self.instructionsForScrollview) {
         self.instructionsForScrollview = [NSArray arrayWithArray:self.route.turnInstructions];
+        for (SMSwipableView * cell in self.activeItems) {
+            cell.position = -1;
+            [self.recycledItems addObject:cell];
+            [cell removeFromSuperview];
+        }
+        [self.activeItems minusSet:self.recycledItems];
     }
-    for (SMDirectionTopCell * cell in self.activeItems) {
-        [cell removeFromSuperview];
-        cell.position = 0;
-        [self.recycledItems addObject:cell];
-    }
-    [self.activeItems minusSet:self.recycledItems];
+    
     [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
     [self showVisible];
 }
 
 - (BOOL)isVisible:(NSUInteger)index {
-    for (SMDirectionTopCell * cell in self.activeItems) {
+    for (SMSwipableView * cell in self.activeItems) {
         if (cell.position == index) {
             return YES;
         }
@@ -986,9 +988,9 @@
     @synchronized(self.instructionsForScrollview) {
         NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
         NSUInteger end = MIN(ceil(swipableView.contentOffset.x / self.view.frame.size.width), [self.instructionsForScrollview count] - 1);
-        for (SMDirectionTopCell * cell in self.activeItems) {
+        for (SMSwipableView * cell in self.activeItems) {
             if (cell.position < start || cell.position > end) {
-                cell.position = 0;
+                cell.position = -1;
                 [self.recycledItems addObject:cell];
                 [cell removeFromSuperview];
             }
@@ -997,17 +999,16 @@
         
         if (start < [self.instructionsForScrollview count] && end < [self.instructionsForScrollview count]) {
             for (int i = start; i <= end; i++) {
-                SMDirectionTopCell * cell = nil;
+                SMSwipableView * cell = nil;
                 if ([self isVisible:i] == NO) {
                     cell = [self getRecycledItemOrCreate];
+                    [self.activeItems addObject:cell];
                     cell.position = i;
                     SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:i];
-                    [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0, swipableView.frame.size.width, [SMDirectionTopCell getHeightForDescription:turn.descriptionString andWayname:turn.wayName])];
+                    [cell setFrame:CGRectMake(i*swipableView.frame.size.width, 0, swipableView.frame.size.width, [SMSwipableView getHeight])];
                     [cell renderViewFromInstruction:turn];
                     [swipableView addSubview:cell];
-                    [self.activeItems addObject:cell];
                 }
-                
             }
             
             if (start == end) {

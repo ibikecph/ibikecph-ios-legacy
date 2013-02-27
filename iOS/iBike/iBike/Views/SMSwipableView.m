@@ -1,16 +1,28 @@
 //
-//  SMDirectionTopCell.m
-//  I Bike CPH
+//  SMSwipableView.m
+//  iBike
 //
-//  Created by Petra Markovic on 2/6/13.
+//  Created by Ivan Pavlovic on 27/02/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "SMDirectionTopCell.h"
-
+#import "SMSwipableView.h"
 #import "SMUtil.h"
 
-@implementation SMDirectionTopCell
+@implementation SMSwipableView
+
++ (SMSwipableView*) getFromNib {
+    SMSwipableView * xx = nil;
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SMSwipableView" owner:nil options:nil];
+    for(id currentObject in topLevelObjects) {
+        if([currentObject isKindOfClass:[SMSwipableView class]]) {
+            xx = (SMSwipableView *)currentObject;
+            break;
+        }
+    }
+    return xx;
+}
+
 
 - (void)renderViewFromInstruction:(SMTurnInstruction *)turn {
     [self.lblDescription setText:[turn descriptionString]];
@@ -21,7 +33,7 @@
     frame.origin.y = frame.size.height + frame.origin.y - size.height;
     frame.size.height = size.height;
     [self.lblDescription setFrame:frame];
-
+    
     size = [self.lblWayname.text sizeWithFont:[UIFont boldSystemFontOfSize:WAYPOINT_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
     frame = self.lblWayname.frame;
     frame.size.height = size.height;
@@ -33,23 +45,8 @@
 }
 
 + (CGFloat)getHeight {
-    return 60.0f;
-}
-
-+ (CGFloat)getHeightForDescription:(NSString*) desc andWayname:(NSString*) wayname {
     return 100.0f;
-    CGFloat height = 12.0f;
-    CGSize size = [desc sizeWithFont:[UIFont systemFontOfSize:WAYPOINT_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
-    height += size.height;
-    size = [wayname sizeWithFont:[UIFont boldSystemFontOfSize:15.0f] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
-    height += size.height + 2.0f + 12.0f;
-    return MAX(75.0f, height);
 }
 
-- (void)prepareForReuse {
-    NSLog(@"Before: %@", self);
-    [super prepareForReuse];
-    NSLog(@"After: %@", self);
-}
 
 @end
