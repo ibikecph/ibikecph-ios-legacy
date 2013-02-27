@@ -486,9 +486,25 @@
         if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
             debugLog(@"error in trackPageview");
         }
+
+        [self setStartLocation:s];
+        [self setEndLocation:e];
+        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+        [r setAuxParam:@"startRoute"];
+        [r getRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate via:nil];
         
-        [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
-        [self dismissModalViewControllerAnimated:YES];
+//        [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
+//        [self dismissModalViewControllerAnimated:YES];
+    } else if ([req.auxParam isEqualToString:@"startRoute"]){
+        NSString * response = [[NSString alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding];
+        id jsonRoot = [[[SBJsonParser alloc] init] objectWithString:response];
+        if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        } else {
+            [self.delegate findRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate fromAddress:routeFrom.text toAddress:routeTo.text withJSON:jsonRoot];
+            [self dismissModalViewControllerAnimated:YES];
+        }
     }
     [UIView animateWithDuration:0.2f animations:^{
         [fadeView setAlpha:0.0f];

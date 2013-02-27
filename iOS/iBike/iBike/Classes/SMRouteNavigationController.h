@@ -42,4 +42,6 @@
 
 @property (nonatomic, weak) id<RouteFinderDelegate> delegate;
 
+@property (nonatomic, strong) id jsonRoot;
+
 @end

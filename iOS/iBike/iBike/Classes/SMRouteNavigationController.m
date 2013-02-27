@@ -83,7 +83,7 @@
 
     // Start tracking location only when user starts it through UI
     if (self.startLocation && self.endLocation) {
-        [self start:self.startLocation.coordinate end:self.endLocation.coordinate];
+        [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
 
     NSArray * a = [self.destination componentsSeparatedByString:@","];
@@ -154,7 +154,7 @@
 //    [super viewDidAppear:animated];
 //}
 
-- (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  {
+- (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
     
     if (self.mpView.delegate == nil) {
         self.mpView.delegate = self;
@@ -164,10 +164,13 @@
         [self.mpView removeAnnotation:annotation];
     }
 
-    self.route = [[SMRoute alloc] initWithRouteStart:from andEnd:to andDelegate:self];
+    self.route = [[SMRoute alloc] initWithRouteStart:from andEnd:to andDelegate:self andJSON:jsonRoot];
     if (!self.route) {
         return;
     }
+    
+    [self startRoute];
+    
 //    [self updateTurn:NO];
 //
 //    // Display new path
@@ -668,9 +671,13 @@
 #pragma mark - route finder delegate
 
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst{
+    [self findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:nil];
+}
+
+- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst withJSON:(id)jsonRoot {
     [self setStartLocation:[[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude]];
     [self setEndLocation:[[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude]];
-    [self start:self.startLocation.coordinate end:self.endLocation.coordinate];
+    [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:jsonRoot];
     self.destination = dst;
     self.source = src;
     
@@ -681,7 +688,7 @@
                          @"startLong": [NSNumber numberWithDouble:self.startLocation.coordinate.longitude],
                          @"destination": dst,
                          };
-
+    
     NSString * s = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"];
     BOOL x = [d writeToFile:s atomically:NO];
     if (x == NO) {

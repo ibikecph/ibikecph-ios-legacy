@@ -71,8 +71,12 @@
 #pragma mark - route finder delegate
 
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst{
+    [self findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:nil];
+}
+
+- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst withJSON:(id)jsonRoot {
     [self.navigationController popViewControllerAnimated:YES];
-    [self.delegate findRouteFrom:from to:to fromAddress:src toAddress:dst];
+    [self.delegate findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:jsonRoot];
 }
 
 - (void)viewDidUnload {

@@ -49,6 +49,8 @@
 @property (nonatomic, strong) NSString * findTo;
 @property (nonatomic, strong) NSArray * findMatches;
 @property (nonatomic, strong) SMAnnotation * destinationPin;
+
+@property (nonatomic, strong) id jsonRoot;
 @end
 
 @implementation SMViewController
@@ -463,6 +465,7 @@ typedef enum {
         [destViewController setEndLocation:[params objectForKey:@"end"]];
         [destViewController setDestination:self.destination];
         [destViewController setSource:self.source];
+        [destViewController setJsonRoot:self.jsonRoot];
         
         NSDictionary * d = @{
                              @"endLat": [NSNumber numberWithDouble:((CLLocation*)[params objectForKey:@"end"]).coordinate.latitude],
@@ -617,10 +620,6 @@ typedef enum {
                 [r setRequestIdentifier:@"rowSelectRoute"];
                 [r setAuxParam:[currentRow objectForKey:@"address"]];
                 [r findNearestPointForStart:cStart andEnd:cEnd];
-                
-//                CLLocationCoordinate2D cTo = [SMLocationManager getNearest: CLLocationCoordinate2DMake(coord.region.center.latitude, coord.region.center.longitude)];
-//                CLLocationCoordinate2D cFrom = [SMLocationManager getNearest: CLLocationCoordinate2DMake([SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude)];
-//                [self findRouteFrom:cFrom to:cTo fromAddress:[NSString stringWithFormat:@"(%f,%f)", cFrom.latitude, cFrom.longitude] toAddress:[currentRow objectForKey:@"address"]];
             }];
         } else {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
@@ -642,10 +641,6 @@ typedef enum {
                 [r setRequestIdentifier:@"rowSelectRoute"];
                 [r setAuxParam:[currentRow objectForKey:@"address"]];
                 [r findNearestPointForStart:cStart andEnd:cEnd];
-                
-//                CLLocationCoordinate2D cTo = [SMLocationManager getNearest: CLLocationCoordinate2DMake(coord.region.center.latitude, coord.region.center.longitude)];
-//                CLLocationCoordinate2D cFrom = [SMLocationManager getNearest: CLLocationCoordinate2DMake([SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude)];
-//                [self findRouteFrom:cFrom to:cTo  fromAddress:[NSString stringWithFormat:@"(%f,%f)", cFrom.latitude, cFrom.longitude] toAddress:[currentRow objectForKey:@"address"]];
             }];
         } else {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
@@ -776,12 +771,16 @@ typedef enum {
 }
 
 #pragma mark - route finder delegate
-
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst{
+    [self findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:nil];
+}
+
+- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst withJSON:(id)jsonRoot{
     CLLocation * start = [[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude];
     CLLocation * end = [[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude];    
     self.destination = dst;
     self.source = src;
+    self.jsonRoot = jsonRoot;
     [self performSegueWithIdentifier:@"goToNavigationView" sender:@{@"start" : start, @"end" : end}];
 }
 

@@ -40,15 +40,23 @@
 }
 
 - (id)initWithRouteStart:(CLLocationCoordinate2D)start andEnd:(CLLocationCoordinate2D)end andDelegate:(id<SMRouteDelegate>)dlg {
+    return [self initWithRouteStart:start andEnd:end andDelegate:dlg andJSON:nil];
+}
+
+- (id)initWithRouteStart:(CLLocationCoordinate2D)start andEnd:(CLLocationCoordinate2D)end andDelegate:(id<SMRouteDelegate>)dlg andJSON:(NSDictionary*) routeJSON {
     self = [self init];
     if (self) {
         [self setLocationStart:start];
         [self setLocationEnd:end];
         [self setDelegate:dlg];
-        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-        [self setRequest:r];
-        [r setAuxParam:@"startRoute"];
-        [r getRouteFrom:start to:end via:nil];
+        if (routeJSON == nil) {
+            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+            [self setRequest:r];
+            [r setAuxParam:@"startRoute"];
+            [r getRouteFrom:start to:end via:nil];
+        } else {
+            [self setupRoute:routeJSON];
+        }
     }
     return self;
 }
@@ -543,6 +551,26 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
     return self.caloriesBurned = caloriesBurned(avgSpeed, timeSpent);
 }
 
+- (void)setupRoute:(id)jsonRoot{
+    BOOL done = [self parseFromJson:jsonRoot delegate:nil];
+    if (done) {
+        approachingTurn = NO;
+        self.tripDistance = 0.0f;
+        @synchronized(self.pastTurnInstructions) {
+            self.pastTurnInstructions = [NSMutableArray array];
+        }
+        
+        if ([SMLocationManager instance].hasValidLocation) {
+            [self updateDistances:[SMLocationManager instance].lastValidLocation];
+        }
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(startRoute)]) {
+            [self.delegate startRoute];
+        }
+    }
+}
+
+
 #pragma mark - osrm request delegate
 
 - (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
@@ -562,21 +590,22 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
                 };
                 return;
             }
-            BOOL done = [self parseFromJson:jsonRoot delegate:nil];
-            if (done) {
-                approachingTurn = NO;
-                self.tripDistance = 0.0f;
-                @synchronized(self.pastTurnInstructions) {
-                    self.pastTurnInstructions = [NSMutableArray array];
-                }
-                
-                if ([SMLocationManager instance].hasValidLocation) {
-                    [self updateDistances:[SMLocationManager instance].lastValidLocation];
-                }
-                if (self.delegate && [self.delegate respondsToSelector:@selector(startRoute)]) {
-                    [self.delegate startRoute];
-                }
-            }
+//            BOOL done = [self parseFromJson:jsonRoot delegate:nil];
+//            if (done) {
+//                approachingTurn = NO;
+//                self.tripDistance = 0.0f;
+//                @synchronized(self.pastTurnInstructions) {
+//                    self.pastTurnInstructions = [NSMutableArray array];
+//                }
+//                
+//                if ([SMLocationManager instance].hasValidLocation) {
+//                    [self updateDistances:[SMLocationManager instance].lastValidLocation];
+//                }
+//                if (self.delegate && [self.delegate respondsToSelector:@selector(startRoute)]) {
+//                    [self.delegate startRoute];
+//                }
+//            }
+            [self setupRoute:jsonRoot];
         }
 
     } else if ([req.auxParam isEqualToString:@"routeRecalc"]) {
