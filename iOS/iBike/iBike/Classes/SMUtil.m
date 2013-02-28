@@ -9,6 +9,7 @@
 #import <math.h>
 #import <CoreLocation/CoreLocation.h>
 #import "SMUtil.h"
+#import "SMAppDelegate.h"
 
 static const double DEG_TO_RAD = 0.017453292519943295769236907684886;
 static const double EARTH_RADIUS_IN_METERS = 6372797.560856;
@@ -255,6 +256,66 @@ float caloriesBurned(float avgSpeed, float timeSpent){
 
 BOOL sameCoordinates(CLLocation *loc1, CLLocation *loc2) {
     return loc1.coordinate.latitude == loc2.coordinate.latitude && loc1.coordinate.longitude == loc2.coordinate.longitude;
+}
+
++ (NSArray*)getSearchHistory {
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"]]) {
+        NSMutableArray * arr = [NSArray arrayWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"]];
+        NSMutableArray * arr2 = [NSMutableArray array];
+        if (arr) {
+            for (NSDictionary * d in arr) {
+                [arr2 addObject:@{
+                 @"name" : [d objectForKey:@"name"],
+                 @"address" : [d objectForKey:@"address"],
+                 @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
+                 @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
+                 @"source" : [d objectForKey:@"source"]
+                 }];
+            }
+            [arr2 sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+                NSDate * d1 = [obj1 objectForKey:@"startDate"];
+                NSDate * d2 = [obj2 objectForKey:@"startDate"];
+                return [d2 compare:d1];
+            }];
+            
+            [appd setSearchHistory:arr2];
+            return arr2;
+        }
+    }
+    [appd setSearchHistory:@[]];
+    return @[];
+}
+
++ (BOOL)saveToSearchHistory:(NSDictionary*)dict {
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+    NSMutableArray * arr = [NSMutableArray array];
+    for (NSDictionary * srch in appd.searchHistory) {
+        if ([[srch objectForKey:@"address"] isEqualToString:[dict objectForKey:@"address"]] == NO) {
+            [arr addObject:srch];
+        }
+    }
+    [arr addObject:dict];
+    
+    [arr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+        NSDate * d1 = [obj1 objectForKey:@"startDate"];
+        NSDate * d2 = [obj2 objectForKey:@"startDate"];
+        return [d2 compare:d1];
+    }];
+    
+    NSMutableArray * r = [NSMutableArray array];
+    for (NSDictionary * d in arr) {
+        [r addObject:@{
+         @"name" : [d objectForKey:@"name"],
+         @"address" : [d objectForKey:@"address"],
+         @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"startDate"]],
+         @"endDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"endDate"]],
+         @"source" : [d objectForKey:@"source"]
+         }];
+    }
+    [appd setSearchHistory:arr];
+    BOOL x = [r writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"] atomically:YES];
+    return x;
 }
 
 @end

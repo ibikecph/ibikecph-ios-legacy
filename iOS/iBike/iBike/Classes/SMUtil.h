@@ -34,4 +34,7 @@ NSString *formatTimeLeft(NSInteger seconds);
  */
 BOOL sameCoordinates(CLLocation *loc1, CLLocation *loc2);
 
++ (NSArray*)getSearchHistory;
++ (BOOL)saveToSearchHistory:(NSDictionary*)dict;
+
 @end

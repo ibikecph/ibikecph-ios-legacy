@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray * currentContacts;
 @property (nonatomic, strong) NSArray * currentEvents;
 @property (nonatomic, strong) NSArray * pastRoutes;
+@property (nonatomic, strong) NSArray * searchHistory;
 
 @property(nonatomic, strong) id<GAITracker> tracker;
 

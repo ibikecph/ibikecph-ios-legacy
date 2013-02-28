@@ -7,6 +7,7 @@
 //
 
 #import "SMAppDelegate.h"
+#import "SMUtil.h"
 
 @interface SMAppDelegate()
 @property (nonatomic, strong) NSMutableDictionary * fbDict;
@@ -18,6 +19,7 @@
     self.pastRoutes = @[];
     self.currentContacts = @[];
     self.currentEvents = @[];
+    self.searchHistory = [SMUtil getSearchHistory];
     
     /**
      * initialize Google Analytics
@@ -175,5 +177,7 @@
                                               otherButtonTitles:nil];
     [alertView show];
 }
+
+
 
 @end

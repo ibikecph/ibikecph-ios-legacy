@@ -17,6 +17,7 @@
 
 #import "SMGeocoder.h"
 #import <MapKit/MapKit.h>
+#import "SMUtil.h"
 
 @interface SMFindAddressController ()
 @property (nonatomic, strong) SMAutocomplete * autocomp;
@@ -112,6 +113,10 @@
         [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
         [cell.iconImage setImage:nil];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
+        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
+        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
         [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
     }
@@ -365,6 +370,8 @@
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
     [btnStart setEnabled:NO];
+    textField.text = @"";
+    [self autocompleteEntriesFound:@[] forString:@""];
     return YES;
 }
 
@@ -373,49 +380,50 @@
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     NSMutableArray * r = [NSMutableArray array];
-    for (NSDictionary * d in appd.pastRoutes) {
-        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            BOOL found = NO;
-            for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
-                    found = YES;
-                    break;
-                }
-            }
-            if (found == NO) {
-                [r addObject:d];
-            }
-        }
-    }
+//    for (NSDictionary * d in appd.pastRoutes) {
+//        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
+//            BOOL found = NO;
+//            for (NSDictionary * d1 in r) {
+//                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+//                    found = YES;
+//                    break;
+//                }
+//            }
+//            if (found == NO) {
+//                [r addObject:d];
+//            }
+//        }
+//    }
+//    
+//    for (NSDictionary * d in appd.currentContacts) {
+//        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
+//            BOOL found = NO;
+//            for (NSDictionary * d1 in r) {
+//                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+//                    found = YES;
+//                    break;
+//                }
+//            }
+//            if (found == NO) {
+//                [r addObject:d];
+//            }
+//        }
+//    }
+//    for (NSDictionary * d in appd.currentEvents) {
+//        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
+//            BOOL found = NO;
+//            for (NSDictionary * d1 in r) {
+//                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+//                    found = YES;
+//                    break;
+//                }
+//            }
+//            if (found == NO) {
+//                [r addObject:d];
+//            }
+//        }
+//    }
     
-    for (NSDictionary * d in appd.currentContacts) {
-        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            BOOL found = NO;
-            for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
-                    found = YES;
-                    break;
-                }
-            }
-            if (found == NO) {
-                [r addObject:d];
-            }
-        }
-    }
-    for (NSDictionary * d in appd.currentEvents) {
-        if (([[d objectForKey:@"name"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound) || ([[d objectForKey:@"address"] rangeOfString:str options:NSCaseInsensitiveSearch].location != NSNotFound)){
-            BOOL found = NO;
-            for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
-                    found = YES;
-                    break;
-                }
-            }
-            if (found == NO) {
-                [r addObject:d];
-            }
-        }
-    }
     for (NSDictionary * d in arr) {
         [r addObject:@{
          @"name" : @"",
@@ -423,10 +431,38 @@
          @"address" : [NSString stringWithFormat:@"%@, %@ %@", [d objectForKey:@"street"], [d objectForKey:@"zip"], [d objectForKey:@"city"]]
          }];
     }
+//
+//    if (([r count] == 0) && ([self.currentTextField.text isEqualToString:@""])) {
+//        for (NSDictionary * d in appd.pastRoutes) {
+//            BOOL found = NO;
+//            for (NSDictionary * d1 in r) {
+//                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+//                    found = YES;
+//                    break;
+//                }
+//            }
+//            if (found == NO) {
+//                [r addObject:d];
+//            }
+//        }
+//    }
     
     if (([r count] == 0) && ([self.currentTextField.text isEqualToString:@""])) {
-        for (NSDictionary * d in appd.pastRoutes) {
+        if (self.currentTextField == routeFrom) {
+            [r insertObject:@{
+             @"name" : CURRENT_POSITION_STRING,
+             @"address" : CURRENT_POSITION_STRING,
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"pastRoutes"
+             } atIndex:0];
+        }
+        /**
+         * add latest two searches
+         */
+        for (int i = 0; i < MIN(2, [appd.searchHistory count]); i++) {
             BOOL found = NO;
+            NSDictionary * d = [appd.searchHistory objectAtIndex:i];
             for (NSDictionary * d1 in r) {
                 if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
                     found = YES;
@@ -437,16 +473,30 @@
                 [r addObject:d];
             }
         }
-    }
-    
-    if (self.currentTextField == routeFrom) {
-        [r insertObject:@{
-         @"name" : CURRENT_POSITION_STRING,
-         @"address" : CURRENT_POSITION_STRING,
-         @"startDate" : [NSDate date],
-         @"endDate" : [NSDate date],
-         @"source" : @"pastRoutes"
-         } atIndex:0];        
+        /**
+         * add saved routes here
+         */
+        
+        /**
+         * add the rest of the searches
+         */
+        
+        if ([appd.searchHistory count] > 2) {
+            for (int i = 2; i < [appd.searchHistory count]; i++) {
+                BOOL found = NO;
+                NSDictionary * d = [appd.searchHistory objectAtIndex:i];
+                for (NSDictionary * d1 in r) {
+                    if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                        found = YES;
+                        break;
+                    }
+                }
+                if (found == NO) {
+                    [r addObject:d];
+                }
+            }            
+        }
+        
     }
     
     self.autocompleteArr = r;
@@ -492,9 +542,6 @@
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
         [r setAuxParam:@"startRoute"];
         [r getRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate via:nil];
-        
-//        [self.delegate findRouteFrom:s.coordinate to:e.coordinate fromAddress:routeFrom.text toAddress:routeTo.text];
-//        [self dismissModalViewControllerAnimated:YES];
     } else if ([req.auxParam isEqualToString:@"startRoute"]){
         NSString * response = [[NSString alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding];
         id jsonRoot = [[[SBJsonParser alloc] init] objectWithString:response];
@@ -502,6 +549,13 @@
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
         } else {
+            [SMUtil saveToSearchHistory:@{
+             @"name" : [NSString stringWithFormat:@"%@ - %@", routeFrom.text, routeTo.text],
+             @"address" : routeTo.text,
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"searchHistory"
+             }];
             [self.delegate findRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate fromAddress:routeFrom.text toAddress:routeTo.text withJSON:jsonRoot];
             [self dismissModalViewControllerAnimated:YES];
         }
