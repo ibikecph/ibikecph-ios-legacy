@@ -17,6 +17,7 @@
 @interface SMRoute()
 @property (nonatomic, strong) SMRequestOSRM * request;
 @property (nonatomic, strong) CLLocation * lastRecalcLocation;
+@property (nonatomic, strong) NSObject * recalcMutex;
 @end
 
 @implementation SMRoute {
@@ -35,6 +36,7 @@
         lastVisitedWaypointIndex = -1;
         self.recalculationInProgress = NO;
         self.lastRecalcLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
+        self.recalcMutex = [NSObject new];
     }
     return self;
 }
@@ -95,7 +97,7 @@
 
         SMTurnInstruction *prevTurn = lastTurn;
         SMTurnInstruction *nextTurn;
-        for (int i = 0; i < self.turnInstructions.count; i++, prevTurn = nextTurn) {
+        for (int i = 0; i < 2; i++, prevTurn = nextTurn) {
             nextTurn = [self.turnInstructions objectAtIndex:i];
 
             /**
@@ -137,44 +139,47 @@
 }
 
 - (void) recalculateRoute:(CLLocation *)loc {
-    @synchronized(self) {
+    @synchronized(self.recalcMutex) {
         if (self.recalculationInProgress) {
             return;
         }
-        
-        CGFloat distance = [loc distanceFromLocation:self.lastRecalcLocation];
-        if (distance < MIN_DISTANCE_FOR_RECALCULATION) {
-            return;
-        }
-        debugLog(@"Distance: %f", distance);
-        self.lastRecalcLocation = loc;
-            
-        self.recalculationInProgress = YES;
-        debugLog(@"Recalculating route!");
-        
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationStarted)]) {
-            [self.delegate routeRecalculationStarted];
-        }
-        
-        CLLocation *end = [self getEndLocation];
-        if (!loc || !end)
-            return;
-        
-        
-        SMRequestOSRM  * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-        [self setRequest:r];
-        [r setAuxParam:@"routeRecalc"];
-
-        // Uncomment code below if previous part of the route needs to be displayed.
-//        NSMutableArray *viaPoints = [NSMutableArray array];
-//        for (SMTurnInstruction *turn in self.pastTurnInstructions)
-//            [viaPoints addObject:turn.loc];
-//        [viaPoints addObject:loc];
-//        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
-
-        [r getRouteFrom:loc.coordinate to:end.coordinate via:nil checksum:self.routeChecksum destinationHint:self.destinationHint];
     }
+    
+    CGFloat distance = [loc distanceFromLocation:self.lastRecalcLocation];
+    if (distance < MIN_DISTANCE_FOR_RECALCULATION) {
+        return;
+    }
+    debugLog(@"Distance: %f", distance);
+    self.lastRecalcLocation = loc;
+    
+    @synchronized(self.recalcMutex) {
+        self.recalculationInProgress = YES;
+    }
+    debugLog(@"Recalculating route!");
+    
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationStarted)]) {
+        [self.delegate routeRecalculationStarted];
+    }
+    
+    CLLocation *end = [self getEndLocation];
+    if (!loc || !end)
+        return;
+    
+    
+    SMRequestOSRM  * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+    [self setRequest:r];
+    [r setAuxParam:@"routeRecalc"];
+    
+    // Uncomment code below if previous part of the route needs to be displayed.
+    //        NSMutableArray *viaPoints = [NSMutableArray array];
+    //        for (SMTurnInstruction *turn in self.pastTurnInstructions)
+    //            [viaPoints addObject:turn.loc];
+    //        [viaPoints addObject:loc];
+    //        [r getRouteFrom:((CLLocation *)[self.waypoints objectAtIndex:0]).coordinate to:end.coordinate via:viaPoints];
+    
+    [r getRouteFrom:loc.coordinate to:end.coordinate via:nil checksum:self.routeChecksum destinationHint:self.destinationHint];
+
 }
 
 //double course(CLLocation *loc1, CLLocation *loc2) {
@@ -207,11 +212,6 @@
 
 - (void) visitLocation:(CLLocation *)loc {
     
-    if (self.turnInstructions.count <= 0)
-        return;
-
-    [self updateDistances:loc];
-
     @synchronized(self.visitedLocations) {
         if (!self.visitedLocations)
             self.visitedLocations = [NSMutableArray array];
@@ -220,15 +220,18 @@
          @"date" : [NSDate date]
          }];
     }
-
     
-    @synchronized(self) {
+    @synchronized(self.recalcMutex) {
         if (self.recalculationInProgress) {
             return;
         }
     }
 
+    if (self.turnInstructions.count <= 0)
+        return;
     
+    [self updateDistances:loc];
+
     // Check if we are finishing:
     if (self.turnInstructions.count == 1) {
         double distanceToFinish = [loc distanceFromLocation:[self getEndLocation]];
@@ -575,7 +578,9 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 
 - (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
     if ([req.auxParam isEqualToString:@"routeRecalc"]) {
-        self.recalculationInProgress = NO;
+        @synchronized(self.recalcMutex) {
+            self.recalculationInProgress = NO;
+        }
     }
 }
 
@@ -613,85 +618,32 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         if (response) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 
-                @synchronized(self) {
-//                    SMRoute * rt = [[SMRoute alloc] init];
-                    id jsonRoot = [[[SBJsonParser alloc] init] objectWithString:response];
-                    if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
-                        if (self.delegate) {
-                            [self.delegate routeNotFound];
-                        };
-                        return;
-                    }
-                    BOOL done = [self parseFromJson:jsonRoot delegate:nil];
-                    if (done) {
-                        approachingTurn = NO;
-//                        @synchronized(self.pastTurnInstructions) {
-//                            self.pastTurnInstructions = [NSMutableArray array];
-//                        }
-
-                        if ([SMLocationManager instance].hasValidLocation) {
-                            [self updateDistances:[SMLocationManager instance].lastValidLocation];
-                        }
-
-                        // Uncomment code below is if we want to display the previous part of the route.
-////                        [self mergeWithRoute:rt];
-//                        int i = 0;
-//                        if (self.pastTurnInstructions && self.pastTurnInstructions.count > 0 && self.turnInstructions && self.turnInstructions.count > 0) {
-//                            CLLocation *lastTurnLoc = nil; //((SMTurnInstruction *)[self.pastTurnInstructions lastObject]).loc;
-//
-//                            for (int i = 0, j = 0; j < self.turnInstructions.count;) {
-//                                CLLocation *pastTurnLoc = ((SMTurnInstruction *)[self.pastTurnInstructions objectAtIndex:i]).loc;
-//                                CLLocation *newTurnLoc = ((SMTurnInstruction *)[self.turnInstructions objectAtIndex:j]).loc;
-//                                if (sameCoordinates(pastTurnLoc, newTurnLoc)) {
-//                                    lastTurnLoc = pastTurnLoc;
-//                                    i++;
-//                                    j++;
-//                                } else {
-//                                    j++;
-//                                }
-//                                if (j == self.pastTurnInstructions.count) {
-//                                    if (lastTurnLoc) {
-//                                        break;
-//                                    } else {
-//                                        j = 0;
-//                                        i++;
-//                                    }
-//                                }
-//
-//                            }
-//
-//                            [self.pastTurnInstructions removeAllObjects];
-//
-//                            if (lastTurnLoc) {
-//                                // TODO replace loop with single transfer of i objects
-//                                SMTurnInstruction *turn = [self.turnInstructions objectAtIndex:0];
-//                                while (turn.loc.coordinate.latitude != lastTurnLoc.coordinate.latitude || turn.loc.coordinate.longitude != lastTurnLoc.coordinate.longitude) {
-//                                    [self.pastTurnInstructions addObject:turn];
-//                                    [self.turnInstructions removeObjectAtIndex:0];
-//
-//                                    if (!self.turnInstructions.count)
-//                                        break;
-//                                    turn = [self.turnInstructions objectAtIndex:0];
-//                                    i++;
-//                                }
-//                                if (self.turnInstructions.count) {
-//                                    [self.pastTurnInstructions addObject:turn];
-//                                    [self.turnInstructions removeObjectAtIndex:0];
-//                                }
-//                            }
-//                        }
-                        // update segment
-                        
-//                        lastVisitedWaypointIndex = i;
-
+                
+                id jsonRoot = [[[SBJsonParser alloc] init] objectWithString:response];
+                if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
+                    if (self.delegate) {
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationDone)]) {
-                                [self.delegate routeRecalculationDone];
-                            }
-                            [self.delegate updateRoute];
-                            self.recalculationInProgress = NO;
+                            [self.delegate routeNotFound];
+                            return;
                         });
-                    }                    
+                    }
+                };
+                
+                BOOL done = [self parseFromJson:jsonRoot delegate:nil];
+                if (done) {
+                    approachingTurn = NO;
+                    if ([SMLocationManager instance].hasValidLocation) {
+                        [self updateDistances:[SMLocationManager instance].lastValidLocation];
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (self.delegate && [self.delegate respondsToSelector:@selector(routeRecalculationDone)]) {
+                            [self.delegate routeRecalculationDone];
+                        }
+                        [self.delegate updateRoute];
+                        @synchronized(self.recalcMutex) {
+                            self.recalculationInProgress = NO;
+                        }
+                    });
                 }
             });
         }

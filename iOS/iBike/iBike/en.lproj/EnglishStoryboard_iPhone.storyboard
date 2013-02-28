@@ -1477,7 +1477,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                             <outlet property="delegate" destination="m0B-4B-35u" id="UBH-ZR-c0Z"/>
                                         </connections>
                                     </scrollView>
-                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
+                                    <view alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -2197,8 +2197,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Wkv-iv-Dub"/>
-        <segue reference="BMy-9M-oqz"/>
         <segue reference="0Wd-f4-uGc"/>
+        <segue reference="edE-2V-bAg"/>
+        <segue reference="Wkv-iv-Dub"/>
     </inferredMetricsTieBreakers>
 </document>

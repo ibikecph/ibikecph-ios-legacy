@@ -537,8 +537,6 @@
 }
 
 - (void) updateRoute {
-//    self.directions = [self.route getRelevantDirections];
-
     // Remove previous path and display new one
     for (RMAnnotation *annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"path"]) {

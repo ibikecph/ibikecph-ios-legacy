@@ -32,3 +32,7 @@ iOS/iBike/iBike/Libs/FacebookSDK
 iOS/iBike/iBike/Libs/GA v2.0b4
 
 iOS/iBike/iBike/Libs/SBJson
+
+*.xcbkptlist
+
+iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
