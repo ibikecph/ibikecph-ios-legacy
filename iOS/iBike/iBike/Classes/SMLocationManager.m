@@ -47,6 +47,8 @@
 			locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
 			locationManager.distanceFilter = kCLDistanceFilterNone;
 			[locationManager startUpdatingLocation];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLocationService:)  name:UIApplicationDidEnterBackgroundNotification object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restartLocationService:) name:UIApplicationWillEnterForegroundNotification object:nil];
 		}
         locationServicesEnabled = YES;
 	}
@@ -157,5 +159,22 @@
     
 }
 
+#pragma mark  - location service
+
+
+- (void)stopLocationService:(UIApplication *)application {
+    if (locationManager != nil) {
+        [locationManager stopUpdatingLocation];
+        [locationManager stopUpdatingHeading];
+    }
+}
+
+
+- (void)restartLocationService:(UIApplication *)application {
+    if (locationManager != nil) {
+        [locationManager startUpdatingLocation];
+        [locationManager startUpdatingHeading];
+    }
+}
 
 @end
