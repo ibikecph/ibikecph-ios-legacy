@@ -22,16 +22,16 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
 }
 
 - (void)awakeFromNib {
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateFollowingWithHeading];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateFollowing];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:SMGPSTrackButtonStateNotFollowing];
+    [self setImage:[UIImage imageNamed:@"icon_locate_heading"] forState:SMGPSTrackButtonStateFollowingWithHeading];
+    [self setImage:[UIImage imageNamed:@"icon_locate_me"] forState:SMGPSTrackButtonStateFollowing];
+    [self setImage:[UIImage imageNamed:@"icon_locate_no_tracking"] forState:SMGPSTrackButtonStateNotFollowing];
 
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:(SMGPSTrackButtonStateFollowingWithHeading | UIControlStateHighlighted)];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateHighlighted)];
-    [self setImage:[UIImage imageNamed:@"icon_locate_me_active"] forState:(SMGPSTrackButtonStateNotFollowing | UIControlStateHighlighted)];
-
-    [self setImage:[UIImage imageNamed:@"icon_locate_me"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateDisabled)];
+    [self setImage:[UIImage imageNamed:@"icon_locate_heading"] forState:(SMGPSTrackButtonStateFollowingWithHeading | UIControlStateHighlighted)];
     [self setImage:[UIImage imageNamed:@"icon_locate_me"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateHighlighted)];
+    [self setImage:[UIImage imageNamed:@"icon_locate_no_tracking"] forState:(SMGPSTrackButtonStateNotFollowing | UIControlStateHighlighted)];
+
+    [self setImage:[UIImage imageNamed:@"icon_locate_no_tracking"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateDisabled)];
+    [self setImage:[UIImage imageNamed:@"icon_locate_no_tracking"] forState:(SMGPSTrackButtonStateFollowing | UIControlStateHighlighted)];
 
     NSAssert(SMGPSTrackButtonStateFollowingWithHeading & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
     NSAssert(SMGPSTrackButtonStateFollowing & UIControlStateApplication, @"Custom state not within UIControlStateApplication");
