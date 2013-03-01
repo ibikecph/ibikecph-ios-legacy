@@ -9,7 +9,7 @@
 @interface SMAutocompleteCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet AsyncImageView *iconImage;
 
 + (CGFloat)getHeight;
 

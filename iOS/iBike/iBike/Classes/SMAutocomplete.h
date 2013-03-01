@@ -15,7 +15,8 @@
 typedef enum {
     autocompletePlaces,
     autocompleteOiorest,
-    autocompleteQuery
+    autocompleteQuery,
+    autocompleteFoursquare
 } AutocompleteType;
 
 @interface SMAutocomplete : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate> {

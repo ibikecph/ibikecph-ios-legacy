@@ -54,10 +54,6 @@
         [routeTo setText:@""];
     }
     
-//    [routeFrom setText:@"Grundtvigsvej 19, 1864 Frederiksberg"];
-//    [routeTo setText:@"Vodroffsvej 53C, 1900 Frederiksberg"];
-//    [routeTo setText:@" Acaciavej 4, 1867 Frederiksberg"];
-
     if (self.autocompleteArr == nil) {
         self.autocompleteArr = @[];
     }
@@ -70,6 +66,12 @@
     
 
     [routeTo becomeFirstResponder];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self autocompleteEntriesFound:@[] forString:@""];
 }
 
 - (void)viewDidUnload {
@@ -112,7 +114,16 @@
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
         [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
-        [cell.iconImage setImage:nil];
+//        if ([currentRow objectForKey:@"icon"]) {
+//            [cell.iconImage loadImage:[currentRow objectForKey:@"icon"]];
+//        } else {
+//            [cell.iconImage setImage:nil];
+//        }
+        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+        } else {
+            [cell.iconImage setImage:nil];
+        }
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
         [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
@@ -429,11 +440,7 @@
 //    }
     
     for (NSDictionary * d in arr) {
-        [r addObject:@{
-         @"name" : @"",
-         @"source" : @"autocomplete",         
-         @"address" : [NSString stringWithFormat:@"%@, %@ %@", [d objectForKey:@"street"], [d objectForKey:@"zip"], [d objectForKey:@"city"]]
-         }];
+        [r addObject:d];
     }
 //
 //    if (([r count] == 0) && ([self.currentTextField.text isEqualToString:@""])) {

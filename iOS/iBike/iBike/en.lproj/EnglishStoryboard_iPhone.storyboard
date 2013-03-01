@@ -1790,8 +1790,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="findRouteCalendar.png" id="doJ-Cg-pao">
-                                                    <rect key="frame" x="15" y="19" width="21" height="22"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="findRouteCalendar.png" id="doJ-Cg-pao" customClass="AsyncImageView">
+                                                    <rect key="frame" x="10" y="14" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -2011,7 +2011,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="iconImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -2056,7 +2056,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2093,6 +2092,9 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMFindAddressController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
+                <relationship kind="action" name="findRoute:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="swapFromAndTo:"/>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2173,9 +2175,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
