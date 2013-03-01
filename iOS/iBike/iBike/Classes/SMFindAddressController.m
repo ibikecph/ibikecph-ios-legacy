@@ -255,6 +255,8 @@
                                 [r setAuxParam:@"nearestPoint"];
                                 [r findNearestPointForStart:cStart andEnd:cEnd];
                             } else {
+                                UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_from_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                                [av show];
                                 [UIView animateWithDuration:0.2f animations:^{
                                     [fadeView setAlpha:0.0f];
                                 }];
@@ -262,6 +264,8 @@
                         }];
                     }
                 } else {
+                    UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_to_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                    [av show];
                     [UIView animateWithDuration:0.2f animations:^{
                         [fadeView setAlpha:0.0f];
                     }];
