@@ -102,10 +102,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [tblDirections reloadData];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPosition) name:@"refreshPosition" object:nil];
-
-//    [buttonTrackUser setEnabled:NO];
-
     if (self.currentlyRouting) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
     } else {

@@ -941,7 +941,7 @@
                                                 <rect key="frame" x="0.0" y="49" width="320" height="499"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="FSD-PE-lob" customClass="SMGPSTrackButton">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="FSD-PE-lob" customClass="SMGPSTrackButton">
                                                         <rect key="frame" x="264" y="445" width="56" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1965,7 +1965,7 @@
         <image name="eventsCalendar.png" width="50" height="50"/>
         <image name="eventsHeaderBG.png" width="320" height="29"/>
         <image name="findRouteCalendar.png" width="21" height="22"/>
-        <image name="icon_locate_me.png" width="20" height="20"/>
+        <image name="icon_locate_me.png" width="40" height="40"/>
         <image name="iconsBackground.png" width="320" height="568"/>
         <image name="menuBar.png" width="320" height="53"/>
         <image name="menuStatsBG.png" width="260" height="230"/>
@@ -1995,9 +1995,15 @@
         </class>
         <class className="SMAboutController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAccountsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+            </relationships>
         </class>
         <class className="SMAutocompleteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteCell.h"/>
@@ -2026,6 +2032,9 @@
         </class>
         <class className="SMCustomCheckbox" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomCheckbox.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+            </relationships>
         </class>
         <class className="SMDirectionCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionCell.h"/>
@@ -2048,6 +2057,8 @@
         <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="saveEmail:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2123,6 +2134,7 @@
         <class className="SMRouteFinishedController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
                 <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
@@ -2185,7 +2197,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="0Wd-f4-uGc"/>
+        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
     </inferredMetricsTieBreakers>
 </document>

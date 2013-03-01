@@ -2056,6 +2056,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
         <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
@@ -2197,6 +2198,6 @@ If you choose to be notified your e-mail address will be sent to us</string>
     <inferredMetricsTieBreakers>
         <segue reference="Wkv-iv-Dub"/>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="dCm-4o-WFf"/>
+        <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>
