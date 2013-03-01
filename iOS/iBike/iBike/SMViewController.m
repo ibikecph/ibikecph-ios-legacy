@@ -408,10 +408,8 @@ typedef enum {
 
 - (void)setButtonFollowing:(BOOL)following {
     if (following) {
-        [buttonTrackUser setEnabled:FALSE];
         [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];
     } else {
-        [buttonTrackUser setEnabled:TRUE];
         [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
     }
 }

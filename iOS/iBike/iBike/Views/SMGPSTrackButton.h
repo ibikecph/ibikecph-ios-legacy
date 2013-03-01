@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    SMGPSTrackButtonStateFollowing,
+    SMGPSTrackButtonStateFollowingWithHeading,
+    SMGPSTrackButtonStateNotFollowing
+} ButtonStateType;
+
 @interface SMGPSTrackButton : UIButton
 
-enum {
-    SMGPSTrackButtonStateFollowing = 0x00011000,
-    SMGPSTrackButtonStateFollowingWithHeading = 0x00012000,
-    SMGPSTrackButtonStateNotFollowing = 0x00013000,
-};
+@property (nonatomic,readonly) ButtonStateType gpsTrackState;
+@property (nonatomic, readonly) ButtonStateType prevGpsTrackState;
 
-@property (nonatomic,assign,readonly) NSInteger prevGpsTrackState;
-@property (nonatomic,assign,readonly) NSInteger gpsTrackState;
-
-- (void)newGpsTrackState:(NSInteger)gpsTrackState;
+- (void)newGpsTrackState:(ButtonStateType)gpsTrackState;
 
 @end
