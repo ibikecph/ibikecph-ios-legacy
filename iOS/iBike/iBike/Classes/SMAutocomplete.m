@@ -28,7 +28,7 @@
 }
 
 - (void)getAutocomplete:(NSString*)str {
-    [self getGooglePlacesAutocomplete:str];
+    [self getOiorestAutocomplete:str];
 }
 
 - (void)getOiorestAutocomplete:(NSString*)str {
