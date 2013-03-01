@@ -26,8 +26,9 @@ typedef enum {
 - (id)initWithDelegate:(id<SMAutocompleteDelegate>)dlg;
 
 - (void)getAutocomplete:(NSString*)str;
-- (void)getOiorestAutocomplete:(NSString*)str;
-- (void)getGooglePlacesAutocomplete:(NSString*)str;
-- (void)getGoogleQueryAutocomplete:(NSString*)str;
+- (void)getOiorestAutocomplete;
+- (void)getGooglePlacesAutocomplete;
+- (void)getGoogleQueryAutocomplete;
+- (void)getFoursquareAutocomplete;
 
 @end
