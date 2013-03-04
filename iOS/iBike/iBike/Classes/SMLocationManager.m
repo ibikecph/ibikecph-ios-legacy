@@ -163,18 +163,18 @@
 
 
 - (void)stopLocationService:(UIApplication *)application {
-//    if (locationManager != nil) {
-//        [locationManager stopUpdatingLocation];
-//        [locationManager stopUpdatingHeading];
-//    }
+    if (locationManager != nil) {
+        [locationManager stopUpdatingLocation];
+        [locationManager stopUpdatingHeading];
+    }
 }
 
 
 - (void)restartLocationService:(UIApplication *)application {
-//    if (locationManager != nil) {
-//        [locationManager startUpdatingLocation];
-//        [locationManager startUpdatingHeading];
-//    }
+    if (locationManager != nil) {
+        [locationManager startUpdatingLocation];
+        [locationManager startUpdatingHeading];
+    }
 }
 
 @end
