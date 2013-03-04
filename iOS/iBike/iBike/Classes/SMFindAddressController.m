@@ -22,6 +22,15 @@
 @interface SMFindAddressController ()
 @property (nonatomic, strong) SMAutocomplete * autocomp;
 @property (nonatomic, strong) NSArray * autocompleteArr;
+
+@property (nonatomic, strong) NSString * poiToName;
+@property (nonatomic, strong) CLLocation * poiToLocation;
+@property (nonatomic, strong) NSString * poiFromName;
+@property (nonatomic, strong) CLLocation * poiFromLocation;
+@property (nonatomic, weak) CLLocation * poiCurrentLocation;
+@property (nonatomic, weak) NSString * poiCurrentName;
+
+
 @end
 
 @implementation SMFindAddressController
@@ -37,6 +46,10 @@
             [v setDelegate: self];
         }
     }
+    self.poiToName = @"";
+    self.poiToLocation = nil;
+    self.poiFromName = @"";
+    self.poiFromLocation = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +80,8 @@
 
     [routeTo becomeFirstResponder];
     
+    self.poiCurrentLocation = self.poiToLocation;
+    self.poiCurrentName = self.poiToName;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -136,42 +151,59 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.currentTextField.text = [[self.autocompleteArr objectAtIndex:indexPath.row] objectForKey:@"address"];    
-    if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
-        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
-            [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                if ([placemarks count] == 0) {
-                    [btnStart setEnabled:NO];
-                } else {
-                    [btnStart setEnabled:YES];
-                }
-            }];
+    NSDictionary * currentRow = [self.autocompleteArr objectAtIndex:indexPath.row];
+    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [currentRow objectForKey:@"subsource"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+        if (self.currentTextField == routeFrom) {
+            self.poiFromName = [currentRow objectForKey:@"name"];
+            self.poiFromLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
+            self.currentTextField.text = self.poiFromName;
+            [routeFrom setTextColor:[UIColor blueColor]];
         } else {
-            [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                if ([placemarks count] > 0) {
-                    [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                        if ([placemarks count] == 0) {
-                            [btnStart setEnabled:NO];
-                        } else {
-                            [btnStart setEnabled:YES];
-                        }
-                    }];
-                } else {
-                    [btnStart setEnabled:NO];
-                }
-            }];
+            self.poiToName = [currentRow objectForKey:@"name"];
+            self.poiToLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
+            self.currentTextField.text = self.poiToName;
+            [routeTo setTextColor:[UIColor blueColor]];
         }
+        
+        [self refreshStartButton];
+        
+        
     } else {
-        [btnStart setEnabled:NO];
+        self.currentTextField.text = [currentRow objectForKey:@"address"];
+        if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
+            if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+                [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                    if ([placemarks count] == 0) {
+                        [btnStart setEnabled:NO];
+                    } else {
+                        [btnStart setEnabled:YES];
+                    }
+                }];
+            } else {
+                [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                    if ([placemarks count] > 0) {
+                        [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                            if ([placemarks count] == 0) {
+                                [btnStart setEnabled:NO];
+                            } else {
+                                [btnStart setEnabled:YES];
+                            }
+                        }];
+                    } else {
+                        [btnStart setEnabled:NO];
+                    }
+                }];
+            }
+        } else {
+            [btnStart setEnabled:NO];
+        }
+        
+        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+            [routeFrom setTextColor:[UIColor blueColor]];
+        } else {
+            [routeFrom setTextColor:[UIColor blackColor]];
+        }
     }
-    
-    if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
-        [routeFrom setTextColor:[UIColor blueColor]];
-    } else {
-        [routeFrom setTextColor:[UIColor blackColor]];
-    }
-    
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -220,6 +252,59 @@
         [fadeView setAlpha:1.0f];
     }];
     if (self.delegate) {
+        if ([routeTo.text isEqualToString:self.poiToName]) {
+            if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
+                if ([SMLocationManager instance].hasValidLocation) {
+                    CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
+                    CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:self.poiToLocation.coordinate.latitude longitude:self.poiToLocation.coordinate.longitude];
+                    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                    [r setAuxParam:@"nearestPoint"];
+                    [r findNearestPointForStart:cStart andEnd:cEnd];
+                } else {
+                    UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                    [av show];
+                    [UIView animateWithDuration:0.2f animations:^{
+                        [fadeView setAlpha:0.0f];
+                    }];
+                    return;
+                }
+            } else {
+                if ([routeFrom.text isEqualToString:self.poiFromName]) {
+                    CLLocation * cStart = [[CLLocation alloc] initWithLatitude:self.poiFromLocation.coordinate.latitude longitude:self.poiFromLocation.coordinate.longitude];
+                    CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:self.poiToLocation.coordinate.latitude longitude:self.poiToLocation.coordinate.longitude];
+                    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                    [r setAuxParam:@"nearestPoint"];
+                    [r findNearestPointForStart:cStart andEnd:cEnd];
+
+                } else {
+                    [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                        if ([placemarks count] > 0) {
+                            MKPlacemark *coordFrom = [placemarks objectAtIndex:0];
+                            if (coordFrom == nil) {
+                                UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_from_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                                [av show];
+                                [UIView animateWithDuration:0.2f animations:^{
+                                    [fadeView setAlpha:0.0f];
+                                }];
+                                return;
+                            }
+                            
+                            CLLocation * cStart = [[CLLocation alloc] initWithLatitude:coordFrom.coordinate.latitude longitude:coordFrom.coordinate.longitude];
+                            CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:self.poiToLocation.coordinate.latitude longitude:self.poiToLocation.coordinate.longitude];
+                            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                            [r setAuxParam:@"nearestPoint"];
+                            [r findNearestPointForStart:cStart andEnd:cEnd];
+                        } else {
+                            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_from_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                            [av show];
+                            [UIView animateWithDuration:0.2f animations:^{
+                                [fadeView setAlpha:0.0f];
+                            }];
+                        }
+                    }];
+                }
+            }
+        } else {
             [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
                 //Error checking
                 if ([placemarks count] > 0) {
@@ -282,6 +367,10 @@
                     }];
                 }
             }];
+        }
+        
+        
+            
     }
 }
 
@@ -289,6 +378,13 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.currentTextField = textField;
+    if (textField == routeFrom) {
+        self.poiCurrentLocation = self.poiFromLocation;
+        self.poiCurrentName = self.poiFromName;
+    } else {
+        self.poiCurrentLocation = self.poiToLocation;
+        self.poiCurrentName = self.poiToName;
+    }
     [self.autocomp getAutocomplete:textField.text];
     return YES;
 }
@@ -316,6 +412,68 @@
     }];
 }
 
+- (void)refreshStartButton {
+    if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
+        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING] || [routeFrom.text isEqualToString:self.poiFromName]) {
+            if ([routeTo.text isEqualToString:self.poiToName]) {
+                [btnStart setEnabled:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                });
+            } else {
+                [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                    if ([placemarks count] == 0) {
+                        [btnStart setEnabled:NO];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                        });
+                    } else {
+                        [btnStart setEnabled:YES];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                        });
+                    }
+                }];
+            }
+        } else {
+            [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                if ([placemarks count] > 0) {
+                    if ([routeTo.text isEqualToString:self.poiToName]) {
+                        [btnStart setEnabled:YES];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                        });
+                    } else {
+                        [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                            if ([placemarks count] == 0) {
+                                [btnStart setEnabled:NO];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                                });
+                            } else {
+                                [btnStart setEnabled:YES];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                                });
+                            }
+                        }];
+                    }
+                } else {
+                    [btnStart setEnabled:NO];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                    });
+                }
+            }];
+        }
+    } else {
+        [btnStart setEnabled:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+        });
+    }
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     [self performSelector:@selector(showFade) withObject:nil afterDelay:0.01f];
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
@@ -332,54 +490,42 @@
         }
     }
     
+    if (textField == routeTo) {
+        if ([self.poiToName isEqualToString:@""] == NO) {
+            if ([s isEqualToString:self.poiToName]) {
+                [routeTo setTextColor:[UIColor blueColor]];
+            } else {
+                [routeTo setTextColor:[UIColor blackColor]];
+            }
+            
+            if ([routeTo.text isEqualToString:self.poiToName] && s.length < textField.text.length) {
+                routeTo.text = @"";
+                s = @"";
+                self.poiToName = @"";
+                self.poiToLocation = nil;
+            } 
+        }
+    } else {
+        if ([self.poiFromName isEqualToString:@""] == NO) {
+            if ([s isEqualToString:self.poiFromName]) {
+                [routeFrom setTextColor:[UIColor blueColor]];
+            } else {
+                [routeFrom setTextColor:[UIColor blackColor]];
+            }
+            
+            if ([routeFrom.text isEqualToString:self.poiFromName] && s.length < textField.text.length) {
+                routeFrom.text = @"";
+                s = @"";
+                self.poiFromName = @"";
+                self.poiFromLocation = nil;
+            }
+        }
+    }
     
     [self.autocomp getAutocomplete:s];
     
-    if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
-        if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
-            [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                if ([placemarks count] == 0) {
-                    [btnStart setEnabled:NO];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                    });
-                } else {
-                    [btnStart setEnabled:YES];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                    });
-                }
-            }];
-        } else {
-            [SMGeocoder geocode:routeFrom.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                if ([placemarks count] > 0) {
-                    [SMGeocoder geocode:routeTo.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                        if ([placemarks count] == 0) {
-                            [btnStart setEnabled:NO];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                            });
-                        } else {
-                            [btnStart setEnabled:YES];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                            });
-                        }
-                    }];
-                } else {
-                    [btnStart setEnabled:NO];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                    });
-                }
-            }];
-        }
-    } else {
-        [btnStart setEnabled:NO];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-        });
-    }
+    [self refreshStartButton];
+        
     return YES;
 }
 

@@ -13,6 +13,8 @@
 // Calculates distance between location C and path AB in meters.
 double distanceFromLineInMeters(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B);
 
+CLLocationCoordinate2D closestCoordinate(CLLocationCoordinate2D C, CLLocationCoordinate2D A, CLLocationCoordinate2D B);
+
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float distance);
 // Format time duration string (choose between seconds and hours)

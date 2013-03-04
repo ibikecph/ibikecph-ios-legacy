@@ -50,6 +50,8 @@
 @property NSString * routeChecksum;
 @property NSString * destinationHint;
 
+@property CLLocationCoordinate2D lastCorrectedLocation;
+
 
 - (void) visitLocation:(CLLocation *)loc;
 - (CLLocation *) getStartLocation;

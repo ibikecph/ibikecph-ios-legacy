@@ -376,8 +376,12 @@
    if (self.currentlyRouting && self.route && userLocation) {
 //       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
+       
+//       [self.mpView correctLocation:[[CLLocation alloc] initWithLatitude:self.route.lastCorrectedLocation.latitude longitude:self.route.lastCorrectedLocation.longitude]];
 //       [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];
+       
+       [self reloadFirstSwipableView];
        
        [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
        
@@ -958,6 +962,15 @@
     }
     [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];    
     return cell;
+}
+
+- (void)reloadFirstSwipableView {
+    for (SMSwipableView * cell in self.activeItems) {
+        if (cell.position == 0) {
+            SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:0];
+            [cell renderViewFromInstruction:turn];
+        }
+    }
 }
 
 - (void)reloadSwipableView {

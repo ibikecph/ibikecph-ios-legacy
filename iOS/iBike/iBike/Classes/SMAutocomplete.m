@@ -41,7 +41,7 @@
         [self.conn cancel];
     }
     self.connData = [NSMutableData data];
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", self.srchString]]];
+    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [self.srchString urlEncode]]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
         NSArray * res = [[[SBJsonParser alloc] init] objectWithData:data];
@@ -49,7 +49,7 @@
         for (NSDictionary* d in res) {
             [arr addObject:@{
              @"name" : @"",
-             @"address" : [NSString stringWithFormat:@"%@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
+             @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
              @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
              @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
              @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],

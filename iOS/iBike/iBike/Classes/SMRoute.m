@@ -72,21 +72,30 @@
         double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
         if (d < 0.0)
             continue;
-
-//      if (d <= maxDistance)
-//          return FALSE;
         if (d <= min) {
             min = d;
             lastVisitedWaypointIndex = i;
         }
 
-        if (min < 2) {
-            // Close enough :)
-            break;
-        }
+//        if (min < 2) {
+//            // Close enough :)
+//            break;
+//        }
     }
 //    return TRUE;
 //    debugLog(@"lastVisitedWaypointIndex = %d. Distance from route segment: %g", lastVisitedWaypointIndex, min);
+    
+    if (min <= maxDistance) {
+        debugLog(@"=============================");
+        debugLog(@"Last visited waypoint index: %d", lastVisitedWaypointIndex);
+        CLLocation *a = [self.waypoints objectAtIndex:lastVisitedWaypointIndex];
+        CLLocation *b = [self.waypoints objectAtIndex:(lastVisitedWaypointIndex + 1)];
+        CLLocationCoordinate2D coord = closestCoordinate(loc.coordinate, a.coordinate, b.coordinate);
+        self.lastCorrectedLocation = coord;
+        debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);        
+        debugLog(@"=============================");
+    }
+    
     return min > maxDistance;
 }
 
@@ -196,6 +205,9 @@
     if (self.turnInstructions.count > 0) {
         @synchronized(self.turnInstructions) {
             [self.pastTurnInstructions addObject:[self.turnInstructions objectAtIndex:0]];
+            debugLog(@"===========================");
+            debugLog(@"Past instructions: %@", self.pastTurnInstructions);
+            debugLog(@"===========================");
             [self.turnInstructions removeObjectAtIndex:0];
             [self.delegate updateTurn:YES];
         }
@@ -280,7 +292,7 @@
             }
         }
     }
-
+    
     // Check if we went too far from the calculated route and, if so, recalculate route
     // max allowed distance depends on location's accuracy
     int maxD = loc.horizontalAccuracy >= 0 ? (loc.horizontalAccuracy / 3 + 20) : MAX_DISTANCE_FROM_PATH;

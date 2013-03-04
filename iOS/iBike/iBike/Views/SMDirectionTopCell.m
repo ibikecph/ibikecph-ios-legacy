@@ -46,10 +46,4 @@
     return MAX(75.0f, height);
 }
 
-- (void)prepareForReuse {
-    NSLog(@"Before: %@", self);
-    [super prepareForReuse];
-    NSLog(@"After: %@", self);
-}
-
 @end
