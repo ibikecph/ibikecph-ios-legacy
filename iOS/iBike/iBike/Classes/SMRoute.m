@@ -33,7 +33,7 @@
         self.caloriesBurned = -1;
         self.averageSpeed = -1;
         approachingTurn = NO;
-        lastVisitedWaypointIndex = -1;
+        self.lastVisitedWaypointIndex = -1;
         self.recalculationInProgress = NO;
         self.lastRecalcLocation = [[CLLocation alloc] initWithLatitude:0 longitude:0];
         self.recalcMutex = [NSObject new];
@@ -66,7 +66,7 @@
 - (BOOL) isTooFarFromRouteSegment:(CLLocation *)loc from:(SMTurnInstruction *)turnA to:(SMTurnInstruction *)turnB maxDistance:(double)maxDistance {
     double min = 100000.0;
 
-    for (int i = lastVisitedWaypointIndex; i < turnB.waypointsIndex; i++) {
+    for (int i = self.lastVisitedWaypointIndex; i < turnB.waypointsIndex; i++) {
         CLLocation *a = [self.waypoints objectAtIndex:i];
         CLLocation *b = [self.waypoints objectAtIndex:(i + 1)];
         double d = distanceFromLineInMeters(loc.coordinate, a.coordinate, b.coordinate);
@@ -74,7 +74,7 @@
             continue;
         if (d <= min) {
             min = d;
-            lastVisitedWaypointIndex = i;
+            self.lastVisitedWaypointIndex = i;
         }
 
 //        if (min < 2) {
@@ -83,13 +83,13 @@
 //        }
     }
 //    return TRUE;
-//    debugLog(@"lastVisitedWaypointIndex = %d. Distance from route segment: %g", lastVisitedWaypointIndex, min);
+//    debugLog(@"self.lastVisitedWaypointIndex = %d. Distance from route segment: %g", self.lastVisitedWaypointIndex, min);
     
     if (min <= maxDistance) {
         debugLog(@"=============================");
-        debugLog(@"Last visited waypoint index: %d", lastVisitedWaypointIndex);
-        CLLocation *a = [self.waypoints objectAtIndex:lastVisitedWaypointIndex];
-        CLLocation *b = [self.waypoints objectAtIndex:(lastVisitedWaypointIndex + 1)];
+        debugLog(@"Last visited waypoint index: %d", self.lastVisitedWaypointIndex);
+        CLLocation *a = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex];
+        CLLocation *b = [self.waypoints objectAtIndex:(self.lastVisitedWaypointIndex + 1)];
         CLLocationCoordinate2D coord = closestCoordinate(loc.coordinate, a.coordinate, b.coordinate);
         self.lastCorrectedLocation = coord;
         debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);        
@@ -446,7 +446,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         }
     }
 
-    self->lastVisitedWaypointIndex = 0;
+    self.lastVisitedWaypointIndex = 0;
     return YES;
 }
 
@@ -497,7 +497,7 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
         return [loc distanceFromLocation:nextTurn.loc];
 
     CGFloat distance = 0.0f;
-    for (int i = lastVisitedWaypointIndex >= 0 ? lastVisitedWaypointIndex : 0; i < nextTurn.waypointsIndex; i++) {
+    for (int i = self.lastVisitedWaypointIndex >= 0 ? self.lastVisitedWaypointIndex : 0; i < nextTurn.waypointsIndex; i++) {
         double d = [((CLLocation *)[self.waypoints objectAtIndex:i]) distanceFromLocation:[self.waypoints objectAtIndex:(i + 1)]];
 //        debugLog(@"[%d - %d] = %.1f", i, i + 1, d);
         distance += d;

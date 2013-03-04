@@ -26,7 +26,6 @@
 
 @interface SMRoute : NSObject <SMRequestOSRMDelegate> {
     BOOL approachingTurn;
-    int lastVisitedWaypointIndex;
 }
 
 @property (nonatomic, weak) id<SMRouteDelegate> delegate;
@@ -51,6 +50,8 @@
 @property NSString * destinationHint;
 
 @property CLLocationCoordinate2D lastCorrectedLocation;
+
+@property NSInteger lastVisitedWaypointIndex;
 
 
 - (void) visitLocation:(CLLocation *)loc;

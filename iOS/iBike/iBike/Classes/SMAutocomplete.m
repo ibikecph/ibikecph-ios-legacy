@@ -82,7 +82,7 @@
         [self.conn cancel];
     }
     self.connData = [NSMutableData data];
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=false&key=%@&location=%f,%f&radius=%@&language=%@&types=geocode", self.srchString, GOOGLE_API_KEY, [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, PLACES_SEARCH_RADIUS, PLACES_LANGUAGE]]];
+    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=false&key=%@&location=%f,%f&radius=%@&language=%@&types=geocode", [self.srchString urlEncode], GOOGLE_API_KEY, [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, PLACES_SEARCH_RADIUS, PLACES_LANGUAGE]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
         NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:data];
@@ -138,7 +138,7 @@
     }
     self.connData = [NSMutableData data];
     if ([SMLocationManager instance].hasValidLocation) {
-        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&client_id=%@&client_secret=%@&query=%@&v=%@", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, FOURSQUARE_ID, FOURSQUARE_SECRET, self.srchString, @"20130301"]]];
+        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&client_id=%@&client_secret=%@&query=%@&v=%@", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, FOURSQUARE_ID, FOURSQUARE_SECRET, [self.srchString urlEncode], @"20130301"]]];
         debugLog(@"%@", req);
         [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
             NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:data];

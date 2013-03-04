@@ -377,6 +377,10 @@
 //       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        
+       CLLocation * loc = [self.mpView.userLocation.location copy];
+       CLLocation * loc1 = [self.route.waypoints objectAtIndex:self.route.lastVisitedWaypointIndex];
+       CLLocation * loc2 = [self.route.waypoints objectAtIndex:self.route.lastVisitedWaypointIndex + 1];
+       self.mpView.correctedCourse = headingInRadians(loc1.coordinate.latitude, loc1.coordinate.longitude, loc2.coordinate.latitude, loc2.coordinate.longitude);
 //       [self.mpView correctLocation:[[CLLocation alloc] initWithLatitude:self.route.lastCorrectedLocation.latitude longitude:self.route.lastCorrectedLocation.longitude]];
 //       [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];

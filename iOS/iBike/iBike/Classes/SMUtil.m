@@ -201,6 +201,36 @@ CLLocationCoordinate2D closestCoordinate(CLLocationCoordinate2D C, CLLocationCoo
     return CLLocationCoordinate2DMake(A.latitude + (B.latitude - A.latitude) * x / dAB, A.longitude + (B.longitude - A.longitude) * x / dAB);
 }
 
+
+/*-------------------------------------------------------------------------
+ * Given two lat/lon points on earth, calculates the heading
+ * from lat1/lon1 to lat2/lon2.
+ *
+ * lat/lon params in radians
+ * result in radians
+ *-------------------------------------------------------------------------*/
+double headingInRadians(double lat1, double lon1, double lat2, double lon2)
+{
+    //-------------------------------------------------------------------------
+    // Algorithm found at http://www.movable-type.co.uk/scripts/latlong.html
+    //
+    // Spherical Law of Cosines
+    //
+    // Formula: θ = atan2( sin(Δlong) * cos(lat2),
+    // cos(lat1) * sin(lat2) − sin(lat1) * cos(lat2) * cos(Δlong) )
+    // JavaScript:
+    //
+    // var y = Math.sin(dLon) * Math.cos(lat2);
+    // var x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+    // var brng = Math.atan2(y, x).toDeg();
+    //-------------------------------------------------------------------------
+    double dLon = lon2 - lon1;
+    double y = sin(dLon) * cos(lat2);
+    double x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+    
+    return atan2(y, x);
+}
+
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float meters) {
     return meters > 1000.0f ? [NSString stringWithFormat:@"%.1f %@", meters/1000.0f, DISTANCE_KM_SHORT] : [NSString stringWithFormat:@"%.0f %@", meters, DISTANCE_M_SHORT];

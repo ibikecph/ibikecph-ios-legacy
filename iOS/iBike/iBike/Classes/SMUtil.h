@@ -39,4 +39,6 @@ BOOL sameCoordinates(CLLocation *loc1, CLLocation *loc2);
 + (NSArray*)getSearchHistory;
 + (BOOL)saveToSearchHistory:(NSDictionary*)dict;
 
+double headingInRadians(double lat1, double lon1, double lat2, double lon2);
+
 @end
