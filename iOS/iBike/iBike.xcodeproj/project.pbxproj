@@ -17,12 +17,10 @@
 		4B0E9C6C16AFE14900D6D9C2 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E9C5F16AFE14900D6D9C2 /* SBJsonStreamWriterAccumulator.m */; };
 		4B0E9C6D16AFE14900D6D9C2 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E9C6116AFE14900D6D9C2 /* SBJsonStreamWriterState.m */; };
 		4B0E9C6E16AFE14900D6D9C2 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E9C6316AFE14900D6D9C2 /* SBJsonWriter.m */; };
-		4B27061316B6805300FF9DD6 /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B27061216B6805300FF9DD6 /* SMTurnInstruction.m */; };
 		4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7DC93316BA847C00198F72 /* SMUtil.m */; };
 		4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */; };
 		4B97307416CB93D500D07314 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B97307216CB93D500D07314 /* libGoogleAnalytics_debug.a */; };
 		4B97307516CB93D500D07314 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B97307316CB93D500D07314 /* libGoogleAnalytics.a */; };
-		4B9EF33D16B6BA6700DE5787 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9EF33C16B6BA6700DE5787 /* SMRoute.m */; };
 		4BA5295E16D52634000CA4A2 /* SMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5294F16D522ED000CA4A2 /* SMAnnotation.m */; };
 		4BA5295F16D52659000CA4A2 /* SMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295116D522ED000CA4A2 /* SMGeocoder.m */; };
 		4BA5296016D52659000CA4A2 /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295316D522ED000CA4A2 /* SMNearbyPlaces.m */; };
@@ -37,7 +35,6 @@
 		4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915C816AFF798004E04A4 /* CoreLocation.framework */; };
 		4BA915CB16AFF7E4004E04A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */; };
 		4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CC16AFF809004E04A4 /* QuartzCore.framework */; };
-		4BA915E316B00672004E04A4 /* SMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA915C716AFF14C004E04A4 /* SMLocationManager.m */; };
 		4BA915E916B0097C004E04A4 /* kopenhagen_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */; };
 		4BA9161C16B14629004E04A4 /* LoadingTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9161816B14629004E04A4 /* LoadingTile.png */; };
 		4BA9161D16B14629004E04A4 /* LoadingTileZoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9161916B14629004E04A4 /* LoadingTileZoom.png */; };
@@ -178,7 +175,6 @@
 		4C6C085316C3EDF4002EA499 /* emailButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C085116C3EDF4002EA499 /* emailButton.png */; };
 		4C6C085416C3EDF4002EA499 /* emailButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C085216C3EDF4002EA499 /* emailButton@2x.png */; };
 		4C6C47EF16CD3BF500E57F59 /* DanishStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C47ED16CD3BF500E57F59 /* DanishStoryboard_iPhone.storyboard */; };
-		4C6C47F616CD3C5200E57F59 /* SMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA915C716AFF14C004E04A4 /* SMLocationManager.m */; };
 		4C6C47F716CD3C5200E57F59 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73D21A16AEDCDA00AED42A /* main.m */; };
 		4C6C47F816CD3C5200E57F59 /* SMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73D21E16AEDCDA00AED42A /* SMAppDelegate.m */; };
 		4C6C47F916CD3C5200E57F59 /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73D22D16AEDCDA00AED42A /* SMViewController.m */; };
@@ -196,9 +192,7 @@
 		4C6C480516CD3C5200E57F59 /* SMContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A1F816B2900600050349 /* SMContactsCell.m */; };
 		4C6C480616CD3C5200E57F59 /* SMContactsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A20E16B29BAD00050349 /* SMContactsHeader.m */; };
 		4C6C480716CD3C5200E57F59 /* SMFindAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A27416B2D23D00050349 /* SMFindAddressController.m */; };
-		4C6C480816CD3C5200E57F59 /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B27061216B6805300FF9DD6 /* SMTurnInstruction.m */; };
 		4C6C480916CD3C5200E57F59 /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
-		4C6C480A16CD3C5200E57F59 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9EF33C16B6BA6700DE5787 /* SMRoute.m */; };
 		4C6C480B16CD3C5200E57F59 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C6C480C16CD3C5200E57F59 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C6C480D16CD3C5200E57F59 /* SMEventsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */; };
@@ -472,8 +466,6 @@
 		4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8116CB8E7B0062360C /* CoreData.framework */; };
 		4C77EF8416CB8E7B0062360C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */; };
 		4C77EF8716CBA6220062360C /* calloutBubbleMiddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF8616CBA6220062360C /* calloutBubbleMiddle@2x.png */; };
-		4C8546BA16E648E8004E8902 /* SMGPSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546B916E648E8004E8902 /* SMGPSUtil.m */; };
-		4C8546BB16E648E8004E8902 /* SMGPSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546B916E648E8004E8902 /* SMGPSUtil.m */; };
 		4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C8BB08E16B7D21D00F1ADF2 /* eventFBIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB08416B7D21D00F1ADF2 /* eventFBIcon.png */; };
@@ -578,16 +570,12 @@
 		4B0E9C6116AFE14900D6D9C2 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
 		4B0E9C6216AFE14900D6D9C2 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		4B0E9C6316AFE14900D6D9C2 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		4B27061116B6805300FF9DD6 /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
-		4B27061216B6805300FF9DD6 /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
 		4B7DC93216BA847C00198F72 /* SMUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUtil.h; sourceTree = "<group>"; };
 		4B7DC93316BA847C00198F72 /* SMUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUtil.m; sourceTree = "<group>"; };
 		4B7DC93816BBD73A00198F72 /* SMDirectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionCell.h; sourceTree = "<group>"; };
 		4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionCell.m; sourceTree = "<group>"; };
 		4B97307216CB93D500D07314 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		4B97307316CB93D500D07314 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		4B9EF33B16B6BA6700DE5787 /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
-		4B9EF33C16B6BA6700DE5787 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
 		4BA5294E16D522ED000CA4A2 /* SMAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMAnnotation.h; sourceTree = "<group>"; };
 		4BA5294F16D522ED000CA4A2 /* SMAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMAnnotation.m; sourceTree = "<group>"; };
 		4BA5295016D522ED000CA4A2 /* SMGeocoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMGeocoder.h; sourceTree = "<group>"; };
@@ -605,8 +593,6 @@
 		4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCustomCheckbox.h; sourceTree = "<group>"; };
 		4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMCustomCheckbox.m; sourceTree = "<group>"; };
 		4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = kopenhagen2_withtimestamps.gpx; sourceTree = "<group>"; };
-		4BA915C616AFF14C004E04A4 /* SMLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
-		4BA915C716AFF14C004E04A4 /* SMLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLocationManager.m; sourceTree = "<group>"; };
 		4BA915C816AFF798004E04A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		4BA915CC16AFF809004E04A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -814,8 +800,6 @@
 		4C77EF8116CB8E7B0062360C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4C77EF8616CBA6220062360C /* calloutBubbleMiddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calloutBubbleMiddle@2x.png"; sourceTree = "<group>"; };
-		4C8546B816E648E8004E8902 /* SMGPSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGPSUtil.h; sourceTree = "<group>"; };
-		4C8546B916E648E8004E8902 /* SMGPSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSUtil.m; sourceTree = "<group>"; };
 		4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsCalendarCell.h; sourceTree = "<group>"; };
 		4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsCalendarCell.m; sourceTree = "<group>"; };
 		4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsFacebookCell.h; sourceTree = "<group>"; };
@@ -1394,21 +1378,6 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		4C8546BD16E64B3A004E8902 /* Routing Engine */ = {
-			isa = PBXGroup;
-			children = (
-				4C8546B816E648E8004E8902 /* SMGPSUtil.h */,
-				4C8546B916E648E8004E8902 /* SMGPSUtil.m */,
-				4BA915C616AFF14C004E04A4 /* SMLocationManager.h */,
-				4BA915C716AFF14C004E04A4 /* SMLocationManager.m */,
-				4B9EF33B16B6BA6700DE5787 /* SMRoute.h */,
-				4B9EF33C16B6BA6700DE5787 /* SMRoute.m */,
-				4B27061116B6805300FF9DD6 /* SMTurnInstruction.h */,
-				4B27061216B6805300FF9DD6 /* SMTurnInstruction.m */,
-			);
-			name = "Routing Engine";
-			sourceTree = "<group>";
-		};
 		4C90468816B91140004BA3DD /* Contacts & Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -1423,7 +1392,6 @@
 		4C90468916B91154004BA3DD /* Turn by  Turn & Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				4C8546BD16E64B3A004E8902 /* Routing Engine */,
 				4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */,
 				4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */,
 				4C463A9A16BC18A600090D62 /* SMRouteFinishedController.h */,
@@ -1969,7 +1937,6 @@
 				4BA5296216D52689000CA4A2 /* SMAnnotation.m in Sources */,
 				4BA5296316D52689000CA4A2 /* SMGeocoder.m in Sources */,
 				4BA5296416D52689000CA4A2 /* SMNearbyPlaces.m in Sources */,
-				4C6C47F616CD3C5200E57F59 /* SMLocationManager.m in Sources */,
 				4C6C47F716CD3C5200E57F59 /* main.m in Sources */,
 				4C6C47F816CD3C5200E57F59 /* SMAppDelegate.m in Sources */,
 				4C6C47F916CD3C5200E57F59 /* SMViewController.m in Sources */,
@@ -1987,9 +1954,7 @@
 				4C6C480516CD3C5200E57F59 /* SMContactsCell.m in Sources */,
 				4C6C480616CD3C5200E57F59 /* SMContactsHeader.m in Sources */,
 				4C6C480716CD3C5200E57F59 /* SMFindAddressController.m in Sources */,
-				4C6C480816CD3C5200E57F59 /* SMTurnInstruction.m in Sources */,
 				4C6C480916CD3C5200E57F59 /* SMEvents.m in Sources */,
-				4C6C480A16CD3C5200E57F59 /* SMRoute.m in Sources */,
 				4C6C480B16CD3C5200E57F59 /* SMEventsCalendarCell.m in Sources */,
 				4C6C480C16CD3C5200E57F59 /* SMEventsFacebookCell.m in Sources */,
 				4C6C480D16CD3C5200E57F59 /* SMEventsHeader.m in Sources */,
@@ -2014,7 +1979,6 @@
 				4C044D4416DB7B0300C0303C /* NSString+URLEncode.m in Sources */,
 				4C044D4616DB7B0800C0303C /* AsyncImageView.m in Sources */,
 				4C09001416DE446600DCAB64 /* SMSwipableView.m in Sources */,
-				4C8546BB16E648E8004E8902 /* SMGPSUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2027,7 +1991,6 @@
 				4BA5296016D52659000CA4A2 /* SMNearbyPlaces.m in Sources */,
 				4BA5296116D52659000CA4A2 /* SMTranslation.m in Sources */,
 				4BA5295E16D52634000CA4A2 /* SMAnnotation.m in Sources */,
-				4BA915E316B00672004E04A4 /* SMLocationManager.m in Sources */,
 				4C73D21B16AEDCDA00AED42A /* main.m in Sources */,
 				4C73D21F16AEDCDA00AED42A /* SMAppDelegate.m in Sources */,
 				4C73D22E16AEDCDA00AED42A /* SMViewController.m in Sources */,
@@ -2045,9 +2008,7 @@
 				4C73A1FA16B2900600050349 /* SMContactsCell.m in Sources */,
 				4C73A21016B29BAD00050349 /* SMContactsHeader.m in Sources */,
 				4C73A27516B2D23D00050349 /* SMFindAddressController.m in Sources */,
-				4B27061316B6805300FF9DD6 /* SMTurnInstruction.m in Sources */,
 				4CF7E28B16B68D170082078E /* SMEvents.m in Sources */,
-				4B9EF33D16B6BA6700DE5787 /* SMRoute.m in Sources */,
 				4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */,
 				4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */,
 				4C8BB09B16B7D2BC00F1ADF2 /* SMEventsHeader.m in Sources */,
@@ -2072,7 +2033,6 @@
 				4C044D4316DB7B0200C0303C /* NSString+URLEncode.m in Sources */,
 				4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */,
 				4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */,
-				4C8546BA16E648E8004E8902 /* SMGPSUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
