@@ -8,8 +8,8 @@
 
 #import "SMLocationManager.h"
 #import "SMRoute.h"
+#import "SMGPSUtil.h"
 #import "SMUtil.h"
-
 #import "SBJson.h"
 
 #define MAX_DISTANCE_FROM_PATH 20 // in meters
@@ -92,7 +92,7 @@
         debugLog(@"Location B: %@", b);
         CLLocationCoordinate2D coord = closestCoordinate(loc.coordinate, a.coordinate, b.coordinate);
         
-        self.lastCorrectedHeading = [SMUtil bearingBetweenStartLocation:a andEndLocation:[[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude]];
+        self.lastCorrectedHeading = [SMGPSUtil bearingBetweenStartLocation:a andEndLocation:[[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude]];
         debugLog(@"Heading: %f", self.lastCorrectedHeading);
         self.lastCorrectedLocation = coord;
         debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);
@@ -148,15 +148,6 @@
 
 - (double)getCorrectedHeading {
     return self.lastCorrectedHeading;
-    
-    CLLocation * loc1 = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex];
-    CLLocation * loc2 = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex + 1];
-    
-//    return [SMUtil getHeadingForDirectionFromCoordinate:CLLocationCoordinate2DMake(loc1.coordinate.latitude, loc1.coordinate.longitude) toCoordinate:CLLocationCoordinate2DMake(loc2.coordinate.latitude, loc2.coordinate.longitude)];
-//    return headingInRadians(loc1.coordinate.latitude, loc1.coordinate.longitude, loc2.coordinate.latitude, loc2.coordinate.longitude);
-    
-    float f = [SMUtil bearingBetweenStartLocation:loc1 andEndLocation:loc2];
-    return f;
 }
 
 - (void) recalculateRoute:(CLLocation *)loc {
