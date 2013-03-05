@@ -1576,7 +1576,7 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="-66" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Ny rute" image="btnGray.png">
+                                        <state key="normal" image="btnGray.png">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>

@@ -24,11 +24,13 @@
 @property (nonatomic, strong) NSArray * autocompleteArr;
 
 @property (nonatomic, strong) NSString * poiToName;
+@property (nonatomic, strong) NSString * poiToAddress;
 @property (nonatomic, strong) CLLocation * poiToLocation;
 @property (nonatomic, strong) NSString * poiFromName;
+@property (nonatomic, strong) NSString * poiFromAddress;
 @property (nonatomic, strong) CLLocation * poiFromLocation;
-@property (nonatomic, weak) CLLocation * poiCurrentLocation;
-@property (nonatomic, weak) NSString * poiCurrentName;
+//@property (nonatomic, weak) CLLocation * poiCurrentLocation;
+//@property (nonatomic, weak) NSString * poiCurrentName;
 
 
 @end
@@ -80,8 +82,8 @@
 
     [routeTo becomeFirstResponder];
     
-    self.poiCurrentLocation = self.poiToLocation;
-    self.poiCurrentName = self.poiToName;
+//    self.poiCurrentLocation = self.poiToLocation;
+//    self.poiCurrentName = self.poiToName;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -152,14 +154,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary * currentRow = [self.autocompleteArr objectAtIndex:indexPath.row];
-    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [currentRow objectForKey:@"subsource"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+    if ([currentRow objectForKey:@"subsource"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
         if (self.currentTextField == routeFrom) {
             self.poiFromName = [currentRow objectForKey:@"name"];
+            self.poiFromAddress = [currentRow objectForKey:@"address"];
             self.poiFromLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
             self.currentTextField.text = self.poiFromName;
             [routeFrom setTextColor:[UIColor blueColor]];
         } else {
             self.poiToName = [currentRow objectForKey:@"name"];
+            self.poiToAddress = [currentRow objectForKey:@"address"];
             self.poiToLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
             self.currentTextField.text = self.poiToName;
             [routeTo setTextColor:[UIColor blueColor]];
@@ -378,13 +382,13 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.currentTextField = textField;
-    if (textField == routeFrom) {
-        self.poiCurrentLocation = self.poiFromLocation;
-        self.poiCurrentName = self.poiFromName;
-    } else {
-        self.poiCurrentLocation = self.poiToLocation;
-        self.poiCurrentName = self.poiToName;
-    }
+//    if (textField == routeFrom) {
+//        self.poiCurrentLocation = self.poiFromLocation;
+//        self.poiCurrentName = self.poiFromName;
+//    } else {
+//        self.poiCurrentLocation = self.poiToLocation;
+//        self.poiCurrentName = self.poiToName;
+//    }
     [self.autocomp getAutocomplete:textField.text];
     return YES;
 }
@@ -706,13 +710,29 @@
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
         } else {
-            [SMUtil saveToSearchHistory:@{
-             @"name" : [NSString stringWithFormat:@"%@ - %@", routeFrom.text, routeTo.text],
-             @"address" : routeTo.text,
-             @"startDate" : [NSDate date],
-             @"endDate" : [NSDate date],
-             @"source" : @"searchHistory"
-             }];
+            if (self.poiToName) {
+                [SMUtil saveToSearchHistory:@{
+                 @"name" : self.poiToName,
+                 @"address" : self.poiToAddress,
+                 @"startDate" : [NSDate date],
+                 @"endDate" : [NSDate date],
+                 @"source" : @"searchHistory",
+                 @"subsource" : @"foursquare",
+                 @"lat" : [NSNumber numberWithDouble:self.poiToLocation.coordinate.latitude],
+                 @"long" : [NSNumber numberWithDouble:self.poiToLocation.coordinate.longitude]
+                 }];
+            } else {
+                [SMUtil saveToSearchHistory:@{
+                 @"name" : [NSString stringWithFormat:@"%@ - %@", routeFrom.text, routeTo.text],
+                 @"address" : routeTo.text,
+                 @"startDate" : [NSDate date],
+                 @"endDate" : [NSDate date],
+                 @"source" : @"searchHistory",
+                 @"subsource" : @"",
+                 @"lat" : @"",
+                 @"long" : @""
+                 }];
+            }
             [self.delegate findRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate fromAddress:routeFrom.text toAddress:routeTo.text withJSON:jsonRoot];
             [self dismissModalViewControllerAnimated:YES];
         }

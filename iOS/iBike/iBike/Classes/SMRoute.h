@@ -50,6 +50,8 @@
 @property NSString * destinationHint;
 
 @property CLLocationCoordinate2D lastCorrectedLocation;
+@property double lastCorrectedHeading;
+
 
 @property NSInteger lastVisitedWaypointIndex;
 
@@ -69,5 +71,7 @@
 - (id)initWithRouteStart:(CLLocationCoordinate2D)start andEnd:(CLLocationCoordinate2D)end andDelegate:(id<SMRouteDelegate>)dlg;
 - (id)initWithRouteStart:(CLLocationCoordinate2D)start andEnd:(CLLocationCoordinate2D)end andDelegate:(id<SMRouteDelegate>)dlg andJSON:(NSDictionary*) routeJSON;
 - (void) recalculateRoute:(CLLocation *)loc;
+
+- (double)getCorrectedHeading;
 
 @end

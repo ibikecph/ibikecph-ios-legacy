@@ -77,12 +77,14 @@
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
     [self.mpView setEnableBouncing:TRUE];
+    [self.mpView setRoutingDelegate:nil];
     
 //    [self.mpView zoomByFactor:16 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:YES];
     [self.mpView setZoom:DEFAULT_MAP_ZOOM];
 
     // Start tracking location only when user starts it through UI
     if (self.startLocation && self.endLocation) {
+        [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
 
@@ -97,6 +99,7 @@
     
     [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
     [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -165,6 +168,8 @@
         return;
     }
     
+    [self.mpView setRoutingDelegate:self];
+    
     [self startRoute];
     
 //    [self updateTurn:NO];
@@ -197,10 +202,7 @@
     
 
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(from.latitude,from.longitude)];
-//    [self showDirections:1];
-//
-//    self.currentlyRouting = YES;
-//    [UIApplication sharedApplication].idleTimerDisabled = YES;
+
 }
 
 - (void) renderMinimizedDirectionsViewFromInstruction {
@@ -377,12 +379,6 @@
 //       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        
-       CLLocation * loc = [self.mpView.userLocation.location copy];
-       CLLocation * loc1 = [self.route.waypoints objectAtIndex:self.route.lastVisitedWaypointIndex];
-       CLLocation * loc2 = [self.route.waypoints objectAtIndex:self.route.lastVisitedWaypointIndex + 1];
-       self.mpView.correctedCourse = headingInRadians(loc1.coordinate.latitude, loc1.coordinate.longitude, loc2.coordinate.latitude, loc2.coordinate.longitude);
-//       [self.mpView correctLocation:[[CLLocation alloc] initWithLatitude:self.route.lastCorrectedLocation.latitude longitude:self.route.lastCorrectedLocation.longitude]];
-//       [self renderMinimizedDirectionsViewFromInstruction];
        [self showDirections:self.directionsShownCount];
        
        [self reloadFirstSwipableView];
@@ -538,6 +534,9 @@
     }];
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    
+    [self.mpView setRoutingDelegate:nil];
+
 }
 
 - (void) updateRoute {
@@ -545,7 +544,6 @@
     for (RMAnnotation *annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"path"]) {
             [self.mpView removeAnnotation:annotation];
-            break;
         }
     }
     [self addRouteAnnotation:self.route];
@@ -949,6 +947,7 @@
         
         
     } else if (sender.state == UIGestureRecognizerStateChanged) {
+        [swipableView setHidden:YES];
         [self repositionInstructionsView:MAX([sender locationInView:self.view].y, self.mpView.frame.origin.y)];
     } else if (sender.state == UIGestureRecognizerStateBegan) {
         [swipableView setHidden:YES];
@@ -1085,6 +1084,16 @@
             [tblDirections setAlpha:0.0f];
         }
     }
+}
+
+#pragma mark - routing delegate
+
+- (double)getCorrectedHeading {
+    return [self.route getCorrectedHeading];
+}
+
+- (CLLocation *)getCorrectedPosition {
+    return [[CLLocation alloc] initWithLatitude:self.route.lastCorrectedLocation.latitude longitude:self.route.lastCorrectedLocation.longitude];
 }
 
 @end

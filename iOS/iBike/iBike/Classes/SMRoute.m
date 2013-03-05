@@ -75,24 +75,27 @@
         if (d <= min) {
             min = d;
             self.lastVisitedWaypointIndex = i;
+            
         }
-
-//        if (min < 2) {
-//            // Close enough :)
-//            break;
-//        }
+        if (min < 2) {
+            // Close enough :)
+            break;
+        }
     }
-//    return TRUE;
-//    debugLog(@"self.lastVisitedWaypointIndex = %d. Distance from route segment: %g", self.lastVisitedWaypointIndex, min);
     
     if (min <= maxDistance) {
         debugLog(@"=============================");
         debugLog(@"Last visited waypoint index: %d", self.lastVisitedWaypointIndex);
         CLLocation *a = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex];
         CLLocation *b = [self.waypoints objectAtIndex:(self.lastVisitedWaypointIndex + 1)];
+        debugLog(@"Location A: %@", a);
+        debugLog(@"Location B: %@", b);
         CLLocationCoordinate2D coord = closestCoordinate(loc.coordinate, a.coordinate, b.coordinate);
+        
+        self.lastCorrectedHeading = [SMUtil bearingBetweenStartLocation:a andEndLocation:b];
+        debugLog(@"Heading: %f", self.lastCorrectedHeading);
         self.lastCorrectedLocation = coord;
-        debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);        
+        debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);
         debugLog(@"=============================");
     }
     
@@ -126,13 +129,9 @@
                 }
                 return FALSE;
             }
-
-//            double d = [self distanceFromRouteSegment:loc from:prevTurn to:nextTurn];
-//            if (d <= maxDistance) {// && (loc.course < 0.0 || fabs(loc.course - lastTurn.azimuth) <= 20.0)) {
             if (![self isTooFarFromRouteSegment:loc from:prevTurn to:nextTurn maxDistance:maxDistance]) {
-//                debugLog(@"distance from path: %g ok", d);
-                if (i > 0)
-                    debugLog(@"correcting segment to %@", nextTurn.wayName);
+//                if (i > 0)
+//                    debugLog(@"correcting segment to %@", nextTurn.wayName);
                 for (int k = 0; k < i; k++)
                     [self updateSegment];
                 if (approachingTurn)
@@ -145,6 +144,19 @@
         return YES;
     }
     return NO;
+}
+
+- (double)getCorrectedHeading {
+    return self.lastCorrectedHeading;
+    
+    CLLocation * loc1 = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex];
+    CLLocation * loc2 = [self.waypoints objectAtIndex:self.lastVisitedWaypointIndex + 1];
+    
+//    return [SMUtil getHeadingForDirectionFromCoordinate:CLLocationCoordinate2DMake(loc1.coordinate.latitude, loc1.coordinate.longitude) toCoordinate:CLLocationCoordinate2DMake(loc2.coordinate.latitude, loc2.coordinate.longitude)];
+//    return headingInRadians(loc1.coordinate.latitude, loc1.coordinate.longitude, loc2.coordinate.latitude, loc2.coordinate.longitude);
+    
+    float f = [SMUtil bearingBetweenStartLocation:loc1 andEndLocation:loc2];
+    return f;
 }
 
 - (void) recalculateRoute:(CLLocation *)loc {

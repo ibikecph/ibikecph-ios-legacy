@@ -1569,7 +1569,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="-66" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Ny rute" image="btnGray.png">
+                                        <state key="normal" image="btnGray.png">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -2084,8 +2084,6 @@
         <class className="SMFindAddressController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="swapFromAndTo:"/>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
@@ -2187,7 +2185,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="BMy-9M-oqz"/>
-        <segue reference="dCm-4o-WFf"/>
         <segue reference="jXb-wj-fAE"/>
+        <segue reference="0Wd-f4-uGc"/>
     </inferredMetricsTieBreakers>
 </document>
