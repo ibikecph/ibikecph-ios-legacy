@@ -502,7 +502,6 @@
 
     CGFloat distance = [self.route calculateDistanceTraveled];
     [finishDistance setText:formatDistance(distance)];
-    
     [finishTime setText:[self.route timePassed]];
 
     

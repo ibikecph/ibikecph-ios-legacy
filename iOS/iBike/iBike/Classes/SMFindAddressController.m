@@ -711,7 +711,7 @@
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
         } else {
-            if (self.poiToName) {
+            if ([self.poiToName isEqualToString:@""] == NO) {
                 [SMUtil saveToSearchHistory:@{
                  @"name" : self.poiToName,
                  @"address" : self.poiToAddress,

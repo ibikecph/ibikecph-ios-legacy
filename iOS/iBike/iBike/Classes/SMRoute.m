@@ -237,6 +237,7 @@
 - (void) visitLocation:(CLLocation *)loc {
     
     @synchronized(self.visitedLocations) {
+        [self updateDistances:loc];
         if (!self.visitedLocations)
             self.visitedLocations = [NSMutableArray array];
         [self.visitedLocations addObject:@{
@@ -244,6 +245,9 @@
          @"date" : [NSDate date]
          }];
     }
+
+    if (self.turnInstructions.count <= 0)
+        return;
     
     @synchronized(self.recalcMutex) {
         if (self.recalculationInProgress) {
@@ -251,10 +255,6 @@
         }
     }
 
-    if (self.turnInstructions.count <= 0)
-        return;
-    
-    [self updateDistances:loc];
 
     // Check if we are finishing:
     if (self.turnInstructions.count == 1) {
@@ -463,13 +463,16 @@ NSMutableArray* decodePolyline (NSString *encodedString) {
 }
 
 - (void)updateDistances:(CLLocation *)loc {
-    if (self.tripDistance < 0.0)
+    if (self.tripDistance < 0.0) {
         self.tripDistance = 0.0;
-    if (self.visitedLocations.count > 0)
+    }
+    if (self.visitedLocations.count > 0) {
         self.tripDistance += [loc distanceFromLocation:[[self.visitedLocations lastObject] objectForKey:@"location"]];
+    }
 
-    if (self.distanceLeft < 0.0)
+    if (self.distanceLeft < 0.0) {
         self.distanceLeft = self.estimatedRouteDistance;
+    }
 
     else if (self.turnInstructions.count > 0) {
         // calculate distance from location to the next turn
