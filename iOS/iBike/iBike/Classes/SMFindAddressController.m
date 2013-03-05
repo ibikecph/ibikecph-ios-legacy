@@ -382,14 +382,11 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     self.currentTextField = textField;
-//    if (textField == routeFrom) {
-//        self.poiCurrentLocation = self.poiFromLocation;
-//        self.poiCurrentName = self.poiFromName;
-//    } else {
-//        self.poiCurrentLocation = self.poiToLocation;
-//        self.poiCurrentName = self.poiToName;
-//    }
-    [self.autocomp getAutocomplete:textField.text];
+    if ([textField.text isEqualToString:@""]) {
+        [self autocompleteEntriesFound:@[] forString:@""];
+    } else {
+        [self.autocomp getAutocomplete:textField.text];        
+    }
     return YES;
 }
 
@@ -526,7 +523,11 @@
         }
     }
     
-    [self.autocomp getAutocomplete:s];
+    if ([s isEqualToString:@""]) {
+        [self autocompleteEntriesFound:@[] forString:@""];
+    } else {
+        [self.autocomp getAutocomplete:s];
+    }
     
     [self refreshStartButton];
         

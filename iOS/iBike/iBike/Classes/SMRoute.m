@@ -92,7 +92,7 @@
         debugLog(@"Location B: %@", b);
         CLLocationCoordinate2D coord = closestCoordinate(loc.coordinate, a.coordinate, b.coordinate);
         
-        self.lastCorrectedHeading = [SMUtil bearingBetweenStartLocation:a andEndLocation:b];
+        self.lastCorrectedHeading = [SMUtil bearingBetweenStartLocation:a andEndLocation:[[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude]];
         debugLog(@"Heading: %f", self.lastCorrectedHeading);
         self.lastCorrectedLocation = coord;
         debugLog(@"Closest point: (%f %f)", coord.latitude, coord.longitude);
