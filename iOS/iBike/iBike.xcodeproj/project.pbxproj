@@ -520,6 +520,8 @@
 		4CB150A016D26CC100943E0C /* checkboxUnchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509916D26CC100943E0C /* checkboxUnchecked.png */; };
 		4CB150A116D26CC100943E0C /* checkboxUnchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509A16D26CC100943E0C /* checkboxUnchecked@2x.png */; };
 		4CB150A216D26CC100943E0C /* checkboxUnchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509A16D26CC100943E0C /* checkboxUnchecked@2x.png */; };
+		4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */; };
+		4CC3889C16E750A200E7C884 /* SMTokenizedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */; };
 		4CD53D5616DFB53A00DB90E4 /* icon_locate_heading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */; };
 		4CD53D5716DFB53A00DB90E4 /* icon_locate_heading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */; };
 		4CD53D5816DFB53A00DB90E4 /* icon_locate_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */; };
@@ -867,6 +869,8 @@
 		4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxChecked@2x.png"; sourceTree = "<group>"; };
 		4CB1509916D26CC100943E0C /* checkboxUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxUnchecked.png; sourceTree = "<group>"; };
 		4CB1509A16D26CC100943E0C /* checkboxUnchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxUnchecked@2x.png"; sourceTree = "<group>"; };
+		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
+		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_heading.png; sourceTree = "<group>"; };
 		4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_heading@2x.png"; sourceTree = "<group>"; };
 		4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_no_tracking.png; sourceTree = "<group>"; };
@@ -993,6 +997,8 @@
 				4B7DC93316BA847C00198F72 /* SMUtil.m */,
 				4C044D3C16DB735B00C0303C /* SMTranslatedViewController.h */,
 				4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */,
+				4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */,
+				4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -2016,6 +2022,7 @@
 				4C8546CA16E64D3B004E8902 /* SMLocationManager.m in Sources */,
 				4C8546CC16E64D3B004E8902 /* SMRoute.m in Sources */,
 				4C8546CE16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
+				4CC3889C16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2074,6 +2081,7 @@
 				4C8546C916E64D3B004E8902 /* SMLocationManager.m in Sources */,
 				4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */,
 				4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
+				4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
