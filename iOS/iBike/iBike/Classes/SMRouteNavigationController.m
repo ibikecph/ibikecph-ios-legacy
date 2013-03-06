@@ -504,9 +504,9 @@
     [finishDistance setText:formatDistance(distance)];
     [finishTime setText:[self.route timePassed]];
 
-    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"refreshPosition" object:nil];
-    
+    /**
+     * save route data
+     */
     [self saveRoute];
     
     self.currentlyRouting = NO;
@@ -532,10 +532,47 @@
         [labelDestination setText:@""];
     }];
     
+    /**
+     * enable screen time out 
+     */
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    
+    /**
+     * remove delegate so we don't correct position and heading any more
+     */
     [self.mpView setRoutingDelegate:nil];
+    
+    /**
+     * show actual route travelled
+     */
+    [self showRouteTravelled];
+}
 
+- (void)showRouteTravelled {
+    for (RMAnnotation *annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"path"]) {
+            [self.mpView removeAnnotation:annotation];
+        }
+    }
+    NSMutableArray * arr = [NSMutableArray arrayWithCapacity:self.route.visitedLocations];
+    for (NSDictionary * d in self.route.visitedLocations) {
+        [arr addObject:[d objectForKey:@"location"]];
+    }
+    
+    CLLocation * loc = nil;
+    if (arr && [arr count] > 0) {
+        loc = [arr objectAtIndex:0];
+    }
+    
+    RMAnnotation *calculatedPathAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:loc.coordinate andTitle:nil];
+    calculatedPathAnnotation.annotationType = @"path";
+    calculatedPathAnnotation.userInfo = @{
+                                          @"linePoints" : [NSArray arrayWithArray:arr],
+                                          @"lineColor" : PATH_COLOR,
+                                          @"fillColor" : [UIColor clearColor],
+                                          @"lineWidth" : [NSNumber numberWithFloat:10.0f],
+                                          };
+    [calculatedPathAnnotation setBoundingBoxFromLocations:[NSArray arrayWithArray:arr]];
+    [self.mpView addAnnotation:calculatedPathAnnotation];
 }
 
 - (void) updateRoute {
