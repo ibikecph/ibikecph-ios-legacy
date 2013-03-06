@@ -1889,24 +1889,16 @@ If you choose to be notified your e-mail address will be sent to us</string>
                                 <color key="textColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="IRJ-BY-Z8H">
+                            <view contentMode="scaleToFill" id="59e-jl-xuz" customClass="SMTokenizedTextField">
                                 <rect key="frame" x="96" y="59" width="210" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QJC-bX-hzQ" id="pCu-02-or8"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="5as-Mf-XHE">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="97v-jF-kVW" customClass="SMTokenizedTextField">
                                 <rect key="frame" x="96" y="99" width="210" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QJC-bX-hzQ" id="oer-cQ-Fe6"/>
-                                </connections>
-                            </textField>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="Wr2-aa-aWS">
                                 <rect key="frame" x="0.0" y="135" width="320" height="413"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1946,8 +1938,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
                         <outlet property="autocompleteFade" destination="Wr2-aa-aWS" id="ocv-kM-16z"/>
                         <outlet property="btnStart" destination="Pww-ZM-Yz3" id="WIc-el-R9v"/>
                         <outlet property="fadeView" destination="rRi-Bg-2uT" id="pvZ-v8-lcV"/>
-                        <outlet property="routeFrom" destination="IRJ-BY-Z8H" id="B1B-Jm-T8f"/>
-                        <outlet property="routeTo" destination="5as-Mf-XHE" id="9FT-4T-V9W"/>
+                        <outlet property="routeFrom" destination="59e-jl-xuz" id="6Z3-dN-LtZ"/>
+                        <outlet property="routeTo" destination="97v-jF-kVW" id="2mF-8O-5D3"/>
                         <outlet property="tblView" destination="eEH-0T-qrR" id="FQ9-7y-cUB"/>
                     </connections>
                 </viewController>
@@ -2098,8 +2090,8 @@ If you choose to be notified your e-mail address will be sent to us</string>
                 <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="routeFrom" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="routeTo" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="routeFrom" candidateClass="SMTokenizedTextField"/>
+                <relationship kind="outlet" name="routeTo" candidateClass="SMTokenizedTextField"/>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -2168,6 +2160,9 @@ If you choose to be notified your e-mail address will be sent to us</string>
         </class>
         <class className="SMSettingsController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
+        </class>
+        <class className="SMTokenizedTextField" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTokenizedTextField.h"/>
         </class>
         <class className="SMTranslatedViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>

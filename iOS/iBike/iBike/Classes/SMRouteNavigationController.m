@@ -385,7 +385,22 @@
        
        [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
        
-       CGFloat percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);
+       CGFloat percent = 0;
+       @try {
+           if ((self.route.distanceLeft + self.route.tripDistance) > 0) {
+               percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);               
+           }
+       }
+       @catch (NSException *exception) {
+           percent = 0;
+       }
+       @finally {
+           
+       }
+       
+       if (self.route) {
+           
+       }
        CGRect frame = progressBar.frame;
        frame.size.width = 306.0f * percent;
        [progressBar setFrame:frame];

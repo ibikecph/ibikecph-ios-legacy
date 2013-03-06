@@ -29,10 +29,8 @@
 @property (nonatomic, strong) NSString * poiFromName;
 @property (nonatomic, strong) NSString * poiFromAddress;
 @property (nonatomic, strong) CLLocation * poiFromLocation;
-//@property (nonatomic, weak) CLLocation * poiCurrentLocation;
-//@property (nonatomic, weak) NSString * poiCurrentName;
 
-
+@property (nonatomic, weak) SMTokenizedTextField * currentTextField;
 @end
 
 @implementation SMFindAddressController
@@ -52,16 +50,22 @@
     self.poiToLocation = nil;
     self.poiFromName = @"";
     self.poiFromLocation = nil;
+    
+    [routeTo setDelegate:self];
+    [routeTo setShouldHideTextField:YES];
+    [routeTo setReturnKeyType:UIReturnKeyRoute];
+    
+    [routeFrom setDelegate:self];
+    [routeFrom setShouldHideTextField:YES];
+    [routeFrom setReturnKeyType:UIReturnKeyNext];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.locationFrom && ([self.locationFrom isEqualToString:@""] == NO)) {
         [routeFrom setText:self.locationFrom];
-        [routeFrom setTextColor:[UIColor blackColor]];
     } else {
-        [routeFrom setText:CURRENT_POSITION_STRING];
-        [routeFrom setTextColor:[UIColor blueColor]];
+        [routeFrom setToken:CURRENT_POSITION_STRING];
     }
     if (self.locationTo && ([self.locationTo isEqualToString:@""] == NO)) {
         [routeTo setText:self.locationTo];
@@ -78,12 +82,7 @@
     } else {
         [btnStart setEnabled:NO];
     }
-    
-
     [routeTo becomeFirstResponder];
-    
-//    self.poiCurrentLocation = self.poiToLocation;
-//    self.poiCurrentName = self.poiToName;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -159,19 +158,14 @@
             self.poiFromName = [currentRow objectForKey:@"name"];
             self.poiFromAddress = [currentRow objectForKey:@"address"];
             self.poiFromLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
-            self.currentTextField.text = self.poiFromName;
-            [routeFrom setTextColor:[UIColor blueColor]];
+            [routeFrom setToken:self.poiFromName];
         } else {
             self.poiToName = [currentRow objectForKey:@"name"];
             self.poiToAddress = [currentRow objectForKey:@"address"];
             self.poiToLocation = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
-            self.currentTextField.text = self.poiToName;
-            [routeTo setTextColor:[UIColor blueColor]];
+            [routeTo setToken:self.poiToName];
         }
-        
         [self refreshStartButton];
-        
-        
     } else {
         self.currentTextField.text = [currentRow objectForKey:@"address"];
         if (([routeTo.text isEqualToString:@""] == NO) && ([routeFrom.text isEqualToString:@""] == NO)) {
@@ -203,9 +197,7 @@
         }
         
         if ([routeFrom.text isEqualToString:CURRENT_POSITION_STRING]) {
-            [routeFrom setTextColor:[UIColor blueColor]];
-        } else {
-            [routeFrom setTextColor:[UIColor blackColor]];
+            [routeFrom setToken:CURRENT_POSITION_STRING];
         }
     }
 }
@@ -229,9 +221,34 @@
 }
 
 - (IBAction)swapFromAndTo:(id)sender {
-    NSString * str = routeFrom.text;
-    routeFrom.text = routeTo.text;
-    routeTo.text = str;
+
+    CLLocation * loc = self.poiFromLocation;
+    self.poiFromLocation = self.poiToLocation;
+    self.poiToLocation = loc;
+    
+    NSString * str = self.poiFromName;
+    self.poiFromName = self.poiToName;
+    self.poiToName = str;
+
+    NSString * strTo = routeFrom.text;
+    NSString * strFrom = routeTo.text;
+    
+    NSMutableArray * tokens = routeFrom.tokens;
+    routeFrom.tokens = routeTo.tokens;
+    routeTo.tokens = tokens;
+    
+    if ([routeFrom.tokens count] > 0) {
+        SMTokenButton * btn = [routeFrom.tokens objectAtIndex:0];
+        [routeFrom setToken:btn.token];
+    } else {
+        [routeFrom setText:strFrom];
+    }
+    if ([routeTo.tokens count] > 0) {
+        SMTokenButton * btn = [routeTo.tokens objectAtIndex:0];
+        [routeTo setToken:btn.token];
+    } else {
+        [routeTo setText:strTo];
+    }
     
     if (self.currentTextField == routeFrom) {
         self.currentTextField = routeTo;
@@ -381,7 +398,7 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    self.currentTextField = textField;
+    self.currentTextField = (SMTokenizedTextField*)textField;
     if ([textField.text isEqualToString:@""]) {
         [self autocompleteEntriesFound:@[] forString:@""];
     } else {
@@ -391,10 +408,10 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == routeFrom) {
+    if ((SMTokenizedTextField*)textField == routeFrom) {
         [routeFrom resignFirstResponder];
         [routeTo becomeFirstResponder];
-    } else if (textField == routeTo) {
+    } else if ((SMTokenizedTextField*)textField == routeTo) {
         [routeTo resignFirstResponder];
         [self findRoute:nil];
     }
@@ -478,50 +495,50 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     [self performSelector:@selector(showFade) withObject:nil afterDelay:0.01f];
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (textField == routeFrom) {
-        if ([s isEqualToString:CURRENT_POSITION_STRING]) {
-            [textField setTextColor:[UIColor blueColor]];
-        } else {
-            [textField setTextColor:[UIColor blackColor]];
-        }
-        
-        if ([textField.text isEqualToString:CURRENT_POSITION_STRING] && s.length < textField.text.length) {
-            textField.text = @"";
-            s = @"";
-        }
-    }
+//    if (textField == routeFrom) {
+//        if ([s isEqualToString:CURRENT_POSITION_STRING]) {
+//            [textField setTextColor:[UIColor blueColor]];
+//        } else {
+//            [textField setTextColor:[UIColor blackColor]];
+//        }
+//        
+//        if ([textField.text isEqualToString:CURRENT_POSITION_STRING] && s.length < textField.text.length) {
+//            textField.text = @"";
+//            s = @"";
+//        }
+//    }
     
-    if (textField == routeTo) {
-        if ([self.poiToName isEqualToString:@""] == NO) {
-            if ([s isEqualToString:self.poiToName]) {
-                [routeTo setTextColor:[UIColor blueColor]];
-            } else {
-                [routeTo setTextColor:[UIColor blackColor]];
-            }
-            
-            if ([routeTo.text isEqualToString:self.poiToName] && s.length < textField.text.length) {
-                routeTo.text = @"";
-                s = @"";
-                self.poiToName = @"";
-                self.poiToLocation = nil;
-            } 
-        }
-    } else {
-        if ([self.poiFromName isEqualToString:@""] == NO) {
-            if ([s isEqualToString:self.poiFromName]) {
-                [routeFrom setTextColor:[UIColor blueColor]];
-            } else {
-                [routeFrom setTextColor:[UIColor blackColor]];
-            }
-            
-            if ([routeFrom.text isEqualToString:self.poiFromName] && s.length < textField.text.length) {
-                routeFrom.text = @"";
-                s = @"";
-                self.poiFromName = @"";
-                self.poiFromLocation = nil;
-            }
-        }
-    }
+//    if (textField == routeTo) {
+//        if ([self.poiToName isEqualToString:@""] == NO) {
+//            if ([s isEqualToString:self.poiToName]) {
+//                [routeTo setTextColor:[UIColor blueColor]];
+//            } else {
+//                [routeTo setTextColor:[UIColor blackColor]];
+//            }
+//            
+//            if ([routeTo.text isEqualToString:self.poiToName] && s.length < textField.text.length) {
+//                routeTo.text = @"";
+//                s = @"";
+//                self.poiToName = @"";
+//                self.poiToLocation = nil;
+//            } 
+//        }
+//    } else {
+//        if ([self.poiFromName isEqualToString:@""] == NO) {
+//            if ([s isEqualToString:self.poiFromName]) {
+//                [routeFrom setTextColor:[UIColor blueColor]];
+//            } else {
+//                [routeFrom setTextColor:[UIColor blackColor]];
+//            }
+//            
+//            if ([routeFrom.text isEqualToString:self.poiFromName] && s.length < textField.text.length) {
+//                routeFrom.text = @"";
+//                s = @"";
+//                self.poiFromName = @"";
+//                self.poiFromLocation = nil;
+//            }
+//        }
+//    }
     
     if ([s isEqualToString:@""]) {
         [self autocompleteEntriesFound:@[] forString:@""];

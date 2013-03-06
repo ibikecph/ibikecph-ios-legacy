@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SMAutocomplete.h"
 #import "SMRequestOSRM.h"
+#import "SMTokenizedTextField.h"
 
 @protocol RouteFinderDelegate <NSObject>
 
@@ -21,8 +22,8 @@
 @interface SMFindAddressController : SMTranslatedViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, SMAutocompleteDelegate, UIScrollViewDelegate, SMRequestOSRMDelegate> {
     
     __weak IBOutlet UITableView *tblView;
-    __weak IBOutlet UITextField *routeFrom;
-    __weak IBOutlet UITextField *routeTo;
+    __weak IBOutlet SMTokenizedTextField *routeFrom;
+    __weak IBOutlet SMTokenizedTextField *routeTo;
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UIButton *btnStart;
     __weak IBOutlet UIView *autocompleteFade;
@@ -34,7 +35,6 @@
 
 @property (nonatomic, strong) CLLocation * startLocation;
 @property (nonatomic, strong) CLLocation * endLocation;
-@property (nonatomic, weak) UITextField * currentTextField;
 
 - (void)loadMatches:(NSArray*)nearby;
 

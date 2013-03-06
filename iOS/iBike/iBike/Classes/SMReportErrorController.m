@@ -228,6 +228,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (currentSelection >= 0) {
+        [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentSelection inSection:0]]).radioTextBox resignFirstResponder];
+        return;
+    }
     if (currentSelection != indexPath.row) {
         currentSelection = indexPath.row;
         [tableView reloadData];
