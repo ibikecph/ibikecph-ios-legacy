@@ -703,13 +703,17 @@
         NSMutableArray * arr = [NSMutableArray array];
         if (self.route) {
             @synchronized(self.route.pastTurnInstructions) {
-                for (SMTurnInstruction * t in self.route.pastTurnInstructions) {
-                    [arr addObject:[t fullDescriptionString]];
+                if (self.route) {
+                    for (SMTurnInstruction * t in self.route.pastTurnInstructions) {
+                        [arr addObject:[t fullDescriptionString]];
+                    }                    
                 }
             }
             @synchronized(self.route.turnInstructions) {
-                for (SMTurnInstruction * t in self.route.turnInstructions) {
-                    [arr addObject:[t fullDescriptionString]];
+                if (self.route) {
+                    for (SMTurnInstruction * t in self.route.turnInstructions) {
+                        [arr addObject:[t fullDescriptionString]];
+                    }
                 }
             }
         }
@@ -839,8 +843,8 @@
             self.currentlyRouting = NO;
             [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
             
-            [labelDistanceLeft setText:@"--"];
-            [labelTimeLeft setText:@"--"];
+            [labelDistanceLeft setText:@""];
+            [labelTimeLeft setText:@""];
             [labelDestination setText:@""];
             
             CGRect frame = progressBar.frame;
