@@ -9,6 +9,7 @@
   <li><a href="https://github.com/stig/json-framework">SBJson</a></li>
   <li><a href="https://github.com/downloads/facebook/facebook-ios-sdk/FacebookSDK-3.1.1.pkg">Facebook SDK</a></li>
   <li><a href="http://dl.google.com/dl/gaformobileapps/GoogleAnalyticsiOS.zip">Google Analytics SDK</a></li>
+  <li><a href="https://github.com/danielamitay/DAKeyboardControl">DAKeyboardControl</a></li>
 </ul>
 
 <h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Build</b></h2>
@@ -17,6 +18,7 @@
 <p><b>SBJson:</b> copy src/main/objc/* into iOS/iBike/iBike/Libs/SBJson/</p>
 <p><b>Facebook SDK:</b>  install Facebook SDK and then copy ~/Documents/FacebookSDK/ into iOS/iBike/iBike/Libs/</p>
 <p><b>Google Analytics:</b>  copy Library/* into iOS/iBike/iBike/Libs/GA\ v2.0b4/</p>
+<p><b>DAKeyboardControl:</b> copy or link files into main project</p>
 
 </body>
 </html>
