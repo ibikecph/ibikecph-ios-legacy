@@ -9,6 +9,7 @@
 #import "SMReportErrorController.h"
 #import "SMRadioCheckedCell.h"
 #import "SMRadioUncheckedCell.h"
+#import "DAKeyboardControl.h"
 
 @interface SMReportErrorController ()
 @property (nonatomic, strong) NSString * reportedSegment;
@@ -27,6 +28,13 @@
     self.reportedSegment = @"";
     self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_one_way"), translateString(@"report_road_closed"), translateString(@"report_illegal_turn"), translateString(@"report_other")];
     currentSelection = -1;
+    
+    UITableView * tableView = tblView;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        CGRect tableViewFrame = tableView.frame;
+        tableViewFrame.size.height = keyboardFrameInView.origin.y;
+        tableView.frame = tableViewFrame;
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -209,14 +217,14 @@
         [cell.radioTextBox setText:@""];
         [cell.radioTextBox setDelegate:self];
         
-        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-        numberToolbar.barStyle = UIBarStyleBlackTranslucent;
-        numberToolbar.items = [NSArray arrayWithObjects:
-                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                               [[UIBarButtonItem alloc]initWithTitle:translateString(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
-                               nil];
-        [numberToolbar sizeToFit];
-        cell.radioTextBox.inputAccessoryView = numberToolbar;
+//        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+//        numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+//        numberToolbar.items = [NSArray arrayWithObjects:
+//                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+//                               [[UIBarButtonItem alloc]initWithTitle:translateString(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
+//                               nil];
+//        [numberToolbar sizeToFit];
+//        cell.radioTextBox.inputAccessoryView = numberToolbar;
         return cell;
     } else {
         NSString * identifier = @"reportRadioUnchecked";

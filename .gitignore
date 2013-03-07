@@ -38,3 +38,5 @@ iOS/iBike/iBike/Libs/SBJson
 iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
 
 iOS/iBike/iBike/Classes/RoutingEngine
+
+iOS/iBike/iBike/Libs/DAKeyboardControl

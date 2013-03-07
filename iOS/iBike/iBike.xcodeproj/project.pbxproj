@@ -128,6 +128,8 @@
 		4C044D6016DBA2AA00C0303C /* direction_small_bike.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5916DBA2AA00C0303C /* direction_small_bike.png */; };
 		4C044D6116DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */; };
 		4C044D6216DBA2AA00C0303C /* direction_small_bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */; };
+		4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */; };
+		4C06BA6616E88B60001B7312 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */; };
 		4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09001216DE446600DCAB64 /* SMSwipableView.m */; };
 		4C09001416DE446600DCAB64 /* SMSwipableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09001216DE446600DCAB64 /* SMSwipableView.m */; };
 		4C09001716DE448300DCAB64 /* SMSwipableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C09001616DE448300DCAB64 /* SMSwipableView.xib */; };
@@ -694,6 +696,8 @@
 		4C044D5816DBA2AA00C0303C /* direction_large_walk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direction_large_walk@2x.png"; sourceTree = "<group>"; };
 		4C044D5916DBA2AA00C0303C /* direction_small_bike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction_small_bike.png; sourceTree = "<group>"; };
 		4C044D5A16DBA2AA00C0303C /* direction_small_bike@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "direction_small_bike@2x.png"; sourceTree = "<group>"; };
+		4C06BA6316E88B60001B7312 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4C09001116DE446600DCAB64 /* SMSwipableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwipableView.h; sourceTree = "<group>"; };
 		4C09001216DE446600DCAB64 /* SMSwipableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwipableView.m; sourceTree = "<group>"; };
 		4C09001616DE448300DCAB64 /* SMSwipableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSwipableView.xib; sourceTree = "<group>"; };
@@ -1117,6 +1121,16 @@
 			path = direction_icons;
 			sourceTree = "<group>";
 		};
+		4C06BA6216E88B60001B7312 /* DAKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				4C06BA6316E88B60001B7312 /* DAKeyboardControl.h */,
+				4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */,
+			);
+			name = DAKeyboardControl;
+			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
+			sourceTree = "<group>";
+		};
 		4C6C48F616CD3FE600E57F59 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1336,6 +1350,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C06BA6216E88B60001B7312 /* DAKeyboardControl */,
 				4C77EF7216CB860E0062360C /* GA v2.0b4 */,
 				4B0E9C4D16AFE14900D6D9C2 /* SBJson */,
 			);
@@ -2047,6 +2062,7 @@
 				4C8546CC16E64D3B004E8902 /* SMRoute.m in Sources */,
 				4C8546CE16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
 				4CC3889C16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
+				4C06BA6616E88B60001B7312 /* DAKeyboardControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2106,6 +2122,7 @@
 				4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */,
 				4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
 				4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
+				4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
