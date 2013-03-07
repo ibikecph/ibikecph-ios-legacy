@@ -656,16 +656,22 @@
 
 - (void)trackingOn {
     debugLog(@"trackingOn() btn state = 0x%0x, prev btn state = 0x%0x", buttonTrackUser.gpsTrackState, buttonTrackUser.prevGpsTrackState);
-//    if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing ||
-//        (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing && buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowingWithHeading)) {
-        // next state is follow with heading
+    if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing) {
+        if (buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowing) {
+            [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+            [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowing];
+        } else {
+            [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+            [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowingWithHeading];
+        }
+    } else if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing) {
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
         [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowingWithHeading];
-//    } else {
-//        // next state is follow
-//        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-//        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowing];
-//    }
+    } else {
+        // next state is follow
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+        [buttonTrackUser newGpsTrackState: SMGPSTrackButtonStateFollowing];
+    }
 }
 
 -(IBAction)trackUser:(id)sender {

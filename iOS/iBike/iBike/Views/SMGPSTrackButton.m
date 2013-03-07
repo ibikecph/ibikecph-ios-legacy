@@ -24,13 +24,13 @@ static void *kGPSTrackButtonStateObservingContext = &kGPSTrackButtonStateObservi
 
 - (void)drawNewImage {
     switch (_gpsTrackState) {
-        case SMGPSTrackButtonStateFollowingWithHeading:
+//        case SMGPSTrackButtonStateFollowingWithHeading:
         case SMGPSTrackButtonStateFollowing:
             [self setImage:[UIImage imageNamed:@"icon_locate_me"] forState:UIControlStateNormal];
             break;
-//        case SMGPSTrackButtonStateFollowingWithHeading:
-//            [self setImage:[UIImage imageNamed:@"icon_locate_heading"] forState:UIControlStateNormal];
-//            break;
+        case SMGPSTrackButtonStateFollowingWithHeading:
+            [self setImage:[UIImage imageNamed:@"icon_locate_heading"] forState:UIControlStateNormal];
+            break;
         case SMGPSTrackButtonStateNotFollowing:
             [self setImage:[UIImage imageNamed:@"icon_locate_no_tracking"] forState:UIControlStateNormal];
             break;
