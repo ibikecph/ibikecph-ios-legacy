@@ -86,6 +86,10 @@
 
 #pragma mark - UITextField methods
 
+- (BOOL)becomeFirstResponder {
+    return [self.txtField becomeFirstResponder];
+}
+
 - (NSString*)text {
     if ([self.tokens count] > 0) {
         NSMutableArray * arr = [NSMutableArray array];
@@ -103,6 +107,7 @@
     [self deleteTokens];
     [self.txtField setText:text];
 }
+
 - (void)setTextColor:(UIColor*)color {
     [self.txtField setTextColor:color];
 }
@@ -222,6 +227,8 @@
         [btn removeFromSuperview];
     }
     [self.tokens removeAllObjects];
+    [self.txtField setHidden:NO];
+    [self.txtField becomeFirstResponder];
 }
 
 @end

@@ -18,6 +18,7 @@
 #import "SMGeocoder.h"
 #import <MapKit/MapKit.h>
 #import "SMUtil.h"
+#import "DAKeyboardControl.h"
 
 @interface SMFindAddressController ()
 @property (nonatomic, strong) SMAutocomplete * autocomp;
@@ -83,6 +84,13 @@
         [btnStart setEnabled:NO];
     }
     [routeTo becomeFirstResponder];
+    
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {}];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.view removeKeyboardControl];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
