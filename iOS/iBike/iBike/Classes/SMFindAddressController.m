@@ -752,12 +752,17 @@
                  }];
             }
             [self.delegate findRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate fromAddress:routeFrom.text toAddress:routeTo.text withJSON:jsonRoot];
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+            [UIView animateWithDuration:0.2f animations:^{
+                [fadeView setAlpha:0.0f];
+            }];
         }
+    } else {
+        [UIView animateWithDuration:0.2f animations:^{
+            [fadeView setAlpha:0.0f];
+        }];
     }
-    [UIView animateWithDuration:0.2f animations:^{
-        [fadeView setAlpha:0.0f];
-    }];
 }
 
 @end

@@ -21,20 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, 500.0f)];
-    [fadeView setAlpha:0.0f];
-    [fadeView setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.0f]];
-    pickerOpen = NO;
-    self.reportedSegment = @"";
-    self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_one_way"), translateString(@"report_road_closed"), translateString(@"report_illegal_turn"), translateString(@"report_other")];
-    currentSelection = -1;
-    
-    UITableView * tableView = tblView;
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-        CGRect tableViewFrame = tableView.frame;
-        tableViewFrame.size.height = keyboardFrameInView.origin.y;
-        tableView.frame = tableViewFrame;
-    }];
+//	[scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, 500.0f)];
+//    [fadeView setAlpha:0.0f];
+//    [fadeView setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.0f]];
+//    pickerOpen = NO;
+//    self.reportedSegment = @"";
+//    self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_one_way"), translateString(@"report_road_closed"), translateString(@"report_illegal_turn"), translateString(@"report_other")];
+////    currentSelection = -1;
+//    
+//    UITableView * tableView = tblView;
+//    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+//        CGRect tableViewFrame = tableView.frame;
+//        tableViewFrame.size.height = keyboardFrameInView.origin.y;
+//        tableView.frame = tableViewFrame;
+//    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,8 +56,29 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, 500.0f)];
+    [fadeView setAlpha:0.0f];
+    [fadeView setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.0f]];
+    pickerOpen = NO;
+    self.reportedSegment = @"";
+    self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_one_way"), translateString(@"report_road_closed"), translateString(@"report_illegal_turn"), translateString(@"report_other")];
+    currentSelection = -1;
+    
+    UITableView * tableView = tblView;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        CGRect tableViewFrame = tableView.frame;
+        tableViewFrame.size.height = keyboardFrameInView.origin.y;
+        tableView.frame = tableViewFrame;
+    }];
+    
     [tblView reloadData];
     [self arrangeObjects];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.view removeKeyboardControl];
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - button actions
@@ -215,7 +236,7 @@
         SMRadioCheckedCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         [cell.radioTitle setText:[self.possibleErrors objectAtIndex:indexPath.row]];
         [cell.radioTextBox setText:@""];
-        [cell.radioTextBox setDelegate:self];
+//        [cell.radioTextBox setDelegate:self];
         
 //        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
 //        numberToolbar.barStyle = UIBarStyleBlackTranslucent;
@@ -236,10 +257,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (currentSelection >= 0) {
-        [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentSelection inSection:0]]).radioTextBox resignFirstResponder];
-        return;
-    }
     if (currentSelection != indexPath.row) {
         currentSelection = indexPath.row;
         [tableView reloadData];

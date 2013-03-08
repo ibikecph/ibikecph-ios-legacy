@@ -14,4 +14,8 @@
     return 110.0f;
 }
 
+- (void)prepareForReuse {
+    [self.radioTextBox setDelegate:nil];
+}
+
 @end
