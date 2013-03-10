@@ -735,6 +735,9 @@
         if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
+            [UIView animateWithDuration:0.2f animations:^{
+                [fadeView setAlpha:0.0f];
+            }];
         } else {
             if ([self.poiToName isEqualToString:@""] == NO) {
                 [SMUtil saveToSearchHistory:@{
