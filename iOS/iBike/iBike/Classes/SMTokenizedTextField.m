@@ -203,6 +203,7 @@
 
 - (IBAction)deleteToken:(id)sender {
     SMTokenButton * btn = (SMTokenButton*)sender;
+    
     [self.tokens removeObjectAtIndex:btn.buttonIndex];
     [btn removeFromSuperview];
     for (int i = 0; i < [self.tokens count]; i++) {
@@ -214,6 +215,10 @@
         [self.txtField becomeFirstResponder];
     }
     [self resizeScrollView];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        [self.delegate textField:(UITextField*)self shouldChangeCharactersInRange:NSMakeRange(0, 0) replacementString:@""];
+    }
 }
 
 - (void)setToken:(NSString*)text {
@@ -229,6 +234,10 @@
     [self.tokens removeAllObjects];
     [self.txtField setHidden:NO];
     [self.txtField becomeFirstResponder];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        [self.delegate textField:(UITextField*)self shouldChangeCharactersInRange:NSMakeRange(0, 0) replacementString:@""];
+    }
 }
 
 @end

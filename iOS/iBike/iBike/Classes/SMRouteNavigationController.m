@@ -1126,7 +1126,7 @@
 }
 
 - (CLLocation *)getCorrectedPosition {
-    return [[CLLocation alloc] initWithLatitude:self.route.lastCorrectedLocation.latitude longitude:self.route.lastCorrectedLocation.longitude];
+    return self.route.lastCorrectedLocation;
 }
 
 @end

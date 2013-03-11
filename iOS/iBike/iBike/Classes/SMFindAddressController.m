@@ -547,7 +547,7 @@
 //            }
 //        }
 //    }
-    
+
     if ([s isEqualToString:@""]) {
         [self autocompleteEntriesFound:@[] forString:@""];
     } else {
@@ -634,7 +634,7 @@
 //        }
 //    }
     
-    if (([r count] == 0) && ([self.currentTextField.text isEqualToString:@""])) {
+    if (([r count] == 0) && ([str isEqualToString:@""])) {
         if (self.currentTextField == routeFrom) {
             [r insertObject:@{
              @"name" : CURRENT_POSITION_STRING,
