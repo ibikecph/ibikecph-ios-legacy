@@ -30,11 +30,11 @@
 
 #define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]
 
-#ifdef WORLD_ROUTING
-    #define OSRM_SERVER @"http://router.project-osrm.org"
-#else
+//#ifdef WORLD_ROUTING
+//    #define OSRM_SERVER @"http://router.project-osrm.org"
+//#else
     #define OSRM_SERVER @"http://routes.ibikecph.dk"
-#endif
+//#endif
 
 //#ifdef WORLD_ROUTING
 #define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]

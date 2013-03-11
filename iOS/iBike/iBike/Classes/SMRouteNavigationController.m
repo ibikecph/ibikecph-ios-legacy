@@ -169,8 +169,6 @@
         return;
     }
     
-    [self.mpView setRoutingDelegate:self];
-    
     [self startRoute];
     
 //    [self updateTurn:NO];
@@ -460,6 +458,9 @@
     // Display new path
     [self addRouteAnnotation:self.route];
     
+    [self.mpView setRoutingDelegate:self];
+    
+    
     [tblDirections reloadData];
     
     [self showDirections:1];
@@ -623,6 +624,7 @@
     self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];
+    [self.mpView setRoutingDelegate:nil];
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     self.mpView = nil;
 
