@@ -40,3 +40,5 @@ iOS/iBike/iBike.xcodeproj/xcuserdata/ivanpavlovic.xcuserdatad/xcdebugger/Breakpo
 iOS/iBike/iBike/Classes/RoutingEngine
 
 iOS/iBike/iBike/Libs/DAKeyboardControl
+
+iOS/iBike/iBike/Libs/HockeySDK-iOS
