@@ -186,11 +186,15 @@ typedef enum {
     }
 
     [debugLabel setText:BUILD_STRING];
+    
+    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -927,6 +931,11 @@ typedef enum {
 
 - (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
     if ([annotation.annotationType isEqualToString:@"marker"]) {
+        
+        [self.mpView setCenterCoordinate:annotation.coordinate animated:YES];
+        [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+        
+        
         for (id v in self.mpView.subviews) {
             if ([v isKindOfClass:[SMCalloutView class]]) {
                 [v removeFromSuperview];
@@ -1022,6 +1031,21 @@ typedef enum {
         [fadeView setAlpha:0.0f];
     }];
 }
+
+#pragma mark - observers
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == self.mpView && [keyPath isEqualToString:@"userTrackingMode"]) {
+        if (self.mpView.userTrackingMode == RMUserTrackingModeFollow) {
+            [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];
+        } else if (self.mpView.userTrackingMode == RMUserTrackingModeFollowWithHeading) {
+            [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowingWithHeading];
+        } else if (self.mpView.userTrackingMode == RMUserTrackingModeNone) {
+            [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
+        }
+    }
+}
+
 
 @end
 

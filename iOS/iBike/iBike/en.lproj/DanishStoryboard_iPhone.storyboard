@@ -1500,7 +1500,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="OXh-z0-rmJ" userLabel="Small Directions View">
-                                <rect key="frame" x="0.0" y="447" width="320" height="101"/>
+                                <rect key="frame" x="0.0" y="447" width="260" height="101"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TCW-0F-bTx">
@@ -1510,7 +1510,7 @@
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pullHandle.png" id="w75-Td-CQ1">
                                         <rect key="frame" x="139" y="69" width="43" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="yAb-z7-8vZ" appends="YES" id="g9p-B5-GSW"/>
@@ -1521,7 +1521,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rUH-ju-UbN">
-                                        <rect key="frame" x="0.0" y="76" width="101" height="21"/>
+                                        <rect key="frame" x="0.0" y="76" width="41" height="21"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1975,6 +1975,205 @@
         <image name="searchViewBG.png" width="320" height="84"/>
         <image name="tableViewBG.png" width="320" height="518"/>
     </resources>
+    <classes>
+        <class className="AsyncImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AsyncImageView.h"/>
+        </class>
+        <class className="RMMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMMapView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="SMAboutController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+        </class>
+        <class className="SMAccountsController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountsController.h"/>
+        </class>
+        <class className="SMAutocompleteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMContactsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactDisclosure" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMContactsHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMCustomCheckbox" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomCheckbox.h"/>
+        </class>
+        <class className="SMDirectionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMDirectionTopCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionTopCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEnterEmailController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterEmailController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SMEventsCalendarCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsCalendarCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEventsFacebookCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsFacebookCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="eventImg" candidateClass="AsyncImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEventsHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMFindAddressController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFindAddressController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="autocompleteFade" candidateClass="UIView"/>
+                <relationship kind="outlet" name="btnStart" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="routeFrom" candidateClass="SMTokenizedTextField"/>
+                <relationship kind="outlet" name="routeTo" candidateClass="SMTokenizedTextField"/>
+                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMGPSTrackButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMGPSTrackButton.h"/>
+        </class>
+        <class className="SMRadioCheckedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioCheckedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioTextBox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMRadioUncheckedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioUncheckedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="pckrView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="switchContactMe" candidateClass="SMCustomCheckbox"/>
+                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMRouteFinishedController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteFinishedController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="labelAvgSpeed" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelCalories" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelTotalTrip" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelTrip" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buttonNewStop" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="finishFadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="finishTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imgNextTurnDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="instructionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="labelDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelDistanceLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelDistanceToNextTurn" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="recalculatingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipableView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tblDirections" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMSettingsController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSettingsController.h"/>
+        </class>
+        <class className="SMTokenizedTextField" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTokenizedTextField.h"/>
+        </class>
+        <class className="SMTranslatedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
+        </class>
+        <class className="SMViewController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="debugLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tblContacts" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tblEvents" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tblMenu" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

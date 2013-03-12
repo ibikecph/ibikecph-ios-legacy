@@ -500,8 +500,13 @@
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+- (void)delayedAutocomplete:(NSString*)text {
     [self performSelector:@selector(showFade) withObject:nil afterDelay:0.01f];
+    [self.autocomp getAutocomplete:text];
+    [self refreshStartButton];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
 //    if (textField == routeFrom) {
 //        if ([s isEqualToString:CURRENT_POSITION_STRING]) {
@@ -551,7 +556,11 @@
     if ([s isEqualToString:@""]) {
         [self autocompleteEntriesFound:@[] forString:@""];
     } else {
-        [self.autocomp getAutocomplete:s];
+        if ([s length] >= 2) {
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
+            [self hideFade];
+            [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:0.5f];
+        }
     }
     
     [self refreshStartButton];
@@ -569,6 +578,7 @@
 #pragma mark - smautocomplete delegate
 
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
+    [self hideFade];
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     NSMutableArray * r = [NSMutableArray array];
 //    for (NSDictionary * d in appd.pastRoutes) {

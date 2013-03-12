@@ -93,14 +93,6 @@
     [labelDistanceLeft setText:@"---"];
 
     [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    
-//    [self.mpView setOrderMarkersByYPosition:YES];
-    
-    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
-    [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
-    
-    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -113,10 +105,20 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
+    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
+    [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
+    [swipableView removeObserver:self forKeyPath:@"hidden" context:nil];
+    [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {
@@ -618,9 +620,6 @@
 }
 
 - (IBAction)goBack:(id)sender {
-    [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
-    [swipableView removeObserver:self forKeyPath:@"hidden" context:nil];
-    [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
     self.currentlyRouting = NO;
     
     [self.mpView setDelegate:nil];
@@ -1083,7 +1082,7 @@
     [self showVisible];
 }
 
-#pragma mark - hiding progress bar etc when not routing
+#pragma mark - observers
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self && [keyPath isEqualToString:@"currentlyRouting"]) {

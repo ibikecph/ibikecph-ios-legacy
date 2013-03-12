@@ -21,4 +21,8 @@
     return encodedString;
 }
 
+- (NSString*)removeAccents {
+    return [[NSString alloc] initWithData:[self dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding];
+}
+
 @end

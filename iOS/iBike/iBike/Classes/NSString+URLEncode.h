@@ -15,5 +15,6 @@
 @interface NSString (URLEncode)
 
 - (NSString*) urlEncode;
+- (NSString*)removeAccents;
 
 @end
