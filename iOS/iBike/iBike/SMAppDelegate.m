@@ -7,9 +7,11 @@
 //
 
 #import "SMAppDelegate.h"
+#import "HockeySDK.h"
 #import "SMUtil.h"
 
-@interface SMAppDelegate()
+
+@interface SMAppDelegate(HockeyProtocols) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
 @property (nonatomic, strong) NSMutableDictionary * fbDict;
 @end
 
@@ -44,6 +46,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController  = initialViewController;
     [self.window makeKeyAndVisible];
+    
+    
+    /**
+     * hockey app crash reporting
+     */
+    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:HOCKEYAPP_BETA_IDENTIFIER
+                                                         liveIdentifier:HOCKEYAPP_LIVE_IDENTIFIER
+                                                               delegate:self];
+    [[BITHockeyManager sharedHockeyManager] startManager];
     
     return YES;
 }

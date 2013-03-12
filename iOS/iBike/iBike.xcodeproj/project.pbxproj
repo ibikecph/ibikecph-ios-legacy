@@ -540,6 +540,14 @@
 		4CD53D5B16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
 		4CD53D5C16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
 		4CD53D5D16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
+		4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
+		4CDA5D2116EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
+		4CDA5D2516EF4DF00079AA5E /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */; };
+		4CDA5D2616EF4DF00079AA5E /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */; };
+		4CDA5D3316EF4FDC0079AA5E /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */; };
+		4CDA5D3516EF4FF80079AA5E /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */; };
+		4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */; };
+		4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */; };
 		4CE84E7A16C3FEA3006931CC /* radioChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE84E7416C3FEA3006931CC /* radioChecked.png */; };
 		4CE84E7B16C3FEA3006931CC /* radioChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE84E7516C3FEA3006931CC /* radioChecked@2x.png */; };
 		4CE84E7C16C3FEA3006931CC /* radioUnchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE84E7616C3FEA3006931CC /* radioUnchecked.png */; };
@@ -559,6 +567,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4CA06F3716EF8BE4007603B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E5954F215B6F24A00A03429;
+			remoteInfo = HockeySDK;
+		};
+		4CA06F3916EF8BE4007603B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E59550A15B6F45800A03429;
+			remoteInfo = HockeySDKResources;
+		};
 		4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
@@ -891,6 +913,11 @@
 		4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_heading@2x.png"; sourceTree = "<group>"; };
 		4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_no_tracking.png; sourceTree = "<group>"; };
 		4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_no_tracking@2x.png"; sourceTree = "<group>"; };
+		4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "../../../HockeySDK-iOS/Vendor/CrashReporter.framework"; sourceTree = "<group>"; };
+		4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../../../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; name = HockeySDKResources.bundle; path = "/Users/ivanpavlovic/Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos/HockeySDKResources.bundle"; sourceTree = "<absolute>"; };
+		4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHockeySDK.a; path = "../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos/libHockeySDK.a"; sourceTree = "<group>"; };
 		4CE84E7416C3FEA3006931CC /* radioChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioChecked.png; sourceTree = "<group>"; };
 		4CE84E7516C3FEA3006931CC /* radioChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioChecked@2x.png"; sourceTree = "<group>"; };
 		4CE84E7616C3FEA3006931CC /* radioUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioUnchecked.png; sourceTree = "<group>"; };
@@ -917,6 +944,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDA5D3516EF4FF80079AA5E /* libHockeySDK.a in Frameworks */,
 				4CAF95C616D50F80002C047B /* libMapView.a in Frameworks */,
 				4C6C482716CD3C5200E57F59 /* CoreData.framework in Frameworks */,
 				4C6C482816CD3C5200E57F59 /* SystemConfiguration.framework in Frameworks */,
@@ -938,6 +966,7 @@
 				4C6C483916CD3C5200E57F59 /* FacebookSDK.framework in Frameworks */,
 				4C6C483A16CD3C5200E57F59 /* libGoogleAnalytics_debug.a in Frameworks */,
 				4C6C483B16CD3C5200E57F59 /* libGoogleAnalytics.a in Frameworks */,
+				4CDA5D2116EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +995,8 @@
 				4CF7E29616B6B5340082078E /* FacebookSDK.framework in Frameworks */,
 				4B97307416CB93D500D07314 /* libGoogleAnalytics_debug.a in Frameworks */,
 				4B97307516CB93D500D07314 /* libGoogleAnalytics.a in Frameworks */,
+				4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
+				4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,6 +1176,7 @@
 			children = (
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
 				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
+				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
 				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4C73D21416AEDCDA00AED42A /* iBike */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
@@ -1165,6 +1197,9 @@
 		4C73D20D16AEDCDA00AED42A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */,
+				4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */,
+				4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */,
 				4C77EF8116CB8E7B0062360C /* CoreData.framework */,
 				4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */,
 				4C6C083716C3C33E002EA499 /* MapKit.framework */,
@@ -1219,6 +1254,7 @@
 				4C73D22216AEDCDA00AED42A /* Default@2x.png */,
 				4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */,
 				4CAF95C516D50E2E002C047B /* keys.h */,
+				4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1498,6 +1534,15 @@
 			name = Menus;
 			sourceTree = "<group>";
 		};
+		4CA06F3116EF8BE4007603B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */,
+				4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4CAF95BF16D50B39002C047B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1565,6 +1610,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 4CA06F3116EF8BE4007603B4 /* Products */;
+					ProjectRef = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+				},
+				{
 					ProductGroup = 4CAF95BF16D50B39002C047B /* Products */;
 					ProjectRef = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
 				},
@@ -1578,6 +1627,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libHockeySDK.a;
+			remoteRef = 4CA06F3716EF8BE4007603B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HockeySDKResources.bundle;
+			remoteRef = 4CA06F3916EF8BE4007603B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4CAF95C316D50B3A002C047B /* libMapView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1792,6 +1855,8 @@
 				4CC388A516E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */,
 				4CC388A716E77A4800E7C884 /* tokenNormal.png in Resources */,
 				4CC388A916E77A4800E7C884 /* tokenNormal@2x.png in Resources */,
+				4CDA5D2616EF4DF00079AA5E /* Project.xcconfig in Resources */,
+				4CDA5D3316EF4FDC0079AA5E /* HockeySDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2000,6 +2065,8 @@
 				4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */,
 				4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */,
 				4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */,
+				4CDA5D2516EF4DF00079AA5E /* Project.xcconfig in Resources */,
+				4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2166,6 +2233,7 @@
 /* Begin XCBuildConfiguration section */
 		4C6C48F216CD3C5200E57F59 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2174,6 +2242,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
 					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
@@ -2184,12 +2253,16 @@
 					START_DIRECTIONS,
 					TEST_VERSION,
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+				);
 				INFOPLIST_FILE = "iBike copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = iBikeEN;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
@@ -2200,6 +2273,7 @@
 		};
 		4C6C48F316CD3C5200E57F59 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2208,6 +2282,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
 					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
@@ -2217,12 +2292,16 @@
 					START_DIRECTIONS,
 					TEST_VERSION,
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+				);
 				INFOPLIST_FILE = "iBike copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = iBikeEN;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
@@ -2287,6 +2366,7 @@
 		};
 		4C73D23216AEDCDA00AED42A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2295,6 +2375,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
 					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
@@ -2302,12 +2383,16 @@
 					"DEBUG=1",
 					TEST_VERSION,
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+				);
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
@@ -2318,6 +2403,7 @@
 		};
 		4C73D23316AEDCDA00AED42A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2326,16 +2412,21 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
 					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TEST_VERSION;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/iBike/Libs/MapView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+				);
 				INFOPLIST_FILE = "iBike/iBike-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";

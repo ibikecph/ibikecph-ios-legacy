@@ -140,8 +140,6 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-    [self setButtonFollowing:TRUE];
     [self readjustViewsForRotation:self.interfaceOrientation];
     
     self.findFrom = @"";
@@ -186,14 +184,17 @@ typedef enum {
     }
 
     [debugLabel setText:BUILD_STRING];
-    
-    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-    [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+    @try{
+        [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+
+    }@catch(id anException){
+        
+    }
     [super viewWillDisappear:animated];
 }
 
@@ -237,7 +238,11 @@ typedef enum {
         endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
         [self.mpView addAnnotation:endMarkerAnnotation];
         [self setDestinationPin:endMarkerAnnotation];
+    } else {
+        [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
     }
+    
+    [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     
 }
 
@@ -410,14 +415,6 @@ typedef enum {
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
 }
 
-- (void)setButtonFollowing:(BOOL)following {
-    if (following) {
-        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];
-    } else {
-        [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
-    }
-}
-
 - (IBAction)trackUser:(id)sender {
     if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing)
         debugLog(@"Warning: trackUser button state was invalid: 0x%0x", buttonTrackUser.gpsTrackState);
@@ -429,8 +426,6 @@ typedef enum {
     } else {
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     }
-
-    [self setButtonFollowing:TRUE];
 }
 
 - (IBAction)showMenu:(id)sender {
@@ -890,9 +885,6 @@ typedef enum {
 #pragma mark - mapView delegate
 
 - (void)afterMapMove:(RMMapView *)map byUser:(BOOL)wasUserAction {
-    if (wasUserAction) {
-        [self setButtonFollowing:FALSE];
-    }
     [self checkCallouts];
 }
 
@@ -919,9 +911,6 @@ typedef enum {
 }
 
 - (void)afterMapZoom:(RMMapView *)map byUser:(BOOL)wasUserAction {
-    if (wasUserAction) {
-        [self setButtonFollowing:FALSE];
-    }
     [self checkCallouts];
 }
 
