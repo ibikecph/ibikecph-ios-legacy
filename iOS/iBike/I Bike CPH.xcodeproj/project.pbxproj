@@ -771,8 +771,8 @@
 		4C6C085216C3EDF4002EA499 /* emailButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailButton@2x.png"; sourceTree = "<group>"; };
 		4C6C47EE16CD3BF500E57F59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DanishStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_en.strings; sourceTree = "<group>"; };
-		4C6C48F416CD3C5200E57F59 /* iBikeEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBikeEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C6C48F516CD3C5200E57F59 /* iBike copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iBike copy-Info.plist"; sourceTree = SOURCE_ROOT; };
+		4C6C48F416CD3C5200E57F59 /* I Bike CPHEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "I Bike CPHEN.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C6C48F516CD3C5200E57F59 /* I Bike CPH copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "I Bike CPH copy-Info.plist"; path = "Users/ivanpavlovic/Prog/GIT/ibikecph-app/iOS/iBike/I Bike CPH copy-Info.plist"; sourceTree = SDKROOT; };
 		4C7072BE16E0F5E7009D6ED7 /* findRouteFoursquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = findRouteFoursquare.png; sourceTree = "<group>"; };
 		4C7072BF16E0F5E7009D6ED7 /* findRouteFoursquare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findRouteFoursquare@2x.png"; sourceTree = "<group>"; };
 		4C73A1EB16B284B500050349 /* SMContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContacts.h; sourceTree = "<group>"; };
@@ -817,14 +817,14 @@
 		4C73A27F16B2D63800050349 /* searchSwap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchSwap@2x.png"; sourceTree = "<group>"; };
 		4C73A28016B2D63800050349 /* searchViewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchViewBG.png; sourceTree = "<group>"; };
 		4C73A28116B2D63800050349 /* searchViewBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchViewBG@2x.png"; sourceTree = "<group>"; };
-		4C73D20A16AEDCDA00AED42A /* iBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C73D20A16AEDCDA00AED42A /* I Bike CPH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "I Bike CPH.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C73D20E16AEDCDA00AED42A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4C73D21016AEDCDA00AED42A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4C73D21216AEDCDA00AED42A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		4C73D21616AEDCDA00AED42A /* iBike-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iBike-Info.plist"; sourceTree = "<group>"; };
+		4C73D21616AEDCDA00AED42A /* I Bike CPH-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "I Bike CPH-Info.plist"; sourceTree = "<group>"; };
 		4C73D21816AEDCDA00AED42A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C73D21A16AEDCDA00AED42A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4C73D21C16AEDCDA00AED42A /* iBike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iBike-Prefix.pch"; sourceTree = "<group>"; };
+		4C73D21C16AEDCDA00AED42A /* I Bike CPH-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "I Bike CPH-Prefix.pch"; sourceTree = "<group>"; };
 		4C73D21D16AEDCDA00AED42A /* SMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMAppDelegate.h; sourceTree = "<group>"; };
 		4C73D21E16AEDCDA00AED42A /* SMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMAppDelegate.m; sourceTree = "<group>"; };
 		4C73D22016AEDCDA00AED42A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -1188,8 +1188,8 @@
 		4C73D20B16AEDCDA00AED42A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4C73D20A16AEDCDA00AED42A /* iBike.app */,
-				4C6C48F416CD3C5200E57F59 /* iBikeEN.app */,
+				4C73D20A16AEDCDA00AED42A /* I Bike CPH.app */,
+				4C6C48F416CD3C5200E57F59 /* I Bike CPHEN.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1245,11 +1245,11 @@
 			isa = PBXGroup;
 			children = (
 				4C6C48F616CD3FE600E57F59 /* Languages */,
-				4C6C48F516CD3C5200E57F59 /* iBike copy-Info.plist */,
-				4C73D21616AEDCDA00AED42A /* iBike-Info.plist */,
+				4C6C48F516CD3C5200E57F59 /* I Bike CPH copy-Info.plist */,
+				4C73D21616AEDCDA00AED42A /* I Bike CPH-Info.plist */,
 				4C73D21716AEDCDA00AED42A /* InfoPlist.strings */,
 				4C73D21A16AEDCDA00AED42A /* main.m */,
-				4C73D21C16AEDCDA00AED42A /* iBike-Prefix.pch */,
+				4C73D21C16AEDCDA00AED42A /* I Bike CPH-Prefix.pch */,
 				4C73D22016AEDCDA00AED42A /* Default.png */,
 				4C73D22216AEDCDA00AED42A /* Default@2x.png */,
 				4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */,
@@ -1554,9 +1554,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4C6C47F216CD3C5200E57F59 /* iBike EN */ = {
+		4C6C47F216CD3C5200E57F59 /* I Bike CPH EN */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C6C48F116CD3C5200E57F59 /* Build configuration list for PBXNativeTarget "iBike EN" */;
+			buildConfigurationList = 4C6C48F116CD3C5200E57F59 /* Build configuration list for PBXNativeTarget "I Bike CPH EN" */;
 			buildPhases = (
 				4C6C47F516CD3C5200E57F59 /* Sources */,
 				4C6C482616CD3C5200E57F59 /* Frameworks */,
@@ -1566,14 +1566,14 @@
 			);
 			dependencies = (
 			);
-			name = "iBike EN";
+			name = "I Bike CPH EN";
 			productName = iBike;
-			productReference = 4C6C48F416CD3C5200E57F59 /* iBikeEN.app */;
+			productReference = 4C6C48F416CD3C5200E57F59 /* I Bike CPHEN.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4C73D20916AEDCDA00AED42A /* iBike */ = {
+		4C73D20916AEDCDA00AED42A /* I Bike CPH */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4C73D23116AEDCDA00AED42A /* Build configuration list for PBXNativeTarget "iBike" */;
+			buildConfigurationList = 4C73D23116AEDCDA00AED42A /* Build configuration list for PBXNativeTarget "I Bike CPH" */;
 			buildPhases = (
 				4C73D20616AEDCDA00AED42A /* Sources */,
 				4C73D20716AEDCDA00AED42A /* Frameworks */,
@@ -1583,9 +1583,9 @@
 			);
 			dependencies = (
 			);
-			name = iBike;
+			name = "I Bike CPH";
 			productName = iBike;
-			productReference = 4C73D20A16AEDCDA00AED42A /* iBike.app */;
+			productReference = 4C73D20A16AEDCDA00AED42A /* I Bike CPH.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1598,7 +1598,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Spoiled Milk";
 			};
-			buildConfigurationList = 4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "iBike" */;
+			buildConfigurationList = 4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "I Bike CPH" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1620,8 +1620,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				4C73D20916AEDCDA00AED42A /* iBike */,
-				4C6C47F216CD3C5200E57F59 /* iBike EN */,
+				4C73D20916AEDCDA00AED42A /* I Bike CPH */,
+				4C6C47F216CD3C5200E57F59 /* I Bike CPH EN */,
 			);
 		};
 /* End PBXProject section */
@@ -2257,14 +2257,14 @@
 					"$(SRCROOT)/iBike/Libs/MapView/**",
 					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike copy-Info.plist";
+				INFOPLIST_FILE = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Users/ivanpavlovic/Prog/GIT/ibikecph-app/iOS/iBike/I Bike CPH copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
-				PRODUCT_NAME = iBikeEN;
+				PRODUCT_NAME = "I Bike CPHEN";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2296,14 +2296,14 @@
 					"$(SRCROOT)/iBike/Libs/MapView/**",
 					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike copy-Info.plist";
+				INFOPLIST_FILE = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/Users/ivanpavlovic/Prog/GIT/ibikecph-app/iOS/iBike/I Bike CPH copy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
-				PRODUCT_NAME = iBikeEN;
+				PRODUCT_NAME = "I Bike CPHEN";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2378,7 +2378,7 @@
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				GCC_PREFIX_HEADER = "iBike/I Bike CPH-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					TEST_VERSION,
@@ -2387,14 +2387,14 @@
 					"$(SRCROOT)/iBike/Libs/MapView/**",
 					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike/iBike-Info.plist";
+				INFOPLIST_FILE = "iBike/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2415,20 +2415,20 @@
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iBike/iBike-Prefix.pch";
+				GCC_PREFIX_HEADER = "iBike/I Bike CPH-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TEST_VERSION;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/iBike/Libs/MapView/**",
 					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike/iBike-Info.plist";
+				INFOPLIST_FILE = "iBike/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
 					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2438,7 +2438,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4C6C48F116CD3C5200E57F59 /* Build configuration list for PBXNativeTarget "iBike EN" */ = {
+		4C6C48F116CD3C5200E57F59 /* Build configuration list for PBXNativeTarget "I Bike CPH EN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C6C48F216CD3C5200E57F59 /* Debug */,
@@ -2447,7 +2447,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "iBike" */ = {
+		4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "I Bike CPH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C73D22F16AEDCDA00AED42A /* Debug */,
@@ -2456,7 +2456,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4C73D23116AEDCDA00AED42A /* Build configuration list for PBXNativeTarget "iBike" */ = {
+		4C73D23116AEDCDA00AED42A /* Build configuration list for PBXNativeTarget "I Bike CPH" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4C73D23216AEDCDA00AED42A /* Debug */,
