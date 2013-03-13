@@ -115,6 +115,9 @@
 		4C463A9816BC0A9D00090D62 /* contactsCellBGHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9616BC0A9D00090D62 /* contactsCellBGHighlight.png */; };
 		4C463A9916BC0A9D00090D62 /* contactsCellBGHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9716BC0A9D00090D62 /* contactsCellBGHighlight@2x.png */; };
 		4C463A9C16BC18A600090D62 /* SMRouteFinishedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */; };
+		4C48641316F0994600F01A7C /* ibikecph.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */; };
+		4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */; };
+		4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		4C52287516BFA9310082A01A /* routeFinishedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287316BFA9310082A01A /* routeFinishedBtn.png */; };
 		4C52287616BFA9310082A01A /* routeFinishedBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287416BFA9310082A01A /* routeFinishedBtn@2x.png */; };
 		4C64781B16C102FE00D055DC /* SMEnterEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C64781A16C102FE00D055DC /* SMEnterEmailController.m */; };
@@ -142,7 +145,6 @@
 		4C6C085016C3E47C002EA499 /* tableViewBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C084A16C3E47C002EA499 /* tableViewBG@2x.png */; };
 		4C6C085316C3EDF4002EA499 /* emailButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C085116C3EDF4002EA499 /* emailButton.png */; };
 		4C6C085416C3EDF4002EA499 /* emailButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C085216C3EDF4002EA499 /* emailButton@2x.png */; };
-		4C6C47EF16CD3BF500E57F59 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C47ED16CD3BF500E57F59 /* MainStoryboard_iPhone.storyboard */; };
 		4C7072C016E0F5E7009D6ED7 /* findRouteFoursquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7072BE16E0F5E7009D6ED7 /* findRouteFoursquare.png */; };
 		4C7072C216E0F5E7009D6ED7 /* findRouteFoursquare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7072BF16E0F5E7009D6ED7 /* findRouteFoursquare@2x.png */; };
 		4C73A1ED16B284B500050349 /* SMContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73A1EC16B284B500050349 /* SMContacts.m */; };
@@ -192,7 +194,6 @@
 		4C73D22116AEDCDA00AED42A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22016AEDCDA00AED42A /* Default.png */; };
 		4C73D22316AEDCDA00AED42A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22216AEDCDA00AED42A /* Default@2x.png */; };
 		4C73D22516AEDCDA00AED42A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */; };
-		4C73D22B16AEDCDA00AED42A /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22916AEDCDA00AED42A /* MainStoryboard_iPad.storyboard */; };
 		4C73D22E16AEDCDA00AED42A /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73D22D16AEDCDA00AED42A /* SMViewController.m */; };
 		4C77EF7F16CB8DF50062360C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF7D16CB8DF50062360C /* icon.png */; };
 		4C77EF8016CB8DF50062360C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF7E16CB8DF50062360C /* icon@2x.png */; };
@@ -254,7 +255,6 @@
 		4CD53D5A16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
 		4CD53D5C16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
 		4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
-		4CDA5D2516EF4DF00079AA5E /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */; };
 		4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */; };
 		4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */; };
 		4CDA690F16F085D400FE2A19 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA68F116F085D400FE2A19 /* SBJsonParser.m */; };
@@ -444,6 +444,9 @@
 		4C463A9716BC0A9D00090D62 /* contactsCellBGHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contactsCellBGHighlight@2x.png"; sourceTree = "<group>"; };
 		4C463A9A16BC18A600090D62 /* SMRouteFinishedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteFinishedController.h; sourceTree = "<group>"; };
 		4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteFinishedController.m; sourceTree = "<group>"; };
+		4C48641216F0994600F01A7C /* ibikecph.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ibikecph.xcconfig; sourceTree = "<group>"; };
+		4C48641516F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		4C48641716F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C52287316BFA9310082A01A /* routeFinishedBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeFinishedBtn.png; sourceTree = "<group>"; };
 		4C52287416BFA9310082A01A /* routeFinishedBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeFinishedBtn@2x.png"; sourceTree = "<group>"; };
 		4C64781916C102FE00D055DC /* SMEnterEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEnterEmailController.h; sourceTree = "<group>"; };
@@ -473,7 +476,6 @@
 		4C6C084A16C3E47C002EA499 /* tableViewBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableViewBG@2x.png"; sourceTree = "<group>"; };
 		4C6C085116C3EDF4002EA499 /* emailButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emailButton.png; sourceTree = "<group>"; };
 		4C6C085216C3EDF4002EA499 /* emailButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailButton@2x.png"; sourceTree = "<group>"; };
-		4C6C47EE16CD3BF500E57F59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_en.strings; sourceTree = "<group>"; };
 		4C7072BE16E0F5E7009D6ED7 /* findRouteFoursquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = findRouteFoursquare.png; sourceTree = "<group>"; };
 		4C7072BF16E0F5E7009D6ED7 /* findRouteFoursquare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findRouteFoursquare@2x.png"; sourceTree = "<group>"; };
@@ -527,14 +529,13 @@
 		4C73D21816AEDCDA00AED42A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4C73D21A16AEDCDA00AED42A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C73D21C16AEDCDA00AED42A /* I Bike CPH-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "I Bike CPH-Prefix.pch"; sourceTree = "<group>"; };
-		4C73D21D16AEDCDA00AED42A /* SMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMAppDelegate.h; sourceTree = "<group>"; };
-		4C73D21E16AEDCDA00AED42A /* SMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMAppDelegate.m; sourceTree = "<group>"; };
+		4C73D21D16AEDCDA00AED42A /* SMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SMAppDelegate.h; path = ibikecph/SMAppDelegate.h; sourceTree = "<group>"; };
+		4C73D21E16AEDCDA00AED42A /* SMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SMAppDelegate.m; path = ibikecph/SMAppDelegate.m; sourceTree = "<group>"; };
 		4C73D22016AEDCDA00AED42A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4C73D22216AEDCDA00AED42A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4C73D22A16AEDCDA00AED42A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		4C73D22C16AEDCDA00AED42A /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		4C73D22D16AEDCDA00AED42A /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C73D22C16AEDCDA00AED42A /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SMViewController.h; path = ibikecph/SMViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		4C73D22D16AEDCDA00AED42A /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SMViewController.m; path = ibikecph/SMViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4C77EF7D16CB8DF50062360C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		4C77EF7E16CB8DF50062360C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		4C77EF8116CB8E7B0062360C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -610,7 +611,6 @@
 		4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_no_tracking.png; sourceTree = "<group>"; };
 		4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_no_tracking@2x.png"; sourceTree = "<group>"; };
 		4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "../../../HockeySDK-iOS/Vendor/CrashReporter.framework"; sourceTree = "<group>"; };
-		4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../../../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; name = HockeySDKResources.bundle; path = "/Users/ivanpavlovic/Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos/HockeySDKResources.bundle"; sourceTree = "<absolute>"; };
 		4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHockeySDK.a; path = "../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos/libHockeySDK.a"; sourceTree = "<group>"; };
@@ -662,8 +662,8 @@
 		4CF7E28A16B68D170082078E /* SMEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEvents.m; sourceTree = "<group>"; };
 		4CF7E29116B68D830082078E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		4CF7E29216B68D830082078E /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		4CF7E29516B6B5340082078E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = iBike/Libs/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		4CF7E29716B6B55C0082078E /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = iBike/Libs/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		4CF7E29516B6B5340082078E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		4CF7E29716B6B55C0082078E /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		4CF7E29916B6B57F0082078E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		4CF7E29A16B6B57F0082078E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		4CF7E29B16B6B57F0082078E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -903,19 +903,18 @@
 				4C73D23B16AEDD3F00AED42A /* Views */,
 				4C73D21D16AEDCDA00AED42A /* SMAppDelegate.h */,
 				4C73D21E16AEDCDA00AED42A /* SMAppDelegate.m */,
-				4C6C47ED16CD3BF500E57F59 /* MainStoryboard_iPhone.storyboard */,
-				4C73D22916AEDCDA00AED42A /* MainStoryboard_iPad.storyboard */,
 				4C73D22C16AEDCDA00AED42A /* SMViewController.h */,
 				4C73D22D16AEDCDA00AED42A /* SMViewController.m */,
 				4C73D21516AEDCDA00AED42A /* Supporting Files */,
 			);
 			name = "I Bike CPH";
-			path = iBike;
 			sourceTree = "<group>";
 		};
 		4C73D21516AEDCDA00AED42A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */,
+				4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */,
 				4C6C48F616CD3FE600E57F59 /* Languages */,
 				4C73D21616AEDCDA00AED42A /* I Bike CPH-Info.plist */,
 				4C73D21716AEDCDA00AED42A /* InfoPlist.strings */,
@@ -925,10 +924,11 @@
 				4C73D22216AEDCDA00AED42A /* Default@2x.png */,
 				4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */,
 				4CAF95C516D50E2E002C047B /* keys.h */,
-				4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */,
 				4CDA6B2E16F08E9D00FE2A19 /* Settings.bundle */,
+				4C48641216F0994600F01A7C /* ibikecph.xcconfig */,
 			);
 			name = "Supporting Files";
+			path = ibikecph;
 			sourceTree = "<group>";
 		};
 		4C73D23816AEDD3F00AED42A /* Assets */ = {
@@ -1052,7 +1052,8 @@
 				4C6C084916C3E47C002EA499 /* tableViewBG.png */,
 				4C6C084A16C3E47C002EA499 /* tableViewBG@2x.png */,
 			);
-			path = Assets;
+			name = Assets;
+			path = ibikecph/Assets;
 			sourceTree = "<group>";
 		};
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
@@ -1065,7 +1066,7 @@
 				4C06BA6216E88B60001B7312 /* DAKeyboardControl */,
 			);
 			name = Libs;
-			path = iBike/Libs;
+			path = ibikecph/Libs;
 			sourceTree = "<group>";
 		};
 		4C73D23A16AEDD3F00AED42A /* Classes */ = {
@@ -1078,7 +1079,8 @@
 				4C90468816B91140004BA3DD /* Contacts & Events */,
 				4B4E9AB516D4CA49002A6766 /* Utils */,
 			);
-			path = Classes;
+			name = Classes;
+			path = ibikecph/Classes;
 			sourceTree = "<group>";
 		};
 		4C73D23B16AEDD3F00AED42A /* Views */ = {
@@ -1115,7 +1117,8 @@
 				4C09001216DE446600DCAB64 /* SMSwipableView.m */,
 				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
 			);
-			path = Views;
+			name = Views;
+			path = ibikecph/Views;
 			sourceTree = "<group>";
 		};
 		4C77EF7C16CB8DF50062360C /* Icons */ = {
@@ -1313,6 +1316,19 @@
 			knownRegions = (
 				en,
 				he,
+				de,
+				es,
+				fr,
+				hr,
+				hu,
+				it,
+				ja,
+				nl,
+				"pt-PT",
+				pt,
+				ro,
+				ru,
+				"zh-Hans",
 			);
 			mainGroup = 4C73D1FF16AEDCDA00AED42A;
 			productRefGroup = 4C73D20B16AEDCDA00AED42A /* Products */;
@@ -1379,7 +1395,6 @@
 				4C73D22116AEDCDA00AED42A /* Default.png in Resources */,
 				4C73D22316AEDCDA00AED42A /* Default@2x.png in Resources */,
 				4C73D22516AEDCDA00AED42A /* Default-568h@2x.png in Resources */,
-				4C73D22B16AEDCDA00AED42A /* MainStoryboard_iPad.storyboard in Resources */,
 				4BA915E916B0097C004E04A4 /* kopenhagen_withtimestamps.gpx in Resources */,
 				4C16ECF416B17707001545C7 /* iBikeLogo.png in Resources */,
 				4C16ECF516B17707001545C7 /* iBikeLogo@2x.png in Resources */,
@@ -1537,7 +1552,6 @@
 				4C77EF7F16CB8DF50062360C /* icon.png in Resources */,
 				4C77EF8016CB8DF50062360C /* icon@2x.png in Resources */,
 				4C77EF8716CBA6220062360C /* calloutBubbleMiddle@2x.png in Resources */,
-				4C6C47EF16CD3BF500E57F59 /* MainStoryboard_iPhone.storyboard in Resources */,
 				4CB1509B16D26CC100943E0C /* checkboxChecked.png in Resources */,
 				4CB1509D16D26CC100943E0C /* checkboxChecked@2x.png in Resources */,
 				4CB1509F16D26CC100943E0C /* checkboxUnchecked.png in Resources */,
@@ -1563,12 +1577,14 @@
 				4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */,
 				4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */,
 				4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */,
-				4CDA5D2516EF4DF00079AA5E /* Project.xcconfig in Resources */,
 				4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */,
 				4CDA6A5216F0863700FE2A19 /* LICENSE in Resources */,
 				4CDA6A5316F0863700FE2A19 /* README in Resources */,
 				4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */,
 				4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */,
+				4C48641316F0994600F01A7C /* ibikecph.xcconfig in Resources */,
+				4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */,
+				4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1639,10 +1655,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4C6C47ED16CD3BF500E57F59 /* MainStoryboard_iPhone.storyboard */ = {
+		4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4C6C47EE16CD3BF500E57F59 /* en */,
+				4C48641516F099BE00F01A7C /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C48641716F099BE00F01A7C /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -1653,14 +1677,6 @@
 				4C73D21816AEDCDA00AED42A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		4C73D22916AEDCDA00AED42A /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4C73D22A16AEDCDA00AED42A /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1722,34 +1738,34 @@
 		};
 		4C73D23216AEDCDA00AED42A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
+			baseConfigurationReference = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
-					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
+					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iBike/I Bike CPH-Prefix.pch";
+				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					TEST_VERSION,
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/iBike/Libs/MapView/**",
-					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+					"$(SRCROOT)/ibikecph/Libs/MapView/**",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike/I Bike CPH-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/ibikecph-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
 				);
 				PRODUCT_NAME = "I Bike CPH";
@@ -1761,31 +1777,31 @@
 		};
 		4C73D23316AEDCDA00AED42A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CDA5D2416EF4DF00079AA5E /* Project.xcconfig */;
+			baseConfigurationReference = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iBike/Libs/FacebookSDK\"",
-					"$(SRCROOT)/iBike/Libs/MapView/**",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
+					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iBike/I Bike CPH-Prefix.pch";
+				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = TEST_VERSION;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/iBike/Libs/MapView/**",
-					"$(SRCROOT)/iBike/Libs/HockeySDK-iOS/Classes",
+					"$(SRCROOT)/ibikecph/Libs/MapView/**",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 				);
-				INFOPLIST_FILE = "iBike/I Bike CPH-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/iBike/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/iBike-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
+					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/ibikecph-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
 				);
 				PRODUCT_NAME = "I Bike CPH";
