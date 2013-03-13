@@ -851,7 +851,7 @@
 				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
 				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
-				4C73D21416AEDCDA00AED42A /* iBike */,
+				4C73D21416AEDCDA00AED42A /* I Bike CPH */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
 				4C73D20D16AEDCDA00AED42A /* Frameworks */,
 				4C73D20B16AEDCDA00AED42A /* Products */,
@@ -895,7 +895,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4C73D21416AEDCDA00AED42A /* iBike */ = {
+		4C73D21416AEDCDA00AED42A /* I Bike CPH */ = {
 			isa = PBXGroup;
 			children = (
 				4C73D23816AEDD3F00AED42A /* Assets */,
@@ -909,6 +909,7 @@
 				4C73D22D16AEDCDA00AED42A /* SMViewController.m */,
 				4C73D21516AEDCDA00AED42A /* Supporting Files */,
 			);
+			name = "I Bike CPH";
 			path = iBike;
 			sourceTree = "<group>";
 		};
