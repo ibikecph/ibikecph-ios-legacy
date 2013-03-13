@@ -35,29 +35,69 @@
     [self getOiorestAutocomplete];
 }
 
+- (void)getOiorestRadiusAutocomplete {
+    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser/%f,%f,%@.json", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, OIOREST_SEARCH_RADIUS]]];
+    debugLog(@"%@", req);
+    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+        NSArray * res = [[[SBJsonParser alloc] init] objectWithData:data];
+        NSMutableArray * arr = [NSMutableArray array];
+        for (NSDictionary* d in res) {
+            NSString * name = [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]];
+            if ([name rangeOfString:self.srchString].location != NSNotFound) {
+                [arr addObject:@{
+                 @"name" : @"",
+                 @"address" : name,
+                 @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
+                 @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
+                 @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
+                 @"country" : @"",
+                 @"source" : @"autocomplete",
+                 @"subsource" : @"oiorest",
+                 @"order" : @3
+                 }];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @synchronized(self.resultsArr) {
+                [self.resultsArr addObjectsFromArray:arr];
+                [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+                    return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
+                }];
+                
+            }
+            if (self.delegate) {
+                [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
+            }
+        });
+    }];
+}
+
 - (void)getOiorestAutocomplete {
-    completeType = autocompleteOiorest;
-    if (self.conn) {
-        [self.conn cancel];
-    }
-    self.connData = [NSMutableData data];
+//    completeType = autocompleteOiorest;
+//    if (self.conn) {
+//        [self.conn cancel];
+//    }
+//    self.connData = [NSMutableData data];
+//    
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [self.srchString urlEncode]]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
         NSArray * res = [[[SBJsonParser alloc] init] objectWithData:data];
         NSMutableArray * arr = [NSMutableArray array];
         for (NSDictionary* d in res) {
-            [arr addObject:@{
-             @"name" : @"",
-             @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
-             @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
-             @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
-             @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
-             @"country" : @"",
-             @"source" : @"autocomplete",
-             @"subsource" : @"oiorest",
-             @"order" : @3
-             }];
+            if ([[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] >= 1000 && [[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] <= 2999) {
+                [arr addObject:@{
+                 @"name" : @"",
+                 @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
+                 @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
+                 @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
+                 @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
+                 @"country" : @"",
+                 @"source" : @"autocomplete",
+                 @"subsource" : @"oiorest",
+                 @"order" : @3
+                 }];
+            }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             @synchronized(self.resultsArr) {
@@ -191,8 +231,29 @@
                 
                 [dict setObject:[ar componentsJoinedByString:@", "] forKey:@"address"];
                 
-                [arr addObject:dict];
+                if ([[dict objectForKey:@"address"] rangeOfString:@"København"].location != NSNotFound
+                    || [[dict objectForKey:@"address"] rangeOfString:@"Koebenhavn"].location != NSNotFound
+                    || [[dict objectForKey:@"address"] rangeOfString:@"Kobenhavn"].location != NSNotFound
+                    || [[dict objectForKey:@"address"] rangeOfString:@"Copenhagen"].location != NSNotFound
+                    || [[dict objectForKey:@"address"] rangeOfString:@"Frederiksberg"].location != NSNotFound
+                    || [[dict objectForKey:@"address"] rangeOfString:@"Valby"].location != NSNotFound
+                    ) {
+                    [arr addObject:dict];
+                }
                 
+                [arr sortUsingComparator:^NSComparisonResult(NSDictionary * obj1, NSDictionary * obj2) {
+                    double d1 = [[SMLocationManager instance].lastValidLocation distanceFromLocation:[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue] longitude:[[obj1 objectForKey:@"lat"] doubleValue]]];
+                    double d2 = [[SMLocationManager instance].lastValidLocation distanceFromLocation:[[CLLocation alloc] initWithLatitude:[[obj2 objectForKey:@"lat"] doubleValue] longitude:[[obj2 objectForKey:@"lat"] doubleValue]]];
+                    if (d1 > d2) {
+                        return NSOrderedDescending;
+                    } else if (d1 < d2) {
+                        return NSOrderedAscending;
+                    } else {
+                        return NSOrderedSame;
+                    }
+                }];
+                
+            
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 @synchronized(self.resultsArr) {

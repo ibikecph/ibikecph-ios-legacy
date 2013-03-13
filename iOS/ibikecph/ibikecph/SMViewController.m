@@ -116,6 +116,7 @@ typedef enum {
     UILongPressGestureRecognizer * lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dropPin:)];
     [lp setDelegate:self];
     [lp setCancelsTouchesInView:YES];
+    [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(55.675455,12.566643) animated:NO];
     [self.mpView addGestureRecognizer:lp];
     [self.mpView setZoom:16];
     [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
@@ -946,7 +947,7 @@ typedef enum {
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
     
-#ifdef START_DIRECTIONS
+//#ifdef START_DIRECTIONS
     [UIView animateWithDuration:0.4f animations:^{
         [fadeView setAlpha:1.0f];
     }];
@@ -955,11 +956,11 @@ typedef enum {
     CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
     [r setRequestIdentifier:@"rowSelectRoute"];
-    [r setAuxParam:@"TEST"];
+    [r setAuxParam:annotation.title];
     [r findNearestPointForStart:cStart andEnd:cEnd];
-#else
-    [self performSegueWithIdentifier:@"goToFinderSegue" sender:nil];
-#endif
+//#else
+//    [self performSegueWithIdentifier:@"goToFinderSegue" sender:nil];
+//#endif
 
     for (SMAnnotation * annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
