@@ -249,6 +249,8 @@
 		4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */; };
 		4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC388A016E77A4800E7C884 /* tokenNormal.png */; };
 		4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC388A116E77A4800E7C884 /* tokenNormal@2x.png */; };
+		4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */; };
+		4CC9515516F0D76D00DC7AF8 /* SMEnterRouteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9515416F0D76D00DC7AF8 /* SMEnterRouteCell.m */; };
 		4CD53D5616DFB53A00DB90E4 /* icon_locate_heading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */; };
 		4CD53D5816DFB53A00DB90E4 /* icon_locate_heading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */; };
 		4CD53D5A16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
@@ -603,6 +605,10 @@
 		4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenHighlighted@2x.png"; sourceTree = "<group>"; };
 		4CC388A016E77A4800E7C884 /* tokenNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenNormal.png; sourceTree = "<group>"; };
 		4CC388A116E77A4800E7C884 /* tokenNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenNormal@2x.png"; sourceTree = "<group>"; };
+		4CC9514B16F0C80B00DC7AF8 /* SMEnterRouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEnterRouteController.h; sourceTree = "<group>"; };
+		4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterRouteController.m; sourceTree = "<group>"; };
+		4CC9515316F0D76D00DC7AF8 /* SMEnterRouteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEnterRouteCell.h; sourceTree = "<group>"; };
+		4CC9515416F0D76D00DC7AF8 /* SMEnterRouteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterRouteCell.m; sourceTree = "<group>"; };
 		4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_heading.png; sourceTree = "<group>"; };
 		4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_heading@2x.png"; sourceTree = "<group>"; };
 		4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_no_tracking.png; sourceTree = "<group>"; };
@@ -1082,33 +1088,35 @@
 		4C73D23B16AEDD3F00AED42A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C90468F16B96295004BA3DD /* SMAutocompleteCell.h */,
+				4C90469016B96295004BA3DD /* SMAutocompleteCell.m */,
+				4C11374216BFF9EF007F483F /* SMCalloutView.h */,
+				4C11374316BFF9EF007F483F /* SMCalloutView.m */,
+				4C11374416BFF9EF007F483F /* SMCalloutView.xib */,
 				4C73A1F716B2900600050349 /* SMContactsCell.h */,
 				4C73A1F816B2900600050349 /* SMContactsCell.m */,
 				4C73A20D16B29BAD00050349 /* SMContactsHeader.h */,
 				4C73A20E16B29BAD00050349 /* SMContactsHeader.m */,
+				4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */,
+				4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */,
+				4B7DC93816BBD73A00198F72 /* SMDirectionCell.h */,
+				4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */,
+				4BCDAFF516C2808A00E0C313 /* SMDirectionTopCell.h */,
+				4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */,
+				4CC9515316F0D76D00DC7AF8 /* SMEnterRouteCell.h */,
+				4CC9515416F0D76D00DC7AF8 /* SMEnterRouteCell.m */,
 				4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */,
 				4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */,
 				4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */,
 				4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */,
 				4C8BB09816B7D2BC00F1ADF2 /* SMEventsHeader.h */,
 				4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */,
-				4C90468F16B96295004BA3DD /* SMAutocompleteCell.h */,
-				4C90469016B96295004BA3DD /* SMAutocompleteCell.m */,
-				4B7DC93816BBD73A00198F72 /* SMDirectionCell.h */,
-				4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */,
-				4BCDAFF516C2808A00E0C313 /* SMDirectionTopCell.h */,
-				4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */,
-				4C11374216BFF9EF007F483F /* SMCalloutView.h */,
-				4C11374316BFF9EF007F483F /* SMCalloutView.m */,
-				4C11374416BFF9EF007F483F /* SMCalloutView.xib */,
+				4BB6F95416DB6CCE004A3889 /* SMGPSTrackButton.h */,
+				4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */,
 				4CE84E8116C404A3006931CC /* SMRadioCheckedCell.h */,
 				4CE84E8216C404A3006931CC /* SMRadioCheckedCell.m */,
 				4CE84E8416C404B9006931CC /* SMRadioUncheckedCell.h */,
 				4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */,
-				4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */,
-				4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */,
-				4BB6F95416DB6CCE004A3889 /* SMGPSTrackButton.h */,
-				4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */,
 				4C09001116DE446600DCAB64 /* SMSwipableView.h */,
 				4C09001216DE446600DCAB64 /* SMSwipableView.m */,
 				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
@@ -1174,6 +1182,8 @@
 				4C90468D16B94EC6004BA3DD /* SMAutocomplete.m */,
 				4C73A27316B2D23D00050349 /* SMFindAddressController.h */,
 				4C73A27416B2D23D00050349 /* SMFindAddressController.m */,
+				4CC9514B16F0C80B00DC7AF8 /* SMEnterRouteController.h */,
+				4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */,
 			);
 			name = Autocomplete;
 			sourceTree = "<group>";
@@ -1643,6 +1653,8 @@
 				4CDA691616F085D400FE2A19 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				4CDA691716F085D400FE2A19 /* SBJsonStreamWriterState.m in Sources */,
 				4CDA691816F085D400FE2A19 /* SBJsonWriter.m in Sources */,
+				4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */,
+				4CC9515516F0D76D00DC7AF8 /* SMEnterRouteCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

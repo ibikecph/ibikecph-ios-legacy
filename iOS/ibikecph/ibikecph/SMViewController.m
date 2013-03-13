@@ -30,6 +30,8 @@
 #import "SMGeocoder.h"
 #import <MapKit/MapKit.h>
 
+#import "SMEnterRouteController.h"
+
 @interface SMViewController ()
 
 @property (nonatomic, strong) SMContacts *contacts;
@@ -456,6 +458,12 @@ typedef enum {
         [destViewController setLocationFrom:self.findFrom];
         [destViewController setLocationTo:self.findTo];
         [destViewController loadMatches:self.findMatches];
+    } else if ([segue.identifier isEqualToString:@"enterRouteSegue"]) {
+        SMEnterRouteController *destViewController = segue.destinationViewController;
+//        [destViewController setDelegate:self];
+//        [destViewController setLocationFrom:self.findFrom];
+//        [destViewController setLocationTo:self.findTo];
+//        [destViewController loadMatches:self.findMatches];
     } else if ([segue.identifier isEqualToString:@"goToNavigationView"]) {
         NSDictionary * params = (NSDictionary*)sender;
         SMRouteNavigationController *destViewController = segue.destinationViewController;
@@ -943,9 +951,16 @@ typedef enum {
 #pragma mark - SMAnnotation delegate methods
 
 - (void)annotationActivated:(SMAnnotation *)annotation {
+    
+    
+    
     self.findFrom = @"";
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
+    
+    
+//    [self performSegueWithIdentifier:@"enterRouteSegue" sender:nil];
+//    return;
     
 //#ifdef START_DIRECTIONS
     [UIView animateWithDuration:0.4f animations:^{
