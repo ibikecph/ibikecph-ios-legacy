@@ -2011,7 +2011,6 @@
         <class className="SMContactsHeader" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>

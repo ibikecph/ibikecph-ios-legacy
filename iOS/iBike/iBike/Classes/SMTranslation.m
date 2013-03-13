@@ -18,7 +18,11 @@
 	static SMTranslation *instance;
 	if (instance == nil) {
 		instance = [[SMTranslation alloc] init];
-        [instance loadStringsForLanguage:DEFAULT_LANGUAGE];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString * language = [defaults stringForKey:@"appLanguage"];
+        
+        [instance loadStringsForLanguage:language];
 	}
 	return instance;
 }

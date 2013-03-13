@@ -5,54 +5,24 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Titles</key>
+			<array>
+				<string>Dansk</string>
+				<string>English</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>dk</string>
+				<string>en</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>Group</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
+			<string>Language</string>
 			<key>Key</key>
-			<string>name_preference</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>Title</key>
-			<string>Name</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
+			<string>appLanguage</string>
 			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>enabled_preference</string>
-			<key>Title</key>
-			<string>Enabled</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<real>0.5</real>
-			<key>Key</key>
-			<string>slider_preference</string>
-			<key>MaximumValue</key>
-			<integer>1</integer>
-			<key>MaximumValueImage</key>
-			<string></string>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MinimumValueImage</key>
-			<string></string>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
+			<string>dk</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

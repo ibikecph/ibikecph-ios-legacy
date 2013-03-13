@@ -14,7 +14,7 @@
 		<string>icon@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>Spoiled-Milk.iBike</string>
+	<string>Spoiled-Milk.ibikecph</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -43,7 +43,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
-	<string>DanishStoryboard_iPhone</string>
+	<string>MainStoryboard_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard_iPad</string>
 	<key>UIPrerenderedIcon</key>

@@ -24,6 +24,15 @@
     self.searchHistory = [SMUtil getSearchHistory];
     
     /**
+     * init default settings
+     */
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:DEFAULT_LANGUAGE
+                                                            forKey:@"appLanguage"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
+    /**
      * initialize Google Analytics
      */
     [GAI sharedInstance].debug = YES;
@@ -36,17 +45,7 @@
     [[GAI sharedInstance].defaultTracker setAnonymize:GOOGLE_ANALYTICS_ANONYMIZE];
     [[GAI sharedInstance].defaultTracker setSampleRate:GOOGLE_ANALYTICS_SAMPLE_RATE];
     [[GAI sharedInstance].defaultTracker setSessionTimeout:GOOGLE_ANALYTICS_SESSION_TIMEOUT];
-    
-#ifdef ENGLISH_VERSION
-    UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"EnglishStoryboard_iPhone" bundle:nil];
-#else
-    UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"DanishStoryboard_iPhone" bundle:nil];
-#endif
-    SMTranslatedViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController  = initialViewController;
-    [self.window makeKeyAndVisible];
-    
+
     
     /**
      * hockey app crash reporting
@@ -55,6 +54,20 @@
                                                          liveIdentifier:HOCKEYAPP_LIVE_IDENTIFIER
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
+
+    
+//#ifdef ENGLISH_VERSION
+//    UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"EnglishStoryboard_iPhone" bundle:nil];
+//#else
+    UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+//#endif
+
+    SMTranslatedViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController  = initialViewController;
+    [self.window makeKeyAndVisible];
+    
+    
     
     return YES;
 }

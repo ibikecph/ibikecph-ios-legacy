@@ -53,11 +53,11 @@
 
 #define CALENDAR_MAX_DAYS 15
 
-#ifdef ENGLISH_VERSION
+//#ifdef ENGLISH_VERSION
     #define DEFAULT_LANGUAGE @"en"
-#else
-    #define DEFAULT_LANGUAGE @"dk"
-#endif
+//#else
+//    #define DEFAULT_LANGUAGE @"dk"
+//#endif
 
 
 #define MAX_HEIGHT_FOR_EVENTS_TABLE 170.0f
