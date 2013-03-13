@@ -115,7 +115,6 @@
 		4C463A9816BC0A9D00090D62 /* contactsCellBGHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9616BC0A9D00090D62 /* contactsCellBGHighlight.png */; };
 		4C463A9916BC0A9D00090D62 /* contactsCellBGHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9716BC0A9D00090D62 /* contactsCellBGHighlight@2x.png */; };
 		4C463A9C16BC18A600090D62 /* SMRouteFinishedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */; };
-		4C48641316F0994600F01A7C /* ibikecph.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */; };
 		4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */; };
 		4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		4C52287516BFA9310082A01A /* routeFinishedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287316BFA9310082A01A /* routeFinishedBtn.png */; };
@@ -267,8 +266,6 @@
 		4CDA691616F085D400FE2A19 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA68FF16F085D400FE2A19 /* SBJsonStreamWriterAccumulator.m */; };
 		4CDA691716F085D400FE2A19 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA690116F085D400FE2A19 /* SBJsonStreamWriterState.m */; };
 		4CDA691816F085D400FE2A19 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA690316F085D400FE2A19 /* SBJsonWriter.m */; };
-		4CDA691F16F0860700FE2A19 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA691E16F0860700FE2A19 /* DAKeyboardControl.m */; };
-		4CDA6A5116F0863700FE2A19 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA692116F0863600FE2A19 /* FacebookSDK.framework */; };
 		4CDA6A5216F0863700FE2A19 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA692216F0863600FE2A19 /* LICENSE */; };
 		4CDA6A5316F0863700FE2A19 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA692316F0863600FE2A19 /* README */; };
 		4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA6B2916F086CD00FE2A19 /* libGoogleAnalytics.a */; };
@@ -695,7 +692,6 @@
 				4CF7E29616B6B5340082078E /* FacebookSDK.framework in Frameworks */,
 				4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
 				4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */,
-				4CDA6A5116F0863700FE2A19 /* FacebookSDK.framework in Frameworks */,
 				4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */,
 				4CDA6B2C16F086CD00FE2A19 /* libGoogleAnalytics_debug.a in Frameworks */,
 			);
@@ -1306,7 +1302,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SM;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Spoiled Milk";
 			};
 			buildConfigurationList = 4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "I Bike CPH" */;
@@ -1582,7 +1578,6 @@
 				4CDA6A5316F0863700FE2A19 /* README in Resources */,
 				4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */,
 				4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */,
-				4C48641316F0994600F01A7C /* ibikecph.xcconfig in Resources */,
 				4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */,
 				4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
@@ -1648,7 +1643,6 @@
 				4CDA691616F085D400FE2A19 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				4CDA691716F085D400FE2A19 /* SBJsonStreamWriterState.m in Sources */,
 				4CDA691816F085D400FE2A19 /* SBJsonWriter.m in Sources */,
-				4CDA691F16F0860700FE2A19 /* DAKeyboardControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1765,7 +1759,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/ibikecph-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
 				);
 				PRODUCT_NAME = "I Bike CPH";
@@ -1801,7 +1794,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../../Library/Developer/Xcode/DerivedData/ibikecph-cjjyxpndmhxskkcerxnkcjmrzgzg/Build/Products/Debug-iphoneos\"",
 					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
 				);
 				PRODUCT_NAME = "I Bike CPH";
