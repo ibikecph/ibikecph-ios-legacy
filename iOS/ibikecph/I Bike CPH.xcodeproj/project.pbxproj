@@ -228,6 +228,7 @@
 		4C8BB0AC16B82C8100F1ADF2 /* progressBarEmpty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB0A616B82C8100F1ADF2 /* progressBarEmpty@2x.png */; };
 		4C8BB0AD16B82C8100F1ADF2 /* progressBarFull.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB0A716B82C8100F1ADF2 /* progressBarFull.png */; };
 		4C8BB0AE16B82C8100F1ADF2 /* progressBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB0A816B82C8100F1ADF2 /* progressBarFull@2x.png */; };
+		4C8DF76A16F229CB007EC9FE /* SMViewMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8DF76916F229CB007EC9FE /* SMViewMoreCell.m */; };
 		4C90468E16B94EC6004BA3DD /* SMAutocomplete.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C90468D16B94EC6004BA3DD /* SMAutocomplete.m */; };
 		4C90469216B96295004BA3DD /* SMAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C90469016B96295004BA3DD /* SMAutocompleteCell.m */; };
 		4C90469A16B963A0004BA3DD /* findRouteBike.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C90469416B963A0004BA3DD /* findRouteBike.png */; };
@@ -583,6 +584,8 @@
 		4C8BB0A616B82C8100F1ADF2 /* progressBarEmpty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressBarEmpty@2x.png"; sourceTree = "<group>"; };
 		4C8BB0A716B82C8100F1ADF2 /* progressBarFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressBarFull.png; sourceTree = "<group>"; };
 		4C8BB0A816B82C8100F1ADF2 /* progressBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressBarFull@2x.png"; sourceTree = "<group>"; };
+		4C8DF76816F229CB007EC9FE /* SMViewMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMViewMoreCell.h; sourceTree = "<group>"; };
+		4C8DF76916F229CB007EC9FE /* SMViewMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMViewMoreCell.m; sourceTree = "<group>"; };
 		4C90468C16B94EC6004BA3DD /* SMAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocomplete.h; sourceTree = "<group>"; };
 		4C90468D16B94EC6004BA3DD /* SMAutocomplete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAutocomplete.m; sourceTree = "<group>"; };
 		4C90468F16B96295004BA3DD /* SMAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocompleteCell.h; sourceTree = "<group>"; };
@@ -1137,6 +1140,8 @@
 				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
 				4C34508216F1D68C00562E20 /* SMAutocompleteHeader.h */,
 				4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */,
+				4C8DF76816F229CB007EC9FE /* SMViewMoreCell.h */,
+				4C8DF76916F229CB007EC9FE /* SMViewMoreCell.m */,
 			);
 			name = Views;
 			path = ibikecph/Views;
@@ -1677,6 +1682,7 @@
 				4CC9515516F0D76D00DC7AF8 /* SMEnterRouteCell.m in Sources */,
 				4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */,
 				4C34509416F1E53000562E20 /* SMSearchController.m in Sources */,
+				4C8DF76A16F229CB007EC9FE /* SMViewMoreCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

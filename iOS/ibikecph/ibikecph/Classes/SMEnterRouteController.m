@@ -13,6 +13,7 @@
 #import "SMLocationManager.h"
 #import "SMEnterRouteCell.h"
 #import "SMAutocompleteHeader.h"
+#import "SMViewMoreCell.h"
 
 typedef enum {
     fieldTo,
@@ -21,6 +22,8 @@ typedef enum {
 
 @interface SMEnterRouteController () {
     CurrentField delegateField;
+    BOOL favoritesOpen;
+    BOOL historyOpen;
 }
 @property (nonatomic, strong) NSArray * groupedList;
 @property (nonatomic, strong) NSDictionary * fromData;
@@ -29,8 +32,14 @@ typedef enum {
 
 @implementation SMEnterRouteController
 
+#define MAX_FAVORITES 3
+#define MAX_HISTORY 2
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    favoritesOpen = NO;
+    historyOpen = NO;
     
 	[tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -248,46 +257,129 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self.groupedList objectAtIndex:section] count];
+    NSInteger count = [[self.groupedList objectAtIndex:section] count];
+    if (section == 0) {
+        if (count > MAX_FAVORITES) {
+            if (favoritesOpen) {
+                return count + 1;
+            } else {
+                return MAX_FAVORITES + 1;
+            }
+        } else {
+            return count;
+        }
+    } else if (section == 1) {
+        if (count > MAX_HISTORY) {
+            if (historyOpen) {
+                return count + 1;
+            } else {
+                return MAX_HISTORY + 1;
+            }
+        } else {
+            return count;
+        }        
+    }
+    return count;
+}
+
+- (BOOL)isCountButton:(NSIndexPath*)indexPath {
+    NSInteger count = [[self.groupedList objectAtIndex:indexPath.section] count];
+    if (indexPath.section == 0) {
+        if (count > MAX_FAVORITES) {
+            if (favoritesOpen) {
+                if (indexPath.row == count) {
+                    return YES;
+                }
+            } else {
+                if (indexPath.row == MAX_FAVORITES) {
+                    return YES;
+                }
+            }
+        }
+    } else if (indexPath.section == 1) {
+        if (count > MAX_HISTORY) {
+            if (historyOpen) {
+                if (indexPath.row == count) {
+                    return YES;
+                }
+            } else {
+                if (indexPath.row == MAX_HISTORY) {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    NSString * identifier = @"autocompleteCell";
-    SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
     
-    if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
-       if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+    if ([self isCountButton:indexPath]) {
+        SMViewMoreCell * cell = [tableView dequeueReusableCellWithIdentifier:@"viewMoreCell"];
+        if (indexPath.section == 0) {
+            if (favoritesOpen) {
+                [cell.buttonLabel setText:translateString(@"show_less")];
+            } else {
+                [cell.buttonLabel setText:translateString(@"show_more")];
+            }
         } else {
-            [cell.iconImage setImage:nil];
+            if (historyOpen) {
+                [cell.buttonLabel setText:translateString(@"show_less")];
+            } else {
+                [cell.buttonLabel setText:translateString(@"show_more")];
+            }            
         }
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        return cell;
+    } else {
+        NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"autocompleteCell"];
+        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+        
+        if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
+            if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+                [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+            } else {
+                [cell.iconImage setImage:nil];
+            }
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        }
+        return cell;
     }
-    return cell;
+}
+
+- (void)openCloseSection:(NSInteger)section {
+    if (section == 0) {
+        favoritesOpen = !favoritesOpen;
+    } else if (section == 1) {
+        historyOpen = !historyOpen;
+    }
+    [tblView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    [toLabel setText:[currentRow objectForKey:@"name"]];
-    [self setToData:@{
-        @"name" : [currentRow objectForKey:@"name"],
-        @"address" : [currentRow objectForKey:@"address"],
-        @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]
-     }];
+    if ([self isCountButton:indexPath]) {
+        [self openCloseSection:indexPath.section];
+    } else {
+        NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        [toLabel setText:[currentRow objectForKey:@"name"]];
+        [self setToData:@{
+         @"name" : [currentRow objectForKey:@"name"],
+         @"address" : [currentRow objectForKey:@"address"],
+         @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]
+         }];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

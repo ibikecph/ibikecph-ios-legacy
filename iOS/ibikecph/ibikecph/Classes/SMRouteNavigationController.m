@@ -47,6 +47,8 @@
 
 @implementation SMRouteNavigationController
 
+#define MAX_SEGMENTS 1
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -835,22 +837,32 @@
          * dynamic cell resizing
          */
         CGFloat tblHeight = 0.0f;
-        @synchronized(self.route.turnInstructions) {
-            for (int i = 0; i < MIN(segments, [self.route.turnInstructions count]); i++) { 
-                SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
-                if (i == 0) {
-                    tblHeight += [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
-                } else {
-                    tblHeight += [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
-                }
-            }
-        }
-//        tblHeight = MAX(100.0f, tblHeight);
-        int newY = maxY - tblHeight;
-        if (newY < self.mpView.frame.origin.y || (newY - self.mpView.frame.origin.y) < 50.0f) {
+        
+        CGFloat newY = 0;
+        
+        if (segments > MAX_SEGMENTS) {
             newY = self.mpView.frame.origin.y;
             fullscreen = YES;
+        } else {
+            @synchronized(self.route.turnInstructions) {
+                for (int i = 0; i < MIN(segments, [self.route.turnInstructions count]); i++) {
+                    SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
+                    if (i == 0) {
+                        tblHeight += [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+                    } else {
+                        tblHeight += [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+                    }
+                    
+                }
+            }
+            newY = maxY - tblHeight;
+            if (newY < self.mpView.frame.origin.y || (newY - self.mpView.frame.origin.y) < 50.0f) {
+                newY = self.mpView.frame.origin.y;
+                fullscreen = YES;
+            }
         }
+
+        
         
         [self repositionInstructionsView:newY + 1];
     }
