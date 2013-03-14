@@ -8,13 +8,23 @@
 
 #import "SMTranslatedViewController.h"
 #import "SMRequestOSRM.h"
+#import "SMSearchController.h"
 
-@interface SMEnterRouteController : SMTranslatedViewController <SMRequestOSRMDelegate, UITableViewDataSource, UITableViewDelegate>{
+@protocol EnterRouteDelegate <NSObject>
+
+- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString*)src toAddress:(NSString*)dst;
+- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString*)src toAddress:(NSString*)dst withJSON:(id)jsonRoot;
+
+@end
+
+@interface SMEnterRouteController : SMTranslatedViewController <SMRequestOSRMDelegate, UITableViewDataSource, UITableViewDelegate, SMSearchDelegate>{
     
     __weak IBOutlet UILabel *fromLabel;
     __weak IBOutlet UILabel *toLabel;
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIView *fadeView;
 }
+
+@property (nonatomic, weak) id<EnterRouteDelegate> delegate;
 
 @end

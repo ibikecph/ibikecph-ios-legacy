@@ -12,17 +12,26 @@
 #import "SBJson.h"
 #import "SMLocationManager.h"
 #import "SMEnterRouteCell.h"
+#import "SMAutocompleteHeader.h"
 
-@interface SMEnterRouteController ()
+typedef enum {
+    fieldTo,
+    fieldFrom
+} CurrentField;
+
+@interface SMEnterRouteController () {
+    CurrentField delegateField;
+}
 @property (nonatomic, strong) NSArray * groupedList;
-@property (nonatomic, strong) NSMutableDictionary * fromData;
-@property (nonatomic, strong) NSMutableDictionary * toData;
+@property (nonatomic, strong) NSDictionary * fromData;
+@property (nonatomic, strong) NSDictionary * toData;
 @end
 
 @implementation SMEnterRouteController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 	[tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [fromLabel setText:CURRENT_POSITION_STRING];
@@ -38,6 +47,36 @@
             [v setDelegate: self];
         }
     }
+    
+    
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+    NSMutableArray * saved = [NSMutableArray array];
+    /**
+     * add saved routes here
+     */
+    
+    
+    /**
+     * add latest 10 searches
+     */
+    NSMutableArray * last = [NSMutableArray array];
+    for (int i = 0; i < MIN(10, [appd.searchHistory count]); i++) {
+        BOOL found = NO;
+        NSDictionary * d = [appd.searchHistory objectAtIndex:i];
+        for (NSDictionary * d1 in last) {
+            if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                found = YES;
+                break;
+            }
+        }
+        if (found == NO) {
+            [last addObject:d];
+        }
+    }
+    
+    [self setGroupedList:@[saved, last]];
+    [tblView reloadData];
+
 }
 
 - (void)viewDidUnload {
@@ -46,6 +85,16 @@
     tblView = nil;
     fadeView = nil;
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +108,7 @@
     NSString * txt = fromLabel.text;
     fromLabel.text = toLabel.text;
     toLabel.text = txt;
-    NSMutableDictionary * data = [self.fromData copy];
+    NSDictionary * data = [self.fromData copy];
     self.fromData = self.toData;
     self.toData = data;
 }
@@ -80,10 +129,16 @@
     }
     
     if ([fromLabel.text isEqualToString:CURRENT_POSITION_STRING]) {
-        self.fromData = [NSMutableDictionary dictionaryWithDictionary:@{@"name" : CURRENT_POSITION_STRING,
-                         @"address" : @"",
-                         @"location" : [SMLocationManager instance].lastValidLocation
-                         }];
+        if ([SMLocationManager instance].hasValidLocation == NO) {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+            return;            
+        } else {
+            self.fromData = [NSMutableDictionary dictionaryWithDictionary:@{@"name" : CURRENT_POSITION_STRING,
+                             @"address" : @"",
+                             @"location" : [SMLocationManager instance].lastValidLocation
+                             }];
+        }
     }
     
     [UIView animateWithDuration:0.2f animations:^{
@@ -95,6 +150,23 @@
     [r findNearestPointForStart:[self.fromData objectForKey:@"location"] andEnd:[self.toData objectForKey:@"location"]];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"searchSegue"]) {
+        SMSearchController *destViewController = segue.destinationViewController;
+        [destViewController setDelegate:self];
+        switch (delegateField) {
+            case fieldFrom:
+                [destViewController setSearchText:fromLabel.text];
+                break;
+            case fieldTo:
+                [destViewController setSearchText:toLabel.text];
+                break;
+            default:
+                break;
+        }
+       
+    }
+}
 
 #pragma mark - osrm request delegate
 
@@ -123,9 +195,9 @@
         if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
-            [UIView animateWithDuration:0.2f animations:^{
-                [fadeView setAlpha:0.0f];
-            }];
+            
+            
+        } else {
             [SMUtil saveToSearchHistory:@{
              @"name" : [self.toData objectForKey:@"name"],
              @"address" : [self.toData objectForKey:@"address"],
@@ -136,7 +208,15 @@
              @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.latitude],
              @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.longitude]
              }];
+            
+            [self.delegate findRouteFrom:((CLLocation*)[self.fromData objectForKey:@"location"]).coordinate to:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate fromAddress:fromLabel.text toAddress:toLabel.text withJSON:jsonRoot];
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+            
         }
+        [UIView animateWithDuration:0.2f animations:^{
+            [fadeView setAlpha:0.0f];
+        }];
     } else {
         [UIView animateWithDuration:0.2f animations:^{
             [fadeView setAlpha:0.0f];
@@ -151,28 +231,28 @@
         /**
          * FROM label tapped
          */
-        debugLog(@"from");
+        delegateField = fieldFrom;
     } else {
         /**
          * TO label tapped
          */
-        debugLog(@"to");
+        delegateField = fieldTo;
     }
-    
+    [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
 
 #pragma mark - tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.groupedList count];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[self.groupedList objectAtIndex:section] count];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary * currentRow = [self.groupedList objectAtIndex:indexPath.row];
+    NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     NSString * identifier = @"autocompleteCell";
     SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
@@ -201,10 +281,53 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    [toLabel setText:[currentRow objectForKey:@"name"]];
+    [self setToData:@{
+        @"name" : [currentRow objectForKey:@"name"],
+        @"address" : [currentRow objectForKey:@"address"],
+        @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]
+     }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [SMEnterRouteCell getHeight];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [SMAutocompleteHeader getHeight];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    SMAutocompleteHeader * cell = [tableView dequeueReusableCellWithIdentifier:@"autocompleteHeader"];
+    switch (section) {
+        case 0:
+            [cell.headerTitle setText:translateString(@"favorites")];
+            break;
+        case 1:
+            [cell.headerTitle setText:translateString(@"recent_results")];
+            break;            
+        default:
+            break;
+    }
+    return cell;
+}
+
+#pragma mark - search delegate 
+
+- (void)locationFound:(NSDictionary *)locationDict {
+    switch (delegateField) {
+        case fieldTo:
+            [self setToData:locationDict];
+            [toLabel setText:[self.toData objectForKey:@"name"]];
+            break;
+        case fieldFrom:
+            [self setFromData:locationDict];
+            [fromLabel setText:[self.fromData objectForKey:@"name"]];
+            break;
+        default:
+            break;
+    }
 }
 
 

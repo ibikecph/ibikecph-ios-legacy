@@ -274,10 +274,6 @@ typedef enum {
         [UIView animateWithDuration:0.2f animations:^{
             [im setFrame:CGRectMake(point.x - 17.0f, point.y - 34.0f, 34.0f, 34.0f)];
         } completion:^(BOOL finished) {
-            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-            [r setRequestIdentifier:@"getNearestForPinDrop"];
-            [r findNearestPointForLocation:loc];
-            
             [self.mpView removeAllAnnotations];
             SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
             endMarkerAnnotation.annotationType = @"marker";
@@ -287,6 +283,11 @@ typedef enum {
             [self setDestinationPin:endMarkerAnnotation];
             
             [im removeFromSuperview];
+
+            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+            [r setRequestIdentifier:@"getNearestForPinDrop"];
+            [r findNearestPointForLocation:loc];
+            
         }];
         
         
@@ -453,17 +454,14 @@ typedef enum {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"goToFinderSegue"]){
-        SMFindAddressController *destViewController = segue.destinationViewController;
-        [destViewController setDelegate:self];
-        [destViewController setLocationFrom:self.findFrom];
-        [destViewController setLocationTo:self.findTo];
-        [destViewController loadMatches:self.findMatches];
-    } else if ([segue.identifier isEqualToString:@"enterRouteSegue"]) {
-        SMEnterRouteController *destViewController = segue.destinationViewController;
+//        SMFindAddressController *destViewController = segue.destinationViewController;
 //        [destViewController setDelegate:self];
 //        [destViewController setLocationFrom:self.findFrom];
 //        [destViewController setLocationTo:self.findTo];
 //        [destViewController loadMatches:self.findMatches];
+    } else if ([segue.identifier isEqualToString:@"enterRouteSegue"]) {
+        SMEnterRouteController *destViewController = segue.destinationViewController;
+        [destViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"goToNavigationView"]) {
         NSDictionary * params = (NSDictionary*)sender;
         SMRouteNavigationController *destViewController = segue.destinationViewController;
@@ -958,9 +956,6 @@ typedef enum {
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
     
-    
-//    [self performSegueWithIdentifier:@"enterRouteSegue" sender:nil];
-//    return;
     
 //#ifdef START_DIRECTIONS
     [UIView animateWithDuration:0.4f animations:^{

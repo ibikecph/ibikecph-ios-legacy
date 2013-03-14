@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "RMMapView.h"
 #import "SMRoute.h"
-#import "SMFindAddressController.h"
 #import "SMGPSTrackButton.h"
 
-@interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, RouteFinderDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate> {
+@interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate> {
     __weak IBOutlet UITableView *tblDirections;
     __weak IBOutlet UIButton *buttonNewStop;
     __weak IBOutlet UIView *instructionsView;
@@ -39,8 +38,6 @@
 @property (nonatomic, strong) CLLocation *startLocation, *endLocation;
 @property (nonatomic, strong) NSString * destination;
 @property (nonatomic, strong) NSString * source;
-
-@property (nonatomic, weak) id<RouteFinderDelegate> delegate;
 
 @property (nonatomic, strong) id jsonRoot;
 

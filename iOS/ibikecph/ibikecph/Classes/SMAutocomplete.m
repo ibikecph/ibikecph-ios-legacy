@@ -87,7 +87,7 @@
         for (NSDictionary* d in res) {
             if ([[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] >= 1000 && [[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] <= 2999) {
                 [arr addObject:@{
-                 @"name" : @"",
+                 @"name" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
                  @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
                  @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
                  @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
@@ -192,7 +192,7 @@
                                               @"long" : [[d objectForKey:@"location"] objectForKey:@"lng"],
                                               @"source" : @"autocomplete",
                                               @"subsource" : @"foursquare",
-                                              @"order" : @0
+                                              @"order" : @1
                                               }];
                 if ([d objectForKey:@"name"]) {
                     [dict setValue:[d objectForKey:@"name"] forKey:@"name"];

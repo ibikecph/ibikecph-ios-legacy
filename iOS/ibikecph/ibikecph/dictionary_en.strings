@@ -139,3 +139,6 @@
 "report" = "Report";
 "report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
 "choose_a_route_step" = "Choose a route step";
+"recent_results" = "RECENT";
+"show_more" = "SHOW MORE";
+

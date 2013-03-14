@@ -129,3 +129,7 @@
 "choose_a_route_step" = "Vælg et trin i ruten at rapportere";
 "cancel_picker" = "Annullere";
 "done_picker" = "Gjort";
+
+"recent_results" = "SENESTE";
+"recent_results" = "RECENT";
+"show_more" = "VIS FLERE";

@@ -34,7 +34,7 @@
 - (void)findNearestPointForLocation:(CLLocation*)loc {
     self.currentRequest = @"findNearestPointForLocation:";
     self.coord = loc;
-    NSString * s = [NSString stringWithFormat:@"%@/nearest?loc=%g,%g", OSRM_SERVER, loc.coordinate.latitude, loc.coordinate.longitude];
+    NSString * s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, loc.coordinate.latitude, loc.coordinate.longitude];
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     if (self.conn) {
         [self.conn cancel];
@@ -58,21 +58,21 @@
 - (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum destinationHint:(NSString*)hint {
     self.currentRequest = @"getRouteFrom:to:via:";
     
-    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?loc=%g,%g", OSRM_SERVER, start.latitude, start.longitude];
+    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?alt=false&loc=%.6f,%.6f", OSRM_SERVER, start.latitude, start.longitude];
     if (viaPoints) {
         for (CLLocation *point in viaPoints)
-            [s1 appendFormat:@"&loc=%g,%g", point.coordinate.latitude, point.coordinate.longitude];
+            [s1 appendFormat:@"&loc=%f.6,%.6f", point.coordinate.latitude, point.coordinate.longitude];
     }
     NSString *s = @"";
     
     if (chksum) {
         if (hint) {
-            s = [NSString stringWithFormat:@"%@&loc=%g,%g&hint=%@&instructions=true&checksum=%@", s1, end.latitude, end.longitude, hint, chksum];
+            s = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&hint=%@&instructions=true&checksum=%@", s1, end.latitude, end.longitude, hint, chksum];
         } else {
-            s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true&checksum=%@", s1, end.latitude, end.longitude, chksum];
+            s = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&instructions=true&checksum=%@", s1, end.latitude, end.longitude, chksum];
         }
     } else {
-        s = [NSString stringWithFormat:@"%@&loc=%g,%g&instructions=true", s1, end.latitude, end.longitude];
+        s = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&instructions=true", s1, end.latitude, end.longitude];
     }
     
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
@@ -93,9 +93,9 @@
     if (self.locStep == 0) {
         self.startLoc = start;
         self.endLoc = end;
-        s = [NSString stringWithFormat:@"%@/nearest?loc=%g,%g", OSRM_SERVER, start.coordinate.latitude, start.coordinate.longitude];
+        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, start.coordinate.latitude, start.coordinate.longitude];
     } else {
-        s = [NSString stringWithFormat:@"%@/nearest?loc=%g,%g", OSRM_SERVER, end.coordinate.latitude, end.coordinate.longitude];
+        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, end.coordinate.latitude, end.coordinate.longitude];
     }
     self.locStep += 1;
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];

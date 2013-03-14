@@ -7,7 +7,22 @@
 //
 
 #import "SMTranslatedViewController.h"
+#import "SMAutocomplete.h"
 
-@interface SMSearchController : SMTranslatedViewController
+@protocol SMSearchDelegate <NSObject>
+
+- (void)locationFound:(NSDictionary*)locationDict;
+
+@end
+
+@interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate>{
+    
+    __weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UIView *tblFade;
+    __weak IBOutlet UITextField *searchField;
+}
+
+@property (nonatomic, strong) NSString * searchText;
+@property (nonatomic, weak) id<SMSearchDelegate> delegate;
 
 @end

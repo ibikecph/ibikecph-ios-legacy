@@ -71,6 +71,7 @@
     if (self.locationTo && ([self.locationTo isEqualToString:@""] == NO)) {
         [routeTo setText:self.locationTo];
     } else {
+        [self autocompleteEntriesFound:@[] forString:@""];
         [routeTo setText:@""];
     }
     
@@ -95,7 +96,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self autocompleteEntriesFound:@[] forString:@""];
 }
 
 - (void)viewDidUnload {
@@ -762,14 +762,14 @@
                  }];
             } else {
                 [SMUtil saveToSearchHistory:@{
-                 @"name" : [NSString stringWithFormat:@"%@ - %@", routeFrom.text, routeTo.text],
+                 @"name" : routeTo.text,
                  @"address" : routeTo.text,
                  @"startDate" : [NSDate date],
                  @"endDate" : [NSDate date],
                  @"source" : @"searchHistory",
                  @"subsource" : @"",
-                 @"lat" : @"",
-                 @"long" : @""
+                 @"lat" : [NSNumber numberWithDouble:self.endLocation.coordinate.latitude],
+                 @"long" : [NSNumber numberWithDouble:self.endLocation.coordinate.longitude]
                  }];
             }
             [self.delegate findRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate fromAddress:routeFrom.text toAddress:routeTo.text withJSON:jsonRoot];

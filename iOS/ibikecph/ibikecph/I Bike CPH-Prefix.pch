@@ -31,9 +31,9 @@
 #define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]
 
 //#ifdef WORLD_ROUTING
-//    #define OSRM_SERVER @"http://router.project-osrm.org"
+    #define OSRM_SERVER @"http://router.project-osrm.org"
 //#else
-    #define OSRM_SERVER @"http://routes.ibikecph.dk"
+//    #define OSRM_SERVER @"http://routes.ibikecph.dk"
 //#endif
 
 //#ifdef WORLD_ROUTING

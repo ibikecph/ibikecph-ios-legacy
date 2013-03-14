@@ -26,7 +26,6 @@
 #import "SMFindAddressController.h"
 #import "SMDirectionCell.h"
 #import "SMDirectionTopCell.h"
-#import "SMRouteFinishedController.h"
 #import "SMReportErrorController.h"
 
 #import "SMUtil.h"
@@ -679,19 +678,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (([segue.identifier isEqualToString:@"newRouteSegue"]) ){
-        SMFindAddressController *destViewController = segue.destinationViewController;
-        [destViewController setDelegate:self];
-    } else if (([segue.identifier isEqualToString:@"routeFinished"]) ){
-        self.mpView.delegate = nil;
-        [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
-        SMRouteFinishedController *destViewController = segue.destinationViewController;
-        [destViewController setDelegate:self];
-        [destViewController setCaloriesBurned:[self.route calculateCaloriesBurned]];
-        [destViewController setAverageSpeed:[self.route calculateAverageSpeed]];
-        [destViewController setRouteDistance:[self.route calculateDistanceTraveled]];
-        [destViewController setDestination:self.destination];
-    } else if (([segue.identifier isEqualToString:@"reportError"]) ){
+    if (([segue.identifier isEqualToString:@"reportError"]) ){
         SMReportErrorController *destViewController = segue.destinationViewController;
         NSMutableArray * arr = [NSMutableArray array];
         if (self.route) {
@@ -713,34 +700,6 @@
         [destViewController setRouteDirections:arr];
         [destViewController setDestination:self.destination];
         [destViewController setSource:self.source];
-    }
-}
-
-#pragma mark - route finder delegate
-
-- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst{
-    [self findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:nil];
-}
-
-- (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst withJSON:(id)jsonRoot {
-    [self setStartLocation:[[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude]];
-    [self setEndLocation:[[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude]];
-    [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:jsonRoot];
-    self.destination = dst;
-    self.source = src;
-    
-    NSDictionary * d = @{
-                         @"endLat": [NSNumber numberWithDouble:self.endLocation.coordinate.latitude],
-                         @"endLong": [NSNumber numberWithDouble:self.endLocation.coordinate.longitude],
-                         @"startLat": [NSNumber numberWithDouble:self.startLocation.coordinate.latitude],
-                         @"startLong": [NSNumber numberWithDouble:self.startLocation.coordinate.longitude],
-                         @"destination": dst,
-                         };
-    
-    NSString * s = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"];
-    BOOL x = [d writeToFile:s atomically:NO];
-    if (x == NO) {
-        NSLog(@"Temp route not saved!");
     }
 }
 

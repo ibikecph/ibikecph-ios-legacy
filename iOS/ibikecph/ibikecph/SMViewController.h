@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SMContacts.h"
 #import "SMContactsHeader.h"
-#import "SMFindAddressController.h"
+#import "SMEnterRouteController.h"
 #import "SMEvents.h"
 
 #import "RMMapView.h"
@@ -25,7 +25,7 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, RouteFinderDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;

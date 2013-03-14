@@ -112,9 +112,14 @@
 		4C16ECFF16B178B8001545C7 /* btnMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C16ECFB16B178B8001545C7 /* btnMenu@2x.png */; };
 		4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0016B188C4001545C7 /* AddressBook.framework */; };
 		4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0116B188C4001545C7 /* AddressBookUI.framework */; };
+		4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */; };
+		4C34508E16F1D7A300562E20 /* autocompleteHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508A16F1D7A300562E20 /* autocompleteHeader.png */; };
+		4C34508F16F1D7A300562E20 /* autocompleteHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508B16F1D7A300562E20 /* autocompleteHeader@2x.png */; };
+		4C34509016F1D7A300562E20 /* swapButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508C16F1D7A300562E20 /* swapButton.png */; };
+		4C34509116F1D7A300562E20 /* swapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508D16F1D7A300562E20 /* swapButton@2x.png */; };
+		4C34509416F1E53000562E20 /* SMSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C34509316F1E53000562E20 /* SMSearchController.m */; };
 		4C463A9816BC0A9D00090D62 /* contactsCellBGHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9616BC0A9D00090D62 /* contactsCellBGHighlight.png */; };
 		4C463A9916BC0A9D00090D62 /* contactsCellBGHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C463A9716BC0A9D00090D62 /* contactsCellBGHighlight@2x.png */; };
-		4C463A9C16BC18A600090D62 /* SMRouteFinishedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */; };
 		4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */; };
 		4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		4C52287516BFA9310082A01A /* routeFinishedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287316BFA9310082A01A /* routeFinishedBtn.png */; };
@@ -439,10 +444,16 @@
 		4C16ECFB16B178B8001545C7 /* btnMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnMenu@2x.png"; sourceTree = "<group>"; };
 		4C16ED0016B188C4001545C7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4C16ED0116B188C4001545C7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		4C34508216F1D68C00562E20 /* SMAutocompleteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocompleteHeader.h; sourceTree = "<group>"; };
+		4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAutocompleteHeader.m; sourceTree = "<group>"; };
+		4C34508A16F1D7A300562E20 /* autocompleteHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = autocompleteHeader.png; sourceTree = "<group>"; };
+		4C34508B16F1D7A300562E20 /* autocompleteHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "autocompleteHeader@2x.png"; sourceTree = "<group>"; };
+		4C34508C16F1D7A300562E20 /* swapButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapButton.png; sourceTree = "<group>"; };
+		4C34508D16F1D7A300562E20 /* swapButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swapButton@2x.png"; sourceTree = "<group>"; };
+		4C34509216F1E53000562E20 /* SMSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSearchController.h; sourceTree = "<group>"; };
+		4C34509316F1E53000562E20 /* SMSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSearchController.m; sourceTree = "<group>"; };
 		4C463A9616BC0A9D00090D62 /* contactsCellBGHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactsCellBGHighlight.png; sourceTree = "<group>"; };
 		4C463A9716BC0A9D00090D62 /* contactsCellBGHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contactsCellBGHighlight@2x.png"; sourceTree = "<group>"; };
-		4C463A9A16BC18A600090D62 /* SMRouteFinishedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteFinishedController.h; sourceTree = "<group>"; };
-		4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteFinishedController.m; sourceTree = "<group>"; };
 		4C48641216F0994600F01A7C /* ibikecph.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ibikecph.xcconfig; sourceTree = "<group>"; };
 		4C48641516F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		4C48641716F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -936,6 +947,10 @@
 		4C73D23816AEDD3F00AED42A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				4C34508A16F1D7A300562E20 /* autocompleteHeader.png */,
+				4C34508B16F1D7A300562E20 /* autocompleteHeader@2x.png */,
+				4C34508C16F1D7A300562E20 /* swapButton.png */,
+				4C34508D16F1D7A300562E20 /* swapButton@2x.png */,
 				4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */,
 				4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */,
 				4CC388A016E77A4800E7C884 /* tokenNormal.png */,
@@ -1120,6 +1135,8 @@
 				4C09001116DE446600DCAB64 /* SMSwipableView.h */,
 				4C09001216DE446600DCAB64 /* SMSwipableView.m */,
 				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
+				4C34508216F1D68C00562E20 /* SMAutocompleteHeader.h */,
+				4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */,
 			);
 			name = Views;
 			path = ibikecph/Views;
@@ -1167,8 +1184,6 @@
 				4C8546BE16E64D3B004E8902 /* routing-engine */,
 				4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */,
 				4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */,
-				4C463A9A16BC18A600090D62 /* SMRouteFinishedController.h */,
-				4C463A9B16BC18A600090D62 /* SMRouteFinishedController.m */,
 				4C64781C16C1366C00D055DC /* SMReportErrorController.h */,
 				4C64781D16C1366C00D055DC /* SMReportErrorController.m */,
 			);
@@ -1184,6 +1199,8 @@
 				4C73A27416B2D23D00050349 /* SMFindAddressController.m */,
 				4CC9514B16F0C80B00DC7AF8 /* SMEnterRouteController.h */,
 				4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */,
+				4C34509216F1E53000562E20 /* SMSearchController.h */,
+				4C34509316F1E53000562E20 /* SMSearchController.m */,
 			);
 			name = Autocomplete;
 			sourceTree = "<group>";
@@ -1590,6 +1607,10 @@
 				4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */,
 				4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */,
 				4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */,
+				4C34508E16F1D7A300562E20 /* autocompleteHeader.png in Resources */,
+				4C34508F16F1D7A300562E20 /* autocompleteHeader@2x.png in Resources */,
+				4C34509016F1D7A300562E20 /* swapButton.png in Resources */,
+				4C34509116F1D7A300562E20 /* swapButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1624,7 +1645,6 @@
 				4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */,
 				4C9D152B16BAB98C00B73393 /* SMAccountsController.m in Sources */,
 				4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */,
-				4C463A9C16BC18A600090D62 /* SMRouteFinishedController.m in Sources */,
 				4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */,
 				4C64781B16C102FE00D055DC /* SMEnterEmailController.m in Sources */,
 				4C64781E16C1366C00D055DC /* SMReportErrorController.m in Sources */,
@@ -1655,6 +1675,8 @@
 				4CDA691816F085D400FE2A19 /* SBJsonWriter.m in Sources */,
 				4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */,
 				4CC9515516F0D76D00DC7AF8 /* SMEnterRouteCell.m in Sources */,
+				4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */,
+				4C34509416F1E53000562E20 /* SMSearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

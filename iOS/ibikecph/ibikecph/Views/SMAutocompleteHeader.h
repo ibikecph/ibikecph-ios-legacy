@@ -10,4 +10,7 @@
 
 @interface SMAutocompleteHeader : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle;
++ (CGFloat)getHeight;
+
 @end
