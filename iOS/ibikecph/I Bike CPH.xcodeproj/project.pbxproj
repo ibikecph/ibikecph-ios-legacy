@@ -259,7 +259,6 @@
 		4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152416BAB96C00B73393 /* SMSettingsController.m */; };
 		4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152716BAB97D00B73393 /* SMAboutController.m */; };
 		4C9D152B16BAB98C00B73393 /* SMAccountsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9D152A16BAB98C00B73393 /* SMAccountsController.m */; };
-		4CAF95C416D50BC0002C047B /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CB1509B16D26CC100943E0C /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509716D26CC100943E0C /* checkboxChecked.png */; };
 		4CB1509D16D26CC100943E0C /* checkboxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509816D26CC100943E0C /* checkboxChecked@2x.png */; };
 		4CB1509F16D26CC100943E0C /* checkboxUnchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB1509916D26CC100943E0C /* checkboxUnchecked.png */; };
@@ -276,8 +275,6 @@
 		4CD53D5A16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
 		4CD53D5C16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
 		4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
-		4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA5D3216EF4FDB0079AA5E /* HockeySDKResources.bundle */; };
-		4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D3416EF4FF70079AA5E /* libHockeySDK.a */; };
 		4CDA690F16F085D400FE2A19 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA68F116F085D400FE2A19 /* SBJsonParser.m */; };
 		4CDA691016F085D400FE2A19 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA68F316F085D400FE2A19 /* SBJsonStreamParser.m */; };
 		4CDA691116F085D400FE2A19 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDA68F516F085D400FE2A19 /* SBJsonStreamParserAccumulator.m */; };
@@ -302,6 +299,9 @@
 		4CE84E7F16C3FEA3006931CC /* reportTextBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE84E7916C3FEA3006931CC /* reportTextBG@2x.png */; };
 		4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8216C404A3006931CC /* SMRadioCheckedCell.m */; };
 		4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */; };
+		4CE8D7BA16F3985D00D0213D /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */; };
+		4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
+		4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */; };
 		4CF7E28B16B68D170082078E /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
 		4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29116B68D830082078E /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4CF7E29416B68D830082078E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29216B68D830082078E /* EventKitUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -720,8 +720,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */,
+				4CE8D7BA16F3985D00D0213D /* libHockeySDK.a in Frameworks */,
 				4C365DD616F323BB00A836B3 /* CoreText.framework in Frameworks */,
-				4CAF95C416D50BC0002C047B /* libMapView.a in Frameworks */,
 				4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */,
 				4C77EF8416CB8E7B0062360C /* SystemConfiguration.framework in Frameworks */,
 				4C6C083816C3C33E002EA499 /* MapKit.framework in Frameworks */,
@@ -741,7 +742,6 @@
 				4C73D21316AEDCDA00AED42A /* CoreGraphics.framework in Frameworks */,
 				4CF7E29616B6B5340082078E /* FacebookSDK.framework in Frameworks */,
 				4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
-				4CDA5D3916EF52880079AA5E /* libHockeySDK.a in Frameworks */,
 				4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */,
 				4CDA6B2C16F086CD00FE2A19 /* libGoogleAnalytics_debug.a in Frameworks */,
 			);
@@ -922,7 +922,6 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
-				4C365DD516F323BB00A836B3 /* CoreText.framework */,
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
 				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
@@ -945,6 +944,7 @@
 		4C73D20D16AEDCDA00AED42A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4C365DD516F323BB00A836B3 /* CoreText.framework */,
 				4CF7E29916B6B57F0082078E /* Accounts.framework */,
 				4C16ED0016B188C4001545C7 /* AddressBook.framework */,
 				4C16ED0116B188C4001545C7 /* AddressBookUI.framework */,
@@ -1366,7 +1366,7 @@
 				4CDA6B2A16F086CD00FE2A19 /* libGoogleAnalytics_debug.a */,
 			);
 			name = "GA v2.04b2";
-			path = "../../../../../../GoogleAnalyticsiOS_2.0beta4 2/Library";
+			path = ../../../../../GoogleAnalyticsiOS_2.0beta4/Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1667,10 +1667,10 @@
 				4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */,
 				4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */,
 				4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */,
-				4CDA5D3816EF52300079AA5E /* HockeySDKResources.bundle in Resources */,
 				4CDA6A5216F0863700FE2A19 /* LICENSE in Resources */,
 				4CDA6A5316F0863700FE2A19 /* README in Resources */,
 				4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */,
+				4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */,
 				4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */,
 				4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */,
 				4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -1868,13 +1868,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/GA\\ v2.0b4",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";
@@ -1903,13 +1903,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/GA\\ v2.0b4",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"",
-					"\"$(SRCROOT)/../../../../GoogleAnalyticsiOS_2.0beta4 2/Library\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D01472B0-52A2-4AF7-8E81-FCFE0BE48717";

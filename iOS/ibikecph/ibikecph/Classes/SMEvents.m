@@ -113,7 +113,7 @@
         [appd.session openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
             if (status == FBSessionStateOpen) {
                 appd.session = [FBSession activeSession];
-                debugLog(@"New session: %@ \n\n %@", [FBSession activeSession], appd.session.accessToken);
+//                debugLog(@"New session: %@ \n\n %@", [FBSession activeSession], appd.session.accessToken);
                 appd.fbLoggedIn = YES;
 
                 FBRequestConnection *connection = [FBRequestConnection new];

@@ -738,19 +738,19 @@
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="2" customClass="SMViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="E8r-X8-LBe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="KIv-Bk-2qG" userLabel="Menu View">
-                                        <rect key="frame" x="60" y="0.0" width="260" height="548"/>
+                                        <rect key="frame" x="60" y="0.0" width="260" height="460"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ots-tP-ocI">
-                                                <rect key="frame" x="0.0" y="20" width="260" height="528"/>
+                                                <rect key="frame" x="0.0" y="20" width="260" height="440"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -901,15 +901,15 @@
                                         <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3yz-md-642" userLabel="Center View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="ofn-G7-PqS" customClass="RMMapView">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="FSD-PE-lob" customClass="SMGPSTrackButton">
-                                                        <rect key="frame" x="264" y="514" width="56" height="54"/>
+                                                        <rect key="frame" x="264" y="426" width="56" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal">
@@ -928,11 +928,11 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" id="Uzp-UI-Y81">
-                                                <rect key="frame" x="0.0" y="568" width="320" height="121"/>
+                                                <rect key="frame" x="0.0" y="568" width="320" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="l8G-fe-8X9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <prototypes>
@@ -1119,7 +1119,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
                                             <imageView contentMode="scaleToFill" image="homeLogo.png" id="QbL-fo-1cb">
-                                                <rect key="frame" x="0.0" y="47" width="76" height="76"/>
+                                                <rect key="frame" x="0.0" y="38" width="76" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
@@ -1141,11 +1141,11 @@
                                                 </connections>
                                             </button>
                                             <view opaque="NO" alpha="0.0" contentMode="scaleToFill" id="xRk-fp-BvU">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="P6z-Kp-P3v">
-                                                        <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                                        <rect key="frame" x="142" y="221" width="37" height="37"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     </activityIndicatorView>
                                                 </subviews>
@@ -1160,7 +1160,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="iqL-K9-CLg">
-                                <rect key="frame" x="13" y="511" width="247" height="21"/>
+                                <rect key="frame" x="13" y="423" width="247" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1172,7 +1172,7 @@
                     <navigationItem key="navigationItem" id="45J-7p-41B"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="addressView" destination="8z4-jF-da8" id="DYA-wy-0cp"/>
                         <outlet property="buttonTrackUser" destination="FSD-PE-lob" id="4qY-o9-1Ks"/>
@@ -1831,9 +1831,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
