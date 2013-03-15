@@ -648,7 +648,7 @@ typedef enum {
     if (tableView == tblMenu) {
         
         if ([[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue] == menuOpen) {
-            return scrlView.frame.size.height - [SMContactsHeader getHeight] * 2.0f;
+            return tblMenu.frame.size.height - [SMContactsHeader getHeight] * 2.0f;
         } else {
             return [SMContactsHeader getHeight];
         }
