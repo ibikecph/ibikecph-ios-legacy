@@ -31,7 +31,18 @@
 #import "SMAnnotation.h"
 #import "SMSwipableView.h"
 
-@interface SMRouteNavigationController ()
+typedef enum {
+    directionsFullscreen,
+    directionsNormal,
+    directionsMini,
+    directionsHidden
+} DirectionsState;
+
+@interface SMRouteNavigationController () {
+    DirectionsState currentDirectionsState;
+    CGFloat lastDirectionsPos;
+    CGFloat touchOffset;
+}
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
 @property int directionsShownCount; // How many directions are shown in the directions table at the moment:
@@ -50,9 +61,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+
+    
     self.recycledItems = [NSMutableSet set];
     self.activeItems = [NSMutableSet set];
-//    [swipableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
     [instructionsView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
     self.updateSwipableView = YES;
     
@@ -67,9 +80,7 @@
     
     [self.mpView setDelegate:self];
     
-    //    [self findRouteFrom:CLLocationCoordinate2DMake(55.6785507, 12.5375865) to:CLLocationCoordinate2DMake(55.680805,12.5555466)];
-    
-    [self hideDirections];
+    [self setDirectionsState:directionsHidden];
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
@@ -77,19 +88,15 @@
     [self.mpView setEnableBouncing:TRUE];
     [self.mpView setRoutingDelegate:nil];
     
-//    [self.mpView zoomByFactor:16 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:YES];
     [self.mpView setZoom:DEFAULT_MAP_ZOOM];
 
+    [labelTimeLeft setText:@""];
+    [labelDistanceLeft setText:@""];
+    
     // Start tracking location only when user starts it through UI
     if (self.startLocation && self.endLocation) {
-        [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
-
-    NSArray * a = [self.destination componentsSeparatedByString:@","];
-    [labelDestination setText:[a objectAtIndex:0]];
-    [labelTimeLeft setText:@"---"];
-    [labelDistanceLeft setText:@"---"];
 
     [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
@@ -106,6 +113,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
     [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
     [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
@@ -126,11 +134,8 @@
     self.route.delegate = nil;
     self.route = nil;
     tblDirections = nil;
-    buttonNewStop = nil;
     instructionsView = nil;
-    progressBar = nil;
     labelTimeLeft = nil;
-    labelDestination = nil;
     labelDistanceLeft = nil;
     progressView = nil;
     minimizedInstructionsView = nil;
@@ -148,12 +153,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-//- (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//}
+
+#pragma mark - custom methods
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
     
@@ -171,11 +175,6 @@
     }
     
     [self startRoute];
-    
-//    [self updateTurn:NO];
-//
-//    // Display new path
-//    [self addRouteAnnotation:self.route];
 
     SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
@@ -214,30 +213,6 @@
         [minimizedInstructionsView setHidden:YES];
     }
 }
-
-//- (void) refreshPosition {
-//    if (self.currentlyRouting && self.route && [SMLocationManager instance].hasValidLocation) {
-//
-//        CLLocation *location = [SMLocationManager instance].lastValidLocation;
-//    }
-//}
-
-//- (void) addLineAnnotation:(CLLocation *)start end:(CLLocation *)end {
-//    if (!start || !end)
-//        return;
-//
-//    RMAnnotation *lineAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:start.coordinate andTitle:nil];
-//    lineAnnotation.annotationType = @"line";
-//    lineAnnotation.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                         start,@"lineStart",
-//                                         end,@"lineEnd",
-//                                         [UIColor redColor],@"lineColor",
-//                                         [UIColor clearColor],@"fillColor",
-//                                         [NSNumber numberWithFloat:9.0f],@"lineWidth",
-//                                         nil];
-//    [lineAnnotation setBoundingBoxFromLocations:[NSMutableArray arrayWithObjects:start, end, nil]];
-//    [self.mpView addAnnotation:lineAnnotation];
-//}
 
 - (void) addRouteAnnotation:(SMRoute *)r {
     RMAnnotation *calculatedPathAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:[r getStartLocation].coordinate andTitle:nil];
@@ -373,10 +348,9 @@
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
    if (self.currentlyRouting && self.route && userLocation) {
-//       debugLog(@"didUpdateUserLocation()");
        [self.route visitLocation:userLocation.location];
        
-       [self showDirections:self.directionsShownCount];
+       [self setDirectionsState:currentDirectionsState];
        
        [self reloadFirstSwipableView];
        
@@ -398,10 +372,6 @@
        if (self.route) {
            
        }
-       CGRect frame = progressBar.frame;
-       frame.size.width = 306.0f * percent;
-       [progressBar setFrame:frame];
-       
        
        CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
        [labelTimeLeft setText:expectedArrivalTime(time)];
@@ -434,22 +404,17 @@
 - (void)routeNotFound {
     self.currentlyRouting = NO;
     
-    [labelDistanceLeft setText:@"--"];
-    [labelTimeLeft setText:@"--"];
-    [labelDestination setText:@""];
+    [labelDistanceLeft setText:@""];
+    [labelTimeLeft setText:@""];
     
-    CGRect frame = progressBar.frame;
-    frame.size.width = 0.0f;
-    [progressBar setFrame:frame];
-    
-    [self showDirections:0];
+    [self setDirectionsState:directionsHidden];
     
     UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
     [av show];
 }
 
 - (void)startRoute {
-//    [self updateTurn:NO];
+    currentDirectionsState = directionsNormal;
     
     // Display new path
     [self addRouteAnnotation:self.route];
@@ -459,7 +424,7 @@
     
     [tblDirections reloadData];
     
-    [self showDirections:1];
+    [self setDirectionsState:directionsNormal];
     
     self.currentlyRouting = YES;
     
@@ -488,8 +453,9 @@
             }
         }
         
-        if (self.route.turnInstructions.count < self.directionsShownCount && self.directionsShownCount <= 3) 
-            [self showDirections:self.route.turnInstructions.count];
+//        if (self.route.turnInstructions.count < self.directionsShownCount && self.directionsShownCount <= 3) 
+//            [self showDirections:self.route.turnInstructions.count];
+        [self setDirectionsState:currentDirectionsState];
         
         [tblDirections performSelector:@selector(reloadData) withObject:nil afterDelay:0.4];        
         [self renderMinimizedDirectionsViewFromInstruction];
@@ -510,25 +476,19 @@
     
     self.currentlyRouting = NO;
     
-    [labelDistanceLeft setText:@"--"];
-    [labelTimeLeft setText:@"--"];
-    [labelDestination setText:@""];
+    [labelDistanceLeft setText:@""];
+    [labelTimeLeft setText:@""];
     NSArray * a = [self.destination componentsSeparatedByString:@","];
     [finishDestination setText:[a objectAtIndex:0]];
     
-    CGRect frame = progressBar.frame;
-    frame.size.width = 0.0f;
-    [progressBar setFrame:frame];
-
     [[NSFileManager defaultManager] removeItemAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"] error:nil];
     
     [UIView animateWithDuration:0.4f animations:^{
         [finishFadeView setAlpha:1.0f];
     } completion:^(BOOL finished) {
-        [self hideDirections];
-        [labelDistanceLeft setText:@"--"];
-        [labelTimeLeft setText:@"--"];
-        [labelDestination setText:@""];
+        [self setDirectionsState:directionsHidden];
+        [labelDistanceLeft setText:@""];
+        [labelTimeLeft setText:@""];
     }];
     
     /**
@@ -629,12 +589,8 @@
 }
 
 -(IBAction)buttonPressed:(id)sender {
-    if (self.currentlyRouting) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"route_stop_title") message:translateString(@"route_stop_text") delegate:self cancelButtonTitle:nil otherButtonTitles:translateString(@"report_error"), translateString(@"Stop"), nil];
-        [av show];
-    } else {
-        [self performSegueWithIdentifier:@"newRouteSegue" sender:nil];
-    }
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"route_stop_title") message:translateString(@"route_stop_text") delegate:self cancelButtonTitle:translateString(@"Cancel") otherButtonTitles:translateString(@"Stop"), translateString(@"report_error"), nil];
+    [av show];
 }
 
 - (void)trackingOn {
@@ -665,11 +621,8 @@
         center = self.startLocation.coordinate;
     [self.mpView setCenterCoordinate:center animated:NO];
 
-    // trackingOn is called with 1s delay beacuse map view has some strage looking
-    // map scroll effect (when you scroll and click gps button to center).
-    
     [self trackingOn];
-//    [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -761,39 +714,11 @@
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
-        case 0:
+        case 2:
             [self performSegueWithIdentifier:@"reportError" sender:nil];
             break;
         case 1: {
-            self.currentlyRouting = NO;
-            [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
-            
-            [labelDistanceLeft setText:@""];
-            [labelTimeLeft setText:@""];
-            [labelDestination setText:@""];
-            
-            CGRect frame = progressBar.frame;
-            frame.size.width = 0.0f;
-            [progressBar setFrame:frame];
-            
-            [[NSFileManager defaultManager] removeItemAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"] error:nil];
-            
-            
-            [self saveRoute];
-            
-            CGFloat distance = [self.route calculateDistanceTraveled];
-            [finishDistance setText:formatDistance(distance)];
-            [finishTime setText:[self.route timePassed]];
-            NSArray * a = [self.destination componentsSeparatedByString:@","];
-            [finishDestination setText:[a objectAtIndex:0]];
-            [UIView animateWithDuration:0.4f animations:^{
-                [finishFadeView setAlpha:1.0f];
-            } completion:^(BOOL finished) {
-                self.route = nil;
-                [self.mpView removeAllAnnotations];
-                [tblDirections reloadData];
-                [self showDirections:0];
-            }];
+            [self goBack:nil];
         }
             break;
         default:
@@ -803,76 +728,58 @@
 
 #pragma mark - directions table
 
-- (void)hideDirections {
-    [self showDirections:0];
-}
-
-- (void)showDirections:(NSInteger)segments {
-    self.directionsShownCount = segments;
-
-    if (!self.route || !self.route.turnInstructions || self.route.turnInstructions.count <= 0) {
-        [instructionsView setHidden:YES];
-        [minimizedInstructionsView setHidden:YES];
-        [self repositionInstructionsView:self.view.frame.size.height];
-        return;
-    }
-
-    BOOL fullscreen = NO;
-    if (segments == 0) {
-        [instructionsView setHidden:YES];
-        [minimizedInstructionsView setHidden:NO];
-        [self repositionInstructionsView:self.view.frame.size.height];
-    } else {
-        [instructionsView setHidden:NO];
-        [minimizedInstructionsView setHidden:YES];
-        int maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
-        /**
-         * dynamic cell resizing
-         */
-        CGFloat tblHeight = 0.0f;
-        
-        CGFloat newY = 0;
-        
-        if (segments > MAX_SEGMENTS) {
-            newY = self.mpView.frame.origin.y;
-            fullscreen = YES;
-        } else {
+/**
+ * set new direction state
+ */
+- (void)setDirectionsState:(DirectionsState)state {
+    switch (state) {
+        case directionsFullscreen: {
+            CGRect frame = tblDirections.frame;
+            frame.size.height = instructionsView.frame.size.height - tblDirections.frame.origin.y;
+            [tblDirections setFrame:frame];
+            [tblDirections setScrollEnabled:YES];
+            CGFloat newY = self.mpView.frame.origin.y + 100.0f;
+            [self repositionInstructionsView:newY + 1];
+            lastDirectionsPos = newY + 1;
+        }
+            break;
+        case directionsNormal: {
+            [instructionsView setHidden:NO];
+            [minimizedInstructionsView setHidden:YES];
+            int maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
+            CGFloat tblHeight = 0.0f;
+            CGFloat newY = 0;
             @synchronized(self.route.turnInstructions) {
-                for (int i = 0; i < MIN(segments, [self.route.turnInstructions count]); i++) {
-                    SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
-                    if (i == 0) {
-                        tblHeight += [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
-                    } else {
-                        tblHeight += [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
-                    }
-                    
-                }
+                tblHeight = [SMDirectionTopCell getHeightForDescription:[[self.route.turnInstructions objectAtIndex:0] descriptionString] andWayname:[[self.route.turnInstructions objectAtIndex:0] wayName]];
             }
             newY = maxY - tblHeight;
-            if (newY < self.mpView.frame.origin.y || (newY - self.mpView.frame.origin.y) < 50.0f) {
-                newY = self.mpView.frame.origin.y;
-                fullscreen = YES;
-            }
-        }
-
-        
-        
-        [self repositionInstructionsView:newY + 1];
-    }
-
-    if (fullscreen) {
-        CGRect frame = tblDirections.frame;
-        frame.size.height = instructionsView.frame.size.height - tblDirections.frame.origin.y;
-        [tblDirections setFrame:frame];
-        [tblDirections setScrollEnabled:YES];
-    } else {
-        if (segments == 1) {
+            [self repositionInstructionsView:newY + 1];
+            lastDirectionsPos = newY + 1;
             [swipableView setHidden:NO];
             [swipableView setFrame:tblDirections.frame];
+            [tblDirections setScrollEnabled:NO];
+
         }
-        [tblDirections setScrollEnabled:NO];
+            break;
+        case directionsMini:
+            [instructionsView setHidden:YES];
+            [minimizedInstructionsView setHidden:NO];
+            [self repositionInstructionsView:self.view.frame.size.height];
+            [tblDirections setScrollEnabled:NO];
+            lastDirectionsPos = self.view.frame.size.height;
+            break;
+        case directionsHidden:
+            [instructionsView setHidden:YES];
+            [minimizedInstructionsView setHidden:YES];
+            [self repositionInstructionsView:self.view.frame.size.height];
+            lastDirectionsPos = self.view.frame.size.height;
+            break;
+        default:
+            break;
     }
+    currentDirectionsState = state;
 }
+
 
 - (void)resizeMap {
     CGRect frame = self.mpView.frame;
@@ -902,44 +809,44 @@
     [instructionsView setHidden:NO];
     [minimizedInstructionsView setHidden:YES];
     if (sender.state == UIGestureRecognizerStateEnded) {
-        float maxY = self.view.frame.size.height - tblDirections.frame.origin.y;
-        float cellCount = self.route.turnInstructions.count;
-        float newY = [sender locationInView:self.view].y;
-
-        if (cellCount < self.directionsShownCount) {
-            self.directionsShownCount = cellCount;
-            [self showDirections:cellCount];
-            return;
-        }
-        
-        /**
-         * dynamic row height repositioning
-         */
-        CGFloat tblHeight = 0.0f;
-        CGFloat height = 0.0f;
-        @synchronized(self.route.turnInstructions) {
-            for (int i = 0; i < cellCount; i++) {
-                SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
-                if (i == 0) {
-                    height = [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+        float newY = [sender locationInView:self.view].y;        
+        switch (currentDirectionsState) {
+            case directionsFullscreen:
+                if (newY > lastDirectionsPos + 20.0f) {
+                    [self setDirectionsState:directionsNormal];
                 } else {
-                    height = [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+                    [self setDirectionsState:directionsFullscreen];
                 }
-                
-                if (newY > maxY - (tblHeight + height*0.5)) {
-                    [self showDirections:i];
-                    return;
+                break;
+            case directionsNormal:
+                if (newY > lastDirectionsPos + 20.0f) {
+                    [self setDirectionsState:directionsMini];
+                } else if (newY < lastDirectionsPos - 20.0f) {
+                    [self setDirectionsState:directionsFullscreen];
+                } else {
+                    [self setDirectionsState:directionsNormal];
                 }
-                tblHeight += height;
-            }
+                break;
+            case directionsMini:
+                if (newY < lastDirectionsPos - 20.0f) {
+                    [self setDirectionsState:directionsNormal];
+                } else {
+                    [self setDirectionsState:directionsMini];
+                }                
+                break;
+            case directionsHidden:
+                break;                
+            default:
+                break;
         }
-        [self showDirections:cellCount];
         
         
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         [swipableView setHidden:YES];
-        [self repositionInstructionsView:MAX([sender locationInView:self.view].y, self.mpView.frame.origin.y)];
+        float newY = MAX([sender locationInView:self.view].y - touchOffset, self.mpView.frame.origin.y);
+        [self repositionInstructionsView:newY];
     } else if (sender.state == UIGestureRecognizerStateBegan) {
+        touchOffset = [sender locationInView:instructionsView].y;
         [swipableView setHidden:YES];
     }
 }
@@ -1056,13 +963,11 @@
         if (self.currentlyRouting) {
             [progressView setHidden:NO];
             [UIApplication sharedApplication].idleTimerDisabled = YES;
-            [buttonNewStop setTitle:translateString(@"Stop") forState:UIControlStateNormal];
         } else {
-            [self showDirections:0];
+            [self setDirectionsState:directionsHidden];
             [minimizedInstructionsView setHidden:YES];
             [progressView setHidden:YES];
             [UIApplication sharedApplication].idleTimerDisabled = NO;
-            [buttonNewStop setTitle:translateString(@"new_route") forState:UIControlStateNormal];
         }
     } else if (object == swipableView && [keyPath isEqualToString:@"hidden"]) {
         /**

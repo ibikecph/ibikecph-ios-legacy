@@ -13,13 +13,10 @@
 
 @interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate> {
     __weak IBOutlet UITableView *tblDirections;
-    __weak IBOutlet UIButton *buttonNewStop;
     __weak IBOutlet UIView *instructionsView;
     __weak IBOutlet UIView *minimizedInstructionsView;
     __weak IBOutlet UIView *progressView;
-    __weak IBOutlet UIImageView *progressBar;
     __weak IBOutlet UILabel *labelTimeLeft;
-    __weak IBOutlet UILabel *labelDestination;
     __weak IBOutlet UILabel *labelDistanceLeft;
     __weak IBOutlet UILabel *labelDistanceToNextTurn;
     __weak IBOutlet UIImageView *imgNextTurnDirection;

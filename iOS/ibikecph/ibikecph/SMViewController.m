@@ -32,7 +32,15 @@
 
 #import "SMEnterRouteController.h"
 
-@interface SMViewController ()
+typedef enum {
+    menuFavorites = 0,
+    menuAccount = 1,
+    menuInfo = 2
+} MenuType;
+
+@interface SMViewController () {
+    MenuType menuOpen;
+}
 
 @property (nonatomic, strong) SMContacts *contacts;
 @property (nonatomic, strong) RMMapView *mpView;
@@ -57,11 +65,7 @@
 
 @implementation SMViewController
 
-typedef enum {
-    menuLink,
-    menuGear,
-    menuInfo
-} MenuType;
+
 
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +81,11 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    
     [RMMapView class];
+    
+    menuOpen = menuFavorites;
     
     [SMLocationManager instance];
     
@@ -101,8 +109,8 @@ typedef enum {
      */
     
     self.menuArr = @[
-                     @{@"text" : translateString(@"accounts"), @"image" : @"menuLink", @"type" : [NSNumber numberWithInteger:menuLink], @"segue" : @"openAccounts"},
-    @{@"text" : translateString(@"settings"), @"image" : @"menuGear", @"type" : [NSNumber numberWithInteger:menuGear], @"segue" : @"openSettings"},
+                     @{@"text" : translateString(@"favorites"), @"image" : @"menuLink", @"type" : [NSNumber numberWithInteger:menuFavorites], @"segue" : @"openFavorites"},
+    @{@"text" : translateString(@"account"), @"image" : @"menuGear", @"type" : [NSNumber numberWithInteger:menuAccount], @"segue" : @"openAccount"},
     @{@"text" : translateString(@"about_ibikecph"), @"image" : @"menuInfo", @"type" : [NSNumber numberWithInteger:menuInfo], @"segue" : @"openAbout"}
     ];
     
@@ -150,44 +158,8 @@ typedef enum {
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"settings.plist"]] == NO) {
         [self performSegueWithIdentifier:@"enterEmail" sender:nil];
-    } 
-
-
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"routes"]]) {
-        NSMutableArray * rts = [NSMutableArray array];
-        NSArray * arr = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"routes"] error:nil];
-        NSLog(@"%@", arr);
-        for (NSString * file in arr) {
-            NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile:[[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"routes"] stringByAppendingPathComponent:file]];
-            if (d) {
-                NSString * from = [[[d objectForKey:@"fromName"] componentsSeparatedByString:@","] objectAtIndex:0];
-                NSString * to = [[[d objectForKey:@"toName"] componentsSeparatedByString:@","] objectAtIndex:0];
-                if (([from isEqualToString:@""] == NO) && ([[d objectForKey:@"toName"] isEqualToString:@""] == NO)  && ([[d objectForKey:@"toName"] isEqualToString:CURRENT_POSITION_STRING] == NO)){
-                    [rts addObject:@{
-                     @"name" : [NSString stringWithFormat:@"%@ - %@", from, to],
-                     @"address" : [d objectForKey:@"toName"],
-                     @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
-                     @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
-                     @"source" : @"pastRoutes"
-                     }];
-                }
-                if (([to isEqualToString:@""] == NO) && ([[d objectForKey:@"fromName"] isEqualToString:@""] == NO)  && ([[d objectForKey:@"fromName"] isEqualToString:CURRENT_POSITION_STRING] == NO)){
-                    [rts addObject:@{
-                     @"name" : [NSString stringWithFormat:@"%@ - %@", to, from],
-                     @"address" : [d objectForKey:@"fromName"],
-                     @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
-                     @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
-                     @"source" : @"pastRoutes"
-                     }];
-                }
-            }
-        }
-        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-        [appd setPastRoutes:rts];
     }
-
     [debugLabel setText:BUILD_STRING];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -251,6 +223,11 @@ typedef enum {
 
 #pragma mark - custom methods
 
+- (void)openMenu:(NSInteger)menuType {
+    menuOpen = menuType;
+    [tblMenu reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 - (void)dropPin:(UILongPressGestureRecognizer*) gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         
@@ -289,14 +266,7 @@ typedef enum {
             [r findNearestPointForLocation:loc];
             
         }];
-        
-        
-        
-//    SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-//    [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude]];
     }
-    
-    
 }
 
 - (void)readjustViewsForRotation:(UIInterfaceOrientation) orientation {
@@ -317,11 +287,11 @@ typedef enum {
     CGRect frame = centerView.frame;
     frame.size.width = scrWidth;
     frame.size.height = scrHeight;
-    frame.origin.x = 0.0f;
+    frame.origin.x = scrWidth - 60.0f;
     [centerView setFrame:frame];
     [scrlView setContentSize:CGSizeMake(scrWidth, scrHeight)];
     
-    [menuView setHidden:YES];
+//    [menuView setHidden:YES];
     [addressView setHidden:YES];
     /**
      * end alpha
@@ -330,12 +300,12 @@ typedef enum {
     /**
      * removed for alpha. uncomment when needed
      */
-//    CGRect frame = menuView.frame;
-//    frame.size.width = scrWidth - 60.0f;
-//    frame.size.height = scrHeight;
-//    frame.origin.x = 0.0f;
-//    [menuView setFrame:frame];
-//    
+    frame = menuView.frame;
+    frame.size.width = scrWidth - 60.0f;
+    frame.size.height = scrHeight;
+    frame.origin.x = 0.0f;
+    [menuView setFrame:frame];
+//
 //    frame = centerView.frame;
 //    frame.size.width = scrWidth;
 //    frame.size.height = scrHeight;
@@ -349,17 +319,15 @@ typedef enum {
 //    frame.origin.x = scrWidth * 2.0f - 60.0f;
 //    [addressView setFrame:frame];
 //    
-//    [scrlView setContentSize:CGSizeMake(scrWidth * 3.0f - 120.0f, scrHeight)];
-//    
-//    
-//    if (currentScreen == screenMenu) {
-//        [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-//    } else if (currentScreen == screenMap) {
-//        [scrlView setContentOffset:CGPointMake(scrWidth - 60.0f, 0.0f) animated:NO];
-//    } else {
-//        [scrlView setContentOffset:CGPointMake(scrWidth * 2.0f - 120.0f, 0.0f) animated:NO];
-//    }
-//    
+    [scrlView setContentSize:CGSizeMake(scrWidth * 2.0f - 60.0f, scrHeight)];
+
+
+    if (currentScreen == screenMenu) {
+        [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+    } else if (currentScreen == screenMap) {
+        [scrlView setContentOffset:CGPointMake(scrWidth - 60.0f, 0.0f) animated:NO];
+    }
+    
 //    if ([self.eventsGroupedArray count] > 0) {
 //        [self drawEventsTable];        
 //    }
@@ -384,13 +352,24 @@ typedef enum {
     if (scrollView != scrlView) {
         return;
     }
-    [scrollView setContentOffset:scrollView.contentOffset animated:NO];
+    if (decelerate == NO) {
+        if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
+            [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+            currentScreen = screenMenu;
+        } else {
+            [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
+            currentScreen = screenMap;
+        }        
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView != scrlView) {
+        return;
+    }
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         currentScreen = screenMenu;
-    } else if (scrollView.contentOffset.x > (self.view.frame.size.width * 1.5f - 60.0f)) {
-        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width * 2.0f - 120.0f, 0.0f) animated:YES];
-        currentScreen = screenContacts;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
@@ -404,9 +383,6 @@ typedef enum {
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         currentScreen = screenMenu;
-    } else if (scrollView.contentOffset.x > (self.view.frame.size.width * 1.5f - 60.0f)) {
-        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width * 2.0f - 120.0f, 0.0f) animated:YES];
-        currentScreen = screenContacts;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
@@ -453,13 +429,7 @@ typedef enum {
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"goToFinderSegue"]){
-//        SMFindAddressController *destViewController = segue.destinationViewController;
-//        [destViewController setDelegate:self];
-//        [destViewController setLocationFrom:self.findFrom];
-//        [destViewController setLocationTo:self.findTo];
-//        [destViewController loadMatches:self.findMatches];
-    } else if ([segue.identifier isEqualToString:@"enterRouteSegue"]) {
+    if ([segue.identifier isEqualToString:@"enterRouteSegue"]) {
         SMEnterRouteController *destViewController = segue.destinationViewController;
         [destViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"goToNavigationView"]) {
@@ -484,7 +454,6 @@ typedef enum {
         if (x == NO) {
             NSLog(@"Temp route not saved!");
         }
-//        [destViewController setDelegate:self];
     }
 }
 
@@ -524,11 +493,7 @@ typedef enum {
             currentRow = [self.contactsArr objectAtIndex:indexPath.row];
         }
         
-        NSString * identifier = @"contactsCell";
-        SMContactsCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//        if (cell == nil) {
-//            cell = [SMContactsCell getCell];
-//        }
+        SMContactsCell * cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell"];
         
         [cell.contactImage setContentMode:UIViewContentModeScaleAspectFill];
         [cell.contactImage setImage:[currentRow objectForKey:@"image"]];
@@ -543,11 +508,7 @@ typedef enum {
     } else if (tableView == tblMenu) {
         NSDictionary * currentRow = [self.menuArr objectAtIndex:indexPath.row];
                 
-        NSString * identifier = @"menuCell";
-        SMContactsCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//        if (cell == nil) {
-//            cell = [SMContactsCell getCell];
-//        }
+        SMContactsCell * cell = [tableView dequeueReusableCellWithIdentifier:@"menuCell"];
         [cell.contactImage setContentMode:UIViewContentModeCenter];
         [cell.contactImage setImage:[UIImage imageNamed:[currentRow objectForKey:@"image"]]];
         [cell.contactName setText:[currentRow objectForKey:@"text"]];        
@@ -555,11 +516,7 @@ typedef enum {
     } else if (tableView == tblEvents) {
         NSDictionary * currentRow = [[[self.eventsGroupedArray objectAtIndex:indexPath.section] objectForKey:@"items"] objectAtIndex:indexPath.row];
         if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
-            NSString * identifier = @"eventsCalendarCell";
-            SMEventsCalendarCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            if (cell == nil) {
-//                cell = [SMEventsCalendarCell getCell];
-//            }
+            SMEventsCalendarCell * cell = [tableView dequeueReusableCellWithIdentifier:@"eventsCalendarCell"];
             
             if ((indexPath.row % 2) == 0) {
                 [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowEvenBG"]];
@@ -580,11 +537,7 @@ typedef enum {
 
             return cell;
         } else {
-            NSString * identifier = @"eventsFacebookCell";
-            SMEventsFacebookCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            if (cell == nil) {
-//                cell = [SMEventsFacebookCell getCell];
-//            }
+            SMEventsFacebookCell * cell = [tableView dequeueReusableCellWithIdentifier:@"eventsFacebookCell"];
             if ((indexPath.row % 2) == 0) {
                 [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowEvenBG"]];
             } else {
@@ -651,13 +604,16 @@ typedef enum {
             [av show];            
         }
     } else if (tableView == tblMenu) {
-        [self performSegueWithIdentifier:[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"segue"] sender:nil];
+        if ([[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue] == menuInfo) {
+            [self performSegueWithIdentifier:[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"segue"] sender:nil];
+        } else {
+            [self openMenu:[[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue]];            
+        }
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (tableView == tblContacts) {
-//        SMContactsHeader * v = [SMContactsHeader getView];
         SMContactsHeader * v = [tableView dequeueReusableCellWithIdentifier:@"contactsHeader"];
         if (section == 0) {
             [v.headerImage setImage:[UIImage imageNamed:@"contactsFavorites"]];
@@ -672,7 +628,6 @@ typedef enum {
         }
         return v;
     } else if (tableView == tblEvents) {
-//        SMEventsHeader * v = [SMEventsHeader getView];
         SMEventsHeader * v = [tableView dequeueReusableCellWithIdentifier:@"eventsHeader"];
         [v setupHeaderWithData:[self.eventsGroupedArray objectAtIndex:section]];
         return v;
@@ -690,11 +645,17 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((tableView == tblContacts) || (tableView == tblMenu)) {
-        return [SMContactsHeader getHeight];
-    } else if (tableView == tblEvents) {
-        return [SMEventsCalendarCell getHeight];
+    if (tableView == tblMenu) {
+        
+        if ([[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue] == menuOpen) {
+            return scrlView.frame.size.height - [SMContactsHeader getHeight] * 2.0f;
+        } else {
+            return [SMContactsHeader getHeight];
+        }
     }
+//    else if (tableView == tblEvents) {
+//        return [SMEventsCalendarCell getHeight];
+//    }
     return 45.0f;
 }
 
@@ -886,7 +847,7 @@ typedef enum {
 #pragma mark - gesture recognizer delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    return NO;
 }
 
 #pragma mark - mapView delegate
@@ -957,7 +918,6 @@ typedef enum {
     self.findMatches = annotation.nearbyObjects;
     
     
-//#ifdef START_DIRECTIONS
     [UIView animateWithDuration:0.4f animations:^{
         [fadeView setAlpha:1.0f];
     }];
@@ -968,9 +928,6 @@ typedef enum {
     [r setRequestIdentifier:@"rowSelectRoute"];
     [r setAuxParam:annotation.title];
     [r findNearestPointForStart:cStart andEnd:cEnd];
-//#else
-//    [self performSegueWithIdentifier:@"goToFinderSegue" sender:nil];
-//#endif
 
     for (SMAnnotation * annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
