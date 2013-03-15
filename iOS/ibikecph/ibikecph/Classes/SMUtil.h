@@ -19,6 +19,8 @@ NSString *formatTime(float seconds);
 NSString *formatTimePassed(NSDate *startDate, NSDate *endDate);
 // Calculate how many calories are burned given speed and time spent cycling
 float caloriesBurned(float avgSpeed, float timeSpent);
+// Calculate expected arrival time
+NSString *expectedArrivalTime(NSInteger seconds);
 
 NSString *formatTimeLeft(NSInteger seconds);
 

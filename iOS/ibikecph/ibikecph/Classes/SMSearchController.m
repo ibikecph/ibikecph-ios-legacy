@@ -14,6 +14,7 @@
 #import "SMAppDelegate.h"
 #import "SMAutocomplete.h"
 #import "DAKeyboardControl.h"
+#import "TTTAttributedLabel.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
@@ -65,7 +66,17 @@
     NSDictionary * currentRow = [self.searchResults objectAtIndex:indexPath.row];
     NSString * identifier = @"autocompleteCell";
     SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+//    [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+    [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+        NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+        UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:cell.nameLabel.font.pointSize];
+        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+        if (font) {
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+            CFRelease(font);
+        }        
+        return mutableAttributedString;
+    }];
     
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
         [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];

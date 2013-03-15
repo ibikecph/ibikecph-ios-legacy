@@ -94,6 +94,13 @@ NSString *formatTimeLeft(NSInteger seconds) {
     return [arr componentsJoinedByString:@":"];
 }
 
+NSString *expectedArrivalTime(NSInteger seconds) {
+    NSDate * d = [NSDate dateWithTimeInterval:seconds sinceDate:[NSDate date]];
+    NSDateFormatter * df = [NSDateFormatter new];
+    [df setDateFormat:@"HH:mm"];
+    return [df stringFromDate:d];
+}
+
 // Calculate how many calories are burned given speed and time spent cycling
 float caloriesBurned(float avgSpeed, float timeSpent){
     float calBurned = 0.0f;

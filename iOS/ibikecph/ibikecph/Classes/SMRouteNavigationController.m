@@ -19,11 +19,9 @@
 #import "RMOpenStreetMapSource.h"
 
 #import "SMLocationManager.h"
-#import "SMFindAddressController.h"
 
 #import "SMTurnInstruction.h"
 #import "SMRoute.h"
-#import "SMFindAddressController.h"
 #import "SMDirectionCell.h"
 #import "SMDirectionTopCell.h"
 #import "SMReportErrorController.h"
@@ -405,13 +403,8 @@
        [progressBar setFrame:frame];
        
        
-//       float avgSpeed = [self.route calculateAverageSpeed];
-//       if (!avgSpeed)
-//           [labelTimeLeft setText:@""];
-//       else {
-           CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
-           [labelTimeLeft setText:formatTimeLeft(time)];
-//       }
+       CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
+       [labelTimeLeft setText:expectedArrivalTime(time)];
 
        [tblDirections reloadData];
        [self renderMinimizedDirectionsViewFromInstruction];
@@ -475,7 +468,7 @@
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
     
     [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
-    [labelTimeLeft setText:formatTimeLeft(self.route.estimatedTimeForRoute)];
+    [labelTimeLeft setText:expectedArrivalTime(self.route.estimatedTimeForRoute)];
     
     [recalculatingView setAlpha:1.0f];
     [UIView animateWithDuration:0.3f animations:^{
