@@ -114,35 +114,4 @@
     [SMGeocoder reverseGeocode:coord completionHandler:handler];
 }
 
-+ (void)googleGeocode:(NSString*)str completionHandler:(void (^)(NSArray* placemarks, NSError* error)) handler{
-    NSString * s = [NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [str urlEncode]];
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
-    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError *error) {
-        id res = [[[SBJsonParser alloc] init] objectWithData:data];
-        if ([res isKindOfClass:[NSArray class]] == NO) {
-            res = @[res];
-        }
-        if (error) {
-            handler(@[], error);
-        } else if ([(NSArray*)res count] == 0) {
-            handler(@[], [NSError errorWithDomain:NSOSStatusErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey : @"Wrong data returned from the OIOREST"}]);
-        } else {
-            NSMutableArray * arr = [NSMutableArray array];
-            for (NSDictionary * d in (NSArray*) res) {
-                NSDictionary * dict = @{
-                                        (NSString *)kABPersonAddressStreetKey : [NSString stringWithFormat:@"%@ %@", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"]],
-                                        (NSString *)kABPersonAddressZIPKey : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
-                                        (NSString *)kABPersonAddressCityKey : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
-                                        (NSString *)kABPersonAddressCountryKey : @"Denmark"
-                                        };
-                MKPlacemark * pl = [[MKPlacemark alloc]
-                                    initWithCoordinate:CLLocationCoordinate2DMake([[[d objectForKey:@"wgs84koordinat"] objectForKey:@"bredde"] doubleValue], [[[d objectForKey:@"wgs84koordinat"] objectForKey:@"længde"] doubleValue])
-                                    addressDictionary:dict];
-                [arr addObject:pl];
-            }
-            handler(arr, nil);
-        }
-    }];
-}
-
 @end

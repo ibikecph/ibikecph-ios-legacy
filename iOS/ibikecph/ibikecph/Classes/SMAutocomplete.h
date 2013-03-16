@@ -12,23 +12,12 @@
 - (void)autocompleteEntriesFound:(NSArray*)arr forString:(NSString*) str;
 @end
 
-typedef enum {
-    autocompletePlaces,
-    autocompleteOiorest,
-    autocompleteQuery,
-    autocompleteFoursquare
-} AutocompleteType;
-
-@interface SMAutocomplete : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate> {
-    AutocompleteType completeType;
-}
+@interface SMAutocomplete : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 
 - (id)initWithDelegate:(id<SMAutocompleteDelegate>)dlg;
 
 - (void)getAutocomplete:(NSString*)str;
 - (void)getOiorestAutocomplete;
-- (void)getGooglePlacesAutocomplete;
-- (void)getGoogleQueryAutocomplete;
 - (void)getFoursquareAutocomplete;
 
 @end

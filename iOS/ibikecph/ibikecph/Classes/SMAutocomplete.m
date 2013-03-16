@@ -10,7 +10,15 @@
 #import "SBJson.h"
 #import "SMLocationManager.h"
 
-@interface SMAutocomplete()
+typedef enum {
+    autocompleteOiorest,
+    autocompleteFoursquare
+} AutocompleteType;
+
+@interface SMAutocomplete() {
+    AutocompleteType completeType;
+}
+
 @property (nonatomic, strong) NSURLConnection * conn;
 @property (nonatomic, strong) NSMutableData * connData;
 @property (nonatomic, weak) id<SMAutocompleteDelegate> delegate;
@@ -35,50 +43,7 @@
     [self getOiorestAutocomplete];
 }
 
-- (void)getOiorestRadiusAutocomplete {
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser/%f,%f,%@.json", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, OIOREST_SEARCH_RADIUS]]];
-    debugLog(@"%@", req);
-    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-        NSArray * res = [[[SBJsonParser alloc] init] objectWithData:data];
-        NSMutableArray * arr = [NSMutableArray array];
-        for (NSDictionary* d in res) {
-            NSString * name = [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]];
-            if ([name rangeOfString:self.srchString].location != NSNotFound) {
-                [arr addObject:@{
-                 @"name" : @"",
-                 @"address" : name,
-                 @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
-                 @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
-                 @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
-                 @"country" : @"",
-                 @"source" : @"autocomplete",
-                 @"subsource" : @"oiorest",
-                 @"order" : @3
-                 }];
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @synchronized(self.resultsArr) {
-                [self.resultsArr addObjectsFromArray:arr];
-                [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-                    return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
-                }];
-                
-            }
-            if (self.delegate) {
-                [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
-            }
-        });
-    }];
-}
-
 - (void)getOiorestAutocomplete {
-//    completeType = autocompleteOiorest;
-//    if (self.conn) {
-//        [self.conn cancel];
-//    }
-//    self.connData = [NSMutableData data];
-//    
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [self.srchString urlEncode]]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
@@ -112,71 +77,10 @@
             }
         });
     }];
-//    self.conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
-//    [self.conn start];
-}
-
-- (void)getGooglePlacesAutocomplete{
-    completeType = autocompletePlaces;
-    if (self.conn) {
-        [self.conn cancel];
-    }
-    self.connData = [NSMutableData data];
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=%@&sensor=false&key=%@&location=%f,%f&radius=%@&language=%@&types=geocode", [self.srchString urlEncode], GOOGLE_API_KEY, [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, PLACES_SEARCH_RADIUS, PLACES_LANGUAGE]]];
-    debugLog(@"%@", req);
-    [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-        NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:data];
-        NSMutableArray * arr = [NSMutableArray array];
-        if ([[res objectForKey:@"status"] isEqualToString:@"OK"]) {
-            for (NSDictionary* d in [res objectForKey:@"predictions"]) {
-                [arr addObject:@{
-                 @"address" : [d objectForKey:@"description"],
-                 @"name" : @"",
-                 @"street" : [d objectForKey:@"description"],
-                 @"zip" : @"",
-                 @"city" : @"",
-                 @"country" : @"",
-                 @"source" : @"autocomplete",
-                 @"subsource" : @"places",
-                 @"order" : @2
-                 }];
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @synchronized(self.resultsArr) {
-                [self.resultsArr addObjectsFromArray:arr];
-                [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-                    return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
-                }];
-            }
-            if (self.delegate) {
-                [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
-            }
-        });
-    }];
-    
-//    self.conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
-//    [self.conn start];
-}
-
-- (void)getGoogleQueryAutocomplete{
-    completeType = autocompletePlaces;
-    if (self.conn) {
-        [self.conn cancel];
-    }
-    self.connData = [NSMutableData data];
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/queryautocomplete/json?input=%@&sensor=false&key=%@&location=%f,%f&radius=%@&language=%@", self.srchString, GOOGLE_API_KEY, [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, PLACES_SEARCH_RADIUS, PLACES_LANGUAGE]]];
-    debugLog(@"%@", req);
-    self.conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
-    [self.conn start];
 }
 
 - (void)getFoursquareAutocomplete {
     completeType = autocompleteFoursquare;
-    if (self.conn) {
-        [self.conn cancel];
-    }
-    self.connData = [NSMutableData data];
     if ([SMLocationManager instance].hasValidLocation) {
         NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&client_id=%@&client_secret=%@&query=%@&v=%@&radius=%@", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, FOURSQUARE_ID, FOURSQUARE_SECRET, [[self.srchString removeAccents] urlEncode], @"20130301", FOURSQUARE_SEARCH_RADIUS]]];
         debugLog(@"%@", req);
@@ -267,8 +171,6 @@
                 }
             });
         }];
-//        self.conn = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
-//        [self.conn start];
     } else {
         if (self.delegate) {
             [self.delegate autocompleteEntriesFound:@[] forString:self.srchString];
@@ -306,33 +208,6 @@
                 [self.delegate autocompleteEntriesFound:arr forString:self.srchString];
             }
         }
-            break;
-        case autocompletePlaces: {
-            NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:self.connData];
-            NSMutableArray * arr = [NSMutableArray array];
-            if ([[res objectForKey:@"status"] isEqualToString:@"OK"]) {
-                for (NSDictionary* d in [res objectForKey:@"predictions"]) {
-                    [arr addObject:@{
-                     @"address" : [d objectForKey:@"description"],
-                     @"name" : [d objectForKey:@"name"],
-                     @"street" : [d objectForKey:@"description"],
-                     @"zip" : @"",
-                     @"city" : @"",
-                     @"country" : @"",
-                     @"source" : @"autocomplete",
-                     @"subsource" : @"places"
-                     }];
-                }                
-            }
-            self.connData = [NSMutableData data];
-            self.conn = nil;
-            
-            if (self.delegate) {
-                [self.delegate autocompleteEntriesFound:arr forString:self.srchString];
-            }
-
-        }
-            
             break;
         case autocompleteFoursquare: {
             NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:self.connData];
