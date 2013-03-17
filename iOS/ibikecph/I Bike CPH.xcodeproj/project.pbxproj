@@ -112,6 +112,10 @@
 		4C16ECFF16B178B8001545C7 /* btnMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C16ECFB16B178B8001545C7 /* btnMenu@2x.png */; };
 		4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0016B188C4001545C7 /* AddressBook.framework */; };
 		4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0116B188C4001545C7 /* AddressBookUI.framework */; };
+		4C24BD3116F60C7A0043F28B /* overviewBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2D16F60C7A0043F28B /* overviewBG.png */; };
+		4C24BD3216F60C7A0043F28B /* overviewBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */; };
+		4C24BD3316F60C7A0043F28B /* routeStartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2F16F60C7A0043F28B /* routeStartButton.png */; };
+		4C24BD3416F60C7A0043F28B /* routeStartButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD3016F60C7A0043F28B /* routeStartButton@2x.png */; };
 		4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */; };
 		4C34508E16F1D7A300562E20 /* autocompleteHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508A16F1D7A300562E20 /* autocompleteHeader.png */; };
 		4C34508F16F1D7A300562E20 /* autocompleteHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C34508B16F1D7A300562E20 /* autocompleteHeader@2x.png */; };
@@ -459,6 +463,10 @@
 		4C16ECFB16B178B8001545C7 /* btnMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnMenu@2x.png"; sourceTree = "<group>"; };
 		4C16ED0016B188C4001545C7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4C16ED0116B188C4001545C7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		4C24BD2D16F60C7A0043F28B /* overviewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewBG.png; sourceTree = "<group>"; };
+		4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overviewBG@2x.png"; sourceTree = "<group>"; };
+		4C24BD2F16F60C7A0043F28B /* routeStartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeStartButton.png; sourceTree = "<group>"; };
+		4C24BD3016F60C7A0043F28B /* routeStartButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeStartButton@2x.png"; sourceTree = "<group>"; };
 		4C34508216F1D68C00562E20 /* SMAutocompleteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocompleteHeader.h; sourceTree = "<group>"; };
 		4C34508316F1D68C00562E20 /* SMAutocompleteHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAutocompleteHeader.m; sourceTree = "<group>"; };
 		4C34508A16F1D7A300562E20 /* autocompleteHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = autocompleteHeader.png; sourceTree = "<group>"; };
@@ -894,6 +902,10 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C24BD2D16F60C7A0043F28B /* overviewBG.png */,
+				4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */,
+				4C24BD2F16F60C7A0043F28B /* routeStartButton.png */,
+				4C24BD3016F60C7A0043F28B /* routeStartButton@2x.png */,
 				4C365DE216F361FE00A836B3 /* btnClose.png */,
 				4C365DE316F361FE00A836B3 /* btnClose@2x.png */,
 				4C365DE416F361FE00A836B3 /* btnCloseDark.png */,
@@ -1690,6 +1702,10 @@
 				4C365DF716F361FE00A836B3 /* routeArrival@2x.png in Resources */,
 				4C365DF816F361FE00A836B3 /* routeArrivalDark.png in Resources */,
 				4C365DF916F361FE00A836B3 /* routeArrivalDark@2x.png in Resources */,
+				4C24BD3116F60C7A0043F28B /* overviewBG.png in Resources */,
+				4C24BD3216F60C7A0043F28B /* overviewBG@2x.png in Resources */,
+				4C24BD3316F60C7A0043F28B /* routeStartButton.png in Resources */,
+				4C24BD3416F60C7A0043F28B /* routeStartButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

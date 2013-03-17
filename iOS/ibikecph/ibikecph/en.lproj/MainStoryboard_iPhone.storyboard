@@ -1581,12 +1581,18 @@
                                 <rect key="frame" x="0.0" y="400" width="320" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fBq-6W-vUW">
-                                        <rect key="frame" x="227" y="36" width="76" height="76"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="overviewBG.png" id="2vg-pv-lTd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fBq-6W-vUW">
+                                        <rect key="frame" x="227" y="36" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="57" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="where_are_we_going" image="homeSearch.png">
+                                        <state key="normal" image="routeStartButton.png">
                                             <color key="titleColor" white="0.79561491939999995" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1597,8 +1603,30 @@
                                             <action selector="startRouting:" destination="m0B-4B-35u" eventType="touchUpInside" id="lwy-i0-5sT"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" id="O9q-0K-PgO">
+                                        <rect key="frame" x="15" y="49" width="214" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dMz-a6-dcA">
+                                                <rect key="frame" x="0.0" y="0.0" width="210" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyu-vq-Lpe">
+                                                <rect key="frame" x="0.0" y="28" width="210" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1619,6 +1647,8 @@
                         <outlet property="labelTimeLeft" destination="lUh-yF-WfB" id="VyN-w1-wQd"/>
                         <outlet property="minimizedInstructionsView" destination="OXh-z0-rmJ" id="wO9-Ky-2oJ"/>
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
+                        <outlet property="overviewDestination" destination="dMz-a6-dcA" id="h7R-e7-ylQ"/>
+                        <outlet property="overviewTimeDistance" destination="yyu-vq-Lpe" id="RPn-wa-ev5"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
                         <outlet property="recalculatingView" destination="3vS-az-zZ1" id="nhe-Qd-HZW"/>
                         <outlet property="routeOverview" destination="QFV-Q0-z8w" id="Y4P-Gt-WOm"/>
@@ -1663,6 +1693,7 @@
         <image name="icon_locate_me.png" width="43" height="43"/>
         <image name="iconsBackground.png" width="320" height="568"/>
         <image name="menuBar.png" width="320" height="53"/>
+        <image name="overviewBG.png" width="320" height="106"/>
         <image name="pullHandle.png" width="16" height="11"/>
         <image name="radioChecked.png" width="25" height="25"/>
         <image name="radioUnchecked.png" width="25" height="25"/>
@@ -1670,6 +1701,7 @@
         <image name="reportTextBG.png" width="292" height="56"/>
         <image name="routeArrival.png" width="140" height="43"/>
         <image name="routeFinishedBtn.png" width="205" height="46"/>
+        <image name="routeStartButton.png" width="61" height="61"/>
         <image name="searchSwap.png" width="30" height="29"/>
         <image name="searchViewBG.png" width="320" height="84"/>
         <image name="tableViewBG.png" width="320" height="518"/>
@@ -1841,6 +1873,8 @@
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
+                <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="overviewTimeDistance" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="recalculatingView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="routeOverview" candidateClass="UIView"/>
@@ -1862,6 +1896,9 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showContacts:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="centerView" candidateClass="UIView"/>

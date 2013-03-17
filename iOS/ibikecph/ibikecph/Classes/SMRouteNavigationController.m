@@ -149,6 +149,8 @@ typedef enum {
     buttonTrackUser = nil;
     swipableView = nil;
     routeOverview = nil;
+    overviewDestination = nil;
+    overviewTimeDistance = nil;
     [super viewDidUnload];
 }
 
@@ -174,6 +176,10 @@ typedef enum {
     [self reloadSwipableView];
     
     [routeOverview setFrame:instructionsView.frame];
+
+    [overviewTimeDistance setText:[NSString stringWithFormat:@"%@   %@", expectedArrivalTime(self.route.estimatedTimeForRoute), formatDistance(self.route.estimatedRouteDistance)]];
+    [overviewDestination setText:self.destination];
+
     
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
     CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
@@ -469,6 +475,7 @@ typedef enum {
 
 - (void)startRoute {
     currentDirectionsState = directionsNormal;
+    [routeOverview setHidden:YES];
     
     // Display new path
     [self addRouteAnnotation:self.route];

@@ -28,6 +28,8 @@
     __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
     __weak IBOutlet UIScrollView *swipableView;
     __weak IBOutlet UIView *routeOverview;
+    __weak IBOutlet UILabel *overviewDestination;
+    __weak IBOutlet UILabel *overviewTimeDistance;
 }
 
 @property BOOL currentlyRouting;
