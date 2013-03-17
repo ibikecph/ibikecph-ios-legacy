@@ -143,7 +143,6 @@
 		4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		4C52287516BFA9310082A01A /* routeFinishedBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287316BFA9310082A01A /* routeFinishedBtn.png */; };
 		4C52287616BFA9310082A01A /* routeFinishedBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C52287416BFA9310082A01A /* routeFinishedBtn@2x.png */; };
-		4C64781B16C102FE00D055DC /* SMEnterEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C64781A16C102FE00D055DC /* SMEnterEmailController.m */; };
 		4C64781E16C1366C00D055DC /* SMReportErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C64781D16C1366C00D055DC /* SMReportErrorController.m */; };
 		4C64782016C14FB400D055DC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C64781F16C14FB400D055DC /* MessageUI.framework */; };
 		4C6A0DBC16C93B6A00106FCF /* calloutBubbleLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A0DB616C93B6A00106FCF /* calloutBubbleLeft.png */; };
@@ -226,6 +225,15 @@
 		4C8546C916E64D3B004E8902 /* SMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C216E64D3B004E8902 /* SMLocationManager.m */; };
 		4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C416E64D3B004E8902 /* SMRoute.m */; };
 		4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C616E64D3B004E8902 /* SMTurnInstruction.m */; };
+		4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C86E05E16F6264A00ECEA61 /* SMSplashController.m */; };
+		4C86E06816F62C4000ECEA61 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06016F62C4000ECEA61 /* blueButton.png */; };
+		4C86E06916F62C4000ECEA61 /* blueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06116F62C4000ECEA61 /* blueButton@2x.png */; };
+		4C86E06A16F62C4000ECEA61 /* quitRouteOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */; };
+		4C86E06B16F62C4000ECEA61 /* quitRouteOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06316F62C4000ECEA61 /* quitRouteOverlay@2x.png */; };
+		4C86E06C16F62C4000ECEA61 /* routeFinishedOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06416F62C4000ECEA61 /* routeFinishedOverlay.png */; };
+		4C86E06D16F62C4000ECEA61 /* routeFinishedOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06516F62C4000ECEA61 /* routeFinishedOverlay@2x.png */; };
+		4C86E06E16F62C4000ECEA61 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06616F62C4000ECEA61 /* whiteButton.png */; };
+		4C86E06F16F62C4000ECEA61 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */; };
 		4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C8BB08E16B7D21D00F1ADF2 /* eventFBIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB08416B7D21D00F1ADF2 /* eventFBIcon.png */; };
@@ -499,8 +507,6 @@
 		4C48641716F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C52287316BFA9310082A01A /* routeFinishedBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeFinishedBtn.png; sourceTree = "<group>"; };
 		4C52287416BFA9310082A01A /* routeFinishedBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeFinishedBtn@2x.png"; sourceTree = "<group>"; };
-		4C64781916C102FE00D055DC /* SMEnterEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEnterEmailController.h; sourceTree = "<group>"; };
-		4C64781A16C102FE00D055DC /* SMEnterEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterEmailController.m; sourceTree = "<group>"; };
 		4C64781C16C1366C00D055DC /* SMReportErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMReportErrorController.h; sourceTree = "<group>"; };
 		4C64781D16C1366C00D055DC /* SMReportErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMReportErrorController.m; sourceTree = "<group>"; };
 		4C64781F16C14FB400D055DC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -597,6 +603,16 @@
 		4C8546C416E64D3B004E8902 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
 		4C8546C516E64D3B004E8902 /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
 		4C8546C616E64D3B004E8902 /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
+		4C86E05D16F6264A00ECEA61 /* SMSplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSplashController.h; sourceTree = "<group>"; };
+		4C86E05E16F6264A00ECEA61 /* SMSplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSplashController.m; sourceTree = "<group>"; };
+		4C86E06016F62C4000ECEA61 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		4C86E06116F62C4000ECEA61 /* blueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueButton@2x.png"; sourceTree = "<group>"; };
+		4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quitRouteOverlay.png; sourceTree = "<group>"; };
+		4C86E06316F62C4000ECEA61 /* quitRouteOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quitRouteOverlay@2x.png"; sourceTree = "<group>"; };
+		4C86E06416F62C4000ECEA61 /* routeFinishedOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeFinishedOverlay.png; sourceTree = "<group>"; };
+		4C86E06516F62C4000ECEA61 /* routeFinishedOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeFinishedOverlay@2x.png"; sourceTree = "<group>"; };
+		4C86E06616F62C4000ECEA61 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
 		4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsCalendarCell.h; sourceTree = "<group>"; };
 		4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsCalendarCell.m; sourceTree = "<group>"; };
 		4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsFacebookCell.h; sourceTree = "<group>"; };
@@ -902,6 +918,14 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C86E06016F62C4000ECEA61 /* blueButton.png */,
+				4C86E06116F62C4000ECEA61 /* blueButton@2x.png */,
+				4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */,
+				4C86E06316F62C4000ECEA61 /* quitRouteOverlay@2x.png */,
+				4C86E06416F62C4000ECEA61 /* routeFinishedOverlay.png */,
+				4C86E06516F62C4000ECEA61 /* routeFinishedOverlay@2x.png */,
+				4C86E06616F62C4000ECEA61 /* whiteButton.png */,
+				4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */,
 				4C24BD2D16F60C7A0043F28B /* overviewBG.png */,
 				4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */,
 				4C24BD2F16F60C7A0043F28B /* routeStartButton.png */,
@@ -1293,8 +1317,8 @@
 				4C9D152716BAB97D00B73393 /* SMAboutController.m */,
 				4C9D152916BAB98C00B73393 /* SMAccountsController.h */,
 				4C9D152A16BAB98C00B73393 /* SMAccountsController.m */,
-				4C64781916C102FE00D055DC /* SMEnterEmailController.h */,
-				4C64781A16C102FE00D055DC /* SMEnterEmailController.m */,
+				4C86E05D16F6264A00ECEA61 /* SMSplashController.h */,
+				4C86E05E16F6264A00ECEA61 /* SMSplashController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -1706,6 +1730,14 @@
 				4C24BD3216F60C7A0043F28B /* overviewBG@2x.png in Resources */,
 				4C24BD3316F60C7A0043F28B /* routeStartButton.png in Resources */,
 				4C24BD3416F60C7A0043F28B /* routeStartButton@2x.png in Resources */,
+				4C86E06816F62C4000ECEA61 /* blueButton.png in Resources */,
+				4C86E06916F62C4000ECEA61 /* blueButton@2x.png in Resources */,
+				4C86E06A16F62C4000ECEA61 /* quitRouteOverlay.png in Resources */,
+				4C86E06B16F62C4000ECEA61 /* quitRouteOverlay@2x.png in Resources */,
+				4C86E06C16F62C4000ECEA61 /* routeFinishedOverlay.png in Resources */,
+				4C86E06D16F62C4000ECEA61 /* routeFinishedOverlay@2x.png in Resources */,
+				4C86E06E16F62C4000ECEA61 /* whiteButton.png in Resources */,
+				4C86E06F16F62C4000ECEA61 /* whiteButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1740,7 +1772,6 @@
 				4C9D152B16BAB98C00B73393 /* SMAccountsController.m in Sources */,
 				4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */,
 				4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */,
-				4C64781B16C102FE00D055DC /* SMEnterEmailController.m in Sources */,
 				4C64781E16C1366C00D055DC /* SMReportErrorController.m in Sources */,
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
@@ -1774,6 +1805,7 @@
 				4C8DF76A16F229CB007EC9FE /* SMViewMoreCell.m in Sources */,
 				4C365DD416F320C000A836B3 /* TTTAttributedLabel.m in Sources */,
 				4C365DDB16F3434200A836B3 /* SMMenuCell.m in Sources */,
+				4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

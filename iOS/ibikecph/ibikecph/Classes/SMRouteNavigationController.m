@@ -811,7 +811,9 @@ typedef enum {
             CGFloat tblHeight = 0.0f;
             CGFloat newY = 0;
             @synchronized(self.route.turnInstructions) {
-                tblHeight = [SMDirectionTopCell getHeightForDescription:[[self.route.turnInstructions objectAtIndex:0] descriptionString] andWayname:[[self.route.turnInstructions objectAtIndex:0] wayName]];
+                if ([self.route.turnInstructions count] > 0) {
+                    tblHeight = [SMDirectionTopCell getHeightForDescription:[[self.route.turnInstructions objectAtIndex:0] descriptionString] andWayname:[[self.route.turnInstructions objectAtIndex:0] wayName]];                    
+                }
             }
             newY = maxY - tblHeight;
             [self repositionInstructionsView:newY + 1];

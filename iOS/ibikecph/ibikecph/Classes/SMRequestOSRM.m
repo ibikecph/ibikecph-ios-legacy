@@ -40,9 +40,9 @@
         [self.conn cancel];
         self.conn = nil;
     }
+    self.responseData = [NSMutableData data];
     NSURLConnection * c = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
     self.conn = c;
-    self.responseData = [NSMutableData data];
     [self.conn start];
 }
 
@@ -80,9 +80,9 @@
         [self.conn cancel];
         self.conn = nil;
     }
+    self.responseData = [NSMutableData data];
     NSURLConnection * c = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
     self.conn = c;
-    self.responseData = [NSMutableData data];
     [self.conn start];
 }
 
@@ -103,9 +103,9 @@
         [self.conn cancel];
         self.conn = nil;
     }
+    self.responseData = [NSMutableData data];
     NSURLConnection * c = [[NSURLConnection alloc] initWithRequest:req delegate:self startImmediately:NO];
     self.conn = c;
-    self.responseData = [NSMutableData data];
     [self.conn start];
 }
 
