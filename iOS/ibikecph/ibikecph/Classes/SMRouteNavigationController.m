@@ -151,6 +151,7 @@ typedef enum {
     routeOverview = nil;
     overviewDestination = nil;
     overviewTimeDistance = nil;
+    stopView = nil;
     [super viewDidUnload];
 }
 
@@ -634,6 +635,12 @@ typedef enum {
     }];
 }
 
+- (IBAction)hideStopView:(id)sender {
+    [UIView animateWithDuration:0.4f animations:^{
+        [stopView setAlpha:0.0f];
+    }];
+}
+
 - (IBAction)goBack:(id)sender {
     self.currentlyRouting = NO;
     
@@ -650,8 +657,10 @@ typedef enum {
 }
 
 -(IBAction)buttonPressed:(id)sender {
-    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"route_stop_title") message:translateString(@"route_stop_text") delegate:self cancelButtonTitle:translateString(@"Cancel") otherButtonTitles:translateString(@"Stop"), translateString(@"report_error"), nil];
-    [av show];
+    [UIView animateWithDuration:0.4f animations:^{
+        [stopView setAlpha:1.0f];
+    } completion:^(BOOL finished) {
+    }];    
 }
 
 - (void)trackingOn {

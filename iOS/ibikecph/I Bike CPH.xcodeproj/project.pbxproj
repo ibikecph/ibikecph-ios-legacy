@@ -234,6 +234,8 @@
 		4C86E06D16F62C4000ECEA61 /* routeFinishedOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06516F62C4000ECEA61 /* routeFinishedOverlay@2x.png */; };
 		4C86E06E16F62C4000ECEA61 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06616F62C4000ECEA61 /* whiteButton.png */; };
 		4C86E06F16F62C4000ECEA61 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */; };
+		4C86E07216F6385E00ECEA61 /* routeStopOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E07016F6385E00ECEA61 /* routeStopOverlay.png */; };
+		4C86E07316F6385E00ECEA61 /* routeStopOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E07116F6385E00ECEA61 /* routeStopOverlay@2x.png */; };
 		4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C8BB08E16B7D21D00F1ADF2 /* eventFBIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8BB08416B7D21D00F1ADF2 /* eventFBIcon.png */; };
@@ -613,6 +615,8 @@
 		4C86E06516F62C4000ECEA61 /* routeFinishedOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeFinishedOverlay@2x.png"; sourceTree = "<group>"; };
 		4C86E06616F62C4000ECEA61 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
 		4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
+		4C86E07016F6385E00ECEA61 /* routeStopOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeStopOverlay.png; sourceTree = "<group>"; };
+		4C86E07116F6385E00ECEA61 /* routeStopOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeStopOverlay@2x.png"; sourceTree = "<group>"; };
 		4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsCalendarCell.h; sourceTree = "<group>"; };
 		4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsCalendarCell.m; sourceTree = "<group>"; };
 		4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsFacebookCell.h; sourceTree = "<group>"; };
@@ -918,6 +922,8 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C86E07016F6385E00ECEA61 /* routeStopOverlay.png */,
+				4C86E07116F6385E00ECEA61 /* routeStopOverlay@2x.png */,
 				4C86E06016F62C4000ECEA61 /* blueButton.png */,
 				4C86E06116F62C4000ECEA61 /* blueButton@2x.png */,
 				4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */,
@@ -1738,6 +1744,8 @@
 				4C86E06D16F62C4000ECEA61 /* routeFinishedOverlay@2x.png in Resources */,
 				4C86E06E16F62C4000ECEA61 /* whiteButton.png in Resources */,
 				4C86E06F16F62C4000ECEA61 /* whiteButton@2x.png in Resources */,
+				4C86E07216F6385E00ECEA61 /* routeStopOverlay.png in Resources */,
+				4C86E07316F6385E00ECEA61 /* routeStopOverlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

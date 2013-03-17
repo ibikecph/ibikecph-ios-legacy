@@ -76,7 +76,7 @@
 "error_invalid_email" = "Ugyldig e-mail!";
 "error_invalid_to_address" = "Destinationsadressen er ugyldig!";
 
-"route_stop_title" = "Vil du stoppe ruten?";
+"route_stop_title" = "Vil du afslutte turen?";
 "route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
 "report_error" = "Rapporter";
 "report_wrong_address" = "Vejnavnet er forkert";

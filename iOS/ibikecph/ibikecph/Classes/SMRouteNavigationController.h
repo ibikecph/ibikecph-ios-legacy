@@ -30,6 +30,7 @@
     __weak IBOutlet UIView *routeOverview;
     __weak IBOutlet UILabel *overviewDestination;
     __weak IBOutlet UILabel *overviewTimeDistance;
+    __weak IBOutlet UIView *stopView;
 }
 
 @property BOOL currentlyRouting;
