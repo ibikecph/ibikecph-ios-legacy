@@ -746,7 +746,9 @@ typedef enum {
     self.destination = dst;
     self.source = src;
     self.jsonRoot = jsonRoot;
-    [self performSegueWithIdentifier:@"goToNavigationView" sender:@{@"start" : start, @"end" : end}];
+    if (self.navigationController.topViewController == self) {
+        [self performSegueWithIdentifier:@"goToNavigationView" sender:@{@"start" : start, @"end" : end}];
+    }
 }
 
 #pragma mark - events delegate

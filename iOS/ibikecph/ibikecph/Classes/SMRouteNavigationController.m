@@ -148,6 +148,7 @@ typedef enum {
     finishDestination = nil;
     buttonTrackUser = nil;
     swipableView = nil;
+    routeOverview = nil;
     [super viewDidUnload];
 }
 
@@ -158,6 +159,56 @@ typedef enum {
 
 
 #pragma mark - custom methods
+
+#define COORDINATE_PADDING 0.005f
+
+- (void)showRouteOverview {
+    self.currentlyRouting = NO;
+    [progressView setHidden:YES];
+    currentDirectionsState = directionsNormal;
+    // Display new path
+    NSDictionary * coordinates = [self addRouteAnnotation:self.route];
+    [self.mpView setRoutingDelegate:self];
+    [tblDirections reloadData];
+    [self setDirectionsState:directionsNormal];
+    [self reloadSwipableView];
+    
+    [routeOverview setFrame:instructionsView.frame];
+    
+    CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
+    CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
+    
+    ne.latitude += COORDINATE_PADDING;
+    ne.longitude += COORDINATE_PADDING;
+
+    sw.latitude -= COORDINATE_PADDING;
+    sw.longitude -= COORDINATE_PADDING;
+
+    
+    [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];
+    [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    
+}
+
+- (IBAction)startRouting:(id)sender {
+    [UIView animateWithDuration:0.4f animations:^{
+        [routeOverview setAlpha:0.0f];
+    }];
+    
+    self.currentlyRouting = YES;
+    [self resetZoom];
+    [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(self.route.locationStart.latitude,self.route.locationStart.longitude)];
+    [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
+    [labelTimeLeft setText:expectedArrivalTime(self.route.estimatedTimeForRoute)];
+
+    [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+
+    [recalculatingView setAlpha:1.0f];
+    [UIView animateWithDuration:0.3f animations:^{
+        [recalculatingView setAlpha:0.0f];
+    }];
+}
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
     
@@ -173,8 +224,6 @@ typedef enum {
     if (!self.route) {
         return;
     }
-    
-    [self startRoute];
 
     SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
@@ -202,6 +251,7 @@ typedef enum {
 
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(from.latitude,from.longitude)];
 
+    [self showRouteOverview];
 }
 
 - (void) renderMinimizedDirectionsViewFromInstruction {
@@ -214,7 +264,7 @@ typedef enum {
     }
 }
 
-- (void) addRouteAnnotation:(SMRoute *)r {
+- (NSDictionary*) addRouteAnnotation:(SMRoute *)r {
     RMAnnotation *calculatedPathAnnotation = [RMAnnotation annotationWithMapView:self.mpView coordinate:[r getStartLocation].coordinate andTitle:nil];
     calculatedPathAnnotation.annotationType = @"path";
     calculatedPathAnnotation.userInfo = @{
@@ -225,6 +275,10 @@ typedef enum {
                                          };
     [calculatedPathAnnotation setBoundingBoxFromLocations:[NSArray arrayWithArray:r.waypoints]];
     [self.mpView addAnnotation:calculatedPathAnnotation];
+    return @{
+             @"neCoordinate" : calculatedPathAnnotation.neCoordinate,
+             @"swCoordinate" : calculatedPathAnnotation.swCoordinate
+             };
 }
 
 - (void)resetZoom {

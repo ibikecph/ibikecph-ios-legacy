@@ -27,6 +27,7 @@
     __weak IBOutlet UIView *recalculatingView;
     __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
     __weak IBOutlet UIScrollView *swipableView;
+    __weak IBOutlet UIView *routeOverview;
 }
 
 @property BOOL currentlyRouting;
