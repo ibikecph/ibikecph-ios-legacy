@@ -9,7 +9,7 @@
 "current_position" = "Current position";
 "today" = "Today";
 "tomorrow" = "Tomorrow";
-"accounts" = "Accounts";
+"account" = "Account";
 "settings" = "Settings";
 "about_ibikecph" = "About I Bike CPH";
 "contacts" = "CONTACTS";
@@ -121,7 +121,6 @@
 
 "where_are_we_going" = "Where should we go?";
 "ibikecph_route_planner" = "I Bike CPH";
-"Cancel" = "Cancel";
 "calculating_new_route" = "Calculating new route...";
 "Distance" = "Distance";
 "Time" = "Time";
@@ -148,3 +147,21 @@
 "back_ride" = "BACK";
 "stop_ride" = "STOP RIDE";
 "ride_report_a_problem" = "REPORT A PROBLEM";
+
+"login_with_fb" = "LOGIN WITH FACEBOOK";
+"register_with_mail" = "REGISTER";
+"skip" = "SKIP";
+"create_account" = "CREATE AN ACCOUNT";
+"create_account_text" = "Save favorites and searches across mobile and ibikecph.dk";
+"back_splash" = "BACK";
+"register_save" = "REGISTER";
+"create_account" = "Create account";
+"register_name_placeholder" = "Name";
+"register_email_placeholder" = "E-mail";
+"register_password_placeholder" = "Password";
+"register_passwor_repeat_placeholder" = "Repeat password";
+"login" = "LOG IN";
+"choose_image_source" = "Select image source";
+"image_source_camera" = "Camera";
+"image_source_library" = "Library";
+"login_new_account" = "Create account";

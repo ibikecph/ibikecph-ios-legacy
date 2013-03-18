@@ -139,3 +139,20 @@
 "back_ride" = "TILBAGE";
 "stop_ride" = "AFSLUT TUREN";
 "ride_report_a_problem" = "RAPPORTER ET PROBLEM";
+
+"login_with_fb" = "OPRET MED FACEBOOK";
+"register_with_mail" = "OPRET MED EMAIL";
+"skip" = "SPRING OVER";
+"create_account" = "OPRET DIN KONTO";
+"create_account_text" = "Gem favoritter og søgninger på tværs af mobilen og ibikecph.dk ";
+
+"back_splash" = "TILBAGE";
+"register_save" = "OPRET MIG";
+"create_account" = "Opret profil";
+
+"register_name_placeholder" = "Navn";
+"register_email_placeholder" = "Email";
+"register_password_placeholder" = "Adgangskode";
+"register_password_repeat_placeholder" = "Gentag adgangskode";
+"login" = "LOG IND";
+"login_new_account" = "OPRET EN KONTO";

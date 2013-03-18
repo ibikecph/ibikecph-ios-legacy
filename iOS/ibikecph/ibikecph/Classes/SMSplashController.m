@@ -11,9 +11,19 @@
 #import <Social/Social.h>
 #import "SBJson.h"
 #import "SMAppDelegate.h"
+#import "DAKeyboardControl.h"
+#import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+typedef enum {
+    dialogLogin,
+    dialogRegister,
+    dialogNone
+} CurrentDialogType;
 
 @interface SMSplashController () {
     BOOL loginInProcess;
+    CurrentDialogType currentDialog;
 }
 
 @end
@@ -24,6 +34,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     loginInProcess = NO;
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    currentDialog = dialogNone;
+}
+
+- (void)viewDidUnload {
+    registerView = nil;
+    loginView = nil;
+    registerScroll = nil;
+    nameField = nil;
+    emailField = nil;
+    passwordField = nil;
+    passwordRepeatField = nil;
+    registerDialog = nil;
+    loginEmail = nil;
+    loginPassword = nil;
+    loginScroll = nil;
+    loginDialog = nil;
+    [super viewDidUnload];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.view removeKeyboardControl];
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - button actions
@@ -31,6 +71,108 @@
 - (IBAction)skipLogin:(id)sender {
     [self performSegueWithIdentifier:@"splashToMain" sender:nil];
 }
+
+- (IBAction)goToFavorites:(id)sender {
+    [self performSegueWithIdentifier:@"splashToFavorites" sender:nil];
+}
+
+- (IBAction)showRegister:(id)sender {
+    [nameField setText:@""];
+    [emailField setText:@""];
+    [passwordField setText:@""];
+    [passwordRepeatField setText:@""];
+    [UIView animateWithDuration:0.4f animations:^{
+        [registerView setAlpha:1.0f];
+    } completion:^(BOOL finished) {
+        currentDialog = dialogRegister;
+    }];
+}
+
+- (IBAction)hideRegister:(id)sender {
+    [registerScroll setContentOffset:CGPointZero];
+    [nameField resignFirstResponder];
+    [emailField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [passwordRepeatField resignFirstResponder];
+    [UIView animateWithDuration:0.4f animations:^{
+        [registerView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [nameField setText:@""];
+        [emailField setText:@""];
+        [passwordField setText:@""];
+        [passwordRepeatField setText:@""];
+        currentDialog = dialogNone;
+    }];
+}
+
+- (IBAction)showLogin:(id)sender {
+    [UIView animateWithDuration:0.4f animations:^{
+        [loginView setAlpha:1.0f];
+    } completion:^(BOOL finished) {
+        [loginPassword setText:@""];
+        [loginEmail setText:@""];
+        currentDialog = dialogLogin;
+    }];
+}
+
+- (IBAction)hideLogin:(id)sender {
+    [UIView animateWithDuration:0.4f animations:^{
+        [loginView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [loginPassword setText:@""];
+        [loginEmail setText:@""];
+        currentDialog = dialogNone;
+    }];
+
+}
+
+- (IBAction)loginToRegister:(id)sender {
+    [UIView animateWithDuration:0.4f animations:^{
+        [loginView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [nameField setText:@""];
+        [emailField setText:@""];
+        [passwordField setText:@""];
+        [passwordRepeatField setText:@""];
+        [UIView animateWithDuration:0.4f animations:^{
+            [registerView setAlpha:1.0f];
+        } completion:^(BOOL finished) {
+            currentDialog = dialogRegister;
+        }];
+    }];
+}
+
+- (IBAction)selectImageSource:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES){
+        UIActionSheet * ac  = [[UIActionSheet alloc] initWithTitle:translateString(@"choose_image_source") delegate:self cancelButtonTitle:translateString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:translateString(@"image_source_camera"), translateString(@"image_source_library"), nil];
+        [ac showInView:self.view];
+    } else {
+        [self takePictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+}
+
+- (void)takePictureFromSource:(UIImagePickerControllerSourceType)src {
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:src] == YES){
+        cameraUI.sourceType = src;
+    }else{
+        if (src == UIImagePickerControllerSourceTypeCamera) {
+            cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else {
+            cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+    }
+    
+    NSArray* tmpAlloc_NSArray = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    cameraUI.mediaTypes =  tmpAlloc_NSArray;
+    cameraUI.allowsEditing = NO;
+    cameraUI.delegate = self;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self presentModalViewController: cameraUI animated: YES];
+    }
+}
+
 
 - (IBAction)loginWithFB:(id)sender {
     
@@ -121,6 +263,59 @@
     }];
     
 }
+
+#pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSInteger tag = textField.tag + 1;
+    [textField resignFirstResponder];
+    
+    if (currentDialog == dialogRegister) {
+        [[registerDialog viewWithTag:tag] becomeFirstResponder];
+        if (tag == 104) {
+            [registerScroll setContentOffset:CGPointZero];
+            [self goToFavorites:nil];
+        }   
+    } else if (currentDialog == dialogLogin) {
+        [[loginDialog viewWithTag:tag] becomeFirstResponder];
+        if (tag == 104) {
+            [loginScroll setContentOffset:CGPointZero];
+            [self goToFavorites:nil];
+        }
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (currentDialog == dialogRegister) {
+        [registerScroll setContentOffset:CGPointMake(0.0f, textField.frame.origin.y - 110.0f)];
+    } else if (currentDialog == dialogLogin) {
+        [loginScroll setContentOffset:CGPointMake(0.0f, textField.frame.origin.y - 80.0f)];
+    }
+    return YES;
+}
+
+#pragma mark - imagepicker delegate
+
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    UIImage * imageToSave = [info objectForKey:UIImagePickerControllerOriginalImage];
+}
+
+#pragma mark - actin sheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self takePictureFromSource:UIImagePickerControllerSourceTypeCamera];
+            break;
+        case 1:
+            [self takePictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+            break;
+        default:
+            break;
+    }
+}
+
 
 
 @end

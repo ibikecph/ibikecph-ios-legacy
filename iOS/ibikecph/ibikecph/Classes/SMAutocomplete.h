@@ -12,7 +12,7 @@
 - (void)autocompleteEntriesFound:(NSArray*)arr forString:(NSString*) str;
 @end
 
-@interface SMAutocomplete : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+@interface SMAutocomplete : NSObject
 
 - (id)initWithDelegate:(id<SMAutocompleteDelegate>)dlg;
 

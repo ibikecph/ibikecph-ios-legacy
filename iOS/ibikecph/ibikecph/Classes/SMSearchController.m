@@ -15,6 +15,7 @@
 #import "SMAutocomplete.h"
 #import "DAKeyboardControl.h"
 #import "TTTAttributedLabel.h"
+#import "SMLocationManager.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
@@ -218,13 +219,6 @@
         [r addObject:d];
     }
     
-    [r insertObject:@{
-     @"name" : CURRENT_POSITION_STRING,
-     @"address" : CURRENT_POSITION_STRING,
-     @"startDate" : [NSDate date],
-     @"endDate" : [NSDate date],
-     @"source" : @"pastRoutes"
-     } atIndex:0];
     
     for (int i = 0; i < [appd.searchHistory count]; i++) {
         BOOL found = NO;
@@ -239,6 +233,27 @@
             [r addObject:d];
         }
     }
+    
+    [r sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+        NSComparisonResult cmp = [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
+        if (cmp == NSOrderedSame) {
+            
+        }
+        return cmp;
+    }];
+
+    
+    [r insertObject:@{
+     @"name" : CURRENT_POSITION_STRING,
+     @"address" : CURRENT_POSITION_STRING,
+     @"startDate" : [NSDate date],
+     @"endDate" : [NSDate date],
+     @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+     @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+     @"source" : @"pastRoutes",
+     } atIndex:0];
+
+    
     self.searchResults = r;
     [tblView reloadData];
     [tblFade setAlpha:0.0f];

@@ -80,7 +80,8 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
     
     [RMMapView class];
@@ -156,9 +157,9 @@ typedef enum {
     self.findFrom = @"";
     self.findTo = @"";
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"settings.plist"]] == NO) {
-        [self performSegueWithIdentifier:@"enterEmail" sender:nil];
-    }
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"settings.plist"]] == NO) {
+//        [self performSegueWithIdentifier:@"enterEmail" sender:nil];
+//    }
     [debugLabel setText:BUILD_STRING];
 }
 

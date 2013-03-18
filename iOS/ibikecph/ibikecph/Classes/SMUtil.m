@@ -172,7 +172,8 @@ float caloriesBurned(float avgSpeed, float timeSpent){
                  @"source" : [d objectForKey:@"source"],
                  @"subsource" : [d objectForKey:@"subsource"],
                  @"lat" : [d objectForKey:@"lat"],
-                 @"long" : [d objectForKey:@"long"]
+                 @"long" : [d objectForKey:@"long"],
+                 @"order" : @1
                  }];
             }
             [arr2 sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
