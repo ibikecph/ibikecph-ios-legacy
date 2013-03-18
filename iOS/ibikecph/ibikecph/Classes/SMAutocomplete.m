@@ -85,7 +85,7 @@ typedef enum {
         [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
             NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:data];
             NSMutableArray * arr = [NSMutableArray array];
-            for (NSDictionary* d in [[res objectForKey:@"response"] objectForKey:@"venues"]) {
+            for (NSDictionary* d in [[res objectForKey:@"response"] objectForKey:@"minivenues"]) {
                 NSMutableArray * ar = [NSMutableArray array];
                 NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{
                                               @"name" : [d objectForKey:@"name"],

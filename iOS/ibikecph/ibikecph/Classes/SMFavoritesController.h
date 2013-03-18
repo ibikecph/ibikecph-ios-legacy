@@ -13,6 +13,8 @@
     
     __weak IBOutlet UITextField *favoriteHome;
     __weak IBOutlet UITextField *favoriteWork;
+    __weak IBOutlet UIScrollView *scrlView;
+    __weak IBOutlet UIView *favoritesView;
 }
 
 @end

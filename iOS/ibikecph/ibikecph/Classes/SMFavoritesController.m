@@ -30,6 +30,8 @@ typedef enum {
 - (void)viewDidUnload {
     favoriteHome = nil;
     favoriteWork = nil;
+    scrlView = nil;
+    favoritesView = nil;
     [super viewDidUnload];
 }
 
@@ -52,14 +54,16 @@ typedef enum {
 
 - (IBAction)searchHome:(id)sender {
     searchFav = favHome;
-    [self performSegueWithIdentifier:@"favToSearch" sender:nil];
     [favoriteHome resignFirstResponder];
+    [scrlView setContentOffset:CGPointZero];
+    [self performSegueWithIdentifier:@"favToSearch" sender:nil];
 }
 
 - (IBAction)searchWork:(id)sender {
     searchFav = favWork;
-    [self performSegueWithIdentifier:@"favToSearch" sender:nil];
     [favoriteWork resignFirstResponder];
+    [scrlView setContentOffset:CGPointZero];
+    [self performSegueWithIdentifier:@"favToSearch" sender:nil];
 }
 
 
@@ -95,5 +99,29 @@ typedef enum {
             break;
     }
 }
+
+#pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSInteger tag = textField.tag + 1;
+    [textField resignFirstResponder];
+    
+    [[favoritesView viewWithTag:tag] becomeFirstResponder];
+    if (tag == 103) {
+        [scrlView setContentOffset:CGPointZero];
+    }
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [scrlView setContentOffset:CGPointMake(0.0f, 150.0f)];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [scrlView setContentOffset:CGPointZero];
+    return YES;
+}
+
 
 @end
