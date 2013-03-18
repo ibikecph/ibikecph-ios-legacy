@@ -165,3 +165,9 @@
 "image_source_camera" = "Camera";
 "image_source_library" = "Library";
 "login_new_account" = "Create account";
+"save_favorites" = "SAVE FAVORITES";
+"favorites_title" = "ADD FAVORITES";
+"favorites_text" = "You can save your favorite destinations in the app so it's easy to find your way home, to work or school.";
+"favorites_home_placeholder" = "Home address ...";
+"favorites_work_placeholder" = "Work address ...";
+"log_in" = "Log in";

@@ -7,7 +7,12 @@
 //
 
 #import "SMTranslatedViewController.h"
+#import "SMSearchController.h"
 
-@interface SMFavoritesController : SMTranslatedViewController
+@interface SMFavoritesController : SMTranslatedViewController <UITextFieldDelegate, SMSearchDelegate> {
+    
+    __weak IBOutlet UITextField *favoriteHome;
+    __weak IBOutlet UITextField *favoriteWork;
+}
 
 @end

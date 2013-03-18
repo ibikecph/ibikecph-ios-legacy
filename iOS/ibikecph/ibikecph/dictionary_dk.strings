@@ -156,3 +156,9 @@
 "register_password_repeat_placeholder" = "Gentag adgangskode";
 "login" = "LOG IND";
 "login_new_account" = "OPRET EN KONTO";
+"save_favorites" = "GEM FAVORITTER";
+"favorites_title" = "TILFØJ FAVORITTER";
+"favorites_text" = "Du kan gemme dine favorit destinationer i app’en så det er nemt at finde vej hjem, til arbejde eller skole.";
+"favorites_home_placeholder" = "Hjemmeadresse ...";
+"favorites_work_placeholder" = "Arbejdsadresse ...";
+"log_in" = "Log ind";
