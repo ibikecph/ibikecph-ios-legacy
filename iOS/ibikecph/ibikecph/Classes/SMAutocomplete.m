@@ -7,8 +7,8 @@
 //
 
 #import "SMAutocomplete.h"
-#import "SBJson.h"
 #import "SMLocationManager.h"
+#import "NSString+Relevance.h"
 
 typedef enum {
     autocompleteOiorest,
@@ -25,6 +25,12 @@ typedef enum {
 
 @implementation SMAutocomplete
 
+#define POINTS_EXACT_NAME 20
+#define POINTS_EXACT_ADDRESS 10
+#define POINTS_PART_NAME 1
+#define POINTS_PART_ADDRESS 1
+
+
 - (id)initWithDelegate:(id<SMAutocompleteDelegate>)dlg {
     self = [super init];
     if (self) {
@@ -40,12 +46,52 @@ typedef enum {
     [self getOiorestAutocomplete];
 }
 
+
+
+- (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSArray*)terms {
+    NSString * srchString = [terms componentsJoinedByString:@" "];
+    NSInteger total = 0;
+    
+    NSInteger points = [name numberOfOccurenciesOfString:srchString];
+    if (points > 0) {
+        total += points * POINTS_EXACT_NAME;
+    } else {
+        for (NSString * str in terms) {
+            points = [name numberOfOccurenciesOfString:str];
+            if (points > 0) {
+                total += points * POINTS_PART_NAME;
+            }
+        }
+    }
+
+    
+    points = [address numberOfOccurenciesOfString:srchString];
+    if (points > 0) {
+        total += points * POINTS_EXACT_ADDRESS;
+    } else {
+        for (NSString * str in terms) {
+            points = [address numberOfOccurenciesOfString:str];
+            if (points > 0) {
+                total += points * POINTS_PART_NAME;
+            }
+        }
+    }
+    
+    return total;
+}
+
 - (void)getOiorestAutocomplete {
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [self.srchString urlEncode]]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-        NSArray * res = [[[SBJsonParser alloc] init] objectWithData:data];
+        NSDictionary * res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSMutableArray * arr = [NSMutableArray array];
+        NSMutableArray * terms = [NSMutableArray array];
+        for (NSString * str in [[self.srchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "]) {
+            if ([terms indexOfObject:str] == NSNotFound) {
+                [terms addObject:str];
+            }
+        }
         for (NSDictionary* d in res) {
             if ([[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] >= 1000 && [[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] <= 2999) {
                 [arr addObject:@{
@@ -57,6 +103,7 @@ typedef enum {
                  @"country" : @"",
                  @"source" : @"autocomplete",
                  @"subsource" : @"oiorest",
+                 @"relevance" : [NSNumber numberWithInteger:[self pointsForName:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andAddress:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andTerms:terms]],
                  @"order" : @2
                  }];
             }
@@ -83,8 +130,14 @@ typedef enum {
 //        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&client_id=%@&client_secret=%@&query=%@&v=%@&radius=%@", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude, FOURSQUARE_ID, FOURSQUARE_SECRET, [[self.srchString removeAccents] urlEncode], @"20130301", FOURSQUARE_SEARCH_RADIUS]]];
         debugLog(@"%@", req);
         [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-            NSDictionary * res = [[[SBJsonParser alloc] init] objectWithData:data];
+            NSDictionary * res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             NSMutableArray * arr = [NSMutableArray array];
+            NSMutableArray * terms = [NSMutableArray array];
+            for (NSString * str in [[self.srchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "]) {
+                if ([terms indexOfObject:str] == NSNotFound) {
+                    [terms addObject:str];
+                }
+            }
             for (NSDictionary* d in [[res objectForKey:@"response"] objectForKey:@"minivenues"]) {
                 NSMutableArray * ar = [NSMutableArray array];
                 NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{
@@ -133,6 +186,8 @@ typedef enum {
                 
                 [dict setObject:[ar componentsJoinedByString:@", "] forKey:@"address"];
                 
+                [dict setObject:[NSNumber numberWithInteger:[self pointsForName:[dict objectForKey:@"name"] andAddress:[dict objectForKey:@"address"] andTerms:terms]] forKey:@"relevance"];
+                
                 if ([[dict objectForKey:@"address"] rangeOfString:@"København"].location != NSNotFound
                     || [[dict objectForKey:@"address"] rangeOfString:@"Koebenhavn"].location != NSNotFound
                     || [[dict objectForKey:@"address"] rangeOfString:@"Kobenhavn"].location != NSNotFound
@@ -142,6 +197,7 @@ typedef enum {
                     ) {
                     [arr addObject:dict];
                 }
+                
                 
                 [arr sortUsingComparator:^NSComparisonResult(NSDictionary * obj1, NSDictionary * obj2) {
                     double d1 = [[SMLocationManager instance].lastValidLocation distanceFromLocation:[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue] longitude:[[obj1 objectForKey:@"lat"] doubleValue]]];

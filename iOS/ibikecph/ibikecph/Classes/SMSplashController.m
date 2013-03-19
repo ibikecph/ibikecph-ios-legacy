@@ -9,7 +9,6 @@
 #import "SMSplashController.h"
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
-#import "SBJson.h"
 #import "SMAppDelegate.h"
 #import "DAKeyboardControl.h"
 #import <QuartzCore/QuartzCore.h>
@@ -214,8 +213,9 @@ typedef enum {
                      * handle request error
                      */
                 } else {
-                    NSString * str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                    NSDictionary * d = [[SBJsonParser new] objectWithString:str];
+                    
+//                    NSString * str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                    NSDictionary * d = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];//[[SBJsonParser new] objectWithString:str];
                     /*
                      * handle FB login
                      */

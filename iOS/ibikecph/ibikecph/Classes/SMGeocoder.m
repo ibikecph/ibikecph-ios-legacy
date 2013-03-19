@@ -7,7 +7,6 @@
 //
 
 #import "SMGeocoder.h"
-#import "SBJson.h"
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 #import <AddressBook/AddressBook.h>
@@ -29,7 +28,8 @@
     NSString * s = [NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@", [str urlEncode]];
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError *error) {
-        id res = [[[SBJsonParser alloc] init] objectWithData:data];
+        
+        id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:data];
         if ([res isKindOfClass:[NSArray class]] == NO) {
             res = @[res];
         }
@@ -81,7 +81,7 @@
             handler(@{}, error);
         } else {
             if (data) {
-                id res = [[[SBJsonParser alloc] init] objectWithData:data];
+                id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:data];
                 
                 if ([res isKindOfClass:[NSArray class]] == NO) {
                     res = @[res];

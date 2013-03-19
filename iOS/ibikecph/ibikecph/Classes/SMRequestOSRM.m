@@ -7,7 +7,6 @@
 //
 
 #import "SMRequestOSRM.h"
-#import "SBJson.h"
 #import "NSString+URLEncode.h"
 
 @interface SMRequestOSRM()
@@ -117,7 +116,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if ([self.responseData length] > 0) {
-        id r = [[[SBJsonParser alloc] init] objectWithData:self.responseData];
+        id r = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:self.responseData];
         if ([self.currentRequest isEqualToString:@"findNearestPointForStart:andEnd:"]) {
             if (self.locStep > 1) {
                 if ([r objectForKey:@"mapped_coordinate"] && [[r objectForKey:@"mapped_coordinate"] isKindOfClass:[NSArray class]] && ([[r objectForKey:@"mapped_coordinate"] count] > 1)) {
