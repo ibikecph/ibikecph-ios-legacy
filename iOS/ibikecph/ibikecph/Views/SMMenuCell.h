@@ -8,13 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class SMMenuCell;
+
+@protocol SMMenuCellDelegate <NSObject>
+- (void)editFavorite:(SMMenuCell*)cell;
+@end
+
 @interface SMMenuCell : UITableViewCell {
     
     __weak IBOutlet UIImageView *cellBG;
 }
-@property (weak, nonatomic) IBOutlet UIImageView *contactImage;
-@property (weak, nonatomic) IBOutlet UILabel *contactName;
-@property (weak, nonatomic) IBOutlet UIImageView *contactDisclosure;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *text;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
+
+@property (nonatomic, weak) id<SMMenuCellDelegate>delegate;
 
 + (CGFloat)getHeight;
 

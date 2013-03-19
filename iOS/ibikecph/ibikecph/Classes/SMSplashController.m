@@ -13,6 +13,7 @@
 #import "DAKeyboardControl.h"
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "SMUtil.h"
 
 typedef enum {
     dialogLogin,
@@ -72,7 +73,11 @@ typedef enum {
 }
 
 - (IBAction)goToFavorites:(id)sender {
-    [self performSegueWithIdentifier:@"splashToFavorites" sender:nil];
+    if ([[SMUtil getFavorites] count] > 0) {
+        [self performSegueWithIdentifier:@"splashToMain" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"splashToFavorites" sender:nil];
+    }
 }
 
 - (IBAction)showRegister:(id)sender {
@@ -220,7 +225,7 @@ typedef enum {
                      * handle FB login
                      */
                     
-                    [self skipLogin:nil];
+                    [self goToFavorites:nil];
                 }
             }];
         } else {
@@ -255,7 +260,7 @@ typedef enum {
                       * handle FB login
                       */
                     
-                     [self skipLogin:nil];
+                     [self goToFavorites:nil];
                  }
              }];
             

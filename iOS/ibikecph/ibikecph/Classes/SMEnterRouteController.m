@@ -32,7 +32,7 @@ typedef enum {
 @implementation SMEnterRouteController
 
 #define MAX_FAVORITES 3
-#define MAX_HISTORY 2
+#define MAX_HISTORY 10
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,7 +58,7 @@ typedef enum {
     
     
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    NSMutableArray * saved = [NSMutableArray array];
+    NSMutableArray * saved = [SMUtil getFavorites];
     /**
      * add saved routes here
      */
@@ -350,6 +350,18 @@ typedef enum {
             }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
+            if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
+                [cell.iconImage setImage:[UIImage imageNamed:@"favHome"]];
+            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
+                [cell.iconImage setImage:[UIImage imageNamed:@"favWork"]];
+            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
+                [cell.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
+            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
+                [cell.iconImage setImage:[UIImage imageNamed:@"favStar"]];
+            } else {
+                [cell.iconImage setImage:nil];
+            }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {

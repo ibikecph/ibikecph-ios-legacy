@@ -9,11 +9,16 @@
 #import <math.h>
 #import "SMUtil.h"
 #import "SMAppDelegate.h"
+#import "NSString+Relevance.h"
 
 
 
 @implementation SMUtil
 
+#define POINTS_EXACT_NAME 20
+#define POINTS_EXACT_ADDRESS 10
+#define POINTS_PART_NAME 1
+#define POINTS_PART_ADDRESS 1
 
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float meters) {
@@ -223,5 +228,101 @@ float caloriesBurned(float avgSpeed, float timeSpent){
     BOOL x = [r writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"] atomically:YES];
     return x;
 }
+
++ (NSMutableArray*)getFavorites {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"favorites.plist"]]) {
+        NSMutableArray * arr = [NSArray arrayWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"favorites.plist"]];
+        NSMutableArray * arr2 = [NSMutableArray array];
+        if (arr) {
+            for (NSDictionary * d in arr) {
+                [arr2 addObject:@{
+                 @"name" : [d objectForKey:@"name"],
+                 @"address" : [d objectForKey:@"address"],
+                 @"startDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"startDate"]],
+                 @"endDate" : [NSKeyedUnarchiver unarchiveObjectWithData:[d objectForKey:@"endDate"]],
+                 @"source" : [d objectForKey:@"source"],
+                 @"subsource" : [d objectForKey:@"subsource"],
+                 @"lat" : [d objectForKey:@"lat"],
+                 @"long" : [d objectForKey:@"long"],
+                 @"order" : @0
+                 }];
+            }
+            return arr2;
+        }
+    }
+    return [NSMutableArray array];
+}
+
++ (BOOL)saveFavorites:(NSArray*)fav {
+    NSMutableArray * r = [NSMutableArray array];
+    for (NSDictionary * d in fav) {
+        [r addObject:@{
+         @"name" : [d objectForKey:@"name"],
+         @"address" : [d objectForKey:@"address"],
+         @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"startDate"]],
+         @"endDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"endDate"]],
+         @"source" : [d objectForKey:@"source"],
+         @"subsource" : [d objectForKey:@"subsource"],
+         @"lat" : [d objectForKey:@"lat"],
+         @"long" : [d objectForKey:@"long"]
+         }];
+    }
+    return [r writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"favorites.plist"] atomically:YES];
+}
+
++ (BOOL)saveToFavorites:(NSDictionary*)dict {
+    NSMutableArray * arr = [NSMutableArray array];
+    NSMutableArray * a = [self getFavorites];
+    for (NSDictionary * srch in a) {
+        if ([[srch objectForKey:@"name"] isEqualToString:[dict objectForKey:@"name"]] == NO) {
+            [arr addObject:srch];
+        }
+    }
+    [arr addObject:dict];
+    
+    
+    
+    return [SMUtil saveFavorites:arr];
+}
+
++ (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSString*)srchString {
+    NSMutableArray * terms = [NSMutableArray array];
+    srchString = [srchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    for (NSString * str in [srchString componentsSeparatedByString:@" "]) {
+        if ([terms indexOfObject:str] == NSNotFound) {
+            [terms addObject:str];
+        }
+    }
+    NSInteger total = 0;
+    
+    NSInteger points = [name numberOfOccurenciesOfString:srchString];
+    if (points > 0) {
+        total += points * POINTS_EXACT_NAME;
+    } else {
+        for (NSString * str in terms) {
+            points = [name numberOfOccurenciesOfString:str];
+            if (points > 0) {
+                total += points * POINTS_PART_NAME;
+            }
+        }
+    }
+    
+    
+    points = [address numberOfOccurenciesOfString:srchString];
+    if (points > 0) {
+        total += points * POINTS_EXACT_ADDRESS;
+    } else {
+        for (NSString * str in terms) {
+            points = [address numberOfOccurenciesOfString:str];
+            if (points > 0) {
+                total += points * POINTS_PART_NAME;
+            }
+        }
+    }
+    
+    return total;
+}
+
+
 
 @end

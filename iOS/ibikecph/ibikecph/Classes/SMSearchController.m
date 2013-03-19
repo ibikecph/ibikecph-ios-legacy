@@ -16,11 +16,13 @@
 #import "DAKeyboardControl.h"
 #import "TTTAttributedLabel.h"
 #import "SMLocationManager.h"
+#import "SMUtil.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
 @property (nonatomic, strong) NSDictionary * locationData;
 @property (nonatomic, strong) SMAutocomplete * autocomp;
+@property (nonatomic, strong) NSArray * favorites;
 @end
 
 @implementation SMSearchController
@@ -38,7 +40,7 @@
     self.autocomp = [[SMAutocomplete alloc] initWithDelegate:self];
     [tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [searchField becomeFirstResponder];
-    
+    [self setFavorites:[SMUtil getFavorites]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,6 +90,18 @@
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
         if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+        } else {
+            [cell.iconImage setImage:nil];
+        }
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
+        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"favHome"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"favWork"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
+            [cell.iconImage setImage:[UIImage imageNamed:@"favStar"]];
         } else {
             [cell.iconImage setImage:nil];
         }
@@ -219,6 +233,20 @@
         [r addObject:d];
     }
     
+        
+    for (int i = 0; i < [self.favorites count]; i++) {
+        BOOL found = NO;
+        NSDictionary * d = [self.favorites objectAtIndex:i];
+        for (NSDictionary * d1 in r) {
+            if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                found = YES;
+                break;
+            }
+        }
+        if (found == NO && [SMUtil pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+            [r addObject:d];
+        }
+    }
     
     for (int i = 0; i < [appd.searchHistory count]; i++) {
         BOOL found = NO;
@@ -229,7 +257,7 @@
                 break;
             }
         }
-        if (found == NO) {
+        if (found == NO && [SMUtil pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
             [r addObject:d];
         }
     }

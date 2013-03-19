@@ -1,14 +1,14 @@
 //
-//  SMMenuCell.m
+//  SMMenuHeader.m
 //  I Bike CPH
 //
-//  Created by Ivan Pavlovic on 15/03/2013.
+//  Created by Ivan Pavlovic on 19/03/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "SMMenuCell.h"
+#import "SMMenuHeader.h"
 
-@implementation SMMenuCell
+@implementation SMMenuHeader
 
 + (CGFloat)getHeight {
     return 45.0f;
@@ -32,12 +32,16 @@
     }
 }
 
-- (IBAction)editCell:(id)sender {
+- (IBAction)singleTap:(id)sender {
     if (self.delegate) {
-        [self.delegate editFavorite:self];
+        [self.delegate headerTapped:self];
     }
 }
 
-
+- (IBAction)tapButton:(id)sender {
+    if (self.delegate) {
+        [self.delegate buttonTapped:self];
+    }
+}
 
 @end

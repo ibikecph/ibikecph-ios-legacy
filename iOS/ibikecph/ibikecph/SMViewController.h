@@ -18,6 +18,7 @@
 #import "SMRequestOSRM.h"
 
 #import "SMGPSTrackButton.h"
+#import "SMMenuCell.h"
 
 typedef enum {
     screenMenu,
@@ -25,7 +26,7 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;
@@ -37,10 +38,16 @@ typedef enum {
     __weak IBOutlet UITableView *tblEvents;
     __weak IBOutlet UITableView *tblContacts;
     __weak IBOutlet UITableView *tblMenu;
+    __weak IBOutlet UITableView *tblFavorites;
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UILabel *debugLabel;
 
     __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
+    __weak IBOutlet UIView *favHeader;
+    __weak IBOutlet UIView *accHeader;
+    __weak IBOutlet UIView *infHeader;
+    __weak IBOutlet UIButton *favEditStart;
+    __weak IBOutlet UIButton *favEditDone;
 }
 
 /**

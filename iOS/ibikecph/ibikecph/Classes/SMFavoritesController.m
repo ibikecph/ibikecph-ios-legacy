@@ -9,6 +9,8 @@
 #import "SMFavoritesController.h"
 #import "SMSearchController.h"
 #import "DAKeyboardControl.h"
+#import "SMUtil.h"
+#import <CoreLocation/CoreLocation.h>
 
 typedef enum {
     favHome,
@@ -17,7 +19,8 @@ typedef enum {
 @interface SMFavoritesController () {
     FavoriteType searchFav;
 }
-
+@property (nonatomic, strong) NSDictionary * homeDict;
+@property (nonatomic, strong) NSDictionary * workDict;
 @end
 
 @implementation SMFavoritesController
@@ -25,6 +28,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[[UIApplication sharedApplication] setStatusBarHidden:YES];
+    self.workDict = nil;
+    self.homeDict = nil;
 }
 
 - (void)viewDidUnload {
@@ -49,6 +54,36 @@ typedef enum {
 #pragma mark - button actions
 
 - (IBAction)skipOver:(id)sender {
+    [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
+}
+
+- (IBAction)saveFavorites:(id)sender {
+    if (self.homeDict) {
+        [SMUtil saveToFavorites:@{
+         @"name" : [self.homeDict objectForKey:@"name"],
+         @"address" : [self.homeDict objectForKey:@"address"],
+         @"startDate" : [NSDate date],
+         @"endDate" : [NSDate date],
+         @"source" : @"favorites",
+         @"subsource" : @"home",
+         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.latitude],
+         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.longitude],
+         @"order" : @0
+         }];
+    }
+    if (self.workDict) {
+        [SMUtil saveToFavorites:@{
+         @"name" : [self.workDict objectForKey:@"name"],
+         @"address" : [self.workDict objectForKey:@"address"],
+         @"startDate" : [NSDate date],
+         @"endDate" : [NSDate date],
+         @"source" : @"favorites",
+         @"subsource" : @"work",
+         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.latitude],
+         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.longitude],
+         @"order" : @0
+         }];
+    }
     [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
 }
 
@@ -91,9 +126,11 @@ typedef enum {
     switch (searchFav) {
         case favHome:
             [favoriteHome setText:[locationDict objectForKey:@"name"]];
+            [self setHomeDict:locationDict];
             break;
         case favWork:
             [favoriteWork setText:[locationDict objectForKey:@"name"]];
+            [self setWorkDict:locationDict];
             break;
         default:
             break;
