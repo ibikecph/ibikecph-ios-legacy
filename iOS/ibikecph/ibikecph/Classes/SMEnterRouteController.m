@@ -198,8 +198,6 @@ typedef enum {
         [r setAuxParam:@"startRoute"];
         [r getRouteFrom:s.coordinate to:e.coordinate via:nil];
     } else if ([req.auxParam isEqualToString:@"startRoute"]){
-//        NSString * response = [[NSString alloc] initWithData:req.responseData encoding:NSUTF8StringEncoding];
-//        id jsonRoot = [[[SBJsonParser alloc] init] objectWithString:response];
         id jsonRoot = [NSJSONSerialization JSONObjectWithData:req.responseData options:NSJSONReadingAllowFragments error:nil];
         if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];

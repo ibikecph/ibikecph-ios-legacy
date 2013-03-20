@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TTTAttributedLabel.h"
 
-@interface SMEnterRouteCell : UITableViewCell
+@interface SMSearchCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *nameLabel;
 @property (weak, nonatomic) IBOutlet AsyncImageView *iconImage;
 
 + (CGFloat)getHeight;
+- (void)setImageWithData:(NSDictionary*)currentRow;
 
 @end

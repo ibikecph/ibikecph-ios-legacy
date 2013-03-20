@@ -22,6 +22,15 @@
 
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float meters) {
+    if (meters < 5) {
+        return @"";
+    } else if (meters <= 94) {
+        return [NSString stringWithFormat:@"%.0f %@", roundf(meters/10.0f) * 10, DISTANCE_M_SHORT];
+    } else if (meters <= 1049) {
+        return [NSString stringWithFormat:@"%.0f %@", roundf(meters/100.0f) * 100, DISTANCE_M_SHORT];
+    } else {
+        return [NSString stringWithFormat:@"%.1f %@", meters/1000.0f, DISTANCE_KM_SHORT];
+    }
     return meters > 1000.0f ? [NSString stringWithFormat:@"%.1f %@", meters/1000.0f, DISTANCE_KM_SHORT] : [NSString stringWithFormat:@"%.0f %@", meters, DISTANCE_M_SHORT];
 }
 

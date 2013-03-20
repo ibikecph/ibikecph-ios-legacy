@@ -7,7 +7,8 @@
 //
 
 #import "SMSearchController.h"
-#import "SMEnterRouteCell.h"
+#import "SMSearchCell.h"
+#import "SMSearchTwoRowCell.h"
 #import <CoreLocation/CoreLocation.h>
 #import "SMGeocoder.h"
 #import <MapKit/MapKit.h>
@@ -23,6 +24,9 @@
 @property (nonatomic, strong) NSDictionary * locationData;
 @property (nonatomic, strong) SMAutocomplete * autocomp;
 @property (nonatomic, strong) NSArray * favorites;
+
+@property (nonatomic, strong) NSMutableArray * terms;
+@property (nonatomic, strong) NSString * srchString;
 @end
 
 @implementation SMSearchController
@@ -67,51 +71,50 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary * currentRow = [self.searchResults objectAtIndex:indexPath.row];
-    NSString * identifier = @"autocompleteCell";
-    SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//    [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
-    [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-        NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
-        UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:cell.nameLabel.font.pointSize];
-        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-        if (font) {
-            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
-            CFRelease(font);
-        }        
-        return mutableAttributedString;
-    }];
+    NSString * identifier;
+
+    SMSearchCell * cell;
+    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+        identifier = @"searchTwoRowsCell";
+        SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        [cell.addressLabel setText:[currentRow objectForKey:@"address"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+            UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+            
+            CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+            
+            if (font) {
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                CFRelease(font);
+                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+            }
+            return mutableAttributedString;
+        }];
+        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+        [cell setImageWithData:currentRow];
+        return cell;
+    } else {
+        identifier = @"searchCell";
+        SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+            UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+            
+            CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+            
+            if (font) {
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                CFRelease(font);
+                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+            }
+            return mutableAttributedString;
+        }];
+        [cell setImageWithData:currentRow];
+        return cell;
+    }    
     
-    if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
-        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
-        } else {
-            [cell.iconImage setImage:nil];
-        }
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
-        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"favHome"]];
-        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"favWork"]];
-        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
-        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"favStar"]];
-        } else {
-            [cell.iconImage setImage:nil];
-        }
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
-    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
-        [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
-    }
+//    [cell setImageWithData:currentRow];
+    
     return cell;
 }
 
@@ -137,7 +140,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [SMEnterRouteCell getHeight];
+    return [SMSearchCell getHeight];
 }
 
 #pragma mark - custom methods 
@@ -226,6 +229,15 @@
 
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
     [self hideFade];
+    
+    self.terms = [NSMutableArray array];
+    self.srchString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    for (NSString * str in [self.srchString componentsSeparatedByString:@" "]) {
+        if ([self.terms indexOfObject:str] == NSNotFound) {
+            [self.terms addObject:str];
+        }
+    }    
+    
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     NSMutableArray * r = [NSMutableArray array];
 

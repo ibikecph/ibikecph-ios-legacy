@@ -11,9 +11,9 @@
 "tomorrow" = "I morgen";
 "accounts" = "Konti";
 "settings" = "Indstillinger";
-"about_ibikecph" = "Om I Bike CPH";
+"about_ibikecph" = "OM I BIKE CPH";
 "contacts" = "Kontakter";
-"favorites" = "Favoritter";
+"favorites" = "FAVORITTER";
 
 "direction_0" = "";
 "direction_1" = "Fortsæt ad";
@@ -76,7 +76,7 @@
 "error_invalid_email" = "Ugyldig e-mail!";
 "error_invalid_to_address" = "Destinationsadressen er ugyldig!";
 
-"route_stop_title" = "Vil du afslutte turen?";
+"route_stop_title" = "Vil du stoppe ruten?";
 "route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
 "report_error" = "Rapporter";
 "report_wrong_address" = "Vejnavnet er forkert";
@@ -107,7 +107,7 @@
 
 // these are in the storyboard
 
-"where_are_we_going" = "Ny rute?";
+"where_are_we_going" = "Ny rute";
 "ibikecph_route_planner" = "Cykelruteplanlægger";
 "Cancel" = "Fortryd";
 "calculating_new_route" = "Beregner ny rute...";
@@ -128,7 +128,7 @@
 "report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt til os, så vi kan kontakte dig.";
 "choose_a_route_step" = "Vælg et trin i ruten at rapportere";
 "cancel_picker" = "Annullere";
-"done_picker" = "Gjort";
+"done_picker" = "Vælg";
 
 "recent_results" = "SENESTE";
 "show_more" = "VIS FLERE";
@@ -162,3 +162,19 @@
 "favorites_home_placeholder" = "Hjemmeadresse ...";
 "favorites_work_placeholder" = "Arbejdsadresse ...";
 "log_in" = "Log ind";
+
+"add_favorite" = "TILFØJ FAVORIT";
+"cell_add_favorite" = "TILFØJ NY FAVORIT";
+"edit_favorite" = "REDIGER";
+"cell_empty_favorite_text" = "Du har ingen favoritter, men du kan hurtigt tilføje en nu.";
+"save_favorite" = "GEM FAVORIT";
+"delete_favorite" = "SLET";
+"Home" = "Hjem";
+"Work" = "Arbejde";
+"School" = "Skole";
+"Favorite" = "Favorit";
+"back" = "TILBAGE";
+"done" = "FÆRDIG";
+"add_favorite_name_placeholder" = "Indtast navn ...";
+"add_favorite_address_placeholder" = "Find adresse ...";
+"account" = "MIN PROFIL";

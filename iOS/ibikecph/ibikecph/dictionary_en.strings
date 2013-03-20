@@ -171,3 +171,20 @@
 "favorites_home_placeholder" = "Home address ...";
 "favorites_work_placeholder" = "Work address ...";
 "log_in" = "Log in";
+
+"add_favorite" = "ADD A FAVORITE";
+"cell_add_favorite" = "ADD NEW FAVORITE";
+"edit_favorite" = "EDIT";
+"cell_empty_favorite_text" = "Du har ingen favoritter, men du kan hurtigt tilføje en nu.";
+"save_favorite" = "SAVE";
+"delete_favorite" = "DELETE";
+"Home" = "Home";
+"Work" = "Work";
+"School" = "School";
+"Favorite" = "Favorite";
+"back" = "BACK";
+"done" = "DONE";
+"add_favorite_name_placeholder" = "Enter name ...";
+"add_favorite_address_placeholder" = "Find address ...";
+"account" = "MY PROFILE";
+

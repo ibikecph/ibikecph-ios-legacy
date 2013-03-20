@@ -32,6 +32,10 @@
 
 #import "SMEnterRouteController.h"
 #import "SMUtil.h"
+#import "SMAddFavoriteCell.h"
+#import "SMEmptyFavoritesCell.h"
+
+#import "DAKeyboardControl.h"
 
 typedef enum {
     menuFavorites = 0,
@@ -39,8 +43,18 @@ typedef enum {
     menuInfo = 2
 } MenuType;
 
+typedef enum {
+    typeFavorite,
+    typeHome,
+    typeWork,
+    typeSchool,
+    typeNone
+} FavoriteType;
+
 @interface SMViewController () {
     MenuType menuOpen;
+    
+    FavoriteType currentFav;
 }
 
 @property (nonatomic, strong) SMContacts *contacts;
@@ -62,6 +76,17 @@ typedef enum {
 @property (nonatomic, strong) SMAnnotation * destinationPin;
 
 @property (nonatomic, strong) id jsonRoot;
+
+
+
+@property CLLocationCoordinate2D startLoc;
+@property CLLocationCoordinate2D endLoc;
+@property (nonatomic, strong) NSString * startName;
+@property (nonatomic, strong) NSString * endName;
+
+@property (nonatomic, strong) NSDictionary * locDict;
+@property (nonatomic, strong) NSString * favName;
+
 @end
 
 @implementation SMViewController
@@ -137,8 +162,6 @@ typedef enum {
     [self.mpView setEnableBouncing:TRUE];
     
     [self openMenu:menuFavorites];
-    [favEditStart setHidden:NO];
-    [favEditDone setHidden:YES];
 }
 
 - (void)viewDidUnload {
@@ -160,6 +183,18 @@ typedef enum {
     infHeader = nil;
     favEditStart = nil;
     favEditDone = nil;
+    addFavFavoriteButton = nil;
+    addFavHomeButton = nil;
+    addFavWorkButton = nil;
+    addFavSchoolButton = nil;
+    addFavAddress = nil;
+    addFavName = nil;
+    mainMenu = nil;
+    addMenu = nil;
+    editTitle = nil;
+    editSaveButton = nil;
+    editDeleteButton = nil;
+    addSaveButton = nil;
     [super viewDidUnload];
 }
 
@@ -184,6 +219,8 @@ typedef enum {
     }@catch(id anException){
         
     }
+    
+    [self.view removeKeyboardControl];
     [super viewWillDisappear:animated];
 }
 
@@ -234,9 +271,23 @@ typedef enum {
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    }];
+    
 }
 
 #pragma mark - custom methods
+
+- (CGFloat)heightForFavorites {
+    if ([self.favoritesList count] == 0) {
+        return [SMEmptyFavoritesCell getHeight] + 46.0f;
+    } else {
+        CGFloat startY = favHeader.frame.origin.y;
+        CGFloat maxHeight = menuView.frame.size.height - startY;
+        return MIN(tblMenu.contentSize.height + 46.0f, maxHeight - 2 * 45.0f);
+    }
+    return 45.0f;
+}
 
 - (void)openMenu:(NSInteger)menuType {
     
@@ -245,6 +296,8 @@ typedef enum {
     [tblMenu reloadData];
     switch (menuType) {
         case menuInfo: {
+            [favEditDone setHidden:YES];
+            [favEditStart setHidden:YES];
             CGRect frame = infHeader.frame;
             frame.origin.y = startY + 2 * 45.0f;
             frame.size.height = maxHeight - 2 * 45.0f;
@@ -262,6 +315,8 @@ typedef enum {
         }
             break;
         case menuAccount: {
+            [favEditDone setHidden:YES];
+            [favEditStart setHidden:YES];
             CGRect frame = accHeader.frame;
             frame.origin.y = startY + 45.0f;
             frame.size.height = maxHeight - 2 * 45.0f;
@@ -279,9 +334,21 @@ typedef enum {
         }
             break;
         case menuFavorites: {
+            if ([self.favoritesList count] == 0) {
+                [favEditDone setHidden:YES];
+                [favEditStart setHidden:YES];
+            } else {
+                if (tblMenu.isEditing) {
+                    [favEditDone setHidden:NO];
+                    [favEditStart setHidden:YES];
+                } else {
+                    [favEditDone setHidden:YES];
+                    [favEditStart setHidden:NO];
+                }                
+            }
             CGRect frame = favHeader.frame;
             frame.origin.y = startY;
-            frame.size.height = MIN(tblMenu.contentSize.height + 46.0f, maxHeight - 2 * 45.0f);
+            frame.size.height = [self heightForFavorites];
             [favHeader setFrame:frame];
             frame = accHeader.frame;
             frame.origin.y = startY + favHeader.frame.size.height;
@@ -388,11 +455,11 @@ typedef enum {
     /**
      * removed for alpha. uncomment when needed
      */
-    frame = menuView.frame;
-    frame.size.width = scrWidth - 60.0f;
-    frame.size.height = scrHeight;
-    frame.origin.x = 0.0f;
-    [menuView setFrame:frame];
+//    frame = menuView.frame;
+//    frame.size.width = scrWidth - 60.0f;
+//    frame.size.height = scrHeight;
+//    frame.origin.x = 0.0f;
+//    [menuView setFrame:frame];
 //
 //    frame = centerView.frame;
 //    frame.size.width = scrWidth;
@@ -412,8 +479,12 @@ typedef enum {
 
     if (currentScreen == screenMenu) {
         [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+        [self.view sendSubviewToBack:scrlView];
+        [self.view bringSubviewToFront:menuView];
     } else if (currentScreen == screenMap) {
         [scrlView setContentOffset:CGPointMake(scrWidth - 60.0f, 0.0f) animated:NO];
+        [self.view sendSubviewToBack:menuView];
+        [self.view bringSubviewToFront:scrlView];
     }
     
 //    if ([self.eventsGroupedArray count] > 0) {
@@ -435,6 +506,15 @@ typedef enum {
 }
 
 #pragma mark - scrollView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (scrollView != scrlView) {
+        return;
+    }
+    [self.view sendSubviewToBack:menuView];
+    [self.view bringSubviewToFront:scrlView];
+}
+
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (scrollView != scrlView) {
@@ -458,9 +538,14 @@ typedef enum {
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         currentScreen = screenMenu;
+        [self.view sendSubviewToBack:scrlView];
+        [self.view bringSubviewToFront:menuView];
+
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
+        [self.view sendSubviewToBack:menuView];
+        [self.view bringSubviewToFront:scrlView];
     }
 }
 
@@ -471,13 +556,228 @@ typedef enum {
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
         currentScreen = screenMenu;
+        [self.view sendSubviewToBack:scrlView];
+        [self.view bringSubviewToFront:menuView];
+
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
+        [self.view sendSubviewToBack:menuView];
+        [self.view bringSubviewToFront:scrlView];
+
     }
 }
 
 #pragma mark - button actions
+
+- (IBAction)editFavoriteShow:(id)sender {
+    addFavAddress.text = [self.locDict objectForKey:@"address"];
+    addFavName.text = [self.locDict objectForKey:@"name"];
+    editTitle.text = translateString(@"edit_favorite");
+    [addSaveButton setHidden:YES];
+    [editSaveButton setHidden:NO];
+    [editDeleteButton setHidden:NO];
+    
+    if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"home"]) {
+        currentFav = typeHome;
+        [self addSelectHome:nil];
+    } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"work"]) {
+        currentFav = typeWork;
+        [self addSelectWork:nil];
+    } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"school"]) {
+        currentFav = typeSchool;
+        [self addSelectSchool:nil];
+    } else {
+        currentFav = typeFavorite;
+        [self addSelectFavorite:nil];
+    }
+    
+    [self animateEditViewShow];
+
+
+}
+
+- (IBAction)addFavoriteShow:(id)sender {
+    self.locDict = nil;
+    addFavAddress.text = @"";
+    addFavName.text = @"";
+    currentFav = typeFavorite;
+    [self addSelectFavorite:nil];
+    editTitle.text = translateString(@"add_favorite");
+    [addSaveButton setHidden:NO];
+    [editSaveButton setHidden:YES];
+    [editDeleteButton setHidden:YES];
+    
+    [self animateEditViewShow];
+}
+
+- (void)animateEditViewShow {
+    CGRect frame = mainMenu.frame;
+    frame.origin.x = 0.0f;
+    [mainMenu setFrame:frame];
+    
+    frame.origin.x = 260.0f;
+    [addMenu setFrame:frame];
+    [addMenu setHidden:NO];
+    
+    [self.view sendSubviewToBack:menuView];
+    [self.view bringSubviewToFront:scrlView];
+    [UIView animateWithDuration:0.4f animations:^{
+        CGRect frame = mainMenu.frame;
+        frame.origin.x = -260.0f;
+        [mainMenu setFrame:frame];
+        frame = addMenu.frame;
+        frame.origin.x = 0.0f;
+        [addMenu setFrame:frame];
+    } completion:^(BOOL finished) {
+        [self.view sendSubviewToBack:scrlView];
+        [self.view bringSubviewToFront:menuView];
+    }];
+    
+}
+
+- (IBAction)addFavoriteHide:(id)sender{
+    [self.view sendSubviewToBack:menuView];
+    [self.view bringSubviewToFront:scrlView];
+    [UIView animateWithDuration:0.4f animations:^{
+        CGRect frame = mainMenu.frame;
+        frame.origin.x = 0.0f;
+        [mainMenu setFrame:frame];
+        frame = addMenu.frame;
+        frame.origin.x = 260.0f;
+        [addMenu setFrame:frame];
+    } completion:^(BOOL finished) {
+        [self.view sendSubviewToBack:scrlView];
+        [self.view bringSubviewToFront:menuView];
+        [mainMenu setHidden:NO];
+        [addMenu setHidden:YES];
+        [self setFavoritesList:[SMUtil getFavorites]];
+        [UIView animateWithDuration:0.4f animations:^{
+            [self openMenu:menuFavorites];
+        }];
+    }];
+}
+
+- (IBAction)saveFavorite:(id)sender {
+    NSString * favType;
+    switch (currentFav) {
+        case typeFavorite:
+            favType = @"favorite";
+            break;
+        case typeHome:
+            favType = @"home";
+            break;
+        case typeWork:
+            favType = @"work";
+            break;
+        case typeSchool:
+            favType = @"school";
+            break;
+        default:
+            favType = @"favorite";
+            break;
+    }
+        
+    if (self.locDict && [addFavName.text isEqualToString:@""] == NO) {
+        [SMUtil saveToFavorites:@{
+         @"name" : addFavName.text,
+         @"address" : [self.locDict objectForKey:@"address"],
+         @"startDate" : [NSDate date],
+         @"endDate" : [NSDate date],
+         @"source" : @"favorites",
+         @"subsource" : favType,
+         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+         @"order" : @0
+         }];        
+    }
+    
+    [self addFavoriteHide:nil];
+}
+
+- (IBAction)deleteFavorite:(id)sender {
+    [self.favoritesList removeObject:self.locDict];
+    [SMUtil saveFavorites:self.favoritesList];
+    [self addFavoriteHide:nil];
+}
+
+- (IBAction)editSaveFavorite:(id)sender {
+    NSString * favType;
+    switch (currentFav) {
+        case typeFavorite:
+            favType = @"favorite";
+            break;
+        case typeHome:
+            favType = @"home";
+            break;
+        case typeWork:
+            favType = @"work";
+            break;
+        case typeSchool:
+            favType = @"school";
+            break;
+        default:
+            favType = @"favorite";
+            break;
+    }
+    
+    NSDictionary * dict = @{
+                        @"name" : addFavName.text,
+                        @"address" : [self.locDict objectForKey:@"address"],
+                        @"startDate" : [NSDate date],
+                        @"endDate" : [NSDate date],
+                        @"source" : @"favorites",
+                        @"subsource" : favType,
+                        @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+                        @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+                        @"order" : @0
+                        };
+    
+    [self.favoritesList replaceObjectAtIndex:[self.favoritesList indexOfObject:self.locDict] withObject:dict];
+    [SMUtil saveFavorites:self.favoritesList];
+    [self addFavoriteHide:nil];
+}
+
+
+- (IBAction)findAddress:(id)sender {
+    self.favName = addFavAddress.text;
+    [self performSegueWithIdentifier:@"mainToSearch" sender:nil];
+}
+
+- (IBAction)addSelectFavorite:(id)sender {
+    [addFavFavoriteButton setSelected:YES];
+    [addFavHomeButton setSelected:NO];
+    [addFavWorkButton setSelected:NO];
+    [addFavSchoolButton setSelected:NO];
+    currentFav = typeFavorite;
+}
+
+- (IBAction)addSelectHome:(id)sender {
+    [addFavFavoriteButton setSelected:NO];
+    [addFavHomeButton setSelected:YES];
+    [addFavWorkButton setSelected:NO];
+    [addFavSchoolButton setSelected:NO];
+    currentFav = typeHome;
+}
+
+- (IBAction)addSelectWork:(id)sender {
+    [addFavFavoriteButton setSelected:NO];
+    [addFavHomeButton setSelected:NO];
+    [addFavWorkButton setSelected:YES];
+    [addFavSchoolButton setSelected:NO];
+    currentFav = typeWork;
+}
+
+- (IBAction)addSelectSchool:(id)sender {
+    [addFavFavoriteButton setSelected:NO];
+    [addFavHomeButton setSelected:NO];
+    [addFavWorkButton setSelected:NO];
+    [addFavSchoolButton setSelected:YES];
+    currentFav = typeSchool;
+}
+
+
+
 
 - (IBAction)startEdit:(id)sender {
     [tblMenu setEditing:YES];
@@ -551,6 +851,10 @@ typedef enum {
         if (x == NO) {
             NSLog(@"Temp route not saved!");
         }
+    } else if ([segue.identifier isEqualToString:@"mainToSearch"]) {
+        SMSearchController *destViewController = segue.destinationViewController;
+        [destViewController setDelegate:self];
+        [destViewController setSearchText:self.favName];
     }
 }
 
@@ -574,6 +878,15 @@ typedef enum {
             return [self.contactsArr count];            
         }
     } else if (tableView == tblMenu) {
+        if ([self.favoritesList count] > 0) {
+            if (tblMenu.isEditing) {
+                return [self.favoritesList count];
+            } else {
+                return [self.favoritesList count] + 1;
+            }
+        } else {
+            return 1;
+        }
         return [self.favoritesList count];
     } else if (tableView == tblFavorites) {
         return [self.favoritesList count];
@@ -605,29 +918,52 @@ typedef enum {
         }
         return cell;
     } else if (tableView == tblMenu) {
-        NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
-        SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
-        [cell.image setContentMode:UIViewContentModeCenter];
-        [cell setDelegate:self];
-        if (tblMenu.isEditing) {
-            [cell.image setImage:[UIImage imageNamed:@"favReorder"]];            
-            [cell.editBtn setHidden:NO];
-        } else {
-            if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
-                [cell.image setImage:[UIImage imageNamed:@"favHome"]];
-            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
-                [cell.image setImage:[UIImage imageNamed:@"favWork"]];
-            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
-                [cell.image setImage:[UIImage imageNamed:@"favBookmark"]];
-            } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-                [cell.image setImage:[UIImage imageNamed:@"favStar"]];
+        if ([self.favoritesList count] > 0) {
+            if (tblMenu.isEditing) {
+                NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
+                SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
+                [cell.image setContentMode:UIViewContentModeCenter];
+                [cell setDelegate:self];
+                [cell.image setImage:[UIImage imageNamed:@"favReorder"]];
+                [cell.editBtn setHidden:NO];
+                [cell.text setText:[currentRow objectForKey:@"name"]];
+                return cell;
             } else {
-                [cell.image setImage:nil];
+                if (indexPath.row < [self.favoritesList count]) {
+                    NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
+                    SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
+                    [cell.image setContentMode:UIViewContentModeCenter];
+                    [cell setDelegate:self];
+                    if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
+                        [cell.image setImage:[UIImage imageNamed:@"favHome"]];
+                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
+                        [cell.image setImage:[UIImage imageNamed:@"favWork"]];
+                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
+                        [cell.image setImage:[UIImage imageNamed:@"favBookmark"]];
+                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
+                        [cell.image setImage:[UIImage imageNamed:@"favStar"]];
+                    } else {
+                        [cell.image setImage:nil];
+                    }
+                    [cell.editBtn setHidden:YES];
+                    [cell.text setText:[currentRow objectForKey:@"name"]];
+                    return cell;
+                } else {
+                    SMAddFavoriteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesAddCell"];
+                    [cell.image setContentMode:UIViewContentModeCenter];
+                    [cell.text setText:translateString(@"cell_add_favorite")];
+                    return cell;
+                }
             }
-            [cell.editBtn setHidden:YES];
+        } else {
+            SMEmptyFavoritesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesEmptyCell"];
+            [cell.text setText:translateString(@"cell_add_favorite")];
+            [cell.addFavoritesText setText:translateString(@"cell_empty_favorite_text")];
+            return cell;
         }
-        [cell.text setText:[currentRow objectForKey:@"name"]];
-        return cell;
+        
+        
+        
     } else if (tableView == tblEvents) {
         NSDictionary * currentRow = [[[self.eventsGroupedArray objectAtIndex:indexPath.section] objectForKey:@"items"] objectAtIndex:indexPath.row];
         if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
@@ -719,11 +1055,44 @@ typedef enum {
             [av show];            
         }
     } else if (tableView == tblMenu) {
-//        if ([[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue] == menuInfo) {
-//            [self performSegueWithIdentifier:[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"segue"] sender:nil];
-//        } else {
-//            [self openMenu:[[[self.menuArr objectAtIndex:indexPath.row] objectForKey:@"type"] integerValue]];            
-//        }
+        if ([self.favoritesList count] == 0) {
+            /**
+             * add favorite
+             */
+            [self addFavoriteShow:nil];
+        } else {
+            if (tblMenu.isEditing) {
+                /**
+                 * edit favorite
+                 */
+                self.locDict = [self.favoritesList objectAtIndex:indexPath.row];
+                [self editFavoriteShow:nil];
+            } else {
+                /**
+                 * navigate to favorite
+                 */
+                if (indexPath.row < [self.favoritesList count]) {
+                    NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
+                    
+                    [self.view bringSubviewToFront:fadeView];
+                    [UIView animateWithDuration:0.4f animations:^{
+                        [fadeView setAlpha:1.0f];
+                    }];
+                    
+                    CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
+                    CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
+                    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+                    [r setRequestIdentifier:@"rowSelectRoute"];
+                    [r setAuxParam:[currentRow objectForKey:@"name"]];
+                    [r findNearestPointForStart:cStart andEnd:cEnd];
+                } else {
+                    /**
+                     * add favorite
+                     */
+                    [self addFavoriteShow:nil];
+                }
+            }
+        }
     }
 }
 
@@ -760,11 +1129,21 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == tblMenu) {
+        if ([self.favoritesList count] == 0) {
+            return [SMEmptyFavoritesCell getHeight];
+        } else {
+            return [SMMenuCell getHeight];
+        }
+    }
     return 45.0f;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    if (tableView == tblMenu) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
@@ -996,7 +1375,7 @@ typedef enum {
 #pragma mark - gesture recognizer delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return NO;
+    return YES;
 }
 
 #pragma mark - mapView delegate
@@ -1066,7 +1445,7 @@ typedef enum {
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
     
-    
+    [self.view bringSubviewToFront:fadeView];
     [UIView animateWithDuration:0.4f animations:^{
         [fadeView setAlpha:1.0f];
     }];
@@ -1124,11 +1503,26 @@ typedef enum {
             debugLog(@"error in trackPageview");
         }
         
-        [self findRouteFrom:s.coordinate to:e.coordinate  fromAddress:[NSString stringWithFormat:@"(%f,%f)", s.coordinate.latitude, s.coordinate.longitude] toAddress:(NSString*)req.auxParam];
-        [UIView animateWithDuration:0.4f animations:^{
+        self.startName = CURRENT_POSITION_STRING;
+        self.endName = req.auxParam;
+        
+        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+        [r setAuxParam:@"startRoute"];
+        [r getRouteFrom:s.coordinate to:e.coordinate via:nil];
+    } else if ([req.auxParam isEqualToString:@"startRoute"]){
+        id jsonRoot = [NSJSONSerialization JSONObjectWithData:req.responseData options:NSJSONReadingAllowFragments error:nil];
+        if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        } else {
+            [self findRouteFrom:self.startLoc to:self.endLoc fromAddress:self.startName toAddress:self.endName withJSON:jsonRoot];
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+            
+        }
+        [UIView animateWithDuration:0.2f animations:^{
             [fadeView setAlpha:0.0f];
         }];
-
     }
 }
 
@@ -1157,7 +1551,9 @@ typedef enum {
             [favEditDone setHidden:YES];
             [favEditStart setHidden:NO];
         }
-        [tblMenu reloadData];
+        [UIView animateWithDuration:0.4f animations:^{
+            [self openMenu:menuFavorites];
+        }];
     }
 }
 
@@ -1166,6 +1562,21 @@ typedef enum {
 - (void)editFavorite:(SMMenuCell *)cell {
     NSInteger ind = [tblMenu indexPathForCell:cell].row;
     debugLog(@"%d", ind);
+}
+
+#pragma mark - search delegate
+
+- (void)locationFound:(NSDictionary *)locationDict {
+    [self setLocDict:locationDict];
+    [addFavAddress setText:[locationDict objectForKey:@"address"]];
+    [addFavName setText:[locationDict objectForKey:@"name"]];
+}
+
+#pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

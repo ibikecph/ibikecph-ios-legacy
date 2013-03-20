@@ -10,20 +10,27 @@
 
 @implementation SMAddFavoriteCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
++ (CGFloat)getHeight {
+    return 45.0f;
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
+    } else {
+        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
     }
-    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (selected) {
+        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
+    } else {
+        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
+    }
 }
+
 
 @end

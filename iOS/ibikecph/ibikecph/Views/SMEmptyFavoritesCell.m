@@ -10,20 +10,29 @@
 
 @implementation SMEmptyFavoritesCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
++ (CGFloat)getHeight {
+    return 150.0f;
+}
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        [self.contentView setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+        [self setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+    } else {
+        [self.contentView setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+        [self setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
     }
-    return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (selected) {
+        [self.contentView setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+        [self setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+    } else {
+        [self.contentView setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+        [self setBackgroundColor:[UIColor colorWithRed:33.0f/255.0f green:33.0f/255.0f blue:33.0f/255.0f alpha:33.0f/255.0f]];
+    }
 }
-
 @end

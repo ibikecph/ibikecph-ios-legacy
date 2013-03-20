@@ -19,6 +19,7 @@
 
 #import "SMGPSTrackButton.h"
 #import "SMMenuCell.h"
+#import "SMSearchController.h"
 
 typedef enum {
     screenMenu,
@@ -26,7 +27,7 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;
@@ -48,6 +49,23 @@ typedef enum {
     __weak IBOutlet UIView *infHeader;
     __weak IBOutlet UIButton *favEditStart;
     __weak IBOutlet UIButton *favEditDone;
+    __weak IBOutlet UIButton *addFavFavoriteButton;
+    __weak IBOutlet UIButton *addFavHomeButton;
+    __weak IBOutlet UIButton *addFavWorkButton;
+    __weak IBOutlet UIButton *addFavSchoolButton;
+    __weak IBOutlet UITextField *addFavAddress;
+    __weak IBOutlet UITextField *addFavName;
+
+    __weak IBOutlet UIView *mainMenu;
+    __weak IBOutlet UIView *addMenu;
+    
+    __weak IBOutlet UILabel *editTitle;
+    __weak IBOutlet UIButton *editSaveButton;
+    __weak IBOutlet UIButton *editDeleteButton;
+    __weak IBOutlet UIButton *addSaveButton;
+    
+    
+    
 }
 
 /**

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMSearchCell.h"
 
-@interface SMEnterRouteTwoRowCell : UITableViewCell
+@interface SMSearchTwoRowCell : SMSearchCell
+
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *addressLabel;
 
 @end

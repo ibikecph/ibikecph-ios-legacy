@@ -6,13 +6,48 @@
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "SMEnterRouteCell.h"
+#import "SMSearchCell.h"
 
-@implementation SMEnterRouteCell
+@implementation SMSearchCell
 
 
 + (CGFloat)getHeight {
     return 40.0f;
+}
+
+- (void)setImageWithData:(NSDictionary*)currentRow {
+    if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
+        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+            [self.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+        } else {
+            [self.iconImage setImage:nil];
+        }
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
+        if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
+            [self.iconImage setImage:[UIImage imageNamed:@"favHome"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
+            [self.iconImage setImage:[UIImage imageNamed:@"favWork"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
+            [self.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
+        } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
+            [self.iconImage setImage:[UIImage imageNamed:@"favStar"]];
+        } else {
+            [self.iconImage setImage:nil];
+        }
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
+        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+    }
+
 }
 
 @end

@@ -10,4 +10,11 @@
 
 @interface SMEmptyFavoritesCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *text;
+@property (weak, nonatomic) IBOutlet UILabel *addFavoritesText;
+
+
++ (CGFloat)getHeight;
+
+
 @end

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMAddFavoriteCell : UITableViewCell
+@interface SMAddFavoriteCell : UITableViewCell { 
+    
+    __weak IBOutlet UIImageView *cellBG;
+}
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *text;
+
+
++ (CGFloat)getHeight;
+
 
 @end
