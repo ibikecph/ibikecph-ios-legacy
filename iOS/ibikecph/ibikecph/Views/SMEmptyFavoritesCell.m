@@ -1,14 +1,14 @@
 //
-//  SMEnterRouteCell.m
+//  SMEmptyFavoritesCell.m
 //  I Bike CPH
 //
 //  Created by Ivan Pavlovic on 20/03/2013.
 //  Copyright (c) 2013 Spoiled Milk. All rights reserved.
 //
 
-#import "SMEnterRouteCell.h"
+#import "SMEmptyFavoritesCell.h"
 
-@implementation SMEnterRouteCell
+@implementation SMEmptyFavoritesCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

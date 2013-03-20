@@ -1,5 +1,5 @@
 //
-//  SMEnterRouteCell.h
+//  SMEnterRouteTwoRowCell.h
 //  I Bike CPH
 //
 //  Created by Ivan Pavlovic on 20/03/2013.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMEnterRouteCell : UITableViewCell
+@interface SMEnterRouteTwoRowCell : UITableViewCell
 
 @end
