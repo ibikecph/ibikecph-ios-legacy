@@ -43,6 +43,15 @@ typedef enum {
 	[tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     [fromLabel setText:CURRENT_POSITION_STRING];
+    [locationArrow setHidden:NO];
+    CGRect frame = fromLabel.frame;
+    frame.origin.x = locationArrow.frame.origin.x + 20.0f;
+    frame.size.width = 269.0f - frame.origin.x;
+    [fromLabel setFrame:frame];
+    [fromLabel setTextColor:[UIColor colorWithRed:39.0f/255.0f green:111.0f/255.0f blue:183.0f/255.0f alpha:1.0f]];
+    
+    
+    
     [toLabel setText:@""];
     
     self.fromData = nil;
@@ -92,6 +101,7 @@ typedef enum {
     toLabel = nil;
     tblView = nil;
     fadeView = nil;
+    locationArrow = nil;
     [super viewDidUnload];
 }
 
@@ -130,13 +140,13 @@ typedef enum {
         return;
     }
     
-    if ([toLabel.text isEqualToString:CURRENT_POSITION_STRING]) {
+    if ([[self.toData objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_invalid_to_address") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
         return;
     }
     
-    if ([fromLabel.text isEqualToString:CURRENT_POSITION_STRING]) {
+    if (self.fromData == nil) {
         if ([SMLocationManager instance].hasValidLocation == NO) {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
@@ -235,17 +245,12 @@ typedef enum {
 #pragma mark - tap gesture
 
 - (IBAction)labelTapped:(UITapGestureRecognizer*)recognizer {
-    if (recognizer.view == fromLabel) {
-        /**
-         * FROM label tapped
-         */
-        delegateField = fieldFrom;
-    } else {
-        /**
-         * TO label tapped
-         */
-        delegateField = fieldTo;
-    }
+    delegateField = fieldFrom;
+    [self performSegueWithIdentifier:@"searchSegue" sender:nil];
+}
+
+- (IBAction)toTapped:(id)sender {
+    delegateField = fieldTo;
     [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
 
@@ -330,8 +335,28 @@ typedef enum {
         }
         return cell;
     } else {
+        NSString * identifier = @"autocompleteMiddleCell";
+        if (indexPath.row == 0) {
+            if ([[self.groupedList objectAtIndex:indexPath.section] count] == 1) {
+                identifier = @"autocompleteSingleCell";
+            } else {
+                identifier = @"autocompleteTopCell";
+            }
+        } else {
+            if (indexPath.section == 0) {
+                if (indexPath.row == [[self.groupedList objectAtIndex:indexPath.section] count]-1 && indexPath.row < MAX_FAVORITES) {
+                    identifier = @"autocompleteBottomCell";
+                }
+            } else {
+                if (indexPath.row == [[self.groupedList objectAtIndex:indexPath.section] count]-1 && indexPath.row < MAX_HISTORY) {
+                    identifier = @"autocompleteBottomCell";
+                }
+            }
+    
+        }
+            
         NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"autocompleteCell"];
+        SMEnterRouteCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
         
         if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
@@ -394,6 +419,11 @@ typedef enum {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self isCountButton:indexPath]) {
+        return 47.0f;
+    } else {
+        return 45.0f;
+    }
     return [SMEnterRouteCell getHeight];
 }
 
@@ -427,6 +457,21 @@ typedef enum {
         case fieldFrom:
             [self setFromData:locationDict];
             [fromLabel setText:[self.fromData objectForKey:@"name"]];
+            if ([[locationDict objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
+                [locationArrow setHidden:NO];
+                CGRect frame = fromLabel.frame;
+                frame.origin.x = locationArrow.frame.origin.x + 20.0f;
+                frame.size.width = 269.0f - frame.origin.x;
+                [fromLabel setFrame:frame];
+                [fromLabel setTextColor:[UIColor colorWithRed:39.0f/255.0f green:111.0f/255.0f blue:183.0f/255.0f alpha:1.0f]];
+            } else {
+                [locationArrow setHidden:YES];
+                CGRect frame = fromLabel.frame;
+                frame.origin.x = locationArrow.frame.origin.x;
+                frame.size.width = 269.0f - frame.origin.x;
+                [fromLabel setFrame:frame];
+                [fromLabel setTextColor:[UIColor blackColor]];
+            }
             break;
         default:
             break;

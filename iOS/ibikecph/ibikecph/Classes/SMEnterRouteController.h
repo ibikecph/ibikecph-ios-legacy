@@ -20,9 +20,10 @@
 @interface SMEnterRouteController : SMTranslatedViewController <SMRequestOSRMDelegate, UITableViewDataSource, UITableViewDelegate, SMSearchDelegate>{
     
     __weak IBOutlet UILabel *fromLabel;
-    __weak IBOutlet UILabel *toLabel;
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIView *fadeView;
+    __weak IBOutlet UITextField *toLabel;
+    __weak IBOutlet UIImageView *locationArrow;
 }
 
 @property (nonatomic, weak) id<EnterRouteDelegate> delegate;

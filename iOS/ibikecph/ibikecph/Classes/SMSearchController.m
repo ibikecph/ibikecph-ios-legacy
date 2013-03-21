@@ -130,7 +130,8 @@
         [self setLocationData:@{
          @"name" : [currentRow objectForKey:@"name"],
          @"address" : [currentRow objectForKey:@"address"],
-         @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]
+         @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+         @"source" : [currentRow objectForKey:@"source"]
          }];
         if (self.delegate) {
             [self.delegate locationFound:self.locationData];
@@ -172,7 +173,8 @@
                         [self.delegate locationFound:@{
                          @"name" : searchField.text,
                          @"address" : searchField.text,
-                         @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude]
+                         @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude],
+                         @"source" : @"typedIn"
                          }];
                     }
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -302,7 +304,7 @@
      @"endDate" : [NSDate date],
      @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
      @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
-     @"source" : @"pastRoutes",
+     @"source" : @"currentPosition",
      } atIndex:0];
 
     
