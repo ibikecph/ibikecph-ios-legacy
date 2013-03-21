@@ -356,6 +356,10 @@
 		4CC8524216FB5AF1009EA0E7 /* accountLogout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8523C16FB5AF1009EA0E7 /* accountLogout@2x.png */; };
 		4CC8524316FB5AF1009EA0E7 /* accountMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8523D16FB5AF1009EA0E7 /* accountMenu.png */; };
 		4CC8524416FB5AF1009EA0E7 /* accountMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8523E16FB5AF1009EA0E7 /* accountMenu@2x.png */; };
+		4CC8524916FB6133009EA0E7 /* reportBulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8524516FB6133009EA0E7 /* reportBulb.png */; };
+		4CC8524A16FB6133009EA0E7 /* reportBulb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8524616FB6133009EA0E7 /* reportBulb@2x.png */; };
+		4CC8524B16FB6133009EA0E7 /* reportClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8524716FB6133009EA0E7 /* reportClose.png */; };
+		4CC8524C16FB6133009EA0E7 /* reportClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8524816FB6133009EA0E7 /* reportClose@2x.png */; };
 		4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */; };
 		4CC9515516F0D76D00DC7AF8 /* SMSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9515416F0D76D00DC7AF8 /* SMSearchCell.m */; };
 		4CD53D5616DFB53A00DB90E4 /* icon_locate_heading.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */; };
@@ -815,6 +819,10 @@
 		4CC8523C16FB5AF1009EA0E7 /* accountLogout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accountLogout@2x.png"; sourceTree = "<group>"; };
 		4CC8523D16FB5AF1009EA0E7 /* accountMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accountMenu.png; sourceTree = "<group>"; };
 		4CC8523E16FB5AF1009EA0E7 /* accountMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accountMenu@2x.png"; sourceTree = "<group>"; };
+		4CC8524516FB6133009EA0E7 /* reportBulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportBulb.png; sourceTree = "<group>"; };
+		4CC8524616FB6133009EA0E7 /* reportBulb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reportBulb@2x.png"; sourceTree = "<group>"; };
+		4CC8524716FB6133009EA0E7 /* reportClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportClose.png; sourceTree = "<group>"; };
+		4CC8524816FB6133009EA0E7 /* reportClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reportClose@2x.png"; sourceTree = "<group>"; };
 		4CC9514B16F0C80B00DC7AF8 /* SMEnterRouteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEnterRouteController.h; sourceTree = "<group>"; };
 		4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterRouteController.m; sourceTree = "<group>"; };
 		4CC9515316F0D76D00DC7AF8 /* SMSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSearchCell.h; sourceTree = "<group>"; };
@@ -1037,6 +1045,10 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4CC8524516FB6133009EA0E7 /* reportBulb.png */,
+				4CC8524616FB6133009EA0E7 /* reportBulb@2x.png */,
+				4CC8524716FB6133009EA0E7 /* reportClose.png */,
+				4CC8524816FB6133009EA0E7 /* reportClose@2x.png */,
 				4CC8523916FB5AF1009EA0E7 /* accountBG.png */,
 				4CC8523A16FB5AF1009EA0E7 /* accountBG@2x.png */,
 				4CC8523B16FB5AF1009EA0E7 /* accountLogout.png */,
@@ -1964,6 +1976,10 @@
 				4CC8524216FB5AF1009EA0E7 /* accountLogout@2x.png in Resources */,
 				4CC8524316FB5AF1009EA0E7 /* accountMenu.png in Resources */,
 				4CC8524416FB5AF1009EA0E7 /* accountMenu@2x.png in Resources */,
+				4CC8524916FB6133009EA0E7 /* reportBulb.png in Resources */,
+				4CC8524A16FB6133009EA0E7 /* reportBulb@2x.png in Resources */,
+				4CC8524B16FB6133009EA0E7 /* reportClose.png in Resources */,
+				4CC8524C16FB6133009EA0E7 /* reportClose@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

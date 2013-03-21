@@ -17,6 +17,7 @@
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UIPickerView *pckrView;
     __weak IBOutlet UITableView *tblView;
+    __weak IBOutlet UIView *reportSentView;
     
     BOOL pickerOpen;
     NSInteger currentSelection;

@@ -194,3 +194,7 @@
 "report_send" = "SEND REPORT";
 "describe_problem" = "DESCRIBE A PROBLEM";
 "logout" = "LOG OUT";
+
+"thank_you_for_feedback" = "Thank you for your feedback";
+"feedback_text" = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+"report_sent" = "FEEDBACK SENT";

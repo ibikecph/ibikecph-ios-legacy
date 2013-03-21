@@ -38,6 +38,7 @@
     pckrView = nil;
     tblView = nil;
     bottomView = nil;
+    reportSentView = nil;
     [super viewDidUnload];
 }
 
@@ -199,10 +200,14 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     
     if (result == MFMailComposeResultSent) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"report_sent") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
         [self dismissModalViewControllerAnimated:YES];
-//        [self goBack:nil];
+        [UIView animateWithDuration:0.4f animations:^{
+            [reportSentView setAlpha:1.0f];
+        }];
+        
+//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"report_sent") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+//        [av show];
+//        [self dismissModalViewControllerAnimated:YES];
     } else {
         [controller dismissModalViewControllerAnimated:YES];
     }
