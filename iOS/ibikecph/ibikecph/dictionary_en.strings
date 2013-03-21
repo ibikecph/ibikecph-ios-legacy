@@ -138,6 +138,9 @@
 "report" = "Report";
 "report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
 "choose_a_route_step" = "Choose a route step";
+"cancel_picker" = "Cancel";
+"done_picker" = "Done";
+
 "recent_results" = "RECENT";
 "show_more" = "SHOW MORE";
 "show_less" = "SHOW LESS";
@@ -188,3 +191,6 @@
 "add_favorite_address_placeholder" = "Find address ...";
 "account" = "MY PROFILE";
 
+"report_send" = "SEND REPORT";
+"describe_problem" = "DESCRIBE A PROBLEM";
+"logout" = "LOG OUT";

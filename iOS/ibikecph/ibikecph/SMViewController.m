@@ -373,9 +373,7 @@ typedef enum {
 
 
 - (IBAction)tapAccount:(id)sender {
-    [UIView animateWithDuration:0.4f animations:^{
-        [self openMenu:menuAccount];
-    }];
+    [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
 }
 
 - (IBAction)tapInfo:(id)sender {

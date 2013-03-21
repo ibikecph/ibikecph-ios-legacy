@@ -60,10 +60,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
 
-    
     self.recycledItems = [NSMutableSet set];
     self.activeItems = [NSMutableSet set];
     [instructionsView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];
@@ -113,6 +110,8 @@ typedef enum {
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
     
     [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
     [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
@@ -628,6 +627,10 @@ typedef enum {
 }
 
 #pragma mark - button actions
+
+- (IBAction)reportError:(id)sender {
+    [self performSegueWithIdentifier:@"reportError" sender:nil];
+}
 
 - (IBAction)hideFinishView:(id)sender {
     [UIView animateWithDuration:0.4f animations:^{
