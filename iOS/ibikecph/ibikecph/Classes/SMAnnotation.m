@@ -21,29 +21,29 @@
         CGRect frame = v.frame;
         CGPoint point = [self.mapView coordinateToPixel:self.coordinate];
         
-        frame.size.width = MAX([v.calloutLabel.text sizeWithFont:[UIFont systemFontOfSize:15.0f]].width, [v.calloutSublabel.text sizeWithFont:[UIFont systemFontOfSize:15.0f]].width) + 60.0f;
+        frame.size.width = MAX([v.calloutLabel.text sizeWithFont:[UIFont systemFontOfSize:15.0f]].width, [v.calloutSublabel.text sizeWithFont:[UIFont systemFontOfSize:15.0f]].width) + 70.0f;
         if (frame.size.width > self.mapView.frame.size.width) {
             frame.size.width = self.mapView.frame.size.width;
         }
         
         frame.size.width = MAX(177.0f, frame.size.width);
         
-        frame.origin.x = point.x - roundf(frame.size.width/2.0f);
+        frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 2.0f;
         frame.origin.y = point.y - 87.0f;
         
         [v setFrame:frame];
         
-        CGFloat width = roundf((frame.size.width - 155.0f) / 2.0f);
+        CGFloat width = roundf((frame.size.width - 60.0f) / 2.0f);
         
         [v.bgLeft setFrame:CGRectMake(0.0f, 0.0f, width, frame.size.height)];
         [v.bgLeft setImage:[UIImage imageNamed:@"calloutBubbleLeft"]];
         
-        width = frame.size.width - 155.0f - width;
+        width = frame.size.width - 60.0f - width;
         [v.bgRight setFrame:CGRectMake(frame.size.width - width, 0.0f, width, frame.size.height)];
         [v.bgRight setImage:[UIImage imageNamed:@"calloutBubbleRight"]];
 
         
-        [v.bgMiddle setFrame:CGRectMake(v.bgLeft.frame.size.width, 0.0f, 155.0f, frame.size.height)];
+        [v.bgMiddle setFrame:CGRectMake(v.bgLeft.frame.size.width, 0.0f, 60.0f, frame.size.height)];
         [v.bgMiddle setImage:[UIImage imageNamed:@"calloutBubbleMiddle"]];
         
         
@@ -53,14 +53,14 @@
         if (self.calloutView.superview == nil) {
             CGRect frame = self.calloutView.frame;
             CGPoint point = [self.mapView coordinateToPixel:self.coordinate];
-            frame.origin.x = point.x - roundf(frame.size.width/2.0f);
+            frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 2.0f;
             frame.origin.y = point.y - 85.0f;
             [self.calloutView setFrame:frame];
             [self.mapView addSubview:self.calloutView];
         } else {
             CGRect frame = self.calloutView.frame;
             CGPoint point = [self.mapView coordinateToPixel:self.coordinate];
-            frame.origin.x = point.x - roundf(frame.size.width/2.0f);
+            frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 2.0f;
             frame.origin.y = point.y - 85.0f;
             [self.calloutView setFrame:frame];
         }
