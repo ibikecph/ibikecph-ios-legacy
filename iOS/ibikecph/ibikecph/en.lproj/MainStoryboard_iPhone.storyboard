@@ -518,128 +518,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
-                                <rect key="frame" x="0.0" y="51" width="320" height="454"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
-                                        <rect key="frame" x="17" y="28" width="286" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="48" maxY="0.0"/>
-                                        <state key="normal" title="choose_a_route_step" backgroundImage="reportPulldown.png">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showHidePicker:" destination="952-I1-lqI" eventType="touchUpInside" id="JLm-aH-Ouc"/>
-                                        </connections>
-                                    </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wkn-0a-Mf7">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="195"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reportRadioUnchecked" rowHeight="44" id="e5I-VB-1sf" customClass="SMRadioUncheckedCell">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="radioUnchecked.png" id="B3E-HJ-hOQ">
-                                                            <rect key="frame" x="12" y="9" width="25" height="25"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ov3-Ig-rN3">
-                                                            <rect key="frame" x="58" y="10" width="242" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <connections>
-                                                    <outlet property="radioTitle" destination="ov3-Ig-rN3" id="ebz-cf-dJK"/>
-                                                </connections>
-                                            </tableViewCell>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reportRadioChecked" rowHeight="110" id="9NH-Bi-MyB" customClass="SMRadioCheckedCell">
-                                                <rect key="frame" x="0.0" y="66" width="320" height="110"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="radioChecked.png" id="Ke0-Dj-jd8">
-                                                            <rect key="frame" x="12" y="9" width="25" height="25"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ySW-tC-bZ5">
-                                                            <rect key="frame" x="58" y="10" width="242" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
-                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reportTextView.png" id="rAh-Ha-kZr">
-                                                            <rect key="frame" x="15" y="46" width="292" height="56"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </imageView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="W3i-dM-GOm">
-                                                            <rect key="frame" x="15" y="47" width="292" height="55"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <connections>
-                                                    <outlet property="radioTextBox" destination="W3i-dM-GOm" id="gVk-Nt-1A0"/>
-                                                    <outlet property="radioTitle" destination="ySW-tC-bZ5" id="Ype-MG-LuI"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="952-I1-lqI" id="Jon-TN-7TB"/>
-                                            <outlet property="delegate" destination="952-I1-lqI" id="Uge-Ud-qu7"/>
-                                        </connections>
-                                    </tableView>
-                                    <view contentMode="scaleToFill" id="b2I-gO-Ngt">
-                                        <rect key="frame" x="0.0" y="142" width="320" height="54"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dwA-1X-bRv" customClass="SMCustomCheckbox">
-                                                <rect key="frame" x="13" y="7" width="27" height="27"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="notify_me_when_fixed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hi2-5H-je0">
-                                                <rect key="frame" x="58" y="10" width="210" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="952-I1-lqI" id="LFP-KQ-ive"/>
-                                </connections>
-                            </scrollView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reportBottom.png" id="wYq-UD-N39">
                                 <rect key="frame" x="0.0" y="504" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -774,6 +652,138 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
+                                <rect key="frame" x="0.0" y="51" width="320" height="454"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
+                                        <rect key="frame" x="17" y="28" width="286" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="48" maxY="0.0"/>
+                                        <state key="normal" title="choose_a_route_step" backgroundImage="reportPulldown.png">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showHidePicker:" destination="952-I1-lqI" eventType="touchUpInside" id="JLm-aH-Ouc"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wkn-0a-Mf7">
+                                        <rect key="frame" x="0.0" y="80" width="320" height="195"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reportRadioUnchecked" rowHeight="44" id="e5I-VB-1sf" customClass="SMRadioUncheckedCell">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="radioUnchecked.png" id="B3E-HJ-hOQ">
+                                                            <rect key="frame" x="12" y="9" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ov3-Ig-rN3">
+                                                            <rect key="frame" x="58" y="10" width="242" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="radioTitle" destination="ov3-Ig-rN3" id="ebz-cf-dJK"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reportRadioChecked" rowHeight="110" id="9NH-Bi-MyB" customClass="SMRadioCheckedCell">
+                                                <rect key="frame" x="0.0" y="66" width="320" height="110"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="radioChecked.png" id="Ke0-Dj-jd8">
+                                                            <rect key="frame" x="12" y="9" width="25" height="25"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ySW-tC-bZ5">
+                                                            <rect key="frame" x="58" y="10" width="242" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reportTextView.png" id="rAh-Ha-kZr">
+                                                            <rect key="frame" x="15" y="46" width="292" height="56"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="W3i-dM-GOm">
+                                                            <rect key="frame" x="15" y="47" width="292" height="55"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="radioTextBox" destination="W3i-dM-GOm" id="gVk-Nt-1A0"/>
+                                                    <outlet property="radioTitle" destination="ySW-tC-bZ5" id="Ype-MG-LuI"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="952-I1-lqI" id="Jon-TN-7TB"/>
+                                            <outlet property="delegate" destination="952-I1-lqI" id="Uge-Ud-qu7"/>
+                                        </connections>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" id="b2I-gO-Ngt">
+                                        <rect key="frame" x="0.0" y="350" width="320" height="99"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dwA-1X-bRv" customClass="SMCustomCheckbox">
+                                                <rect key="frame" x="13" y="7" width="27" height="27"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="notify_me_when_fixed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hi2-5H-je0">
+                                                <rect key="frame" x="58" y="10" width="210" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reportInput.png" id="OJ7-CO-mdj">
+                                                <rect key="frame" x="21" y="49" width="285" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="report_enter_email_address_placeholder" minimumFontSize="17" id="ep2-qC-LIb">
+                                                <rect key="frame" x="27" y="56" width="273" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="952-I1-lqI" id="LFP-KQ-ive"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -785,6 +795,7 @@
                         <outlet property="btnSelectRouteSegment" destination="j99-Al-KRw" id="D4P-JO-IkH"/>
                         <outlet property="fadeView" destination="hHT-zj-agX" id="veM-Dg-vjY"/>
                         <outlet property="pckrView" destination="WnR-aJ-COL" id="vPn-iy-ntb"/>
+                        <outlet property="reportEmail" destination="ep2-qC-LIb" id="Z0Y-QW-TEu"/>
                         <outlet property="reportSentView" destination="jej-6W-QbX" id="GtR-wB-bw1"/>
                         <outlet property="scrlView" destination="25B-42-qvk" id="aVG-ee-kI9"/>
                         <outlet property="switchContactMe" destination="dwA-1X-bRv" id="aqa-q2-6Hy"/>
@@ -2243,6 +2254,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="YHo-2f-hkS">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0sb-SH-s8A" customClass="SMGPSTrackButton">
                                         <rect key="frame" x="264" y="494" width="56" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -2708,13 +2724,16 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="arrivalBG" destination="DFd-Wm-s5E" id="ITu-04-6Yj"/>
                         <outlet property="buttonTrackUser" destination="0sb-SH-s8A" id="vCJ-KH-AJE"/>
+                        <outlet property="closeButton" destination="4UD-TE-YRq" id="upU-WM-kAw"/>
                         <outlet property="finishFadeView" destination="wi1-4L-g5X" id="sG4-gG-KKW"/>
                         <outlet property="imgNextTurnDirection" destination="axZ-Q5-ohy" id="aaW-j6-FMZ"/>
                         <outlet property="instructionsView" destination="Oxx-Mn-VT8" id="0sI-N8-HJZ"/>
                         <outlet property="labelDistanceLeft" destination="EhT-1A-rVx" id="8mC-6C-roc"/>
                         <outlet property="labelDistanceToNextTurn" destination="rUH-ju-UbN" id="bPq-SE-1US"/>
                         <outlet property="labelTimeLeft" destination="lUh-yF-WfB" id="VyN-w1-wQd"/>
+                        <outlet property="mapFade" destination="YHo-2f-hkS" id="dmb-Y0-BO1"/>
                         <outlet property="minimizedInstructionsView" destination="OXh-z0-rmJ" id="wO9-Ky-2oJ"/>
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
                         <outlet property="overviewDestination" destination="dMz-a6-dcA" id="h7R-e7-ylQ"/>
@@ -2881,6 +2900,7 @@
         <image name="reportButton.png" width="147" height="45"/>
         <image name="reportClose.png" width="47" height="36"/>
         <image name="reportHeaderBG.png" width="320" height="51"/>
+        <image name="reportInput.png" width="285" height="44"/>
         <image name="reportPulldown.png" width="286" height="44"/>
         <image name="reportTextView.png" width="285" height="65"/>
         <image name="routeArrival.png" width="140" height="43"/>
@@ -2917,9 +2937,6 @@
         </class>
         <class className="SMAboutController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBack:"/>
-            </relationships>
         </class>
         <class className="SMAccountController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountController.h"/>
@@ -3066,11 +3083,11 @@
         <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
-                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="pckrView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="reportEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="reportSentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="switchContactMe" candidateClass="SMCustomCheckbox"/>
@@ -3080,7 +3097,17 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="hideStopView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="reportError:"/>
+                <relationship kind="action" name="startRouting:"/>
+                <relationship kind="action" name="trackUser:"/>
+                <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="finishFadeView" candidateClass="UIView"/>
@@ -3090,6 +3117,7 @@
                 <relationship kind="outlet" name="labelDistanceLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelDistanceToNextTurn" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
                 <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
@@ -3146,25 +3174,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
-                <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>

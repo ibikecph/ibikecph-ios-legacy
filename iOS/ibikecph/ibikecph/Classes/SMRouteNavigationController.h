@@ -31,6 +31,8 @@
     __weak IBOutlet UILabel *overviewDestination;
     __weak IBOutlet UILabel *overviewTimeDistance;
     __weak IBOutlet UIView *stopView;
+    __weak IBOutlet UIButton *closeButton;
+    __weak IBOutlet UIImageView *arrivalBG;
 }
 
 @property BOOL currentlyRouting;
@@ -39,6 +41,7 @@
 @property (nonatomic, strong) CLLocation *startLocation, *endLocation;
 @property (nonatomic, strong) NSString * destination;
 @property (nonatomic, strong) NSString * source;
+@property (weak, nonatomic) IBOutlet UIView *mapFade;
 
 @property (nonatomic, strong) id jsonRoot;
 

@@ -39,6 +39,7 @@
     tblView = nil;
     bottomView = nil;
     reportSentView = nil;
+    reportEmail = nil;
     [super viewDidUnload];
 }
 

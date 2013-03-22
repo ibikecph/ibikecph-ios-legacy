@@ -18,6 +18,7 @@
     __weak IBOutlet UIPickerView *pckrView;
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIView *reportSentView;
+    __weak IBOutlet UITextField *reportEmail;
     
     BOOL pickerOpen;
     NSInteger currentSelection;

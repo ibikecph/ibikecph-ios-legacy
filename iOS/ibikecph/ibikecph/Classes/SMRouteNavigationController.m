@@ -42,6 +42,7 @@ typedef enum {
     DirectionsState currentDirectionsState;
     CGFloat lastDirectionsPos;
     CGFloat touchOffset;
+    BOOL overviewShown;
 }
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
@@ -57,6 +58,7 @@ typedef enum {
 @implementation SMRouteNavigationController
 
 #define MAX_SEGMENTS 1
+#define MAX_TABLE 80.0f
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,17 +71,17 @@ typedef enum {
     [RMMapView class];
     
     self.currentlyRouting = NO;
+    overviewShown = NO;
     self.directionsShownCount = -1;
 
     [SMLocationManager instance];
     
     [self.mpView setTileSource:TILE_SOURCE];
-    
     [self.mpView setDelegate:self];
     
     [self setDirectionsState:directionsHidden];
     
-    [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
     [self.mpView setEnableBouncing:TRUE];
@@ -90,12 +92,25 @@ typedef enum {
     [labelTimeLeft setText:@""];
     [labelDistanceLeft setText:@""];
     
+    [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
     // Start tracking location only when user starts it through UI
     if (self.startLocation && self.endLocation) {
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
+}
 
-    [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    
+    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
+    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
+    [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
+    [self.mapFade addObserver:self forKeyPath:@"frame" options:0 context:nil];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,15 +123,6 @@ typedef enum {
     }
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
-    
-    [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
-    [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
-    [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -151,6 +157,9 @@ typedef enum {
     overviewDestination = nil;
     overviewTimeDistance = nil;
     stopView = nil;
+    [self setMapFade:nil];
+    closeButton = nil;
+    arrivalBG = nil;
     [super viewDidUnload];
 }
 
@@ -165,14 +174,15 @@ typedef enum {
 #define COORDINATE_PADDING 0.005f
 
 - (void)showRouteOverview {
+    overviewShown = YES;
     self.currentlyRouting = NO;
     [progressView setHidden:YES];
-    currentDirectionsState = directionsNormal;
+    [self setDirectionsState:directionsNormal];
     // Display new path
     NSDictionary * coordinates = [self addRouteAnnotation:self.route];
     [self.mpView setRoutingDelegate:self];
     [tblDirections reloadData];
-    [self setDirectionsState:directionsNormal];
+    
     [self reloadSwipableView];
     
     [routeOverview setFrame:instructionsView.frame];
@@ -192,12 +202,11 @@ typedef enum {
 
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];
-    [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];
-    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-    
+    [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];    
 }
 
 - (IBAction)startRouting:(id)sender {
+    overviewShown = NO;
     [UIView animateWithDuration:0.4f animations:^{
         [routeOverview setAlpha:0.0f];
     }];
@@ -474,6 +483,9 @@ typedef enum {
 }
 
 - (void)startRoute {
+    if (overviewShown) {
+        return;
+    }
     currentDirectionsState = directionsNormal;
     [routeOverview setHidden:YES];
     
@@ -811,7 +823,7 @@ typedef enum {
             frame.size.height = instructionsView.frame.size.height - tblDirections.frame.origin.y;
             [tblDirections setFrame:frame];
             [tblDirections setScrollEnabled:YES];
-            CGFloat newY = self.mpView.frame.origin.y + 100.0f;
+            CGFloat newY = self.mpView.frame.origin.y + MAX_TABLE;
             [self repositionInstructionsView:newY + 1];
             lastDirectionsPos = newY + 1;
         }
@@ -1061,6 +1073,29 @@ typedef enum {
         } else if (self.mpView.userTrackingMode == RMUserTrackingModeNone) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
         }
+    } else if (object == self.mapFade && [keyPath isEqualToString:@"frame"]) {
+        CGFloat maxSize = self.view.frame.size.height - 160.0f;
+        if (self.mapFade.frame.size.height > maxSize) {
+            [self.mapFade setAlpha:0.0f];
+        } else {
+            [self.mapFade setAlpha: 0.8f - ((self.mapFade.frame.size.height - MAX_TABLE) * 0.8f / (maxSize - MAX_TABLE))];
+        }
+        
+        if (self.mapFade.alpha > 0.7f) {
+            [arrivalBG setImage:[UIImage imageNamed:@"routeArrivalDark"]];
+            [closeButton setImage:[UIImage imageNamed:@"btnCloseDark"] forState:UIControlStateNormal];
+            [labelDistanceLeft setTextColor:[UIColor whiteColor]];
+            [labelTimeLeft setTextColor:[UIColor whiteColor]];
+            [buttonTrackUser setHidden:YES];
+        } else {
+            [arrivalBG setImage:[UIImage imageNamed:@"routeArrival"]];
+            [closeButton setImage:[UIImage imageNamed:@"btnClose"] forState:UIControlStateNormal];
+            [labelDistanceLeft setTextColor:[UIColor darkGrayColor]];
+            [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
+            [buttonTrackUser setHidden:NO];
+        }
+        
+        debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);
     }
 }
 

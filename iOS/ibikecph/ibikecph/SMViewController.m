@@ -248,14 +248,32 @@ typedef enum {
             debugLog(@"error in trackPageview");
         }
         
-        [self findRouteFrom:CLLocationCoordinate2DMake([[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue]) to:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) fromAddress:@"" toAddress:[d objectForKey:@"destination"]];
+        /**
+         * show new route
+         */
+        CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] floatValue] longitude:[[d objectForKey:@"endLong"] floatValue]];
+        CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"startLat"] floatValue] longitude:[[d objectForKey:@"startLong"] floatValue]];
         
         
-        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
         
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-        [r setRequestIdentifier:@"getNearestForPinDrop"];
-        [r findNearestPointForLocation:loc];
+        [r setRequestIdentifier:@"rowSelectRoute"];
+        [r setAuxParam:[d objectForKey:@"destination"]];
+        [r findNearestPointForStart:cStart andEnd:cEnd];
+        
+        
+        
+//        [self findRouteFrom:CLLocationCoordinate2DMake([[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue]) to:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) fromAddress:@"" toAddress:[d objectForKey:@"destination"]];
+        
+        
+        /**
+         * drop pin
+         */
+        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
+        
+        SMRequestOSRM * r2 = [[SMRequestOSRM alloc] initWithDelegate:self];
+        [r2 setRequestIdentifier:@"getNearestForPinDrop"];
+        [r2 findNearestPointForLocation:loc];
         
         [self.mpView removeAllAnnotations];
         SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
@@ -1079,6 +1097,9 @@ typedef enum {
                     
                     CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
                     CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
+                    
+                    
+                    
                     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
                     [r setRequestIdentifier:@"rowSelectRoute"];
                     [r setAuxParam:[currentRow objectForKey:@"name"]];
@@ -1503,6 +1524,8 @@ typedef enum {
         
         self.startName = CURRENT_POSITION_STRING;
         self.endName = req.auxParam;
+        self.startLoc = s.coordinate;
+        self.endLoc = e.coordinate;
         
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
         [r setAuxParam:@"startRoute"];
