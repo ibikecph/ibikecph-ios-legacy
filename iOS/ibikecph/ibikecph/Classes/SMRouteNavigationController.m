@@ -927,12 +927,13 @@ typedef enum {
                 break;
         }
         
-        
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         [swipableView setHidden:YES];
         float newY = MAX([sender locationInView:self.view].y - touchOffset, self.mpView.frame.origin.y);
         [self repositionInstructionsView:newY];
     } else if (sender.state == UIGestureRecognizerStateBegan) {
+        [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
         touchOffset = [sender locationInView:instructionsView].y;
         [swipableView setHidden:YES];
     }
