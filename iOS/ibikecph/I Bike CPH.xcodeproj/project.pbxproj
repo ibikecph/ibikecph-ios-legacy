@@ -1603,7 +1603,7 @@
 			attributes = {
 				CLASSPREFIX = SM;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Spoiled Milk";
+				ORGANIZATIONNAME = "City of Copenhagen";
 			};
 			buildConfigurationList = 4C73D20416AEDCDA00AED42A /* Build configuration list for PBXProject "I Bike CPH" */;
 			compatibilityVersion = "Xcode 3.2";

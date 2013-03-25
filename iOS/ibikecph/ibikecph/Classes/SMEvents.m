@@ -3,7 +3,7 @@
 //  I Bike CPH
 //
 //  Created by Ivan Pavlovic on 28/01/2013.
-//  Copyright (c) 2013 Spoiled Milk. All rights reserved.
+//  Copyright (c) 2013 City of Copenhagen. All rights reserved.
 //
 
 #import "SMEvents.h"

@@ -3,7 +3,7 @@
 //  iBike
 //
 //  Created by Petra Markovic on 2/25/13.
-//  Copyright (c) 2013 Spoiled Milk. All rights reserved.
+//  Copyright (c) 2013 City of Copenhagen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

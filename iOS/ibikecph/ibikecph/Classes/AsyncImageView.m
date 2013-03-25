@@ -3,7 +3,7 @@
 //  
 //
 //  Created by Ivan Pavlovic on 17/10/12.
-//  Copyright (c) 2012 Spoiled Milk. All rights reserved.
+//  Copyright (c) 2012 City of Copenhagen. All rights reserved.
 //
 
 #import "AsyncImageView.h"

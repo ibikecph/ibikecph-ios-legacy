@@ -3,7 +3,7 @@
 //  
 //
 //  Created by Ivan Pavlovic on 8/22/12.
-//  Copyright (c) 2012 Spoiled Milk. All rights reserved.
+//  Copyright (c) 2012 City of Copenhagen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
