@@ -64,6 +64,7 @@ typedef enum {
     __weak IBOutlet UIButton *editDeleteButton;
     __weak IBOutlet UIButton *addSaveButton;
     
+    __weak IBOutlet UIView *blockingView;
     
     
 }

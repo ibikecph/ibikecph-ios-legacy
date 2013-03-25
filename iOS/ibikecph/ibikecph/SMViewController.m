@@ -162,6 +162,14 @@ typedef enum {
     [self.mpView setEnableBouncing:TRUE];
     
     [self openMenu:menuFavorites];
+    
+    UITapGestureRecognizer * dblTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    [dblTap setNumberOfTapsRequired:2];
+    [blockingView addGestureRecognizer:dblTap];
+}
+
+- (IBAction)doubleTap:(UITapGestureRecognizer*)sender {
+    
 }
 
 - (void)viewDidUnload {
@@ -195,6 +203,7 @@ typedef enum {
     editSaveButton = nil;
     editDeleteButton = nil;
     addSaveButton = nil;
+    blockingView = nil;
     [super viewDidUnload];
 }
 
@@ -400,6 +409,11 @@ typedef enum {
 
 
 - (void)dropPin:(UILongPressGestureRecognizer*) gesture {
+    if (blockingView.alpha > 0) {
+        return;
+    }
+    
+    
     if (gesture.state == UIGestureRecognizerStateBegan) {
         
         for (SMAnnotation * annotation in self.mpView.annotations) {
@@ -540,10 +554,12 @@ typedef enum {
         if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
             [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
             currentScreen = screenMenu;
+            blockingView.alpha = 1.0f;
         } else {
             [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
             currentScreen = screenMap;
-        }        
+            blockingView.alpha = 0.0f;
+        }
     }
 }
 
@@ -556,12 +572,13 @@ typedef enum {
         currentScreen = screenMenu;
         [self.view sendSubviewToBack:scrlView];
         [self.view bringSubviewToFront:menuView];
-
+        blockingView.alpha = 1.0f;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
+        blockingView.alpha = 0.0f;
     }
 }
 
@@ -574,13 +591,13 @@ typedef enum {
         currentScreen = screenMenu;
         [self.view sendSubviewToBack:scrlView];
         [self.view bringSubviewToFront:menuView];
-
+        blockingView.alpha = 1.0f;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
         currentScreen = screenMap;
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
-
+        blockingView.alpha = 0.0f;
     }
 }
 
