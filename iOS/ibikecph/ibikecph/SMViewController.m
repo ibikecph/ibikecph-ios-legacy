@@ -304,23 +304,58 @@ typedef enum {
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
     }];
     
-    findRouteBig.alpha = 1.0f;
-    findRouteSmall.alpha = 0.0f;
-    [findRouteBig setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-    [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-    [self performSelector:@selector(animateButton) withObject:nil afterDelay:1.0f];
+    
+//    [self performSelector:@selector(animateButton) withObject:nil afterDelay:1.0f];
+    [self animateButton];
 }
 
 #pragma mark - custom methods
 
 - (void)animateButton {
-    [findRouteBig setTitle:@"" forState:UIControlStateNormal];
+//    [findRouteBig setTitle:translateString(@"") forState:UIControlStateNormal];
+    
+    findRouteBig.alpha = 0.0f;
+    findRouteSmall.alpha = 1.0f;
+    [findRouteBig setFrame:CGRectMake(self.view.frame.size.width, 53.0f, 45.0f, 45.0f)];
+    [findRouteSmall setFrame:CGRectMake(self.view.frame.size.width, 53.0f, 45.0f, 45.0f)];
     [UIView animateWithDuration:0.5f animations:^{
-        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-        findRouteSmall.alpha = 1.0f;
-        findRouteBig.alpha = 0.0f;
+        [scrlView setContentOffset:CGPointMake(200.0f, 0.0f) animated: NO];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+            [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+            [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+                [scrlView setContentOffset:CGPointMake(260.0f, 0.0f) animated: NO];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+                    [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
+                    [findRouteBig setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
+                    findRouteSmall.alpha = 0.0f;
+                    findRouteBig.alpha = 1.0f;
+                } completion:^(BOOL finished) {
+                    [findRouteBig setTitle:translateString(@"") forState:UIControlStateNormal];   
+                    [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+                        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+                        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+                        findRouteSmall.alpha = 1.0f;
+                        findRouteBig.alpha = 0.0f;
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                }];
+            }];
+        }];
     }];
+    
+    
+//    [findRouteBig setTitle:@"" forState:UIControlStateNormal];
+//    [UIView animateWithDuration:0.5f animations:^{
+//        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+//        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+//        findRouteSmall.alpha = 1.0f;
+//        findRouteBig.alpha = 0.0f;
+//    }];
 }
 
 - (CGFloat)heightForFavorites {

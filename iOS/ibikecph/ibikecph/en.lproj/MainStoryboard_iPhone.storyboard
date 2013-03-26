@@ -2140,7 +2140,7 @@
                                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="htC-Kc-NK1">
-                                                <rect key="frame" x="250" y="53" width="45" height="45"/>
+                                                <rect key="frame" x="320" y="53" width="45" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
@@ -2156,8 +2156,8 @@
                                                     <action selector="enterRoute:" destination="2" eventType="touchUpInside" id="hU3-Me-Jzz"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4xy-8i-JGT">
-                                                <rect key="frame" x="235" y="38" width="76" height="76"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4xy-8i-JGT">
+                                                <rect key="frame" x="320" y="38" width="76" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
@@ -2180,6 +2180,17 @@
                                                 <color key="textColor" red="0.85098039219999999" green="0.1333333333" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view opaque="NO" alpha="0.0" contentMode="scaleToFill" id="xRk-fp-BvU">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="P6z-Kp-P3v">
+                                                        <rect key="frame" x="142" y="211" width="37" height="37"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.68000000000000005" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -2188,17 +2199,6 @@
                                     <outlet property="delegate" destination="2" id="BUT-gC-Vxo"/>
                                 </connections>
                             </scrollView>
-                            <view opaque="NO" alpha="0.0" contentMode="scaleToFill" id="xRk-fp-BvU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="P6z-Kp-P3v">
-                                        <rect key="frame" x="142" y="211" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.68000000000000005" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -3066,7 +3066,6 @@
         <class className="SMEnterRouteController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteController.h"/>
             <relationships>
-                <relationship kind="action" name="swapFields:"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="fromLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationArrow" candidateClass="UIImageView"/>
@@ -3154,14 +3153,6 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="hideStopView:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="reportError:"/>
-                <relationship kind="action" name="startRouting:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
@@ -3233,6 +3224,27 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addFavoriteHide:"/>
+                <relationship kind="action" name="addFavoriteShow:"/>
+                <relationship kind="action" name="addSelectFavorite:"/>
+                <relationship kind="action" name="addSelectHome:"/>
+                <relationship kind="action" name="addSelectSchool:"/>
+                <relationship kind="action" name="addSelectWork:"/>
+                <relationship kind="action" name="deleteFavorite:"/>
+                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="editFavoriteShow:"/>
+                <relationship kind="action" name="editSaveFavorite:"/>
+                <relationship kind="action" name="enterRoute:"/>
+                <relationship kind="action" name="findAddress:"/>
+                <relationship kind="action" name="saveFavorite:"/>
+                <relationship kind="action" name="showContacts:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="action" name="startEdit:"/>
+                <relationship kind="action" name="stopEdit:"/>
+                <relationship kind="action" name="tapAccount:"/>
+                <relationship kind="action" name="tapFavorites:"/>
+                <relationship kind="action" name="tapInfo:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
