@@ -33,6 +33,8 @@
     __weak IBOutlet UIView *stopView;
     __weak IBOutlet UIButton *closeButton;
     __weak IBOutlet UIImageView *arrivalBG;
+    __weak IBOutlet UIImageView *swipeLeftArrow;
+    __weak IBOutlet UIImageView *swipeRightArrow;
 }
 
 @property BOOL currentlyRouting;

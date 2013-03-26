@@ -24,9 +24,9 @@
         [self.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
         if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-            [self.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+            [self.iconImage setImage:[UIImage imageNamed:@"findLocation"]];
         } else {
-            [self.iconImage setImage:nil];
+            [self.iconImage setImage:[UIImage imageNamed:@"findAutocomplete"]];
         }
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
         if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
@@ -41,11 +41,13 @@
             [self.iconImage setImage:nil];
         }
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
-        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
-        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
-        [self.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+        [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
+    } else {
+         [self.iconImage setImage:nil];
     }
 
 }

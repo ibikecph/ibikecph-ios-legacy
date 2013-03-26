@@ -59,30 +59,58 @@ typedef enum {
 
 - (IBAction)saveFavorites:(id)sender {
     if (self.homeDict) {
-        [SMUtil saveToFavorites:@{
-         @"name" : [self.homeDict objectForKey:@"name"],
-         @"address" : [self.homeDict objectForKey:@"address"],
-         @"startDate" : [NSDate date],
-         @"endDate" : [NSDate date],
-         @"source" : @"favorites",
-         @"subsource" : @"home",
-         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.latitude],
-         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.longitude],
-         @"order" : @0
-         }];
+        if ([self.homeDict objectForKey:@"subsource"] && [[self.homeDict objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+            [SMUtil saveToFavorites:@{
+             @"name" : [self.homeDict objectForKey:@"name"],
+             @"address" : [self.homeDict objectForKey:@"address"],
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"favorites",
+             @"subsource" : @"home",
+             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.longitude],
+             @"order" : @0
+             }];
+        } else {
+            [SMUtil saveToFavorites:@{
+             @"name" : translateString(@"Home"),
+             @"address" : [self.homeDict objectForKey:@"address"],
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"favorites",
+             @"subsource" : @"home",
+             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.homeDict objectForKey:@"location"]).coordinate.longitude],
+             @"order" : @0
+             }];
+        }
     }
     if (self.workDict) {
-        [SMUtil saveToFavorites:@{
-         @"name" : [self.workDict objectForKey:@"name"],
-         @"address" : [self.workDict objectForKey:@"address"],
-         @"startDate" : [NSDate date],
-         @"endDate" : [NSDate date],
-         @"source" : @"favorites",
-         @"subsource" : @"work",
-         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.latitude],
-         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.longitude],
-         @"order" : @0
-         }];
+        if ([self.workDict objectForKey:@"subsource"] && [[self.workDict objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+            [SMUtil saveToFavorites:@{
+             @"name" : [self.workDict objectForKey:@"name"],
+             @"address" : [self.workDict objectForKey:@"address"],
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"favorites",
+             @"subsource" : @"work",
+             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.longitude],
+             @"order" : @0
+             }];
+        } else {
+            [SMUtil saveToFavorites:@{
+             @"name" : translateString(@"Work"),
+             @"address" : [self.workDict objectForKey:@"address"],
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"favorites",
+             @"subsource" : @"work",
+             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.workDict objectForKey:@"location"]).coordinate.longitude],
+             @"order" : @0
+             }];
+        }
     }
     [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
 }
@@ -102,6 +130,7 @@ typedef enum {
     if ([segue.identifier isEqualToString:@"favToSearch"]) {
         SMSearchController *destViewController = segue.destinationViewController;
         [destViewController setDelegate:self];
+        [destViewController setShouldAllowCurrentPosition:NO];
         switch (searchFav) {
             case favHome:
                 [destViewController setSearchText:favoriteHome.text];
@@ -121,11 +150,11 @@ typedef enum {
 - (void)locationFound:(NSDictionary *)locationDict {
     switch (searchFav) {
         case favHome:
-            [favoriteHome setText:[locationDict objectForKey:@"name"]];
+            [favoriteHome setText:[locationDict objectForKey:@"address"]];
             [self setHomeDict:locationDict];
             break;
         case favWork:
-            [favoriteWork setText:[locationDict objectForKey:@"name"]];
+            [favoriteWork setText:[locationDict objectForKey:@"address"]];
             [self setWorkDict:locationDict];
             break;
         default:

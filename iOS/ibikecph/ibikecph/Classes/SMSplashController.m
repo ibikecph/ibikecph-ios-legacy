@@ -304,6 +304,7 @@ typedef enum {
 
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
     UIImage * imageToSave = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - actin sheet delegate

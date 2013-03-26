@@ -160,6 +160,8 @@ typedef enum {
     [self setMapFade:nil];
     closeButton = nil;
     arrivalBG = nil;
+    swipeLeftArrow = nil;
+    swipeRightArrow = nil;
     [super viewDidUnload];
 }
 
@@ -209,6 +211,8 @@ typedef enum {
     overviewShown = NO;
     [UIView animateWithDuration:0.4f animations:^{
         [routeOverview setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [routeOverview setHidden:YES];
     }];
     
     self.currentlyRouting = YES;
@@ -219,6 +223,8 @@ typedef enum {
 
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
 
+    [self renderMinimizedDirectionsViewFromInstruction];
+    
     [recalculatingView setAlpha:1.0f];
     [UIView animateWithDuration:0.3f animations:^{
         [recalculatingView setAlpha:0.0f];
@@ -870,7 +876,7 @@ typedef enum {
 
 - (void)resizeMap {
     CGRect frame = self.mpView.frame;
-    frame.size.height = instructionsView.frame.origin.y - frame.origin.y;
+    frame.size.height = instructionsView.frame.origin.y - frame.origin.y + 5.0f;
     [self.mpView setFrame:frame];
     
 }
@@ -941,6 +947,24 @@ typedef enum {
 
 #pragma mark - swipable view
 
+
+- (void)drawArrows {
+    if (swipableView.hidden) {
+        [swipeLeftArrow setHidden:YES];
+        [swipeRightArrow setHidden:YES];
+    } else {
+        [swipeLeftArrow setHidden:NO];
+        [swipeRightArrow setHidden:NO];
+        NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
+        if (start == 0) {
+            [swipeLeftArrow setHidden:YES];
+        }
+        if (start == [self.instructionsForScrollview count] - 1) {
+            [swipeRightArrow setHidden:YES];
+        }
+    }
+}
+
 - (SMSwipableView*)getRecycledItemOrCreate {
     SMSwipableView * cell = [self.recycledItems anyObject];
     if (cell == nil) {
@@ -948,7 +972,7 @@ typedef enum {
     } else {
         [self.recycledItems removeObject:cell];
     }
-    [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];    
+//    [cell setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableViewBG"]]];    
     return cell;
 }
 
@@ -1029,9 +1053,10 @@ typedef enum {
                     SMTurnInstruction *turn = (SMTurnInstruction *)[self.instructionsForScrollview objectAtIndex:start];
                     [self zoomToLocation:turn.loc temporary:NO];
                 }
+                [self drawArrows];
             } else {
                 self.updateSwipableView = NO;
-            }            
+            }
         }
     [swipableView setContentSize:CGSizeMake(swipableView.contentSize.width, swipableView.frame.size.height)];
     }
@@ -1066,6 +1091,7 @@ typedef enum {
         } else {
             [tblDirections setAlpha:0.0f];
         }
+        [self drawArrows];
     } else if (object == self.mpView && [keyPath isEqualToString:@"userTrackingMode"]) {
         if (self.mpView.userTrackingMode == RMUserTrackingModeFollow) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];

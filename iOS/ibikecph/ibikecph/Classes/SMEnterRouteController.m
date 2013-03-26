@@ -123,6 +123,10 @@ typedef enum {
 #pragma mark - button actions
 
 - (IBAction)swapFields:(id)sender {
+    if (self.fromData == nil  || ([self.fromData objectForKey:@"source"] && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"])) {
+        return;
+    }
+    
     NSString * txt = fromLabel.text;
     fromLabel.text = toLabel.text;
     toLabel.text = txt;
@@ -174,9 +178,11 @@ typedef enum {
         [destViewController setDelegate:self];
         switch (delegateField) {
             case fieldFrom:
+                [destViewController setShouldAllowCurrentPosition:YES];
                 [destViewController setSearchText:fromLabel.text];
                 break;
             case fieldTo:
+                [destViewController setShouldAllowCurrentPosition:NO];
                 [destViewController setSearchText:toLabel.text];
                 break;
             default:
@@ -367,12 +373,12 @@ typedef enum {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
             if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"findRouteFoursquare"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"findLocation"]];
             } else {
-                [cell.iconImage setImage:nil];
+                [cell.iconImage setImage:[UIImage imageNamed:@"findAutocomplete"]];
             }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+            [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
             if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
                 [cell.iconImage setImage:[UIImage imageNamed:@"favHome"]];
@@ -386,9 +392,9 @@ typedef enum {
                 [cell.iconImage setImage:nil];
             }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+            [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
-            [cell.iconImage setImage:[UIImage imageNamed:@"findRouteBike"]];
+            [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
         }
         return cell;
     }

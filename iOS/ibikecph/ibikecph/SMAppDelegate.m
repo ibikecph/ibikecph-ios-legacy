@@ -24,20 +24,6 @@
     self.searchHistory = [SMUtil getSearchHistory];
     
     /**
-     * init default settings
-     */
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSArray* languages = [defaults objectForKey:@"AppleLanguages"];
-    NSDictionary *appDefaults;
-    if ([[languages objectAtIndex:0] isEqualToString:@"da"] || [[languages objectAtIndex:0] isEqualToString:@"dan"]) {
-        appDefaults = [NSDictionary dictionaryWithObject:@"dk" forKey:@"appLanguage"];
-    } else {
-        appDefaults = [NSDictionary dictionaryWithObject:@"en" forKey:@"appLanguage"];
-    }
-    [defaults registerDefaults:appDefaults];
-    [defaults synchronize];
-    
-    /**
      * initialize Google Analytics
      */
     [GAI sharedInstance].debug = YES;

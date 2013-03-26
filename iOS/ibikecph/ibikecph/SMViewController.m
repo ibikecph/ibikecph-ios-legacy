@@ -85,6 +85,7 @@ typedef enum {
 @property (nonatomic, strong) NSString * endName;
 
 @property (nonatomic, strong) NSDictionary * locDict;
+@property NSInteger locIndex;
 @property (nonatomic, strong) NSString * favName;
 
 @end
@@ -204,6 +205,8 @@ typedef enum {
     editDeleteButton = nil;
     addSaveButton = nil;
     blockingView = nil;
+    findRouteBig = nil;
+    findRouteSmall = nil;
     [super viewDidUnload];
 }
 
@@ -301,9 +304,24 @@ typedef enum {
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
     }];
     
+    findRouteBig.alpha = 1.0f;
+    findRouteSmall.alpha = 0.0f;
+    [findRouteBig setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
+    [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
+    [self performSelector:@selector(animateButton) withObject:nil afterDelay:1.0f];
 }
 
 #pragma mark - custom methods
+
+- (void)animateButton {
+    [findRouteBig setTitle:@"" forState:UIControlStateNormal];
+    [UIView animateWithDuration:0.5f animations:^{
+        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+        findRouteSmall.alpha = 1.0f;
+        findRouteBig.alpha = 0.0f;
+    }];
+}
 
 - (CGFloat)heightForFavorites {
     if ([self.favoritesList count] == 0) {
@@ -603,6 +621,10 @@ typedef enum {
 
 #pragma mark - button actions
 
+- (IBAction)enterRoute:(id)sender {
+    [self performSegueWithIdentifier:@"enterRouteSegue" sender:nil];
+}
+
 - (IBAction)editFavoriteShow:(id)sender {
     addFavAddress.text = [self.locDict objectForKey:@"address"];
     addFavName.text = [self.locDict objectForKey:@"name"];
@@ -711,7 +733,7 @@ typedef enum {
             break;
     }
         
-    if (self.locDict && [addFavName.text isEqualToString:@""] == NO) {
+    if (self.locDict && [self.locDict objectForKey:@"address"] && [addFavName.text isEqualToString:@""] == NO) {
         [SMUtil saveToFavorites:@{
          @"name" : addFavName.text,
          @"address" : [self.locDict objectForKey:@"address"],
@@ -766,7 +788,7 @@ typedef enum {
                         @"order" : @0
                         };
     
-    [self.favoritesList replaceObjectAtIndex:[self.favoritesList indexOfObject:self.locDict] withObject:dict];
+    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
     [SMUtil saveFavorites:self.favoritesList];
     [self addFavoriteHide:nil];
 }
@@ -778,6 +800,13 @@ typedef enum {
 }
 
 - (IBAction)addSelectFavorite:(id)sender {
+    if ([addFavName.text isEqualToString:translateString(@"Favorite")] || [addFavName.text isEqualToString:translateString(@"Home")] ||
+        [addFavName.text isEqualToString:translateString(@"Work")] || [addFavName.text isEqualToString:translateString(@"Schoole")] ||
+        [addFavName.text isEqualToString:@""]) {
+        [addFavName setText:translateString(@"Favorite")];
+    }
+    
+    
     [addFavFavoriteButton setSelected:YES];
     [addFavHomeButton setSelected:NO];
     [addFavWorkButton setSelected:NO];
@@ -786,6 +815,11 @@ typedef enum {
 }
 
 - (IBAction)addSelectHome:(id)sender {
+    if ([addFavName.text isEqualToString:translateString(@"Favorite")] || [addFavName.text isEqualToString:translateString(@"Home")] ||
+        [addFavName.text isEqualToString:translateString(@"Work")] || [addFavName.text isEqualToString:translateString(@"School")] ||
+        [addFavName.text isEqualToString:@""]) {
+        [addFavName setText:translateString(@"Home")];
+    }
     [addFavFavoriteButton setSelected:NO];
     [addFavHomeButton setSelected:YES];
     [addFavWorkButton setSelected:NO];
@@ -794,6 +828,11 @@ typedef enum {
 }
 
 - (IBAction)addSelectWork:(id)sender {
+    if ([addFavName.text isEqualToString:translateString(@"Favorite")] || [addFavName.text isEqualToString:translateString(@"Home")] ||
+        [addFavName.text isEqualToString:translateString(@"Work")] || [addFavName.text isEqualToString:translateString(@"School")] ||
+        [addFavName.text isEqualToString:@""]) {
+        [addFavName setText:translateString(@"Work")];
+    }
     [addFavFavoriteButton setSelected:NO];
     [addFavHomeButton setSelected:NO];
     [addFavWorkButton setSelected:YES];
@@ -802,6 +841,11 @@ typedef enum {
 }
 
 - (IBAction)addSelectSchool:(id)sender {
+    if ([addFavName.text isEqualToString:translateString(@"Favorite")] || [addFavName.text isEqualToString:translateString(@"Home")] ||
+        [addFavName.text isEqualToString:translateString(@"Work")] || [addFavName.text isEqualToString:translateString(@"School")] ||
+        [addFavName.text isEqualToString:@""]) {
+        [addFavName setText:translateString(@"School")];
+    }
     [addFavFavoriteButton setSelected:NO];
     [addFavHomeButton setSelected:NO];
     [addFavWorkButton setSelected:NO];
@@ -1099,6 +1143,7 @@ typedef enum {
                  * edit favorite
                  */
                 self.locDict = [self.favoritesList objectAtIndex:indexPath.row];
+                self.locIndex = indexPath.row;
                 [self editFavoriteShow:nil];
             } else {
                 /**
@@ -1607,7 +1652,27 @@ typedef enum {
 - (void)locationFound:(NSDictionary *)locationDict {
     [self setLocDict:locationDict];
     [addFavAddress setText:[locationDict objectForKey:@"address"]];
-    [addFavName setText:[locationDict objectForKey:@"name"]];
+    if ([locationDict objectForKey:@"subsource"] && [[locationDict objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+        [addFavName setText:[locationDict objectForKey:@"name"]];
+    } else {
+        switch (currentFav) {
+            case typeFavorite:
+                [addFavName setText:translateString(@"Favorite")];
+                break;
+            case typeHome:
+                [addFavName setText:translateString(@"Home")];
+                break;
+            case typeWork:
+                [addFavName setText:translateString(@"Work")];
+                break;
+            case typeSchool:
+                [addFavName setText:translateString(@"School")];
+                break;
+            default:
+                [addFavName setText:translateString(@"Favorite")];
+                break;
+        }
+    }
 }
 
 #pragma mark - textfield delegate

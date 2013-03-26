@@ -40,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.shouldAllowCurrentPosition = YES;
     [searchField setText:self.searchText];
     self.autocomp = [[SMAutocomplete alloc] initWithDelegate:self];
     [tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
@@ -127,12 +128,22 @@
         searchField.text = [currentRow objectForKey:@"address"];
         [self checkLocation];
     } else {
-        [self setLocationData:@{
-         @"name" : [currentRow objectForKey:@"name"],
-         @"address" : [currentRow objectForKey:@"address"],
-         @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
-         @"source" : [currentRow objectForKey:@"source"]
-         }];
+        if ([currentRow objectForKey:@"subsource"]) {
+            [self setLocationData:@{
+             @"name" : [currentRow objectForKey:@"name"],
+             @"address" : [currentRow objectForKey:@"address"],
+             @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+             @"source" : [currentRow objectForKey:@"source"],
+             @"subsource" : [currentRow objectForKey:@"subsource"]
+             }];
+        } else {
+            [self setLocationData:@{
+             @"name" : [currentRow objectForKey:@"name"],
+             @"address" : [currentRow objectForKey:@"address"],
+             @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+             @"source" : [currentRow objectForKey:@"source"]
+             }];
+        }
         if (self.delegate) {
             [self.delegate locationFound:self.locationData];
         }
@@ -296,16 +307,17 @@
         return cmp;
     }];
 
-    
-    [r insertObject:@{
-     @"name" : CURRENT_POSITION_STRING,
-     @"address" : CURRENT_POSITION_STRING,
-     @"startDate" : [NSDate date],
-     @"endDate" : [NSDate date],
-     @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
-     @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
-     @"source" : @"currentPosition",
-     } atIndex:0];
+    if (self.shouldAllowCurrentPosition) {
+        [r insertObject:@{
+         @"name" : CURRENT_POSITION_STRING,
+         @"address" : CURRENT_POSITION_STRING,
+         @"startDate" : [NSDate date],
+         @"endDate" : [NSDate date],
+         @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+         @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+         @"source" : @"currentPosition",
+         } atIndex:0];        
+    }
 
     
     self.searchResults = r;
