@@ -63,10 +63,16 @@
     
     [tblView reloadData];
     [self arrangeObjects];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(inputKeyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.view removeKeyboardControl];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [super viewWillDisappear:animated];
 }
 
@@ -115,6 +121,10 @@
 }
 
 #pragma mark - custom methods
+
+- (void)inputKeyboardWillHide:(NSNotification *)notification {
+    [scrlView setContentOffset:CGPointZero];
+}
 
 - (void)sendEmail {
     if (currentSelection < 0) {
@@ -165,6 +175,8 @@
     CGRect frame = fadeView.frame;
     frame.origin.y = 288.0f;
     [fadeView setFrame:frame];
+    
+    [self hideKeyboard:nil];
     
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = fadeView.frame;
@@ -259,7 +271,7 @@
         
         [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).radioTextBox becomeFirstResponder];
         CGRect frame = ((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).frame;
-        [scrlView setContentOffset:CGPointMake(0.0f, frame.origin.y + tblView.frame.origin.y) animated:YES];
+        [scrlView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 310.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
     }
 }
 

@@ -61,7 +61,7 @@
 
 
 #define MAX_HEIGHT_FOR_EVENTS_TABLE 170.0f
-#define MAIL_RECIPIENTS @[@"ivan@spoiledmilk.com"]
+#define MAIL_RECIPIENTS @[@"support+00c86bd0c75940dcb863bbca9fa33313@feedback.hockeyapp.net"]
 #define ZOOM_TO_TURN_DURATION 4 // in seconds
 #define DEFAULT_MAP_ZOOM 17
 #define DEFAULT_TURN_ZOOM 18
