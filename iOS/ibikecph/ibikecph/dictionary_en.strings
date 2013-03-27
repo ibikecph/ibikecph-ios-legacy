@@ -200,3 +200,17 @@
 "report_sent" = "FEEDBACK SENT";
 "report_enter_email_address_placeholder" = "Enter you email address";
 "home_find_route" = "FIND ROUTE";
+
+"about_text" = "Hvordan kommer jeg hurtigst på cykel til Nordhavn? Hvornår skal jeg cykle hjemmefra, hvis jeg skal være på Kongens Nytorv kl. 14? Kan min daglige pendlerrute optimeres?\n\nEn troværdig og opdateret digital cykelruteplanlægger, der kender de gode smutveje, ved hvilke parker man må cykle i og hvor man må cykle mod ensretningen, vil kunne give dig svaret - så du kan komme hurtigere fra A til B.\n\nSådan en cykelruteplanlægger har vi sat os for at skabe - og du kan være med! Filosofien bag projektet er, at involvere cyklisterne i udviklingen, at anvende open source og at gøre data frit tilgængelig. Vi tror, at det vil give den bedste løsning og medvirke til at skabe innovation på cykelområdet.\n\nProjektet er del af Københavns overordnede målsætning om at blive verdens bedste cykelby.";
+"about_ibikecph_title" = "ABOUT I BIKE CPH";
+"delete_my_account" = "DELETE ACCOUNT";
+"you_are_logged_in_as" = "You are logged in as";
+"edit_my_account" = "Edit account";
+"save_changes" = "SAVE CHANGES";
+"account_name_placeholder" = "Name";
+"account_email_placeholder" = "Email";
+"account_password_placeholder" = "New password";
+"account_repeat_placeholder" = "Repeat new password";
+
+
+

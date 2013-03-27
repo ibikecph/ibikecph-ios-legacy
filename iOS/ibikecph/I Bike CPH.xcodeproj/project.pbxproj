@@ -92,6 +92,12 @@
 		4C365DF716F361FE00A836B3 /* routeArrival@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DEB16F361FE00A836B3 /* routeArrival@2x.png */; };
 		4C365DF816F361FE00A836B3 /* routeArrivalDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DEC16F361FE00A836B3 /* routeArrivalDark.png */; };
 		4C365DF916F361FE00A836B3 /* routeArrivalDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DED16F361FE00A836B3 /* routeArrivalDark@2x.png */; };
+		4C3EFCA517032B2400AA5F95 /* accountInputBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFC9F17032B2300AA5F95 /* accountInputBG.png */; };
+		4C3EFCA617032B2400AA5F95 /* accountInputBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA017032B2300AA5F95 /* accountInputBG@2x.png */; };
+		4C3EFCA717032B2400AA5F95 /* deleteAccountButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA117032B2300AA5F95 /* deleteAccountButton.png */; };
+		4C3EFCA817032B2400AA5F95 /* deleteAccountButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA217032B2400AA5F95 /* deleteAccountButton@2x.png */; };
+		4C3EFCA917032B2400AA5F95 /* saveAccountButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA317032B2400AA5F95 /* saveAccountButton.png */; };
+		4C3EFCAA17032B2400AA5F95 /* saveAccountButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA417032B2400AA5F95 /* saveAccountButton@2x.png */; };
 		4C48641816F099BE00F01A7C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641416F099BE00F01A7C /* MainStoryboard_iPad.storyboard */; };
 		4C48641916F099BE00F01A7C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		4C57B04E16FC747100E04E90 /* calloutBubbleLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C57B04816FC747100E04E90 /* calloutBubbleLeft.png */; };
@@ -539,6 +545,12 @@
 		4C365DEB16F361FE00A836B3 /* routeArrival@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeArrival@2x.png"; sourceTree = "<group>"; };
 		4C365DEC16F361FE00A836B3 /* routeArrivalDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeArrivalDark.png; sourceTree = "<group>"; };
 		4C365DED16F361FE00A836B3 /* routeArrivalDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeArrivalDark@2x.png"; sourceTree = "<group>"; };
+		4C3EFC9F17032B2300AA5F95 /* accountInputBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accountInputBG.png; sourceTree = "<group>"; };
+		4C3EFCA017032B2300AA5F95 /* accountInputBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accountInputBG@2x.png"; sourceTree = "<group>"; };
+		4C3EFCA117032B2300AA5F95 /* deleteAccountButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteAccountButton.png; sourceTree = "<group>"; };
+		4C3EFCA217032B2400AA5F95 /* deleteAccountButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteAccountButton@2x.png"; sourceTree = "<group>"; };
+		4C3EFCA317032B2400AA5F95 /* saveAccountButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveAccountButton.png; sourceTree = "<group>"; };
+		4C3EFCA417032B2400AA5F95 /* saveAccountButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveAccountButton@2x.png"; sourceTree = "<group>"; };
 		4C48641216F0994600F01A7C /* ibikecph.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ibikecph.xcconfig; sourceTree = "<group>"; };
 		4C48641516F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		4C48641716F099BE00F01A7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -1016,6 +1028,12 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C3EFC9F17032B2300AA5F95 /* accountInputBG.png */,
+				4C3EFCA017032B2300AA5F95 /* accountInputBG@2x.png */,
+				4C3EFCA117032B2300AA5F95 /* deleteAccountButton.png */,
+				4C3EFCA217032B2400AA5F95 /* deleteAccountButton@2x.png */,
+				4C3EFCA317032B2400AA5F95 /* saveAccountButton.png */,
+				4C3EFCA417032B2400AA5F95 /* saveAccountButton@2x.png */,
 				4C632D651701DFA50027E2D9 /* mover.png */,
 				4C632D661701DFA50027E2D9 /* mover@2x.png */,
 				4C632D511701DE580027E2D9 /* leftArrow.png */,
@@ -2059,6 +2077,12 @@
 				4C632DEF1701E9780027E2D9 /* white-up@2x.png in Resources */,
 				4C632DF01701E9780027E2D9 /* white-walk.png in Resources */,
 				4C632DF11701E9780027E2D9 /* white-walk@2x.png in Resources */,
+				4C3EFCA517032B2400AA5F95 /* accountInputBG.png in Resources */,
+				4C3EFCA617032B2400AA5F95 /* accountInputBG@2x.png in Resources */,
+				4C3EFCA717032B2400AA5F95 /* deleteAccountButton.png in Resources */,
+				4C3EFCA817032B2400AA5F95 /* deleteAccountButton@2x.png in Resources */,
+				4C3EFCA917032B2400AA5F95 /* saveAccountButton.png in Resources */,
+				4C3EFCAA17032B2400AA5F95 /* saveAccountButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

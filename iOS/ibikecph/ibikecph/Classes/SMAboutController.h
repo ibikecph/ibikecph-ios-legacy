@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMAboutController : SMTranslatedViewController
+@interface SMAboutController : SMTranslatedViewController {
+    __weak IBOutlet UIScrollView *scrlView;
+}
 
 @end

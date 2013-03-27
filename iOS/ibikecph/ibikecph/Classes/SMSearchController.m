@@ -221,6 +221,21 @@
         if ([s length] >= 2) {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
             [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:0.5f];
+        } else if ([s length] >= 1) {
+            NSMutableArray * r = [NSMutableArray array];
+            if (self.shouldAllowCurrentPosition) {
+                [r insertObject:@{
+                 @"name" : CURRENT_POSITION_STRING,
+                 @"address" : CURRENT_POSITION_STRING,
+                 @"startDate" : [NSDate date],
+                 @"endDate" : [NSDate date],
+                 @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+                 @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+                 @"source" : @"currentPosition",
+                 } atIndex:0];
+            }
+            self.searchResults = r;
+            [tblView reloadData];
         }
     }
     return YES;
@@ -253,6 +268,14 @@
     
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     NSMutableArray * r = [NSMutableArray array];
+    
+    
+    if ([str isEqualToString:@""]) {
+        self.searchResults = r;
+        [tblView reloadData];
+        [tblFade setAlpha:0.0f];
+        return;
+    }
 
     for (NSDictionary * d in arr) {
         [r addObject:d];
