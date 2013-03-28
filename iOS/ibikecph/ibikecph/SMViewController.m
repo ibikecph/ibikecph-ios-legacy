@@ -311,8 +311,9 @@ typedef enum {
     }];
     
     
-//    [self performSelector:@selector(animateButton) withObject:nil afterDelay:1.0f];
-    [self animateButton];
+    if (currentScreen == screenMap) {
+        [self animateButton];        
+    }
 }
 
 #pragma mark - custom methods
