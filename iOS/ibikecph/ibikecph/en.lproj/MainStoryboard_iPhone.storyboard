@@ -2125,9 +2125,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4xy-8i-JGT">
-                                                <rect key="frame" x="320" y="38" width="76" height="76"/>
+                                                <rect key="frame" x="200" y="38" width="76" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                                 <inset key="titleEdgeInsets" minX="5" minY="37" maxX="5" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="1" height="1"/>
                                                 <state key="normal" title="home_find_route" backgroundImage="homeSearchBig.png">
@@ -3360,14 +3360,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="enterRoute:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="tapInfo:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
