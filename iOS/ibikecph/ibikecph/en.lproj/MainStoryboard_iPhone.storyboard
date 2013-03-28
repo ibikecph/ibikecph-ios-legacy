@@ -2128,7 +2128,7 @@
                                                 <rect key="frame" x="320" y="38" width="76" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <inset key="titleEdgeInsets" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
+                                                <inset key="titleEdgeInsets" minX="5" minY="37" maxX="5" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="1" height="1"/>
                                                 <state key="normal" title="home_find_route" backgroundImage="homeSearchBig.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3303,6 +3303,7 @@
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
                 <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="overviewTimeDistance" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
@@ -3359,27 +3360,14 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
                 <relationship kind="action" name="addSelectFavorite:"/>
                 <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
                 <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
                 <relationship kind="action" name="enterRoute:"/>
                 <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showContacts:"/>
                 <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
                 <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
