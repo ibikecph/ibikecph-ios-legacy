@@ -167,6 +167,11 @@ typedef enum {
     UITapGestureRecognizer * dblTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     [dblTap setNumberOfTapsRequired:2];
     [blockingView addGestureRecognizer:dblTap];
+    
+
+    self.tableFooter = [SMAddFavoriteCell getFromNib];
+    [self.tableFooter setDelegate:self];
+    [self.tableFooter.text setText:translateString(@"cell_add_favorite")];
 }
 
 - (IBAction)doubleTap:(UITapGestureRecognizer*)sender {
@@ -207,6 +212,7 @@ typedef enum {
     blockingView = nil;
     findRouteBig = nil;
     findRouteSmall = nil;
+    self.tableFooter = nil;
     [super viewDidUnload];
 }
 
@@ -312,12 +318,9 @@ typedef enum {
 #pragma mark - custom methods
 
 - (void)animateButton {
-//    [findRouteBig setTitle:translateString(@"") forState:UIControlStateNormal];
-    
-    findRouteBig.alpha = 0.0f;
-    findRouteSmall.alpha = 1.0f;
-    [findRouteBig setFrame:CGRectMake(self.view.frame.size.width, 53.0f, 45.0f, 45.0f)];
-    [findRouteSmall setFrame:CGRectMake(self.view.frame.size.width, 53.0f, 45.0f, 45.0f)];
+    findRouteBig.alpha = 1.0f;
+    findRouteSmall.alpha = 0.0f;
+    findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
     [UIView animateWithDuration:0.5f animations:^{
         [scrlView setContentOffset:CGPointMake(200.0f, 0.0f) animated: NO];
     } completion:^(BOOL finished) {
@@ -330,18 +333,16 @@ typedef enum {
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
                     [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-                    [findRouteBig setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-                    findRouteSmall.alpha = 0.0f;
-                    findRouteBig.alpha = 1.0f;
+                    findRouteBig.transform = CGAffineTransformMakeScale(1, 1);
                 } completion:^(BOOL finished) {
-                    [findRouteBig setTitle:translateString(@"") forState:UIControlStateNormal];   
                     [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
                         [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-                        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-                        findRouteSmall.alpha = 1.0f;
-                        findRouteBig.alpha = 0.0f;
+                        findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
                     } completion:^(BOOL finished) {
-                        
+                        [UIView animateWithDuration:0.5f animations:^{
+                            findRouteSmall.alpha = 1.0f;
+                            findRouteBig.alpha = 0.0f;
+                        }];
                     }];
                 }];
             }];
@@ -991,11 +992,11 @@ typedef enum {
         }
     } else if (tableView == tblMenu) {
         if ([self.favoritesList count] > 0) {
-            if (tblMenu.isEditing) {
+//            if (tblMenu.isEditing) {
                 return [self.favoritesList count];
-            } else {
-                return [self.favoritesList count] + 1;
-            }
+//            } else {
+//                return [self.favoritesList count] + 1;
+//            }
         } else {
             return 1;
         }
@@ -1041,7 +1042,7 @@ typedef enum {
                 [cell.text setText:[currentRow objectForKey:@"name"]];
                 return cell;
             } else {
-                if (indexPath.row < [self.favoritesList count]) {
+//                if (indexPath.row < [self.favoritesList count]) {
                     NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
                     SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
                     [cell.image setContentMode:UIViewContentModeCenter];
@@ -1060,12 +1061,12 @@ typedef enum {
                     [cell.editBtn setHidden:YES];
                     [cell.text setText:[currentRow objectForKey:@"name"]];
                     return cell;
-                } else {
-                    SMAddFavoriteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesAddCell"];
-                    [cell.image setContentMode:UIViewContentModeCenter];
-                    [cell.text setText:translateString(@"cell_add_favorite")];
-                    return cell;
-                }
+//                } else {
+//                    SMAddFavoriteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesAddCell"];
+//                    [cell.image setContentMode:UIViewContentModeCenter];
+//                    [cell.text setText:translateString(@"cell_add_favorite")];
+//                    return cell;
+//                }
             }
         } else {
             SMEmptyFavoritesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesEmptyCell"];
@@ -1340,6 +1341,26 @@ typedef enum {
 			}
 		}
 	}
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (tableView == tblMenu) {
+        if (tableView.isEditing) {
+            return [[UIView alloc] initWithFrame:CGRectZero];
+        } else {
+            return self.tableFooter;
+        }
+    } else {
+        return nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (tableView == tblMenu) {
+        return [SMAddFavoriteCell getHeight];
+    } else {
+        return 0.0f;
+    }
 }
 
 #pragma mark - addressbook functions
@@ -1663,9 +1684,13 @@ typedef enum {
         }
     } else if (object == tblMenu && [keyPath isEqualToString:@"editing"]) {
         if (tblMenu.editing) {
+//            [tblMenu setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
             [favEditDone setHidden:NO];
             [favEditStart setHidden:YES];
         } else {
+//            if ([self.favoritesList count] > 0) {
+//                [tblMenu setTableFooterView:self.tableFooter];
+//            }
             [favEditDone setHidden:YES];
             [favEditStart setHidden:NO];
         }
@@ -1715,6 +1740,12 @@ typedef enum {
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - Add cell delegate
+
+- (void)viewTapped {
+    [self addFavoriteShow:nil];
 }
 
 @end

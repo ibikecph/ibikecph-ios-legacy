@@ -21,13 +21,15 @@
 #import "SMMenuCell.h"
 #import "SMSearchController.h"
 
+#import "SMAddFavoriteCell.h"
+
 typedef enum {
     screenMenu,
     screenMap,
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, AddFavoriteDegelate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;
@@ -68,7 +70,6 @@ typedef enum {
     
     __weak IBOutlet UIButton *findRouteBig;
     __weak IBOutlet UIButton *findRouteSmall;
-    
 }
 
 /**
@@ -76,6 +77,6 @@ typedef enum {
  */
 @property (nonatomic, strong) NSArray * contactsArr;
 @property (nonatomic, strong) NSArray * eventsArr;
-
+@property (nonatomic, strong) IBOutlet SMAddFavoriteCell *tableFooter;
 
 @end

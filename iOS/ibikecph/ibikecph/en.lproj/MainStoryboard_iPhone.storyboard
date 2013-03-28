@@ -1440,41 +1440,8 @@
                                                                     <outlet property="text" destination="AiF-fl-jfA" id="DFq-Ui-jfX"/>
                                                                 </connections>
                                                             </tableViewCell>
-                                                            <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="favoritesAddCell" rowHeight="46" id="bHA-Ku-3YH" customClass="SMAddFavoriteCell">
-                                                                <rect key="frame" x="0.0" y="68" width="260" height="46"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="45"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <subviews>
-                                                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favListRow.png" id="QpH-Zp-jho">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="260" height="45"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        </imageView>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="favListAdd.png" id="Tby-fn-kjM">
-                                                                            <rect key="frame" x="5" y="5" width="35" height="35"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        </imageView>
-                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C9A-T0-fps">
-                                                                            <rect key="frame" x="48" y="12" width="177" height="21"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                                            <color key="textColor" red="0.1137254902" green="0.68627450980000004" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                </view>
-                                                                <color key="backgroundColor" white="0.1301348286" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <gestureRecognizers/>
-                                                                <connections>
-                                                                    <outlet property="cellBG" destination="QpH-Zp-jho" id="653-2H-E0n"/>
-                                                                    <outlet property="text" destination="C9A-T0-fps" id="2oM-JK-byN"/>
-                                                                </connections>
-                                                            </tableViewCell>
                                                             <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="favoritesEmptyCell" rowHeight="150" id="hCR-J7-U3g" customClass="SMEmptyFavoritesCell">
-                                                                <rect key="frame" x="0.0" y="114" width="260" height="150"/>
+                                                                <rect key="frame" x="0.0" y="68" width="260" height="150"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                     <rect key="frame" x="0.0" y="0.0" width="260" height="149"/>
@@ -3154,7 +3121,6 @@
         <class className="SMAccountController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
                 <relationship kind="outlet" name="email" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="fbImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="fbName" candidateClass="UILabel"/>
@@ -3167,7 +3133,7 @@
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
-        <class className="SMAddFavoriteCell" superclassName="UITableViewCell">
+        <class className="SMAddFavoriteCell" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAddFavoriteCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
@@ -3337,7 +3303,6 @@
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
                 <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="overviewTimeDistance" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
@@ -3402,8 +3367,11 @@
                 <relationship kind="action" name="addSelectWork:"/>
                 <relationship kind="action" name="deleteFavorite:"/>
                 <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="editFavoriteShow:"/>
                 <relationship kind="action" name="editSaveFavorite:"/>
                 <relationship kind="action" name="enterRoute:"/>
+                <relationship kind="action" name="findAddress:"/>
+                <relationship kind="action" name="saveFavorite:"/>
                 <relationship kind="action" name="showContacts:"/>
                 <relationship kind="action" name="showMenu:"/>
                 <relationship kind="action" name="startEdit:"/>
@@ -3440,6 +3408,7 @@
                 <relationship kind="outlet" name="mainMenu" candidateClass="UIView"/>
                 <relationship kind="outlet" name="menuView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tableFooter" candidateClass="SMAddFavoriteCell"/>
                 <relationship kind="outlet" name="tblContacts" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="tblEvents" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="tblFavorites" candidateClass="UITableView"/>

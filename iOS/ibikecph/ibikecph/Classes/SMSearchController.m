@@ -51,7 +51,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {}];
+    UITableView * tbl = tblView;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        [tbl setFrame:CGRectMake(0.0f, tbl.frame.origin.y, tbl.frame.size.width, keyboardFrameInView.origin.y - tbl.frame.origin.y)];
+        debugLog(@"%@", NSStringFromCGRect(keyboardFrameInView));
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

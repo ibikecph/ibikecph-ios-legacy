@@ -14,21 +14,21 @@
     return 45.0f;
 }
 
--(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-    [super setHighlighted:highlighted animated:animated];
-    if (highlighted) {
-        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
-    } else {
-        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
++ (SMAddFavoriteCell*) getFromNib {
+    SMAddFavoriteCell * xx = nil;
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SMAddFavoriteCell" owner:nil options:nil];
+    for(id currentObject in topLevelObjects) {
+        if([currentObject isKindOfClass:[SMAddFavoriteCell class]]) {
+            xx = (SMAddFavoriteCell *)currentObject;
+            break;
+        }
     }
+    return xx;
 }
 
--(void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    if (selected) {
-        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
-    } else {
-        [cellBG setImage:[UIImage imageNamed:@"favListRow"]];
+- (IBAction)viewTapped:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(viewTapped)]) {
+        [self.delegate viewTapped];
     }
 }
 

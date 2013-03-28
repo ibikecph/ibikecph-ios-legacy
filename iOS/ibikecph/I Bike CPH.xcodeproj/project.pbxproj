@@ -92,6 +92,7 @@
 		4C365DF716F361FE00A836B3 /* routeArrival@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DEB16F361FE00A836B3 /* routeArrival@2x.png */; };
 		4C365DF816F361FE00A836B3 /* routeArrivalDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DEC16F361FE00A836B3 /* routeArrivalDark.png */; };
 		4C365DF916F361FE00A836B3 /* routeArrivalDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DED16F361FE00A836B3 /* routeArrivalDark@2x.png */; };
+		4C3B3C0817043EA800F098AD /* SMAddFavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */; };
 		4C3EFCA517032B2400AA5F95 /* accountInputBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFC9F17032B2300AA5F95 /* accountInputBG.png */; };
 		4C3EFCA617032B2400AA5F95 /* accountInputBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA017032B2300AA5F95 /* accountInputBG@2x.png */; };
 		4C3EFCA717032B2400AA5F95 /* deleteAccountButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3EFCA117032B2300AA5F95 /* deleteAccountButton.png */; };
@@ -545,6 +546,7 @@
 		4C365DEB16F361FE00A836B3 /* routeArrival@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeArrival@2x.png"; sourceTree = "<group>"; };
 		4C365DEC16F361FE00A836B3 /* routeArrivalDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeArrivalDark.png; sourceTree = "<group>"; };
 		4C365DED16F361FE00A836B3 /* routeArrivalDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeArrivalDark@2x.png"; sourceTree = "<group>"; };
+		4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMAddFavoriteCell.xib; sourceTree = "<group>"; };
 		4C3EFC9F17032B2300AA5F95 /* accountInputBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accountInputBG.png; sourceTree = "<group>"; };
 		4C3EFCA017032B2300AA5F95 /* accountInputBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "accountInputBG@2x.png"; sourceTree = "<group>"; };
 		4C3EFCA117032B2300AA5F95 /* deleteAccountButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteAccountButton.png; sourceTree = "<group>"; };
@@ -1467,6 +1469,7 @@
 			children = (
 				4C8C541516F9AA4D009A2738 /* SMAddFavoriteCell.h */,
 				4C8C541616F9AA4D009A2738 /* SMAddFavoriteCell.m */,
+				4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */,
 				4C90468F16B96295004BA3DD /* SMAutocompleteCell.h */,
 				4C90469016B96295004BA3DD /* SMAutocompleteCell.m */,
 				4C34508216F1D68C00562E20 /* SMAutocompleteHeader.h */,
@@ -2083,6 +2086,7 @@
 				4C3EFCA817032B2400AA5F95 /* deleteAccountButton@2x.png in Resources */,
 				4C3EFCA917032B2400AA5F95 /* saveAccountButton.png in Resources */,
 				4C3EFCAA17032B2400AA5F95 /* saveAccountButton@2x.png in Resources */,
+				4C3B3C0817043EA800F098AD /* SMAddFavoriteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
