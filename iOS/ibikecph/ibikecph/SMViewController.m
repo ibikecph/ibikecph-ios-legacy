@@ -159,7 +159,7 @@ typedef enum {
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(55.675455,12.566643) animated:NO];
     [self.mpView addGestureRecognizer:lp];
     [self.mpView setZoom:16];
-    [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
+//    [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
     [self.mpView setEnableBouncing:TRUE];
     
     [self openMenu:menuFavorites];
@@ -1750,5 +1750,4 @@ typedef enum {
 }
 
 @end
-
 

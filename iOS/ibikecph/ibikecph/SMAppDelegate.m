@@ -46,6 +46,19 @@
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
 
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"]] == NO) {
+        NSDictionary * d = @{
+                             @"introSeen" : [NSNumber numberWithBool:NO],
+                             @"permanentTileCache" : [NSNumber numberWithBool:NO]
+                             };
+        [d writeToFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"] atomically:NO];
+    }
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"routeme.plist"]] == NO) {
+        [[NSFileManager defaultManager] copyItemAtPath:[[NSBundle mainBundle] pathForResource:@"routeme" ofType:@"plist"] toPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"routeme.plist"] error:nil];
+    }
+    
+    [self loadSettings];
     
 //#ifdef ENGLISH_VERSION
 //    UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"EnglishStoryboard_iPhone" bundle:nil];
@@ -57,7 +70,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController  = initialViewController;
     [self.window makeKeyAndVisible];
-    
     
     
     return YES;
@@ -193,6 +205,13 @@
     [alertView show];
 }
 
+- (BOOL)saveSettings {
+    return [self.appSettings writeToFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"] atomically:NO];
+}
 
+- (void)loadSettings {
+    NSMutableDictionary * d = [NSMutableDictionary dictionaryWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"]];
+    self.appSettings = d;
+}
 
 @end

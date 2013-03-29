@@ -332,6 +332,4 @@ float caloriesBurned(float avgSpeed, float timeSpent){
     return total;
 }
 
-
-
 @end

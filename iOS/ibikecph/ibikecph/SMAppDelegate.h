@@ -23,4 +23,8 @@
 
 @property(nonatomic, strong) id<GAITracker> tracker;
 
+@property (nonatomic, strong) NSMutableDictionary * appSettings;
+- (BOOL)saveSettings;
+- (void)loadSettings;
+
 @end
