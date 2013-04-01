@@ -94,7 +94,7 @@ typedef enum {
     
     [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
-    // Start tracking location only when user starts it through UI
+    
     if (self.startLocation && self.endLocation) {
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
@@ -110,7 +110,7 @@ typedef enum {
     [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
     [self.mapFade addObserver:self forKeyPath:@"frame" options:0 context:nil];
     
-    
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -204,7 +204,8 @@ typedef enum {
 
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];
-    [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];    
+    [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];
+    
 }
 
 - (IBAction)startRouting:(id)sender {
