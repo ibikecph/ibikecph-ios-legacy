@@ -2135,7 +2135,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4xy-8i-JGT">
-                                                <rect key="frame" x="200" y="38" width="76" height="76"/>
+                                                <rect key="frame" x="320" y="38" width="76" height="76"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                                 <inset key="titleEdgeInsets" minX="5" minY="37" maxX="5" maxY="0.0"/>
@@ -3381,7 +3381,6 @@
                 <relationship kind="action" name="addSelectWork:"/>
                 <relationship kind="action" name="deleteFavorite:"/>
                 <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
                 <relationship kind="action" name="editSaveFavorite:"/>
                 <relationship kind="action" name="enterRoute:"/>
                 <relationship kind="action" name="findAddress:"/>

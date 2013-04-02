@@ -51,7 +51,7 @@
                              @"introSeen" : [NSNumber numberWithBool:NO],
                              @"permanentTileCache" : [NSNumber numberWithBool:NO]
                              };
-        [d writeToFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"] atomically:NO];
+        [d writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"] atomically:NO];
     }
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"routeme.plist"]] == NO) {
@@ -206,7 +206,8 @@
 }
 
 - (BOOL)saveSettings {
-    return [self.appSettings writeToFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"] atomically:NO];
+    NSString * s = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"];
+    return [self.appSettings writeToFile:s atomically:NO];
 }
 
 - (void)loadSettings {

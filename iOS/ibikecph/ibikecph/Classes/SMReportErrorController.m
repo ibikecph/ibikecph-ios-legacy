@@ -46,7 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, 500.0f)];
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, scrlView.frame.size.height)];
     [fadeView setAlpha:0.0f];
     [fadeView setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.0f]];
     pickerOpen = NO;
@@ -55,10 +55,16 @@
     currentSelection = -1;
     
     UITableView * tableView = tblView;
+    UIScrollView * scr = scrlView;
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-        CGRect tableViewFrame = tableView.frame;
-        tableViewFrame.size.height = keyboardFrameInView.origin.y;
-        tableView.frame = tableViewFrame;
+//        CGRect frame = scr.frame;
+//        frame.size.height = keyboardFrameInView.origin.y;
+//        scr.frame = frame;
+
+        CGRect frame = tableView.frame;
+        frame.size.height = keyboardFrameInView.origin.y;
+        tableView.frame = frame;
+
     }];
     
     [tblView reloadData];
@@ -244,14 +250,14 @@
         [cell.radioTextBox setText:@""];
 //        [cell.radioTextBox setDelegate:self];
         
-//        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-//        numberToolbar.barStyle = UIBarStyleBlackTranslucent;
-//        numberToolbar.items = [NSArray arrayWithObjects:
-//                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-//                               [[UIBarButtonItem alloc]initWithTitle:translateString(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
-//                               nil];
-//        [numberToolbar sizeToFit];
-//        cell.radioTextBox.inputAccessoryView = numberToolbar;
+        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+        numberToolbar.items = [NSArray arrayWithObjects:
+                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                               [[UIBarButtonItem alloc]initWithTitle:translateString(@"Done") style:UIBarButtonItemStyleDone target:self action:@selector(hideKeyboard:)],
+                               nil];
+        [numberToolbar sizeToFit];
+        cell.radioTextBox.inputAccessoryView = numberToolbar;
         return cell;
     } else {
         NSString * identifier = @"reportRadioUnchecked";
@@ -272,6 +278,7 @@
         [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).radioTextBox becomeFirstResponder];
         CGRect frame = ((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).frame;
         [scrlView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 310.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
+//        [tableView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 310.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
     }
 }
 
@@ -288,11 +295,12 @@
     frame.size.height = tblView.contentSize.height;
     [tblView setFrame:frame];
     
-    frame = bottomView.frame;
-    frame.origin.y = tblView.frame.origin.y + tblView.frame.size.height + 10.0f;
-    [bottomView setFrame:frame];
+//    frame = bottomView.frame;
+//    frame.origin.y = tblView.frame.origin.y + tblView.frame.size.height + 10.0f;
+//    [bottomView setFrame:frame];
+//    [scrlView setContentSize:CGSizeMake(320.0f, bottomView.frame.origin.y + bottomView.frame.size.height + 5.0f)];
     
-    [scrlView setContentSize:CGSizeMake(320.0f, bottomView.frame.origin.y + bottomView.frame.size.height + 5.0f)];
+    [scrlView setContentSize:CGSizeMake(320.0f, scrlView.frame.size.height)];
     
 }
 

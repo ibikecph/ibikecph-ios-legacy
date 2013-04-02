@@ -113,6 +113,8 @@ typedef enum {
     
     [RMMapView class];
     
+    animationShown = NO;
+    
     menuOpen = menuFavorites;
     
     [SMLocationManager instance];
@@ -311,14 +313,23 @@ typedef enum {
     }];
     
     
-    if (currentScreen == screenMap) {
-        [self animateButton];        
+    if (currentScreen == screenMap && animationShown == NO) {
+        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+        [appd loadSettings];
+        if ([[appd.appSettings objectForKey:@"introSeen"] boolValue] == NO) {
+            [appd.appSettings setValue:[NSNumber numberWithBool:YES] forKey:@"introSeen"];
+            BOOL x = [appd saveSettings];
+            [self animateView];
+        } else {
+            [self animateButton];
+        }
+        animationShown = YES;
     }
 }
 
 #pragma mark - custom methods
 
-- (void)animateButton {
+- (void)animateView {
     findRouteBig.alpha = 1.0f;
     findRouteSmall.alpha = 0.0f;
     findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
@@ -349,15 +360,28 @@ typedef enum {
             }];
         }];
     }];
-    
-    
-//    [findRouteBig setTitle:@"" forState:UIControlStateNormal];
-//    [UIView animateWithDuration:0.5f animations:^{
-//        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-//        [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-//        findRouteSmall.alpha = 1.0f;
-//        findRouteBig.alpha = 0.0f;
-//    }];
+}
+
+- (void)animateButton {
+    findRouteBig.alpha = 1.0f;
+    findRouteSmall.alpha = 0.0f;
+    findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
+    [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+    [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+        [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
+        findRouteBig.transform = CGAffineTransformMakeScale(1, 1);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
+            [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+            findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5f animations:^{
+                findRouteSmall.alpha = 1.0f;
+                findRouteBig.alpha = 0.0f;
+            }];
+        }];
+    }];
 }
 
 - (CGFloat)heightForFavorites {
