@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMUtil.h"
 
-@protocol AddFavoriteDegelate <NSObject>
-- (void)viewTapped;
-@end
 
 @interface SMAddFavoriteCell : UIView <UIGestureRecognizerDelegate>{
     __weak IBOutlet UIImageView *cellBG;
@@ -18,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *text;
 
-@property (nonatomic, weak) id<AddFavoriteDegelate>delegate;
+@property (nonatomic, weak) id<ViewTapDelegate>delegate;
 
 + (CGFloat)getHeight;
 + (SMAddFavoriteCell*) getFromNib;

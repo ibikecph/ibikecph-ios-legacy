@@ -31,6 +31,8 @@
 #import "SMAnnotation.h"
 #import "SMSwipableView.h"
 
+#import "SMDirectionsFooter.h"
+
 typedef enum {
     directionsFullscreen,
     directionsNormal,
@@ -92,8 +94,12 @@ typedef enum {
     [labelTimeLeft setText:@""];
     [labelDistanceLeft setText:@""];
     
-    [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+//    [tblDirections setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
+    SMDirectionsFooter * v = [SMDirectionsFooter getFromNib];
+    [v.label setText:translateString(@"ride_report_a_problem")];
+    [v setDelegate:self];
+    [tblDirections setTableFooterView:v];
     
     if (self.startLocation && self.endLocation) {
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
@@ -999,7 +1005,7 @@ typedef enum {
     }
     
     [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
-    [self showVisible];
+    [self showVisible:NO];
 }
 
 - (BOOL)isVisible:(NSUInteger)index {
@@ -1011,7 +1017,7 @@ typedef enum {
     return NO;
 }
 
-- (void)showVisible {
+- (void)showVisible:(BOOL)reload {
     @synchronized(self.instructionsForScrollview) {
         NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
         NSUInteger end = MIN(ceil(swipableView.contentOffset.x / self.view.frame.size.width), [self.instructionsForScrollview count] - 1);
@@ -1045,7 +1051,9 @@ typedef enum {
                      * we also start updating the swipable view
                      */
                     self.updateSwipableView = YES;
-                    [self resetZoomTurn];
+                    if (reload) {
+                        [self resetZoomTurn];                        
+                    }
                 } else {
                     /**
                      * we're not on the first instruction
@@ -1064,7 +1072,7 @@ typedef enum {
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self showVisible];
+    [self showVisible:YES];
 }
 
 #pragma mark - observers
@@ -1135,6 +1143,12 @@ typedef enum {
 
 - (CLLocation *)getCorrectedPosition {
     return self.route.lastCorrectedLocation;
+}
+
+#pragma mark - footer delegate
+
+- (void)viewTapped:(id)view {
+    [self reportError:nil];
 }
 
 @end

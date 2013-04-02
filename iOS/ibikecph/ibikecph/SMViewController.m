@@ -455,7 +455,13 @@ typedef enum {
 
 
 - (IBAction)tapAccount:(id)sender {
-    [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
+    /**
+     * disabled until API is ready
+     */
+//    [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
+    /**
+     * end comment
+     */
 }
 
 - (IBAction)tapInfo:(id)sender {
@@ -657,6 +663,24 @@ typedef enum {
 }
 
 #pragma mark - button actions
+
+- (IBAction)slideMenuOpen:(id)sender {
+    if (scrlView.contentOffset.x == 0) {
+        [self.view sendSubviewToBack:menuView];
+        [self.view bringSubviewToFront:scrlView];
+        [UIView animateWithDuration:0.5f animations:^{
+            [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
+        } completion:^(BOOL finished) {
+        }];
+    } else {
+        [UIView animateWithDuration:0.5f animations:^{
+            [scrlView setContentOffset:CGPointZero animated:NO];
+        } completion:^(BOOL finished) {
+            [self.view sendSubviewToBack:scrlView];
+            [self.view bringSubviewToFront:menuView];
+        }];
+    }
+}
 
 - (IBAction)enterRoute:(id)sender {
     [self performSegueWithIdentifier:@"enterRouteSegue" sender:nil];
@@ -1055,7 +1079,8 @@ typedef enum {
                     } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
                         [cell.image setImage:[UIImage imageNamed:@"favBookmark"]];
                     } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-                        [cell.image setImage:[UIImage imageNamed:@"favStar"]];
+                        [cell.image setImage:[UIImage imageNamed:@"favStar_inactive"]];
+                        [cell.image setHighlightedImage:[UIImage imageNamed:@"favStar"]];
                     } else {
                         [cell.image setImage:nil];
                     }
@@ -1349,7 +1374,11 @@ typedef enum {
         if (tableView.isEditing) {
             return [[UIView alloc] initWithFrame:CGRectZero];
         } else {
-            return self.tableFooter;
+            if ([self.favoritesList count] > 0) {
+                return self.tableFooter;
+            } else {
+                return [[UIView alloc] initWithFrame:CGRectZero];
+            }
         }
     } else {
         return nil;
@@ -1358,7 +1387,15 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (tableView == tblMenu) {
-        return [SMAddFavoriteCell getHeight];
+        if (tableView.isEditing) {
+            return 0.0f;
+        } else {
+            if ([self.favoritesList count] > 0) {
+                return [SMAddFavoriteCell getHeight];
+            } else {
+                return 0.0f;
+            }
+        }
     } else {
         return 0.0f;
     }
@@ -1745,7 +1782,7 @@ typedef enum {
 
 #pragma mark - Add cell delegate
 
-- (void)viewTapped {
+- (void)viewTapped:(id)view {
     [self addFavoriteShow:nil];
 }
 

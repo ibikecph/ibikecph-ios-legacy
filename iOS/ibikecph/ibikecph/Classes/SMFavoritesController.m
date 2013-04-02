@@ -42,8 +42,13 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-    }];
+    if ([[SMUtil getFavorites] count] > 0) {
+        [self.view setAlpha:0.0f];
+        [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
+    } else {
+        [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        }];
+    }   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

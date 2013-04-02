@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
+@protocol ViewTapDelegate <NSObject>
+- (void)viewTapped:(id)view;
+@end
+
 @interface SMUtil : NSObject
 
 

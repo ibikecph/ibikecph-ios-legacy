@@ -387,7 +387,7 @@ typedef enum {
             } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
                 [cell.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
             } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"favStar"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"findStar"]];
             } else {
                 [cell.iconImage setImage:nil];
             }

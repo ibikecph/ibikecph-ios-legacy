@@ -27,8 +27,8 @@
 }
 
 - (IBAction)viewTapped:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(viewTapped)]) {
-        [self.delegate viewTapped];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(viewTapped:)]) {
+        [self.delegate viewTapped:self];
     }
 }
 

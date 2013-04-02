@@ -36,7 +36,7 @@
         } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
             [self.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
         } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-            [self.iconImage setImage:[UIImage imageNamed:@"favStar"]];
+            [self.iconImage setImage:[UIImage imageNamed:@"findStar"]];
         } else {
             [self.iconImage setImage:nil];
         }
