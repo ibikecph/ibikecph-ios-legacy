@@ -268,6 +268,7 @@
 		4C73D22316AEDCDA00AED42A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22216AEDCDA00AED42A /* Default@2x.png */; };
 		4C73D22516AEDCDA00AED42A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */; };
 		4C73D22E16AEDCDA00AED42A /* SMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73D22D16AEDCDA00AED42A /* SMViewController.m */; };
+		4C73FD6C170C370700199E9C /* SMAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C73FD6B170C370700199E9C /* SMAPIRequest.m */; };
 		4C77EF7F16CB8DF50062360C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF7D16CB8DF50062360C /* icon.png */; };
 		4C77EF8016CB8DF50062360C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF7E16CB8DF50062360C /* icon@2x.png */; };
 		4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8116CB8E7B0062360C /* CoreData.framework */; };
@@ -744,6 +745,8 @@
 		4C73D22416AEDCDA00AED42A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C73D22C16AEDCDA00AED42A /* SMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = SMViewController.h; path = ibikecph/SMViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4C73D22D16AEDCDA00AED42A /* SMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SMViewController.m; path = ibikecph/SMViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4C73FD6A170C370700199E9C /* SMAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIRequest.h; sourceTree = "<group>"; };
+		4C73FD6B170C370700199E9C /* SMAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIRequest.m; sourceTree = "<group>"; };
 		4C77EF7D16CB8DF50062360C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		4C77EF7E16CB8DF50062360C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		4C77EF8116CB8E7B0062360C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1479,6 +1482,7 @@
 		4C73D23A16AEDD3F00AED42A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4C73FD69170C36E200199E9C /* API */,
 				4C9D152216BAB94700B73393 /* Menus */,
 				4C90468B16B94E96004BA3DD /* Autocomplete */,
 				4B4E9AB616D4CAA3002A6766 /* Map */,
@@ -1546,6 +1550,15 @@
 			);
 			name = Views;
 			path = ibikecph/Views;
+			sourceTree = "<group>";
+		};
+		4C73FD69170C36E200199E9C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4C73FD6A170C370700199E9C /* SMAPIRequest.h */,
+				4C73FD6B170C370700199E9C /* SMAPIRequest.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		4C77EF7C16CB8DF50062360C /* Icons */ = {
@@ -2190,6 +2203,7 @@
 				4C8C544C16FA11A4009A2738 /* SMEnterRouteCell.m in Sources */,
 				4CC8523816FB5822009EA0E7 /* SMAccountController.m in Sources */,
 				4C33BF72170AC88800F55CEC /* SMDirectionsFooter.m in Sources */,
+				4C73FD6C170C370700199E9C /* SMAPIRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

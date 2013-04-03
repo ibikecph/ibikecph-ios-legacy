@@ -7,8 +7,9 @@
 //
 
 #import "SMTranslatedViewController.h"
+#import "SMAPIRequest.h"
 
-@interface SMSplashController : SMTranslatedViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
+@interface SMSplashController : SMTranslatedViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SMAPIRequestDelegate>{
     
     __weak IBOutlet UIView *registerView;
     __weak IBOutlet UIView *loginView;

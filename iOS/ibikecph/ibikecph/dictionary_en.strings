@@ -162,7 +162,7 @@
 "register_name_placeholder" = "Name";
 "register_email_placeholder" = "E-mail";
 "register_password_placeholder" = "Password";
-"register_passwor_repeat_placeholder" = "Repeat password";
+"register_password_repeat_placeholder" = "Repeat password";
 "login" = "LOG IN";
 "choose_image_source" = "Select image source";
 "image_source_camera" = "Camera";
@@ -212,5 +212,6 @@
 "account_password_placeholder" = "New password";
 "account_repeat_placeholder" = "Repeat new password";
 
-
-
+"login_error_fields" = "You must enter both your e-mail and your password!";
+"register_error_fields" = "You must fill out all the fields!";
+"register_error_passwords" = "Your passwords don't match!";

@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [SMTranslation translateView:self.view];
+    self.appDelegate = [UIApplication sharedApplication].delegate;
 }
 
 @end

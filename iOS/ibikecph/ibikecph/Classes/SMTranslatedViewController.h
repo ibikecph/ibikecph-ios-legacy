@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMAppDelegate.h"
 
 @interface SMTranslatedViewController : UIViewController
+
+@property (nonatomic, weak) SMAppDelegate * appDelegate;
 
 @end

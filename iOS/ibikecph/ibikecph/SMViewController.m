@@ -235,7 +235,6 @@ typedef enum {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     @try{
         [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
-
     }@catch(id anException){
         
     }

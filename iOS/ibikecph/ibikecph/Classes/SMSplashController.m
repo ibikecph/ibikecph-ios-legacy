@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "SMUtil.h"
+#import "SMAppDelegate.h"
 
 typedef enum {
     dialogLogin,
@@ -26,6 +27,8 @@ typedef enum {
     CurrentDialogType currentDialog;
 }
 
+@property (nonatomic, strong) SMAPIRequest * apr;
+
 @end
 
 
@@ -36,6 +39,7 @@ typedef enum {
     loginInProcess = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     currentDialog = dialogNone;
+    [self.appDelegate loadSettings];
 }
 
 - (void)viewDidUnload {
@@ -59,6 +63,10 @@ typedef enum {
     [super viewWillAppear:animated];
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
     }];
+    
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        [self goToFavorites:nil];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,6 +75,47 @@ typedef enum {
 }
 
 #pragma mark - button actions
+
+- (IBAction)doLogin:(id)sender {
+    [loginEmail resignFirstResponder];
+    [loginPassword resignFirstResponder];
+    [loginScroll setContentOffset:CGPointZero animated:YES];
+    if ([loginEmail.text isEqualToString:@""] || [loginPassword.text isEqualToString:@""]) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"login_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return;
+    }
+    
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"login"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": loginEmail.text, @"password": loginPassword.text}}];
+}
+
+- (IBAction)doRegister:(id)sender {
+    [emailField resignFirstResponder];
+    [passwordField resignFirstResponder];
+    [passwordRepeatField resignFirstResponder];
+    [nameField resignFirstResponder];
+    [registerScroll setContentOffset:CGPointZero animated:YES];
+    if ([emailField.text isEqualToString:@""] || [passwordField.text isEqualToString:@""] || [passwordRepeatField.text isEqualToString:@""] || [nameField.text isEqualToString:@""]) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return;
+    }
+    if ([passwordField.text isEqualToString:passwordRepeatField.text] == NO) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return;        
+    }
+    
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"register"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    [self.apr executeRequest:API_REGISTER withParams:@{@"user": @{ @"name": nameField.text, @"email": emailField.text, @"email_confirmation": emailField.text, @"password": passwordField.text, @"password_confirmation": passwordRepeatField.text}}];
+}
 
 - (IBAction)skipLogin:(id)sender {
     [self performSegueWithIdentifier:@"splashToMain" sender:nil];
@@ -323,5 +372,28 @@ typedef enum {
 }
 
 
+#pragma mark - api delegate 
+
+-(void)request:(SMAPIRequest *)req failedWithError:(NSError *)error {
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+    [av show];
+}
+
+- (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
+    if ([[result objectForKey:@"success"] boolValue]) {
+        if ([req.requestIdentifier isEqualToString:@"login"]) {
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+            [self.appDelegate saveSettings];
+            [self goToFavorites:nil];
+        } else if ([req.requestIdentifier isEqualToString:@"register"]) {
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+            [self.appDelegate saveSettings];
+            [self goToFavorites:nil];            
+        }
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+    }
+}
 
 @end

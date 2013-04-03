@@ -203,4 +203,7 @@
 "account_password_placeholder" = "Skriv ny adgangskode";
 "account_repeat_placeholder" = "Gentag ny adgangskode";
 
+"login_error_fields" = "You must enter both your e-mail and your password!";
+"register_error_fields" = "You must fill out all the fields!";
+"register_error_passwords" = "Your passwords don't match!";
 
