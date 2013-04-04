@@ -32,7 +32,7 @@
 "direction_14" = "Bliv på";
 "direction_15" = "Ankomst til destinationen";
 "direction_16" = "Træk cyklen";
-"direction_17" = "Fortsæt på cykele";
+"direction_17" = "Fortsæt på cyklen";
 "direction_100" = "Du nærmer dig destinationen";
 
 "first_direction_0" = "";
@@ -79,10 +79,11 @@
 "route_stop_title" = "Vil du stoppe ruten?";
 "route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
 "report_error" = "Rapporter";
-"report_wrong_address" = "Vejnavnet er forkert";
+"report_wrong_address" = "Forkert vejnavn";
+"report_road_closed" = "Vejen er spærret";
 "report_one_way" = "Vejen er ensrettet";
-"report_road_closed" = "Vejen er lukket";
-"report_illegal_turn" = "Ruten foreslår ulovligt sving";
+"report_illegal_turn" = "Ruten er ulovligt";
+"report_wrong_instruction" = "Forkert instruktion";
 "report_other" = "Andet";
 
 "report_subject" = "Rapporter";
@@ -126,7 +127,7 @@
 "notify_me_when_fixed" = "Få besked når fejlen er udbedret";
 "report" = "Rapporter";
 "report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt til os, så vi kan kontakte dig.";
-"choose_a_route_step" = "Vælg et trin i ruten at rapportere";
+"choose_a_route_step" = "Vælg et trin";
 "cancel_picker" = "Annullere";
 "done_picker" = "Vælg";
 
@@ -203,7 +204,11 @@
 "account_password_placeholder" = "Skriv ny adgangskode";
 "account_repeat_placeholder" = "Gentag ny adgangskode";
 
-"login_error_fields" = "You must enter both your e-mail and your password!";
-"register_error_fields" = "You must fill out all the fields!";
-"register_error_passwords" = "Your passwords don't match!";
 
+"login_error_fields" = "Du skal indtaste både din email og din adgangskode!";
+"register_error_fields" = "Du skal udfylde alle felter!";
+"register_error_passwords" = "Din adgangskode er forkert!";
+
+"error_not_logged_in" = "Du skal være logget ind";
+"report_error_problem_not_selected" = "Vælg venligst et problem";
+"report_error_step_not_selected" = "Vælg venligst et trin i ruten";

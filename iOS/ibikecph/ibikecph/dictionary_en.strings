@@ -92,10 +92,12 @@
 "route_stop_title" = "Want to stop the routing?";
 "route_stop_text" = "Stop the routing by tapping the 'Stop'. You can report a problem with the route to us by tapping on 'Report'.";
 "report_error" = "Report";
+
 "report_wrong_address" = "Address is wrong";
-"report_one_way" = "Street is one way";
 "report_road_closed" = "Road closed";
+"report_one_way" = "Street is one way";
 "report_illegal_turn" = "Route suggests illegal turn";
+"report_wrong_instruction" = "Wrong instruction";
 "report_other" = "Other";
 
 "report_subject" = "Error report";
@@ -215,3 +217,7 @@
 "login_error_fields" = "You must enter both your e-mail and your password!";
 "register_error_fields" = "You must fill out all the fields!";
 "register_error_passwords" = "Your passwords don't match!";
+
+"error_not_logged_in" = "You have to be logged in first";
+"report_error_problem_not_selected" = "You have to select a type of problem.";
+"report_error_step_not_selected" = "You have to select a step where the problem occured";

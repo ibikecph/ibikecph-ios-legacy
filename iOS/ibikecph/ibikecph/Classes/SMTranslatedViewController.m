@@ -18,6 +18,7 @@
     [super viewDidLoad];
     [SMTranslation translateView:self.view];
     self.appDelegate = [UIApplication sharedApplication].delegate;
+    self.trackedViewName = NSStringFromClass([self class]);
 }
 
 @end

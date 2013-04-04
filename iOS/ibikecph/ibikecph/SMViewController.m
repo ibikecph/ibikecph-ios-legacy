@@ -235,6 +235,8 @@ typedef enum {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     @try{
         [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+        [scrlView removeObserver:self forKeyPath:@"contentOffset"];
+        [tblMenu removeObserver:self forKeyPath:@"editing"];
     }@catch(id anException){
         
     }
@@ -304,6 +306,7 @@ typedef enum {
     } else {
         [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
         [tblMenu addObserver:self forKeyPath:@"editing" options:0 context:nil];
+        [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
     }
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
@@ -463,6 +466,12 @@ typedef enum {
             frame.origin.y = accHeader.frame.origin.y + 45.0f;
             frame.size.height = 45.0f;
             [infHeader setFrame:frame];
+            
+            if (favHeader.frame.size.height < tblMenu.contentSize.height) {
+                [tblMenu setBounces:YES];
+            } else {
+                [tblMenu setBounces:NO];
+            }
         }
             break;
         default:
@@ -478,13 +487,12 @@ typedef enum {
 
 
 - (IBAction)tapAccount:(id)sender {
-    /**
-     * disabled until API is ready
-     */
-//    [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
-    /**
-     * end comment
-     */
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+    }
 }
 
 - (IBAction)tapInfo:(id)sender {
@@ -637,12 +645,12 @@ typedef enum {
     if (decelerate == NO) {
         if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
             [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-            currentScreen = screenMenu;
-            blockingView.alpha = 1.0f;
+//            currentScreen = screenMenu;
+//            blockingView.alpha = 1.0f;
         } else {
             [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-            currentScreen = screenMap;
-            blockingView.alpha = 0.0f;
+//            currentScreen = screenMap;
+//            blockingView.alpha = 0.0f;
         }
     }
 }
@@ -653,16 +661,16 @@ typedef enum {
     }
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-        currentScreen = screenMenu;
-        [self.view sendSubviewToBack:scrlView];
-        [self.view bringSubviewToFront:menuView];
-        blockingView.alpha = 1.0f;
+//        currentScreen = screenMenu;
+//        [self.view sendSubviewToBack:scrlView];
+//        [self.view bringSubviewToFront:menuView];
+//        blockingView.alpha = 1.0f;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-        currentScreen = screenMap;
-        [self.view sendSubviewToBack:menuView];
-        [self.view bringSubviewToFront:scrlView];
-        blockingView.alpha = 0.0f;
+//        currentScreen = screenMap;
+//        [self.view sendSubviewToBack:menuView];
+//        [self.view bringSubviewToFront:scrlView];
+//        blockingView.alpha = 0.0f;
     }
 }
 
@@ -672,28 +680,31 @@ typedef enum {
     }
     if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
         [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-        currentScreen = screenMenu;
-        [self.view sendSubviewToBack:scrlView];
-        [self.view bringSubviewToFront:menuView];
-        blockingView.alpha = 1.0f;
+//        currentScreen = screenMenu;
+//        [self.view sendSubviewToBack:scrlView];
+//        [self.view bringSubviewToFront:menuView];
+//        blockingView.alpha = 1.0f;
     } else {
         [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-        currentScreen = screenMap;
-        [self.view sendSubviewToBack:menuView];
-        [self.view bringSubviewToFront:scrlView];
-        blockingView.alpha = 0.0f;
+//        currentScreen = screenMap;
+//        [self.view sendSubviewToBack:menuView];
+//        [self.view bringSubviewToFront:scrlView];
+//        blockingView.alpha = 0.0f;
     }
 }
 
 #pragma mark - button actions
 
 - (IBAction)slideMenuOpen:(id)sender {
+    [scrlView removeObserver:self forKeyPath:@"contentOffset"];
     if (scrlView.contentOffset.x == 0) {
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
         [UIView animateWithDuration:0.5f animations:^{
             [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
         } completion:^(BOOL finished) {
+            blockingView.alpha = 0.0f;
+            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
         }];
     } else {
         [UIView animateWithDuration:0.5f animations:^{
@@ -701,6 +712,8 @@ typedef enum {
         } completion:^(BOOL finished) {
             [self.view sendSubviewToBack:scrlView];
             [self.view bringSubviewToFront:menuView];
+            blockingView.alpha = 1.0f;
+            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
         }];
     }
 }
@@ -1573,7 +1586,7 @@ typedef enum {
 #pragma mark - gesture recognizer delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    return NO;
 }
 
 #pragma mark - mapView delegate
@@ -1758,6 +1771,19 @@ typedef enum {
         [UIView animateWithDuration:0.4f animations:^{
             [self openMenu:menuFavorites];
         }];
+    } else if (object == scrlView  && [keyPath isEqualToString:@"contentOffset"]) {
+        if (scrlView.contentOffset.x == 0.0f) {
+            currentScreen = screenMenu;
+            [self.view sendSubviewToBack:scrlView];
+            [self.view bringSubviewToFront:menuView];
+            blockingView.alpha = 1.0f;
+        } else if (scrlView.contentOffset.x == 260.0f) {
+            currentScreen = screenMap;
+            [self.view sendSubviewToBack:menuView];
+            [self.view bringSubviewToFront:scrlView];
+            blockingView.alpha = 0.0f;
+        }
+
     }
 }
 

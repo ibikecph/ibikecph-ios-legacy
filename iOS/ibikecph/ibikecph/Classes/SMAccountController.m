@@ -13,7 +13,7 @@
 @interface SMAccountController () {
     
 }
-
+@property (nonatomic, strong) SMAPIRequest * apr;
 @end
 
 @implementation SMAccountController
@@ -37,6 +37,11 @@
      */
     [fbView setHidden:YES];
     [regularView setHidden:NO];
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"login"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    [self.apr executeRequest:API_GET_USER_DATA withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,7 +82,9 @@
 }
 
 - (IBAction)logout:(id)sender {
-
+    [self.appDelegate.appSettings removeObjectForKey:@"auth_token"];
+    [self.appDelegate saveSettings];
+    [self goBack:nil];
 }
 
 #pragma mark - textview delegate
@@ -97,5 +104,17 @@
     [scrlView setContentOffset:CGPointMake(0.0f, MAX(textField.frame.origin.y + 260.0f - scrlView.frame.size.height, 0.0f))];
     return YES;
 }
+
+#pragma mark - api request
+
+- (void)request:(SMAPIRequest *)req failedWithError:(NSError *)error {
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+    [av show];
+}
+
+- (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
+    
+}
+
 
 @end

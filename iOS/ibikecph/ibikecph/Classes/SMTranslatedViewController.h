@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SMAppDelegate.h"
+#import "GAITrackedViewController.h"
 
-@interface SMTranslatedViewController : UIViewController
+@interface SMTranslatedViewController : GAITrackedViewController
 
 @property (nonatomic, weak) SMAppDelegate * appDelegate;
 

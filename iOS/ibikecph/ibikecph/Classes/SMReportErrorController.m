@@ -46,24 +46,24 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, scrlView.frame.size.height)];
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, tblView.contentSize.height + tblView.frame.origin.y + 50.0f)];
     [fadeView setAlpha:0.0f];
     [fadeView setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.0f]];
     pickerOpen = NO;
     self.reportedSegment = @"";
-    self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_one_way"), translateString(@"report_road_closed"), translateString(@"report_illegal_turn"), translateString(@"report_other")];
+    self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_road_closed"), translateString(@"report_one_way"), translateString(@"report_illegal_turn"), translateString(@"report_wrong_instruction"), translateString(@"report_other")];
     currentSelection = -1;
     
     UITableView * tableView = tblView;
     UIScrollView * scr = scrlView;
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-//        CGRect frame = scr.frame;
-//        frame.size.height = keyboardFrameInView.origin.y;
-//        scr.frame = frame;
-
-        CGRect frame = tableView.frame;
+        CGRect frame = scr.frame;
         frame.size.height = keyboardFrameInView.origin.y;
-        tableView.frame = frame;
+        scr.frame = frame;
+
+//        CGRect frame = tableView.frame;
+//        frame.size.height = keyboardFrameInView.origin.y;
+//        tableView.frame = frame;
 
     }];
     
@@ -130,15 +130,24 @@
 
 - (void)inputKeyboardWillHide:(NSNotification *)notification {
     [scrlView setContentOffset:CGPointZero];
+    CGRect frame = scrlView.frame;
+    frame.size.height = self.view.frame.size.height - 64.0f - scrlView.frame.origin.y;
+    [scrlView setFrame:frame];
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, tblView.contentSize.height + tblView.frame.origin.y + 50.0f)];
 }
 
 - (void)sendEmail {
     if (currentSelection < 0) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"report_error_problem_not_selected") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
         return;
     }
     
     if ((self.reportedSegment == nil) || ([self.reportedSegment isEqualToString:@""])) {
-        return;
+//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"report_error_step_not_selected") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+//        [av show];
+//        return;
+        self.reportedSegment = @"";
     }
     
     MFMailComposeViewController * mvc = [[MFMailComposeViewController alloc] init];
@@ -247,8 +256,8 @@
         NSString * identifier = @"reportRadioChecked";
         SMRadioCheckedCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         [cell.radioTitle setText:[self.possibleErrors objectAtIndex:indexPath.row]];
-        [cell.radioTextBox setText:@""];
-//        [cell.radioTextBox setDelegate:self];
+        [cell.radioTextBox setText:self.reportText];
+        [cell.radioTextBox setDelegate:self];
         
         UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
         numberToolbar.barStyle = UIBarStyleBlackTranslucent;
@@ -273,11 +282,11 @@
         currentSelection = indexPath.row;
         [tableView reloadData];
         [self arrangeObjects];
-        self.reportText = @"";
+//        self.reportText = @"";
         
         [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).radioTextBox becomeFirstResponder];
         CGRect frame = ((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:indexPath]).frame;
-        [scrlView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 310.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
+        [scrlView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 210.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
 //        [tableView setContentOffset:CGPointMake(0.0f, MAX(frame.origin.y + tblView.frame.origin.y + 310.0f - scrlView.frame.size.height, 0.0f)/*frame.origin.y + tblView.frame.origin.y*/) animated:YES];
     }
 }
@@ -300,7 +309,7 @@
 //    [bottomView setFrame:frame];
 //    [scrlView setContentSize:CGSizeMake(320.0f, bottomView.frame.origin.y + bottomView.frame.size.height + 5.0f)];
     
-    [scrlView setContentSize:CGSizeMake(320.0f, scrlView.frame.size.height)];
+    [scrlView setContentSize:CGSizeMake(320.0f, tblView.contentSize.height + tblView.frame.origin.y + 50.0f)];
     
 }
 
@@ -316,6 +325,7 @@
     if (currentSelection >= 0) {
         [((SMRadioCheckedCell*)[tblView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:currentSelection inSection:0]]).radioTextBox resignFirstResponder];
     }
+    [self inputKeyboardWillHide:nil];
 }
 
 @end
