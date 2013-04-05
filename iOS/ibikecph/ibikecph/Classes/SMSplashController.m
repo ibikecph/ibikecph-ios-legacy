@@ -65,7 +65,15 @@ typedef enum {
     }];
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
-        [self goToFavorites:nil];
+        SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+        [self setApr:ap];
+        [self.apr setRequestIdentifier:@"autoLogin"];
+        [self.apr showTransparentWaitingIndicatorInView:self.view];
+        [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
+        /**
+         * uncomment this if we can use token from previous login
+         */
+//        [self goToFavorites:nil];
     }
 }
 
@@ -328,13 +336,13 @@ typedef enum {
         [[registerDialog viewWithTag:tag] becomeFirstResponder];
         if (tag == 104) {
             [registerScroll setContentOffset:CGPointZero];
-            [self goToFavorites:nil];
+            [self doRegister:nil];
         }   
     } else if (currentDialog == dialogLogin) {
         [[loginDialog viewWithTag:tag] becomeFirstResponder];
-        if (tag == 104) {
+        if (tag == 203) {
             [loginScroll setContentOffset:CGPointZero];
-            [self goToFavorites:nil];
+            [self doLogin:nil];
         }
     }
     return YES;
@@ -384,8 +392,15 @@ typedef enum {
         if ([req.requestIdentifier isEqualToString:@"login"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+            [self.appDelegate.appSettings setValue:loginEmail.text forKey:@"username"];
+            [self.appDelegate.appSettings setValue:loginPassword.text forKey:@"password"];
             [self.appDelegate saveSettings];
             [self goToFavorites:nil];
+        } else if ([req.requestIdentifier isEqualToString:@"autoLogin"]) {
+                [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+                [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+                [self.appDelegate saveSettings];
+                [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate saveSettings];
