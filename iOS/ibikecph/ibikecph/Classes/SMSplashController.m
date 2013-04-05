@@ -383,6 +383,7 @@ typedef enum {
     if ([[result objectForKey:@"success"] boolValue]) {
         if ([req.requestIdentifier isEqualToString:@"login"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
             [self.appDelegate saveSettings];
             [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "SMAPIRequest.h"
 
-@interface SMReportErrorController : SMTranslatedViewController <UIPickerViewDataSource, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
+@interface SMReportErrorController : SMTranslatedViewController <UIPickerViewDataSource, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, SMAPIRequestDelegate> {
     
     __weak IBOutlet UIButton *btnSelectRouteSegment;
     __weak IBOutlet SMCustomCheckbox *switchContactMe;
@@ -28,5 +29,7 @@
 @property (nonatomic, strong) NSArray * routeDirections;
 @property (nonatomic, strong) NSString * source;
 @property (nonatomic, strong) NSString * destination;
+@property (nonatomic, strong) CLLocation * sourceLoc;
+@property (nonatomic, strong) CLLocation * destinationLoc;
 
 @end

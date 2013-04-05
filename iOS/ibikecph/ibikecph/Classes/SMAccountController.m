@@ -39,9 +39,9 @@
     [regularView setHidden:NO];
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
-    [self.apr setRequestIdentifier:@"login"];
+    [self.apr setRequestIdentifier:@"getUser"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:API_GET_USER_DATA withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
+    [self.apr executeRequest:@{@"service" : [NSString stringWithFormat:@"users/%@", [self.appDelegate.appSettings objectForKey:@"id"]], @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS} withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,6 +76,16 @@
 }
 
 - (IBAction)saveChanges:(id)sender {
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"updateUser"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
+     @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
+     @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
+     @"name": name.text,
+     @"email": email.text
+     }];
 }
 
 - (IBAction)deleteAccount:(id)sender {
@@ -113,7 +123,19 @@
 }
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
-    
+    if ([[result objectForKey:@"success"] boolValue]) {
+        if ([req.requestIdentifier isEqualToString:@"getUser"]) {
+            [name setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
+            [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
+        } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
+            debugLog(@"User updated!!!");
+        } else if ([req.requestIdentifier isEqualToString:@"changePassword"]) {            
+            debugLog(@"Password changed!!!");
+        }
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];        
+    }
 }
 
 

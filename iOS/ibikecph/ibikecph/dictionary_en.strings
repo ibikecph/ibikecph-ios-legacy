@@ -198,7 +198,7 @@
 "logout" = "LOG OUT";
 
 "thank_you_for_feedback" = "Thank you for your feedback";
-"feedback_text" = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+"feedback_text" = "Your feedback has been sent. Thanks for your help!\n\nYou can participate in follow-up and discussion of new features on www.ibikecph.dk/feedback.";
 "report_sent" = "FEEDBACK SENT";
 "report_enter_email_address_placeholder" = "Enter you email address";
 "home_find_route" = "FIND ROUTE";

@@ -174,6 +174,23 @@ typedef enum {
     self.tableFooter = [SMAddFavoriteCell getFromNib];
     [self.tableFooter setDelegate:self];
     [self.tableFooter.text setText:translateString(@"cell_add_favorite")];
+    
+    
+    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
+                                                     initWithTarget:self
+                                                     action:@selector(oneFingerSwipeLeft:)];
+    [oneFingerSwipeLeft setNumberOfTouchesRequired:1];
+    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [oneFingerSwipeLeft setDelegate:self];
+    [scrlView addGestureRecognizer:oneFingerSwipeLeft];
+
+    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc]
+                                                    initWithTarget:self
+                                                    action:@selector(oneFingerSwipeRight:)];
+    [oneFingerSwipeRight setNumberOfTouchesRequired:1];
+    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [oneFingerSwipeRight setDelegate:self];
+    [scrlView addGestureRecognizer:oneFingerSwipeRight];
 }
 
 - (IBAction)doubleTap:(UITapGestureRecognizer*)sender {
@@ -220,6 +237,12 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+
+    
     [self readjustViewsForRotation:self.interfaceOrientation];
     
     self.findFrom = @"";
@@ -499,6 +522,32 @@ typedef enum {
     [self performSegueWithIdentifier:@"openAbout" sender:nil];
 }
 
+- (void)oneFingerSwipeRight:(UISwipeGestureRecognizer*)swipe {
+    if (currentScreen == screenMap) {
+        [UIView animateWithDuration:0.5f animations:^{
+            [scrlView setContentOffset:CGPointZero animated:NO];
+        } completion:^(BOOL finished) {
+            [self.view sendSubviewToBack:scrlView];
+            [self.view bringSubviewToFront:menuView];
+            blockingView.alpha = 1.0f;
+            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
+        }];
+    }
+}
+
+- (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer*)swipe {
+    if (currentScreen == screenMenu) {
+        [self.view sendSubviewToBack:menuView];
+        [self.view bringSubviewToFront:scrlView];
+        [UIView animateWithDuration:0.5f animations:^{
+            [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
+        } completion:^(BOOL finished) {
+            blockingView.alpha = 0.0f;
+            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
+        }];
+    }
+}
+
 
 - (void)dropPin:(UILongPressGestureRecognizer*) gesture {
     if (blockingView.alpha > 0) {
@@ -645,53 +694,49 @@ typedef enum {
     if (decelerate == NO) {
         if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
             [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-//            currentScreen = screenMenu;
-//            blockingView.alpha = 1.0f;
         } else {
             [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-//            currentScreen = screenMap;
-//            blockingView.alpha = 0.0f;
         }
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (scrollView != scrlView) {
-        return;
-    }
-    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
-        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-//        currentScreen = screenMenu;
-//        [self.view sendSubviewToBack:scrlView];
-//        [self.view bringSubviewToFront:menuView];
-//        blockingView.alpha = 1.0f;
-    } else {
-        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-//        currentScreen = screenMap;
-//        [self.view sendSubviewToBack:menuView];
-//        [self.view bringSubviewToFront:scrlView];
-//        blockingView.alpha = 0.0f;
-    }
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    if (scrollView != scrlView) {
-        return;
-    }
-    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
-        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-//        currentScreen = screenMenu;
-//        [self.view sendSubviewToBack:scrlView];
-//        [self.view bringSubviewToFront:menuView];
-//        blockingView.alpha = 1.0f;
-    } else {
-        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-//        currentScreen = screenMap;
-//        [self.view sendSubviewToBack:menuView];
-//        [self.view bringSubviewToFront:scrlView];
-//        blockingView.alpha = 0.0f;
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    if (scrollView != scrlView) {
+//        return;
+//    }
+//    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
+//        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+////        currentScreen = screenMenu;
+////        [self.view sendSubviewToBack:scrlView];
+////        [self.view bringSubviewToFront:menuView];
+////        blockingView.alpha = 1.0f;
+//    } else {
+//        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
+////        currentScreen = screenMap;
+////        [self.view sendSubviewToBack:menuView];
+////        [self.view bringSubviewToFront:scrlView];
+////        blockingView.alpha = 0.0f;
+//    }
+//}
+//
+//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+//    if (scrollView != scrlView) {
+//        return;
+//    }
+//    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
+//        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
+////        currentScreen = screenMenu;
+////        [self.view sendSubviewToBack:scrlView];
+////        [self.view bringSubviewToFront:menuView];
+////        blockingView.alpha = 1.0f;
+//    } else {
+//        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
+////        currentScreen = screenMap;
+////        [self.view sendSubviewToBack:menuView];
+////        [self.view bringSubviewToFront:scrlView];
+////        blockingView.alpha = 0.0f;
+//    }
+//}
 
 #pragma mark - button actions
 

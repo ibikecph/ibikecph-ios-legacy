@@ -746,6 +746,8 @@ typedef enum {
         [destViewController setRouteDirections:arr];
         [destViewController setDestination:self.destination];
         [destViewController setSource:self.source];
+        [destViewController setDestinationLoc:self.endLocation];
+        [destViewController setSourceLoc:self.startLocation];
     }
 }
 
