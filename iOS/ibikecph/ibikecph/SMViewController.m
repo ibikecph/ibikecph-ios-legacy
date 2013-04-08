@@ -343,7 +343,7 @@ typedef enum {
         [appd loadSettings];
         if ([[appd.appSettings objectForKey:@"introSeen"] boolValue] == NO) {
             [appd.appSettings setValue:[NSNumber numberWithBool:YES] forKey:@"introSeen"];
-            BOOL x = [appd saveSettings];
+            [appd saveSettings];
             [self animateView];
         } else {
             [self animateButton];
@@ -849,6 +849,9 @@ typedef enum {
         [mainMenu setHidden:NO];
         [addMenu setHidden:YES];
         [self setFavoritesList:[SMUtil getFavorites]];
+        if ([self.favoritesList count] == 0) {
+            [tblMenu setEditing:NO];
+        }
         [UIView animateWithDuration:0.4f animations:^{
             [self openMenu:menuFavorites];
         }];
@@ -890,9 +893,17 @@ typedef enum {
     }
     
     [self addFavoriteHide:nil];
+    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (IBAction)deleteFavorite:(id)sender {
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
     [self.favoritesList removeObject:self.locDict];
     [SMUtil saveFavorites:self.favoritesList];
     [self addFavoriteHide:nil];
@@ -930,9 +941,14 @@ typedef enum {
                         @"order" : @0
                         };
     
+    debugLog(@"%@", dict);
+    
     [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
     [SMUtil saveFavorites:self.favoritesList];
     [self addFavoriteHide:nil];
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
 }
 
 
@@ -1303,7 +1319,9 @@ typedef enum {
                     CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
                     CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
                     
-                    
+                    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Menu" withLabel:@"Favorites" withValue:0]) {
+                        debugLog(@"error in trackEvent");
+                    }
                     
                     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
                     [r setRequestIdentifier:@"rowSelectRoute"];
@@ -1372,6 +1390,9 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     if (tableView == tblMenu) {
+        if ([self.favoritesList count] == 0) {
+            return;
+        }
         NSDictionary * dst = [self.favoritesList objectAtIndex:destinationIndexPath.row];
         NSDictionary * src = [self.favoritesList objectAtIndex:sourceIndexPath.row];
         [self.favoritesList removeObjectAtIndex:destinationIndexPath.row];

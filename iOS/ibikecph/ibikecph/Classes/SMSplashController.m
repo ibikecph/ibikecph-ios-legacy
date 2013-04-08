@@ -163,6 +163,9 @@ typedef enum {
         [passwordField setText:@""];
         [passwordRepeatField setText:@""];
         currentDialog = dialogNone;
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Cancel" withLabel:loginEmail.text withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
     }];
 }
 
@@ -199,6 +202,9 @@ typedef enum {
             [registerView setAlpha:1.0f];
         } completion:^(BOOL finished) {
             currentDialog = dialogRegister;
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Start" withLabel:loginEmail.text withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
         }];
     }];
 }
@@ -404,7 +410,10 @@ typedef enum {
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate saveSettings];
-            [self goToFavorites:nil];            
+            [self goToFavorites:nil];
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
         }
     } else {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];

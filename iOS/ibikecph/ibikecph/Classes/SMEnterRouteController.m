@@ -94,6 +94,10 @@ typedef enum {
     [self setGroupedList:@[saved, last]];
     [tblView reloadData];
 
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"" withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (void)viewDidUnload {
@@ -414,6 +418,15 @@ typedef enum {
     if ([self isCountButton:indexPath]) {
         [self openCloseSection:indexPath.section];
     } else {
+        if (indexPath.section == 0) {
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Favorites" withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
+        } else {
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Recent" withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
+        }
         NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         [toLabel setText:[currentRow objectForKey:@"name"]];
         [self setToData:@{

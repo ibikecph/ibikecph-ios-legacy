@@ -212,6 +212,10 @@ typedef enum {
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];
     [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];
     
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (IBAction)startRouting:(id)sender {
@@ -236,6 +240,10 @@ typedef enum {
     [UIView animateWithDuration:0.3f animations:^{
         [recalculatingView setAlpha:0.0f];
     }];
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Start" withLabel:self.destination withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
@@ -590,6 +598,11 @@ typedef enum {
      * show actual route travelled
      */
     [self showRouteTravelled];
+    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (void)showRouteTravelled {

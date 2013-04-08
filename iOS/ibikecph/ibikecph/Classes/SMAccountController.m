@@ -48,10 +48,16 @@
     [super viewWillAppear:animated];
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(inputKeyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.view removeKeyboardControl];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {
@@ -71,11 +77,21 @@
 
 #pragma mark - button actions
 
+- (void)inputKeyboardWillHide:(NSNotification *)notification {
+    [scrlView setContentOffset:CGPointZero];
+}
+
+
 - (IBAction)goBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)saveChanges:(id)sender {
+    if ([password.text isEqualToString:passwordRepeat.text] == NO) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return;
+    }
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"updateUser"];
@@ -129,7 +145,25 @@
             [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Data" withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
+
+            if ([password.text isEqualToString:@""] == NO) {
+                SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+                [self setApr:ap];
+                [self.apr setRequestIdentifier:@"changePassword"];
+                [self.apr showTransparentWaitingIndicatorInView:self.view];
+                [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
+                 @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
+                 @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
+                 @"password": password.text
+                 }];
+            }
         } else if ([req.requestIdentifier isEqualToString:@"changePassword"]) {            
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Password" withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
             debugLog(@"Password changed!!!");
         }
     } else {

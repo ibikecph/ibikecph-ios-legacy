@@ -103,6 +103,7 @@
 #define API_REGISTER @{@"service" : @"users", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 #define API_GET_USER_DATA @{@"service" : @"users", @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS}
 #define API_CHANGE_USER_DATA @{@"service" : @"account", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
+#define API_CHANGE_PASSWORD @{@"service" : @"account/password", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
 
 #define API_SEND_FEEDBACK @{@"service" : @"issues", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 

@@ -170,6 +170,7 @@
     }
     NSError *error = NULL;
     NSString * s = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    debugLog(@"API response: %@", s);
     NSDictionary * d = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:&error];
     if (error) {
         if (self.delegate && [self.delegate respondsToSelector:@selector(request:failedWithError:)]) {

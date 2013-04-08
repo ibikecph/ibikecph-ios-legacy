@@ -56,7 +56,7 @@
     self.possibleErrors = @[translateString(@"report_wrong_address"), translateString(@"report_road_closed"), translateString(@"report_one_way"), translateString(@"report_illegal_turn"), translateString(@"report_wrong_instruction"), translateString(@"report_other")];
     currentSelection = -1;
     
-    UITableView * tableView = tblView;
+//    UITableView * tableView = tblView;
     UIScrollView * scr = scrlView;
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
         CGRect frame = scr.frame;
@@ -76,6 +76,11 @@
                                              selector:@selector(inputKeyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Report" withAction:@"Start" withLabel:@"" withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -387,6 +392,10 @@
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
     if ([[result objectForKey:@"success"] boolValue]) {
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Report" withAction:@"Completed" withLabel:@"" withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
+
         [UIView animateWithDuration:0.4f animations:^{
             [reportSentView setAlpha:1.0f];
         }];
