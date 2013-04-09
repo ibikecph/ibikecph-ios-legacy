@@ -167,6 +167,12 @@ typedef enum {
         }
     }
     
+    if ([[self.fromData objectForKey:@"name"] isEqualToString:CURRENT_POSITION_STRING] == NO) {
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"From" withLabel:[self.fromData objectForKey:@"name"] withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
+    }
+    
     [UIView animateWithDuration:0.2f animations:^{
         [fadeView setAlpha:1.0f];
     }];

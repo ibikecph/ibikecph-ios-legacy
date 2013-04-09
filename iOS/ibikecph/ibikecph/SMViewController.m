@@ -741,7 +741,11 @@ typedef enum {
 #pragma mark - button actions
 
 - (IBAction)slideMenuOpen:(id)sender {
-    [scrlView removeObserver:self forKeyPath:@"contentOffset"];
+    @try {
+        [scrlView removeObserver:self forKeyPath:@"contentOffset"];
+    } @catch (NSException * e) {
+    }
+    
     if (scrlView.contentOffset.x == 0) {
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
