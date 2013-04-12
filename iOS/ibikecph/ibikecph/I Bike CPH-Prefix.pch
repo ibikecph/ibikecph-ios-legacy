@@ -64,7 +64,7 @@
 #define MAX_HEIGHT_FOR_EVENTS_TABLE 170.0f
 #define MAIL_RECIPIENTS @[@"support+00c86bd0c75940dcb863bbca9fa33313@feedback.hockeyapp.net", @"emil.tin@tmf.kk.dk"]
 #define ZOOM_TO_TURN_DURATION 4 // in seconds
-#define DEFAULT_MAP_ZOOM 17
+#define DEFAULT_MAP_ZOOM 18
 #define DEFAULT_TURN_ZOOM 18
 #define PATH_COLOR [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:225.0f/255.0f alpha:1.0f]
 #define PATH_OPACITY 0.8f
@@ -102,8 +102,8 @@
 #define API_LOGIN @{@"service" : @"login", @"transferMethod" : @"POST", @"headers" : API_DEFAULT_HEADERS}
 #define API_REGISTER @{@"service" : @"users", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 #define API_GET_USER_DATA @{@"service" : @"users", @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS}
-#define API_CHANGE_USER_DATA @{@"service" : @"account", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
-#define API_CHANGE_PASSWORD @{@"service" : @"account/password", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
+#define API_CHANGE_USER_DATA @{@"service" : @"users", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
+#define API_CHANGE_PASSWORD @{@"service" : @"users/password", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
 
 #define API_SEND_FEEDBACK @{@"service" : @"issues", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 

@@ -15,6 +15,8 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "SMUtil.h"
 #import "SMAppDelegate.h"
+#import "UIImage+Resize.h"
+#import "Base64.h"
 
 typedef enum {
     dialogLogin,
@@ -28,7 +30,7 @@ typedef enum {
 }
 
 @property (nonatomic, strong) SMAPIRequest * apr;
-
+@property (nonatomic, strong) UIImage * profileImage;
 @end
 
 
@@ -40,6 +42,12 @@ typedef enum {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     currentDialog = dialogNone;
     [self.appDelegate loadSettings];
+    
+    /**
+     * rounded corners for images
+     */
+    registerImage.layer.cornerRadius = 5;
+    registerImage.layer.masksToBounds = YES;
 }
 
 - (void)viewDidUnload {
@@ -55,6 +63,7 @@ typedef enum {
     loginPassword = nil;
     loginScroll = nil;
     loginDialog = nil;
+    registerImage = nil;
     [super viewDidUnload];
 }
 
@@ -118,11 +127,36 @@ typedef enum {
         return;        
     }
     
+    NSMutableDictionary * user = [NSMutableDictionary dictionaryWithDictionary:@{
+                                  @"name": nameField.text,
+                                  @"email": emailField.text,
+                                  @"email_confirmation": emailField.text,
+                                  @"password": passwordField.text,
+                                  @"password_confirmation": passwordRepeatField.text
+                                  }];
+    
+    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{
+                                    @"user" : user
+                                    }];
+    
+    if (self.profileImage) {
+        [[params objectForKey:@"user"] setValue:@{
+         @"file" : [UIImageJPEGRepresentation(self.profileImage, 1.0f) base64EncodedString],
+         @"original_filename" : @"image.jpg",
+         @"filename" : @"image.jpg"
+         } forKey:@"image_path"];
+    }
+    
+    if ([passwordField.text isEqualToString:@""] == NO) {
+        [[params objectForKey:@"user"] setValue:passwordField.text forKey:@"password"];
+        [[params objectForKey:@"user"] setValue:passwordField.text forKey:@"password_confirmation"];
+    }
+    
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"register"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:API_REGISTER withParams:@{@"user": @{ @"name": nameField.text, @"email": emailField.text, @"email_confirmation": emailField.text, @"password": passwordField.text, @"password_confirmation": passwordRepeatField.text}}];
+    [self.apr executeRequest:API_REGISTER withParams:params];
 }
 
 - (IBAction)skipLogin:(id)sender {
@@ -142,6 +176,7 @@ typedef enum {
     [emailField setText:@""];
     [passwordField setText:@""];
     [passwordRepeatField setText:@""];
+    self.profileImage = nil;
     [UIView animateWithDuration:0.4f animations:^{
         [registerView setAlpha:1.0f];
     } completion:^(BOOL finished) {
@@ -366,11 +401,12 @@ typedef enum {
 #pragma mark - imagepicker delegate
 
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
-    UIImage * imageToSave = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.profileImage = [[info objectForKey:UIImagePickerControllerOriginalImage] resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(560.0f, 560.0f) interpolationQuality:kCGInterpolationHigh];
+    [registerImage setImage:self.profileImage forState:UIControlStateNormal];
     [self dismissModalViewControllerAnimated:YES];
 }
 
-#pragma mark - actin sheet delegate
+#pragma mark - action sheet delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
@@ -409,6 +445,9 @@ typedef enum {
                 [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+            [self.appDelegate.appSettings setValue:emailField.text forKey:@"username"];
+            [self.appDelegate.appSettings setValue:passwordField.text forKey:@"password"];
             [self.appDelegate saveSettings];
             [self goToFavorites:nil];
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {

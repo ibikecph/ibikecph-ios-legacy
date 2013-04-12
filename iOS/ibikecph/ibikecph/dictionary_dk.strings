@@ -64,6 +64,31 @@
 "direction_W" = "vest";
 "direction_NW" = "nordvest";
 
+"{highway:motorway}" = "motorvej";
+"{highway:motorway_link}" = "motorvej";
+"{highway:trunk}" = "hovedvej";
+"{highway:trunk_link}" = "hovedvej";
+"{highway:primary}" = "vej";
+"{highway:primary_link}" = "vej";
+"{highway:secondary}" = "vej";
+"{highway:secondary_link}" = "vej";
+"{highway:tertiary}" = "gade";
+"{highway:tertiary_link}" = "gade";
+"{highway:living_street}" = "gade";
+"{highway:pedestrian}" = "Gågade";
+"{highway:residential}" = "gade";
+"{highway:unclassified}" = "gade";
+"{highway:service}" = "vej/sti";
+"{highway:track}" = "sti";
+"{highway:road}" = "vej";
+"{highway:path}" = "sti";
+"{highway:footway}" = "sti";
+"{highway:cycleway}" = "cykelsti";
+"{highway:bridleway}" = "ridesti";
+"{highway:steps}" = "trappe";
+"{roundabout:yes}" = "rundkørsel";
+"{area:yes}" = "plads";
+
 "new_route" = "Ny rute";
 "Stop" = "Stop";
 

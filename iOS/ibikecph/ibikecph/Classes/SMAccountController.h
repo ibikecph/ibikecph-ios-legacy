@@ -9,7 +9,7 @@
 #import "SMTranslatedViewController.h"
 #import "SMAPIRequest.h"
 
-@interface SMAccountController : SMTranslatedViewController <UITextFieldDelegate, SMAPIRequestDelegate>{
+@interface SMAccountController : SMTranslatedViewController <UITextFieldDelegate, SMAPIRequestDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>{
     
     __weak IBOutlet UIImageView *fbImage;
     __weak IBOutlet UILabel *fbName;

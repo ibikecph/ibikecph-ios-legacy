@@ -189,7 +189,12 @@ typedef enum {
         switch (delegateField) {
             case fieldFrom:
                 [destViewController setShouldAllowCurrentPosition:YES];
-                [destViewController setSearchText:fromLabel.text];
+                if (self.fromData && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"] == NO) {
+                    [destViewController setSearchText:fromLabel.text];
+                } else {
+                    [destViewController setSearchText:@""];
+                }
+                
                 break;
             case fieldTo:
                 [destViewController setShouldAllowCurrentPosition:NO];

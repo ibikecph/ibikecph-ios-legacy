@@ -1009,7 +1009,12 @@ typedef enum {
 
 - (void)reloadSwipableView {
     [swipableView setFrame:tblDirections.frame];
+    SMTurnInstruction * instr = nil;
+    NSInteger start = MAX(0, floor(swipableView.contentOffset.x / self.view.frame.size.width));
     @synchronized(self.instructionsForScrollview) {
+        if ([self.instructionsForScrollview count] > start || start > 0) {
+            instr = [self.instructionsForScrollview objectAtIndex:start];
+        }
         self.instructionsForScrollview = [NSArray arrayWithArray:self.route.turnInstructions];
         for (SMSwipableView * cell in self.activeItems) {
             cell.position = -1;
@@ -1017,10 +1022,18 @@ typedef enum {
             [cell removeFromSuperview];
         }
         [self.activeItems minusSet:self.recycledItems];
-    }
-    
-    [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
-    [self showVisible:NO];
+        [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
+        if (instr) {
+            NSInteger pos = [self.instructionsForScrollview indexOfObject:instr];
+            NSLog(@"*** Pos: %d Start:%d", pos, start);
+            if (pos != NSNotFound && pos > 0) {
+                [swipableView setContentOffset:CGPointMake(pos*self.view.frame.size.width, 0.0f)];
+            } else {
+                [swipableView setContentOffset:CGPointZero];
+            }
+        }
+        [self showVisible:NO];
+    }    
 }
 
 - (BOOL)isVisible:(NSUInteger)index {

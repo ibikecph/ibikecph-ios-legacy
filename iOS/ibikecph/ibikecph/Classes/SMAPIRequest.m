@@ -32,7 +32,7 @@
     [self setServiceParams:params];
     [self setServiceURL:request];
 
-    if ([[request objectForKey:@"transferMethod"] isEqualToString:@"GET"] || [[request objectForKey:@"transferMethod"] isEqualToString:@"PUT"]) {
+    if ([[request objectForKey:@"transferMethod"] isEqualToString:@"GET"] || [[request objectForKey:@"transferMethod"] isEqualToString:@"DELETE"]) {
         [self executeGetRequestWithParams:params andURL:request];
     } else {
         [self executePostRequestWithParams:params andURL:request];

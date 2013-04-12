@@ -9,11 +9,15 @@
 #import "SMAccountController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DAKeyboardControl.h"
+#import "UIImage+Resize.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "Base64.h"
 
 @interface SMAccountController () {
     
 }
 @property (nonatomic, strong) SMAPIRequest * apr;
+@property (nonatomic, strong) UIImage * profileImage;
 @end
 
 @implementation SMAccountController
@@ -42,6 +46,7 @@
     [self.apr setRequestIdentifier:@"getUser"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
     [self.apr executeRequest:@{@"service" : [NSString stringWithFormat:@"users/%@", [self.appDelegate.appSettings objectForKey:@"id"]], @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS} withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
+    self.profileImage = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -92,16 +97,66 @@
         [av show];
         return;
     }
+    
+    NSMutableDictionary * user = [NSMutableDictionary dictionaryWithDictionary:@{
+                                  @"name": name.text,
+                                  @"email": email.text
+                                  }];
+    NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{
+                               @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
+                               @"id": [self.appDelegate.appSettings objectForKey:@"id"],
+                               @"user" : user
+                               }];
+    
+    if (self.profileImage) {
+        [[params objectForKey:@"user"] setValue:@{
+         @"file" : [UIImageJPEGRepresentation(self.profileImage, 1.0f) base64EncodedString],
+         @"original_filename" : @"image.jpg",
+         @"filename" : @"image.jpg"
+         } forKey:@"image_path"];
+    }
+    
+    if ([password.text isEqualToString:@""] == NO) {
+        [[params objectForKey:@"user"] setValue:password.text forKey:@"password"];
+        [[params objectForKey:@"user"] setValue:password.text forKey:@"password_confirmation"];
+    }
+    
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"updateUser"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
-     @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
-     @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
-     @"name": name.text,
-     @"email": email.text
-     }];
+    [self.apr executeRequest:API_CHANGE_USER_DATA withParams:params];
+}
+
+- (IBAction)changeImage:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES){
+        UIActionSheet * ac  = [[UIActionSheet alloc] initWithTitle:translateString(@"choose_image_source") delegate:self cancelButtonTitle:translateString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:translateString(@"image_source_camera"), translateString(@"image_source_library"), nil];
+        [ac showInView:self.view];
+    } else {
+        [self takePictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+    }
+}
+
+- (void)takePictureFromSource:(UIImagePickerControllerSourceType)src {
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:src] == YES){
+        cameraUI.sourceType = src;
+    }else{
+        if (src == UIImagePickerControllerSourceTypeCamera) {
+            cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else {
+            cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+    }
+    
+    NSArray* tmpAlloc_NSArray = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+    cameraUI.mediaTypes =  tmpAlloc_NSArray;
+    cameraUI.allowsEditing = NO;
+    cameraUI.delegate = self;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [self presentModalViewController: cameraUI animated: YES];
+    }
 }
 
 - (IBAction)deleteAccount:(id)sender {
@@ -143,24 +198,26 @@
         if ([req.requestIdentifier isEqualToString:@"getUser"]) {
             [name setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
             [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
+            [regularImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Data" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
+            self.profileImage = nil;
 
-            if ([password.text isEqualToString:@""] == NO) {
-                SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-                [self setApr:ap];
-                [self.apr setRequestIdentifier:@"changePassword"];
-                [self.apr showTransparentWaitingIndicatorInView:self.view];
-                [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
-                 @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
-                 @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
-                 @"password": password.text
-                 }];
-            }
-        } else if ([req.requestIdentifier isEqualToString:@"changePassword"]) {            
+//            if ([password.text isEqualToString:@""] == NO) {
+//                SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+//                [self setApr:ap];
+//                [self.apr setRequestIdentifier:@"changePassword"];
+//                [self.apr showTransparentWaitingIndicatorInView:self.view];
+//                [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
+//                 @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
+//                 @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
+//                 @"password": password.text
+//                 }];
+//            }
+        } else if ([req.requestIdentifier isEqualToString:@"changePassword"]) {
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Password" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
@@ -172,5 +229,27 @@
     }
 }
 
+#pragma mark - imagepicker delegate
+
+- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    self.profileImage = [[info objectForKey:UIImagePickerControllerOriginalImage] resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(560.0f, 560.0f) interpolationQuality:kCGInterpolationHigh];
+    [regularImage setImage:self.profileImage];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - action sheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self takePictureFromSource:UIImagePickerControllerSourceTypeCamera];
+            break;
+        case 1:
+            [self takePictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+            break;
+        default:
+            break;
+    }
+}
 
 @end

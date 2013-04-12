@@ -16,7 +16,7 @@
 "favorites" = "FAVORITES";
 
 "direction_0" = "";
-"direction_1" = "Continue to";
+"direction_1" = "Continue on";
 "direction_2" = "Turn slightly right to";
 "direction_3" = "Turn right to";
 "direction_4" = "Turn sharp right to";
@@ -31,7 +31,7 @@
 "direction_13" = "Stay on roundabout to";
 "direction_14" = "Start on";
 "direction_15" = "You have reached your destination";
-"direction_16" = "Start pushing your bike to";
+"direction_16" = "Start pushing your bike on";
 "direction_17" = "Stop pushing your bike";
 "direction_100" = "Reaching destination";
 
@@ -49,7 +49,7 @@
 "first_direction_11" = "Head %@ and enter roundabout and take %@ exit to";
 "first_direction_12" = "Head %@ and leave roundabout to";
 "first_direction_13" = "Head %@ and stay on roundabout to";
-"first_direction_14" = "Head %@ and start to";
+"first_direction_14" = "Head %@ and start on";
 "first_direction_15" = "You have reached your destination";
 "first_direction_16" = "Head %@ and start pushing your bike on";
 "first_direction_17" = "Head %@ and stop pushing your bike";
@@ -64,6 +64,32 @@
 "direction_SW" = "southwest";
 "direction_W" = "west";
 "direction_NW" = "northwest";
+
+"{highway:motorway}" = "motorway";
+"{highway:motorway_link}" = "motorway";
+"{highway:trunk}" = "trunk road";
+"{highway:trunk_link}" = "trunk road";
+"{highway:primary}" = "primary road";
+"{highway:primary_link}" = "primary road";
+"{highway:secondary}" = "road";
+"{highway:secondary_link}" = "road";
+"{highway:tertiary}" = "street";
+"{highway:tertiary_link}" = "street";
+"{highway:living_street}" = "street";
+"{highway:pedestrian}" = "pedestrian street";
+"{highway:residential}" = "residential street";
+"{highway:unclassified}" = "street";
+"{highway:service}" = "service street";
+"{highway:track}" = "track";
+"{highway:road}" = "road";
+"{highway:path}" = "path";
+"{highway:footway}" = "footway";
+"{highway:cycleway}" = "cycleway";
+"{highway:bridleway}" = "bridleway";
+"{highway:steps}" = "steps";
+"{roundabout:yes}" = "roundabout";
+"{area:yes}" = "area";
+
 
 "direction_number_1" = "1st";
 "direction_number_2" = "2nd";
@@ -138,7 +164,7 @@
 "start_app" = "Start";
 "notify_me_when_fixed" = "Notify me when fixed";
 "report" = "Report";
-"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
+"report_text" = "Ved tryk på “Rapportér” sendes teknisk information om ruten til os.\n\nVælger du at få besked når fejlen er udbedret, bliver din email-adresse sendt med.";
 "choose_a_route_step" = "Choose a route step";
 "cancel_picker" = "Cancel";
 "done_picker" = "Done";
@@ -198,7 +224,7 @@
 "logout" = "LOG OUT";
 
 "thank_you_for_feedback" = "Thank you for your feedback";
-"feedback_text" = "Your feedback has been sent. Thanks for your help!\n\nYou can participate in follow-up and discussion of new features on www.ibikecph.dk/feedback.";
+"feedback_text" = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 "report_sent" = "FEEDBACK SENT";
 "report_enter_email_address_placeholder" = "Enter you email address";
 "home_find_route" = "FIND ROUTE";

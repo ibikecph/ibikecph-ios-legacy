@@ -23,6 +23,7 @@
     __weak IBOutlet UITextField *loginPassword;
     __weak IBOutlet UIScrollView *loginScroll;
     __weak IBOutlet UIView *loginDialog;
+    __weak IBOutlet UIButton *registerImage;
 }
 
 @end
