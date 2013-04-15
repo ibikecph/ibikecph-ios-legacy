@@ -1535,9 +1535,6 @@
 		4C73D23B16AEDD3F00AED42A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C33BF6F170AC88800F55CEC /* SMDirectionsFooter.h */,
-				4C33BF70170AC88800F55CEC /* SMDirectionsFooter.m */,
-				4C33BF71170AC88800F55CEC /* SMDirectionsFooter.xib */,
 				4C8C541516F9AA4D009A2738 /* SMAddFavoriteCell.h */,
 				4C8C541616F9AA4D009A2738 /* SMAddFavoriteCell.m */,
 				4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */,
@@ -1556,6 +1553,9 @@
 				4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */,
 				4B7DC93816BBD73A00198F72 /* SMDirectionCell.h */,
 				4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */,
+				4C33BF6F170AC88800F55CEC /* SMDirectionsFooter.h */,
+				4C33BF70170AC88800F55CEC /* SMDirectionsFooter.m */,
+				4C33BF71170AC88800F55CEC /* SMDirectionsFooter.xib */,
 				4BCDAFF516C2808A00E0C313 /* SMDirectionTopCell.h */,
 				4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */,
 				4C8C541816F9AA62009A2738 /* SMEmptyFavoritesCell.h */,
@@ -2363,7 +2363,7 @@
 					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4E1118E-DEB7-4949-A293-17D2A6A0BEE2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4E385578-9762-4A9B-A72E-8D950AD1E677";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

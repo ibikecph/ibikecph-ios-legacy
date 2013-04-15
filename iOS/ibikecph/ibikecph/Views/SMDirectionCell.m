@@ -18,7 +18,11 @@
 
 - (void)renderViewFromInstruction:(SMTurnInstruction *)turn {
     [self.lblDescription setText:[turn descriptionString]];
-    [self.lblWayname setText:turn.wayName];
+    if ([turn.wayName rangeOfString:@"\\{.+\\:.+\\}" options:NSRegularExpressionSearch].location != NSNotFound) {
+        [self.lblWayname setText:translateString(turn.wayName)];
+    } else {
+        [self.lblWayname setText:turn.wayName];
+    }
 
     CGSize size = [self.lblDescription.text sizeWithFont:[UIFont systemFontOfSize:DIRECTION_FONT_SIZE] constrainedToSize:CGSizeMake(INSTRUCTIONS_LABEL_WIDTH, 40.0f) lineBreakMode:NSLineBreakByWordWrapping];
     CGRect frame = self.lblDescription.frame;

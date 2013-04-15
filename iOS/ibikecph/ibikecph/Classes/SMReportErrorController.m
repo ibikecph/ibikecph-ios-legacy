@@ -95,10 +95,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (IBAction)sendReport:(id)sender {
-//    [self sendEmail];
-//}
-
 - (IBAction)showHidePicker:(id)sender {
     if (pickerOpen) {
         [self hidePicker];
@@ -143,54 +139,58 @@
     [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, tblView.contentSize.height + tblView.frame.origin.y + 50.0f)];
 }
 
-
 - (IBAction)sendReport:(id)sender {
-    if (currentSelection < 0) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"report_error_problem_not_selected") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
-        return;
-    }
-    
-    if ((self.reportedSegment == nil) || ([self.reportedSegment isEqualToString:@""])) {
-        self.reportedSegment = @"";
-    }
-    
-    NSString *str = @"";
-
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_from")]];
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n%@\n\n", self.source, self.sourceLoc]];
-    
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_to")]];
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n%@\n\n", self.destination, self.destinationLoc]];
-    
-    
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_reason")]];
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", [self.possibleErrors objectAtIndex:currentSelection]]];
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", self.reportText]];
-    
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_instruction")]];
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", self.reportedSegment]];
-    
-    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_tbt_instructions")]];
-    for (NSString * s in self.routeDirections) {
-        str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", s]];
-    }
-    
-    
-    NSDictionary * d = @{@"issue" : @{
-                         @"auth_token" : ([self.appDelegate.appSettings objectForKey:@"auth_token"] == nil)?@"":[self.appDelegate.appSettings objectForKey:@"auth_token"],
-                         @"route_segment" : self.reportedSegment,
-                         @"error_type": [self.possibleErrors objectAtIndex:currentSelection],
-                         @"comment": str,
-                         @"notify_user": @0
-                         }};
-    
-    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-    [self setApr:ap];
-    [self.apr setRequestIdentifier:@"login"];
-    [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:API_SEND_FEEDBACK withParams:d];
+    [self sendEmail];
 }
+
+
+//- (IBAction)sendReport:(id)sender {
+//    if (currentSelection < 0) {
+//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"report_error_problem_not_selected") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+//        [av show];
+//        return;
+//    }
+//    
+//    if ((self.reportedSegment == nil) || ([self.reportedSegment isEqualToString:@""])) {
+//        self.reportedSegment = @"";
+//    }
+//    
+//    NSString *str = @"";
+//
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_from")]];
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n%@\n\n", self.source, self.sourceLoc]];
+//    
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_to")]];
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n%@\n\n", self.destination, self.destinationLoc]];
+//    
+//    
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_reason")]];
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", [self.possibleErrors objectAtIndex:currentSelection]]];
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", self.reportText]];
+//    
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_instruction")]];
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n\n", self.reportedSegment]];
+//    
+//    str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", translateString(@"report_tbt_instructions")]];
+//    for (NSString * s in self.routeDirections) {
+//        str = [str stringByAppendingString:[NSString stringWithFormat:@"%@\n", s]];
+//    }
+//    
+//    
+//    NSDictionary * d = @{@"issue" : @{
+//                         @"auth_token" : ([self.appDelegate.appSettings objectForKey:@"auth_token"] == nil)?@"":[self.appDelegate.appSettings objectForKey:@"auth_token"],
+//                         @"route_segment" : self.reportedSegment,
+//                         @"error_type": [self.possibleErrors objectAtIndex:currentSelection],
+//                         @"comment": str,
+//                         @"notify_user": @0
+//                         }};
+//    
+//    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+//    [self setApr:ap];
+//    [self.apr setRequestIdentifier:@"login"];
+//    [self.apr showTransparentWaitingIndicatorInView:self.view];
+//    [self.apr executeRequest:API_SEND_FEEDBACK withParams:d];
+//}
 
 - (void)sendEmail {
     if (currentSelection < 0) {
