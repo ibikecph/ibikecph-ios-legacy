@@ -10,6 +10,8 @@
   <li><a href="http://dl.google.com/dl/gaformobileapps/GoogleAnalyticsiOS.zip">Google Analytics SDK</a></li>
   <li><a href="https://github.com/danielamitay/DAKeyboardControl">DAKeyboardControl</a></li>
   <li><a href="https://github.com/mattt/TTTAttributedLabel">TTTAttributedLabel</a></li>
+  <li><a href="https://github.com/ivan-pavlovic/UIImage-Categories">UIIMage-Categories</a></li>
+  <li><a href="https://github.com/nicklockwood/Base64">Base64</a></li>
 </ul>
 
 
@@ -20,6 +22,7 @@
 <p><b>Google Analytics:</b>  copy or link Library/* into main project</p>
 <p><b>DAKeyboardControl:</b> copy or link files into main project</p>
 <p><b>TTTAttributedLabel:</b> copy or link files into main project</p>
-
+<p><b>UIImage-Categories:</b> copy or link files into main project</p>
+<p><b>Base64:</b> copy or link files into main project</p>
 </body>
 </html>
