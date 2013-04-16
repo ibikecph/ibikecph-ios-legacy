@@ -19,6 +19,7 @@
     #import "keys.h"
     #import "SMTranslatedViewController.h"
     #import "SMUtil.h"
+    #import "SMCustomButton.h"
 #endif
 
 #if DISTRIBUTION_VERSION

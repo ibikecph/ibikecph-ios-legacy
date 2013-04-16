@@ -293,6 +293,11 @@
 		4C86E06F16F62C4000ECEA61 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */; };
 		4C86E07216F6385E00ECEA61 /* routeStopOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E07016F6385E00ECEA61 /* routeStopOverlay.png */; };
 		4C86E07316F6385E00ECEA61 /* routeStopOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E07116F6385E00ECEA61 /* routeStopOverlay@2x.png */; };
+		4C8B69CB171D876600FA256D /* gray_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69C7171D876600FA256D /* gray_btn_pressed.png */; };
+		4C8B69CC171D876600FA256D /* gray_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69C8171D876600FA256D /* gray_btn_pressed@2x.png */; };
+		4C8B69CD171D876600FA256D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69C9171D876600FA256D /* gray_btn.png */; };
+		4C8B69CE171D876600FA256D /* gray_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69CA171D876600FA256D /* gray_btn@2x.png */; };
+		4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B69D5171D885C00FA256D /* SMCustomButton.m */; };
 		4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C8BB09B16B7D2BC00F1ADF2 /* SMEventsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */; };
@@ -784,6 +789,12 @@
 		4C86E06716F62C4000ECEA61 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteButton@2x.png"; sourceTree = "<group>"; };
 		4C86E07016F6385E00ECEA61 /* routeStopOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeStopOverlay.png; sourceTree = "<group>"; };
 		4C86E07116F6385E00ECEA61 /* routeStopOverlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeStopOverlay@2x.png"; sourceTree = "<group>"; };
+		4C8B69C7171D876600FA256D /* gray_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn_pressed.png; sourceTree = "<group>"; };
+		4C8B69C8171D876600FA256D /* gray_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_btn_pressed@2x.png"; sourceTree = "<group>"; };
+		4C8B69C9171D876600FA256D /* gray_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_btn.png; sourceTree = "<group>"; };
+		4C8B69CA171D876600FA256D /* gray_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_btn@2x.png"; sourceTree = "<group>"; };
+		4C8B69D4171D885C00FA256D /* SMCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomButton.h; sourceTree = "<group>"; };
+		4C8B69D5171D885C00FA256D /* SMCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomButton.m; sourceTree = "<group>"; };
 		4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsCalendarCell.h; sourceTree = "<group>"; };
 		4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsCalendarCell.m; sourceTree = "<group>"; };
 		4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsFacebookCell.h; sourceTree = "<group>"; };
@@ -1088,6 +1099,10 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C8B69C7171D876600FA256D /* gray_btn_pressed.png */,
+				4C8B69C8171D876600FA256D /* gray_btn_pressed@2x.png */,
+				4C8B69C9171D876600FA256D /* gray_btn.png */,
+				4C8B69CA171D876600FA256D /* gray_btn@2x.png */,
 				4C33BF78170B050400F55CEC /* favStar_inactive.png */,
 				4C33BF79170B050400F55CEC /* favStar_inactive@2x.png */,
 				4C33BF74170B013B00F55CEC /* findStar.png */,
@@ -1585,6 +1600,8 @@
 				4C09001616DE448300DCAB64 /* SMSwipableView.xib */,
 				4C8DF76816F229CB007EC9FE /* SMViewMoreCell.h */,
 				4C8DF76916F229CB007EC9FE /* SMViewMoreCell.m */,
+				4C8B69D4171D885C00FA256D /* SMCustomButton.h */,
+				4C8B69D5171D885C00FA256D /* SMCustomButton.m */,
 			);
 			name = Views;
 			path = ibikecph/Views;
@@ -2174,6 +2191,10 @@
 				4C33BF7A170B050400F55CEC /* favStar_inactive.png in Resources */,
 				4C33BF7B170B050400F55CEC /* favStar_inactive@2x.png in Resources */,
 				4C31FF361717FF8300DA4983 /* README.md in Resources */,
+				4C8B69CB171D876600FA256D /* gray_btn_pressed.png in Resources */,
+				4C8B69CC171D876600FA256D /* gray_btn_pressed@2x.png in Resources */,
+				4C8B69CD171D876600FA256D /* gray_btn.png in Resources */,
+				4C8B69CE171D876600FA256D /* gray_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2244,6 +2265,7 @@
 				4C31FF381717FF8300DA4983 /* UIImage+Resize.m in Sources */,
 				4C31FF391717FF8300DA4983 /* UIImage+RoundedCorner.m in Sources */,
 				4C31FF421718037200DA4983 /* Base64.m in Sources */,
+				4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

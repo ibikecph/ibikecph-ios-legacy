@@ -193,16 +193,16 @@
                                     <action selector="loginWithFB:" destination="nNH-AJ-0Al" eventType="touchUpInside" id="LXE-1m-F7i"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2fT-D1-chc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2fT-D1-chc" customClass="SMCustomButton">
                                 <rect key="frame" x="49" y="343" width="212" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <state key="normal" title="login" backgroundImage="registerWhiteButton.png">
+                                <state key="normal" title="login" backgroundImage="gray_btn.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="highlighted" backgroundImage="gray_btn_pressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -324,15 +324,16 @@
                                                             <outlet property="delegate" destination="nNH-AJ-0Al" id="IgJ-qA-TBQ"/>
                                                         </connections>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qic-JB-SOI">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qic-JB-SOI" customClass="SMCustomButton">
                                                         <rect key="frame" x="31" y="372" width="107" height="45"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="back_splash" backgroundImage="registerWhiteButton.png">
+                                                        <state key="normal" title="back_splash" backgroundImage="gray_btn.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <state key="highlighted">
+                                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -420,15 +421,16 @@
                                                             <outlet property="delegate" destination="nNH-AJ-0Al" id="lA4-tS-55b"/>
                                                         </connections>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iWi-yP-H4C">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iWi-yP-H4C" customClass="SMCustomButton">
                                                         <rect key="frame" x="31" y="198" width="107" height="45"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <rect key="contentStretch" x="0.5" y="0.5" width="1" height="1"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="back_splash" backgroundImage="registerWhiteButton.png">
+                                                        <state key="normal" title="back_splash" backgroundImage="gray_btn.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <state key="highlighted">
+                                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -2941,15 +2943,15 @@
                                                     <action selector="saveChanges:" destination="1Y3-EV-nwd" eventType="touchUpInside" id="eIR-VE-bL3"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cEp-SS-MUD">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cEp-SS-MUD" customClass="SMCustomButton">
                                                 <rect key="frame" x="85" y="454" width="151" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="delete_my_account" backgroundImage="deleteAccountButton.png">
+                                                <state key="normal" title="delete_my_account" backgroundImage="gray_btn.png">
                                                     <color key="titleColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="highlighted" backgroundImage="gray_btn_pressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -3077,6 +3079,8 @@
         <image name="favoritesInput.png" width="306" height="119"/>
         <image name="favoritesStar.png" width="22" height="22"/>
         <image name="findRouteCalendar.png" width="21" height="22"/>
+        <image name="gray_btn.png" width="11" height="11"/>
+        <image name="gray_btn_pressed.png" width="11" height="11"/>
         <image name="homeLogo.png" width="76" height="76"/>
         <image name="homeSearchBig.png" width="76" height="76"/>
         <image name="homeSearchSmall.png" width="45" height="45"/>
@@ -3094,7 +3098,6 @@
         <image name="radioUnchecked.png" width="22" height="22"/>
         <image name="registerBG.png" width="320" height="457"/>
         <image name="registerBlueButton.png" width="107" height="45"/>
-        <image name="registerWhiteButton.png" width="107" height="45"/>
         <image name="reportBackButton.png" width="47" height="36"/>
         <image name="reportBottom.png" width="320" height="64"/>
         <image name="reportBulb.png" width="82" height="121"/>
@@ -3191,6 +3194,9 @@
                 <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="SMCustomButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomButton.h"/>
         </class>
         <class className="SMCustomCheckbox" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomCheckbox.h"/>
@@ -3317,14 +3323,6 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="hideStopView:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="reportError:"/>
-                <relationship kind="action" name="startRouting:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
@@ -3397,28 +3395,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
-                <relationship kind="action" name="enterRoute:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="slideMenuOpen:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
-                <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
