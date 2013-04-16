@@ -40,7 +40,7 @@
             // Use existing opacity as is
             [bottomImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
             // Apply supplied opacity
-            [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModePlusDarker alpha:1.0];
+            [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height) blendMode:kCGBlendModePlusDarker alpha:0.6];
             
             UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
             
