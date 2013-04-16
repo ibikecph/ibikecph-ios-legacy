@@ -20,6 +20,7 @@
     #import "SMTranslatedViewController.h"
     #import "SMUtil.h"
     #import "SMCustomButton.h"
+    #import "SMPatternedButton.h"
 #endif
 
 #if DISTRIBUTION_VERSION

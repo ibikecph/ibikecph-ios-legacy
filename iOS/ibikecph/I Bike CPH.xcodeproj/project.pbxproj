@@ -298,6 +298,13 @@
 		4C8B69CD171D876600FA256D /* gray_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69C9171D876600FA256D /* gray_btn.png */; };
 		4C8B69CE171D876600FA256D /* gray_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69CA171D876600FA256D /* gray_btn@2x.png */; };
 		4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B69D5171D885C00FA256D /* SMCustomButton.m */; };
+		4C8B69DB171D8D5500FA256D /* blue_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69D7171D8D5500FA256D /* blue_btn_pressed.png */; };
+		4C8B69DC171D8D5500FA256D /* blue_btn_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69D8171D8D5500FA256D /* blue_btn_pressed@2x.png */; };
+		4C8B69DD171D8D5500FA256D /* blue_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69D9171D8D5500FA256D /* blue_btn.png */; };
+		4C8B69DE171D8D5500FA256D /* blue_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69DA171D8D5500FA256D /* blue_btn@2x.png */; };
+		4C8B69E1171D9BF700FA256D /* SMPatternedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8B69E0171D9BF700FA256D /* SMPatternedButton.m */; };
+		4C8B69E4171D9EB200FA256D /* pattern_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69E2171D9EB200FA256D /* pattern_btn.png */; };
+		4C8B69E5171D9EB200FA256D /* pattern_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C8B69E3171D9EB200FA256D /* pattern_btn@2x.png */; };
 		4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */; };
 		4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB08016B7D08000F1ADF2 /* SMEventsFacebookCell.m */; };
 		4C8BB09B16B7D2BC00F1ADF2 /* SMEventsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BB09916B7D2BC00F1ADF2 /* SMEventsHeader.m */; };
@@ -795,6 +802,14 @@
 		4C8B69CA171D876600FA256D /* gray_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_btn@2x.png"; sourceTree = "<group>"; };
 		4C8B69D4171D885C00FA256D /* SMCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomButton.h; sourceTree = "<group>"; };
 		4C8B69D5171D885C00FA256D /* SMCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomButton.m; sourceTree = "<group>"; };
+		4C8B69D7171D8D5500FA256D /* blue_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_btn_pressed.png; sourceTree = "<group>"; };
+		4C8B69D8171D8D5500FA256D /* blue_btn_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_btn_pressed@2x.png"; sourceTree = "<group>"; };
+		4C8B69D9171D8D5500FA256D /* blue_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_btn.png; sourceTree = "<group>"; };
+		4C8B69DA171D8D5500FA256D /* blue_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue_btn@2x.png"; sourceTree = "<group>"; };
+		4C8B69DF171D9BF700FA256D /* SMPatternedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMPatternedButton.h; sourceTree = "<group>"; };
+		4C8B69E0171D9BF700FA256D /* SMPatternedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMPatternedButton.m; sourceTree = "<group>"; };
+		4C8B69E2171D9EB200FA256D /* pattern_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern_btn.png; sourceTree = "<group>"; };
+		4C8B69E3171D9EB200FA256D /* pattern_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pattern_btn@2x.png"; sourceTree = "<group>"; };
 		4C8BB07A16B7D06D00F1ADF2 /* SMEventsCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsCalendarCell.h; sourceTree = "<group>"; };
 		4C8BB07B16B7D06D00F1ADF2 /* SMEventsCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEventsCalendarCell.m; sourceTree = "<group>"; };
 		4C8BB07F16B7D08000F1ADF2 /* SMEventsFacebookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEventsFacebookCell.h; sourceTree = "<group>"; };
@@ -1099,6 +1114,12 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C8B69E2171D9EB200FA256D /* pattern_btn.png */,
+				4C8B69E3171D9EB200FA256D /* pattern_btn@2x.png */,
+				4C8B69D7171D8D5500FA256D /* blue_btn_pressed.png */,
+				4C8B69D8171D8D5500FA256D /* blue_btn_pressed@2x.png */,
+				4C8B69D9171D8D5500FA256D /* blue_btn.png */,
+				4C8B69DA171D8D5500FA256D /* blue_btn@2x.png */,
 				4C8B69C7171D876600FA256D /* gray_btn_pressed.png */,
 				4C8B69C8171D876600FA256D /* gray_btn_pressed@2x.png */,
 				4C8B69C9171D876600FA256D /* gray_btn.png */,
@@ -1602,6 +1623,8 @@
 				4C8DF76916F229CB007EC9FE /* SMViewMoreCell.m */,
 				4C8B69D4171D885C00FA256D /* SMCustomButton.h */,
 				4C8B69D5171D885C00FA256D /* SMCustomButton.m */,
+				4C8B69DF171D9BF700FA256D /* SMPatternedButton.h */,
+				4C8B69E0171D9BF700FA256D /* SMPatternedButton.m */,
 			);
 			name = Views;
 			path = ibikecph/Views;
@@ -2195,6 +2218,12 @@
 				4C8B69CC171D876600FA256D /* gray_btn_pressed@2x.png in Resources */,
 				4C8B69CD171D876600FA256D /* gray_btn.png in Resources */,
 				4C8B69CE171D876600FA256D /* gray_btn@2x.png in Resources */,
+				4C8B69DB171D8D5500FA256D /* blue_btn_pressed.png in Resources */,
+				4C8B69DC171D8D5500FA256D /* blue_btn_pressed@2x.png in Resources */,
+				4C8B69DD171D8D5500FA256D /* blue_btn.png in Resources */,
+				4C8B69DE171D8D5500FA256D /* blue_btn@2x.png in Resources */,
+				4C8B69E4171D9EB200FA256D /* pattern_btn.png in Resources */,
+				4C8B69E5171D9EB200FA256D /* pattern_btn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2266,6 +2295,7 @@
 				4C31FF391717FF8300DA4983 /* UIImage+RoundedCorner.m in Sources */,
 				4C31FF421718037200DA4983 /* Base64.m in Sources */,
 				4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */,
+				4C8B69E1171D9BF700FA256D /* SMPatternedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
