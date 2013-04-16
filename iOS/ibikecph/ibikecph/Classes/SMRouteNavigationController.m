@@ -80,6 +80,7 @@ typedef enum {
     
     [self.mpView setTileSource:TILE_SOURCE];
     [self.mpView setDelegate:self];
+    [self.mpView setMaxZoom:25.0f];
     
     [self setDirectionsState:directionsHidden];
     
@@ -1027,9 +1028,9 @@ typedef enum {
             NSInteger pos = [self.instructionsForScrollview indexOfObject:instr];
             NSLog(@"*** Pos: %d Start:%d", pos, start);
             if (pos != NSNotFound && pos > 0) {
-                [swipableView setContentOffset:CGPointMake(pos*self.view.frame.size.width, 0.0f)];
+                [swipableView setContentOffset:CGPointMake(pos*self.view.frame.size.width, 0.0f) animated:YES];
             } else {
-                [swipableView setContentOffset:CGPointZero];
+                [swipableView setContentOffset:CGPointZero animated:YES];
             }
         }
         [self showVisible:NO];

@@ -152,6 +152,8 @@ typedef enum {
     currentScreen = screenMap;
     [self.mpView setTileSource:TILE_SOURCE];
     [self.mpView setDelegate:self];
+    [self.mpView setMaxZoom:25.0f];
+
     
     NSLog(@"%@", OSRM_SERVER);
     
