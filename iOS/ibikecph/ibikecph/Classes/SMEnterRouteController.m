@@ -396,13 +396,17 @@ typedef enum {
             [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
             if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"favHome"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"favHomeWhite"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"favHomeGrey"]];
             } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"favWork"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"favWorkWhite"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"favWorkGrey"]];
             } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"favBookmark"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"favSchoolWhite"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"favSchoolGrey"]];
             } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-                [cell.iconImage setImage:[UIImage imageNamed:@"findStar"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"favStarWhiteSmall"]];
+                [cell.iconImage setImage:[UIImage imageNamed:@"favStarGreySmall"]];
             } else {
                 [cell.iconImage setImage:nil];
             }
