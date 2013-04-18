@@ -297,6 +297,9 @@ typedef enum {
         loginInProcess = YES;
     }
     
+    [self loginWithFacebook:nil];
+    return;
+    
     
     ACAccountStore *accountStore = [[ACAccountStore alloc] init];
     
@@ -319,25 +322,26 @@ typedef enum {
             ACAccountCredential *fbCredential = [facebookAccount credential];
             NSString *accessToken = [fbCredential oauthToken];
             NSLog(@"Facebook Access Token: %@", accessToken);
+            [self doFBLogin:accessToken];
             
-            SLRequest * me = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://graph.facebook.com/me"] parameters:@{}];
-            me.account = facebookAccount;
-            [me performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                if (error) {
-                    /*
-                     * handle request error
-                     */
-                } else {
-                    
-//                    NSString * str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//                    NSDictionary * d = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];//[[SBJsonParser new] objectWithString:str];
-                    /*
-                     * handle FB login
-                     */
-                    
-                    [self doFBLogin:accessToken];
-                }
-            }];
+//            SLRequest * me = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:[NSURL URLWithString:@"https://graph.facebook.com/me"] parameters:@{}];
+//            me.account = facebookAccount;
+//            [me performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+//                if (error) {
+//                    /*
+//                     * handle request error
+//                     */
+//                } else {
+//                    
+////                    NSString * str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+////                    NSDictionary * d = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];//[[SBJsonParser new] objectWithString:str];
+//                    /*
+//                     * handle FB login
+//                     */
+//                    
+//                    [self doFBLogin:accessToken];
+//                }
+//            }];
         } else {
             /*
              * permission not granted
