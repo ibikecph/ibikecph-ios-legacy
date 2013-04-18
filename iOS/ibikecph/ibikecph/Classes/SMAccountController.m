@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[[UIApplication sharedApplication] setStatusBarHidden:YES];
+//	[[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     [scrlView setContentSize:CGSizeMake(320.0f, 517.0f)];
     
@@ -39,14 +39,33 @@
     /**
      * decide which view we want to show
      */
-    [fbView setHidden:YES];
-    [regularView setHidden:NO];
-    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-    [self setApr:ap];
-    [self.apr setRequestIdentifier:@"getUser"];
-    [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:@{@"service" : [NSString stringWithFormat:@"users/%@", [self.appDelegate.appSettings objectForKey:@"id"]], @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS} withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
-    self.profileImage = nil;
+    if ([self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"]) {
+        /**
+         * FB account type
+         */
+        [fbView setHidden:NO];
+        [regularView setHidden:YES];
+        [fbImage setImage:nil];
+        [fbName setText:@""];
+        SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+        [self setApr:ap];
+        [self.apr setRequestIdentifier:@"getUserFB"];
+        [self.apr showTransparentWaitingIndicatorInView:self.view];
+        [self.apr executeRequest:@{@"service" : [NSString stringWithFormat:@"users/%@", [self.appDelegate.appSettings objectForKey:@"id"]], @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS} withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
+        self.profileImage = nil;
+    } else {
+        /**
+         * regular account type
+         */
+        [fbView setHidden:YES];
+        [regularView setHidden:NO];
+        SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+        [self setApr:ap];
+        [self.apr setRequestIdentifier:@"getUser"];
+        [self.apr showTransparentWaitingIndicatorInView:self.view];
+        [self.apr executeRequest:@{@"service" : [NSString stringWithFormat:@"users/%@", [self.appDelegate.appSettings objectForKey:@"id"]], @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS} withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
+        self.profileImage = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -164,6 +183,9 @@
 
 - (IBAction)logout:(id)sender {
     [self.appDelegate.appSettings removeObjectForKey:@"auth_token"];
+    [self.appDelegate.appSettings removeObjectForKey:@"id"];
+    [self.appDelegate.appSettings removeObjectForKey:@"username"];
+    [self.appDelegate.appSettings removeObjectForKey:@"password"];
     [self.appDelegate saveSettings];
     [self goBack:nil];
 }
@@ -199,24 +221,15 @@
             [name setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
             [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
             [regularImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
+        } else if ([req.requestIdentifier isEqualToString:@"getUserFB"]) {
+                [fbName setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
+                [fbImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Data" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
             self.profileImage = nil;
-
-//            if ([password.text isEqualToString:@""] == NO) {
-//                SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-//                [self setApr:ap];
-//                [self.apr setRequestIdentifier:@"changePassword"];
-//                [self.apr showTransparentWaitingIndicatorInView:self.view];
-//                [self.apr executeRequest:API_CHANGE_USER_DATA withParams:@{
-//                 @"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"],
-//                 @"userId": [self.appDelegate.appSettings objectForKey:@"id"],
-//                 @"password": password.text
-//                 }];
-//            }
         } else if ([req.requestIdentifier isEqualToString:@"changePassword"]) {
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Password" withValue:0]) {
                 debugLog(@"error in trackEvent");

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[[UIApplication sharedApplication] setStatusBarHidden:YES];
+//	[[UIApplication sharedApplication] setStatusBarHidden:YES];
     [scrlView setContentSize:CGSizeMake(300.0f, 520.0f)];
 }
 
@@ -28,7 +28,7 @@
 #pragma mark - button actions
 
 - (IBAction)goBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)viewDidUnload {

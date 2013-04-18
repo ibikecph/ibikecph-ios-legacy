@@ -11,7 +11,7 @@
 @implementation SMAddFavoriteCell
 
 + (CGFloat)getHeight {
-    return 45.0f;
+    return 46.0f;
 }
 
 + (SMAddFavoriteCell*) getFromNib {

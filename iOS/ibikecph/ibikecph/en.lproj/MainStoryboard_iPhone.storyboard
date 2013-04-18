@@ -166,10 +166,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background_create.png" id="ICZ-PQ-6df">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <rect key="contentStretch" x="0.0" y="0.80000000000000004" width="1" height="0.0"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="splash_cloud.png" id="QnU-Ww-qzN">
+                                <rect key="frame" x="0.0" y="140" width="124" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="splash_rider.png" id="EG8-er-Hgn">
+                                <rect key="frame" x="43" y="60" width="277" height="451"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="splash_exclamation.png" id="ft5-kq-zf3">
+                                <rect key="frame" x="248" y="42" width="91" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView contentMode="scaleToFill" image="homeLogo.png" id="fd2-so-nUI">
                                 <rect key="frame" x="0.0" y="10" width="76" height="76"/>
@@ -178,7 +185,7 @@
                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V6e-Zy-RcP">
-                                <rect key="frame" x="49" y="290" width="212" height="45"/>
+                                <rect key="frame" x="47" y="290" width="216" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="41" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -186,7 +193,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="selected" backgroundImage="loginFacebookPressed.png"/>
+                                <state key="highlighted" backgroundImage="loginFacebookPressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -209,51 +217,51 @@
                                     <action selector="showLogin:" destination="nNH-AJ-0Al" eventType="touchUpInside" id="6nh-Oe-Mzk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6fd-IW-YEk">
-                                <rect key="frame" x="34" y="427" width="148" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6fd-IW-YEk">
+                                <rect key="frame" x="0.0" y="420" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="register_with_mail">
+                                <state key="normal" title="register_with_mail" image="register.png" backgroundImage="splash_bg_btn_blue.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="selected" image="register.png" backgroundImage="splash_bg_btn_blue_pressed.png"/>
+                                <state key="highlighted" image="register.png" backgroundImage="splash_bg_btn_blue_pressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showRegister:" destination="nNH-AJ-0Al" eventType="touchUpInside" id="fgG-sF-udb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sNv-b4-HrW">
-                                <rect key="frame" x="214" y="427" width="96" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sNv-b4-HrW">
+                                <rect key="frame" x="160" y="420" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="skip">
+                                <state key="normal" title="skip" image="skip.png" backgroundImage="splash_bg_btn_blue.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="selected" image="skip.png" backgroundImage="splash_bg_btn_blue_pressed.png"/>
+                                <state key="highlighted" image="skip.png" backgroundImage="splash_bg_btn_blue_pressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="skipLogin:" destination="nNH-AJ-0Al" eventType="touchUpInside" id="FsN-JG-f2Y"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iconMail.png" id="FG6-BK-qcG">
-                                <rect key="frame" x="10" y="441" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iconEnter.png" id="Nd0-c4-SSj">
-                                <rect key="frame" x="190" y="441" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bottom_divider_vertical.png" id="aOm-dZ-x3f">
+                                <rect key="frame" x="159" y="428" width="2" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
                                 <rect key="frame" x="37" y="151" width="237" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
                                         <rect key="frame" x="0.0" y="0.0" width="237" height="143"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </imageView>
@@ -487,7 +495,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.68235294117647061" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="4K0-fL-d0k"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -805,64 +813,62 @@
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="CUg-gL-lxU" customClass="SMFavoritesController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C6o-Hi-rTI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background_favourites.png" id="xGG-35-y6B">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <rect key="contentStretch" x="0.0" y="0.80000000000000004" width="1" height="0.0"/>
-                            </imageView>
                             <imageView contentMode="scaleToFill" image="homeLogo.png" id="ZKm-V3-c90">
-                                <rect key="frame" x="0.0" y="9" width="76" height="76"/>
+                                <rect key="frame" x="0.0" y="11" width="76" height="76"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nTw-h1-3wk">
-                                <rect key="frame" x="214" y="430" width="97" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nTw-h1-3wk">
+                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="skip">
+                                <state key="normal" title="skip" image="skip.png" backgroundImage="splash_bg_btn_red.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="selected" image="skip.png" backgroundImage="splash_bg_btn_red_pressed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="skip.png" backgroundImage="splash_bg_btn_red_pressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="skipOver:" destination="CUg-gL-lxU" eventType="touchUpInside" id="y9k-Rx-kEf"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="iconEnter.png" id="K9y-hj-vbA">
-                                <rect key="frame" x="190" y="444" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favStarWhiteLarge.png" id="zWu-3O-O5J">
+                                <rect key="frame" x="50" y="129" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favoritesStar.png" id="zWu-3O-O5J">
-                                <rect key="frame" x="50" y="123" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="cloud_red_splash.png" id="9qj-7W-9Y2">
+                                <rect key="frame" x="191" y="48" width="128" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="favorites_title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wgK-BP-Yqo">
-                                <rect key="frame" x="87" y="124" width="181" height="21"/>
+                                <rect key="frame" x="87" y="129" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="favorites_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ZT-I3-K7E">
-                                <rect key="frame" x="57" y="150" width="243" height="75"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="57" y="158" width="243" height="167"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="NEi-lV-9Dy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="422"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="Qgj-xj-E8l">
-                                        <rect key="frame" x="0.0" y="237" width="320" height="184"/>
+                                        <rect key="frame" x="0.0" y="325" width="320" height="184"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favoritesInput.png" id="O9L-jE-5MU">
@@ -934,16 +940,24 @@
                                                     <action selector="searchWork:" destination="CUg-gL-lxU" eventType="touchUpInside" id="5uV-vT-uvs"/>
                                                 </connections>
                                             </button>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favHomeBlack.png" id="Y7H-V4-jTC">
+                                                <rect key="frame" x="21" y="24" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="favWorkBlack.png" id="SVD-7t-3Iu">
+                                                <rect key="frame" x="21" y="79" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.11764705882352941" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="f9I-1w-bGt"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="favoriteHome" destination="8Ix-zi-AwT" id="8SD-hb-zTS"/>
                         <outlet property="favoriteWork" destination="sKi-Tn-cQF" id="ifY-v9-r3l"/>
@@ -1393,11 +1407,11 @@
                                                         <color key="textColor" white="0.79561491939999995" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </label>
-                                                    <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" id="ofH-TZ-2iy">
+                                                    <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" id="ofH-TZ-2iy">
                                                         <rect key="frame" x="0.0" y="46" width="260" height="304"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="favoritesCell" rowHeight="45" id="tHq-Sb-yjs" customClass="SMMenuCell">
                                                                 <rect key="frame" x="0.0" y="22" width="260" height="45"/>
@@ -1496,7 +1510,8 @@
                                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <state key="highlighted">
+                                                        <state key="selected" image="favEditBtnPressed.png"/>
+                                                        <state key="highlighted" image="favEditBtnPressed.png">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -1624,10 +1639,10 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="selected">
+                                                <state key="selected" image="favTypeFavoriteButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="highlighted" image="favTypeFavoriteButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1643,10 +1658,10 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="selected">
+                                                <state key="selected" image="favTypeHomeButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="highlighted" image="favTypeHomeButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1662,10 +1677,10 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="selected">
+                                                <state key="selected" image="favTypeWorkButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="highlighted" image="favTypeWorkButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -1681,10 +1696,10 @@
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="selected">
+                                                <state key="selected" image="favTypeSchoolButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted">
+                                                <state key="highlighted" image="favTypeSchoolButtonPressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2881,16 +2896,16 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ovb-1M-nRj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ovb-1M-nRj" customClass="SMCustomButton">
                                         <rect key="frame" x="87" y="438" width="147" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="delete_my_account" backgroundImage="deleteAccountButton.png">
+                                        <state key="normal" title="delete_my_account" backgroundImage="gray_btn.png">
                                             <color key="titleColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted">
+                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -3052,18 +3067,17 @@
         <image name="accountLogout.png" width="83" height="36"/>
         <image name="accountMenu.png" width="47" height="36"/>
         <image name="autocompleteHeader.png" width="152" height="4"/>
-        <image name="background_create.png" width="320" height="480"/>
-        <image name="background_favourites.png" width="320" height="480"/>
         <image name="blue_btn.png" width="11" height="11"/>
         <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="bottom_divider_vertical.png" width="2" height="2"/>
         <image name="btnClose.png" width="43" height="43"/>
         <image name="camera.png" width="61" height="61"/>
+        <image name="cloud_red_splash.png" width="128" height="76"/>
         <image name="contactsCellBG.png" width="16" height="16"/>
         <image name="contactsDisclosure.png" width="16" height="16"/>
         <image name="contactsEdit.png" width="16" height="16"/>
         <image name="contactsHeaderSeparator.png" width="16" height="16"/>
         <image name="contactsList.png" width="16" height="16"/>
-        <image name="deleteAccountButton.png" width="16" height="16"/>
         <image name="divider_side_menu_btn.png" width="1" height="2"/>
         <image name="drop_shadow_sliding_image.png" width="5" height="1"/>
         <image name="enterRouteClose.png" width="37" height="37"/>
@@ -3075,30 +3089,35 @@
         <image name="favAddBG.png" width="262" height="253"/>
         <image name="favEdit.png" width="22" height="22"/>
         <image name="favEditBtn.png" width="33" height="33"/>
+        <image name="favEditBtnPressed.png" width="33" height="33"/>
         <image name="favEditDeleteButton.png" width="82" height="45"/>
         <image name="favEditDoneBtn.png" width="72" height="33"/>
+        <image name="favHomeBlack.png" width="22" height="22"/>
         <image name="favListRow.png" width="260" height="45"/>
         <image name="favListStar.png" width="16" height="16"/>
         <image name="favStarWhiteLarge.png" width="22" height="22"/>
-        <image name="favTypeFavoriteButton.png" width="44" height="44"/>
-        <image name="favTypeHomeButton.png" width="44" height="44"/>
-        <image name="favTypeSchoolButton.png" width="44" height="44"/>
-        <image name="favTypeWorkButton.png" width="44" height="44"/>
+        <image name="favTypeFavoriteButton.png" width="43" height="43"/>
+        <image name="favTypeFavoriteButtonPressed.png" width="43" height="43"/>
+        <image name="favTypeHomeButton.png" width="43" height="43"/>
+        <image name="favTypeHomeButtonPressed.png" width="43" height="43"/>
+        <image name="favTypeSchoolButton.png" width="43" height="43"/>
+        <image name="favTypeSchoolButtonPressed.png" width="43" height="43"/>
+        <image name="favTypeWorkButton.png" width="43" height="43"/>
+        <image name="favTypeWorkButtonPressed.png" width="43" height="43"/>
+        <image name="favWorkBlack.png" width="22" height="22"/>
         <image name="favoritesInput.png" width="306" height="119"/>
-        <image name="favoritesStar.png" width="16" height="16"/>
         <image name="findRouteCalendar.png" width="21" height="22"/>
         <image name="gray_btn.png" width="11" height="11"/>
         <image name="gray_btn_pressed.png" width="11" height="11"/>
         <image name="homeLogo.png" width="76" height="76"/>
         <image name="homeSearchBig.png" width="76" height="76"/>
         <image name="homeSearchSmall.png" width="45" height="45"/>
-        <image name="iconEnter.png" width="16" height="16"/>
-        <image name="iconMail.png" width="16" height="16"/>
         <image name="icon_locate_me.png" width="43" height="43"/>
         <image name="info.png" width="22" height="22"/>
         <image name="leftArrow.png" width="7" height="12"/>
         <image name="loginBG.png" width="320" height="318"/>
-        <image name="loginFacebook.png" width="212" height="45"/>
+        <image name="loginFacebook.png" width="216" height="45"/>
+        <image name="loginFacebookPressed.png" width="216" height="45"/>
         <image name="mover.png" width="20" height="12"/>
         <image name="normalDirectionsBG.png" width="320" height="105"/>
         <image name="overviewBG.png" width="320" height="106"/>
@@ -3106,6 +3125,7 @@
         <image name="pullHandle.png" width="42" height="25"/>
         <image name="radioChecked.png" width="22" height="22"/>
         <image name="radioUnchecked.png" width="22" height="22"/>
+        <image name="register.png" width="22" height="22"/>
         <image name="registerBG.png" width="320" height="457"/>
         <image name="reportBackButton.png" width="47" height="36"/>
         <image name="reportBottom.png" width="320" height="64"/>
@@ -3132,8 +3152,16 @@
         <image name="routeFinishedOverlay.png" width="320" height="346"/>
         <image name="routeStartButton.png" width="61" height="61"/>
         <image name="routeStopOverlay.png" width="320" height="212"/>
+        <image name="skip.png" width="22" height="22"/>
         <image name="smallDirectionsBG.png" width="76" height="76"/>
         <image name="splashDialog.png" width="237" height="143"/>
+        <image name="splash_bg_btn_blue.png" width="1" height="60"/>
+        <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
+        <image name="splash_bg_btn_red.png" width="1" height="60"/>
+        <image name="splash_bg_btn_red_pressed.png" width="1" height="60"/>
+        <image name="splash_cloud.png" width="124" height="137"/>
+        <image name="splash_exclamation.png" width="91" height="88"/>
+        <image name="splash_rider.png" width="277" height="451"/>
     </resources>
     <classes>
         <class className="AsyncImageView" superclassName="UIImageView">
@@ -3382,6 +3410,19 @@
         <class className="SMSplashController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSplashController.h"/>
             <relationships>
+                <relationship kind="action" name="doFBLogin:" candidateClass="NSString"/>
+                <relationship kind="action" name="doLogin:"/>
+                <relationship kind="action" name="doRegister:"/>
+                <relationship kind="action" name="goToFavorites:"/>
+                <relationship kind="action" name="hideLogin:"/>
+                <relationship kind="action" name="hideRegister:"/>
+                <relationship kind="action" name="loginToRegister:"/>
+                <relationship kind="action" name="loginWithFB:"/>
+                <relationship kind="action" name="loginWithFacebook:"/>
+                <relationship kind="action" name="selectImageSource:"/>
+                <relationship kind="action" name="showLogin:"/>
+                <relationship kind="action" name="showRegister:"/>
+                <relationship kind="action" name="skipLogin:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginDialog" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loginEmail" candidateClass="UITextField"/>
@@ -3454,7 +3495,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wAx-WK-VM3"/>
-        <segue reference="SAG-9b-Vbu"/>
+        <segue reference="6eV-Lw-Uga"/>
+        <segue reference="e6x-Rl-rMW"/>
     </inferredMetricsTieBreakers>
 </document>

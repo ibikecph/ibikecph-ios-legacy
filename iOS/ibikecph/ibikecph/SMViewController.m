@@ -254,6 +254,10 @@ typedef enum {
 //        [self performSegueWithIdentifier:@"enterEmail" sender:nil];
 //    }
     [debugLabel setText:BUILD_STRING];
+    
+    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+    findRouteSmall.alpha = 1.0f;
+    findRouteBig.alpha = 0.0f;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -290,7 +294,7 @@ typedef enum {
         
         NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)",CURRENT_POSITION_STRING, [[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue], [d objectForKey:@"destination"], [[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]];
         debugLog(@"%@", st);
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Crash" withLabel:st withValue:0]) {
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Resume" withLabel:st withValue:0]) {
             debugLog(@"error in trackPageview");
         }
         
@@ -340,18 +344,18 @@ typedef enum {
     }];
     
     
-    if (currentScreen == screenMap && animationShown == NO) {
-        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-        [appd loadSettings];
-        if ([[appd.appSettings objectForKey:@"introSeen"] boolValue] == NO) {
-            [appd.appSettings setValue:[NSNumber numberWithBool:YES] forKey:@"introSeen"];
-            [appd saveSettings];
-            [self animateView];
-        } else {
-            [self animateButton];
-        }
-        animationShown = YES;
-    }
+//    if (currentScreen == screenMap && animationShown == NO) {
+//        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+//        [appd loadSettings];
+//        if ([[appd.appSettings objectForKey:@"introSeen"] boolValue] == NO) {
+//            [appd.appSettings setValue:[NSNumber numberWithBool:YES] forKey:@"introSeen"];
+//            [appd saveSettings];
+//            [self animateView];
+//        } else {
+//            [self animateButton];
+//        }
+//        animationShown = YES;
+//    }
 }
 
 #pragma mark - custom methods
@@ -413,11 +417,11 @@ typedef enum {
 
 - (CGFloat)heightForFavorites {
     if ([self.favoritesList count] == 0) {
-        return [SMEmptyFavoritesCell getHeight] + 46.0f;
+        return [SMEmptyFavoritesCell getHeight] + 45.0f;
     } else {
         CGFloat startY = favHeader.frame.origin.y;
         CGFloat maxHeight = menuView.frame.size.height - startY;
-        return MIN(tblMenu.contentSize.height + 46.0f, maxHeight - 2 * 45.0f);
+        return MIN(tblMenu.contentSize.height + 45.0f, maxHeight - 2 * 45.0f);
     }
     return 45.0f;
 }

@@ -74,11 +74,15 @@ typedef enum {
     }];
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
-        SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-        [self setApr:ap];
-        [self.apr setRequestIdentifier:@"autoLogin"];
-        [self.apr showTransparentWaitingIndicatorInView:self.view];
-        [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
+        if ([self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"]) {
+            [self loginWithFB:nil];
+        } else {
+            SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+            [self setApr:ap];
+            [self.apr setRequestIdentifier:@"autoLogin"];
+            [self.apr showTransparentWaitingIndicatorInView:self.view];
+            [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
+        }
         /**
          * uncomment this if we can use token from previous login
          */
@@ -108,6 +112,14 @@ typedef enum {
     [self.apr setRequestIdentifier:@"login"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
     [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": loginEmail.text, @"password": loginPassword.text}}];
+}
+
+- (IBAction)doFBLogin:(NSString*)fbToken {
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"loginFB"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken}}];
 }
 
 - (IBAction)doRegister:(id)sender {
@@ -318,12 +330,12 @@ typedef enum {
                 } else {
                     
 //                    NSString * str = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-                    NSDictionary * d = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];//[[SBJsonParser new] objectWithString:str];
+//                    NSDictionary * d = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:nil];//[[SBJsonParser new] objectWithString:str];
                     /*
                      * handle FB login
                      */
                     
-                    [self goToFavorites:nil];
+                    [self doFBLogin:accessToken];
                 }
             }];
         } else {
@@ -357,8 +369,9 @@ typedef enum {
                      /*
                       * handle FB login
                       */
+                     NSString *accessToken = appDelegate.session.accessToken;
                     
-                     [self goToFavorites:nil];
+                     [self doFBLogin:accessToken];
                  }
              }];
             
@@ -436,18 +449,27 @@ typedef enum {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
             [self.appDelegate.appSettings setValue:loginEmail.text forKey:@"username"];
             [self.appDelegate.appSettings setValue:loginPassword.text forKey:@"password"];
+            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
             [self.appDelegate saveSettings];
             [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"autoLogin"]) {
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+                [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
                 [self.appDelegate saveSettings];
                 [self goToFavorites:nil];
+        } else if ([req.requestIdentifier isEqualToString:@"loginFB"]) {
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+            [self.appDelegate.appSettings setValue:@"FB" forKey:@"loginType"];
+            [self.appDelegate saveSettings];
+            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
             [self.appDelegate.appSettings setValue:emailField.text forKey:@"username"];
             [self.appDelegate.appSettings setValue:passwordField.text forKey:@"password"];
+            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
             [self.appDelegate saveSettings];
             [self goToFavorites:nil];
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
