@@ -64,6 +64,7 @@ typedef enum {
     loginScroll = nil;
     loginDialog = nil;
     registerImage = nil;
+    dialogView = nil;
     [super viewDidUnload];
 }
 
@@ -88,6 +89,22 @@ typedef enum {
          */
 //        [self goToFavorites:nil];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    dialogView.transform = CGAffineTransformMakeScale(0.8f,0.8f);
+    CGRect frame = dialogView.frame;
+    frame.origin.y += 50.0f;
+    [dialogView setFrame:frame];
+    frame.origin.y -= 50.0f;
+    dialogView.alpha = 0.0f;
+    [UIView animateWithDuration:0.3f animations:^{
+        dialogView.alpha = 1.0f;
+        [dialogView setFrame:frame];
+        dialogView.transform = CGAffineTransformMakeScale(1.0f,1.0f);
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

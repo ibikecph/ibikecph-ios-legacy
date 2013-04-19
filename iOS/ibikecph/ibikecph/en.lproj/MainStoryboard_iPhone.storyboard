@@ -184,8 +184,31 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.5" y="0.0" width="0.0" height="1"/>
                             </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
+                                <rect key="frame" x="42" y="151" width="237" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
+                                        <rect key="frame" x="0.0" y="0.0" width="237" height="143"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iO8-td-ZgU">
+                                        <rect key="frame" x="55" y="25" width="151" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4s-Mv-sSx">
+                                        <rect key="frame" x="25" y="50" width="192" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V6e-Zy-RcP">
-                                <rect key="frame" x="47" y="290" width="216" height="45"/>
+                                <rect key="frame" x="52" y="290" width="216" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="41" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -202,7 +225,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2fT-D1-chc" customClass="SMCustomButton">
-                                <rect key="frame" x="49" y="343" width="212" height="45"/>
+                                <rect key="frame" x="52" y="343" width="216" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -256,30 +279,8 @@
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="bottom_divider_vertical.png" id="aOm-dZ-x3f">
                                 <rect key="frame" x="159" y="428" width="2" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </imageView>
-                            <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
-                                <rect key="frame" x="37" y="151" width="237" height="143"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
-                                        <rect key="frame" x="0.0" y="0.0" width="237" height="143"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iO8-td-ZgU">
-                                        <rect key="frame" x="55" y="25" width="151" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4s-Mv-sSx">
-                                        <rect key="frame" x="25" y="50" width="192" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
+                            </imageView>
                             <view alpha="0.0" contentMode="scaleToFill" id="FRP-eR-IZ0" userLabel="register view">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -337,11 +338,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="back_splash" backgroundImage="gray_btn.png">
+                                                        <state key="normal" title="back_splash" backgroundImage="white_btn.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                                        <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -435,11 +436,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <rect key="contentStretch" x="0.5" y="0.5" width="1" height="1"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="back_splash" backgroundImage="gray_btn.png">
+                                                        <state key="normal" title="back_splash" backgroundImage="white_btn.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
-                                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                                        <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
@@ -502,6 +503,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="dialogView" destination="6fq-sT-tGF" id="WX4-am-pPI"/>
                         <outlet property="emailField" destination="hL5-ey-U7f" id="mIP-gH-H4R"/>
                         <outlet property="loginDialog" destination="7Bm-s1-xl4" id="B0F-6s-WTK"/>
                         <outlet property="loginEmail" destination="Ws7-Px-IMx" id="bRh-jd-1xz"/>
@@ -684,11 +686,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="-52" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="reportBackButton.png">
+                                <state key="normal" image="reportClose.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted">
+                                <state key="selected" image="reportClose_pressed.png"/>
+                                <state key="highlighted" image="reportClose_pressed.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2657,11 +2660,11 @@
                                                 <rect key="frame" x="45" y="215" width="88" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="back_ride" backgroundImage="gray_btn.png">
+                                                <state key="normal" title="back_ride" backgroundImage="white_btn.png">
                                                     <color key="titleColor" white="0.36778626824817517" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                                <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2727,11 +2730,11 @@
                                                 <rect key="frame" x="45" y="83" width="88" height="46"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="back_ride" backgroundImage="gray_btn.png">
+                                                <state key="normal" title="back_ride" backgroundImage="white_btn.png">
                                                     <color key="titleColor" white="0.36778626819999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                                <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -2900,11 +2903,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <state key="normal" title="delete_my_account" backgroundImage="gray_btn.png">
+                                        <state key="normal" title="delete_my_account" backgroundImage="white_btn.png">
                                             <color key="titleColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                        <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2969,11 +2972,11 @@
                                                 <rect key="frame" x="85" y="454" width="151" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="delete_my_account" backgroundImage="gray_btn.png">
+                                                <state key="normal" title="delete_my_account" backgroundImage="white_btn.png">
                                                     <color key="titleColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <state key="highlighted" backgroundImage="gray_btn_pressed.png">
+                                                <state key="highlighted" backgroundImage="white_btn_pressed.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -3130,6 +3133,7 @@
         <image name="reportBottom.png" width="320" height="64"/>
         <image name="reportBulb.png" width="82" height="121"/>
         <image name="reportClose.png" width="47" height="36"/>
+        <image name="reportClose_pressed.png" width="47" height="36"/>
         <image name="reportHeaderBG.png" width="320" height="51"/>
         <image name="reportPulldown.png" width="286" height="44"/>
         <image name="reportTextView.png" width="285" height="65"/>
@@ -3145,7 +3149,7 @@
         <image name="routeEnterSingleRow.png" width="320" height="44"/>
         <image name="routeEnterStart_active.png" width="61" height="35"/>
         <image name="routeEnterStart_inactive.png" width="61" height="35"/>
-        <image name="routeEnterSwitchIcon.png" width="23" height="13"/>
+        <image name="routeEnterSwitchIcon.png" width="22" height="22"/>
         <image name="routeEnterTopRow.png" width="320" height="44"/>
         <image name="routeEnterViewMoreRow.png" width="320" height="47"/>
         <image name="routeFinishedOverlay.png" width="320" height="346"/>
@@ -3161,6 +3165,8 @@
         <image name="splash_cloud.png" width="124" height="137"/>
         <image name="splash_exclamation.png" width="91" height="88"/>
         <image name="splash_rider.png" width="277" height="451"/>
+        <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn_pressed.png" width="11" height="11"/>
     </resources>
     <classes>
         <class className="AsyncImageView" superclassName="UIImageView">
@@ -3409,6 +3415,20 @@
         <class className="SMSplashController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSplashController.h"/>
             <relationships>
+                <relationship kind="action" name="doFBLogin:" candidateClass="NSString"/>
+                <relationship kind="action" name="doLogin:"/>
+                <relationship kind="action" name="doRegister:"/>
+                <relationship kind="action" name="goToFavorites:"/>
+                <relationship kind="action" name="hideLogin:"/>
+                <relationship kind="action" name="hideRegister:"/>
+                <relationship kind="action" name="loginToRegister:"/>
+                <relationship kind="action" name="loginWithFB:"/>
+                <relationship kind="action" name="loginWithFacebook:"/>
+                <relationship kind="action" name="selectImageSource:"/>
+                <relationship kind="action" name="showLogin:"/>
+                <relationship kind="action" name="showRegister:"/>
+                <relationship kind="action" name="skipLogin:"/>
+                <relationship kind="outlet" name="dialogView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginDialog" candidateClass="UIView"/>
                 <relationship kind="outlet" name="loginEmail" candidateClass="UITextField"/>
@@ -3430,6 +3450,28 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addFavoriteHide:"/>
+                <relationship kind="action" name="addFavoriteShow:"/>
+                <relationship kind="action" name="addSelectFavorite:"/>
+                <relationship kind="action" name="addSelectHome:"/>
+                <relationship kind="action" name="addSelectSchool:"/>
+                <relationship kind="action" name="addSelectWork:"/>
+                <relationship kind="action" name="deleteFavorite:"/>
+                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="editFavoriteShow:"/>
+                <relationship kind="action" name="editSaveFavorite:"/>
+                <relationship kind="action" name="enterRoute:"/>
+                <relationship kind="action" name="findAddress:"/>
+                <relationship kind="action" name="saveFavorite:"/>
+                <relationship kind="action" name="showContacts:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="action" name="slideMenuOpen:"/>
+                <relationship kind="action" name="startEdit:"/>
+                <relationship kind="action" name="stopEdit:"/>
+                <relationship kind="action" name="tapAccount:"/>
+                <relationship kind="action" name="tapFavorites:"/>
+                <relationship kind="action" name="tapInfo:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
@@ -3481,7 +3523,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6eV-Lw-Uga"/>
-        <segue reference="e6x-Rl-rMW"/>
+        <segue reference="SAG-9b-Vbu"/>
+        <segue reference="DqZ-cl-vTA"/>
     </inferredMetricsTieBreakers>
 </document>

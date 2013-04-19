@@ -24,6 +24,7 @@
     __weak IBOutlet UIScrollView *loginScroll;
     __weak IBOutlet UIView *loginDialog;
     __weak IBOutlet UIButton *registerImage;
+    __weak IBOutlet UIView *dialogView;
 }
 
 @end
