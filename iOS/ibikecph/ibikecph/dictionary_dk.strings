@@ -162,11 +162,11 @@
 
 "good_ride" = "Godt kørt!";
 "hope_you_had_a_good_trip" = "Håber du havde en god tur.";
-"back_ride" = "TILBAGE";
+"back_ride" = "ANNULLERE";
 "stop_ride" = "AFSLUT TUREN";
 "ride_report_a_problem" = "RAPPORTER ET PROBLEM";
 
-"login_with_fb" = "OPRET MED FACEBOOK";
+"login_with_fb" = "LOG IND MED FACEBOOK";
 "register_with_mail" = "OPRET MED EMAIL";
 "skip" = "SPRING OVER";
 "create_account" = "OPRET DIN KONTO";
@@ -202,7 +202,7 @@
 "Work" = "Arbejde";
 "School" = "Skole";
 "Favorite" = "Favorit";
-"back" = "TILBAGE";
+"back" = "ANNULLERE";
 "done" = "FÆRDIG";
 "add_favorite_name_placeholder" = "Indtast navn ...";
 "add_favorite_address_placeholder" = "Find adresse ...";
