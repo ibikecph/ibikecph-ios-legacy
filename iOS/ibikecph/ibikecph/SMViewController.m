@@ -152,7 +152,7 @@ typedef enum {
     currentScreen = screenMap;
     [self.mpView setTileSource:TILE_SOURCE];
     [self.mpView setDelegate:self];
-    [self.mpView setMaxZoom:25.0f];
+    [self.mpView setMaxZoom:MAX_MAP_ZOOM];
 
     
     NSLog(@"%@", OSRM_SERVER);
@@ -690,6 +690,7 @@ typedef enum {
     }
     [self.view sendSubviewToBack:menuView];
     [self.view bringSubviewToFront:scrlView];
+    [self.view hideKeyboard];
 }
 
 
@@ -846,6 +847,7 @@ typedef enum {
 - (IBAction)addFavoriteHide:(id)sender{
     [self.view sendSubviewToBack:menuView];
     [self.view bringSubviewToFront:scrlView];
+    [self.view hideKeyboard];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
         frame.origin.x = 0.0f;
@@ -963,8 +965,10 @@ typedef enum {
 
 
 - (IBAction)findAddress:(id)sender {
+    [self.view hideKeyboard];
     self.favName = addFavAddress.text;
     [self performSegueWithIdentifier:@"mainToSearch" sender:nil];
+    
 }
 
 - (IBAction)addSelectFavorite:(id)sender {
@@ -1912,6 +1916,14 @@ typedef enum {
 
 - (void)viewTapped:(id)view {
     [self addFavoriteShow:nil];
+}
+
+#pragma mark - custom methods
+
+- (void)inputKeyboardWillHide:(NSNotification *)notification {
+    CGRect frame = addMenu.frame;
+    frame.size.height = menuView.frame.size.height;
+    [addMenu setFrame:frame];
 }
 
 @end

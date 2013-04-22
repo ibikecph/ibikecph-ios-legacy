@@ -8,6 +8,8 @@
 
 #import "SMTranslatedViewController.h"
 #import "SMAutocomplete.h"
+#import "SMRequestOSRM.h"
+#import "SMNearbyPlaces.h"
 
 @protocol SMSearchDelegate <NSObject>
 
@@ -15,7 +17,7 @@
 
 @end
 
-@interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate>{
+@interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate, SMRequestOSRMDelegate, SMNearbyPlacesDelegate>{
     
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIView *tblFade;

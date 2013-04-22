@@ -28,7 +28,7 @@
 #pragma mark - button actions
 
 - (IBAction)goBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload {

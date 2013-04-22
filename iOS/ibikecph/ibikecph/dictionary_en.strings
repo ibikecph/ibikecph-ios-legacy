@@ -247,3 +247,5 @@
 "error_not_logged_in" = "You have to be logged in first";
 "report_error_problem_not_selected" = "You have to select a type of problem.";
 "report_error_step_not_selected" = "You have to select a step where the problem occured";
+
+"error_duplicate_favorite_name" = "You already have a favorite with this name. Please rename your favorite and save again.";

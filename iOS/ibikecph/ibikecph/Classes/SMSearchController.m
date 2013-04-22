@@ -18,6 +18,7 @@
 #import "TTTAttributedLabel.h"
 #import "SMLocationManager.h"
 #import "SMUtil.h"
+#import "SMRequestOSRM.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
@@ -27,6 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray * terms;
 @property (nonatomic, strong) NSString * srchString;
+@property (nonatomic, strong) SMRequestOSRM * req;
 @end
 
 @implementation SMSearchController
@@ -131,6 +133,10 @@
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"oiorest"]) {
         searchField.text = [currentRow objectForKey:@"address"];
         [self checkLocation];
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
+        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+        [r setRequestIdentifier:@"getNearestForPinDrop"];
+        [r findNearestPointForLocation:[[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]];
     } else {
         if ([currentRow objectForKey:@"subsource"]) {
             [self setLocationData:@{
@@ -350,6 +356,56 @@
     self.searchResults = r;
     [tblView reloadData];
     [tblFade setAlpha:0.0f];
+}
+
+#pragma mark - osrm request delegate
+
+- (void)request:(SMRequestOSRM *)req finishedWithResult:(id)res {
+    if ([req.requestIdentifier isEqualToString:@"getNearestForPinDrop"]) {
+        NSDictionary * r = res;
+        CLLocation * coord;
+        if ([r objectForKey:@"mapped_coordinate"] && [[r objectForKey:@"mapped_coordinate"] isKindOfClass:[NSArray class]] && ([[r objectForKey:@"mapped_coordinate"] count] > 1)) {
+            coord = [[CLLocation alloc] initWithLatitude:[[[r objectForKey:@"mapped_coordinate"] objectAtIndex:0] doubleValue] longitude:[[[r objectForKey:@"mapped_coordinate"] objectAtIndex:1] doubleValue]];
+        } else {
+            coord = req.coord;
+        }
+        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
+        [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude]];
+    }
+}
+
+- (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
+}
+
+
+#pragma mark - nearby places delegate
+
+- (void) nearbyPlaces:(SMNearbyPlaces *)owner foundLocations:(NSArray *)locations {
+    NSMutableArray * arr = [NSMutableArray array];
+    if ([[owner.title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
+        [arr addObject:[owner.title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    }
+    if ([[owner.subtitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
+        [arr addObject:[owner.subtitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    }
+    NSString * s = [arr componentsJoinedByString:@", "];
+    [self setLocationData:@{
+     @"name" : CURRENT_POSITION_STRING,
+     @"address" : ([s isEqualToString:@""]?CURRENT_POSITION_STRING:s),
+     @"location" : owner.coord,
+     @"source" : @"currentPosition",
+     @"subsource" : @""
+     }];
+    if (self.delegate) {
+        [self.delegate locationFound:self.locationData];
+    }
+    [self dismissModalViewControllerAnimated:YES];
+//    [self.destinationPin setNearbyObjects:locations];
+//    [self.destinationPin setSubtitle:owner.subtitle];
+//    [self.destinationPin setTitle:owner.title];
+//    [self.destinationPin setDelegate:self];
+//    [self.destinationPin setRoutingCoordinate:owner.coord];
+//    [self.destinationPin showCallout];
 }
 
 

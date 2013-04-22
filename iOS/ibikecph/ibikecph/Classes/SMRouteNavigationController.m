@@ -80,7 +80,7 @@ typedef enum {
     
     [self.mpView setTileSource:TILE_SOURCE];
     [self.mpView setDelegate:self];
-    [self.mpView setMaxZoom:25.0f];
+    [self.mpView setMaxZoom:MAX_MAP_ZOOM];
     
     [self setDirectionsState:directionsHidden];
     
@@ -113,6 +113,7 @@ typedef enum {
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
     
     [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
+    [self.mpView addObserver:self forKeyPath:@"zoom" options:0 context:nil];
     [self addObserver:self forKeyPath:@"currentlyRouting" options:0 context:nil];
     [swipableView addObserver:self forKeyPath:@"hidden" options:0 context:nil];
     [self.mapFade addObserver:self forKeyPath:@"frame" options:0 context:nil];
@@ -137,6 +138,7 @@ typedef enum {
     [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     [swipableView removeObserver:self forKeyPath:@"hidden" context:nil];
     [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
+    [self.mpView removeObserver:self forKeyPath:@"zoom" context:nil];
     [super viewWillDisappear:animated];
 }
 
@@ -577,32 +579,39 @@ typedef enum {
     [finishDestination setText:[a objectAtIndex:0]];
     
     [[NSFileManager defaultManager] removeItemAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"] error:nil];
+
+    /**
+     * don't show destination notification
+     */
     
     [UIView animateWithDuration:0.4f animations:^{
-        [finishFadeView setAlpha:1.0f];
+//        [finishFadeView setAlpha:1.0f];
     } completion:^(BOOL finished) {
         [self setDirectionsState:directionsHidden];
         [labelDistanceLeft setText:@""];
         [labelTimeLeft setText:@""];
+        
+        /**
+         * enable screen time out
+         */
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+        /**
+         * remove delegate so we don't correct position and heading any more
+         */
+        [self.mpView setRoutingDelegate:nil];
+        
+        /**
+         * show actual route travelled
+         */
+        [self showRouteTravelled];
+        
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
+        
+//        [self goBack:nil];
+
     }];
-    
-    /**
-     * enable screen time out 
-     */
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    /**
-     * remove delegate so we don't correct position and heading any more
-     */
-    [self.mpView setRoutingDelegate:nil];
-    
-    /**
-     * show actual route travelled
-     */
-    [self showRouteTravelled];
-    
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
-        debugLog(@"error in trackEvent");
-    }
 
 }
 
@@ -1130,6 +1139,8 @@ typedef enum {
             [tblDirections setAlpha:0.0f];
         }
         [self drawArrows];
+    } else if (object == self.mpView && [keyPath isEqualToString:@"zoom"]) {
+        NSLog(@"Zoom: %f", self.mpView.zoom);
     } else if (object == self.mpView && [keyPath isEqualToString:@"userTrackingMode"]) {
         if (self.mpView.userTrackingMode == RMUserTrackingModeFollow) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];

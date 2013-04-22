@@ -45,42 +45,44 @@ typedef enum {
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://geo.oiorest.dk/adresser.json?q=%@&maxantal=50", [self.srchString urlEncode]]]];
     debugLog(@"%@", req);
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
-        NSDictionary * res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSMutableArray * arr = [NSMutableArray array];
-        NSMutableArray * terms = [NSMutableArray array];
-        for (NSString * str in [[self.srchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "]) {
-            if ([terms indexOfObject:str] == NSNotFound) {
-                [terms addObject:str];
+        if (data) {
+            NSDictionary * res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSMutableArray * arr = [NSMutableArray array];
+            NSMutableArray * terms = [NSMutableArray array];
+            for (NSString * str in [[self.srchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "]) {
+                if ([terms indexOfObject:str] == NSNotFound) {
+                    [terms addObject:str];
+                }
             }
+            for (NSDictionary* d in res) {
+                if ([[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] >= 1000 && [[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] <= 2999) {
+                    [arr addObject:@{
+                     @"name" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
+                     @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
+                     @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
+                     @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
+                     @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
+                     @"country" : @"",
+                     @"source" : @"autocomplete",
+                     @"subsource" : @"oiorest",
+                     @"relevance" : [NSNumber numberWithInteger:[SMUtil pointsForName:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andAddress:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andTerms:self.srchString]],
+                     @"order" : @2
+                     }];
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                @synchronized(self.resultsArr) {
+                    [self.resultsArr addObjectsFromArray:arr];
+                    [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+                        return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
+                    }];
+                    
+                }
+                if (self.delegate) {
+                    [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
+                }
+            });
         }
-        for (NSDictionary* d in res) {
-            if ([[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] >= 1000 && [[[d objectForKey:@"postnummer"] objectForKey:@"nr"] integerValue] <= 2999) {
-                [arr addObject:@{
-                 @"name" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
-                 @"address" : [NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]],
-                 @"street" : [[d objectForKey:@"vejnavn"] objectForKey:@"navn"],
-                 @"zip" : [[d objectForKey:@"postnummer"] objectForKey:@"nr"],
-                 @"city" : [[d objectForKey:@"kommune"] objectForKey:@"navn"],
-                 @"country" : @"",
-                 @"source" : @"autocomplete",
-                 @"subsource" : @"oiorest",
-                 @"relevance" : [NSNumber numberWithInteger:[SMUtil pointsForName:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andAddress:[NSString stringWithFormat:@"%@ %@, %@ %@, Danmark", [[d objectForKey:@"vejnavn"] objectForKey:@"navn"], [d objectForKey:@"husnr"], [[d objectForKey:@"postnummer"] objectForKey:@"nr"], [[d objectForKey:@"kommune"] objectForKey:@"navn"]] andTerms:self.srchString]],
-                 @"order" : @2
-                 }];
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @synchronized(self.resultsArr) {
-                [self.resultsArr addObjectsFromArray:arr];
-                [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-                    return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
-                }];
-                
-            }
-            if (self.delegate) {
-                [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
-            }
-        });
     }];
 }
 
@@ -116,19 +118,25 @@ typedef enum {
                         
                         if ([[d objectForKey:@"location"] objectForKey:@"address"]) {
                             [dict setValue:[[d objectForKey:@"location"] objectForKey:@"address"] forKey:@"street"];
-                            [ar addObject:[[d objectForKey:@"location"] objectForKey:@"address"]];
+                            if ([[[[d objectForKey:@"location"] objectForKey:@"address"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
+                                [ar addObject:[[[d objectForKey:@"location"] objectForKey:@"address"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+                            }
                         } else {
                             [dict setValue:@"" forKey:@"street"];
                         }
                         if ([[d objectForKey:@"location"] objectForKey:@"city"]) {
                             [dict setValue:[[d objectForKey:@"location"] objectForKey:@"city"] forKey:@"city"];
-                            [ar addObject:[[d objectForKey:@"location"] objectForKey:@"city"]];
+                            if ([[[[d objectForKey:@"location"] objectForKey:@"city"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
+                                [ar addObject:[[[d objectForKey:@"location"] objectForKey:@"city"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+                            }
                         } else {
                             [dict setValue:@"" forKey:@"city"];
                         }
                         if ([[d objectForKey:@"location"] objectForKey:@"country"]) {
                             [dict setValue:[[d objectForKey:@"location"] objectForKey:@"country"] forKey:@"country"];
-                            [ar addObject:[[d objectForKey:@"location"] objectForKey:@"country"]];
+                            if ([[[[d objectForKey:@"location"] objectForKey:@"country"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
+                                [ar addObject:[[[d objectForKey:@"location"] objectForKey:@"country"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+                            }
                         } else {
                             [dict setValue:@"" forKey:@"country"];
                         }
