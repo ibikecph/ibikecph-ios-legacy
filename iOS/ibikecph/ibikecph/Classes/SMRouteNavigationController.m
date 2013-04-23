@@ -327,8 +327,8 @@ typedef enum {
 
 - (void)zoomToLocation:(CLLocation*)loc temporary:(BOOL)isTemp {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-    [self.mpView setZoom:DEFAULT_TURN_ZOOM];
-    [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:loc.coordinate] animated:YES];
+//    [self.mpView setZoom:DEFAULT_TURN_ZOOM];
+//    [self.mpView zoomByFactor:1 near:[self.mpView coordinateToPixel:loc.coordinate] animated:YES];
     [self.mpView setCenterCoordinate:loc.coordinate];
     
     if (buttonTrackUser.gpsTrackState != SMGPSTrackButtonStateNotFollowing) {
@@ -609,6 +609,8 @@ typedef enum {
             debugLog(@"error in trackEvent");
         }
         
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+        
 //        [self goBack:nil];
 
     }];
@@ -733,7 +735,7 @@ typedef enum {
 -(IBAction)trackUser:(id)sender {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(resetZoomTurn) object:nil];
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
-    [self resetZoom];
+//    [self resetZoom];
 
     CLLocationCoordinate2D center;
     if ([SMLocationManager instance].hasValidLocation)
@@ -825,12 +827,12 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    int i = [indexPath row];
-    if (i < 0 || i >= self.route.turnInstructions.count)
-        return;
-    SMTurnInstruction *selectedTurn = [self.route.turnInstructions objectAtIndex:i];
-
-    [self zoomToLocation:selectedTurn.loc temporary:YES];
+//    int i = [indexPath row];
+//    if (i < 0 || i >= self.route.turnInstructions.count)
+//        return;
+//    SMTurnInstruction *selectedTurn = [self.route.turnInstructions objectAtIndex:i];
+//
+//    [self zoomToLocation:selectedTurn.loc temporary:YES];
 }
 
 #pragma mark - alert view delegate

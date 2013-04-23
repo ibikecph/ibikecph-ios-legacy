@@ -1841,13 +1841,9 @@ typedef enum {
         }
     } else if (object == tblMenu && [keyPath isEqualToString:@"editing"]) {
         if (tblMenu.editing) {
-//            [tblMenu setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
             [favEditDone setHidden:NO];
             [favEditStart setHidden:YES];
         } else {
-//            if ([self.favoritesList count] > 0) {
-//                [tblMenu setTableFooterView:self.tableFooter];
-//            }
             [favEditDone setHidden:YES];
             [favEditStart setHidden:NO];
         }
