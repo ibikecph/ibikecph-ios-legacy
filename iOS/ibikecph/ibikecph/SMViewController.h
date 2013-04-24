@@ -22,6 +22,7 @@
 #import "SMSearchController.h"
 
 #import "SMAddFavoriteCell.h"
+#import "SMFavoritesUtil.h"
 
 typedef enum {
     screenMenu,
@@ -29,7 +30,7 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, ViewTapDelegate>  {
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, SMEventsDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, ViewTapDelegate, SMFavoritesDelegate>  {
     __weak IBOutlet UIScrollView *scrlView;
     IBOutlet UIView *menuView;
     IBOutlet UIView *addressView;

@@ -110,8 +110,13 @@
 
 #define API_SEND_FEEDBACK @{@"service" : @"issues", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 
+#define API_ADD_FAVORITE @{@"service" : @"favourites", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
+#define API_EDIT_FAVORITE @{@"service" : @"favourites", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
+#define API_DELETE_FAVORITE @{@"service" : @"favourites", @"transferMethod" : @"DELETE",  @"headers" : API_DEFAULT_HEADERS}
+#define API_LIST_FAVORITES @{@"service" : @"favourites", @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS}
 
 
+#define kFAVORITES_CHANGED @"favoritesChanged"
 
 
 

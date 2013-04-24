@@ -11,6 +11,7 @@
 #import "DAKeyboardControl.h"
 #import "SMUtil.h"
 #import <CoreLocation/CoreLocation.h>
+#import "SMFavoritesUtil.h"
 
 typedef enum {
     favHome,
@@ -42,7 +43,7 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([[SMUtil getFavorites] count] > 0) {
+    if ([[SMFavoritesUtil getFavorites] count] > 0) {
         [self.view setAlpha:0.0f];
         [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
     } else {
@@ -65,7 +66,7 @@ typedef enum {
 - (IBAction)saveFavorites:(id)sender {
     if (self.homeDict) {
         if ([self.homeDict objectForKey:@"subsource"] && [[self.homeDict objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-            [SMUtil saveToFavorites:@{
+            [SMFavoritesUtil saveToFavorites:@{
              @"name" : [self.homeDict objectForKey:@"name"],
              @"address" : [self.homeDict objectForKey:@"address"],
              @"startDate" : [NSDate date],
@@ -77,7 +78,7 @@ typedef enum {
              @"order" : @0
              }];
         } else {
-            [SMUtil saveToFavorites:@{
+            [SMFavoritesUtil saveToFavorites:@{
              @"name" : translateString(@"Home"),
              @"address" : [self.homeDict objectForKey:@"address"],
              @"startDate" : [NSDate date],
@@ -92,7 +93,7 @@ typedef enum {
     }
     if (self.workDict) {
         if ([self.workDict objectForKey:@"subsource"] && [[self.workDict objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
-            [SMUtil saveToFavorites:@{
+            [SMFavoritesUtil saveToFavorites:@{
              @"name" : [self.workDict objectForKey:@"name"],
              @"address" : [self.workDict objectForKey:@"address"],
              @"startDate" : [NSDate date],
@@ -104,7 +105,7 @@ typedef enum {
              @"order" : @0
              }];
         } else {
-            [SMUtil saveToFavorites:@{
+            [SMFavoritesUtil saveToFavorites:@{
              @"name" : translateString(@"Work"),
              @"address" : [self.workDict objectForKey:@"address"],
              @"startDate" : [NSDate date],

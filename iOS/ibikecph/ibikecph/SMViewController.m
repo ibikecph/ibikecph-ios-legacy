@@ -36,6 +36,7 @@
 #import "SMEmptyFavoritesCell.h"
 
 #import "DAKeyboardControl.h"
+#import "SMFavoritesUtil.h"
 
 typedef enum {
     menuFavorites = 0,
@@ -88,6 +89,7 @@ typedef enum {
 @property NSInteger locIndex;
 @property (nonatomic, strong) NSString * favName;
 
+@property (nonatomic, strong) SMFavoritesUtil * favs;
 @end
 
 @implementation SMViewController
@@ -125,7 +127,7 @@ typedef enum {
      */
     self.contactsArr = @[];
     self.favorites = [@[] mutableCopy];
-    [self setFavoritesList:[SMUtil getFavorites]];
+    [self setFavoritesList:[SMFavoritesUtil getFavorites]];
 
     /**
      * removed for alpha
@@ -193,6 +195,8 @@ typedef enum {
     [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [oneFingerSwipeRight setDelegate:self];
     [scrlView addGestureRecognizer:oneFingerSwipeRight];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoritesChanged:) name:kFAVORITES_CHANGED object:nil];
 }
 
 - (IBAction)doubleTap:(UITapGestureRecognizer*)sender {
@@ -356,6 +360,12 @@ typedef enum {
 //        }
 //        animationShown = YES;
 //    }
+    
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        SMFavoritesUtil * fv = [[SMFavoritesUtil alloc] initWithDelegate:self];
+        [self setFavs:fv];
+        [self.favs fetchFavoritesFromServer];
+    }
 }
 
 #pragma mark - custom methods
@@ -756,14 +766,14 @@ typedef enum {
     if (scrlView.contentOffset.x == 0) {
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.2f animations:^{
             [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
         } completion:^(BOOL finished) {
             blockingView.alpha = 0.0f;
             [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
         }];
     } else {
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.2f animations:^{
             [scrlView setContentOffset:CGPointZero animated:NO];
         } completion:^(BOOL finished) {
             [self.view sendSubviewToBack:scrlView];
@@ -860,7 +870,7 @@ typedef enum {
         [self.view bringSubviewToFront:menuView];
         [mainMenu setHidden:NO];
         [addMenu setHidden:YES];
-        [self setFavoritesList:[SMUtil getFavorites]];
+        [self setFavoritesList:[SMFavoritesUtil getFavorites]];
         if ([self.favoritesList count] == 0) {
             [tblMenu setEditing:NO];
         }
@@ -891,7 +901,8 @@ typedef enum {
     }
         
     if (self.locDict && [self.locDict objectForKey:@"address"] && [addFavName.text isEqualToString:@""] == NO) {
-        [SMUtil saveToFavorites:@{
+        SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+        [fv addFavoriteToServer:@{
          @"name" : addFavName.text,
          @"address" : [self.locDict objectForKey:@"address"],
          @"startDate" : [NSDate date],
@@ -901,7 +912,19 @@ typedef enum {
          @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
          @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
          @"order" : @0
-         }];        
+         }];
+        
+//        [SMFavoritesUtil saveToFavorites:@{
+//         @"name" : addFavName.text,
+//         @"address" : [self.locDict objectForKey:@"address"],
+//         @"startDate" : [NSDate date],
+//         @"endDate" : [NSDate date],
+//         @"source" : @"favorites",
+//         @"subsource" : favType,
+//         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+//         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+//         @"order" : @0
+//         }];        
     }
     
     [self addFavoriteHide:nil];
@@ -913,11 +936,16 @@ typedef enum {
 }
 
 - (IBAction)deleteFavorite:(id)sender {
+    SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+    [fv deleteFavoriteFromServer:@{
+     @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"]
+     }];
+    
     if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
         debugLog(@"error in trackEvent");
     }
-    [self.favoritesList removeObject:self.locDict];
-    [SMUtil saveFavorites:self.favoritesList];
+//    [self.favoritesList removeObject:self.locDict];
+//    [SMFavoritesUtil saveFavorites:self.favoritesList];
     [self addFavoriteHide:nil];
 }
 
@@ -942,21 +970,25 @@ typedef enum {
     }
     
     NSDictionary * dict = @{
-                        @"name" : addFavName.text,
-                        @"address" : [self.locDict objectForKey:@"address"],
-                        @"startDate" : [NSDate date],
-                        @"endDate" : [NSDate date],
-                        @"source" : @"favorites",
-                        @"subsource" : favType,
-                        @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
-                        @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
-                        @"order" : @0
-                        };
+                            @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"],
+                            @"name" : addFavName.text,
+                            @"address" : [self.locDict objectForKey:@"address"],
+                            @"startDate" : [NSDate date],
+                            @"endDate" : [NSDate date],
+                            @"source" : @"favorites",
+                            @"subsource" : favType,
+                            @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+                            @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+                            @"order" : @0
+                            };
     
     debugLog(@"%@", dict);
     
-    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
-    [SMUtil saveFavorites:self.favoritesList];
+    SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+    [fv editFavorite:dict];
+    
+//    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
+//    [SMFavoritesUtil saveFavorites:self.favoritesList];
     [self addFavoriteHide:nil];
     if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
         debugLog(@"error in trackEvent");
@@ -1416,7 +1448,7 @@ typedef enum {
         [self.favoritesList insertObject:src atIndex:destinationIndexPath.row];
         [self.favoritesList removeObjectAtIndex:sourceIndexPath.row];
         [self.favoritesList insertObject:dst atIndex:sourceIndexPath.row];
-        [SMUtil saveFavorites:self.favoritesList];
+        [SMFavoritesUtil saveFavorites:self.favoritesList];
     } else if (tableView == tblEvents) {
         if ((sourceIndexPath.section == 0) && (destinationIndexPath.section == 0)) {
             NSDictionary * dst = [self.favorites objectAtIndex:destinationIndexPath.row];
@@ -1920,6 +1952,20 @@ typedef enum {
     CGRect frame = addMenu.frame;
     frame.size.height = menuView.frame.size.height;
     [addMenu setFrame:frame];
+}
+
+#pragma mark - notifications
+
+- (void)favoritesChanged:(NSNotification*) notification {
+    self.favoritesList = [SMFavoritesUtil getFavorites];
+    [self openMenu:menuFavorites];
+    
+}
+
+#pragma mark - smfavorites delegate
+
+- (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data {
+    
 }
 
 @end

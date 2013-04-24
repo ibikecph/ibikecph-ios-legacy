@@ -12,7 +12,6 @@
 #import "NSString+Relevance.h"
 
 
-
 @implementation SMUtil
 
 #define POINTS_EXACT_NAME 20

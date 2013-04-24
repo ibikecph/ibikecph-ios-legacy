@@ -13,6 +13,8 @@
 #import "SMEnterRouteCell.h"
 #import "SMAutocompleteHeader.h"
 #import "SMViewMoreCell.h"
+#import "SMFavoritesController.h"
+#import "SMFavoritesUtil.h"
 
 typedef enum {
     fieldTo,
@@ -67,7 +69,7 @@ typedef enum {
     
     
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    NSMutableArray * saved = [SMUtil getFavorites];
+    NSMutableArray * saved = [SMFavoritesUtil getFavorites];
     /**
      * add saved routes here
      */

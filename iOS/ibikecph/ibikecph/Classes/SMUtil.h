@@ -37,10 +37,6 @@ NSString *formatTimeLeft(NSInteger seconds);
 + (NSArray*)getSearchHistory;
 + (BOOL)saveToSearchHistory:(NSDictionary*)dict;
 
-+ (NSMutableArray*)getFavorites;
-+ (BOOL)saveToFavorites:(NSDictionary*)dict;
-+ (BOOL)saveFavorites:(NSArray*)fav;
-
 + (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSString*)srchString;
 
 @end

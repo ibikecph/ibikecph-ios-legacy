@@ -19,6 +19,7 @@
 #import "SMLocationManager.h"
 #import "SMUtil.h"
 #import "SMRequestOSRM.h"
+#import "SMFavoritesUtil.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
@@ -47,7 +48,7 @@
     self.autocomp = [[SMAutocomplete alloc] initWithDelegate:self];
     [tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [searchField becomeFirstResponder];
-    [self setFavorites:[SMUtil getFavorites]];
+    [self setFavorites:[SMFavoritesUtil getFavorites]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

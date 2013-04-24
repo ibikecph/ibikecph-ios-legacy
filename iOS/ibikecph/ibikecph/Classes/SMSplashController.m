@@ -17,6 +17,7 @@
 #import "SMAppDelegate.h"
 #import "UIImage+Resize.h"
 #import "Base64.h"
+#import "SMFavoritesUtil.h"
 
 typedef enum {
     dialogLogin,
@@ -48,6 +49,10 @@ typedef enum {
      */
     registerImage.layer.cornerRadius = 5;
     registerImage.layer.masksToBounds = YES;
+    
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        [[SMFavoritesUtil instance] fetchFavoritesFromServer];
+    }
 }
 
 - (void)viewDidUnload {
@@ -75,19 +80,16 @@ typedef enum {
     }];
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
-        if ([self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"]) {
-            [self loginWithFB:nil];
-        } else {
-            SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-            [self setApr:ap];
-            [self.apr setRequestIdentifier:@"autoLogin"];
-            [self.apr showTransparentWaitingIndicatorInView:self.view];
-            [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
-        }
-        /**
-         * uncomment this if we can use token from previous login
-         */
-//        [self goToFavorites:nil];
+//        if ([self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"]) {
+//            [self loginWithFB:nil];
+//        } else {
+//            SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+//            [self setApr:ap];
+//            [self.apr setRequestIdentifier:@"autoLogin"];
+//            [self.apr showTransparentWaitingIndicatorInView:self.view];
+//            [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
+//        }
+        [self goToFavorites:nil];
     }
 }
 
@@ -193,7 +195,7 @@ typedef enum {
 }
 
 - (IBAction)goToFavorites:(id)sender {
-    if ([[SMUtil getFavorites] count] > 0) {
+    if ([[SMFavoritesUtil getFavorites] count] > 0) {
         [self performSegueWithIdentifier:@"splashToMain" sender:nil];
     } else {
         [self performSegueWithIdentifier:@"splashToFavorites" sender:nil];
