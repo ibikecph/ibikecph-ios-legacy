@@ -239,3 +239,4 @@
 "report_error_step_not_selected" = "Vælg venligst et trin i ruten";
 
 "error_duplicate_favorite_name" = "Du har allerede en favorit med dette navn. Omdøb venligst din favorit og gem igen.";
+"start_route" = "START";

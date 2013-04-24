@@ -333,7 +333,7 @@ typedef enum {
         SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
         endMarkerAnnotation.annotationType = @"marker";
         endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
         [self.mpView addAnnotation:endMarkerAnnotation];
         [self setDestinationPin:endMarkerAnnotation];
     } else {
@@ -597,7 +597,7 @@ typedef enum {
             SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
             endMarkerAnnotation.annotationType = @"marker";
             endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-            endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+            endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
             [self.mpView addAnnotation:endMarkerAnnotation];
             [self setDestinationPin:endMarkerAnnotation];
             

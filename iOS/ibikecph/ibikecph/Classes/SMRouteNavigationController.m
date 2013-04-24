@@ -267,7 +267,7 @@ typedef enum {
     SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
     startMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerStart"];
-    startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
     NSMutableArray * arr = [[self.source componentsSeparatedByString:@","] mutableCopy];
     startMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([startMarkerAnnotation.title isEqualToString:@""]) {
@@ -280,7 +280,7 @@ typedef enum {
     SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
     endMarkerAnnotation.annotationType = @"marker";
     endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-    endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+    endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
     arr = [[self.destination componentsSeparatedByString:@","] mutableCopy];
     endMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [arr removeObjectAtIndex:0];
