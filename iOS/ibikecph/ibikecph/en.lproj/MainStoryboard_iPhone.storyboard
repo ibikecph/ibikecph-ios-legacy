@@ -45,18 +45,6 @@
                                 <rect key="frame" x="0.0" y="55" width="320" height="513"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" alpha="0.0" contentMode="scaleToFill" id="aBB-bp-kcM">
-                                    <rect key="frame" x="0.0" y="102" width="320" height="513"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="zhj-U6-Y2E">
-                                            <rect key="frame" x="142" y="206" width="37" height="37"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="40" id="jOL-jG-Epq" customClass="SMSearchCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="40"/>
@@ -125,6 +113,18 @@
                                     <outlet property="delegate" destination="Z0Q-Xf-vK7" id="3Fb-dj-G3t"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.0" contentMode="scaleToFill" id="aBB-bp-kcM">
+                                <rect key="frame" x="0.0" y="48" width="320" height="520"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="zhj-U6-Y2E">
+                                        <rect key="frame" x="142" y="241" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2776,6 +2776,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.76000000000000001" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="no_connection.png" id="xk9-Ph-nIz">
+                                <rect key="frame" x="280" y="69" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2795,6 +2799,7 @@
                         <outlet property="mapFade" destination="YHo-2f-hkS" id="dmb-Y0-BO1"/>
                         <outlet property="minimizedInstructionsView" destination="OXh-z0-rmJ" id="wO9-Ky-2oJ"/>
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
+                        <outlet property="noConnectionView" destination="xk9-Ph-nIz" id="N6F-Pn-Kxi"/>
                         <outlet property="overviewDestination" destination="dMz-a6-dcA" id="h7R-e7-ylQ"/>
                         <outlet property="overviewTimeDistance" destination="yyu-vq-Lpe" id="RPn-wa-ev5"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
@@ -3120,6 +3125,7 @@
         <image name="loginFacebook.png" width="216" height="45"/>
         <image name="loginFacebookPressed.png" width="216" height="45"/>
         <image name="mover.png" width="20" height="12"/>
+        <image name="no_connection.png" width="24" height="24"/>
         <image name="normalDirectionsBG.png" width="320" height="105"/>
         <image name="overviewBG.png" width="320" height="106"/>
         <image name="profile.png" width="22" height="22"/>
@@ -3362,6 +3368,14 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="hideStopView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="reportError:"/>
+                <relationship kind="action" name="startRouting:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
@@ -3377,6 +3391,7 @@
                 <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
+                <relationship kind="outlet" name="noConnectionView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="overviewTimeDistance" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
@@ -3435,28 +3450,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
-                <relationship kind="action" name="enterRoute:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="slideMenuOpen:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
-                <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>

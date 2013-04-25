@@ -171,6 +171,7 @@ typedef enum {
     arrivalBG = nil;
     swipeLeftArrow = nil;
     swipeRightArrow = nil;
+    noConnectionView = nil;
     [super viewDidUnload];
 }
 
@@ -647,6 +648,7 @@ typedef enum {
 
 - (void) updateRoute {
     // Remove previous path and display new one
+    [noConnectionView setAlpha:0.0f];
     for (RMAnnotation *annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"path"]) {
             [self.mpView removeAnnotation:annotation];
@@ -668,10 +670,20 @@ typedef enum {
 
 - (void)routeRecalculationDone {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [noConnectionView setAlpha:0.0f];
         [recalculatingView setAlpha:1.0f];
         [self reloadSwipableView];
         [UIView animateWithDuration:0.3f animations:^{
             [recalculatingView setAlpha:0.0f];
+        }];
+    });
+}
+
+- (void)serverError {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.3f animations:^{
+            [recalculatingView setAlpha:0.0f];
+            [noConnectionView setAlpha:1.0f];
         }];
     });
 }

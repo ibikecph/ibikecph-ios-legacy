@@ -545,6 +545,7 @@ typedef enum {
         } completion:^(BOOL finished) {
             [self.view sendSubviewToBack:scrlView];
             [self.view bringSubviewToFront:menuView];
+            [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 1.0f;
             [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
         }];
@@ -555,6 +556,7 @@ typedef enum {
     if (currentScreen == screenMenu) {
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
+        [self.view bringSubviewToFront:fadeView];
         [UIView animateWithDuration:0.5f animations:^{
             [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
         } completion:^(BOOL finished) {
@@ -668,10 +670,12 @@ typedef enum {
         [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
         [self.view sendSubviewToBack:scrlView];
         [self.view bringSubviewToFront:menuView];
+        [self.view bringSubviewToFront:fadeView];
     } else if (currentScreen == screenMap) {
         [scrlView setContentOffset:CGPointMake(scrWidth - 60.0f, 0.0f) animated:NO];
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
+        [self.view bringSubviewToFront:fadeView];
     }
     
 //    if ([self.eventsGroupedArray count] > 0) {
@@ -700,6 +704,7 @@ typedef enum {
     }
     [self.view sendSubviewToBack:menuView];
     [self.view bringSubviewToFront:scrlView];
+    [self.view bringSubviewToFront:fadeView];
     [self.view hideKeyboard];
 }
 
@@ -766,6 +771,7 @@ typedef enum {
     if (scrlView.contentOffset.x == 0) {
         [self.view sendSubviewToBack:menuView];
         [self.view bringSubviewToFront:scrlView];
+        [self.view bringSubviewToFront:fadeView];
         [UIView animateWithDuration:0.2f animations:^{
             [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
         } completion:^(BOOL finished) {
@@ -778,6 +784,7 @@ typedef enum {
         } completion:^(BOOL finished) {
             [self.view sendSubviewToBack:scrlView];
             [self.view bringSubviewToFront:menuView];
+            [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 1.0f;
             [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
         }];
@@ -789,44 +796,55 @@ typedef enum {
 }
 
 - (IBAction)editFavoriteShow:(id)sender {
-    addFavAddress.text = [self.locDict objectForKey:@"address"];
-    addFavName.text = [self.locDict objectForKey:@"name"];
-    editTitle.text = translateString(@"edit_favorite");
-    [addSaveButton setHidden:YES];
-    [editSaveButton setHidden:NO];
-    [editDeleteButton setHidden:NO];
-    
-    if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"home"]) {
-        currentFav = typeHome;
-        [self addSelectHome:nil];
-    } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"work"]) {
-        currentFav = typeWork;
-        [self addSelectWork:nil];
-    } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"school"]) {
-        currentFav = typeSchool;
-        [self addSelectSchool:nil];
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        addFavAddress.text = [self.locDict objectForKey:@"address"];
+        addFavName.text = [self.locDict objectForKey:@"name"];
+        editTitle.text = translateString(@"edit_favorite");
+        [addSaveButton setHidden:YES];
+        [editSaveButton setHidden:NO];
+        [editDeleteButton setHidden:NO];
+        
+        if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"home"]) {
+            currentFav = typeHome;
+            [self addSelectHome:nil];
+        } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"work"]) {
+            currentFav = typeWork;
+            [self addSelectWork:nil];
+        } else if ([[self.locDict objectForKey:@"subsource"] isEqualToString:@"school"]) {
+            currentFav = typeSchool;
+            [self addSelectSchool:nil];
+        } else {
+            currentFav = typeFavorite;
+            [self addSelectFavorite:nil];
+        }
+        
+        [self animateEditViewShow];
     } else {
-        currentFav = typeFavorite;
-        [self addSelectFavorite:nil];
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
     }
-    
-    [self animateEditViewShow];
-
-
 }
 
 - (IBAction)addFavoriteShow:(id)sender {
-    self.locDict = nil;
-    addFavAddress.text = @"";
-    addFavName.text = @"";
-    currentFav = typeFavorite;
-    [self addSelectFavorite:nil];
-    editTitle.text = translateString(@"add_favorite");
-    [addSaveButton setHidden:NO];
-    [editSaveButton setHidden:YES];
-    [editDeleteButton setHidden:YES];
     
-    [self animateEditViewShow];
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        self.locDict = nil;
+        addFavAddress.text = @"";
+        addFavName.text = @"";
+        currentFav = typeFavorite;
+        [self addSelectFavorite:nil];
+        editTitle.text = translateString(@"add_favorite");
+        [addSaveButton setHidden:NO];
+        [editSaveButton setHidden:YES];
+        [editDeleteButton setHidden:YES];
+        
+        [self animateEditViewShow];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+    }
+    
+    
 }
 
 - (void)animateEditViewShow {
@@ -840,6 +858,7 @@ typedef enum {
     
     [self.view sendSubviewToBack:menuView];
     [self.view bringSubviewToFront:scrlView];
+    [self.view bringSubviewToFront:fadeView];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
         frame.origin.x = -260.0f;
@@ -850,6 +869,7 @@ typedef enum {
     } completion:^(BOOL finished) {
         [self.view sendSubviewToBack:scrlView];
         [self.view bringSubviewToFront:menuView];
+        [self.view bringSubviewToFront:fadeView];
     }];
     
 }
@@ -857,6 +877,7 @@ typedef enum {
 - (IBAction)addFavoriteHide:(id)sender{
     [self.view sendSubviewToBack:menuView];
     [self.view bringSubviewToFront:scrlView];
+    [self.view bringSubviewToFront:fadeView];
     [self.view hideKeyboard];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
@@ -868,6 +889,7 @@ typedef enum {
     } completion:^(BOOL finished) {
         [self.view sendSubviewToBack:scrlView];
         [self.view bringSubviewToFront:menuView];
+        [self.view bringSubviewToFront:fadeView];
         [mainMenu setHidden:NO];
         [addMenu setHidden:YES];
         [self setFavoritesList:[SMFavoritesUtil getFavorites]];
@@ -881,38 +903,49 @@ typedef enum {
 }
 
 - (IBAction)saveFavorite:(id)sender {
-    NSString * favType;
-    switch (currentFav) {
-        case typeFavorite:
-            favType = @"favorite";
-            break;
-        case typeHome:
-            favType = @"home";
-            break;
-        case typeWork:
-            favType = @"work";
-            break;
-        case typeSchool:
-            favType = @"school";
-            break;
-        default:
-            favType = @"favorite";
-            break;
-    }
+   
         
     if (self.locDict && [self.locDict objectForKey:@"address"] && [addFavName.text isEqualToString:@""] == NO) {
-        SMFavoritesUtil * fv = [SMFavoritesUtil instance];
-        [fv addFavoriteToServer:@{
-         @"name" : addFavName.text,
-         @"address" : [self.locDict objectForKey:@"address"],
-         @"startDate" : [NSDate date],
-         @"endDate" : [NSDate date],
-         @"source" : @"favorites",
-         @"subsource" : favType,
-         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
-         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
-         @"order" : @0
-         }];
+        if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+            NSString * favType;
+            switch (currentFav) {
+                case typeFavorite:
+                    favType = @"favorite";
+                    break;
+                case typeHome:
+                    favType = @"home";
+                    break;
+                case typeWork:
+                    favType = @"work";
+                    break;
+                case typeSchool:
+                    favType = @"school";
+                    break;
+                default:
+                    favType = @"favorite";
+                    break;
+            }
+            SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+            [fv addFavoriteToServer:@{
+             @"name" : addFavName.text,
+             @"address" : [self.locDict objectForKey:@"address"],
+             @"startDate" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"source" : @"favorites",
+             @"subsource" : favType,
+             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+             @"order" : @0
+             }];
+            [self addFavoriteHide:nil];
+            
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
+        } else {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        }
         
 //        [SMFavoritesUtil saveToFavorites:@{
 //         @"name" : addFavName.text,
@@ -927,71 +960,82 @@ typedef enum {
 //         }];        
     }
     
-    [self addFavoriteHide:nil];
     
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
-        debugLog(@"error in trackEvent");
-    }
 
 }
 
 - (IBAction)deleteFavorite:(id)sender {
-    SMFavoritesUtil * fv = [SMFavoritesUtil instance];
-    [fv deleteFavoriteFromServer:@{
-     @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"]
-     }];
     
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
-        debugLog(@"error in trackEvent");
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+        [fv deleteFavoriteFromServer:@{
+         @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"]
+         }];
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
+        //    [self.favoritesList removeObject:self.locDict];
+        //    [SMFavoritesUtil saveFavorites:self.favoritesList];
+        [self addFavoriteHide:nil];
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+
     }
-//    [self.favoritesList removeObject:self.locDict];
-//    [SMFavoritesUtil saveFavorites:self.favoritesList];
-    [self addFavoriteHide:nil];
-}
+    
+    
+    }
 
 - (IBAction)editSaveFavorite:(id)sender {
-    NSString * favType;
-    switch (currentFav) {
-        case typeFavorite:
-            favType = @"favorite";
-            break;
-        case typeHome:
-            favType = @"home";
-            break;
-        case typeWork:
-            favType = @"work";
-            break;
-        case typeSchool:
-            favType = @"school";
-            break;
-        default:
-            favType = @"favorite";
-            break;
-    }
     
-    NSDictionary * dict = @{
-                            @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"],
-                            @"name" : addFavName.text,
-                            @"address" : [self.locDict objectForKey:@"address"],
-                            @"startDate" : [NSDate date],
-                            @"endDate" : [NSDate date],
-                            @"source" : @"favorites",
-                            @"subsource" : favType,
-                            @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
-                            @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
-                            @"order" : @0
-                            };
     
-    debugLog(@"%@", dict);
-    
-    SMFavoritesUtil * fv = [SMFavoritesUtil instance];
-    [fv editFavorite:dict];
-    
-//    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
-//    [SMFavoritesUtil saveFavorites:self.favoritesList];
-    [self addFavoriteHide:nil];
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
-        debugLog(@"error in trackEvent");
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        NSString * favType;
+        switch (currentFav) {
+            case typeFavorite:
+                favType = @"favorite";
+                break;
+            case typeHome:
+                favType = @"home";
+                break;
+            case typeWork:
+                favType = @"work";
+                break;
+            case typeSchool:
+                favType = @"school";
+                break;
+            default:
+                favType = @"favorite";
+                break;
+        }
+        
+        NSDictionary * dict = @{
+                                @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"],
+                                @"name" : addFavName.text,
+                                @"address" : [self.locDict objectForKey:@"address"],
+                                @"startDate" : [NSDate date],
+                                @"endDate" : [NSDate date],
+                                @"source" : @"favorites",
+                                @"subsource" : favType,
+                                @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
+                                @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+                                @"order" : @0
+                                };
+        
+        debugLog(@"%@", dict);
+        
+        SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+        [fv editFavorite:dict];
+        //    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
+        //    [SMFavoritesUtil saveFavorites:self.favoritesList];
+        [self addFavoriteHide:nil];
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        
     }
 }
 
@@ -1848,7 +1892,7 @@ typedef enum {
             }];
             
         }
-        [UIView animateWithDuration:0.2f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
             [fadeView setAlpha:0.0f];
         }];
     }
@@ -1887,11 +1931,13 @@ typedef enum {
             currentScreen = screenMenu;
             [self.view sendSubviewToBack:scrlView];
             [self.view bringSubviewToFront:menuView];
+            [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 1.0f;
         } else if (scrlView.contentOffset.x == 260.0f) {
             currentScreen = screenMap;
             [self.view sendSubviewToBack:menuView];
             [self.view bringSubviewToFront:scrlView];
+            [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 0.0f;
         }
 

@@ -398,6 +398,8 @@
 		4CAF3D49172035DE003C05AA /* favHomeBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3D45172035DD003C05AA /* favHomeBlack@2x.png */; };
 		4CAF3D4A172035DE003C05AA /* favWorkBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3D46172035DD003C05AA /* favWorkBlack.png */; };
 		4CAF3D4B172035DE003C05AA /* favWorkBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3D47172035DE003C05AA /* favWorkBlack@2x.png */; };
+		4CB15BE1172929F000C3BB1E /* no_connection.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15BDF172929F000C3BB1E /* no_connection.png */; };
+		4CB15BE2172929F000C3BB1E /* no_connection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15BE0172929F000C3BB1E /* no_connection@2x.png */; };
 		4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */; };
 		4CC388A216E77A4800E7C884 /* tokenHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */; };
 		4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */; };
@@ -940,6 +942,8 @@
 		4CAF3D47172035DE003C05AA /* favWorkBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favWorkBlack@2x.png"; sourceTree = "<group>"; };
 		4CAF95BE16D50B39002C047B /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "../../../route-me/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
 		4CAF95C516D50E2E002C047B /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keys.h; sourceTree = "<group>"; };
+		4CB15BDF172929F000C3BB1E /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
+		4CB15BE0172929F000C3BB1E /* no_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connection@2x.png"; sourceTree = "<group>"; };
 		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
 		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
@@ -1159,6 +1163,8 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4CB15BDF172929F000C3BB1E /* no_connection.png */,
+				4CB15BE0172929F000C3BB1E /* no_connection@2x.png */,
 				4C4C08BF17214E760059D0C0 /* white_btn_pressed.png */,
 				4C4C08C017214E760059D0C0 /* white_btn_pressed@2x.png */,
 				4C4C08C117214E760059D0C0 /* white_btn.png */,
@@ -2309,6 +2315,8 @@
 				4C4C08C417214E760059D0C0 /* white_btn_pressed@2x.png in Resources */,
 				4C4C08C517214E760059D0C0 /* white_btn.png in Resources */,
 				4C4C08C617214E760059D0C0 /* white_btn@2x.png in Resources */,
+				4CB15BE1172929F000C3BB1E /* no_connection.png in Resources */,
+				4CB15BE2172929F000C3BB1E /* no_connection@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
