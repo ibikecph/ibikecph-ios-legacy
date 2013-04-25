@@ -1939,6 +1939,26 @@ typedef enum {
             [self.view bringSubviewToFront:scrlView];
             [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 0.0f;
+            
+            /**
+             * close edit/save/delete menu if open
+             */
+            [self.view hideKeyboard];
+            CGRect frame = mainMenu.frame;
+            frame.origin.x = 0.0f;
+            [mainMenu setFrame:frame];
+            frame = addMenu.frame;
+            frame.origin.x = 260.0f;
+            [addMenu setFrame:frame];
+            [mainMenu setHidden:NO];
+            [addMenu setHidden:YES];
+            [self setFavoritesList:[SMFavoritesUtil getFavorites]];
+            if ([self.favoritesList count] == 0) {
+                [tblMenu setEditing:NO];
+            }
+            [UIView animateWithDuration:0.4f animations:^{
+                [self openMenu:menuFavorites];
+            }];
         }
 
     }
