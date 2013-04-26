@@ -229,6 +229,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
     if ([s isEqualToString:@""]) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
         [self autocompleteEntriesFound:@[] forString:@""];
     } else {
         if ([s length] >= 2) {
@@ -270,6 +271,20 @@
 
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
     [self hideFade];
+
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+    NSMutableArray * r = [NSMutableArray array];
+    
+    if ([str isEqualToString:@""]) {
+        self.searchResults = r;
+        [tblView reloadData];
+        [tblFade setAlpha:0.0f];
+        return;
+    }
+    
+    if ([str isEqualToString:searchField.text] == NO) {
+        return;
+    }
     
     self.terms = [NSMutableArray array];
     self.srchString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -279,16 +294,9 @@
         }
     }    
     
-    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    NSMutableArray * r = [NSMutableArray array];
     
     
-    if ([str isEqualToString:@""]) {
-        self.searchResults = r;
-        [tblView reloadData];
-        [tblFade setAlpha:0.0f];
-        return;
-    }
+    
 
     for (NSDictionary * d in arr) {
         [r addObject:d];

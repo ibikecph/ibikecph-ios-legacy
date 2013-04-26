@@ -179,9 +179,22 @@ typedef enum {
         [fadeView setAlpha:1.0f];
     }];
     
+//    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+//    [r setAuxParam:@"nearestPoint"];
+//    [r findNearestPointForStart:[self.fromData objectForKey:@"location"] andEnd:[self.toData objectForKey:@"location"]];
+    
+    CLLocation * s = [self.fromData objectForKey:@"location"];
+    CLLocation * e = [self.toData objectForKey:@"location"];
+    
+    NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", fromLabel.text, s.coordinate.latitude, s.coordinate.longitude, toLabel.text, e.coordinate.latitude, e.coordinate.longitude];
+    debugLog(@"%@", st);
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
+        debugLog(@"error in trackPageview");
+    }
     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-    [r setAuxParam:@"nearestPoint"];
-    [r findNearestPointForStart:[self.fromData objectForKey:@"location"] andEnd:[self.toData objectForKey:@"location"]];
+    [r setAuxParam:@"startRoute"];
+    [r getRouteFrom:s.coordinate to:e.coordinate via:nil];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

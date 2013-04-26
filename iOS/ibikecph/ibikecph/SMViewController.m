@@ -605,9 +605,12 @@ typedef enum {
             
             [im removeFromSuperview];
 
-            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-            [r setRequestIdentifier:@"getNearestForPinDrop"];
-            [r findNearestPointForLocation:loc];
+            SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
+            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
+
+//            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+//            [r setRequestIdentifier:@"getNearestForPinDrop"];
+//            [r findNearestPointForLocation:loc];
             
         }];
     }
@@ -1808,9 +1811,6 @@ typedef enum {
 #pragma mark - SMAnnotation delegate methods
 
 - (void)annotationActivated:(SMAnnotation *)annotation {
-    
-    
-    
     self.findFrom = @"";
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
@@ -1822,10 +1822,30 @@ typedef enum {
     
     CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:annotation.routingCoordinate.coordinate.latitude longitude:annotation.routingCoordinate.coordinate.longitude];
     CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
+//    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+//    [r setRequestIdentifier:@"rowSelectRoute"];
+//    [r setAuxParam:annotation.title];
+//    [r findNearestPointForStart:cStart andEnd:cEnd];
+    
+    
+    /**
+     * remove this if we need to find the closest point
+     */
+    NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", @"", cStart.coordinate.latitude, cStart.coordinate.longitude, @"", cEnd.coordinate.latitude, cEnd.coordinate.longitude];
+    debugLog(@"%@", st);
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
+        debugLog(@"error in trackPageview");
+    }
+    self.startName = CURRENT_POSITION_STRING;
+    self.endName = annotation.title;
+    self.startLoc = cStart.coordinate;
+    self.endLoc = cEnd.coordinate;
     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-    [r setRequestIdentifier:@"rowSelectRoute"];
-    [r setAuxParam:annotation.title];
-    [r findNearestPointForStart:cStart andEnd:cEnd];
+    [r setAuxParam:@"startRoute"];
+    [r getRouteFrom:cStart.coordinate to:cEnd.coordinate via:nil];
+    /**
+     * end routing
+     */
 
     for (SMAnnotation * annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
