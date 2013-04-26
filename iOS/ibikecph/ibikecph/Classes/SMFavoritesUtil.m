@@ -151,7 +151,13 @@
 }
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
-    if ([[result objectForKey:@"success"] boolValue]) {
+    if ([result objectForKey:@"error"]) {
+        [SMFavoritesUtil saveFavorites:@[]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kFAVORITES_CHANGED object:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(favoritesOperationFinishedSuccessfully:withData:)]) {
+            [self.delegate favoritesOperationFinishedSuccessfully:req withData:result];
+        }
+    } else if ([[result objectForKey:@"success"] boolValue]) {
         if ([req.requestIdentifier isEqualToString:@"fetchList"]) {
             NSMutableArray * arr = [NSMutableArray arrayWithCapacity:result.count];
             for (NSDictionary * d in [result objectForKey:@"data"]) {

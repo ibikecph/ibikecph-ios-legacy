@@ -12,6 +12,7 @@
 #import "UIImage+Resize.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "Base64.h"
+#import "SMFavoritesUtil.h"
 
 @interface SMAccountController () {
     
@@ -179,6 +180,19 @@
 }
 
 - (IBAction)deleteAccount:(id)sender {
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"delete_account_title") message:translateString(@"delete_account_text") delegate:self cancelButtonTitle:translateString(@"Cancel") otherButtonTitles:translateString(@"Delete"), nil];
+    [av show];
+
+}
+
+- (void)deleteAccountConfirmed {
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"deleteUser"];
+    [self.apr showTransparentWaitingIndicatorInView:self.view];
+    NSMutableDictionary * params = [API_DELETE_USER_DATA mutableCopy];
+    [params setValue:[NSString stringWithFormat:@"%@/%@", [params objectForKey:@"service"], [self.appDelegate.appSettings objectForKey:@"id"]] forKey:@"service"];
+    [self.apr executeRequest:params withParams:@{@"auth_token": [self.appDelegate.appSettings objectForKey:@"auth_token"]}];
 }
 
 - (IBAction)logout:(id)sender {
@@ -235,6 +249,22 @@
                 debugLog(@"error in trackEvent");
             }
             debugLog(@"Password changed!!!");
+        } else if ([req.requestIdentifier isEqualToString:@"deleteUser"]) {
+            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Delete" withLabel:@"" withValue:0]) {
+                debugLog(@"error in trackEvent");
+            }
+            debugLog(@"Password changed!!!");
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"account_deleted") message:@"" delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+            [self.appDelegate.appSettings removeObjectForKey:@"auth_token"];
+            [self.appDelegate.appSettings removeObjectForKey:@"id"];
+            [self.appDelegate.appSettings removeObjectForKey:@"username"];
+            [self.appDelegate.appSettings removeObjectForKey:@"password"];
+            [self.appDelegate saveSettings];
+
+            [SMFavoritesUtil saveFavorites:@[]];
+            [self goBack:nil];
+            return;
         }
     } else {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
@@ -260,6 +290,19 @@
         case 1:
             [self takePictureFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
             break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 1:
+            [self deleteAccountConfirmed];
+            break;
+            
         default:
             break;
     }

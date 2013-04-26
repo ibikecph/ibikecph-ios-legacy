@@ -1061,7 +1061,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g79-IU-cul">
-                                <rect key="frame" x="277" y="79" width="43" height="39"/>
+                                <rect key="frame" x="267" y="79" width="43" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="routeEnterSwitchIcon.png">
@@ -1300,7 +1300,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PBs-dj-9tX">
-                                <rect key="frame" x="52" y="63" width="217" height="21"/>
+                                <rect key="frame" x="52" y="66" width="217" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -1331,7 +1331,7 @@
                                 </connections>
                             </button>
                             <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeEnterLocateIcon.png" id="whr-md-Ife">
-                                <rect key="frame" x="52" y="66" width="15" height="15"/>
+                                <rect key="frame" x="52" y="69" width="15" height="15"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeEnterLogo.png" id="ZA2-Ss-SYV">
@@ -1922,7 +1922,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="FSD-PE-lob" customClass="SMGPSTrackButton">
-                                                        <rect key="frame" x="264" y="426" width="56" height="54"/>
+                                                        <rect key="frame" x="247" y="407" width="55" height="55"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                         <state key="normal">
@@ -2146,7 +2146,7 @@
                                                 </connections>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="htC-Kc-NK1">
-                                                <rect key="frame" x="320" y="53" width="45" height="45"/>
+                                                <rect key="frame" x="252" y="38" width="45" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
@@ -2291,7 +2291,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0sb-SH-s8A" customClass="SMGPSTrackButton">
-                                        <rect key="frame" x="264" y="494" width="56" height="55"/>
+                                        <rect key="frame" x="255" y="483" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -2345,7 +2345,7 @@
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" id="Oxx-Mn-VT8" userLabel="Table View">
-                                <rect key="frame" x="0.0" y="400" width="320" height="148"/>
+                                <rect key="frame" x="0.0" y="446" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" image="normalDirectionsBG.png" id="Wxl-7E-taK">
@@ -2359,20 +2359,20 @@
                                         </connections>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dPo-Xj-3qL">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topDirectionCell" rowHeight="102" id="cU0-86-SgD" customClass="SMDirectionTopCell">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="102"/>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="topDirectionCell" rowHeight="82" id="cU0-86-SgD" customClass="SMDirectionTopCell">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="82"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" id="ML8-H9-CUy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
@@ -2384,25 +2384,25 @@
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QVf-eE-axd">
-                                                            <rect key="frame" x="70" y="54" width="230" height="21"/>
+                                                            <rect key="frame" x="96" y="30" width="194" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" id="GtJ-AZ-3uM">
-                                                            <rect key="frame" x="0.0" y="10" width="71" height="65"/>
+                                                            <rect key="frame" x="0.0" y="8" width="96" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="center" id="Xjo-rW-EiA">
-                                                                    <rect key="frame" x="15" y="23" width="40" height="40"/>
+                                                                    <rect key="frame" x="28" y="1" width="40" height="40"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="kbu-De-23P">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="21"/>
+                                                                    <rect key="frame" x="13" y="44" width="71" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </label>
                                                             </subviews>
@@ -2420,7 +2420,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="directionCell" rowHeight="60" id="67i-DW-ezf" customClass="SMDirectionCell">
-                                                <rect key="frame" x="0.0" y="124" width="320" height="60"/>
+                                                <rect key="frame" x="0.0" y="104" width="320" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -2431,26 +2431,33 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
+                                                        <view contentMode="scaleToFill" id="rJS-WW-sSi">
+                                                            <rect key="frame" x="0.0" y="4" width="96" height="60"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="tba-BH-rVL">
+                                                                    <rect key="frame" x="31" y="1" width="34" height="31"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="rXx-Cf-vjP">
+                                                                    <rect key="frame" x="13" y="35" width="72" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jkI-kj-dsf">
-                                                            <rect key="frame" x="70" y="9" width="230" height="21"/>
+                                                            <rect key="frame" x="96" y="9" width="230" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpH-I9-lHk">
-                                                            <rect key="frame" x="70" y="30" width="230" height="21"/>
+                                                            <rect key="frame" x="96" y="30" width="194" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="tba-BH-rVL">
-                                                            <rect key="frame" x="19" y="25" width="34" height="31"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="rXx-Cf-vjP">
-                                                            <rect key="frame" x="0.0" y="5" width="72" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </label>
                                                     </subviews>
@@ -2471,7 +2478,7 @@
                                         </connections>
                                     </tableView>
                                     <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="tFt-Yo-08s">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="74"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -2487,24 +2494,24 @@
                                         </connections>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="leftArrow.png" id="s80-Dd-vil">
-                                        <rect key="frame" x="8" y="70" width="9" height="12"/>
+                                        <rect key="frame" x="9" y="50" width="9" height="12"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="rightArrow.png" id="1oF-hY-1hb">
-                                        <rect key="frame" x="303" y="70" width="7" height="12"/>
+                                        <rect key="frame" x="303" y="50" width="7" height="12"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <view alpha="0.0" contentMode="scaleToFill" id="3vS-az-zZ1">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="normalDirectionsBG.png" id="90f-Lg-zUL">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" id="C3U-V6-2sj">
-                                                <rect key="frame" x="38" y="44" width="244" height="60"/>
+                                                <rect key="frame" x="38" y="21" width="244" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="Jgy-my-23G">
@@ -2534,7 +2541,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4UD-TE-YRq">
-                                        <rect key="frame" x="9" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="3" y="0.0" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="-52" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2553,22 +2560,15 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="VcC-Op-m4E" userLabel="Progress View">
-                                <rect key="frame" x="170" y="25" width="140" height="43"/>
+                                <rect key="frame" x="210" y="29" width="91" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeArrival.png" id="DFd-Wm-s5E">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="43"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="distance_white.png" id="DFd-Wm-s5E">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="35"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="000 m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="EhT-1A-rVx">
-                                        <rect key="frame" x="62" y="11" width="70" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" id="lUh-yF-WfB">
-                                        <rect key="frame" x="9" y="11" width="50" height="21"/>
+                                        <rect key="frame" x="31" y="7" width="50" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2578,7 +2578,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="QFV-Q0-z8w" userLabel="overview">
-                                <rect key="frame" x="0.0" y="400" width="320" height="148"/>
+                                <rect key="frame" x="0.0" y="446" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="overviewBG.png" id="2vg-pv-lTd">
@@ -2588,7 +2588,7 @@
                                         <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fBq-6W-vUW" customClass="SMPatternedButton">
-                                        <rect key="frame" x="227" y="36" width="75" height="75"/>
+                                        <rect key="frame" x="230" y="13" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="start_route" backgroundImage="blue_btn.png">
@@ -2602,28 +2602,21 @@
                                             <action selector="startRouting:" destination="m0B-4B-35u" eventType="touchUpInside" id="lwy-i0-5sT"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" id="O9q-0K-PgO">
-                                        <rect key="frame" x="15" y="49" width="214" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dMz-a6-dcA">
-                                                <rect key="frame" x="0.0" y="0.0" width="210" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyu-vq-Lpe">
-                                                <rect key="frame" x="0.0" y="28" width="210" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dMz-a6-dcA">
+                                        <rect key="frame" x="13" y="15" width="210" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yyu-vq-Lpe">
+                                        <rect key="frame" x="13" y="75" width="210" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -2793,7 +2786,6 @@
                         <outlet property="finishFadeView" destination="wi1-4L-g5X" id="sG4-gG-KKW"/>
                         <outlet property="imgNextTurnDirection" destination="axZ-Q5-ohy" id="aaW-j6-FMZ"/>
                         <outlet property="instructionsView" destination="Oxx-Mn-VT8" id="0sI-N8-HJZ"/>
-                        <outlet property="labelDistanceLeft" destination="EhT-1A-rVx" id="8mC-6C-roc"/>
                         <outlet property="labelDistanceToNextTurn" destination="rUH-ju-UbN" id="bPq-SE-1US"/>
                         <outlet property="labelTimeLeft" destination="lUh-yF-WfB" id="VyN-w1-wQd"/>
                         <outlet property="mapFade" destination="YHo-2f-hkS" id="dmb-Y0-BO1"/>
@@ -3084,6 +3076,7 @@
         <image name="contactsEdit.png" width="16" height="16"/>
         <image name="contactsHeaderSeparator.png" width="16" height="16"/>
         <image name="contactsList.png" width="16" height="16"/>
+        <image name="distance_white.png" width="91" height="35"/>
         <image name="divider_side_menu_btn.png" width="1" height="2"/>
         <image name="drop_shadow_sliding_image.png" width="5" height="1"/>
         <image name="enterRouteClose.png" width="37" height="37"/>
@@ -3117,7 +3110,7 @@
         <image name="homeLogo.png" width="76" height="76"/>
         <image name="homeSearchBig.png" width="76" height="76"/>
         <image name="homeSearchSmall.png" width="45" height="45"/>
-        <image name="icon_locate_me.png" width="43" height="43"/>
+        <image name="icon_locate_me.png" width="55" height="55"/>
         <image name="info.png" width="22" height="22"/>
         <image name="leftArrow.png" width="7" height="12"/>
         <image name="loginBG.png" width="320" height="318"/>
@@ -3142,18 +3135,17 @@
         <image name="reportPulldown.png" width="286" height="44"/>
         <image name="reportTextView.png" width="285" height="65"/>
         <image name="rightArrow.png" width="7" height="12"/>
-        <image name="routeArrival.png" width="140" height="43"/>
         <image name="routeEnterBack.png" width="47" height="36"/>
         <image name="routeEnterBottomRow.png" width="320" height="47"/>
         <image name="routeEnterHeader.png" width="320" height="51"/>
-        <image name="routeEnterInputBG.png" width="320" height="95"/>
+        <image name="routeEnterInputBG.png" width="307" height="90"/>
         <image name="routeEnterLocateIcon.png" width="15" height="15"/>
         <image name="routeEnterLogo.png" width="126" height="29"/>
         <image name="routeEnterMiddleRow.png" width="320" height="44"/>
         <image name="routeEnterSingleRow.png" width="320" height="44"/>
         <image name="routeEnterStart_active.png" width="61" height="35"/>
         <image name="routeEnterStart_inactive.png" width="61" height="35"/>
-        <image name="routeEnterSwitchIcon.png" width="22" height="22"/>
+        <image name="routeEnterSwitchIcon.png" width="23" height="23"/>
         <image name="routeEnterTopRow.png" width="320" height="44"/>
         <image name="routeEnterViewMoreRow.png" width="320" height="47"/>
         <image name="routeFinishedOverlay.png" width="320" height="346"/>
@@ -3171,6 +3163,329 @@
         <image name="white_btn.png" width="11" height="11"/>
         <image name="white_btn_pressed.png" width="11" height="11"/>
     </resources>
+    <classes>
+        <class className="AsyncImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AsyncImageView.h"/>
+        </class>
+        <class className="GAITrackedViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GAITrackedViewController.h"/>
+        </class>
+        <class className="RMMapView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RMMapView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="SMAboutController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SMAccountController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="fbImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="fbName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fbView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordRepeat" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="regularImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="regularView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SMAddFavoriteCell" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAddFavoriteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMAutocompleteHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAutocompleteHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="headerTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMContactsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactDisclosure" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="contactName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMContactsHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMContactsHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="headerButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="headerImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="headerText" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMCustomButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomButton.h"/>
+        </class>
+        <class className="SMCustomCheckbox" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomCheckbox.h"/>
+        </class>
+        <class className="SMDirectionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMDirectionTopCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionTopCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEmptyFavoritesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEmptyFavoritesCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addFavoritesText" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEnterRouteCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="TTTAttributedLabel"/>
+            </relationships>
+        </class>
+        <class className="SMEnterRouteController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fromLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="locationArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toLabel" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SMEventsCalendarCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsCalendarCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="monthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEventsFacebookCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsFacebookCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="eventImg" candidateClass="AsyncImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMEventsHeader" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEventsHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dayLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMFavoritesController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMFavoritesController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="favoriteHome" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="favoriteWork" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="favoritesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SMGPSTrackButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMGPSTrackButton.h"/>
+        </class>
+        <class className="SMMenuCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMMenuCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="editBtn" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMPatternedButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMPatternedButton.h"/>
+        </class>
+        <class className="SMRadioCheckedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioCheckedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioTextBox" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMRadioUncheckedCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRadioUncheckedCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="radioTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="pckrView" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="reportEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="reportSentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="switchContactMe" candidateClass="SMCustomCheckbox"/>
+                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="hideStopView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="reportError:"/>
+                <relationship kind="action" name="startRouting:"/>
+                <relationship kind="action" name="trackUser:"/>
+                <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="finishFadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="finishTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imgNextTurnDirection" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="instructionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="labelDistanceLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelDistanceToNextTurn" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
+                <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
+                <relationship kind="outlet" name="noConnectionView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="overviewDestination" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="overviewTimeDistance" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="recalculatingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="routeOverview" candidateClass="UIView"/>
+                <relationship kind="outlet" name="stopView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipableView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="swipeLeftArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="swipeRightArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tblDirections" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMSearchCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSearchCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="TTTAttributedLabel"/>
+            </relationships>
+        </class>
+        <class className="SMSearchController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSearchController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tblFade" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMSearchTwoRowCell" superclassName="SMSearchCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSearchTwoRowCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addressLabel" candidateClass="TTTAttributedLabel"/>
+            </relationships>
+        </class>
+        <class className="SMSplashController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSplashController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dialogView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="loginDialog" candidateClass="UIView"/>
+                <relationship kind="outlet" name="loginEmail" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="loginPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="loginScroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="loginView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordRepeatField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="registerDialog" candidateClass="UIView"/>
+                <relationship kind="outlet" name="registerImage" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="registerScroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="registerView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="SMTranslatedViewController" superclassName="GAITrackedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
+        </class>
+        <class className="SMViewController" superclassName="SMTranslatedViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
+                <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addFavHomeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addFavName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="addFavSchoolButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addFavWorkButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addMenu" candidateClass="UIView"/>
+                <relationship kind="outlet" name="addSaveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="addressView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="blockingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="centerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="debugLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="editDeleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="editSaveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="editTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="eventsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="favEditDone" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favEditStart" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favHeader" candidateClass="UIView"/>
+                <relationship kind="outlet" name="findRouteBig" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="findRouteSmall" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infHeader" candidateClass="UIView"/>
+                <relationship kind="outlet" name="mainMenu" candidateClass="UIView"/>
+                <relationship kind="outlet" name="menuView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="tableFooter" candidateClass="SMAddFavoriteCell"/>
+                <relationship kind="outlet" name="tblContacts" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tblEvents" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tblFavorites" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tblMenu" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SMViewMoreCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewMoreCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buttonLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TTTAttributedLabel" superclassName="UILabel">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -3178,6 +3493,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="SAG-9b-Vbu"/>
-        <segue reference="wAx-WK-VM3"/>
+        <segue reference="DqZ-cl-vTA"/>
     </inferredMetricsTieBreakers>
 </document>

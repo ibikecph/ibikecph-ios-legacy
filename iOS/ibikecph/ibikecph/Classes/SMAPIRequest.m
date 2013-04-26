@@ -68,7 +68,7 @@
             urlString = [urlString stringByAppendingFormat:@"&%@", urlP];
         }
         
-        debugLog(@"*** %@", urlString);
+        debugLog(@"*** %@ %@", [service objectForKey:@"transferMethod"], urlString);
         
 //        NSData * data = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
         

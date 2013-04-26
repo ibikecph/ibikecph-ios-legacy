@@ -199,7 +199,7 @@ typedef enum {
     
     [routeOverview setFrame:instructionsView.frame];
 
-    [overviewTimeDistance setText:[NSString stringWithFormat:@"%@   %@", expectedArrivalTime(self.route.estimatedTimeForRoute), formatDistance(self.route.estimatedRouteDistance)]];
+    [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
     [overviewDestination setText:self.destination];
 
     
@@ -268,7 +268,7 @@ typedef enum {
     SMAnnotation *startMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:from andTitle:@"A"];
     startMarkerAnnotation.annotationType = @"marker";
     startMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerStart"];
-    startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
+    startMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
     NSMutableArray * arr = [[self.source componentsSeparatedByString:@","] mutableCopy];
     startMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([startMarkerAnnotation.title isEqualToString:@""]) {
@@ -281,7 +281,7 @@ typedef enum {
     SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:to andTitle:@"B"];
     endMarkerAnnotation.annotationType = @"marker";
     endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-    endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
+    endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
     arr = [[self.destination componentsSeparatedByString:@","] mutableCopy];
     endMarkerAnnotation.title = [[arr objectAtIndex:0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [arr removeObjectAtIndex:0];
@@ -1172,13 +1172,13 @@ typedef enum {
         }
         
         if (self.mapFade.alpha > 0.7f) {
-            [arrivalBG setImage:[UIImage imageNamed:@"routeArrivalDark"]];
+            [arrivalBG setImage:[UIImage imageNamed:@"distance_black"]];
             [closeButton setImage:[UIImage imageNamed:@"btnCloseDark"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor whiteColor]];
             [labelTimeLeft setTextColor:[UIColor whiteColor]];
             [buttonTrackUser setHidden:YES];
         } else {
-            [arrivalBG setImage:[UIImage imageNamed:@"routeArrival"]];
+            [arrivalBG setImage:[UIImage imageNamed:@"distance_white"]];
             [closeButton setImage:[UIImage imageNamed:@"btnClose"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor darkGrayColor]];
             [labelTimeLeft setTextColor:[UIColor darkGrayColor]];

@@ -259,7 +259,7 @@ typedef enum {
 //    }
     [debugLabel setText:BUILD_STRING];
     
-    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
+//    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
     findRouteSmall.alpha = 1.0f;
     findRouteBig.alpha = 0.0f;
 }
@@ -365,6 +365,8 @@ typedef enum {
         SMFavoritesUtil * fv = [[SMFavoritesUtil alloc] initWithDelegate:self];
         [self setFavs:fv];
         [self.favs fetchFavoritesFromServer];
+    } else {
+        [self favoritesChanged:nil];
     }
 }
 
@@ -599,7 +601,7 @@ typedef enum {
             SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
             endMarkerAnnotation.annotationType = @"marker";
             endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-            endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
+            endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
             [self.mpView addAnnotation:endMarkerAnnotation];
             [self setDestinationPin:endMarkerAnnotation];
             

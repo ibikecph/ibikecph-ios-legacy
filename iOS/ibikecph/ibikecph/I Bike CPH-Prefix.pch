@@ -69,7 +69,7 @@
 #define DEFAULT_MAP_ZOOM 18.5
 #define DEFAULT_TURN_ZOOM 18.5
 #define MAX_MAP_ZOOM 20
-#define PATH_COLOR [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:225.0f/255.0f alpha:1.0f]
+#define PATH_COLOR [UIColor colorWithRed:0.0f/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0f]
 #define PATH_OPACITY 0.8f
 
 #define GEOCODING_SEARCH_RADIUS 50000.0f
@@ -87,7 +87,7 @@
 
 #define DIRECTION_FONT_SIZE 17.0f
 #define WAYPOINT_FONT_SIZE 20.0f
-#define INSTRUCTIONS_LABEL_WIDTH 230.0f
+#define INSTRUCTIONS_LABEL_WIDTH 194.0f
 
 #define USE_APPLE_GEOCODER YES
 
@@ -107,6 +107,7 @@
 #define API_GET_USER_DATA @{@"service" : @"users", @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS}
 #define API_CHANGE_USER_DATA @{@"service" : @"users", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
 #define API_CHANGE_PASSWORD @{@"service" : @"users/password", @"transferMethod" : @"PUT",  @"headers" : API_DEFAULT_HEADERS}
+#define API_DELETE_USER_DATA @{@"service" : @"users", @"transferMethod" : @"DELETE",  @"headers" : API_DEFAULT_HEADERS}
 
 #define API_SEND_FEEDBACK @{@"service" : @"issues", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 

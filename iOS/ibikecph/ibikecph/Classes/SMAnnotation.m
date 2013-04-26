@@ -29,7 +29,7 @@
         frame.size.width = MAX(177.0f, frame.size.width);
         
         frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 4.0f;
-        frame.origin.y = point.y - 70.0f;
+        frame.origin.y = point.y - 95.0f;
         
         [v setFrame:frame];
         
@@ -54,14 +54,14 @@
             CGRect frame = self.calloutView.frame;
             CGPoint point = [self.mapView coordinateToPixel:self.coordinate];
             frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 4.0f;
-            frame.origin.y = point.y - 70.0f;
+            frame.origin.y = point.y - 95.0f;
             [self.calloutView setFrame:frame];
             [self.mapView addSubview:self.calloutView];
         } else {
             CGRect frame = self.calloutView.frame;
             CGPoint point = [self.mapView coordinateToPixel:self.coordinate];
             frame.origin.x = point.x - roundf(frame.size.width/2.0f) + 4.0f;
-            frame.origin.y = point.y - 70.0f;
+            frame.origin.y = point.y - 95.0f;
             [self.calloutView setFrame:frame];
         }
     }
