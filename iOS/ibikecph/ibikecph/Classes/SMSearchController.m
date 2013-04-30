@@ -106,19 +106,24 @@
     } else {
         identifier = @"searchCell";
         SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-            NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
-            UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
-            
-            CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-            
-            if (font) {
-                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
-                CFRelease(font);
-                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
-            }
-            return mutableAttributedString;
-        }];
+        
+        if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
+            [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+        } else {
+            [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+                UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                
+                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                
+                if (font) {
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                    CFRelease(font);
+                    [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                }
+                return mutableAttributedString;
+            }];
+        }
         [cell setImageWithData:currentRow];
         return cell;
     }    
@@ -227,7 +232,7 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString * s = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
     if ([s isEqualToString:@""]) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
         [self autocompleteEntriesFound:@[] forString:@""];

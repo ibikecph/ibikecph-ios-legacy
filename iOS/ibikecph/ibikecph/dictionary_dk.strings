@@ -135,6 +135,7 @@
 
 "where_are_we_going" = "Ny rute";
 "ibikecph_route_planner" = "Cykelruteplanlægger";
+"Cancel" = "Fortryd";
 "calculating_new_route" = "Beregner ny rute...";
 "Distance" = "Distance";
 "Time" = "Tid";
@@ -237,11 +238,14 @@
 "report_error_problem_not_selected" = "Vælg venligst et problem";
 "report_error_step_not_selected" = "Vælg venligst et trin i ruten";
 
-"error_duplicate_favorite_name" = "Du har allerede en favorit med dette navn. Omdøb venligst din favorit og gem igen.";
 "start_route" = "START";
+
 
 "delete_account_title" = "Delete account?";
 "delete_account_text" = "All your favorites and history will be deleted as well";
 "Delete" = "Delete";
 "account_deleted" = "Your account has been deleted";
+"close" = "CLOSE";
 
+"account_login" = "LOGIN";
+"favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";

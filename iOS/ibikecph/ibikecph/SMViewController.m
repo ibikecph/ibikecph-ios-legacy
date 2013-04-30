@@ -238,6 +238,7 @@ typedef enum {
     findRouteBig = nil;
     findRouteSmall = nil;
     self.tableFooter = nil;
+    account_label = nil;
     [super viewDidUnload];
 }
 
@@ -262,6 +263,13 @@ typedef enum {
 //    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
     findRouteSmall.alpha = 1.0f;
     findRouteBig.alpha = 0.0f;
+    
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        [account_label setText:translateString(@"account")];
+    } else {
+        [SMFavoritesUtil saveFavorites:@[]];
+        [account_label setText:translateString(@"account_login")];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -1264,6 +1272,7 @@ typedef enum {
                     SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
                     [cell.image setContentMode:UIViewContentModeCenter];
                     [cell setDelegate:self];
+                [cell setIndentationLevel:2];
                     if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
                         [cell.image setImage:[UIImage imageNamed:@"favHomeGrey"]];
                         [cell.image setHighlightedImage:[UIImage imageNamed:@"favHomeWhite"]];
@@ -1292,7 +1301,16 @@ typedef enum {
         } else {
             SMEmptyFavoritesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesEmptyCell"];
             [cell.text setText:translateString(@"cell_add_favorite")];
-            [cell.addFavoritesText setText:translateString(@"cell_empty_favorite_text")];
+            if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+                [cell.addFavoritesText setText:translateString(@"cell_empty_favorite_text")];
+                [cell.addFavoritesText setTextColor:[UIColor whiteColor]];
+                [cell.text setTextColor:[UIColor colorWithRed:0.0f/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0f]];
+            } else {
+                [cell.addFavoritesText setText:translateString(@"favorites_login")];                
+                [cell.addFavoritesText setTextColor:[UIColor colorWithRed:96.0f/255.0f green:96.0f/255.0f blue:96.0f/255.0f alpha:1.0f]];
+                [cell.text setTextColor:[UIColor colorWithRed:123.0f/255.0f green:123.0f/255.0f blue:123.0f/255.0f alpha:1.0f]];
+            }
+            
             return cell;
         }
         
@@ -1390,10 +1408,12 @@ typedef enum {
         }
     } else if (tableView == tblMenu) {
         if ([self.favoritesList count] == 0) {
-            /**
-             * add favorite
-             */
-            [self addFavoriteShow:nil];
+            if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+                /**
+                 * add favorite
+                 */
+                [self addFavoriteShow:nil];
+            }
         } else {
             if (tblMenu.isEditing) {
                 /**

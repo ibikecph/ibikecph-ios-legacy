@@ -255,4 +255,7 @@
 "delete_account_text" = "All your favorites and history will be deleted as well";
 "Delete" = "Delete";
 "account_deleted" = "Your account has been deleted";
+"close" = "CLOSE";
 
+"account_login" = "LOGIN";
+"favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";
