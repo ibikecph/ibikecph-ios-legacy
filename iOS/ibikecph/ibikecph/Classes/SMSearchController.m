@@ -287,7 +287,7 @@
         return;
     }
     
-    if ([str isEqualToString:searchField.text] == NO) {
+    if ([[str lowercaseString] isEqualToString:[searchField.text lowercaseString]] == NO) {
         return;
     }
     

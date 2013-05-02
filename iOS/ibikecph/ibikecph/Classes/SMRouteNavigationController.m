@@ -55,6 +55,7 @@ typedef enum {
 @property (nonatomic, strong) NSMutableSet * recycledItems;
 @property (nonatomic, strong) NSMutableSet * activeItems;
 @property (nonatomic, strong) NSArray * instructionsForScrollview;
+@property BOOL pulling;
 @end
 
 @implementation SMRouteNavigationController
@@ -64,6 +65,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.pulling = NO;
 
     self.recycledItems = [NSMutableSet set];
     self.activeItems = [NSMutableSet set];
@@ -119,6 +121,16 @@ typedef enum {
     [self.mapFade addObserver:self forKeyPath:@"frame" options:0 context:nil];
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    
+//    CGRect frame = self.mpView.frame;
+//    frame.size.height = (instructionsView.frame.origin.y - frame.origin.y) * 1.5f;
+//    [self.mpView setFrame:frame];
+//
+//    frame = buttonTrackUser.frame;
+//    frame.origin.y = instructionsView.frame.origin.y - 65.0f;
+//    [buttonTrackUser setFrame:frame];
+    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -185,7 +197,26 @@ typedef enum {
 
 #define COORDINATE_PADDING 0.005f
 
+- (void)setupMapSize:(BOOL)heading {
+    CGRect frame = self.mpView.frame;
+    if ((heading == NO) || self.pulling) {
+        frame.size.height = (self.view.frame.size.height - frame.origin.y);
+    } else {
+        if (currentDirectionsState == directionsMini) {
+            frame.size.height = (self.view.frame.size.height - frame.origin.y) * 1.5f;
+        } else {
+            frame.size.height = (self.view.frame.size.height - frame.origin.y - 102.0f) * 1.5f;
+        }
+    }
+    [self.mpView setFrame:frame];
+    frame = buttonTrackUser.frame;
+    frame.origin.y = instructionsView.frame.origin.y - 65.0f;
+    [buttonTrackUser setFrame:frame];
+}
+
 - (void)showRouteOverview {
+    [self setupMapSize:NO];
+    
     overviewShown = YES;
     self.currentlyRouting = NO;
     [progressView setHidden:YES];
@@ -219,10 +250,14 @@ typedef enum {
     if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
         debugLog(@"error in trackEvent");
     }
+    
+    
+
 
 }
 
 - (IBAction)startRouting:(id)sender {
+    [self setupMapSize:YES];
     overviewShown = NO;
     [UIView animateWithDuration:0.4f animations:^{
         [routeOverview setAlpha:0.0f];
@@ -869,6 +904,9 @@ typedef enum {
  * set new direction state
  */
 - (void)setDirectionsState:(DirectionsState)state {
+    if (self.pulling) {
+        return;
+    }
     switch (state) {
         case directionsFullscreen: {
             CGRect frame = tblDirections.frame;
@@ -921,10 +959,12 @@ typedef enum {
 
 
 - (void)resizeMap {
-    CGRect frame = self.mpView.frame;
+//    CGRect frame = self.mpView.frame;
+//    frame.size.height = instructionsView.frame.origin.y - frame.origin.y + 5.0f;
+//    [self.mpView setFrame:frame];
+    CGRect frame = self.mapFade.frame;
     frame.size.height = instructionsView.frame.origin.y - frame.origin.y + 5.0f;
-    [self.mpView setFrame:frame];
-    
+    [self.mapFade setFrame:frame];
 }
 
 - (void)repositionInstructionsView:(CGFloat)newY {
@@ -943,48 +983,55 @@ typedef enum {
     [swipableView setFrame:frame];
 }
 
+- (void)setNewDirections:(CGFloat)newY {
+    switch (currentDirectionsState) {
+        case directionsFullscreen:
+            if (newY > lastDirectionsPos + 20.0f) {
+                [self setDirectionsState:directionsNormal];
+            } else {
+                [self setDirectionsState:directionsFullscreen];
+            }
+            break;
+        case directionsNormal:
+            if (newY > lastDirectionsPos + 20.0f) {
+                [self setDirectionsState:directionsMini];
+            } else if (newY < lastDirectionsPos - 20.0f) {
+                [self setDirectionsState:directionsFullscreen];
+            } else {
+                [self setDirectionsState:directionsNormal];
+            }
+            break;
+        case directionsMini:
+            if (newY < lastDirectionsPos - 20.0f) {
+                [self setDirectionsState:directionsNormal];
+            } else {
+                [self setDirectionsState:directionsMini];
+            }
+            break;
+        case directionsHidden:
+            break;
+        default:
+            break;
+    }
+}
+
 - (IBAction)onPanGestureDirections:(UIPanGestureRecognizer *)sender {
     [tblDirections scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [instructionsView setHidden:NO];
     [minimizedInstructionsView setHidden:YES];
     if (sender.state == UIGestureRecognizerStateEnded) {
-        float newY = [sender locationInView:self.view].y;        
-        switch (currentDirectionsState) {
-            case directionsFullscreen:
-                if (newY > lastDirectionsPos + 20.0f) {
-                    [self setDirectionsState:directionsNormal];
-                } else {
-                    [self setDirectionsState:directionsFullscreen];
-                }
-                break;
-            case directionsNormal:
-                if (newY > lastDirectionsPos + 20.0f) {
-                    [self setDirectionsState:directionsMini];
-                } else if (newY < lastDirectionsPos - 20.0f) {
-                    [self setDirectionsState:directionsFullscreen];
-                } else {
-                    [self setDirectionsState:directionsNormal];
-                }
-                break;
-            case directionsMini:
-                if (newY < lastDirectionsPos - 20.0f) {
-                    [self setDirectionsState:directionsNormal];
-                } else {
-                    [self setDirectionsState:directionsMini];
-                }                
-                break;
-            case directionsHidden:
-                break;                
-            default:
-                break;
-        }
-        
+        self.pulling = NO;
+        float newY = [sender locationInView:self.view].y;
+        [self setNewDirections:newY];
+
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
     } else if (sender.state == UIGestureRecognizerStateChanged) {
+        self.pulling = YES;
         [swipableView setHidden:YES];
         float newY = MAX([sender locationInView:self.view].y - touchOffset, self.mpView.frame.origin.y);
         [self repositionInstructionsView:newY];
     } else if (sender.state == UIGestureRecognizerStateBegan) {
+        self.pulling = YES;
         [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
         touchOffset = [sender locationInView:instructionsView].y;
         [swipableView setHidden:YES];
@@ -1132,7 +1179,7 @@ typedef enum {
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self && [keyPath isEqualToString:@"currentlyRouting"]) {
         /**
-         * hide/show views depending onwhether we're currently routing or not
+         * hide/show views depending on whether we're currently routing or not
          */
         if (self.currentlyRouting) {
             [progressView setHidden:NO];
@@ -1158,10 +1205,13 @@ typedef enum {
     } else if (object == self.mpView && [keyPath isEqualToString:@"userTrackingMode"]) {
         if (self.mpView.userTrackingMode == RMUserTrackingModeFollow) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowing];
+            [self setupMapSize:NO];
         } else if (self.mpView.userTrackingMode == RMUserTrackingModeFollowWithHeading) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowingWithHeading];
+            [self setupMapSize:YES];
         } else if (self.mpView.userTrackingMode == RMUserTrackingModeNone) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
+            [self setupMapSize:NO];
         }
     } else if (object == self.mapFade && [keyPath isEqualToString:@"frame"]) {
         CGFloat maxSize = self.view.frame.size.height - 160.0f;
