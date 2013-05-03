@@ -9,7 +9,7 @@
 "current_position" = "Nuværende position";
 "today" = "I dag";
 "tomorrow" = "I morgen";
-"accounts" = "Konti";
+"accounts" = "Konto";
 "settings" = "Indstillinger";
 "about_ibikecph" = "OM I BIKE CPH";
 "contacts" = "Kontakter";
@@ -101,8 +101,8 @@
 "error_invalid_email" = "Ugyldig e-mail!";
 "error_invalid_to_address" = "Destinationsadressen er ugyldig!";
 
-"route_stop_title" = "Vil du stoppe ruten?";
-"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter’.";
+"route_stop_title" = "Vil du afslutte ruten?";
+"route_stop_text" = "Afbryd ruten ved at trykke på ‘Stop’. Du kan rapportere problemer med ruten ved at trykke på ‘Rapporter et problem’.";
 "report_error" = "Rapporter";
 "report_wrong_address" = "Forkert vejnavn";
 "report_road_closed" = "Vejen er spærret";
@@ -121,7 +121,6 @@
 "report_sent" = "Tak fordi du rapporterede fejlen!";
 
 "Done" = "Færdig";
-"Cancel" = "Annullere";
 
 "error_route_not_found" = "Ruten blev ikke fundet!";
 
@@ -162,8 +161,8 @@
 
 "good_ride" = "Godt kørt!";
 "hope_you_had_a_good_trip" = "Håber du havde en god tur.";
-"back_ride" = "ANNULLERE";
-"stop_ride" = "AFSLUT TUREN";
+"back_ride" = "TILBAGE";
+"stop_ride" = "AFSLUT RUTEN";
 "ride_report_a_problem" = "RAPPORTER ET PROBLEM";
 
 "login_with_fb" = "FACEBOOK LOG IND";
@@ -202,7 +201,7 @@
 "Work" = "Arbejde";
 "School" = "Skole";
 "Favorite" = "Favorit";
-"back" = "ANNULLERE";
+"back" = "TILBAGE";
 "done" = "FÆRDIG";
 "add_favorite_name_placeholder" = "Indtast navn ...";
 "add_favorite_address_placeholder" = "Find adresse ...";
@@ -214,7 +213,7 @@
 
 "thank_you_for_feedback" = "Tak for din feedback";
 "feedback_text" = "Din feedback er blevet afsendt. Tak for hjælpen!\n\nDu kan deltage i opfølgning og diskussion af nye funktioner på www.ibikecph.dk/feedback.";
-"report_sent" = "FEEDBACK SENT";
+"report_sent" = "FEEDBACKEN ER AFSENDT";
 
 "home_find_route" = "SØG RUTE";
 
@@ -241,11 +240,11 @@
 "start_route" = "START";
 
 
-"delete_account_title" = "Delete account?";
-"delete_account_text" = "All your favorites and history will be deleted as well";
-"Delete" = "Delete";
-"account_deleted" = "Your account has been deleted";
-"close" = "CLOSE";
+"delete_account_title" = "Slet konto?";
+"delete_account_text" = "Alle dine favoritter samt din historik vil blive slettet";
+"Delete" = "Slet";
+"account_deleted" = "Din konto er blevet slettet";
+"close" = "LUK";
 
-"account_login" = "LOGIN";
+"account_login" = "LOG IND";
 "favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";

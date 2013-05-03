@@ -429,6 +429,7 @@ typedef enum {
 
 - (RMMapLayer *)mapView:(RMMapView *)aMapView layerForAnnotation:(RMAnnotation *)annotation {
     if ([annotation.annotationType isEqualToString:@"path"]) {
+//        RMPath * path = [[RMPath alloc] initWithView:aMapView];
         RMShape *path = [[RMShape alloc] initWithView:aMapView];
         [path setZPosition:-MAXFLOAT];
         [path setLineColor:[annotation.userInfo objectForKey:@"lineColor"]];

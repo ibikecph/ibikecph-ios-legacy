@@ -89,7 +89,7 @@ typedef enum {
 //            [self.apr showTransparentWaitingIndicatorInView:self.view];
 //            [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
 //        }
-        [self goToFavorites:nil];
+        [self skipLogin:nil];
     }
 }
 
