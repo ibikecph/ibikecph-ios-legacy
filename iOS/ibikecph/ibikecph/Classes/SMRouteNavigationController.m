@@ -203,9 +203,9 @@ typedef enum {
         frame.size.height = (self.view.frame.size.height - frame.origin.y);
     } else {
         if (currentDirectionsState == directionsMini) {
-            frame.size.height = (self.view.frame.size.height - frame.origin.y) * 1.5f;
+            frame.size.height = (self.view.frame.size.height - frame.origin.y) * 1.36f;
         } else {
-            frame.size.height = (self.view.frame.size.height - frame.origin.y - 102.0f) * 1.5f;
+            frame.size.height = (self.view.frame.size.height - frame.origin.y - 102.0f) * 1.36f;
         }
     }
     [self.mpView setFrame:frame];
