@@ -197,6 +197,15 @@ typedef enum {
     [scrlView addGestureRecognizer:oneFingerSwipeRight];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoritesChanged:) name:kFAVORITES_CHANGED object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidToken:) name:@"invalidToken" object:nil];
+}
+
+- (void)invalidToken:(NSNotification*)notification {
+    [SMFavoritesUtil saveFavorites:@[]];
+    [account_label setText:translateString(@"account_login")];
+    self.favoritesList = [SMFavoritesUtil getFavorites];
+    [self openMenu:menuFavorites];
 }
 
 - (IBAction)doubleTap:(UITapGestureRecognizer*)sender {
