@@ -140,7 +140,13 @@
     
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"oiorest"]) {
         searchField.text = [currentRow objectForKey:@"address"];
-        [self checkLocation];
+        NSString * street = [currentRow objectForKey:@"street"];
+        if(street.length > 0){
+            [self setCaretForSearchFieldOnPosition:[NSNumber numberWithInt:street.length+1]];
+        } else {
+            [self checkLocation];
+        }
+        
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
         [r setRequestIdentifier:@"getNearestForPinDrop"];
@@ -220,6 +226,26 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
         });
+    }
+}
+
+
+
+- (void) setCaretForSearchFieldOnPosition:(NSNumber*) pos{
+    //If pos is > 0 that means that this is a first call.
+    //First call will be used to set cursor to begining and call recursively this method again with delay to set real position
+    int num = [pos intValue];
+    if(num > 0){
+        UITextPosition * from = [searchField positionFromPosition:[searchField beginningOfDocument] offset:0];
+        UITextPosition * to =[searchField positionFromPosition:[searchField beginningOfDocument] offset:0];
+        [searchField setSelectedTextRange:[searchField textRangeFromPosition:from toPosition:to]];
+        NSNumber * newPos = [NSNumber numberWithInt:-num];
+        [self performSelector:@selector(setCaretForSearchFieldOnPosition:) withObject:newPos afterDelay:0.3];
+    } else {
+        num = -num;
+        UITextPosition * from = [searchField positionFromPosition:[searchField beginningOfDocument] offset:num];
+        UITextPosition * to =[searchField positionFromPosition:[searchField beginningOfDocument] offset:num];
+        [searchField setSelectedTextRange:[searchField textRangeFromPosition:from toPosition:to]];
     }
 }
 
