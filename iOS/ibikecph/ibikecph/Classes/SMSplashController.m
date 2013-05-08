@@ -395,6 +395,9 @@ typedef enum {
                      NSString *accessToken = appDelegate.session.accessToken;
                     
                      [self doFBLogin:accessToken];
+                 } else {
+                     UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"fb_login_error") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+                     [av show];
                  }
              }];
             

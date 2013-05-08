@@ -776,12 +776,14 @@ typedef enum {
 - (void)trackingOn {
     debugLog(@"trackingOn() btn state = 0x%0x, prev btn state = 0x%0x", buttonTrackUser.gpsTrackState, buttonTrackUser.prevGpsTrackState);
     if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateNotFollowing) {
-        if (buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowing) {
+        if (self.currentlyRouting == NO) {
+            [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+        } else if (buttonTrackUser.prevGpsTrackState == SMGPSTrackButtonStateFollowing) {
             [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
         } else {
             [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
         }
-    } else if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing) {
+    } else if (buttonTrackUser.gpsTrackState == SMGPSTrackButtonStateFollowing && self.currentlyRouting) {
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
     } else {
         // next state is follow
