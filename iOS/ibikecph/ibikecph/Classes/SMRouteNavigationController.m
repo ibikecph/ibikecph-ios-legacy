@@ -638,9 +638,18 @@ typedef enum {
         [self.mpView setRoutingDelegate:nil];
         
         /**
+         * hide the route
+         */
+        for (RMAnnotation *annotation in self.mpView.annotations) {
+            if ([annotation.annotationType isEqualToString:@"path"]) {
+                [self.mpView removeAnnotation:annotation];
+            }
+        }
+        /**
          * show actual route travelled
          */
-        [self showRouteTravelled];
+//        [self showRouteTravelled];
+        
         
         if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
             debugLog(@"error in trackEvent");

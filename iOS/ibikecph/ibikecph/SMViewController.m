@@ -790,6 +790,7 @@ typedef enum {
         } completion:^(BOOL finished) {
             blockingView.alpha = 0.0f;
             [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
+            currentScreen = screenMap;
         }];
     } else {
         [UIView animateWithDuration:0.2f animations:^{
@@ -800,6 +801,7 @@ typedef enum {
             [self.view bringSubviewToFront:fadeView];
             blockingView.alpha = 1.0f;
             [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
+            currentScreen = screenMenu;
         }];
     }
 }
