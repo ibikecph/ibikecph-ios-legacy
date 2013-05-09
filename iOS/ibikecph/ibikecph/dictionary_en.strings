@@ -202,7 +202,6 @@
 "favorites_home_placeholder" = "Home address ...";
 "favorites_work_placeholder" = "Work address ...";
 "log_in" = "Log in";
-"account_is_linked_to_facebook" = "Your account is linked to facebook";
 
 "add_favorite" = "ADD A FAVORITE";
 "cell_add_favorite" = "ADD NEW FAVORITE";
@@ -261,3 +260,7 @@
 "account_login" = "LOGIN";
 "favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";
 "fb_login_error" = "Error while using FB to log in.";
+
+"account_is_linked_to_facebook" = "Your account is linked to the Facebook";
+"please_login" = "Please log in";
+"or" = "or";

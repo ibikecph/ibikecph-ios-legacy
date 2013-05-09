@@ -249,3 +249,7 @@
 "account_login" = "LOG IND";
 "favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";
 "fb_login_error" = "Error while using FB to log in.";
+
+"account_is_linked_to_facebook" = "Din konto er linked til Facebook";
+"please_login" = "Du skal logge ind";
+"or" = "eller";

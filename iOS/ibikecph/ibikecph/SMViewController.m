@@ -548,8 +548,12 @@ typedef enum {
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
     } else {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
+        
+        //@'mainToLogin"
+        [self performSegueWithIdentifier:@"mainToLogin" sender:nil];
+//        
+//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+//        [av show];
     }
 }
 
