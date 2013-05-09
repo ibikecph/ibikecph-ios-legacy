@@ -7,7 +7,12 @@
 //
 
 #import "SMTranslatedViewController.h"
+#import "SMAPIRequest.h"
 
-@interface SMLoginController : SMTranslatedViewController
+@interface SMLoginController : SMTranslatedViewController<SMAPIRequestDelegate> {
+    __weak IBOutlet UITextField *loginEmail;
+    __weak IBOutlet UITextField *loginPassword;
+    
+}
 
 @end
