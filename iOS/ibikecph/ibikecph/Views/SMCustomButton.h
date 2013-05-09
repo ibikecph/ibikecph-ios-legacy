@@ -10,4 +10,6 @@
 
 @interface SMCustomButton : UIButton
 
+-(void) resizeToFitTheTextWithMinWidth:(float)minWidth andMaxWidth:(float) maxWidth;
+
 @end

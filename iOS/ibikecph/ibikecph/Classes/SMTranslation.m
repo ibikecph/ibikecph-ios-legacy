@@ -8,6 +8,14 @@
 
 #import "SMTranslation.h"
 
+@interface UIView(SMViewForTranslation)
+-(void) viewTranslated;
+@end
+
+@implementation UIView(SMViewForTranslation)
+-(void) viewTranslated{}
+@end
+
 @interface SMTranslation()
 @property (nonatomic, strong) NSMutableDictionary * dictionary;
 @end
@@ -94,6 +102,11 @@
             [c setTitle:[self decodeString:[c titleForSegmentAtIndex:i]] forSegmentAtIndex:i];
         }
     }
+    
+    if([view respondsToSelector:@selector(viewTranslated)]){
+        [view viewTranslated];
+    }
+    
     if (((UIView*)view).subviews) {
         for (id v in ((UIView*)view).subviews) {
             [SMTranslation translateView:v];

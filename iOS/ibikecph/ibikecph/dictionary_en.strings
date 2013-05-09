@@ -202,6 +202,7 @@
 "favorites_home_placeholder" = "Home address ...";
 "favorites_work_placeholder" = "Work address ...";
 "log_in" = "Log in";
+"account_is_linked_to_facebook" = "Your account is linked to facebook";
 
 "add_favorite" = "ADD A FAVORITE";
 "cell_add_favorite" = "ADD NEW FAVORITE";
