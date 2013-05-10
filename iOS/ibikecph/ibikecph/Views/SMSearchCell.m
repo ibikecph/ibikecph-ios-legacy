@@ -17,15 +17,20 @@
 
 - (void)setImageWithData:(NSDictionary*)currentRow {
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteCalendar"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteCalendar"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteContacts"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
         if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+            [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findLocation"]];
             [self.iconImage setImage:[UIImage imageNamed:@"findLocation"]];
         } else {
+            [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findAutocomplete"]];
             [self.iconImage setImage:[UIImage imageNamed:@"findAutocomplete"]];
         }
     }else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
@@ -42,16 +47,21 @@
             [self.iconImage setHighlightedImage:[UIImage imageNamed:@"favStarWhiteSmall"]];
             [self.iconImage setImage:[UIImage imageNamed:@"favStarGreySmall"]];
         } else {
+            [self.iconImage setHighlightedImage:nil];
             [self.iconImage setImage:nil];
         }
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
+        [self.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         [self.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
     } else {
-         [self.iconImage setImage:nil];
+        [self.iconImage setHighlightedImage:nil];
+        [self.iconImage setImage:nil];
     }
 
 }

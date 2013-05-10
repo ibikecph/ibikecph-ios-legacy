@@ -109,6 +109,7 @@ typedef enum {
     tblView = nil;
     fadeView = nil;
     locationArrow = nil;
+    swapButton = nil;
     [super viewDidUnload];
 }
 
@@ -131,6 +132,8 @@ typedef enum {
 
 - (IBAction)swapFields:(id)sender {
     if (self.fromData == nil  || ([self.fromData objectForKey:@"source"] && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"])) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"current_position_cant_be_destination") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
         return;
     }
     
@@ -140,6 +143,12 @@ typedef enum {
     NSDictionary * data = [self.fromData copy];
     self.fromData = self.toData;
     self.toData = data;
+    
+    if (self.fromData == nil  || ([self.fromData objectForKey:@"source"] && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"])) {
+        [swapButton setEnabled:NO];
+    } else {
+        [swapButton setEnabled:YES];
+    }
 }
 
 - (IBAction)goBack:(id)sender {
@@ -405,18 +414,24 @@ typedef enum {
         
         if ([[currentRow objectForKey:@"source"] isEqualToString:@"fb"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteCalendar"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteCalendar"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteCalendar"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"contacts"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findRouteContacts"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findRouteContacts"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"]) {
             if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
                 [cell.iconImage setImage:[UIImage imageNamed:@"findLocation"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findLocation"]];
             } else {
                 [cell.iconImage setImage:[UIImage imageNamed:@"findAutocomplete"]];
+                [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findAutocomplete"]];
             }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"searchHistory"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favorites"]) {
             if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
                 [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"favHomeWhite"]];
@@ -432,11 +447,14 @@ typedef enum {
                 [cell.iconImage setImage:[UIImage imageNamed:@"favStarGreySmall"]];
             } else {
                 [cell.iconImage setImage:nil];
+                [cell.iconImage setHighlightedImage:nil];
             }
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"favoriteRoutes"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"pastRoutes"]) {
             [cell.iconImage setImage:[UIImage imageNamed:@"findHistory"]];
+            [cell.iconImage setHighlightedImage:[UIImage imageNamed:@"findHistory"]];
         }
         return cell;
     }
@@ -513,6 +531,13 @@ typedef enum {
             break;
         case fieldFrom:
             [self setFromData:locationDict];
+            
+            if (self.fromData == nil  || ([self.fromData objectForKey:@"source"] && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"])) {
+                [swapButton setEnabled:NO];
+            } else {
+                [swapButton setEnabled:YES];
+            }
+            
             [fromLabel setText:[self.fromData objectForKey:@"name"]];
             if ([[locationDict objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
                 [locationArrow setHidden:NO];

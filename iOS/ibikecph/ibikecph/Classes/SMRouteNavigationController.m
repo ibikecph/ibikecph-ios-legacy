@@ -231,7 +231,9 @@ typedef enum {
     [routeOverview setFrame:instructionsView.frame];
 
     [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
-    [overviewDestination setText:self.destination];
+    
+    NSArray * a = [self.destination componentsSeparatedByString:@","];
+    [overviewDestination setText:[a objectAtIndex:0]];
 
     
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;

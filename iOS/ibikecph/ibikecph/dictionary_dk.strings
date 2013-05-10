@@ -253,3 +253,5 @@
 "account_is_linked_to_facebook" = "Din konto er linked til Facebook";
 "please_login" = "Du skal logge ind";
 "or" = "eller";
+
+"current_position_cant_be_destination" = "You can't use current position as destination!";

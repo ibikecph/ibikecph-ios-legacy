@@ -264,3 +264,5 @@
 "account_is_linked_to_facebook" = "Your account is linked to the Facebook";
 "please_login" = "Please log in";
 "or" = "or";
+
+"current_position_cant_be_destination" = "You can't use current position as destination!";
