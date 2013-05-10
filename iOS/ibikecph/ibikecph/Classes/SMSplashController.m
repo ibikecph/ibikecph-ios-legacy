@@ -51,6 +51,10 @@ typedef enum {
     registerImage.layer.masksToBounds = YES;
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        SMSearchHistory * sh = [SMSearchHistory instance];
+        [sh setDelegate:self.appDelegate];
+        [sh fetchSearchHistoryFromServer];
+
         [[SMFavoritesUtil instance] fetchFavoritesFromServer];
     }
 }

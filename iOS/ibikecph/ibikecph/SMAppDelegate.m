@@ -9,6 +9,7 @@
 #import "SMAppDelegate.h"
 #import "HockeySDK.h"
 #import "SMUtil.h"
+#import "SMSearchHistory.h"
 
 
 @interface SMAppDelegate(HockeyProtocols) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
@@ -21,8 +22,8 @@
     self.pastRoutes = @[];
     self.currentContacts = @[];
     self.currentEvents = @[];
-    self.searchHistory = [SMUtil getSearchHistory];
-    
+    self.searchHistory = [SMSearchHistory getSearchHistory];
+        
     /**
      * initialize Google Analytics
      */
@@ -228,6 +229,12 @@
 - (void)loadSettings {
     NSMutableDictionary * d = [NSMutableDictionary dictionaryWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"settings.plist"]];
     self.appSettings = d;
+}
+
+#pragma mark - search history delegate
+
+- (void)searchHistoryOperationFinishedSuccessfully:(id)req withData:(id)data {
+    
 }
 
 @end

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "SMSearchHistory.h"
 
-@interface SMAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SMAppDelegate : UIResponder <UIApplicationDelegate, SMSearchHistoryDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property BOOL fbLoggedIn;

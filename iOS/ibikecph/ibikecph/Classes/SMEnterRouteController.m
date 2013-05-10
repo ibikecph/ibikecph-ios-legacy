@@ -15,6 +15,7 @@
 #import "SMViewMoreCell.h"
 #import "SMFavoritesController.h"
 #import "SMFavoritesUtil.h"
+#import "SMSearchHistory.h"
 
 typedef enum {
     fieldTo,
@@ -251,17 +252,24 @@ typedef enum {
             
             
         } else {
-            [SMUtil saveToSearchHistory:@{
-             @"name" : [self.toData objectForKey:@"name"],
-             @"address" : [self.toData objectForKey:@"address"],
-             @"startDate" : [NSDate date],
-             @"endDate" : [NSDate date],
-             @"source" : @"searchHistory",
-             @"subsource" : @"",
-             @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.latitude],
-             @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.longitude],
-             @"order" : @1
-             }];
+            NSDictionary * d = @{
+                                 @"name" : [self.toData objectForKey:@"name"],
+                                 @"address" : [self.toData objectForKey:@"address"],
+                                 @"startDate" : [NSDate date],
+                                 @"endDate" : [NSDate date],
+                                 @"source" : @"searchHistory",
+                                 @"subsource" : @"",
+                                 @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.latitude],
+                                 @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate.longitude],
+                                 @"order" : @1
+                                 };
+            [SMSearchHistory saveToSearchHistory:d];
+            
+            if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+                SMSearchHistory * sh = [SMSearchHistory instance];
+                [sh setDelegate:self.appDelegate];
+                [sh addSearchToServer:d];
+            }
             
             [self.delegate findRouteFrom:((CLLocation*)[self.fromData objectForKey:@"location"]).coordinate to:((CLLocation*)[self.toData objectForKey:@"location"]).coordinate fromAddress:fromLabel.text toAddress:toLabel.text withJSON:jsonRoot];
             [self dismissViewControllerAnimated:YES completion:^{

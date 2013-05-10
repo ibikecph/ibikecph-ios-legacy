@@ -34,9 +34,6 @@ NSString *formatTimeLeft(NSInteger seconds);
  */
 + (NSString*)routeFilenameFromTimestampForExtension:(NSString*) ext;
 
-+ (NSArray*)getSearchHistory;
-+ (BOOL)saveToSearchHistory:(NSDictionary*)dict;
-
 + (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSString*)srchString;
 
 @end
