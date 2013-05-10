@@ -12,8 +12,8 @@
 @interface SMLoginController ()
 @property (nonatomic, strong) SMAPIRequest * apr;
 
-- (IBAction)loginWithFacebook:(id)sender;
-- (IBAction)doLogin:(id)sender;
+//- (IBAction)loginWithFacebook:(id)sender;
+//- (IBAction)doLogin:(id)sender;
 
 @end
 
