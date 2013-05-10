@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //	[[UIApplication sharedApplication] setStatusBarHidden:YES];
-    [scrlView setContentSize:CGSizeMake(300.0f, 520.0f)];
+    [scrlView setContentSize:CGSizeMake(265.0f, 520.0f)];
 }
 
 - (void)didReceiveMemoryWarning {
