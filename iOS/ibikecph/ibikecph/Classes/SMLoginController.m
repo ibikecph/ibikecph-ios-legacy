@@ -7,6 +7,7 @@
 //
 
 #import "SMLoginController.h"
+#import "DAKeyboardControl.h"
 
 @interface SMLoginController ()
 @property (nonatomic, strong) SMAPIRequest * apr;
@@ -31,6 +32,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {}];
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.view removeKeyboardControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -154,6 +167,19 @@
 - (IBAction)loginWithMail:(id)sender {
     UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Not implemented yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [av show];
+}
+
+
+#pragma mark - textfield delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+
+    return YES;
 }
 
 - (void)viewDidUnload {
