@@ -28,8 +28,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -37,7 +36,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {}];
+    [scrlView setContentSize:CGSizeMake(320.0f, 410.0f)];
+    
+    UIScrollView * scr = scrlView;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        CGRect frame = scr.frame;
+        frame.size.height = keyboardFrameInView.origin.y;
+        scr.frame = frame;
+    }];
 
 }
 
@@ -173,18 +179,25 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-
+    NSInteger tag = textField.tag + 1;
+    [textField resignFirstResponder];
+    [[scrlView viewWithTag:tag] becomeFirstResponder];
+    if (tag == 103) {
+        [scrlView setContentOffset:CGPointZero];
+        [self doLogin:nil];
+    }
     return YES;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-
+    [scrlView setContentOffset:CGPointMake(0.0f, MAX(0.0f,textField.frame.origin.y - 82.0f))];
     return YES;
 }
 
 - (void)viewDidUnload {
     loginEmail = nil;
     loginPassword = nil;
+    scrlView = nil;
     [super viewDidUnload];
 }
 @end

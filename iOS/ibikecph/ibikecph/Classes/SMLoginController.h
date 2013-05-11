@@ -12,6 +12,7 @@
 @interface SMLoginController : SMTranslatedViewController<SMAPIRequestDelegate, UITextFieldDelegate> {
     __weak IBOutlet UITextField *loginEmail;
     __weak IBOutlet UITextField *loginPassword;
+    __weak IBOutlet UIScrollView *scrlView;
     
 }
 
