@@ -33,6 +33,7 @@
 		4BA9164F16B14F02004E04A4 /* TrackingLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9164516B14F02004E04A4 /* TrackingLocation@2x.png */; };
 		4BB6F95616DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */; };
 		4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */; };
+		4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0375AB173ED51500D2D98E /* SMRegisterController.m */; };
 		4C044D3E16DB735B00C0303C /* SMTranslatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */; };
 		4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */; };
 		4C044D4316DB7B0200C0303C /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295916D5230B000CA4A2 /* NSString+URLEncode.m */; };
@@ -546,6 +547,8 @@
 		4BB6F95516DB6CCE004A3889 /* SMGPSTrackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSTrackButton.m; sourceTree = "<group>"; };
 		4BCDAFF516C2808A00E0C313 /* SMDirectionTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionTopCell.h; sourceTree = "<group>"; };
 		4BCDAFF616C2808A00E0C313 /* SMDirectionTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDirectionTopCell.m; sourceTree = "<group>"; };
+		4C0375AA173ED51500D2D98E /* SMRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRegisterController.h; sourceTree = "<group>"; };
+		4C0375AB173ED51500D2D98E /* SMRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRegisterController.m; sourceTree = "<group>"; };
 		4C044D3C16DB735B00C0303C /* SMTranslatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslatedViewController.h; sourceTree = "<group>"; };
 		4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslatedViewController.m; sourceTree = "<group>"; };
 		4C06BA6316E88B60001B7312 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
@@ -1845,6 +1848,8 @@
 				4CC8523716FB5822009EA0E7 /* SMAccountController.m */,
 				C0C94740173BE40E00FE834D /* SMLoginController.h */,
 				C0C94741173BE40E00FE834D /* SMLoginController.m */,
+				4C0375AA173ED51500D2D98E /* SMRegisterController.h */,
+				4C0375AB173ED51500D2D98E /* SMRegisterController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -2466,6 +2471,7 @@
 				4C929AB81728026500DBAB5C /* SMFavoritesUtil.m in Sources */,
 				C0C94742173BE40E00FE834D /* SMLoginController.m in Sources */,
 				4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */,
+				4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

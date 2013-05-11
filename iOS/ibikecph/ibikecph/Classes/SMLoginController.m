@@ -19,32 +19,21 @@
 
 @implementation SMLoginController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [scrlView setContentSize:CGSizeMake(320.0f, 410.0f)];
-    
-    UIScrollView * scr = scrlView;
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-        CGRect frame = scr.frame;
-        frame.size.height = keyboardFrameInView.origin.y;
-        scr.frame = frame;
-    }];
-
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+        [self goBack:nil];
+    } else {
+        [scrlView setContentSize:CGSizeMake(320.0f, 410.0f)];
+        
+        UIScrollView * scr = scrlView;
+        [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+            CGRect frame = scr.frame;
+            frame.size.height = keyboardFrameInView.origin.y;
+            scr.frame = frame;
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -67,7 +56,7 @@
 - (IBAction)doLogin:(id)sender {
     [loginEmail resignFirstResponder];
     [loginPassword resignFirstResponder];
-//    [loginScroll setContentOffset:CGPointZero animated:YES];
+    [scrlView setContentOffset:CGPointZero animated:YES];
     if ([loginEmail.text isEqualToString:@""] || [loginPassword.text isEqualToString:@""]) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"login_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
@@ -171,8 +160,7 @@
 
 
 - (IBAction)loginWithMail:(id)sender {
-    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Not implemented yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [av show];
+    [self performSegueWithIdentifier:@"mainToRegister" sender:nil];
 }
 
 
