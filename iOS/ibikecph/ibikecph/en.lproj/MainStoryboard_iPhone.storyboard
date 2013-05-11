@@ -266,6 +266,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
+                                <rect key="frame" x="42" y="152" width="237" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
+                                        <rect key="frame" x="5" y="36" width="226" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iO8-td-ZgU">
+                                        <rect key="frame" x="55" y="52" width="151" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4s-Mv-sSx">
+                                        <rect key="frame" x="20" y="73" width="197" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="FRP-eR-IZ0" userLabel="register view">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,29 +502,6 @@
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
-                                <rect key="frame" x="42" y="152" width="237" height="143"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
-                                        <rect key="frame" x="5" y="36" width="226" height="107"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iO8-td-ZgU">
-                                        <rect key="frame" x="55" y="52" width="151" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4s-Mv-sSx">
-                                        <rect key="frame" x="20" y="73" width="197" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.68235294117647061" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
@@ -3570,9 +3570,6 @@
         <class className="SMAccountController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAccountController.h"/>
             <relationships>
-                <relationship kind="action" name="changeImage:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="logout:"/>
                 <relationship kind="outlet" name="email" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="fbImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="fbName" candidateClass="UILabel"/>
@@ -3709,11 +3706,6 @@
         <class className="SMLoginController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMLoginController.h"/>
             <relationships>
-                <relationship kind="action" name="doFBLogin:" candidateClass="NSString"/>
-                <relationship kind="action" name="doLogin:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="loginWithFacebook:"/>
-                <relationship kind="action" name="loginWithMail:"/>
                 <relationship kind="outlet" name="loginEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginPassword" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
@@ -3747,9 +3739,6 @@
         <class className="SMRegisterController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRegisterController.h"/>
             <relationships>
-                <relationship kind="action" name="doRegister:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="selectImageSource:"/>
                 <relationship kind="outlet" name="registerEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="registerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="registerName" candidateClass="UITextField"/>
@@ -3827,12 +3816,16 @@
         <class className="SMSplashController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSplashController.h"/>
             <relationships>
-                <relationship kind="action" name="doFBLogin:" candidateClass="NSString"/>
                 <relationship kind="action" name="doLogin:"/>
                 <relationship kind="action" name="doRegister:"/>
+                <relationship kind="action" name="goToFavorites:"/>
                 <relationship kind="action" name="hideLogin:"/>
+                <relationship kind="action" name="hideRegister:"/>
                 <relationship kind="action" name="loginToRegister:"/>
+                <relationship kind="action" name="loginWithFB:"/>
                 <relationship kind="action" name="loginWithFacebook:"/>
+                <relationship kind="action" name="selectImageSource:"/>
+                <relationship kind="action" name="showLogin:"/>
                 <relationship kind="action" name="skipLogin:"/>
                 <relationship kind="outlet" name="dialogView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>

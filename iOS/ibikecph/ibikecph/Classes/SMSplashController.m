@@ -32,6 +32,7 @@ typedef enum {
 
 @property (nonatomic, strong) SMAPIRequest * apr;
 @property (nonatomic, strong) UIImage * profileImage;
+@property (nonatomic, strong) SMFavoritesUtil * favfetch;
 @end
 
 
@@ -134,6 +135,7 @@ typedef enum {
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"login"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
+    self.apr.manualRemove = YES;
     [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": loginEmail.text, @"password": loginPassword.text}}];
 }
 
@@ -142,6 +144,7 @@ typedef enum {
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"loginFB"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
+    self.apr.manualRemove = YES;
     [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken}}];
 }
 
@@ -199,6 +202,7 @@ typedef enum {
 }
 
 - (IBAction)goToFavorites:(id)sender {
+    [self.apr hideWaitingView];
     if ([[SMFavoritesUtil getFavorites] count] > 0) {
         [self performSegueWithIdentifier:@"splashToMain" sender:nil];
     } else {
@@ -481,19 +485,22 @@ typedef enum {
             [self.appDelegate.appSettings setValue:loginPassword.text forKey:@"password"];
             [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
             [self.appDelegate saveSettings];
-            [self goToFavorites:nil];
+            [self fetchFavs];
+//            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"autoLogin"]) {
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
                 [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
                 [self.appDelegate saveSettings];
-                [self goToFavorites:nil];
+                [self fetchFavs];
+//                [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"loginFB"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
             [self.appDelegate.appSettings setValue:@"FB" forKey:@"loginType"];
             [self.appDelegate saveSettings];
-            [self goToFavorites:nil];
+            [self fetchFavs];
+//            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
@@ -510,6 +517,26 @@ typedef enum {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
     }
+}
+
+#pragma mark - favorites delegate 
+
+- (void)fetchFavs {
+    SMFavoritesUtil * sh = [SMFavoritesUtil instance];
+    [sh setDelegate:self];
+    [self setFavfetch:sh];
+    [self.favfetch fetchFavoritesFromServer];
+
+}
+
+- (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data {
+    [self.apr hideWaitingView];
+    [self goToFavorites:nil];
+}
+
+- (void)favoritesOperation:(id)req failedWithError:(NSError *)error {
+    [self.apr hideWaitingView];
+    [self goToFavorites:nil];
 }
 
 @end

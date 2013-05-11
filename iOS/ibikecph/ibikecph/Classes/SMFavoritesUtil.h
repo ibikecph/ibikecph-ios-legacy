@@ -13,6 +13,8 @@
 
 @protocol SMFavoritesDelegate <NSObject>
 - (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data;
+@optional
+- (void)favoritesOperation:(id)req failedWithError:(NSError*)error;
 @end
 
 @interface SMFavoritesUtil : NSObject <SMAPIRequestDelegate>

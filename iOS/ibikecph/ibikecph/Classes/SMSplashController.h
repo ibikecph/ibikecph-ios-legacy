@@ -8,8 +8,9 @@
 
 #import "SMTranslatedViewController.h"
 #import "SMAPIRequest.h"
+#import "SMFavoritesUtil.h"
 
-@interface SMSplashController : SMTranslatedViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SMAPIRequestDelegate>{
+@interface SMSplashController : SMTranslatedViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SMAPIRequestDelegate, SMFavoritesDelegate>{
     
     __weak IBOutlet UIView *registerView;
     __weak IBOutlet UIView *loginView;

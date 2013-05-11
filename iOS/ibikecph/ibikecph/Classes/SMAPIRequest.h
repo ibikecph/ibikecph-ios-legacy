@@ -21,9 +21,11 @@
 
 @property (nonatomic, weak) id<SMAPIRequestDelegate> delegate;
 @property (nonatomic, strong) NSString * requestIdentifier;
+@property BOOL manualRemove;
 
 - (id) initWithDelegeate:(id<SMAPIRequestDelegate>) dlg;
 - (void)executeRequest:(NSDictionary*)request withParams:(NSDictionary*)params;
-- (void) showTransparentWaitingIndicatorInView:(UIView*) view;
+- (void)showTransparentWaitingIndicatorInView:(UIView*) view;
+- (void)hideWaitingView;
 
 @end

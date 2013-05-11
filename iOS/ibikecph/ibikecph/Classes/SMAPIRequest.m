@@ -23,6 +23,7 @@
     self = [super init];
     if (self) {
         [self setDelegate:dlg];
+        self.manualRemove = NO;
     }
     return self;
 }
@@ -154,6 +155,16 @@
     
 }
 
+- (void)hideWaitingView {
+    if (self.waitingView) {
+        [UIView animateWithDuration:0.2f animations:^{
+            [self.waitingView setAlpha:0.0f];
+        } completion:^(BOOL finished) {
+            [self.waitingView removeFromSuperview];
+        }];
+    }
+}
+
 #pragma mark - url connection delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -161,12 +172,8 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    if (self.waitingView) {
-        [UIView animateWithDuration:0.2f animations:^{
-            [self.waitingView setAlpha:0.0f];
-        } completion:^(BOOL finished) {
-            [self.waitingView removeFromSuperview];
-        }];        
+    if (self.manualRemove == NO) {
+        [self hideWaitingView];
     }
     NSError *error = NULL;
     NSString * s = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
@@ -193,12 +200,8 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    if (self.waitingView) {
-        [UIView animateWithDuration:0.2f animations:^{
-            [self.waitingView setAlpha:0.0f];
-        } completion:^(BOOL finished) {
-            [self.waitingView removeFromSuperview];
-        }];
+    if (self.manualRemove == NO) {
+        [self hideWaitingView];
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(request:failedWithError:)]) {
         [self.delegate request:self failedWithError:error];
