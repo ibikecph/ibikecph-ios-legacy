@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *text;
 @property (weak, nonatomic) IBOutlet UILabel *addFavoritesText;
+@property (weak, nonatomic) IBOutlet UIImageView *addFavoritesSymbol;
 
 
 + (CGFloat)getHeight;

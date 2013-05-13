@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum _registrationValidationResult{
+    RVR_REGISTRATION_DATA_VALID,
+    RVR_EMPTY_FIELDS,
+    RVR_INVALID_EMAIL,
+    RVR_PASSWORD_TOO_SHORT,
+    RVR_PASSWORDS_DOESNT_MATCH
+    
+} eRegistrationValidationResult;
 
 @protocol ViewTapDelegate <NSObject>
 - (void)viewTapped:(id)view;
@@ -35,5 +43,9 @@ NSString *formatTimeLeft(NSInteger seconds);
 + (NSString*)routeFilenameFromTimestampForExtension:(NSString*) ext;
 
 + (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSString*)srchString;
+
++ (BOOL) isEmailValid:(NSString*) email;
+
++ (eRegistrationValidationResult) validateRegistrationName:(NSString*)name Email:(NSString*) email Password:(NSString*) pass AndRepeatedPassword:(NSString*)repPass;
 
 @end

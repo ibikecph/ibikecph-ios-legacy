@@ -15,6 +15,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *text;
+@property (weak, nonatomic) IBOutlet UIImageView *addFavoritesSymbol;
 
 @property (nonatomic, weak) id<ViewTapDelegate>delegate;
 

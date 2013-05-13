@@ -18,6 +18,7 @@
 #define POINTS_EXACT_ADDRESS 10
 #define POINTS_PART_NAME 1
 #define POINTS_PART_ADDRESS 1
+#define MINIMUM_PASS_LENGTH 3
 
 // Format distance string (choose between meters and kilometers)
 NSString *formatDistance(float meters) {
@@ -263,6 +264,49 @@ float caloriesBurned(float avgSpeed, float timeSpent){
     }
     
     return total;
+}
+
++ (BOOL) isEmailValid:(NSString*) email {
+    NSString *emailRegEx = @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+    @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+    @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+    @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    NSPredicate *regExPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    return [regExPredicate evaluateWithObject:[email lowercaseString]];
+}
+
++ (eRegistrationValidationResult) validateRegistrationName:(NSString*)name Email:(NSString*) email Password:(NSString*) pass AndRepeatedPassword:(NSString*)repPass{
+    if (!name       || name.length      == 0 ||
+        !email      || email.length     == 0 ||
+        !pass       || pass.length      == 0 ||
+        !repPass    || repPass.length   == 0) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return RVR_EMPTY_FIELDS;
+    }
+    
+    if(![SMUtil isEmailValid:email]){
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_invalid_email") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return RVR_INVALID_EMAIL;
+    }
+    
+    if(pass.length < MINIMUM_PASS_LENGTH){
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords_short") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return RVR_PASSWORD_TOO_SHORT;
+    }
+    
+    if ([pass isEqualToString:repPass] == NO) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+        return RVR_PASSWORDS_DOESNT_MATCH;
+    }
+    
+    return RVR_REGISTRATION_DATA_VALID;
 }
 
 @end

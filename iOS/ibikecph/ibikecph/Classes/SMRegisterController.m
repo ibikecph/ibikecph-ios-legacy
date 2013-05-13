@@ -68,14 +68,8 @@
     [registerRepeatPassword resignFirstResponder];
     [registerName resignFirstResponder];
     [scrlView setContentOffset:CGPointZero animated:YES];
-    if ([registerEmail.text isEqualToString:@""] || [registerPassword.text isEqualToString:@""] || [registerRepeatPassword.text isEqualToString:@""] || [registerName.text isEqualToString:@""]) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
-        return;
-    }
-    if ([registerPassword.text isEqualToString:registerRepeatPassword.text] == NO) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
+    
+    if([SMUtil validateRegistrationName:registerName.text Email:registerEmail.text Password:registerPassword.text AndRepeatedPassword:registerRepeatPassword.text] != RVR_REGISTRATION_DATA_VALID){
         return;
     }
     

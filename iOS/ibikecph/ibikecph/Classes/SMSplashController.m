@@ -154,17 +154,11 @@ typedef enum {
     [passwordRepeatField resignFirstResponder];
     [nameField resignFirstResponder];
     [registerScroll setContentOffset:CGPointZero animated:YES];
-    if ([emailField.text isEqualToString:@""] || [passwordField.text isEqualToString:@""] || [passwordRepeatField.text isEqualToString:@""] || [nameField.text isEqualToString:@""]) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_fields") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
+    
+    if([SMUtil validateRegistrationName:nameField.text Email:emailField.text Password:passwordField.text AndRepeatedPassword:passwordRepeatField.text] != RVR_REGISTRATION_DATA_VALID){
         return;
     }
-    if ([passwordField.text isEqualToString:passwordRepeatField.text] == NO) {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"register_error_passwords") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
-        return;        
-    }
-    
+        
     NSMutableDictionary * user = [NSMutableDictionary dictionaryWithDictionary:@{
                                   @"name": nameField.text,
                                   @"email": emailField.text,
@@ -196,6 +190,7 @@ typedef enum {
     [self.apr showTransparentWaitingIndicatorInView:self.view];
     [self.apr executeRequest:API_REGISTER withParams:params];
 }
+
 
 - (IBAction)skipLogin:(id)sender {
     [self performSegueWithIdentifier:@"splashToMain" sender:nil];

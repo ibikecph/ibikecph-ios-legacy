@@ -195,11 +195,14 @@ typedef enum {
 
 #pragma mark - custom methods
 
-#define COORDINATE_PADDING 0.005f
+#define LATITUDE_PADDING 0.25f
+#define LONGITUDE_PADDING 0.10f
 
 - (void)setupMapSize:(BOOL)heading {
     CGRect frame = self.mpView.frame;
-    if ((heading == NO) || self.pulling) {
+    if (overviewShown) {
+        frame.size.height = routeOverview.frame.origin.y + 1.0f;
+    } else if ((heading == NO) || self.pulling) {
         frame.size.height = (self.view.frame.size.height - frame.origin.y);
     } else {
         if (currentDirectionsState == directionsMini) {
@@ -209,9 +212,11 @@ typedef enum {
         }
     }
     [self.mpView setFrame:frame];
+    
     frame = buttonTrackUser.frame;
     frame.origin.y = instructionsView.frame.origin.y - 65.0f;
     [buttonTrackUser setFrame:frame];
+    
 }
 
 - (void)showRouteOverview {
@@ -239,11 +244,17 @@ typedef enum {
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
     CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
     
-    ne.latitude += COORDINATE_PADDING;
-    ne.longitude += COORDINATE_PADDING;
+    //TODO: check if start or end are in top-left or bottom-right corrner (20%)
+    // if so, move them a little bit more inside so they dont fell under buttons
+    
+    
+    float latDiff = (ne.latitude - sw.latitude);
+    float lonDiff = (ne.longitude - sw.longitude);
+    ne.latitude +=  latDiff * LATITUDE_PADDING * 1.75f;
+    ne.longitude += lonDiff * LONGITUDE_PADDING;
 
-    sw.latitude -= COORDINATE_PADDING;
-    sw.longitude -= COORDINATE_PADDING;
+    sw.latitude -= latDiff * LATITUDE_PADDING;
+    sw.longitude -= lonDiff * LONGITUDE_PADDING;
 
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];

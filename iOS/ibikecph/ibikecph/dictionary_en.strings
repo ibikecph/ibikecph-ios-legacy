@@ -266,3 +266,6 @@
 "or" = "or";
 
 "current_position_cant_be_destination" = "You can't use current position as destination!";
+
+"register_error_passwords_short" = "Your passwords is too short";
+"register_error_invalid_email" = "Email address is not valid";

@@ -178,6 +178,7 @@ typedef enum {
     self.tableFooter = [SMAddFavoriteCell getFromNib];
     [self.tableFooter setDelegate:self];
     [self.tableFooter.text setText:translateString(@"cell_add_favorite")];
+
     
     
     UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
@@ -288,7 +289,7 @@ typedef enum {
         [scrlView removeObserver:self forKeyPath:@"contentOffset"];
         [tblMenu removeObserver:self forKeyPath:@"editing"];
     }@catch(id anException){
-        
+        bool test = true;
     }
     
     [self.view removeKeyboardControl];
@@ -1320,10 +1321,15 @@ typedef enum {
                 [cell.addFavoritesText setText:translateString(@"cell_empty_favorite_text")];
                 [cell.addFavoritesText setTextColor:[UIColor whiteColor]];
                 [cell.text setTextColor:[UIColor colorWithRed:0.0f/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0f]];
+                [cell.addFavoritesSymbol setImage:[UIImage imageNamed:@"favAdd"]];
+//                [cell.text setTextColor:[UIColor greenColor]];
             } else {
                 [cell.addFavoritesText setText:translateString(@"favorites_login")];                
                 [cell.addFavoritesText setTextColor:[UIColor colorWithRed:96.0f/255.0f green:96.0f/255.0f blue:96.0f/255.0f alpha:1.0f]];
                 [cell.text setTextColor:[UIColor colorWithRed:123.0f/255.0f green:123.0f/255.0f blue:123.0f/255.0f alpha:1.0f]];
+//                [cell.text setTextColor:[UIColor redColor]];
+                [cell.addFavoritesSymbol setImage:[UIImage imageNamed:@"fav_plus_none"]];
+
             }
             
             return cell;
