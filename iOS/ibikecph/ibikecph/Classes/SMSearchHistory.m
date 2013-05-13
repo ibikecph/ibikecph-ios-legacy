@@ -113,6 +113,12 @@
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"addHistory"];
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [df setDateFormat:@"EEE, dd MMMM YYYY HH:mm:ss zzz"];
+    NSString * date = [df stringFromDate:[NSDate date]];
+    
     [self.apr executeRequest:API_ADD_HISTORY withParams:@{
      @"auth_token":[self.appDelegate.appSettings objectForKey:@"auth_token"], @
      "route": @{
@@ -122,7 +128,7 @@
      @"to_name": [srchData objectForKey:@"address"],
      @"to_lattitude": [NSString stringWithFormat:@"%f", [[srchData objectForKey:@"lat"] doubleValue]],
      @"to_longitude": [NSString stringWithFormat:@"%f", [[srchData objectForKey:@"long"] doubleValue]],
-     @"start_date" : @"" }}
+     @"start_date" : date }}
      ];    
 }
 
