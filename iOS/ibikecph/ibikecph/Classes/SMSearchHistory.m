@@ -113,11 +113,11 @@
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"addHistory"];
-    [self.apr executeRequest:API_ADD_FAVORITE withParams:@{
+    [self.apr executeRequest:API_ADD_HISTORY withParams:@{
      @"auth_token":[self.appDelegate.appSettings objectForKey:@"auth_token"], @
      "route": @{
-     @"from_name": @"",
-     @"from_latitude": @0,
+     @"from_name": @"N/A",
+     @"from_lattitude": @0,
      @"from_longitude": @0,
      @"to_name": [srchData objectForKey:@"address"],
      @"to_lattitude": [NSString stringWithFormat:@"%f", [[srchData objectForKey:@"lat"] doubleValue]],
@@ -135,20 +135,20 @@
 }
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
-//    if ([result objectForKey:@"error"]) {
-//    } else if ([[result objectForKey:@"success"] boolValue]) {
-//        if ([req.requestIdentifier isEqualToString:@"fetchList"]) {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(searchHistoryOperationFinishedSuccessfully:withData:)]) {
-//                [self.delegate searchHistoryOperationFinishedSuccessfully:self withData:result];
-//            }
-//            
-//        } else if ([req.requestIdentifier isEqualToString:@"addHistory"]) {
-//            
-//        }
-//    } else {
-//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-//        [av show];
-//    }
+    if ([result objectForKey:@"error"]) {
+    } else if ([[result objectForKey:@"success"] boolValue]) {
+        if ([req.requestIdentifier isEqualToString:@"fetchList"]) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(searchHistoryOperationFinishedSuccessfully:withData:)]) {
+                [self.delegate searchHistoryOperationFinishedSuccessfully:self withData:result];
+            }
+            
+        } else if ([req.requestIdentifier isEqualToString:@"addHistory"]) {
+            
+        }
+    } else {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+        [av show];
+    }
 }
 
 
