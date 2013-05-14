@@ -244,12 +244,37 @@ typedef enum {
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
     CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
     
-    //TODO: check if start or end are in top-left or bottom-right corrner (20%)
-    // if so, move them a little bit more inside so they dont fell under buttons
-    
-    
     float latDiff = (ne.latitude - sw.latitude);
     float lonDiff = (ne.longitude - sw.longitude);
+    
+    //TODO: check if start or end are in top-left or bottom-right corrner (18%)
+    // if so, move them a little bit more inside so they dont fell under buttons
+    float borderCheck = 0.18f;
+    
+    
+    BOOL topLeftObscured =(
+    (ne.latitude - self.route.locationStart.latitude < borderCheck*latDiff &&  self.route.locationStart.longitude - sw.longitude < borderCheck*lonDiff) ||
+    (ne.latitude - self.route.locationEnd.latitude < borderCheck*latDiff &&  self.route.locationEnd.longitude - sw.longitude < borderCheck*lonDiff)
+                           );
+
+    BOOL bottomRightObscured =(
+    (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff) ||
+    (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff)
+                               );
+    
+    if(topLeftObscured) {
+        ne.latitude +=  latDiff * borderCheck;
+        sw.longitude -= lonDiff * borderCheck;
+    }
+    
+    if(bottomRightObscured){
+        ne.longitude += lonDiff * borderCheck;
+        sw.latitude -= latDiff * borderCheck;
+    }
+    
+    /////////////////////////////////////////
+    
+    
     ne.latitude +=  latDiff * LATITUDE_PADDING * 1.75f;
     ne.longitude += lonDiff * LONGITUDE_PADDING;
 
@@ -264,9 +289,6 @@ typedef enum {
         debugLog(@"error in trackEvent");
     }
     
-    
-
-
 }
 
 - (IBAction)startRouting:(id)sender {

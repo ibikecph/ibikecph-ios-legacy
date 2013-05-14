@@ -18,6 +18,7 @@
 
 -(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
+    [self.backImage setHighlighted:highlighted];
     if (highlighted) {
         [self.iconImage setHighlighted:YES];
     } else {

@@ -1141,7 +1141,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterTopRow.png" id="e4Y-Wr-bEk">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterTopRow.png" highlightedImage="routeEnterTopRowPressed.png" id="e4Y-Wr-bEk">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1160,6 +1160,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="backImage" destination="e4Y-Wr-bEk" id="bA2-or-2fn"/>
                                             <outlet property="iconImage" destination="0G6-om-2cf" id="d7e-68-E5l"/>
                                             <outlet property="nameLabel" destination="3a9-cH-4UC" id="gIm-is-PHR"/>
                                         </connections>
@@ -1171,7 +1172,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterMiddleRow.png" id="50b-wE-0dx">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterMiddleRow.png" highlightedImage="routeEnterMiddleRowPressed.png" id="50b-wE-0dx">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1190,6 +1191,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="backImage" destination="50b-wE-0dx" id="c5s-eR-b91"/>
                                             <outlet property="iconImage" destination="e5u-UC-fZ2" id="UVD-g9-QQW"/>
                                             <outlet property="nameLabel" destination="SrM-Hs-dQ8" id="WAX-pr-b81"/>
                                         </connections>
@@ -1201,7 +1203,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterBottomRow.png" id="WiA-Jl-H3W">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterBottomRow.png" highlightedImage="routeEnterBottomRowPressed.png" id="WiA-Jl-H3W">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1220,6 +1222,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="backImage" destination="WiA-Jl-H3W" id="Sma-aY-Lsl"/>
                                             <outlet property="iconImage" destination="KAM-2V-zqM" id="PE6-oE-3df"/>
                                             <outlet property="nameLabel" destination="lNM-Zy-9uR" id="FyF-DS-7Uq"/>
                                         </connections>
@@ -1231,7 +1234,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterSingleRow.png" id="V4G-Zs-9Nz">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="routeEnterSingleRow.png" highlightedImage="routeEnterSingleRowPressed.png" id="V4G-Zs-9Nz">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1250,6 +1253,7 @@
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="backImage" destination="V4G-Zs-9Nz" id="Bzf-Wr-lk7"/>
                                             <outlet property="iconImage" destination="crZ-W1-SKD" id="nPD-H0-qRi"/>
                                             <outlet property="nameLabel" destination="m3J-PW-8w2" id="Zno-Uq-eNI"/>
                                         </connections>
@@ -3522,17 +3526,21 @@
         <image name="reportTextView.png" width="285" height="65"/>
         <image name="rightArrow.png" width="7" height="12"/>
         <image name="routeEnterBack.png" width="47" height="36"/>
-        <image name="routeEnterBottomRow.png" width="320" height="47"/>
+        <image name="routeEnterBottomRow.png" width="300" height="44"/>
+        <image name="routeEnterBottomRowPressed.png" width="300" height="44"/>
         <image name="routeEnterHeader.png" width="320" height="51"/>
         <image name="routeEnterInputBG.png" width="307" height="90"/>
         <image name="routeEnterLocateIcon.png" width="15" height="15"/>
         <image name="routeEnterLogo.png" width="126" height="29"/>
         <image name="routeEnterMiddleRow.png" width="320" height="44"/>
+        <image name="routeEnterMiddleRowPressed.png" width="320" height="44"/>
         <image name="routeEnterSingleRow.png" width="320" height="44"/>
+        <image name="routeEnterSingleRowPressed.png" width="320" height="44"/>
         <image name="routeEnterStart_active.png" width="61" height="35"/>
         <image name="routeEnterStart_inactive.png" width="61" height="35"/>
         <image name="routeEnterSwitchIcon.png" width="23" height="23"/>
         <image name="routeEnterTopRow.png" width="320" height="44"/>
+        <image name="routeEnterTopRowPressed.png" width="320" height="44"/>
         <image name="routeEnterViewMoreRow.png" width="320" height="47"/>
         <image name="routeFinishedOverlay.png" width="320" height="346"/>
         <image name="routeStopOverlay.png" width="320" height="212"/>
@@ -3650,6 +3658,7 @@
         <class className="SMEnterRouteCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="backImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="TTTAttributedLabel"/>
             </relationships>
@@ -3657,6 +3666,8 @@
         <class className="SMEnterRouteController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteController.h"/>
             <relationships>
+                <relationship kind="action" name="findRoute:"/>
+                <relationship kind="action" name="labelTapped:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="fromLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationArrow" candidateClass="UIImageView"/>
@@ -3767,14 +3778,6 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="hideStopView:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="reportError:"/>
-                <relationship kind="action" name="startRouting:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
@@ -3849,28 +3852,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
-                <relationship kind="action" name="enterRoute:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showContacts:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="slideMenuOpen:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
-                <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="account_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
@@ -3923,7 +3904,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wAx-WK-VM3"/>
         <segue reference="SAG-9b-Vbu"/>
+        <segue reference="DqZ-cl-vTA"/>
     </inferredMetricsTieBreakers>
 </document>
