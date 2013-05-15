@@ -25,6 +25,7 @@
     __weak IBOutlet UITextField *toLabel;
     __weak IBOutlet UIImageView *locationArrow;
     __weak IBOutlet UIButton *swapButton;
+    __weak IBOutlet UIButton *startButton;
 }
 
 @property (nonatomic, weak) id<EnterRouteDelegate> delegate;

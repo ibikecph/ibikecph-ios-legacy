@@ -269,3 +269,5 @@
 
 "register_error_passwords_short" = "Your passwords is too short";
 "register_error_invalid_email" = "Email address is not valid";
+
+"register_successful" = "Account created. A message with a confirmation link has been sent to your email address. Please open the link to activate your account.";

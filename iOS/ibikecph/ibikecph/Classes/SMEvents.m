@@ -107,7 +107,7 @@
     addTime.day = CALENDAR_MAX_DAYS;
     NSDate *toDate = [calendar dateByAddingComponents:addTime toDate:[NSDate date] options:0];
     
-    SMAppDelegate * appd = [UIApplication sharedApplication].delegate;
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     if (!appd.session || !appd.session.isOpen) {
         appd.session = [[FBSession alloc] initWithPermissions:@[@"user_events", @"create_event"]];
         [appd.session openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {

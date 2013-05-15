@@ -145,7 +145,7 @@
         }];
         
     } else {
-        debugLog(@"ALready active session: %@", [FBSession activeSession]);
+        debugLog(@"Already active session: %@", [FBSession activeSession]);
         FBRequestConnection *connection = [FBRequestConnection new];
         FBRequestHandler handler =
         ^(FBRequestConnection *connection, id result, NSError *error) {
@@ -235,6 +235,42 @@
 
 - (void)searchHistoryOperationFinishedSuccessfully:(id)req withData:(id)data {
     
+//TODO: make changes after Jacob fixes it on his end
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [df setDateFormat:@"YYYY-MM-dd'T'HH:mm:ss'Z'v"];
+    NSArray * arr = [data objectForKey:@"data"];
+    NSMutableArray * arr2 = [NSMutableArray array];
+    if (arr && [arr isKindOfClass:[NSArray class]]) {
+        for (NSDictionary * d in arr) {
+            NSDate * sd = [df dateFromString:[d objectForKey:@"startDate"]];
+            if (sd == nil) {
+                sd = [NSDate date];
+            }
+            NSDictionary * dc = @{
+                                 @"name" : [d objectForKey:@"toName"],
+                                 @"address" : [d objectForKey:@"toName"],
+                                 @"startDate" : sd,
+                                 @"endDate" : [NSDate date],
+                                 @"source" :  @"searchHistory",
+                                 @"subsource" : @"searchHistory",
+                                 @"lat" : [d objectForKey:@"fromLattitude"],
+                                 @"long" : [d objectForKey:@"fromLongitude"],
+                                 @"order" : @1
+                                 };
+            [arr2 addObject:dc];
+            NSLog(@"%@", dc);
+        }
+        [arr2 sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+            NSDate * d1 = [obj1 objectForKey:@"startDate"];
+            NSDate * d2 = [obj2 objectForKey:@"startDate"];
+            return [d2 compare:d1];
+        }];
+        [self setSearchHistory:arr2];
+    }
+    
+    [SMSearchHistory saveSearchHistory];
 }
 
 @end

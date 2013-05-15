@@ -110,6 +110,7 @@ typedef enum {
     fadeView = nil;
     locationArrow = nil;
     swapButton = nil;
+    startButton = nil;
     [super viewDidUnload];
 }
 
@@ -490,6 +491,12 @@ typedef enum {
          @"address" : [currentRow objectForKey:@"address"],
          @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]
          }];
+        
+        if ((self.toData && self.fromData) || ([toLabel.text isEqualToString:@""] == NO && [fromLabel.text isEqualToString:@""] == NO)) {
+            [startButton setEnabled:YES];
+        } else {
+            [startButton setEnabled:NO];
+        }
     }
 }
 
@@ -557,6 +564,12 @@ typedef enum {
             break;
         default:
             break;
+    }
+    
+    if ((self.toData && self.fromData) || ([toLabel.text isEqualToString:@""] == NO && [fromLabel.text isEqualToString:@""] == NO)) {
+        [startButton setEnabled:YES];
+    } else {
+        [startButton setEnabled:NO];
     }
 }
 

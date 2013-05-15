@@ -8,6 +8,7 @@
 
 #import "SMRequestOSRM.h"
 #import "NSString+URLEncode.h"
+#import "SMGPSUtil.h"
 
 @interface SMRequestOSRM()
 @property (nonatomic, strong) NSURLConnection * conn;
@@ -17,9 +18,21 @@
 @property (nonatomic, strong) CLLocation * endLoc;
 @property NSInteger locStep;
 
+@property NSInteger currentZ;
+@property (nonatomic, strong) NSDictionary * originalJSON;
+@property (nonatomic, strong) NSString * originalChecksum;
+@property (nonatomic, strong) NSString * originalStartHint;
+@property (nonatomic, strong) NSString * originalDestinationHint;
+
+@property (nonatomic, strong) NSArray * originalViaPoints;
+@property CLLocationCoordinate2D originalStart;
+@property CLLocationCoordinate2D originalEnd;
 @end
 
 @implementation SMRequestOSRM
+
+#define DEFAULT_Z 18
+#define MINIMUM_Z 10
 
 - (id)initWithDelegate:(id<SMRequestOSRMDelegate>)dlg {
     self = [super init];
@@ -55,9 +68,28 @@
 }
 
 - (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum destinationHint:(NSString*)hint {
+    self.originalJSON = nil;
+    self.originalStart = start;
+    self.originalEnd = end;
+    self.originalViaPoints = viaPoints;
+    self.originalDestinationHint = hint;
+    self.originalStartHint = nil;
+    self.originalChecksum = chksum;
+    [self getRouteFrom:start to:end via:viaPoints checksum:chksum andStartHint:nil destinationHint:hint andZ:DEFAULT_Z];
+}
+
+- (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum andStartHint:(NSString*)startHint destinationHint:(NSString*)hint andZ:(NSInteger)z{
+    self.currentZ = z;
     self.currentRequest = @"getRouteFrom:to:via:";
     
-    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?alt=false&loc=%.6f,%.6f", OSRM_SERVER, start.latitude, start.longitude];
+    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?z=%d&alt=false", OSRM_SERVER, z];
+    
+    if (startHint) {
+        s1 = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&hint=%@", s1, start.latitude, start.longitude, startHint];
+    } else {
+        s1 = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f", s1, start.latitude, start.longitude];
+    }
+    
     if (viaPoints) {
         for (CLLocation *point in viaPoints)
             [s1 appendFormat:@"&loc=%f.6,%.6f", point.coordinate.latitude, point.coordinate.longitude];
@@ -74,6 +106,8 @@
         s = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&instructions=true", s1, end.latitude, end.longitude];
     }
     
+    debugLog(@"%@", s);
+    
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     if (self.conn) {
         [self.conn cancel];
@@ -84,7 +118,6 @@
     self.conn = c;
     [self.conn start];
 }
-
 
 - (void)findNearestPointForStart:(CLLocation*)start andEnd:(CLLocation*)end {
     self.currentRequest = @"findNearestPointForStart:andEnd:";
@@ -116,6 +149,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if ([self.responseData length] > 0) {
+        NSString * str = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
         id r = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:self.responseData];
         if ([self.currentRequest isEqualToString:@"findNearestPointForStart:andEnd:"]) {
             if (self.locStep > 1) {
@@ -133,12 +167,43 @@
                 [self findNearestPointForStart:self.startLoc andEnd:self.endLoc];
             }
         } else {
-            if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {
-                [self.delegate request:self finishedWithResult:r];
+            
+            if (!r || ([r isKindOfClass:[NSDictionary class]] == NO) || ([[r objectForKey:@"status"] intValue] != 0)) {
+                if (self.currentZ == DEFAULT_Z) {
+                    if (self.originalJSON) {
+                        if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {
+                            [self.delegate request:self finishedWithResult:self.originalJSON];
+                        }
+                    } else {
+                        [self getRouteFrom:self.originalStart to:self.originalEnd via:self.originalViaPoints checksum:self.originalChecksum andStartHint:self.originalStartHint destinationHint:self.originalDestinationHint andZ:MINIMUM_Z];
+                    }
+                } else {
+                    if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {
+                        [self.delegate request:self finishedWithResult:r];
+                    }                    
+                }
+            } else {
+                if (self.currentZ == DEFAULT_Z) {
+                    if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {
+                        [self.delegate request:self finishedWithResult:r];
+                    }
+                } else {
+                    self.originalJSON = r;
+                    self.originalChecksum = [NSString stringWithFormat:@"%@", [[r objectForKey:@"hint_data"] objectForKey:@"checksum"]];
+                    self.originalStartHint = [NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", [[[r objectForKey:@"hint_data"] objectForKey:@"locations"] objectAtIndex:0]]];
+                    self.originalDestinationHint = [NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", [[[r objectForKey:@"hint_data"] objectForKey:@"locations"] lastObject]]];
+                    NSMutableArray * points = [SMGPSUtil decodePolyline:[r objectForKey:@"route_geometry"]];
+                    CLLocationCoordinate2D start = ((CLLocation*)[points objectAtIndex:0]).coordinate;
+                    CLLocationCoordinate2D end = ((CLLocation*)[points lastObject]).coordinate;
+                    [self getRouteFrom:start to:end via:self.originalViaPoints checksum:[NSString stringWithFormat:@"%@", [[r objectForKey:@"hint_data"] objectForKey:@"checksum"]] andStartHint:self.originalStartHint destinationHint:self.originalDestinationHint andZ:DEFAULT_Z];
+                }
             }
+            
+            
         }
     }
 }
+
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {

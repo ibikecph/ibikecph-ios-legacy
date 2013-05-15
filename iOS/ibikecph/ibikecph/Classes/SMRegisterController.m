@@ -153,12 +153,14 @@
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
     if ([[result objectForKey:@"success"] boolValue]) {
         if ([req.requestIdentifier isEqualToString:@"register"]) {
-            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
-            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
-            [self.appDelegate.appSettings setValue:registerEmail.text forKey:@"username"];
-            [self.appDelegate.appSettings setValue:registerPassword.text forKey:@"password"];
-            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
-            [self.appDelegate saveSettings];
+//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+//            [self.appDelegate.appSettings setValue:registerEmail.text forKey:@"username"];
+//            [self.appDelegate.appSettings setValue:registerPassword.text forKey:@"password"];
+//            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
+//            [self.appDelegate saveSettings];
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"" message:translateString(@"register_successful") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
             [self goBack:nil];
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:registerEmail.text withValue:0]) {
                 debugLog(@"error in trackEvent");

@@ -289,7 +289,6 @@ typedef enum {
         [scrlView removeObserver:self forKeyPath:@"contentOffset"];
         [tblMenu removeObserver:self forKeyPath:@"editing"];
     }@catch(id anException){
-        bool test = true;
     }
     
     [self.view removeKeyboardControl];
@@ -1151,8 +1150,9 @@ typedef enum {
         debugLog(@"Warning: trackUser button state was invalid: 0x%0x", buttonTrackUser.gpsTrackState);
 
     if ([SMLocationManager instance].hasValidLocation) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
-        [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
+        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+//        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(trackingOn) object:nil];
+//        [self performSelector:@selector(trackingOn) withObject:nil afterDelay:1.0];
         [self.mpView setCenterCoordinate:[SMLocationManager instance].lastValidLocation.coordinate];
     } else {
         [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
@@ -1184,6 +1184,14 @@ typedef enum {
         SMEnterRouteController *destViewController = segue.destinationViewController;
         [destViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"goToNavigationView"]) {
+        [self.mpView removeAllAnnotations];
+        for (id v in self.mpView.subviews) {
+            if ([v isKindOfClass:[SMCalloutView class]]) {
+                [v removeFromSuperview];
+            }
+        }
+
+        
         NSDictionary * params = (NSDictionary*)sender;
         SMRouteNavigationController *destViewController = segue.destinationViewController;
         [destViewController setStartLocation:[params objectForKey:@"start"]];
@@ -1833,8 +1841,8 @@ typedef enum {
 - (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
     if ([annotation.annotationType isEqualToString:@"marker"]) {
         
-        [self.mpView setCenterCoordinate:annotation.coordinate animated:YES];
-        [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+//        [self.mpView setCenterCoordinate:annotation.coordinate animated:YES];
+//        [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
         
         
         for (id v in self.mpView.subviews) {
@@ -1848,12 +1856,16 @@ typedef enum {
         } else {
             [annotation showCallout];
         }
+        [self.mpView removeAllAnnotations];
+        
+        
     }
 }
 
 #pragma mark - SMAnnotation delegate methods
 
 - (void)annotationActivated:(SMAnnotation *)annotation {
+    
     self.findFrom = @"";
     self.findTo = [NSString stringWithFormat:@"%@, %@", annotation.title, annotation.subtitle];
     self.findMatches = annotation.nearbyObjects;
@@ -1889,16 +1901,6 @@ typedef enum {
     /**
      * end routing
      */
-
-    for (SMAnnotation * annotation in self.mpView.annotations) {
-        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
-            if (annotation.calloutShown) {
-                [annotation hideCallout];
-            }
-        }
-    }
-    
-
 }
 
 

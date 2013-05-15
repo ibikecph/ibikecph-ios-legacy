@@ -497,13 +497,16 @@ typedef enum {
             [self fetchFavs];
 //            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
-            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
-            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
-            [self.appDelegate.appSettings setValue:emailField.text forKey:@"username"];
-            [self.appDelegate.appSettings setValue:passwordField.text forKey:@"password"];
-            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
-            [self.appDelegate saveSettings];
-            [self goToFavorites:nil];
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"" message:translateString(@"register_successful") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+            [self hideRegister:nil];
+//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
+//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
+//            [self.appDelegate.appSettings setValue:emailField.text forKey:@"username"];
+//            [self.appDelegate.appSettings setValue:passwordField.text forKey:@"password"];
+//            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
+//            [self.appDelegate saveSettings];
+//            [self goToFavorites:nil];
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
                 debugLog(@"error in trackEvent");
             }

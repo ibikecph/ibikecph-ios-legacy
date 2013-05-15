@@ -79,7 +79,7 @@
 	static SMFavoritesUtil *instance;
 	if (instance == nil) {
 		instance = [[SMFavoritesUtil alloc] init];
-        instance.appDelegate = [UIApplication sharedApplication].delegate;
+        instance.appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
 	}
 	return instance;
 }
@@ -87,7 +87,7 @@
 - (SMFavoritesUtil *)initWithDelegate:(id<SMFavoritesDelegate>)delegate {
     self = [super init];
     if (self) {
-        self.appDelegate = [UIApplication sharedApplication].delegate;
+        self.appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     }
     return self;
 }

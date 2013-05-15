@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="P1j-kR-ci6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="P1j-kR-ci6">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="Z0Q-Xf-vK7" id="C9M-4Y-xQ7"/>
                                         </connections>
@@ -1286,7 +1286,7 @@
                                     <action selector="goBack:" destination="ZcI-JG-898" eventType="touchUpInside" id="p30-lV-Rl9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vA2-d0-w0P">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vA2-d0-w0P">
                                 <rect key="frame" x="249" y="0.0" width="61" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1363,6 +1363,7 @@
                         <outlet property="fadeView" destination="BqX-SP-Nfk" id="DPt-zI-9Ax"/>
                         <outlet property="fromLabel" destination="PBs-dj-9tX" id="iB5-ky-ClM"/>
                         <outlet property="locationArrow" destination="whr-md-Ife" id="ppc-c3-86d"/>
+                        <outlet property="startButton" destination="vA2-d0-w0P" id="Wey-vf-UZK"/>
                         <outlet property="swapButton" destination="g79-IU-cul" id="S3s-d2-6Um"/>
                         <outlet property="tblView" destination="AcZ-kE-3wX" id="lIg-4v-r0h"/>
                         <outlet property="toLabel" destination="mPP-cU-gxa" id="8Ww-3F-xu2"/>
@@ -3667,10 +3668,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteController.h"/>
             <relationships>
                 <relationship kind="action" name="findRoute:"/>
-                <relationship kind="action" name="labelTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="toTapped:"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="fromLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="swapButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="toLabel" candidateClass="UITextField"/>
@@ -3720,6 +3723,9 @@
         <class className="SMLoginController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMLoginController.h"/>
             <relationships>
+                <relationship kind="action" name="doLogin:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="loginWithFacebook:"/>
                 <relationship kind="outlet" name="loginEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="loginPassword" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
@@ -3816,6 +3822,7 @@
         <class className="SMSearchController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMSearchController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
                 <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="tblFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
@@ -3852,6 +3859,8 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="findAddress:"/>
+                <relationship kind="action" name="saveFavorite:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="account_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>

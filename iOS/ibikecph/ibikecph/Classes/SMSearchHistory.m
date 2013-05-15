@@ -50,6 +50,25 @@
     return @[];
 }
 
++ (BOOL) saveSearchHistory {
+    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+    NSMutableArray * r = [NSMutableArray array];
+    for (NSDictionary * d in appd.searchHistory) {
+        [r addObject:@{
+         @"name" : [d objectForKey:@"name"],
+         @"address" : [d objectForKey:@"address"],
+         @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"startDate"]],
+         @"endDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"endDate"]],
+         @"source" : [d objectForKey:@"source"],
+         @"subsource" : [d objectForKey:@"subsource"],
+         @"lat" : [d objectForKey:@"lat"],
+         @"long" : [d objectForKey:@"long"]
+         }];
+    }
+
+    return [r writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"] atomically:YES];
+}
+
 + (BOOL)saveToSearchHistory:(NSDictionary*)dict {
     SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
     NSMutableArray * arr = [NSMutableArray array];
@@ -65,23 +84,8 @@
         NSDate * d2 = [obj2 objectForKey:@"startDate"];
         return [d2 compare:d1];
     }];
-    
-    NSMutableArray * r = [NSMutableArray array];
-    for (NSDictionary * d in arr) {
-        [r addObject:@{
-         @"name" : [d objectForKey:@"name"],
-         @"address" : [d objectForKey:@"address"],
-         @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"startDate"]],
-         @"endDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"endDate"]],
-         @"source" : [d objectForKey:@"source"],
-         @"subsource" : [d objectForKey:@"subsource"],
-         @"lat" : [d objectForKey:@"lat"],
-         @"long" : [d objectForKey:@"long"]
-         }];
-    }
     [appd setSearchHistory:arr];
-    BOOL x = [r writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"searchHistory.plist"] atomically:YES];
-    return x;
+    return [SMSearchHistory saveSearchHistory];
 }
 
 
@@ -125,7 +129,7 @@
      @"from_name": @"N/A",
      @"from_lattitude": @0,
      @"from_longitude": @0,
-     @"to_name": [srchData objectForKey:@"address"],
+     @"to_name": [srchData objectForKey:@"name"],
      @"to_lattitude": [NSString stringWithFormat:@"%f", [[srchData objectForKey:@"lat"] doubleValue]],
      @"to_longitude": [NSString stringWithFormat:@"%f", [[srchData objectForKey:@"long"] doubleValue]],
      @"start_date" : date }}

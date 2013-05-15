@@ -21,6 +21,7 @@
 + (SMSearchHistory *)instance;
 + (NSArray*)getSearchHistory;
 + (BOOL)saveToSearchHistory:(NSDictionary*)dict;
++ (BOOL) saveSearchHistory;
 
 - (void)fetchSearchHistoryFromServer;
 - (void)addSearchToServer:(NSDictionary*)srchData;

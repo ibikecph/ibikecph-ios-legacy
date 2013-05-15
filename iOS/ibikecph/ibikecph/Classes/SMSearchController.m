@@ -34,6 +34,30 @@
 
 @implementation SMSearchController
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.shouldAllowCurrentPosition = YES;
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.shouldAllowCurrentPosition = YES;
+    }
+    return self;    
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.shouldAllowCurrentPosition = YES;
+    }
+    return self;
+}
+
 - (void)viewDidUnload {
     tblView = nil;
     tblFade = nil;
@@ -43,7 +67,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.shouldAllowCurrentPosition = YES;
     [searchField setText:self.searchText];
     self.autocomp = [[SMAutocomplete alloc] initWithDelegate:self];
     [tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
