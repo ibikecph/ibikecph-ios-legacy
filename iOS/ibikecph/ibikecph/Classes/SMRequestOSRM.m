@@ -192,10 +192,14 @@
                     self.originalChecksum = [NSString stringWithFormat:@"%@", [[r objectForKey:@"hint_data"] objectForKey:@"checksum"]];
                     self.originalStartHint = [NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", [[[r objectForKey:@"hint_data"] objectForKey:@"locations"] objectAtIndex:0]]];
                     self.originalDestinationHint = [NSString stringWithFormat:@"%@", [NSString stringWithFormat:@"%@", [[[r objectForKey:@"hint_data"] objectForKey:@"locations"] lastObject]]];
-                    NSMutableArray * points = [SMGPSUtil decodePolyline:[r objectForKey:@"route_geometry"]];
-                    CLLocationCoordinate2D start = ((CLLocation*)[points objectAtIndex:0]).coordinate;
-                    CLLocationCoordinate2D end = ((CLLocation*)[points lastObject]).coordinate;
-                    [self getRouteFrom:start to:end via:self.originalViaPoints checksum:[NSString stringWithFormat:@"%@", [[r objectForKey:@"hint_data"] objectForKey:@"checksum"]] andStartHint:self.originalStartHint destinationHint:self.originalDestinationHint andZ:DEFAULT_Z];
+                    if ([r objectForKey:@"route_geometry"]) {
+                        NSMutableArray * points = [SMGPSUtil decodePolyline:[r objectForKey:@"route_geometry"]];
+                        CLLocationCoordinate2D start = ((CLLocation*)[points objectAtIndex:0]).coordinate;
+                        CLLocationCoordinate2D end = ((CLLocation*)[points lastObject]).coordinate;
+                        [self getRouteFrom:start to:end via:self.originalViaPoints checksum:[NSString stringWithFormat:@"%@", [[r objectForKey:@"hint_data"] objectForKey:@"checksum"]] andStartHint:self.originalStartHint destinationHint:self.originalDestinationHint andZ:DEFAULT_Z];
+                    } else {
+                        [self getRouteFrom:self.originalStart to:self.originalEnd via:self.originalViaPoints checksum:self.originalChecksum andStartHint:self.originalStartHint destinationHint:self.originalDestinationHint andZ:DEFAULT_Z];
+                    }
                 }
             }
             
