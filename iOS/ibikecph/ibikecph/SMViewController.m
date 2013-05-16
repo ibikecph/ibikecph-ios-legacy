@@ -610,14 +610,17 @@ typedef enum {
         CGPoint point = [gesture locationInView:self.mpView];
         CLLocationCoordinate2D coord = [self.mpView pixelToCoordinate:point];
         CLLocation * loc = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        debugLog(@"pin drop LOC: %@", loc);
+        debugLog(@"pin drop POINT: %@", NSStringFromCGPoint(point));
 
+        
         UIImageView * im = [[UIImageView alloc] initWithFrame:CGRectMake(point.x - 17.0f, 0.0f, 34.0f, 34.0f)];
         [im setImage:[UIImage imageNamed:@"markerFinish"]];
         [self.mpView addSubview:im];
-        
         [UIView animateWithDuration:0.2f animations:^{
             [im setFrame:CGRectMake(point.x - 17.0f, point.y - 34.0f, 34.0f, 34.0f)];
         } completion:^(BOOL finished) {
+            debugLog(@"dropped pin");
             [self.mpView removeAllAnnotations];
             SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
             endMarkerAnnotation.annotationType = @"marker";
@@ -629,12 +632,7 @@ typedef enum {
             [im removeFromSuperview];
 
             SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
-
-//            SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-//            [r setRequestIdentifier:@"getNearestForPinDrop"];
-//            [r findNearestPointForLocation:loc];
-            
+            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];            
         }];
     }
 }
