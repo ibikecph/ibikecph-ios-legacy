@@ -159,11 +159,7 @@ typedef enum {
     
     NSLog(@"%@", OSRM_SERVER);
     
-    UILongPressGestureRecognizer * lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dropPin:)];
-    [lp setDelegate:self];
-    [lp setCancelsTouchesInView:YES];
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(55.675455,12.566643) animated:NO];
-    [self.mpView addGestureRecognizer:lp];
     [self.mpView setZoom:16];
 //    [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
     [self.mpView setEnableBouncing:TRUE];
@@ -590,14 +586,14 @@ typedef enum {
 }
 
 
-- (void)dropPin:(UILongPressGestureRecognizer*) gesture {
+- (void)longSingleTapOnMap:(RMMapView *)map at:(CGPoint)point {
     if (blockingView.alpha > 0) {
         return;
     }
     
     
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        
+//    if (gesture.state == UIGestureRecognizerStateBegan) {
+    
         for (SMAnnotation * annotation in self.mpView.annotations) {
             if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
                 if (annotation.calloutShown) {
@@ -607,12 +603,12 @@ typedef enum {
         }
         
         
-        CGPoint point = [gesture locationInView:self.mpView];
+//        CGPoint point = [gesture locationInView:self.mpView];
         CLLocationCoordinate2D coord = [self.mpView pixelToCoordinate:point];
         CLLocation * loc = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
         debugLog(@"pin drop LOC: %@", loc);
         debugLog(@"pin drop POINT: %@", NSStringFromCGPoint(point));
-
+        
         
         UIImageView * im = [[UIImageView alloc] initWithFrame:CGRectMake(point.x - 17.0f, 0.0f, 34.0f, 34.0f)];
         [im setImage:[UIImage imageNamed:@"markerFinish"]];
@@ -630,11 +626,11 @@ typedef enum {
             [self setDestinationPin:endMarkerAnnotation];
             
             [im removeFromSuperview];
-
+            
             SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];            
+            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
         }];
-    }
+//    }    
 }
 
 - (void)readjustViewsForRotation:(UIInterfaceOrientation) orientation {

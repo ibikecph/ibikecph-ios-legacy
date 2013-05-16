@@ -148,10 +148,10 @@
     NSDictionary * d = @{
                          @"auth_token":[self.appDelegate.appSettings objectForKey:@"auth_token"], @
                          "route": @{
-                                 @"from_name": [srchData objectForKey:@"fromName"],
+                                 @"from_name": [[[srchData objectForKey:@"fromName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]?@"N/A":[[srchData objectForKey:@"fromName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
                                  @"from_lattitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"fromLocation"]).coordinate.latitude],
                                  @"from_longitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"fromLocation"]).coordinate.longitude],
-                                 @"to_name": [srchData objectForKey:@"toName"],
+                                 @"to_name": [[[srchData objectForKey:@"toName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]?@"N/A":[[srchData objectForKey:@"toName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]],
                                  @"to_lattitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"toLocation"]).coordinate.latitude],
                                  @"to_longitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"toLocation"]).coordinate.longitude],
                                  @"route_visited_locations": @"tetststst",//[srchData objectForKey:@"visitedLocations"],
