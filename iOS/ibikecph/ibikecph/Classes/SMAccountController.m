@@ -19,12 +19,14 @@
 }
 @property (nonatomic, strong) SMAPIRequest * apr;
 @property (nonatomic, strong) UIImage * profileImage;
+@property (nonatomic, strong) NSDictionary * userData;
 @end
 
 @implementation SMAccountController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    hasChanged = NO;
 //	[[UIApplication sharedApplication] setStatusBarHidden:YES];
     
     [scrlView setContentSize:CGSizeMake(320.0f, 517.0f)];
@@ -108,7 +110,17 @@
 
 
 - (IBAction)goBack:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (([name.text isEqualToString:[self.userData objectForKey:@"name"]] == NO) || ([email.text isEqualToString:[self.userData objectForKey:@"email"]] == NO) || ([password.text isEqualToString:[self.userData objectForKey:@"password"]] == NO) || ([passwordRepeat.text isEqualToString:[self.userData objectForKey:@"repeatPassword"]] == NO)) {
+        hasChanged = YES;
+    }
+    if (hasChanged) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"account_not_saved") delegate:self cancelButtonTitle:translateString(@"account_cancel") otherButtonTitles:translateString(@"account_dont_save"), nil];
+        [av setTag:100];
+        [av show];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];        
+    }
 }
 
 - (IBAction)saveChanges:(id)sender {
@@ -176,11 +188,12 @@
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self presentModalViewController: cameraUI animated: YES];
-    }
+    }    
 }
 
 - (IBAction)deleteAccount:(id)sender {
     UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"delete_account_title") message:translateString(@"delete_account_text") delegate:self cancelButtonTitle:translateString(@"Cancel") otherButtonTitles:translateString(@"Delete"), nil];
+    [av setTag:101];
     [av show];
 
 }
@@ -214,6 +227,7 @@
         [scrlView setContentOffset:CGPointZero];
         [self saveChanges:nil];
     }
+    
     return YES;
 }
 
@@ -235,11 +249,14 @@
             [name setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
             [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
             [regularImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
+            self.userData = @{@"name" : name.text, @"email" : email.text, @"password" : @"", @"repeatPassword" : @"", @"image" : regularImage.image};
         } else if ([req.requestIdentifier isEqualToString:@"getUserFB"]) {
                 [fbName setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
                 [fbImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
+            hasChanged = NO;
+            self.userData = @{@"name" : name.text, @"email" : email.text, @"password" : @"", @"repeatPassword" : @"", @"image" : regularImage.image};            
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Data" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
@@ -277,6 +294,7 @@
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
     self.profileImage = [[info objectForKey:UIImagePickerControllerOriginalImage] resizedImageWithContentMode:UIViewContentModeScaleAspectFill bounds:CGSizeMake(560.0f, 560.0f) interpolationQuality:kCGInterpolationHigh];
     [regularImage setImage:self.profileImage];
+    hasChanged = YES;
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -298,13 +316,24 @@
 #pragma mark - alert view delegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 1:
-            [self deleteAccountConfirmed];
-            break;
-            
-        default:
-            break;
+    if (alertView.tag == 101) {
+        switch (buttonIndex) {
+            case 1:
+                [self deleteAccountConfirmed];
+                break;
+                
+            default:
+                break;
+        }
+    } else if (alertView.tag == 100) {
+        switch (buttonIndex) {
+            case 1:
+                [self.navigationController popViewControllerAnimated:YES];
+                break;
+                
+            default:
+                break;
+        }    
     }
 }
 

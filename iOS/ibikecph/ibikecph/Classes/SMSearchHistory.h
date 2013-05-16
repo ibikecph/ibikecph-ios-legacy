@@ -26,4 +26,6 @@
 - (void)fetchSearchHistoryFromServer;
 - (void)addSearchToServer:(NSDictionary*)srchData;
 
+- (void)addFinishedRouteToServer:(NSDictionary*)srchData;
+
 @end

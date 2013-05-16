@@ -33,6 +33,8 @@
 
 #define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]
 
+#define ORG_NAME @"ibikecph"
+
 //#ifdef WORLD_ROUTING
 //    #define OSRM_SERVER @"http://router.project-osrm.org"
 //#else

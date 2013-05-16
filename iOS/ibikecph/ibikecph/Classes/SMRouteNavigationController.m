@@ -32,6 +32,7 @@
 #import "SMSwipableView.h"
 
 #import "SMDirectionsFooter.h"
+#import "SMSearchHistory.h"
 
 typedef enum {
     directionsFullscreen,
@@ -413,7 +414,8 @@ typedef enum {
 
 - (void)saveRoute {
     if (self.route && self.route.visitedLocations && ([self.route.visitedLocations count] > 0)) {
-        NSData * data = [self.route save];
+        NSDictionary *dt = [self.route save];
+        NSData * data = [dt objectForKey:@"data"];
         NSDictionary * d = @{
                              @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[[self.route.visitedLocations objectAtIndex:0] objectForKey:@"date"]],
                              @"endDate" : [NSKeyedArchiver archivedDataWithRootObject:[[self.route.visitedLocations lastObject] objectForKey:@"date"]],
@@ -426,6 +428,19 @@ typedef enum {
         BOOL x = [d writeToFile:[SMUtil routeFilenameFromTimestampForExtension:@"plist"] atomically:YES];
         if (x == NO) {
             NSLog(@"Route not saved!");
+        }
+        
+        if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
+            SMSearchHistory * sh = [SMSearchHistory instance];
+            [sh addFinishedRouteToServer:@{
+             @"startDate" : [[self.route.visitedLocations objectAtIndex:0] objectForKey:@"date"],
+             @"endDate" : [[self.route.visitedLocations lastObject] objectForKey:@"date"],
+             @"visitedLocations" : [dt objectForKey:@"polyline"],
+             @"fromName" : self.source,
+             @"toName" : self.destination,
+             @"fromLocation" : self.startLocation,
+             @"toLocation" : self.endLocation
+             }];
         }
     }
 }

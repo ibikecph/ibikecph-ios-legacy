@@ -24,6 +24,7 @@
     __weak IBOutlet UITextField *password;
     __weak IBOutlet UITextField *passwordRepeat;
     __weak IBOutlet UIView *regularView;
+    BOOL hasChanged;
 }
 
 @end

@@ -75,7 +75,7 @@
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"loginFB"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
-    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken}}];
+    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken, @"account_source" : ORG_NAME}}];
 }
 
 

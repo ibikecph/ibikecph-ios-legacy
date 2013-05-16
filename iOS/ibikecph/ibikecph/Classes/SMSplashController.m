@@ -145,7 +145,7 @@ typedef enum {
     [self.apr setRequestIdentifier:@"loginFB"];
     [self.apr showTransparentWaitingIndicatorInView:self.view];
     self.apr.manualRemove = YES;
-    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken}}];
+    [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken, @"account_source" : ORG_NAME}}];
 }
 
 - (IBAction)doRegister:(id)sender {
@@ -164,7 +164,8 @@ typedef enum {
                                   @"email": emailField.text,
                                   @"email_confirmation": emailField.text,
                                   @"password": passwordField.text,
-                                  @"password_confirmation": passwordRepeatField.text
+                                  @"password_confirmation": passwordRepeatField.text,
+                                  @"account_source": ORG_NAME
                                   }];
     
     NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{

@@ -78,7 +78,8 @@
                                   @"email": registerEmail.text,
                                   @"email_confirmation": registerEmail.text,
                                   @"password": registerPassword.text,
-                                  @"password_confirmation": registerRepeatPassword.text
+                                  @"password_confirmation": registerRepeatPassword.text,
+                                  @"account_source" : ORG_NAME
                                   }];
     
     NSMutableDictionary * params = [NSMutableDictionary dictionaryWithDictionary:@{

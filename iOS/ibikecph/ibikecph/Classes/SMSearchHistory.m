@@ -136,6 +136,32 @@
      ];    
 }
 
+- (void)addFinishedRouteToServer:(NSDictionary*)srchData {
+    SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self setApr:ap];
+    [self.apr setRequestIdentifier:@"addFinished"];
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [df setDateFormat:@"EEE, dd MMMM YYYY HH:mm:ss zzz"];
+    
+    NSDictionary * d = @{
+                         @"auth_token":[self.appDelegate.appSettings objectForKey:@"auth_token"], @
+                         "route": @{
+                                 @"from_name": [srchData objectForKey:@"fromName"],
+                                 @"from_lattitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"fromLocation"]).coordinate.latitude],
+                                 @"from_longitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"fromLocation"]).coordinate.longitude],
+                                 @"to_name": [srchData objectForKey:@"toName"],
+                                 @"to_lattitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"toLocation"]).coordinate.latitude],
+                                 @"to_longitude": [NSString stringWithFormat:@"%f", ((CLLocation*)[srchData objectForKey:@"toLocation"]).coordinate.longitude],
+                                 @"route_visited_locations": @"tetststst",//[srchData objectForKey:@"visitedLocations"],
+                                 @"is_finished": @"true",
+                                 @"start_date" : [df stringFromDate:[srchData objectForKey:@"startDate"]],
+                                 @"end_date" : [df stringFromDate:[srchData objectForKey:@"endDate"]]
+                                 }};
+    
+    [self.apr executeRequest:API_ADD_HISTORY withParams:d];
+}
 
 #pragma mark - api delegate
 

@@ -239,7 +239,7 @@
     
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
-    [df setDateFormat:@"YYYY-MM-dd'T'HH:mm:ss'Z'v"];
+    [df setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'z"];
     NSArray * arr = [data objectForKey:@"data"];
     NSMutableArray * arr2 = [NSMutableArray array];
     if (arr && [arr isKindOfClass:[NSArray class]]) {
@@ -255,11 +255,12 @@
                                  @"endDate" : [NSDate date],
                                  @"source" :  @"searchHistory",
                                  @"subsource" : @"searchHistory",
-                                 @"lat" : [d objectForKey:@"fromLattitude"],
-                                 @"long" : [d objectForKey:@"fromLongitude"],
+                                 @"lat" : [d objectForKey:@"toLattitude"],
+                                 @"long" : [d objectForKey:@"toLongitude"],
                                  @"order" : @1
                                  };
             [arr2 addObject:dc];
+            NSLog(@"%@", data);
             NSLog(@"%@", dc);
         }
         [arr2 sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
