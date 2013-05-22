@@ -160,7 +160,8 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidToken:) name:@"invalidToken" object:nil];
     
     
-    [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f];
+    [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:menuBtn];
+    
 }
 
 - (void)invalidToken:(NSNotification*)notification {
@@ -205,6 +206,9 @@ typedef enum {
     findRouteSmall = nil;
     self.tableFooter = nil;
     account_label = nil;
+    routeStreet = nil;
+    menuBtn = nil;
+    menuBtn = nil;
     [super viewDidUnload];
 }
 
@@ -476,14 +480,15 @@ typedef enum {
         scrHeight = self.view.frame.size.width;
     }
     
-    /**
-     * alpha. no side menus
-     */
     CGRect frame = centerView.frame;
     frame.size.width = scrWidth;
     frame.size.height = scrHeight;
     frame.origin.x = 0.0f;
     [centerView setFrame:frame];
+    
+    frame = dropPinView.frame;
+    frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
+    [dropPinView setFrame:frame];
 }
 
 #pragma mark - rotation
@@ -497,6 +502,61 @@ typedef enum {
 }
 
 #pragma mark - button actions
+
+- (IBAction)goToPin:(id)sender {
+    [self annotationActivated:self.destinationPin];
+    [self hidePinDrop];
+}
+
+- (IBAction)pinAddToFavorites:(id)sender {
+    SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+    [fv addFavoriteToServer:@{
+     @"name" : routeStreet.text,
+     @"address" : routeStreet.text,
+     @"startDate" : [NSDate date],
+     @"endDate" : [NSDate date],
+     @"source" : @"favorites",
+     @"subsource" : @"favorite",
+     @"lat" :[NSNumber numberWithDouble: self.destinationPin.coordinate.latitude],
+     @"long" : [NSNumber numberWithDouble: self.destinationPin.coordinate.longitude],
+     @"order" : @0
+     }];    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+}
+
+- (void)showPinDrop {
+    CGRect frame = dropPinView.frame;
+    frame.origin.y = centerView.frame.size.height - 6.0f;
+    [dropPinView setFrame:frame];
+    [dropPinView setHidden:NO];
+    [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        CGRect frame = self.mpView.frame;
+        frame.size.height = centerView.frame.size.height - 102.0f;
+        [self.mpView setFrame:frame];
+
+        frame = dropPinView.frame;
+        frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height - 11.0f;
+        [dropPinView setFrame:frame];
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)hidePinDrop {
+    [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        CGRect frame = self.mpView.frame;
+        frame.size.height = centerView.frame.size.height;
+        [self.mpView setFrame:frame];
+        frame.origin.x = 0.0f;
+        [self.mpView setFrame:frame];
+        frame = dropPinView.frame;
+        frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
+        [dropPinView setFrame:frame];
+    } completion:^(BOOL finished) {
+    }];
+    
+}
 
 - (IBAction)slideMenuOpen:(id)sender {
     if (centerView.frame.origin.x == 0.0f) {
@@ -1197,15 +1257,8 @@ typedef enum {
                 [v removeFromSuperview];
             }
         }
-        
-        if ([annotation calloutShown]) {
-            [annotation hideCallout];
-        } else {
-            [annotation showCallout];
-        }
         [self.mpView removeAllAnnotations];
-        
-        
+        [self hidePinDrop];
     }
 }
 
@@ -1255,11 +1308,13 @@ typedef enum {
 
 - (void) nearbyPlaces:(SMNearbyPlaces *)owner foundLocations:(NSArray *)locations {
     [self.destinationPin setNearbyObjects:locations];
+    [routeStreet setText:owner.title];
     [self.destinationPin setSubtitle:owner.subtitle];
     [self.destinationPin setTitle:owner.title];
     [self.destinationPin setDelegate:self];
     [self.destinationPin setRoutingCoordinate:owner.coord];
-    [self.destinationPin showCallout];
+//    [self.destinationPin showCallout];
+    [self showPinDrop];
 }
 
 #pragma mark - osrm request delegate

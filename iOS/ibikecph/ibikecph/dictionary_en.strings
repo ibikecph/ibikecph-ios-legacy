@@ -275,3 +275,5 @@
 "account_not_saved" = "You have unsaved changes.";
 "account_cancel" = "Cancel";
 "account_dont_save" = "Don't save";
+
+"you_have_reached_your_destination" = "You have reached your destination";

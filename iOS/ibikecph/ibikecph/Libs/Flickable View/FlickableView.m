@@ -82,6 +82,22 @@ typedef enum {
     [self addGestureRecognizer:pan];
 }
 
+- (void)setupForHorizontalSwipeWithStart:(CGFloat)start andEnd:(CGFloat)end andStart:(CGFloat)pos andPullView:(UIView*)pullView {
+    self.startPos = start;
+    self.endPos = end;
+    swipeDirection = fvHorizontal;
+    
+    CGRect frame = self.frame;
+    frame.origin.x = pos;
+    [self setFrame:frame];
+    
+    [pullView setGestureRecognizers:@[]];
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
+    [pan setDelegate:self];
+    [pullView addGestureRecognizer:pan];
+}
+
+
 
 #pragma mark - gesture recognizer
 

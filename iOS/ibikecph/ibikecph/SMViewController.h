@@ -70,6 +70,8 @@ typedef enum {
     __weak IBOutlet UIButton *findRouteSmall;
     BOOL animationShown;
     __weak IBOutlet UILabel *account_label;
+    __weak IBOutlet UILabel *routeStreet;
+    __weak IBOutlet UIView *menuBtn;
 }
 
 /**

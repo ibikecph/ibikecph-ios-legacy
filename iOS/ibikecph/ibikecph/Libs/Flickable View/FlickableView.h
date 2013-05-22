@@ -19,4 +19,6 @@
 - (void)setupForHorizontalSwipeWithStart:(CGFloat)start andEnd:(CGFloat)end;
 - (void)setupForVerticalSwipeWithStart:(CGFloat)start andEnd:(CGFloat)end;
 
+- (void)setupForHorizontalSwipeWithStart:(CGFloat)start andEnd:(CGFloat)end andStart:(CGFloat)pos andPullView:(UIView*)pullView;
+
 @end

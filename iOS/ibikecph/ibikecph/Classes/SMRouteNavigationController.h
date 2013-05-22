@@ -36,6 +36,8 @@
     __weak IBOutlet UIImageView *swipeLeftArrow;
     __weak IBOutlet UIImageView *swipeRightArrow;
     __weak IBOutlet UIImageView *noConnectionView;
+    __weak IBOutlet UIView *finishView;
+    __weak IBOutlet UILabel *finishStreet;
 }
 
 @property BOOL currentlyRouting;

@@ -185,6 +185,8 @@ typedef enum {
     swipeLeftArrow = nil;
     swipeRightArrow = nil;
     noConnectionView = nil;
+    finishView = nil;
+    finishStreet = nil;
     [super viewDidUnload];
 }
 
@@ -671,44 +673,53 @@ typedef enum {
      * don't show destination notification
      */
     
-    [UIView animateWithDuration:0.4f animations:^{
-//        [finishFadeView setAlpha:1.0f];
+    [self setDirectionsState:directionsHidden];
+    [labelDistanceLeft setText:@""];
+    [labelTimeLeft setText:@""];
+    
+    /**
+     * enable screen time out
+     */
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    /**
+     * remove delegate so we don't correct position and heading any more
+     */
+    [self.mpView setRoutingDelegate:nil];
+    
+    /**
+     * hide the route
+     */
+    for (RMAnnotation *annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"path"]) {
+            [self.mpView removeAnnotation:annotation];
+        }
+    }
+    /**
+     * show actual route travelled
+     */
+    //        [self showRouteTravelled];
+    
+    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+    
+    [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+    
+    CGRect frame = finishView.frame;
+    frame.origin.y = self.view.frame.size.height;
+    [finishView setFrame:frame];
+    [finishStreet setText:self.destination];
+    [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        CGRect frame = finishView.frame;
+        frame.origin.y = self.view.frame.size.height - finishView.frame.size.height;
+        [finishView setFrame:frame];
+        
+        frame = buttonTrackUser.frame;
+        frame.origin.y = finishView.frame.origin.y - 65.0f;
+        [buttonTrackUser setFrame:frame];
     } completion:^(BOOL finished) {
-        [self setDirectionsState:directionsHidden];
-        [labelDistanceLeft setText:@""];
-        [labelTimeLeft setText:@""];
-        
-        /**
-         * enable screen time out
-         */
-        [UIApplication sharedApplication].idleTimerDisabled = NO;
-        /**
-         * remove delegate so we don't correct position and heading any more
-         */
-        [self.mpView setRoutingDelegate:nil];
-        
-        /**
-         * hide the route
-         */
-        for (RMAnnotation *annotation in self.mpView.annotations) {
-            if ([annotation.annotationType isEqualToString:@"path"]) {
-                [self.mpView removeAnnotation:annotation];
-            }
-        }
-        /**
-         * show actual route travelled
-         */
-//        [self showRouteTravelled];
-        
-        
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
-            debugLog(@"error in trackEvent");
-        }
-        
-        [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-        
-//        [self goBack:nil];
-
+        [closeButton setHidden:YES];
     }];
 
 }
