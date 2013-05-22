@@ -12,9 +12,6 @@
 #import "SMContactsHeader.h"
 
 #import "SMLocationManager.h"
-#import "SMEventsCalendarCell.h"
-#import "SMEventsFacebookCell.h"
-#import "SMEventsHeader.h"
 
 #import "RMMapView.h"
 #import "RMAnnotation.h"
@@ -66,8 +63,6 @@ typedef enum {
  */
 @property (nonatomic, strong) NSMutableArray * favoritesList;
 @property (nonatomic, strong) NSMutableArray * favorites;
-@property (nonatomic, strong) NSArray * eventsGroupedArray;
-@property (nonatomic, strong) SMEvents * events;
 @property (nonatomic, strong) NSString * destination;
 @property (nonatomic, strong) NSString * source;
 
@@ -136,20 +131,6 @@ typedef enum {
     /**
      * end alpha remove
      */
-
-    /**
-     * menu table array
-     */
-    
-//    self.menuArr = @[
-//                     @{@"text" : translateString(@"favorites"), @"image" : @"favListStar", @"type" : [NSNumber numberWithInteger:menuFavorites], @"segue" : @"openFavorites", @"items" : [SMUtil getFavorites]},
-//                     @{@"text" : translateString(@"account"), @"image" : @"favListUser", @"type" : [NSNumber numberWithInteger:menuAccount], @"segue" : @"openAccount", @"items" : @[]},
-//    @{@"text" : translateString(@"about_ibikecph"), @"image" : @"favListInfo", @"type" : [NSNumber numberWithInteger:menuInfo], @"segue" : @"openAbout", @"items" : @[]}
-//    ];
-    
-    self.eventsArr = @[];
-    self.eventsGroupedArray = @[];
-    
     
     currentScreen = screenMap;
     [self.mpView setTileSource:TILE_SOURCE];
@@ -215,14 +196,12 @@ typedef enum {
     menuView = nil;
     addressView = nil;
     centerView = nil;
-    tblEvents = nil;
     tblContacts = nil;
-    eventsView = nil;
+    dropPinView = nil;
     tblMenu = nil;
     fadeView = nil;
     debugLabel = nil;
     buttonTrackUser = nil;
-    tblFavorites = nil;
     favHeader = nil;
     accHeader = nil;
     infHeader = nil;
@@ -293,18 +272,6 @@ typedef enum {
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    /**
-     * removed for alpha. remove comment later
-     */
-//    if ([self.eventsArr count] == 0) {
-//        self.events = [[SMEvents alloc] init];
-//        [self.events setDelegate:self];
-//        [self.events getLocalEvents];
-//        [self.events getFacebookEvents];
-//    }
-    /**
-     * end comment alpha
-     */
     
     if ([[NSFileManager defaultManager] fileExistsAtPath: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]]) {
         NSDictionary * d = [NSDictionary dictionaryWithContentsOfFile: [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"lastRoute.plist"]];
@@ -591,46 +558,41 @@ typedef enum {
         return;
     }
     
-    
-//    if (gesture.state == UIGestureRecognizerStateBegan) {
-    
-        for (SMAnnotation * annotation in self.mpView.annotations) {
-            if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
-                if (annotation.calloutShown) {
-                    [annotation hideCallout];
-                }
+    for (SMAnnotation * annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"marker"] && [annotation isKindOfClass:[SMAnnotation class]]) {
+            if (annotation.calloutShown) {
+                [annotation hideCallout];
             }
         }
+    }
+    
+    CLLocationCoordinate2D coord = [self.mpView pixelToCoordinate:point];
+    CLLocation * loc = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    debugLog(@"pin drop LOC: %@", loc);
+    debugLog(@"pin drop POINT: %@", NSStringFromCGPoint(point));
+    
+    
+    UIImageView * im = [[UIImageView alloc] initWithFrame:CGRectMake(point.x - 17.0f, 0.0f, 34.0f, 34.0f)];
+    [im setImage:[UIImage imageNamed:@"markerFinish"]];
+    [self.mpView addSubview:im];
+    [UIView animateWithDuration:0.2f animations:^{
+        [im setFrame:CGRectMake(point.x - 17.0f, point.y - 34.0f, 34.0f, 34.0f)];
+    } completion:^(BOOL finished) {
+        debugLog(@"dropped pin");
+        [self.mpView removeAllAnnotations];
+        SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
+        endMarkerAnnotation.annotationType = @"marker";
+        endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
+        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
+        [self.mpView addAnnotation:endMarkerAnnotation];
+        [self setDestinationPin:endMarkerAnnotation];
         
+        [im removeFromSuperview];
         
-//        CGPoint point = [gesture locationInView:self.mpView];
-        CLLocationCoordinate2D coord = [self.mpView pixelToCoordinate:point];
-        CLLocation * loc = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
-        debugLog(@"pin drop LOC: %@", loc);
-        debugLog(@"pin drop POINT: %@", NSStringFromCGPoint(point));
-        
-        
-        UIImageView * im = [[UIImageView alloc] initWithFrame:CGRectMake(point.x - 17.0f, 0.0f, 34.0f, 34.0f)];
-        [im setImage:[UIImage imageNamed:@"markerFinish"]];
-        [self.mpView addSubview:im];
-        [UIView animateWithDuration:0.2f animations:^{
-            [im setFrame:CGRectMake(point.x - 17.0f, point.y - 34.0f, 34.0f, 34.0f)];
-        } completion:^(BOOL finished) {
-            debugLog(@"dropped pin");
-            [self.mpView removeAllAnnotations];
-            SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:coord andTitle:@""];
-            endMarkerAnnotation.annotationType = @"marker";
-            endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-            endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 1.0);
-            [self.mpView addAnnotation:endMarkerAnnotation];
-            [self setDestinationPin:endMarkerAnnotation];
-            
-            [im removeFromSuperview];
-            
-            SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-            [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
-        }];
-//    }    
+        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
+        [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
+    }];
+
 }
 
 - (void)readjustViewsForRotation:(UIInterfaceOrientation) orientation {
@@ -697,13 +659,6 @@ typedef enum {
         [self.view bringSubviewToFront:scrlView];
         [self.view bringSubviewToFront:fadeView];
     }
-    
-//    if ([self.eventsGroupedArray count] > 0) {
-//        [self drawEventsTable];        
-//    }
-    /**
-     * end remove alpha
-     */
 }
 
 #pragma mark - rotation
@@ -741,44 +696,6 @@ typedef enum {
         }
     }
 }
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    if (scrollView != scrlView) {
-//        return;
-//    }
-//    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
-//        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-////        currentScreen = screenMenu;
-////        [self.view sendSubviewToBack:scrlView];
-////        [self.view bringSubviewToFront:menuView];
-////        blockingView.alpha = 1.0f;
-//    } else {
-//        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-////        currentScreen = screenMap;
-////        [self.view sendSubviewToBack:menuView];
-////        [self.view bringSubviewToFront:scrlView];
-////        blockingView.alpha = 0.0f;
-//    }
-//}
-//
-//- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-//    if (scrollView != scrlView) {
-//        return;
-//    }
-//    if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
-//        [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-////        currentScreen = screenMenu;
-////        [self.view sendSubviewToBack:scrlView];
-////        [self.view bringSubviewToFront:menuView];
-////        blockingView.alpha = 1.0f;
-//    } else {
-//        [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-////        currentScreen = screenMap;
-////        [self.view sendSubviewToBack:menuView];
-////        [self.view bringSubviewToFront:scrlView];
-////        blockingView.alpha = 0.0f;
-//    }
-//}
 
 #pragma mark - button actions
 
@@ -1219,8 +1136,6 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (tableView == tblContacts) {
         return 2;
-    } else if (tableView == tblEvents) {
-        return [self.eventsGroupedArray count];
     } else {
         return 1;
     }
@@ -1244,10 +1159,6 @@ typedef enum {
             return 1;
         }
         return [self.favoritesList count];
-    } else if (tableView == tblFavorites) {
-        return [self.favoritesList count];
-    } else {
-        return [[[self.eventsGroupedArray objectAtIndex:section] objectForKey:@"items"] count];
     }
 }
 
@@ -1336,49 +1247,6 @@ typedef enum {
             
             return cell;
         }
-        
-        
-        
-    } else if (tableView == tblEvents) {
-        NSDictionary * currentRow = [[[self.eventsGroupedArray objectAtIndex:indexPath.section] objectForKey:@"items"] objectAtIndex:indexPath.row];
-        if ([[currentRow objectForKey:@"source"] isEqualToString:@"ios"]) {
-            SMEventsCalendarCell * cell = [tableView dequeueReusableCellWithIdentifier:@"eventsCalendarCell"];
-            
-            if ((indexPath.row % 2) == 0) {
-                [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowEvenBG"]];
-            } else {
-                [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowOddBG"]];
-            }
-            
-            NSDateFormatter * df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:TIME_FORMAT];
-            [cell.timeLabel setText:[NSString stringWithFormat:@"%@ - %@", [df stringFromDate:[currentRow objectForKey:@"startDate"]], [df stringFromDate:[currentRow objectForKey:@"endDate"]]]];
-            [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
-            [cell.addressLabel setText:[currentRow objectForKey:@"address"]];
-
-            [df setDateFormat:@"dd"];
-            [cell.dayLabel setText:[df stringFromDate:[currentRow objectForKey:@"startDate"]]];
-            [df setDateFormat:@"MMM"];
-            [cell.monthLabel setText:[df stringFromDate:[currentRow objectForKey:@"startDate"]]];
-
-            return cell;
-        } else {
-            SMEventsFacebookCell * cell = [tableView dequeueReusableCellWithIdentifier:@"eventsFacebookCell"];
-            if ((indexPath.row % 2) == 0) {
-                [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowEvenBG"]];
-            } else {
-                [cell.cellBG setImage:[UIImage imageNamed:@"eventsRowOddBG"]];
-            }
-
-            [cell.eventImg loadImage:[currentRow objectForKey:@"picture"]];
-            NSDateFormatter * df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:TIME_FORMAT];
-            [cell.timeLabel setText:[NSString stringWithFormat:@"%@ - %@", [df stringFromDate:[currentRow objectForKey:@"startDate"]], [df stringFromDate:[currentRow objectForKey:@"endDate"]]]];
-            [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
-            [cell.addressLabel setText:[currentRow objectForKey:@"address"]];
-            
-            return cell;
-        }
     }
     UITableViewCell * cell;
     return cell;
@@ -1386,29 +1254,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == tblEvents) {
-        if ([SMLocationManager instance].hasValidLocation) {
-            NSDictionary * currentRow = [[[self.eventsGroupedArray objectAtIndex:indexPath.section] objectForKey:@"items"] objectAtIndex:indexPath.row];
-            [SMGeocoder geocode:[currentRow objectForKey:@"address"] completionHandler:^(NSArray *placemarks, NSError *error) {
-                MKPlacemark *coord = [placemarks objectAtIndex:0];
-                if (coord == nil) {
-                    UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-                    [av show];
-                    return;
-                }
-                
-                CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude];
-                CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
-                SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-                [r setRequestIdentifier:@"rowSelectRoute"];
-                [r setAuxParam:[currentRow objectForKey:@"address"]];
-                [r findNearestPointForStart:cStart andEnd:cEnd];
-            }];
-        } else {
-            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-            [av show];            
-        }
-    } else if (tableView == tblContacts) {
+    if (tableView == tblContacts) {
         if ([SMLocationManager instance].hasValidLocation) {
             NSDictionary * currentRow = [self.contactsArr objectAtIndex:indexPath.row];
             [SMGeocoder geocode:[currentRow objectForKey:@"address"] completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -1494,10 +1340,6 @@ typedef enum {
             [v setDelegate:nil];
         }
         return v;
-    } else if (tableView == tblEvents) {
-        SMEventsHeader * v = [tableView dequeueReusableCellWithIdentifier:@"eventsHeader"];
-        [v setupHeaderWithData:[self.eventsGroupedArray objectAtIndex:section]];
-        return v;
     }
     return nil;
 }
@@ -1505,8 +1347,6 @@ typedef enum {
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (tableView == tblContacts) {
         return [SMContactsHeader getHeight];
-    } else if (tableView == tblEvents) {
-        return [SMEventsHeader getHeight];
     }
     return 0.0f;
 }
@@ -1541,34 +1381,8 @@ typedef enum {
         [self.favoritesList removeObjectAtIndex:sourceIndexPath.row];
         [self.favoritesList insertObject:dst atIndex:sourceIndexPath.row];
         [SMFavoritesUtil saveFavorites:self.favoritesList];
-    } else if (tableView == tblEvents) {
-        if ((sourceIndexPath.section == 0) && (destinationIndexPath.section == 0)) {
-            NSDictionary * dst = [self.favorites objectAtIndex:destinationIndexPath.row];
-            NSDictionary * src = [self.favorites objectAtIndex:sourceIndexPath.row];
-            [self.favorites removeObjectAtIndex:destinationIndexPath.row];
-            [self.favorites insertObject:src atIndex:destinationIndexPath.row];
-            [self.favorites removeObjectAtIndex:sourceIndexPath.row];
-            [self.favorites insertObject:dst atIndex:sourceIndexPath.row];
-            /**
-             * reordering favorites
-             */
-            NSLog(@"Reorder");
-        } else if ((sourceIndexPath.section == 0) && (destinationIndexPath.section != 0)) {
-            /**
-             * remove from favorites
-             */
-            NSLog(@"Remove from favorites");
-            [self.favorites removeObjectAtIndex:sourceIndexPath.row];
-        } else if ((sourceIndexPath.section != 0) && (destinationIndexPath.section == 0)) {
-            /**
-             * add to favorites
-             */
-            NSLog(@"Add to favorites");
-            [self.favorites insertObject:[self.contactsArr objectAtIndex:sourceIndexPath.row] atIndex:destinationIndexPath.row];
-        }
     }
     
-
     [tableView reloadData];
 }
 
@@ -1692,101 +1506,6 @@ typedef enum {
     self.jsonRoot = jsonRoot;
     if (self.navigationController.topViewController == self) {
         [self performSegueWithIdentifier:@"goToNavigationView" sender:@{@"start" : start, @"end" : end}];
-    }
-}
-
-#pragma mark - events delegate
-
--(void)drawEventsTable {
-    CGFloat scrWidth;
-    CGFloat scrHeight;
-    
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        scrWidth = self.view.frame.size.width;
-        scrHeight = self.view.frame.size.height;
-    } else {
-        scrWidth = self.view.frame.size.height;
-        scrHeight = self.view.frame.size.width;
-    }
-    
-    CGFloat height = tblEvents.contentSize.height;    
-    if (height > MAX_HEIGHT_FOR_EVENTS_TABLE) {
-        height = MAX_HEIGHT_FOR_EVENTS_TABLE;
-    }
-    
-    [UIView animateWithDuration:0.2f animations:^{
-        CGRect frame = eventsView.frame;
-        frame.size.height = height;
-        frame.origin.y = scrHeight - height;
-        [eventsView setFrame:frame];
-        frame = tblEvents.frame;
-        frame.size.height = height;
-        [tblEvents setFrame:frame];        
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2f animations:^{
-            CGRect frame = self.mpView.frame;
-            frame.size.height = scrHeight - 49.0f - height;
-            [self.mpView setFrame:frame];
-        }];
-    }];
-    
-}
-
-- (void)appendEvents:(NSArray*)evnts {
-    NSMutableArray * arr = [NSMutableArray arrayWithArray:self.eventsArr];
-    arr = [[arr arrayByAddingObjectsFromArray:evnts] mutableCopy];
-    [arr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-        NSDate * d1 = [obj1 objectForKey:@"startDate"];
-        NSDate * d2 = [obj2 objectForKey:@"startDate"];
-        return [d1 compare:d2];
-    }];
-    self.eventsArr = arr;
-    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appd setCurrentEvents:[NSArray arrayWithArray:self.eventsArr]];
-
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    NSMutableArray * groupedArr = [NSMutableArray array];
-    [df setDateFormat:@"eeee d. MMM."];
-
-    NSCalendar * cal = [NSCalendar currentCalendar];
-    for (NSDictionary * d in arr) {
-        NSString * dstr = [df stringFromDate:[d objectForKey:@"startDate"]];
-
-        NSDateComponents * comp = [cal components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:[d objectForKey:@"startDate"]];
-        comp.hour = 0;
-        comp.minute = 0;
-        comp.second = 0;
-        NSDate * dayDate = [cal dateFromComponents:comp];
-        NSMutableDictionary * m = nil;
-        for (NSMutableDictionary * gd in groupedArr) {
-            if ([[gd objectForKey:@"text"] isEqualToString:dstr]) {
-                m = gd;
-                break;
-            }
-        }
-        if (m == nil) {
-            m = [NSMutableDictionary dictionaryWithObjectsAndKeys:dstr, @"text", [NSMutableArray array], @"items", dayDate, @"dayDate", nil];
-            [groupedArr addObject:m];
-        }
-        [[m objectForKey:@"items"] addObject:d];
-    }
-    debugLog(@"%@", groupedArr);
-    [self setEventsGroupedArray:groupedArr];
-    
-    [tblEvents reloadData];
-}
-
-- (void)localEventsFound:(NSArray *)evnts {
-    @synchronized(self.eventsArr) {
-        [self appendEvents:evnts];
-        [self drawEventsTable];        
-    }
-}
-
-- (void)facebookEventsFound:(NSArray *)evnts {
-    @synchronized(self.eventsArr) {
-        [self appendEvents:evnts];
-        [self drawEventsTable];
     }
 }
 

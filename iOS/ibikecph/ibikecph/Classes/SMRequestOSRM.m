@@ -150,6 +150,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if ([self.responseData length] > 0) {
         NSString * str = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+        debugLog(@"%@", str);
         id r = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:self.responseData];
         if ([self.currentRequest isEqualToString:@"findNearestPointForStart:andEnd:"]) {
             if (self.locStep > 1) {
