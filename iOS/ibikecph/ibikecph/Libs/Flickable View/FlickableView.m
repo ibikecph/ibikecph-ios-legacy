@@ -95,6 +95,13 @@ typedef enum {
     UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
     [pan setDelegate:self];
     [pullView addGestureRecognizer:pan];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    [tap setNumberOfTapsRequired:1];
+    [tap setDelegate:self];
+    [pullView addGestureRecognizer:tap];
+
+    [pan requireGestureRecognizerToFail:tap];
 }
 
 
@@ -103,6 +110,26 @@ typedef enum {
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
+}
+
+- (IBAction)onTap:(UITapGestureRecognizer*)tap {
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect frame = self.frame;
+        if (swipeDirection == fvHorizontal) {
+            if (frame.origin.x == self.startPos) {
+                frame.origin.x = self.endPos;
+            } else if (frame.origin.x == self.endPos) {
+                frame.origin.x = self.startPos;
+            }
+        } else {
+            if (frame.origin.y == self.startPos) {
+                frame.origin.y = self.endPos;
+            } else if (frame.origin.y == self.endPos) {
+                frame.origin.y = self.startPos;
+            }        
+        }
+        [self setFrame:frame];
+    }];
 }
 
 - (IBAction)onPan:(UIPanGestureRecognizer*)pan {

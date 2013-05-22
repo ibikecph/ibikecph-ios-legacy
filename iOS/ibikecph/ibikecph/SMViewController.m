@@ -161,7 +161,7 @@ typedef enum {
     
     
     [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:menuBtn];
-    
+
 }
 
 - (void)invalidToken:(NSNotification*)notification {
@@ -326,7 +326,6 @@ typedef enum {
 }
 
 - (void)openMenu:(NSInteger)menuType {
-    
     CGFloat startY = favHeader.frame.origin.y;
     CGFloat maxHeight = menuView.frame.size.height - startY;
     [tblMenu reloadData];
@@ -532,27 +531,38 @@ typedef enum {
     [dropPinView setFrame:frame];
     [dropPinView setHidden:NO];
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        CGRect frame = self.mpView.frame;
-        frame.size.height = centerView.frame.size.height - 102.0f;
-        [self.mpView setFrame:frame];
+//        CGRect frame = self.mpView.frame;
+//        frame.size.height = centerView.frame.size.height - 102.0f;
+//        [self.mpView setFrame:frame];
 
-        frame = dropPinView.frame;
-        frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height - 11.0f;
+        CGRect frame = dropPinView.frame;
+        frame.origin.y = centerView.frame.size.height - dropPinView.frame.size.height;
         [dropPinView setFrame:frame];
+        
+        frame = buttonTrackUser.frame;
+        frame.origin.y = dropPinView.frame.origin.y - 65.0f;
+        [buttonTrackUser setFrame:frame];
+        
     } completion:^(BOOL finished) {
     }];
 }
 
 - (void)hidePinDrop {
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        CGRect frame = self.mpView.frame;
-        frame.size.height = centerView.frame.size.height;
-        [self.mpView setFrame:frame];
-        frame.origin.x = 0.0f;
-        [self.mpView setFrame:frame];
-        frame = dropPinView.frame;
+//        CGRect frame = self.mpView.frame;
+//        frame.size.height = centerView.frame.size.height;
+//        [self.mpView setFrame:frame];
+//        frame.origin.x = 0.0f;
+//        [self.mpView setFrame:frame];
+        CGRect frame = dropPinView.frame;
         frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
         [dropPinView setFrame:frame];
+        
+        
+        frame = buttonTrackUser.frame;
+        frame.origin.y = dropPinView.frame.origin.y - 65.0f;
+        [buttonTrackUser setFrame:frame];
+
     } completion:^(BOOL finished) {
     }];
     
