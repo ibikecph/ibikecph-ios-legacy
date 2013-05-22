@@ -118,9 +118,8 @@ typedef enum {
     
     
     /**
-     * start with empty contacts and favorites array
+     * start with empty favorites array
      */
-    self.contactsArr = @[];
     self.favorites = [@[] mutableCopy];
     [self setFavoritesList:[SMFavoritesUtil getFavorites]];
 
@@ -156,27 +155,12 @@ typedef enum {
     [self.tableFooter setDelegate:self];
     [self.tableFooter.text setText:translateString(@"cell_add_favorite")];
 
-    
-    
-    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
-                                                     initWithTarget:self
-                                                     action:@selector(oneFingerSwipeLeft:)];
-    [oneFingerSwipeLeft setNumberOfTouchesRequired:1];
-    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [oneFingerSwipeLeft setDelegate:self];
-    [scrlView addGestureRecognizer:oneFingerSwipeLeft];
-
-    UISwipeGestureRecognizer *oneFingerSwipeRight = [[UISwipeGestureRecognizer alloc]
-                                                    initWithTarget:self
-                                                    action:@selector(oneFingerSwipeRight:)];
-    [oneFingerSwipeRight setNumberOfTouchesRequired:1];
-    [oneFingerSwipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [oneFingerSwipeRight setDelegate:self];
-    [scrlView addGestureRecognizer:oneFingerSwipeRight];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoritesChanged:) name:kFAVORITES_CHANGED object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidToken:) name:@"invalidToken" object:nil];
+    
+    
+    [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f];
 }
 
 - (void)invalidToken:(NSNotification*)notification {
@@ -192,11 +176,8 @@ typedef enum {
 
 - (void)viewDidUnload {
     self.mpView = nil;
-    scrlView = nil;
     menuView = nil;
-    addressView = nil;
     centerView = nil;
-    tblContacts = nil;
     dropPinView = nil;
     tblMenu = nil;
     fadeView = nil;
@@ -240,12 +221,8 @@ typedef enum {
     self.findFrom = @"";
     self.findTo = @"";
     
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent: @"settings.plist"]] == NO) {
-//        [self performSegueWithIdentifier:@"enterEmail" sender:nil];
-//    }
     [debugLabel setText:BUILD_STRING];
     
-//    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
     findRouteSmall.alpha = 1.0f;
     findRouteBig.alpha = 0.0f;
     
@@ -261,7 +238,7 @@ typedef enum {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     @try{
         [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
-        [scrlView removeObserver:self forKeyPath:@"contentOffset"];
+        [centerView removeObserver:self forKeyPath:@"frame"];
         [tblMenu removeObserver:self forKeyPath:@"editing"];
     }@catch(id anException){
     }
@@ -293,12 +270,7 @@ typedef enum {
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
         [r setRequestIdentifier:@"rowSelectRoute"];
         [r setAuxParam:[d objectForKey:@"destination"]];
-        [r findNearestPointForStart:cStart andEnd:cEnd];
-        
-        
-        
-//        [self findRouteFrom:CLLocationCoordinate2DMake([[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue]) to:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) fromAddress:@"" toAddress:[d objectForKey:@"destination"]];
-        
+        [r findNearestPointForStart:cStart andEnd:cEnd];        
         
         /**
          * drop pin
@@ -319,27 +291,13 @@ typedef enum {
     } else {
         [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
         [tblMenu addObserver:self forKeyPath:@"editing" options:0 context:nil];
-        [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
+        [centerView addObserver:self forKeyPath:@"frame" options:0 context:nil];
     }
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     
     [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
     }];
-    
-    
-//    if (currentScreen == screenMap && animationShown == NO) {
-//        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-//        [appd loadSettings];
-//        if ([[appd.appSettings objectForKey:@"introSeen"] boolValue] == NO) {
-//            [appd.appSettings setValue:[NSNumber numberWithBool:YES] forKey:@"introSeen"];
-//            [appd saveSettings];
-//            [self animateView];
-//        } else {
-//            [self animateButton];
-//        }
-//        animationShown = YES;
-//    }
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         SMFavoritesUtil * fv = [[SMFavoritesUtil alloc] initWithDelegate:self];
@@ -351,61 +309,6 @@ typedef enum {
 }
 
 #pragma mark - custom methods
-
-- (void)animateView {
-    findRouteBig.alpha = 1.0f;
-    findRouteSmall.alpha = 0.0f;
-    findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
-    [UIView animateWithDuration:0.5f animations:^{
-        [scrlView setContentOffset:CGPointMake(200.0f, 0.0f) animated: NO];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-            [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-            [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-                [scrlView setContentOffset:CGPointMake(260.0f, 0.0f) animated: NO];
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-                    [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-                    findRouteBig.transform = CGAffineTransformMakeScale(1, 1);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-                        [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-                        findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
-                    } completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.5f animations:^{
-                            findRouteSmall.alpha = 1.0f;
-                            findRouteBig.alpha = 0.0f;
-                        }];
-                    }];
-                }];
-            }];
-        }];
-    }];
-}
-
-- (void)animateButton {
-    findRouteBig.alpha = 1.0f;
-    findRouteSmall.alpha = 0.0f;
-    findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
-    [findRouteBig setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-    [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-    [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-        [findRouteSmall setFrame:CGRectMake(235.0f, 38.0f, 76.0f, 76.0f)];
-        findRouteBig.transform = CGAffineTransformMakeScale(1, 1);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.5f delay:0.1f options:0 animations:^{
-            [findRouteSmall setFrame:CGRectMake(250.0f, 53.0f, 45.0f, 45.0f)];
-            findRouteBig.transform = CGAffineTransformMakeScale(45.0f/76.0f, 45.0f/76.0f);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5f animations:^{
-                findRouteSmall.alpha = 1.0f;
-                findRouteBig.alpha = 0.0f;
-            }];
-        }];
-    }];
-}
 
 - (CGFloat)heightForFavorites {
     if ([self.favoritesList count] == 0) {
@@ -511,47 +414,13 @@ typedef enum {
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         [self performSegueWithIdentifier:@"mainToAccount" sender:nil];
     } else {
-        
-        //@'mainToLogin"
         [self performSegueWithIdentifier:@"mainToLogin" sender:nil];
-//        
-//        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-//        [av show];
     }
 }
 
 - (IBAction)tapInfo:(id)sender {
     [self performSegueWithIdentifier:@"openAbout" sender:nil];
 }
-
-- (void)oneFingerSwipeRight:(UISwipeGestureRecognizer*)swipe {
-    if (currentScreen == screenMap) {
-        [UIView animateWithDuration:0.5f animations:^{
-            [scrlView setContentOffset:CGPointZero animated:NO];
-        } completion:^(BOOL finished) {
-            [self.view sendSubviewToBack:scrlView];
-            [self.view bringSubviewToFront:menuView];
-            [self.view bringSubviewToFront:fadeView];
-            blockingView.alpha = 1.0f;
-            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
-        }];
-    }
-}
-
-- (void)oneFingerSwipeLeft:(UISwipeGestureRecognizer*)swipe {
-    if (currentScreen == screenMenu) {
-        [self.view sendSubviewToBack:menuView];
-        [self.view bringSubviewToFront:scrlView];
-        [self.view bringSubviewToFront:fadeView];
-        [UIView animateWithDuration:0.5f animations:^{
-            [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
-        } completion:^(BOOL finished) {
-            blockingView.alpha = 0.0f;
-            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
-        }];
-    }
-}
-
 
 - (void)longSingleTapOnMap:(RMMapView *)map at:(CGPoint)point {
     if (blockingView.alpha > 0) {
@@ -613,52 +482,8 @@ typedef enum {
     CGRect frame = centerView.frame;
     frame.size.width = scrWidth;
     frame.size.height = scrHeight;
-    frame.origin.x = scrWidth - 60.0f;
+    frame.origin.x = 0.0f;
     [centerView setFrame:frame];
-    [scrlView setContentSize:CGSizeMake(scrWidth, scrHeight)];
-    
-//    [menuView setHidden:YES];
-    [addressView setHidden:YES];
-    /**
-     * end alpha
-     */
-    
-    /**
-     * removed for alpha. uncomment when needed
-     */
-//    frame = menuView.frame;
-//    frame.size.width = scrWidth - 60.0f;
-//    frame.size.height = scrHeight;
-//    frame.origin.x = 0.0f;
-//    [menuView setFrame:frame];
-//
-//    frame = centerView.frame;
-//    frame.size.width = scrWidth;
-//    frame.size.height = scrHeight;
-//    frame.origin.x = scrWidth - 60.0f;
-//    [centerView setFrame:frame];
-//    
-//    
-//    frame = addressView.frame;
-//    frame.size.width = scrWidth - 60.0f;
-//    frame.size.height = scrHeight;
-//    frame.origin.x = scrWidth * 2.0f - 60.0f;
-//    [addressView setFrame:frame];
-//    
-    [scrlView setContentSize:CGSizeMake(scrWidth * 2.0f - 60.0f, scrHeight)];
-
-
-    if (currentScreen == screenMenu) {
-        [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-        [self.view sendSubviewToBack:scrlView];
-        [self.view bringSubviewToFront:menuView];
-        [self.view bringSubviewToFront:fadeView];
-    } else if (currentScreen == screenMap) {
-        [scrlView setContentOffset:CGPointMake(scrWidth - 60.0f, 0.0f) animated:NO];
-        [self.view sendSubviewToBack:menuView];
-        [self.view bringSubviewToFront:scrlView];
-        [self.view bringSubviewToFront:fadeView];
-    }
 }
 
 #pragma mark - rotation
@@ -671,63 +496,26 @@ typedef enum {
     [self readjustViewsForRotation:toInterfaceOrientation];
 }
 
-#pragma mark - scrollView delegate
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (scrollView != scrlView) {
-        return;
-    }
-    [self.view sendSubviewToBack:menuView];
-    [self.view bringSubviewToFront:scrlView];
-    [self.view bringSubviewToFront:fadeView];
-    [self.view hideKeyboard];
-}
-
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (scrollView != scrlView) {
-        return;
-    }
-    if (decelerate == NO) {
-        if (scrollView.contentOffset.x < (self.view.frame.size.width - 60.0f) / 2.0f) {
-            [scrollView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-        } else {
-            [scrollView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-        }
-    }
-}
-
 #pragma mark - button actions
 
 - (IBAction)slideMenuOpen:(id)sender {
-    @try {
-        [scrlView removeObserver:self forKeyPath:@"contentOffset"];
-    } @catch (NSException * e) {
-    }
-    
-    if (scrlView.contentOffset.x == 0) {
-        [self.view sendSubviewToBack:menuView];
-        [self.view bringSubviewToFront:scrlView];
-        [self.view bringSubviewToFront:fadeView];
+    if (centerView.frame.origin.x == 0.0f) {
         [UIView animateWithDuration:0.2f animations:^{
-            [scrlView setContentOffset:CGPointMake(260.0f, 0.0f)];
+            CGRect frame = centerView.frame;
+            frame.origin.x = 260.0f;
+            [centerView setFrame:frame];
         } completion:^(BOOL finished) {
-            blockingView.alpha = 0.0f;
-            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
-            currentScreen = screenMap;
+            blockingView.alpha = 1.0f;
         }];
     } else {
         [UIView animateWithDuration:0.2f animations:^{
-            [scrlView setContentOffset:CGPointZero animated:NO];
+            CGRect frame = centerView.frame;
+            frame.origin.x = 0.0f;
+            [centerView setFrame:frame];
         } completion:^(BOOL finished) {
-            [self.view sendSubviewToBack:scrlView];
-            [self.view bringSubviewToFront:menuView];
-            [self.view bringSubviewToFront:fadeView];
-            blockingView.alpha = 1.0f;
-            [scrlView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
-            currentScreen = screenMenu;
-        }];
-    }
+            blockingView.alpha = 0.0f;
+        }];        
+    }    
 }
 
 - (IBAction)enterRoute:(id)sender {
@@ -795,9 +583,6 @@ typedef enum {
     [addMenu setFrame:frame];
     [addMenu setHidden:NO];
     
-    [self.view sendSubviewToBack:menuView];
-    [self.view bringSubviewToFront:scrlView];
-    [self.view bringSubviewToFront:fadeView];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
         frame.origin.x = -260.0f;
@@ -806,17 +591,11 @@ typedef enum {
         frame.origin.x = 0.0f;
         [addMenu setFrame:frame];
     } completion:^(BOOL finished) {
-        [self.view sendSubviewToBack:scrlView];
-        [self.view bringSubviewToFront:menuView];
-        [self.view bringSubviewToFront:fadeView];
     }];
     
 }
 
 - (IBAction)addFavoriteHide:(id)sender{
-    [self.view sendSubviewToBack:menuView];
-    [self.view bringSubviewToFront:scrlView];
-    [self.view bringSubviewToFront:fadeView];
     [self.view hideKeyboard];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
@@ -826,9 +605,6 @@ typedef enum {
         frame.origin.x = 260.0f;
         [addMenu setFrame:frame];
     } completion:^(BOOL finished) {
-        [self.view sendSubviewToBack:scrlView];
-        [self.view bringSubviewToFront:menuView];
-        [self.view bringSubviewToFront:fadeView];
         [mainMenu setHidden:NO];
         [addMenu setHidden:YES];
         [self setFavoritesList:[SMFavoritesUtil getFavorites]];
@@ -885,22 +661,7 @@ typedef enum {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
         }
-        
-//        [SMFavoritesUtil saveToFavorites:@{
-//         @"name" : addFavName.text,
-//         @"address" : [self.locDict objectForKey:@"address"],
-//         @"startDate" : [NSDate date],
-//         @"endDate" : [NSDate date],
-//         @"source" : @"favorites",
-//         @"subsource" : favType,
-//         @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
-//         @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
-//         @"order" : @0
-//         }];        
     }
-    
-    
-
 }
 
 - (IBAction)deleteFavorite:(id)sender {
@@ -913,8 +674,6 @@ typedef enum {
         if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
         }
-        //    [self.favoritesList removeObject:self.locDict];
-        //    [SMFavoritesUtil saveFavorites:self.favoritesList];
         [self addFavoriteHide:nil];
     } else {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_not_logged_in") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
@@ -965,8 +724,6 @@ typedef enum {
         
         SMFavoritesUtil * fv = [SMFavoritesUtil instance];
         [fv editFavorite:dict];
-        //    [self.favoritesList replaceObjectAtIndex:self.locIndex withObject:dict];
-        //    [SMFavoritesUtil saveFavorites:self.favoritesList];
         [self addFavoriteHide:nil];
         if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
@@ -1072,21 +829,21 @@ typedef enum {
 
 - (IBAction)showMenu:(id)sender {
     if (currentScreen == screenMenu) {
-        [scrlView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-        currentScreen = screenMap;
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect frame = centerView.frame;
+            frame.origin.x = 0.0f;
+            [centerView setFrame:frame];
+        } completion:^(BOOL finished) {
+            currentScreen = screenMap;
+        }];
     } else {
-        [scrlView setContentOffset:CGPointMake(0.0f, 0.0f) animated:YES];
-        currentScreen = screenMenu;
-    }
-}
-
-- (IBAction)showContacts:(id)sender {
-    if (currentScreen == screenContacts) {
-        [scrlView setContentOffset:CGPointMake(self.view.frame.size.width - 60.0f, 0.0f) animated:YES];
-        currentScreen = screenMap;
-    } else {
-        [scrlView setContentOffset:CGPointMake(self.view.frame.size.width * 2.0f - 120.0f, 0.0f) animated:YES];
-        currentScreen = screenContacts;
+        [UIView animateWithDuration:0.2f animations:^{
+            CGRect frame = centerView.frame;
+            frame.origin.x = 260.0f;
+            [centerView setFrame:frame];
+        } completion:^(BOOL finished) {
+            currentScreen = screenMenu;
+        }];
     }
 }
 
@@ -1134,57 +891,20 @@ typedef enum {
 #pragma mark - tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == tblContacts) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == tblContacts) {
-        if (section == 0) {
-            return [self.favorites count];
-        } else {
-            return [self.contactsArr count];            
-        }
-    } else if (tableView == tblMenu) {
-        if ([self.favoritesList count] > 0) {
-//            if (tblMenu.isEditing) {
-                return [self.favoritesList count];
-//            } else {
-//                return [self.favoritesList count] + 1;
-//            }
-        } else {
-            return 1;
-        }
+    if ([self.favoritesList count] > 0) {
         return [self.favoritesList count];
+    } else {
+        return 1;
     }
+    return [self.favoritesList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == tblContacts) {
-        NSDictionary * currentRow;
-        
-        if (indexPath.section == 0) {
-            currentRow = [self.favorites objectAtIndex:indexPath.row];
-        } else {
-            currentRow = [self.contactsArr objectAtIndex:indexPath.row];
-        }
-        
-        SMContactsCell * cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell"];
-        
-        [cell.contactImage setContentMode:UIViewContentModeScaleAspectFill];
-        [cell.contactImage setImage:[currentRow objectForKey:@"image"]];
-        [cell.contactName setText:[currentRow objectForKey:@"name"]];
-        
-        if (tblContacts.editing) {
-            [cell.contactDisclosure setHidden:YES];
-        } else {
-            [cell.contactDisclosure setHidden:NO];
-        }
-        return cell;
-    } else if (tableView == tblMenu) {
+    if (tableView == tblMenu) {
         if ([self.favoritesList count] > 0) {
             if (tblMenu.isEditing) {
                 NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
@@ -1254,28 +974,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == tblContacts) {
-        if ([SMLocationManager instance].hasValidLocation) {
-            NSDictionary * currentRow = [self.contactsArr objectAtIndex:indexPath.row];
-            [SMGeocoder geocode:[currentRow objectForKey:@"address"] completionHandler:^(NSArray *placemarks, NSError *error) {
-                MKPlacemark *coord = [placemarks objectAtIndex:0];
-                if (coord == nil) {
-                    UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_address_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-                    [av show];
-                    return;
-                }
-                CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude];
-                CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
-                SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-                [r setRequestIdentifier:@"rowSelectRoute"];
-                [r setAuxParam:[currentRow objectForKey:@"address"]];
-                [r findNearestPointForStart:cStart andEnd:cEnd];
-            }];
-        } else {
-            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_no_gps_location") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-            [av show];            
-        }
-    } else if (tableView == tblMenu) {
+    if (tableView == tblMenu) {
         if ([self.favoritesList count] == 0) {
             if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
                 /**
@@ -1325,31 +1024,6 @@ typedef enum {
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (tableView == tblContacts) {
-        SMContactsHeader * v = [tableView dequeueReusableCellWithIdentifier:@"contactsHeader"];
-        if (section == 0) {
-            [v.headerImage setImage:[UIImage imageNamed:@"contactsFavorites"]];
-            [v.headerText setText:translateString(@"favorites")];
-            [v.headerButton setHidden:NO];
-            [v setDelegate:self];
-        } else {
-            [v.headerImage setImage:[UIImage imageNamed:@"contactsList"]];
-            [v.headerText setText:translateString(@"contacts")];
-            [v.headerButton setHidden:YES];
-            [v setDelegate:nil];
-        }
-        return v;
-    }
-    return nil;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (tableView == tblContacts) {
-        return [SMContactsHeader getHeight];
-    }
-    return 0.0f;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == tblMenu) {
@@ -1458,41 +1132,6 @@ typedef enum {
     }
 }
 
-#pragma mark - addressbook functions
-
-- (void)getPhoneContacts {
-    self.contacts = [[SMContacts alloc] initWithDelegate:self];
-    [self.contacts loadContacts];
-}
-
-#pragma mark - contacts delegate
-
-- (void)addressBookHelper:(SMContacts *)helper finishedLoading:(NSArray *)contacts {
-    self.contactsArr = contacts;
-    [tblContacts reloadData];
-    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    [appd setCurrentContacts:[NSArray arrayWithArray:self.contactsArr]];
-}
-
-- (void)addressBookHelperDeniedAcess:(SMContacts *)obj {
-    
-}
-
-- (void)addressBookHelperError:(SMContacts *)obj {
-    
-}
-
-#pragma mark - contacts header delegate
-
-- (void)buttonPressed:(id)btn {
-    if (tblContacts.editing) {
-        [tblContacts setEditing:NO];
-    } else {
-        [tblContacts setEditing:YES];
-    }
-    [tblContacts reloadData];
-}
-
 #pragma mark - route finder delegate
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst{
     [self findRouteFrom:from to:to fromAddress:src toAddress:dst withJSON:nil];
@@ -1553,11 +1192,6 @@ typedef enum {
 
 - (void)tapOnAnnotation:(SMAnnotation *)annotation onMap:(RMMapView *)map {
     if ([annotation.annotationType isEqualToString:@"marker"]) {
-        
-//        [self.mpView setCenterCoordinate:annotation.coordinate animated:YES];
-//        [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-        
-        
         for (id v in self.mpView.subviews) {
             if ([v isKindOfClass:[SMCalloutView class]]) {
                 [v removeFromSuperview];
@@ -1704,20 +1338,11 @@ typedef enum {
         [UIView animateWithDuration:0.4f animations:^{
             [self openMenu:menuFavorites];
         }];
-    } else if (object == scrlView  && [keyPath isEqualToString:@"contentOffset"]) {
-        if (scrlView.contentOffset.x == 0.0f) {
-            currentScreen = screenMenu;
-            [self.view sendSubviewToBack:scrlView];
-            [self.view bringSubviewToFront:menuView];
-            [self.view bringSubviewToFront:fadeView];
+    } else if (object == centerView  && [keyPath isEqualToString:@"frame"]) {
+        if (centerView.frame.origin.x == 260.0f) {
             blockingView.alpha = 1.0f;
-        } else if (scrlView.contentOffset.x == 260.0f) {
-            currentScreen = screenMap;
-            [self.view sendSubviewToBack:menuView];
-            [self.view bringSubviewToFront:scrlView];
-            [self.view bringSubviewToFront:fadeView];
-            blockingView.alpha = 0.0f;
-            
+        } else if (centerView.frame.origin.x == 0.0f) {
+            blockingView.alpha = 0.0f;            
             /**
              * close edit/save/delete menu if open
              */
@@ -1738,7 +1363,7 @@ typedef enum {
                 [self openMenu:menuFavorites];
             }];
         }
-
+        
     }
 }
 

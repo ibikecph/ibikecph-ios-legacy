@@ -24,22 +24,21 @@
 #import "SMAddFavoriteCell.h"
 #import "SMFavoritesUtil.h"
 
+#import "FlickableView.h"
+
 typedef enum {
     screenMenu,
     screenMap,
     screenContacts
 } CurrentScreenType;
 
-@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, SMContactsDelegate, SMContactsHeaderDelegate, EnterRouteDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, ViewTapDelegate, SMFavoritesDelegate>  {
-    __weak IBOutlet UIScrollView *scrlView;
+@interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, EnterRouteDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, ViewTapDelegate, SMFavoritesDelegate>  {
     IBOutlet UIView *menuView;
-    IBOutlet UIView *addressView;
-    __weak IBOutlet UIView *centerView;
+    __weak IBOutlet FlickableView *centerView;
     __weak IBOutlet UIView *dropPinView;
     
     CurrentScreenType currentScreen;
     
-    __weak IBOutlet UITableView *tblContacts;
     __weak IBOutlet UITableView *tblMenu;
     __weak IBOutlet UIView *fadeView;
     __weak IBOutlet UILabel *debugLabel;
@@ -76,8 +75,6 @@ typedef enum {
 /**
  * properties for table
  */
-@property (nonatomic, strong) NSArray * contactsArr;
-@property (nonatomic, strong) NSArray * eventsArr;
 @property (nonatomic, strong) IBOutlet SMAddFavoriteCell *tableFooter;
 
 @end
