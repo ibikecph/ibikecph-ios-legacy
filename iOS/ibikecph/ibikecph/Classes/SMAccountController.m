@@ -114,7 +114,7 @@
     if (([name.text isEqualToString:[self.userData objectForKey:@"name"]] == NO) || ([email.text isEqualToString:[self.userData objectForKey:@"email"]] == NO) || ([password.text isEqualToString:[self.userData objectForKey:@"password"]] == NO) || ([passwordRepeat.text isEqualToString:[self.userData objectForKey:@"repeatPassword"]] == NO)) {
         hasChanged = YES;
     }
-    if (hasChanged) {
+    if (hasChanged && [self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"] == NO) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"account_not_saved") delegate:self cancelButtonTitle:translateString(@"account_cancel") otherButtonTitles:translateString(@"account_dont_save"), nil];
         [av setTag:100];
         [av show];
