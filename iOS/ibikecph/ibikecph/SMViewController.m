@@ -722,7 +722,9 @@ typedef enum {
              @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
              @"order" : @0
              }];
+            
             [self addFavoriteHide:nil];
+            
             
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
                 debugLog(@"error in trackEvent");
@@ -1319,6 +1321,9 @@ typedef enum {
 - (void) nearbyPlaces:(SMNearbyPlaces *)owner foundLocations:(NSArray *)locations {
     [self.destinationPin setNearbyObjects:locations];
     [routeStreet setText:owner.title];
+    if ([routeStreet.text isEqualToString:@""]) {
+        [routeStreet setText:[NSString stringWithFormat:@"%f, %f", owner.coord.coordinate.latitude, owner.coord.coordinate.longitude]];
+    }
     [self.destinationPin setSubtitle:owner.subtitle];
     [self.destinationPin setTitle:owner.title];
     [self.destinationPin setDelegate:self];

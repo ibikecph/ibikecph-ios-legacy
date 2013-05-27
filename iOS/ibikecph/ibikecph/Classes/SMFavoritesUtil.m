@@ -44,7 +44,7 @@
     NSMutableArray * r = [NSMutableArray array];
     for (NSDictionary * d in fav) {
         [r addObject:@{
-         @"id" : [d objectForKey:@"id"],
+         @"id" : [d objectForKey:@"id"]?[d objectForKey:@"id"]:@"0",
          @"name" : [d objectForKey:@"name"],
          @"address" : [d objectForKey:@"address"],
          @"startDate" : [NSKeyedArchiver archivedDataWithRootObject:[d objectForKey:@"startDate"]],
@@ -100,6 +100,7 @@
 }
 
 - (void)addFavoriteToServer:(NSDictionary*)favData {
+    [SMFavoritesUtil saveToFavorites:favData];
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"addFavorite"];
@@ -116,6 +117,14 @@
 }
 
 - (void)deleteFavoriteFromServer:(NSDictionary*)favData {
+    NSMutableArray * a = [SMFavoritesUtil getFavorites];
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF.id = %@", [favData objectForKey:@"id"]];
+    NSArray * arr = [a filteredArrayUsingPredicate:pred];
+    if ([arr count] > 0) {
+        [a removeObjectsInArray:arr];
+    }
+    [SMFavoritesUtil saveFavorites:a];
+    
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
     [self.apr setRequestIdentifier:@"addFavorite"];

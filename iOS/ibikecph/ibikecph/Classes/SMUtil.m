@@ -26,7 +26,7 @@ NSString *formatDistance(float meters) {
         return @"";
     } else if (meters <= 94) {
         return [NSString stringWithFormat:@"%.0f %@", roundf(meters/10.0f) * 10, DISTANCE_M_SHORT];
-    } else if (meters < 1000) {
+    } else if (meters < 950) {
         return [NSString stringWithFormat:@"%.0f %@", roundf(meters/100.0f) * 100, DISTANCE_M_SHORT];
     } else {
         return [NSString stringWithFormat:@"%.1f %@", meters/1000.0f, DISTANCE_KM_SHORT];

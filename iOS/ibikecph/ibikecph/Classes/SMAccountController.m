@@ -270,7 +270,7 @@
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Delete" withLabel:@"" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
-            debugLog(@"Password changed!!!");
+            debugLog(@"Account deleted!!!");
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"account_deleted") message:@"" delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
             [self.appDelegate.appSettings removeObjectForKey:@"auth_token"];
@@ -278,9 +278,26 @@
             [self.appDelegate.appSettings removeObjectForKey:@"username"];
             [self.appDelegate.appSettings removeObjectForKey:@"password"];
             [self.appDelegate saveSettings];
+            
+            [fbImage setImage:nil];
+            [fbName setText:@""];
+            self.profileImage = nil;
+            [regularImage setImage:nil];
+            [name setText:@""];
+            [email setText:@""];
+            [password setText:@""];
+            [passwordRepeat setText:@""];
+    
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            /**
+             * regular account type
+             */
+            [fbView setHidden:YES];
+            [regularView setHidden:NO];
 
             [SMFavoritesUtil saveFavorites:@[]];
-            [self goBack:nil];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
         }
     } else {
