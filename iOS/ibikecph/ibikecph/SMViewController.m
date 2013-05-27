@@ -482,7 +482,7 @@ typedef enum {
     CGRect frame = centerView.frame;
     frame.size.width = scrWidth;
     frame.size.height = scrHeight;
-    frame.origin.x = 0.0f;
+//    frame.origin.x = 0.0f;
     [centerView setFrame:frame];
     
     frame = dropPinView.frame;

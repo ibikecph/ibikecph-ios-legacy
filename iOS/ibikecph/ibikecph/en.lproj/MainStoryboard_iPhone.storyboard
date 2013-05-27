@@ -1396,7 +1396,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="KIv-Bk-2qG" userLabel="Menu View">
-                                <rect key="frame" x="0.0" y="20" width="260" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="ygK-OY-1RO" userLabel="main menu">
@@ -3552,29 +3552,6 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addFavoriteHide:"/>
-                <relationship kind="action" name="addFavoriteShow:"/>
-                <relationship kind="action" name="addSelectFavorite:"/>
-                <relationship kind="action" name="addSelectHome:"/>
-                <relationship kind="action" name="addSelectSchool:"/>
-                <relationship kind="action" name="addSelectWork:"/>
-                <relationship kind="action" name="deleteFavorite:"/>
-                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="editFavoriteShow:"/>
-                <relationship kind="action" name="editSaveFavorite:"/>
-                <relationship kind="action" name="enterRoute:"/>
-                <relationship kind="action" name="findAddress:"/>
-                <relationship kind="action" name="goToPin:"/>
-                <relationship kind="action" name="pinAddToFavorites:"/>
-                <relationship kind="action" name="saveFavorite:"/>
-                <relationship kind="action" name="showMenu:"/>
-                <relationship kind="action" name="slideMenuOpen:"/>
-                <relationship kind="action" name="startEdit:"/>
-                <relationship kind="action" name="stopEdit:"/>
-                <relationship kind="action" name="tapAccount:"/>
-                <relationship kind="action" name="tapFavorites:"/>
-                <relationship kind="action" name="tapInfo:"/>
-                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="account_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
@@ -3625,6 +3602,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="SAG-9b-Vbu"/>
-        <segue reference="DqZ-cl-vTA"/>
+        <segue reference="wAx-WK-VM3"/>
     </inferredMetricsTieBreakers>
 </document>
