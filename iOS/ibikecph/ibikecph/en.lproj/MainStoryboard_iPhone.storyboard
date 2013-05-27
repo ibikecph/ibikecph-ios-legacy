@@ -1859,11 +1859,6 @@
                                                     <action selector="trackUser:" destination="2" eventType="touchUpInside" id="ttg-4B-YGa"/>
                                                 </connections>
                                             </button>
-                                            <view multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" id="4qF-59-xup">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -1915,6 +1910,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" id="4qF-59-xup">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <imageView opaque="NO" contentMode="scaleToFill" image="home_btn_active.png" id="QbL-fo-1cb">
@@ -3552,6 +3552,29 @@
         <class className="SMViewController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addFavoriteHide:"/>
+                <relationship kind="action" name="addFavoriteShow:"/>
+                <relationship kind="action" name="addSelectFavorite:"/>
+                <relationship kind="action" name="addSelectHome:"/>
+                <relationship kind="action" name="addSelectSchool:"/>
+                <relationship kind="action" name="addSelectWork:"/>
+                <relationship kind="action" name="deleteFavorite:"/>
+                <relationship kind="action" name="doubleTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="editFavoriteShow:"/>
+                <relationship kind="action" name="editSaveFavorite:"/>
+                <relationship kind="action" name="enterRoute:"/>
+                <relationship kind="action" name="findAddress:"/>
+                <relationship kind="action" name="goToPin:"/>
+                <relationship kind="action" name="pinAddToFavorites:"/>
+                <relationship kind="action" name="saveFavorite:"/>
+                <relationship kind="action" name="showMenu:"/>
+                <relationship kind="action" name="slideMenuOpen:"/>
+                <relationship kind="action" name="startEdit:"/>
+                <relationship kind="action" name="stopEdit:"/>
+                <relationship kind="action" name="tapAccount:"/>
+                <relationship kind="action" name="tapFavorites:"/>
+                <relationship kind="action" name="tapInfo:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
                 <relationship kind="outlet" name="account_label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>

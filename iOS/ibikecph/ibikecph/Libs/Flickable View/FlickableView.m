@@ -104,6 +104,13 @@ typedef enum {
     [pan requireGestureRecognizerToFail:tap];
 }
 
+- (void)addPullView:(UIView*)pullView {
+    [pullView setGestureRecognizers:@[]];
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
+    [pan setDelegate:self];
+    [pullView addGestureRecognizer:pan];
+}
+
 
 
 #pragma mark - gesture recognizer

@@ -161,6 +161,7 @@ typedef enum {
     
     
     [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:menuBtn];
+    [centerView addPullView:blockingView];
 
 }
 
