@@ -377,37 +377,44 @@ typedef enum {
     }];
 }
 
+- (void)getFBData {
+    [[FBRequest requestForMe] startWithCompletionHandler:
+     ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
+         if (!error) {
+             /*
+              * handle FB login
+              */
+             SMAppDelegate * appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+             NSString *accessToken = appDelegate.session.accessToken;
+             
+             [self doFBLogin:accessToken];
+         } else {
+             UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"fb_login_error") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+             [av show];
+         }
+     }];
+}
+
 - (IBAction)loginWithFacebook:(id)sender {
     SMAppDelegate * appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    if (!appDelegate.session || appDelegate.session.state != FBSessionStateCreated) {
+    if (!appDelegate.session) {
         // Create a new, logged out session.
         appDelegate.session = [[FBSession alloc] initWithPermissions:@[@"email"]];
     }
-    
-    // if the session isn't open, let's open it now and present the login UX to the user
-    [appDelegate.session openWithCompletionHandler:^(FBSession *session,
-                                                     FBSessionState status,
-                                                     NSError *error) {
-        [FBSession setActiveSession:session];
-        if (appDelegate.session.isOpen) {
-            [[FBRequest requestForMe] startWithCompletionHandler:
-             ^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-                 if (!error) {
-                     /*
-                      * handle FB login
-                      */
-                     NSString *accessToken = appDelegate.session.accessToken;
-                    
-                     [self doFBLogin:accessToken];
-                 } else {
-                     UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"fb_login_error") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-                     [av show];
-                 }
-             }];
-            
-        }
-    }];
-    
+    if (appDelegate.session.isOpen) {
+        [self getFBData];
+    } else {
+        // if the session isn't open, let's open it now and present the login UX to the user
+        [appDelegate.session openWithCompletionHandler:^(FBSession *session,
+                                                         FBSessionState status,
+                                                         NSError *error) {
+            [FBSession setActiveSession:session];
+            SMAppDelegate * appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+            if (appDelegate.session.isOpen) {
+                [self getFBData];
+            }
+        }];
+    }
 }
 
 #pragma mark - textfield delegate

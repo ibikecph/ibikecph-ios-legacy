@@ -248,11 +248,11 @@
         if ([req.requestIdentifier isEqualToString:@"getUser"]) {
             [name setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
             [email setText:[[result objectForKey:@"data"] objectForKey:@"email"]];
-            [regularImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
+            [regularImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]] scale:[[UIScreen mainScreen] scale]]];
             self.userData = @{@"name" : name.text, @"email" : email.text, @"password" : @"", @"repeatPassword" : @"", @"image" : regularImage.image?regularImage.image:[[UIImage alloc] init]};
         } else if ([req.requestIdentifier isEqualToString:@"getUserFB"]) {
                 [fbName setText:[[result objectForKey:@"data"] objectForKey:@"name"]];
-                [fbImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]]]];
+                [fbImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[result objectForKey:@"data"] objectForKey:@"image_url"]]] scale:[[UIScreen mainScreen] scale]]];
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
             hasChanged = NO;

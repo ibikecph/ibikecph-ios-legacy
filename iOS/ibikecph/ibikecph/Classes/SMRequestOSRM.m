@@ -167,6 +167,10 @@
                 }
                 [self findNearestPointForStart:self.startLoc andEnd:self.endLoc];
             }
+        } else if ([self.currentRequest isEqualToString:@"findNearestPointForLocation:"])  {
+            if ([self.delegate conformsToProtocol:@protocol(SMRequestOSRMDelegate)]) {
+                [self.delegate request:self finishedWithResult:r];
+            }
         } else {
             
             if (!r || ([r isKindOfClass:[NSDictionary class]] == NO) || ([[r objectForKey:@"status"] intValue] != 0)) {
