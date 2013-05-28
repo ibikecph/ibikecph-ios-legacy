@@ -73,6 +73,30 @@
     }];
 }
 
++ (void)appleReverseGeocode:(CLLocationCoordinate2D)coord completionHandler:(void (^)(NSDictionary * response, NSError* error)) handler {
+    CLGeocoder * cl = [[CLGeocoder alloc] init];
+    [cl reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude] completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSString * title = @"";
+        NSString * subtitle = @"";
+        NSMutableArray * arr = [NSMutableArray array];
+        if ([placemarks count] > 0) {
+            MKPlacemark * d = [placemarks objectAtIndex:0];
+            title = [NSString stringWithFormat:@"%@", [[d addressDictionary] objectForKey:@"Street"]?[[d addressDictionary] objectForKey:@"Street"]:@""];
+            subtitle = [NSString stringWithFormat:@"%@ %@", [[d addressDictionary] objectForKey:@"ZIP"]?[[d addressDictionary] objectForKey:@"ZIP"]:@"", [[d addressDictionary] objectForKey:@"City"]?[[d addressDictionary] objectForKey:@"City"]:@""];
+            for (MKPlacemark* d in placemarks) {
+                [arr addObject:@{
+                 @"street" : [[d addressDictionary] objectForKey:@"Street"]?[[d addressDictionary] objectForKey:@"Street"]:@"",
+                 @"house_number" : @"",
+                 @"zip" : [[d addressDictionary] objectForKey:@"ZIP"]?[[d addressDictionary] objectForKey:@"ZIP"]:@"",
+                 @"city" : [[d addressDictionary] objectForKey:@"City"]?[[d addressDictionary] objectForKey:@"City"]:@""
+                 }];
+            }
+        }
+        handler(@{@"title" : title, @"subtitle" : subtitle, @"near": arr}, nil);
+    }];
+}
+
+
 + (void)oiorestReverseGeocode:(CLLocationCoordinate2D)coord completionHandler:(void (^)(NSDictionary * response, NSError* error)) handler {
     NSString * s = [NSString stringWithFormat:@"http://geo.oiorest.dk/adresser/%f,%f,%@.json", coord.latitude, coord.longitude, OIOREST_SEARCH_RADIUS];
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
@@ -82,7 +106,10 @@
         } else {
             if (data) {
                 id res = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];//[[[SBJsonParser alloc] init] objectWithData:data];
-                
+                if (res == nil) {
+                    handler(@{}, [NSError errorWithDomain:NSOSStatusErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey : @"Wrong data returned from the OIOREST"}]);
+                    return;
+                }
                 if ([res isKindOfClass:[NSArray class]] == NO) {
                     res = @[res];
                 }
@@ -111,7 +138,11 @@
 }
 
 + (void)reverseGeocode:(CLLocationCoordinate2D)coord completionHandler:(void (^)(NSDictionary * response, NSError* error)) handler {
-    [SMGeocoder reverseGeocode:coord completionHandler:handler];
+    if (USE_APPLE_GEOCODER) {
+        [SMGeocoder appleReverseGeocode:coord completionHandler:handler];
+    } else {
+        [SMGeocoder oiorestReverseGeocode:coord completionHandler:handler];
+    }
 }
 
 @end

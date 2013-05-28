@@ -210,6 +210,7 @@ typedef enum {
     routeStreet = nil;
     menuBtn = nil;
     menuBtn = nil;
+    pinButton = nil;
     [super viewDidUnload];
 }
 
@@ -249,7 +250,17 @@ typedef enum {
     }
     
     [self.view removeKeyboardControl];
+    
+    CGRect frame = dropPinView.frame;
+    frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
+    [dropPinView setFrame:frame];
+    frame = buttonTrackUser.frame;
+    frame.origin.y = dropPinView.frame.origin.y - 65.0f;
+    [buttonTrackUser setFrame:frame];
+
+    
     [super viewWillDisappear:animated];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -277,22 +288,22 @@ typedef enum {
         [r setAuxParam:[d objectForKey:@"destination"]];
         [r findNearestPointForStart:cStart andEnd:cEnd];        
         
-        /**
-         * drop pin
-         */
-        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
-        
-        SMRequestOSRM * r2 = [[SMRequestOSRM alloc] initWithDelegate:self];
-        [r2 setRequestIdentifier:@"getNearestForPinDrop"];
-        [r2 findNearestPointForLocation:loc];
-        
-        [self.mpView removeAllAnnotations];
-        SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
-        endMarkerAnnotation.annotationType = @"marker";
-        endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
-        [self.mpView addAnnotation:endMarkerAnnotation];
-        [self setDestinationPin:endMarkerAnnotation];
+//        /**
+//         * drop pin
+//         */
+//        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
+//        
+//        SMRequestOSRM * r2 = [[SMRequestOSRM alloc] initWithDelegate:self];
+//        [r2 setRequestIdentifier:@"getNearestForPinDrop"];
+//        [r2 findNearestPointForLocation:loc];
+//        
+//        [self.mpView removeAllAnnotations];
+//        SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
+//        endMarkerAnnotation.annotationType = @"marker";
+//        endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
+//        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
+//        [self.mpView addAnnotation:endMarkerAnnotation];
+//        [self setDestinationPin:endMarkerAnnotation];
     } else {
         [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
         [tblMenu addObserver:self forKeyPath:@"editing" options:0 context:nil];
@@ -462,8 +473,31 @@ typedef enum {
         
         [im removeFromSuperview];
         
-        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-        [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
+        [self showPinDrop];
+        
+        [SMGeocoder reverseGeocode:coord completionHandler:^(NSDictionary *response, NSError *error) {
+            [routeStreet setText:[response objectForKey:@"title"]];
+            if ([routeStreet.text isEqualToString:@""]) {
+                [routeStreet setText:[NSString stringWithFormat:@"%f, %f", coord.latitude, coord.longitude]];
+            }
+            
+            NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF.name = %@ AND SELF.address = %@", routeStreet.text, routeStreet.text];
+            NSArray * arr = [[SMFavoritesUtil getFavorites] filteredArrayUsingPredicate:pred];
+            if ([arr count] > 0) {
+                [pinButton setSelected:YES];
+            } else {
+                [pinButton setSelected:NO];
+            }
+            [pinButton setEnabled:YES];
+            
+            [self.destinationPin setSubtitle:@""];
+            [self.destinationPin setTitle:[response objectForKey:@"title"]];
+            [self.destinationPin setDelegate:self];
+            [self.destinationPin setRoutingCoordinate:loc];
+        }];
+        
+//        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
+//        [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:loc.coordinate.latitude longitude:loc.coordinate.longitude]];
     }];
 
 }
@@ -509,20 +543,32 @@ typedef enum {
 }
 
 - (IBAction)pinAddToFavorites:(id)sender {
+    NSDictionary * d = @{
+                         @"name" : routeStreet.text,
+                         @"address" : routeStreet.text,
+                         @"startDate" : [NSDate date],
+                         @"endDate" : [NSDate date],
+                         @"source" : @"favorites",
+                         @"subsource" : @"favorite",
+                         @"lat" :[NSNumber numberWithDouble: self.destinationPin.coordinate.latitude],
+                         @"long" : [NSNumber numberWithDouble: self.destinationPin.coordinate.longitude],
+                         @"order" : @0
+                         };
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF.name = %@ AND SELF.address = %@", routeStreet.text, routeStreet.text];
+    NSArray * arr = [[SMFavoritesUtil getFavorites] filteredArrayUsingPredicate:pred];
     SMFavoritesUtil * fv = [SMFavoritesUtil instance];
-    [fv addFavoriteToServer:@{
-     @"name" : routeStreet.text,
-     @"address" : routeStreet.text,
-     @"startDate" : [NSDate date],
-     @"endDate" : [NSDate date],
-     @"source" : @"favorites",
-     @"subsource" : @"favorite",
-     @"lat" :[NSNumber numberWithDouble: self.destinationPin.coordinate.latitude],
-     @"long" : [NSNumber numberWithDouble: self.destinationPin.coordinate.longitude],
-     @"order" : @0
-     }];    
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
-        debugLog(@"error in trackEvent");
+    if ([arr count] > 0) {
+        [pinButton setSelected:NO];
+        [fv deleteFavoriteFromServer:[arr objectAtIndex:0]];
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }        
+    } else {
+        [pinButton setSelected:YES];
+        [fv addFavoriteToServer:d];
+        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+            debugLog(@"error in trackEvent");
+        }
     }
 }
 
@@ -531,11 +577,9 @@ typedef enum {
     frame.origin.y = centerView.frame.size.height - 6.0f;
     [dropPinView setFrame:frame];
     [dropPinView setHidden:NO];
+    routeStreet.text = @"";
+    [pinButton setEnabled:NO];
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-//        CGRect frame = self.mpView.frame;
-//        frame.size.height = centerView.frame.size.height - 102.0f;
-//        [self.mpView setFrame:frame];
-
         CGRect frame = dropPinView.frame;
         frame.origin.y = centerView.frame.size.height - dropPinView.frame.size.height;
         [dropPinView setFrame:frame];
@@ -550,21 +594,14 @@ typedef enum {
 
 - (void)hidePinDrop {
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-//        CGRect frame = self.mpView.frame;
-//        frame.size.height = centerView.frame.size.height;
-//        [self.mpView setFrame:frame];
-//        frame.origin.x = 0.0f;
-//        [self.mpView setFrame:frame];
         CGRect frame = dropPinView.frame;
         frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
         [dropPinView setFrame:frame];
-        
-        
         frame = buttonTrackUser.frame;
         frame.origin.y = dropPinView.frame.origin.y - 65.0f;
         [buttonTrackUser setFrame:frame];
-
     } completion:^(BOOL finished) {
+        
     }];
     
 }
@@ -1320,16 +1357,30 @@ typedef enum {
 #pragma mark - nearby places delegate
 
 - (void) nearbyPlaces:(SMNearbyPlaces *)owner foundLocations:(NSArray *)locations {
-    [self.destinationPin setNearbyObjects:locations];
+//    [self.destinationPin setNearbyObjects:locations];
     [routeStreet setText:owner.title];
     if ([routeStreet.text isEqualToString:@""]) {
         [routeStreet setText:[NSString stringWithFormat:@"%f, %f", owner.coord.coordinate.latitude, owner.coord.coordinate.longitude]];
     }
-    [self.destinationPin setSubtitle:owner.subtitle];
-    [self.destinationPin setTitle:owner.title];
-    [self.destinationPin setDelegate:self];
-    [self.destinationPin setRoutingCoordinate:owner.coord];
+    
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF.name = %@ AND SELF.address = %@", routeStreet.text, routeStreet.text];
+    NSArray * arr = [[SMFavoritesUtil getFavorites] filteredArrayUsingPredicate:pred];
+    if ([arr count] > 0) {
+        [pinButton setSelected:YES];
+    } else {
+        [pinButton setSelected:NO];
+    }
+    [pinButton setEnabled:YES];
+    
+    
+//    [self.destinationPin setSubtitle:owner.subtitle];
+//    [self.destinationPin setTitle:owner.title];
+//    [self.destinationPin setDelegate:self];
+//    [self.destinationPin setRoutingCoordinate:owner.coord];
 //    [self.destinationPin showCallout];
+    
+    
+    
     [self showPinDrop];
 }
 

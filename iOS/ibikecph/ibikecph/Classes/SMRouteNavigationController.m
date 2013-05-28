@@ -917,6 +917,7 @@ typedef enum {
          */
         if (turn.drivingDirection == 15) {
             turn.descriptionString = self.destination;
+            turn.wayName = self.destination;
         }
         if (i == 0)
             [(SMDirectionTopCell *)cell renderViewFromInstruction:turn];
