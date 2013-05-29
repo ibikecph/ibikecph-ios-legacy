@@ -81,6 +81,7 @@
 		instance = [[SMFavoritesUtil alloc] init];
         instance.appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
 	}
+    instance.delegate = nil;
 	return instance;
 }
 

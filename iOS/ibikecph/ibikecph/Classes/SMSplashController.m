@@ -55,7 +55,6 @@ typedef enum {
         SMSearchHistory * sh = [SMSearchHistory instance];
         [sh setDelegate:self.appDelegate];
         [sh fetchSearchHistoryFromServer];
-
         [[SMFavoritesUtil instance] fetchFavoritesFromServer];
     }
 }
@@ -85,15 +84,6 @@ typedef enum {
     }];
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
-//        if ([self.appDelegate.appSettings objectForKey:@"loginType"] && [[self.appDelegate.appSettings objectForKey:@"loginType"] isEqualToString:@"FB"]) {
-//            [self loginWithFB:nil];
-//        } else {
-//            SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
-//            [self setApr:ap];
-//            [self.apr setRequestIdentifier:@"autoLogin"];
-//            [self.apr showTransparentWaitingIndicatorInView:self.view];
-//            [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": [self.appDelegate.appSettings objectForKey:@"username"], @"password": [self.appDelegate.appSettings objectForKey:@"password"]}}];
-//        }
         [self skipLogin:nil];
     }
 }
@@ -489,32 +479,22 @@ typedef enum {
             [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
             [self.appDelegate saveSettings];
             [self fetchFavs];
-//            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"autoLogin"]) {
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
                 [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
                 [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
                 [self.appDelegate saveSettings];
                 [self fetchFavs];
-//                [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"loginFB"]) {
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
             [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
             [self.appDelegate.appSettings setValue:@"FB" forKey:@"loginType"];
             [self.appDelegate saveSettings];
             [self fetchFavs];
-//            [self goToFavorites:nil];
         } else if ([req.requestIdentifier isEqualToString:@"register"]) {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"" message:translateString(@"register_successful") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
             [self hideRegister:nil];
-//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"auth_token"] forKey:@"auth_token"];
-//            [self.appDelegate.appSettings setValue:[[result objectForKey:@"data"] objectForKey:@"id"] forKey:@"id"];
-//            [self.appDelegate.appSettings setValue:emailField.text forKey:@"username"];
-//            [self.appDelegate.appSettings setValue:passwordField.text forKey:@"password"];
-//            [self.appDelegate.appSettings setValue:@"regular" forKey:@"loginType"];
-//            [self.appDelegate saveSettings];
-//            [self goToFavorites:nil];
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
