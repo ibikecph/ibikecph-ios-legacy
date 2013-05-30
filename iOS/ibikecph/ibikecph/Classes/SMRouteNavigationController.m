@@ -1323,6 +1323,10 @@ typedef enum {
     return self.route.lastCorrectedLocation;
 }
 
+- (BOOL)isOnPath {
+    return [self.route isOnPath];
+}
+
 #pragma mark - footer delegate
 
 - (void)viewTapped:(id)view {
