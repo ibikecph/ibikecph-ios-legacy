@@ -36,15 +36,15 @@
 #define ORG_NAME @"ibikecph"
 
 //#ifdef WORLD_ROUTING
-//    #define OSRM_SERVER @"http://router.project-osrm.org"
+    #define OSRM_SERVER @"http://router.project-osrm.org"
 //#else
-    #define OSRM_SERVER @"http://routes.ibikecph.dk"
+//    #define OSRM_SERVER @"http://routes.ibikecph.dk"
 //#endif
 
 //#ifdef WORLD_ROUTING
-#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
+//#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
 //#else
-//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
+#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
 //#endif
 
 
