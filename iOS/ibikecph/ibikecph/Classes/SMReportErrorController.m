@@ -139,12 +139,13 @@
     [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, tblView.contentSize.height + tblView.frame.origin.y + 50.0f)];
 }
 
-//- (IBAction)sendReport:(id)sender {
-//    [self sendEmail];
-//}
-
-
 - (IBAction)sendReport:(id)sender {
+    [self sendEmail];
+//    [self sendAPIReport:nil];
+}
+
+
+- (IBAction)sendAPIReport:(id)sender {
     if (currentSelection < 0) {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"report_error_problem_not_selected") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
