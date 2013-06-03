@@ -45,6 +45,7 @@
 		4C11374616BFF9EF007F483F /* SMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C11374416BFF9EF007F483F /* SMCalloutView.xib */; };
 		4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0016B188C4001545C7 /* AddressBook.framework */; };
 		4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0116B188C4001545C7 /* AddressBookUI.framework */; };
+		4C1DB17C175C9B4900E5C00D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1DB17B175C9B4900E5C00D /* Reachability.m */; };
 		4C24BD3116F60C7A0043F28B /* overviewBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2D16F60C7A0043F28B /* overviewBG.png */; };
 		4C24BD3216F60C7A0043F28B /* overviewBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */; };
 		4C24BD3316F60C7A0043F28B /* routeStartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2F16F60C7A0043F28B /* routeStartButton.png */; };
@@ -596,6 +597,8 @@
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
 		4C16ED0016B188C4001545C7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4C16ED0116B188C4001545C7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		4C1DB17A175C9B4900E5C00D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4C1DB17B175C9B4900E5C00D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C24BD2D16F60C7A0043F28B /* overviewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewBG.png; sourceTree = "<group>"; };
 		4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overviewBG@2x.png"; sourceTree = "<group>"; };
 		4C24BD2F16F60C7A0043F28B /* routeStartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routeStartButton.png; sourceTree = "<group>"; };
@@ -1237,6 +1240,15 @@
 			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
 			sourceTree = "<group>";
 		};
+		4C1DB179175C9B4900E5C00D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				4C1DB17A175C9B4900E5C00D /* Reachability.h */,
+				4C1DB17B175C9B4900E5C00D /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		4C31FF2E1717FF8300DA4983 /* UIImage-Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1776,6 +1788,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C1DB179175C9B4900E5C00D /* Reachability */,
 				4C45EBDE174CB2B100CC41EE /* Flickable View */,
 				4C31FF3F1718037200DA4983 /* Base64 */,
 				4C31FF2E1717FF8300DA4983 /* UIImage-Categories */,
@@ -2614,6 +2627,7 @@
 				4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */,
 				4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */,
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
+				4C1DB17C175C9B4900E5C00D /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

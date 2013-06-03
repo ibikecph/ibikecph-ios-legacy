@@ -36,15 +36,16 @@
 #define ORG_NAME @"ibikecph"
 
 //#ifdef WORLD_ROUTING
-    #define OSRM_SERVER @"http://router.project-osrm.org"
+//    #define OSRM_SERVER @"http://router.project-osrm.org"
+#define OSRM_ADDRESS @"routes.ibikecph.dk"
 //#else
-//    #define OSRM_SERVER @"http://routes.ibikecph.dk"
+    #define OSRM_SERVER @"http://routes.ibikecph.dk"
 //#endif
 
 //#ifdef WORLD_ROUTING
-//#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
+#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
 //#else
-#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
+//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
 //#endif
 
 
@@ -101,7 +102,7 @@
 
 #define MAX_TURNS 4
 
-
+#define API_ADDRESS @"ibikecph-staging.herokuapp.com"
 #define API_SERVER @"http://ibikecph-staging.herokuapp.com/api"
 #define API_DEFAULT_ACCEPT @{@"key": @"Accept", @"value" : @"application/vnd.ibikecph.v1"}
 #define API_DEFAULT_HEADERS @[API_DEFAULT_ACCEPT, @{@"key": @"Content-Type", @"value" : @"application/json"}]

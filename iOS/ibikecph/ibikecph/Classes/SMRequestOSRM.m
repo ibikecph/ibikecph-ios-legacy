@@ -9,6 +9,7 @@
 #import "SMRequestOSRM.h"
 #import "NSString+URLEncode.h"
 #import "SMGPSUtil.h"
+#import "Reachability.h"
 
 @interface SMRequestOSRM()
 @property (nonatomic, strong) NSURLConnection * conn;
@@ -43,7 +44,22 @@
     return self;
 }
 
+- (BOOL)serverReachable {
+    Reachability * r = [Reachability reachabilityWithHostName:OSRM_ADDRESS];
+    NetworkStatus s = [r currentReachabilityStatus];
+    if (s == NotReachable) {
+        /**
+         * show dialog
+         */
+        return NO;
+    }
+    return YES;
+}
+
 - (void)findNearestPointForLocation:(CLLocation*)loc {
+    if ([self serverReachable] == NO) {
+        return;
+    }
     self.currentRequest = @"findNearestPointForLocation:";
     self.coord = loc;
     NSString * s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, loc.coordinate.latitude, loc.coordinate.longitude];
@@ -79,6 +95,9 @@
 }
 
 - (void)getRouteFrom:(CLLocationCoordinate2D)start to:(CLLocationCoordinate2D)end via:(NSArray *)viaPoints checksum:(NSString*)chksum andStartHint:(NSString*)startHint destinationHint:(NSString*)hint andZ:(NSInteger)z{
+    if ([self serverReachable] == NO) {
+        return;
+    }
     self.currentZ = z;
     self.currentRequest = @"getRouteFrom:to:via:";
     
@@ -120,6 +139,9 @@
 }
 
 - (void)findNearestPointForStart:(CLLocation*)start andEnd:(CLLocation*)end {
+    if ([self serverReachable] == NO) {
+        return;
+    }
     self.currentRequest = @"findNearestPointForStart:andEnd:";
     NSString * s;
     if (self.locStep == 0) {

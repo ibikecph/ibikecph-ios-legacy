@@ -7,6 +7,7 @@
 //
 
 #import "SMAPIRequest.h"
+#import "Reachability.h"
 
 @interface SMAPIRequest()
 @property (nonatomic, strong) NSDictionary * serviceParams;
@@ -28,10 +29,26 @@
     return self;
 }
 
+- (BOOL)serverReachable {
+    Reachability * r = [Reachability reachabilityWithHostName:API_ADDRESS];
+    NetworkStatus s = [r currentReachabilityStatus];
+    if (s == NotReachable) {
+        /**
+         * show dialog
+         */
+        return NO;
+    }
+    return YES;
+}
 
 - (void)executeRequest:(NSDictionary*)request withParams:(NSDictionary*)params {
     [self setServiceParams:params];
     [self setServiceURL:request];
+    
+    if ([self serverReachable] == NO) {
+        return;
+    }
+    
 
     if ([[request objectForKey:@"transferMethod"] isEqualToString:@"GET"] || [[request objectForKey:@"transferMethod"] isEqualToString:@"DELETE"]) {
         [self executeGetRequestWithParams:params andURL:request];
