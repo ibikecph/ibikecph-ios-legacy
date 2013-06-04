@@ -249,8 +249,6 @@ typedef enum {
     }@catch(id anException){
     }
     
-    [self.view removeKeyboardControl];
-    
     CGRect frame = dropPinView.frame;
     frame.origin.y = self.mpView.frame.origin.y + self.mpView.frame.size.height;
     [dropPinView setFrame:frame];
@@ -311,9 +309,6 @@ typedef enum {
     }
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-    
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
-    }];
     
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         SMFavoritesUtil * fv = [[SMFavoritesUtil alloc] initWithDelegate:self];
@@ -488,7 +483,9 @@ typedef enum {
             } else {
                 [pinButton setSelected:NO];
             }
-            [pinButton setEnabled:YES];
+            if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
+                pinButton.enabled = YES;
+            }
             
             [self.destinationPin setSubtitle:@""];
             [self.destinationPin setTitle:[response objectForKey:@"title"]];
@@ -543,6 +540,7 @@ typedef enum {
 }
 
 - (IBAction)pinAddToFavorites:(id)sender {
+    
     NSDictionary * d = @{
                          @"name" : routeStreet.text,
                          @"address" : routeStreet.text,
@@ -631,6 +629,9 @@ typedef enum {
 }
 
 - (IBAction)editFavoriteShow:(id)sender {
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    }];
+
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         addFavAddress.text = [self.locDict objectForKey:@"address"];
         addFavName.text = [self.locDict objectForKey:@"name"];
@@ -661,7 +662,9 @@ typedef enum {
 }
 
 - (IBAction)addFavoriteShow:(id)sender {
-    
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    }];
+
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         self.locDict = nil;
         addFavAddress.text = @"";
@@ -705,6 +708,7 @@ typedef enum {
 
 - (IBAction)addFavoriteHide:(id)sender{
     [self.view hideKeyboard];
+    [self.view removeKeyboardControl];
     [UIView animateWithDuration:0.4f animations:^{
         CGRect frame = mainMenu.frame;
         frame.origin.x = 0.0f;
@@ -1147,10 +1151,7 @@ typedef enum {
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == tblMenu) {
-        return YES;
-    }
-    return NO;
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
@@ -1158,12 +1159,9 @@ typedef enum {
         if ([self.favoritesList count] == 0) {
             return;
         }
-        NSDictionary * dst = [self.favoritesList objectAtIndex:destinationIndexPath.row];
         NSDictionary * src = [self.favoritesList objectAtIndex:sourceIndexPath.row];
-        [self.favoritesList removeObjectAtIndex:destinationIndexPath.row];
-        [self.favoritesList insertObject:src atIndex:destinationIndexPath.row];
         [self.favoritesList removeObjectAtIndex:sourceIndexPath.row];
-        [self.favoritesList insertObject:dst atIndex:sourceIndexPath.row];
+        [self.favoritesList insertObject:src atIndex:destinationIndexPath.row];
         [SMFavoritesUtil saveFavorites:self.favoritesList];
     }
     
@@ -1370,7 +1368,9 @@ typedef enum {
     } else {
         [pinButton setSelected:NO];
     }
-    [pinButton setEnabled:YES];
+    if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
+        pinButton.enabled = YES;
+    }
     
     
 //    [self.destinationPin setSubtitle:owner.subtitle];

@@ -46,6 +46,7 @@ typedef enum {
     CGFloat lastDirectionsPos;
     CGFloat touchOffset;
     BOOL overviewShown;
+    RMUserTrackingMode oldTrackingMode;
 }
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
@@ -1098,7 +1099,7 @@ typedef enum {
         float newY = [sender locationInView:self.view].y;
         [self setNewDirections:newY];
 
-        [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+        [self.mpView setUserTrackingMode:oldTrackingMode];
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         self.pulling = YES;
         [swipableView setHidden:YES];
@@ -1106,6 +1107,7 @@ typedef enum {
         [self repositionInstructionsView:newY];
     } else if (sender.state == UIGestureRecognizerStateBegan) {
         self.pulling = YES;
+        oldTrackingMode = self.mpView.userTrackingMode;
         [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
         touchOffset = [sender locationInView:instructionsView].y;
         [swipableView setHidden:YES];
