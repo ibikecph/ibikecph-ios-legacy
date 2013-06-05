@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString * requestIdentifier;
 @property (nonatomic, strong) id auxParam;
 @property (nonatomic, strong) NSMutableData * responseData;
+@property (nonatomic, strong) NSString * osrmServer;
 
 - (id)initWithDelegate:(id<SMRequestOSRMDelegate>)dlg;
 

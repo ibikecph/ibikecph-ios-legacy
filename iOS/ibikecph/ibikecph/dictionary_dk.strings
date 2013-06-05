@@ -267,5 +267,5 @@
 
 "you_have_reached_your_destination" = "Du har nået din destination";
 
-"cargo_item_1"= "Ladcykel";
-"cargo_item_2"= "Grønrute";
+"bike_type_1"= "Cykel";
+"bike_type_2"= "Ladcykel";

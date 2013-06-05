@@ -40,6 +40,7 @@
     if (self) {
         [self setDelegate:dlg];
         self.locStep = 0;
+        self.osrmServer = OSRM_SERVER;
     }
     return self;
 }
@@ -62,7 +63,7 @@
     }
     self.currentRequest = @"findNearestPointForLocation:";
     self.coord = loc;
-    NSString * s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, loc.coordinate.latitude, loc.coordinate.longitude];
+    NSString * s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", self.osrmServer, loc.coordinate.latitude, loc.coordinate.longitude];
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];
     if (self.conn) {
         [self.conn cancel];
@@ -101,7 +102,7 @@
     self.currentZ = z;
     self.currentRequest = @"getRouteFrom:to:via:";
     
-    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?z=%d&alt=false", OSRM_SERVER, z];
+    NSMutableString * s1 =[NSMutableString stringWithFormat:@"%@/viaroute?z=%d&alt=false", self.osrmServer, z];
     
     if (startHint) {
         s1 = [NSString stringWithFormat:@"%@&loc=%.6f,%.6f&hint=%@", s1, start.latitude, start.longitude, startHint];
@@ -147,9 +148,9 @@
     if (self.locStep == 0) {
         self.startLoc = start;
         self.endLoc = end;
-        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, start.coordinate.latitude, start.coordinate.longitude];
+        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", self.osrmServer, start.coordinate.latitude, start.coordinate.longitude];
     } else {
-        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", OSRM_SERVER, end.coordinate.latitude, end.coordinate.longitude];
+        s = [NSString stringWithFormat:@"%@/nearest?loc=%.6f,%.6f", self.osrmServer, end.coordinate.latitude, end.coordinate.longitude];
     }
     self.locStep += 1;
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:s]];

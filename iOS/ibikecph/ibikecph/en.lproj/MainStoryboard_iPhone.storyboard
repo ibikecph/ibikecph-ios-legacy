@@ -2114,7 +2114,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="delegate" destination="m0B-4B-35u" id="B5z-sg-vLq"/>
                                         </connections>
@@ -2427,12 +2427,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <imageView contentMode="left" image="cargo_slider.png" id="h1Q-Jq-Hxq">
-                                        <rect key="frame" x="0.0" y="360" width="51" height="65"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                    </imageView>
                                     <view alpha="0.0" contentMode="scaleToFill" id="NU9-z4-bIO" userLabel="Stop">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2580,6 +2574,17 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="2Zm-KN-LNi">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <imageView contentMode="left" image="cargo_slider.png" id="h1Q-Jq-Hxq">
+                                        <rect key="frame" x="0.0" y="360" width="51" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="no_connection.png" id="xk9-Ph-nIz">
                                         <rect key="frame" x="280" y="69" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -2588,13 +2593,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="eJf-MZ-O2l"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="arrivalBG" destination="DFd-Wm-s5E" id="ITu-04-6Yj"/>
+                        <outlet property="blockingView" destination="2Zm-KN-LNi" id="XQN-AW-zd3"/>
                         <outlet property="buttonTrackUser" destination="0sb-SH-s8A" id="vCJ-KH-AJE"/>
                         <outlet property="cargoHandleImageView" destination="h1Q-Jq-Hxq" id="Pdh-WM-E6r"/>
                         <outlet property="cargoTableView" destination="z28-dm-KuL" id="sWz-kx-MHx"/>
@@ -3510,6 +3516,9 @@
         <class className="SMRegisterController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRegisterController.h"/>
             <relationships>
+                <relationship kind="action" name="doRegister:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="selectImageSource:"/>
                 <relationship kind="outlet" name="registerEmail" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="registerImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="registerName" candidateClass="UITextField"/>
@@ -3544,6 +3553,7 @@
                 <relationship kind="action" name="startRouting:"/>
                 <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="blockingView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
                 <relationship kind="outlet" name="cargoHandleImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="cargoTableView" candidateClass="UITableView"/>

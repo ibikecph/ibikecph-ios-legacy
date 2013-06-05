@@ -64,6 +64,7 @@ typedef enum {
 @property (nonatomic, strong) NSMutableSet * activeItems;
 @property (nonatomic, strong) NSArray * instructionsForScrollview;
 @property BOOL pulling;
+@property (nonatomic, strong) NSString * osrmServer;
 @end
 
 @implementation SMRouteNavigationController
@@ -73,6 +74,8 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.osrmServer = OSRM_SERVER;
     self.pulling = NO;
 
     self.recycledItems = [NSMutableSet set];
@@ -122,16 +125,13 @@ typedef enum {
     
     // setup cargo items
     
-    NSDictionary* normalItem= [NSDictionary dictionaryWithObjectsAndKeys:[SMTranslation decodeString:@"cargo_item_1"], @"name",
-                                                                         @"", @"image",
-                               nil];
-    NSDictionary* cargoItem= [NSDictionary dictionaryWithObjectsAndKeys:[SMTranslation decodeString:@"cargo_item_2"], @"name",
-                               @"", @"image",
-                               nil];
-    
-    self.cargoItems= [NSArray arrayWithObjects:normalItem, cargoItem, nil];
+        
+    self.cargoItems= OSRM_SERVERS;
     [self.cargoTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.cargoTableView reloadData];
+    [self.cargoTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    
+    [centerView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -171,6 +171,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+    [centerView removeObserver:self forKeyPath:@"frame"];
     self.mpView.delegate = nil;
     self.mpView = nil;
     self.route.delegate = nil;
@@ -207,6 +208,7 @@ typedef enum {
     [self setCargoTableView:nil];
     routeOverviewBottom = nil;
     centerView = nil;
+    blockingView = nil;
     [super viewDidUnload];
 }
 
@@ -243,9 +245,6 @@ typedef enum {
 }
 
 - (void)showRouteOverview {
-//    [self setupMapSize:NO];
-//    [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
-    
     overviewShown = YES;
     self.currentlyRouting = NO;
     [progressView setHidden:YES];
@@ -257,9 +256,6 @@ typedef enum {
     
     [self reloadSwipableView];
     
-//    CGRect frame = routeOverviewBottom.frame;
-//    frame.size.height = instructionsView.frame.size.height;
-//    frame.origin.y = instructionsView.frame.origin.y;
     [routeOverview setFrame:instructionsView.frame];
     
     [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
@@ -347,6 +343,13 @@ typedef enum {
 
 }
 
+- (void)newRouteType {
+    SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
+    [r setAuxParam:@"startRoute"];
+    [r setOsrmServer:self.osrmServer];
+    [r getRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate via:nil];
+}
+
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
     
     if (self.mpView.delegate == nil) {
@@ -358,6 +361,7 @@ typedef enum {
     }
 
     self.route = [[SMRoute alloc] initWithRouteStart:from andEnd:to andDelegate:self andJSON:jsonRoot];
+    self.route.osrmServer = self.osrmServer;
     if (!self.route) {
         return;
     }
@@ -941,6 +945,9 @@ typedef enum {
         NSDictionary* cargoItem= [self.cargoItems objectAtIndex:indexPath.row];
         cell.textLabel.text= [cargoItem objectForKey:@"name"];
         cell.imageView.image= [UIImage imageNamed:[cargoItem objectForKey:@"image"]];
+        if ([[cargoItem objectForKey:@"server"] isEqualToString:self.osrmServer]) {
+            [cell setSelected:YES];
+        }
         return cell;
     }else{
         int i = [indexPath row];
@@ -989,7 +996,9 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView==self.cargoTableView){
-        
+        NSDictionary* currentRow = [self.cargoItems objectAtIndex:indexPath.row];
+        self.osrmServer = [currentRow objectForKey:@"server"];
+        [self newRouteType];
     }else{
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -1356,6 +1365,12 @@ typedef enum {
         }
         
         debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);
+    } else if (object == centerView && [keyPath isEqualToString:@"frame"]) {
+        if (centerView.frame.origin.x > 0.0f) {
+            [blockingView setAlpha:1.0f];
+        } else {
+            [blockingView setAlpha:0.0f];
+        }
     }
 }
 
@@ -1378,5 +1393,39 @@ typedef enum {
 - (void)viewTapped:(id)view {
     [self reportError:nil];
 }
+
+#pragma mark - osrm request delegate
+
+- (void)request:(SMRequestOSRM *)req finishedWithResult:(id)res {
+    if ([req.auxParam isEqualToString:@"startRoute"]){
+        id jsonRoot = [NSJSONSerialization JSONObjectWithData:req.responseData options:NSJSONReadingAllowFragments error:nil];
+        if (!jsonRoot || ([jsonRoot isKindOfClass:[NSDictionary class]] == NO) || ([[jsonRoot objectForKey:@"status"] intValue] != 0)) {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        } else {
+            for (RMAnnotation *annotation in self.mpView.annotations) {
+                if ([annotation.annotationType isEqualToString:@"path"]) {
+                    [self.mpView removeAnnotation:annotation];
+                }
+            }
+            [self showRouteOverview];
+            [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                CGRect frame = centerView.frame;
+                frame.origin.x = centerView.startPos;
+                [centerView setFrame:frame];
+            } completion:^(BOOL finished) {
+                
+            }];
+            self.jsonRoot = jsonRoot;
+            if (self.startLocation && self.endLocation) {
+                [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
+            }
+        }
+    }
+}
+
+- (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
+}
+
 
 @end

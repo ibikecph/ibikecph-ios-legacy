@@ -277,3 +277,6 @@
 "account_dont_save" = "Don't save";
 
 "you_have_reached_your_destination" = "You have reached your destination";
+
+"bike_type_1"= "Bicycle";
+"bike_type_2"= "Cargo bike";

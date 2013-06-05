@@ -137,8 +137,6 @@ typedef enum {
     [self.mpView setMaxZoom:MAX_MAP_ZOOM];
 
     
-    NSLog(@"%@", OSRM_SERVER);
-    
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake(55.675455,12.566643) animated:NO];
     [self.mpView setZoom:16];
 //    [self.mpView zoomByFactor:1 near:CGPointMake(self.mpView.frame.size.width/2.0f, self.mpView.frame.size.height/2.0f) animated:NO];
