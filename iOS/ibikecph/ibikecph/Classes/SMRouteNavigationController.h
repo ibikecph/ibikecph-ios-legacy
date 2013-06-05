@@ -10,6 +10,7 @@
 #import "RMMapView.h"
 #import "SMRoute.h"
 #import "SMGPSTrackButton.h"
+#import "FlickableView.h"
 
 @interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate, ViewTapDelegate> {
     __weak IBOutlet UITableView *tblDirections;
@@ -38,6 +39,8 @@
     __weak IBOutlet UIImageView *noConnectionView;
     __weak IBOutlet UIView *finishView;
     __weak IBOutlet UILabel *finishStreet;
+    __weak IBOutlet UIView *routeOverviewBottom;
+    __weak IBOutlet FlickableView *centerView;
 }
 
 @property BOOL currentlyRouting;

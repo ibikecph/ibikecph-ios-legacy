@@ -1,4 +1,4 @@
-    //
+//
 //  SMRouteNavigationController.m
 //  I Bike CPH
 //
@@ -34,7 +34,7 @@
 #import "SMDirectionsFooter.h"
 #import "SMSearchHistory.h"
 
-#import "FlickableView.h"
+
 
 typedef enum {
     directionsFullscreen,
@@ -50,10 +50,7 @@ typedef enum {
     BOOL overviewShown;
     RMUserTrackingMode oldTrackingMode;
 }
-@property (weak, nonatomic) IBOutlet UIView *cargoHandleView;
 @property (weak, nonatomic) IBOutlet UIImageView *cargoHandleImageView;
-@property (strong, nonatomic) IBOutlet FlickableView *flickableRootView;
-@property (weak, nonatomic) IBOutlet UIView *cargoView;
 @property (weak, nonatomic) IBOutlet UITableView *cargoTableView;
 
 @property (nonatomic, strong) NSArray* cargoItems;
@@ -119,16 +116,9 @@ typedef enum {
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
     
-    // setup flickable cargo view
-    self.cargoHandleImageView.userInteractionEnabled= YES;
-    self.cargoView.userInteractionEnabled= YES;
-    self.cargoHandleView.userInteractionEnabled= YES;
-    [self.flickableRootView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:self.cargoView];
-    [self.flickableRootView addPullView:self.cargoHandleView];
+
     
-    // setup cargo tableview
-    self.cargoTableView.delegate= self;
-    self.cargoTableView.dataSource= self;
+    [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:self.cargoHandleImageView];
     
     // setup cargo items
     
@@ -140,6 +130,8 @@ typedef enum {
                                nil];
     
     self.cargoItems= [NSArray arrayWithObjects:normalItem, cargoItem, nil];
+    [self.cargoTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.cargoTableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -155,15 +147,6 @@ typedef enum {
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     
-//    CGRect frame = self.mpView.frame;
-//    frame.size.height = (instructionsView.frame.origin.y - frame.origin.y) * 1.5f;
-//    [self.mpView setFrame:frame];
-//
-//    frame = buttonTrackUser.frame;
-//    frame.origin.y = instructionsView.frame.origin.y - 65.0f;
-//    [buttonTrackUser setFrame:frame];
-    
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -221,11 +204,9 @@ typedef enum {
     finishStreet = nil;
 
     [self setCargoHandleImageView:nil];
-    [self setCargoView:nil];
-    [self setFlickableRootView:nil];
-    [self setCargoView:nil];
-    [self setCargoHandleView:nil];
     [self setCargoTableView:nil];
+    routeOverviewBottom = nil;
+    centerView = nil;
     [super viewDidUnload];
 }
 
@@ -262,7 +243,8 @@ typedef enum {
 }
 
 - (void)showRouteOverview {
-    [self setupMapSize:NO];
+//    [self setupMapSize:NO];
+//    [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
     
     overviewShown = YES;
     self.currentlyRouting = NO;
@@ -275,8 +257,11 @@ typedef enum {
     
     [self reloadSwipableView];
     
+//    CGRect frame = routeOverviewBottom.frame;
+//    frame.size.height = instructionsView.frame.size.height;
+//    frame.origin.y = instructionsView.frame.origin.y;
     [routeOverview setFrame:instructionsView.frame];
-
+    
     [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
     
     NSArray * a = [self.destination componentsSeparatedByString:@","];
