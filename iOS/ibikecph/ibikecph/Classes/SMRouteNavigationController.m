@@ -34,6 +34,8 @@
 #import "SMDirectionsFooter.h"
 #import "SMSearchHistory.h"
 
+#import "FlickableView.h"
+
 typedef enum {
     directionsFullscreen,
     directionsNormal,
@@ -47,6 +49,13 @@ typedef enum {
     CGFloat touchOffset;
     BOOL overviewShown;
 }
+@property (weak, nonatomic) IBOutlet UIView *cargoHandleView;
+@property (weak, nonatomic) IBOutlet UIImageView *cargoHandleImageView;
+@property (strong, nonatomic) IBOutlet FlickableView *flickableRootView;
+@property (weak, nonatomic) IBOutlet UIView *cargoView;
+@property (weak, nonatomic) IBOutlet UITableView *cargoTableView;
+
+@property (nonatomic, strong) NSArray* cargoItems;
 @property (nonatomic, strong) SMRoute *route;
 @property (nonatomic, strong) IBOutlet RMMapView * mpView;
 @property int directionsShownCount; // How many directions are shown in the directions table at the moment:
@@ -108,6 +117,28 @@ typedef enum {
     if (self.startLocation && self.endLocation) {
         [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
     }
+    
+    // setup flickable cargo view
+    self.cargoHandleImageView.userInteractionEnabled= YES;
+    self.cargoView.userInteractionEnabled= YES;
+    self.cargoHandleView.userInteractionEnabled= YES;
+    [self.flickableRootView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:self.cargoView];
+    [self.flickableRootView addPullView:self.cargoHandleView];
+    
+    // setup cargo tableview
+    self.cargoTableView.delegate= self;
+    self.cargoTableView.dataSource= self;
+    
+    // setup cargo items
+    
+    NSDictionary* normalItem= [NSDictionary dictionaryWithObjectsAndKeys:[SMTranslation decodeString:@"cargo_item_1"], @"name",
+                                                                         @"", @"image",
+                               nil];
+    NSDictionary* cargoItem= [NSDictionary dictionaryWithObjectsAndKeys:[SMTranslation decodeString:@"cargo_item_2"], @"name",
+                               @"", @"image",
+                               nil];
+    
+    self.cargoItems= [NSArray arrayWithObjects:normalItem, cargoItem, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -187,6 +218,13 @@ typedef enum {
     noConnectionView = nil;
     finishView = nil;
     finishStreet = nil;
+
+    [self setCargoHandleImageView:nil];
+    [self setCargoView:nil];
+    [self setFlickableRootView:nil];
+    [self setCargoView:nil];
+    [self setCargoHandleView:nil];
+    [self setCargoTableView:nil];
     [super viewDidUnload];
 }
 
@@ -903,38 +941,56 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.route.turnInstructions.count;
+    if(tableView==self.cargoTableView){
+        return self.cargoItems.count;
+    }else{
+        return self.route.turnInstructions.count;
+    }
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    int i = [indexPath row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(i == 0 ? @"topDirectionCell" : @"directionCell")];
+    if(tableView==self.cargoTableView){
+        UITableViewCell* cell= [tableView dequeueReusableCellWithIdentifier:@"cargoCell"];
+        NSDictionary* cargoItem= [self.cargoItems objectAtIndex:indexPath.row];
+        cell.textLabel.text= [cargoItem objectForKey:@"name"];
+        cell.imageView.image= [UIImage imageNamed:[cargoItem objectForKey:@"image"]];
+        return cell;
+    }else{
+        int i = [indexPath row];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(i == 0 ? @"topDirectionCell" : @"directionCell")];
 
-    if (i >= 0 && i < self.route.turnInstructions.count) {
-        SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
-        /**
-         * Replace "Destination reached" message with your address
-         */
-        if (turn.drivingDirection == 15) {
-            turn.descriptionString = self.destination;
-            turn.wayName = self.destination;
+        if (i >= 0 && i < self.route.turnInstructions.count) {
+            SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:i];
+            /**
+             * Replace "Destination reached" message with your address
+             */
+            if (turn.drivingDirection == 15) {
+                turn.descriptionString = self.destination;
+                turn.wayName = self.destination;
+            }
+            if (i == 0)
+                [(SMDirectionTopCell *)cell renderViewFromInstruction:turn];
+            else
+                [(SMDirectionCell *)cell renderViewFromInstruction:turn];
+            
         }
-        if (i == 0)
-            [(SMDirectionTopCell *)cell renderViewFromInstruction:turn];
-        else
-            [(SMDirectionCell *)cell renderViewFromInstruction:turn];
-        
-    }
 
-    return cell;
+        return cell;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:indexPath.row];
-    if (indexPath.row == 0) {
-        return [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
-    } else {
-        return [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+    if(tableView==self.cargoTableView){
+        return 50;
+    }else{
+        SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:indexPath.row];
+        if (indexPath.row == 0) {
+            return [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+        } else {
+            return [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+        }
     }
 }
 
@@ -946,8 +1002,11 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    if(tableView==self.cargoTableView){
+        
+    }else{
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 //    int i = [indexPath row];
 //    if (i < 0 || i >= self.route.turnInstructions.count)
 //        return;

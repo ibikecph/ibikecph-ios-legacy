@@ -266,3 +266,6 @@
 "account_dont_save" = "Don't save";
 
 "you_have_reached_your_destination" = "Du har nået din destination";
+
+"cargo_item_1"= "Ladcykel";
+"cargo_item_2"= "Grønrute";

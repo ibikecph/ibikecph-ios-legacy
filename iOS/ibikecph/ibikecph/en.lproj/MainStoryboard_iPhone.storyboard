@@ -2042,7 +2042,7 @@
         <scene sceneID="ioS-0T-0XJ">
             <objects>
                 <viewController wantsFullScreenLayout="YES" id="m0B-4B-35u" customClass="SMRouteNavigationController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OkW-Ov-U2V">
+                    <view key="view" contentMode="scaleToFill" id="OkW-Ov-U2V" customClass="FlickableView">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -2532,6 +2532,50 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="sUv-bV-GYL">
+                                <rect key="frame" x="-260" y="0.0" width="260" height="548"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="z28-dm-KuL">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="548"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cargoCell" textLabel="EJT-IV-79A" style="IBUITableViewCellStyleDefault" id="16W-h6-Jcy">
+                                                <rect key="frame" x="0.0" y="22" width="260" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EJT-IV-79A">
+                                                            <rect key="frame" x="10" y="0.0" width="240" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <sections/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cargo_slider.png" id="h1Q-Jq-Hxq">
+                                <rect key="frame" x="0.0" y="375" width="16" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" id="E3a-jY-UUh">
+                                <rect key="frame" x="0.0" y="375" width="50" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="no_connection.png" id="xk9-Ph-nIz">
                                 <rect key="frame" x="280" y="69" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -2545,9 +2589,14 @@
                     <connections>
                         <outlet property="arrivalBG" destination="DFd-Wm-s5E" id="ITu-04-6Yj"/>
                         <outlet property="buttonTrackUser" destination="0sb-SH-s8A" id="vCJ-KH-AJE"/>
+                        <outlet property="cargoHandleImageView" destination="h1Q-Jq-Hxq" id="Pdh-WM-E6r"/>
+                        <outlet property="cargoHandleView" destination="E3a-jY-UUh" id="fVa-1P-pkW"/>
+                        <outlet property="cargoTableView" destination="z28-dm-KuL" id="sWz-kx-MHx"/>
+                        <outlet property="cargoView" destination="sUv-bV-GYL" id="xC7-jl-V6p"/>
                         <outlet property="closeButton" destination="4UD-TE-YRq" id="upU-WM-kAw"/>
                         <outlet property="finishStreet" destination="oQF-jz-nf2" id="5Fm-3q-fyu"/>
                         <outlet property="finishView" destination="GMP-BY-LiW" id="rKM-Ua-NmU"/>
+                        <outlet property="flickableRootView" destination="OkW-Ov-U2V" id="6Ue-2l-tWz"/>
                         <outlet property="imgNextTurnDirection" destination="axZ-Q5-ohy" id="aaW-j6-FMZ"/>
                         <outlet property="instructionsView" destination="Oxx-Mn-VT8" id="0sI-N8-HJZ"/>
                         <outlet property="labelDistanceToNextTurn" destination="rUH-ju-UbN" id="bPq-SE-1US"/>
@@ -3203,6 +3252,7 @@
         <image name="bottom_divider_vertical.png" width="2" height="2"/>
         <image name="btnClose.png" width="43" height="43"/>
         <image name="camera.png" width="61" height="61"/>
+        <image name="cargo_slider.png" width="16" height="62"/>
         <image name="cloud_red_splash.png" width="128" height="76"/>
         <image name="distance_white.png" width="91" height="35"/>
         <image name="divider_side_menu_btn.png" width="1" height="2"/>
@@ -3479,8 +3529,20 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="hideStopView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="reportError:"/>
+                <relationship kind="action" name="startRouting:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
+                <relationship kind="outlet" name="cargoHandleImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="cargoHandleView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cargoTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="cargoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="finishDestination" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="finishDistance" candidateClass="UILabel"/>
@@ -3488,6 +3550,7 @@
                 <relationship kind="outlet" name="finishStreet" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="finishTime" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="finishView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="flickableRootView" candidateClass="FlickableView"/>
                 <relationship kind="outlet" name="imgNextTurnDirection" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="instructionsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="labelDistanceLeft" candidateClass="UILabel"/>
@@ -3597,6 +3660,9 @@
         </class>
         <class className="TTTAttributedLabel" superclassName="UILabel">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
