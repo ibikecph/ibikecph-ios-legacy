@@ -49,9 +49,15 @@
     Reachability * r = [Reachability reachabilityWithHostName:OSRM_ADDRESS];
     NetworkStatus s = [r currentReachabilityStatus];
     if (s == NotReachable) {
-        /**
-         * show dialog
-         */
+        if (self.delegate && [self.delegate respondsToSelector:@selector(serverNotReachable)]) {
+            [self.delegate serverNotReachable];
+        }
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:@"Network error!" forKey:NSLocalizedDescriptionKey];
+        NSError * error = [NSError errorWithDomain:@"" code:0 userInfo:details];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(request:failedWithError:)]) {
+            [self.delegate request:self failedWithError:error];
+        }
         return NO;
     }
     return YES;

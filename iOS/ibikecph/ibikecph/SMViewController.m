@@ -467,6 +467,11 @@ typedef enum {
         [self.mpView addAnnotation:endMarkerAnnotation];
         [self setDestinationPin:endMarkerAnnotation];
         
+        [self.destinationPin setSubtitle:@""];
+        [self.destinationPin setDelegate:self];
+        [self.destinationPin setRoutingCoordinate:loc];
+
+        
         [im removeFromSuperview];
         
         [self showPinDrop];
@@ -488,10 +493,10 @@ typedef enum {
                 pinButton.enabled = YES;
             }
             
-            [self.destinationPin setSubtitle:@""];
+//            [self.destinationPin setSubtitle:@""];
             [self.destinationPin setTitle:[response objectForKey:@"title"]];
-            [self.destinationPin setDelegate:self];
-            [self.destinationPin setRoutingCoordinate:loc];
+//            [self.destinationPin setDelegate:self];
+//            [self.destinationPin setRoutingCoordinate:loc];
         }];
         
 //        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
@@ -1575,6 +1580,25 @@ typedef enum {
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
     
+}
+
+- (void)serverNotReachable {
+    SMNetworkErrorView * v = [SMNetworkErrorView getFromNib];
+    CGRect frame = v.frame;
+    frame.origin.x = roundf((self.view.frame.size.width - v.frame.size.width) / 2.0f);
+    frame.origin.y = roundf((self.view.frame.size.height - v.frame.size.height) / 2.0f);
+    [v setFrame: frame];
+    [v setAlpha:0.0f];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:ERROR_FADE animations:^{
+        v.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:ERROR_FADE delay:ERROR_WAIT options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            v.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [v removeFromSuperview];
+        }];
+    }];
 }
 
 @end

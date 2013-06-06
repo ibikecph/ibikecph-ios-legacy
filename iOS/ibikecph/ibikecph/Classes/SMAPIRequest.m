@@ -8,6 +8,7 @@
 
 #import "SMAPIRequest.h"
 #import "Reachability.h"
+#import "SMNetworkErrorView.h"
 
 @interface SMAPIRequest()
 @property (nonatomic, strong) NSDictionary * serviceParams;
@@ -33,9 +34,16 @@
     Reachability * r = [Reachability reachabilityWithHostName:API_ADDRESS];
     NetworkStatus s = [r currentReachabilityStatus];
     if (s == NotReachable) {
-        /**
-         * show dialog
-         */
+        if (self.delegate && [self.delegate respondsToSelector:@selector(serverNotReachable)]) {
+            [self.delegate serverNotReachable];
+        }
+        [self hideWaitingView];
+        NSMutableDictionary* details = [NSMutableDictionary dictionary];
+        [details setValue:@"Network error!" forKey:NSLocalizedDescriptionKey];
+        NSError * error = [NSError errorWithDomain:@"" code:0 userInfo:details];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(request:failedWithError:)]) {
+            [self.delegate request:self failedWithError:error];
+        }
         return NO;
     }
     return YES;

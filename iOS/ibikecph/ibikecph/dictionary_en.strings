@@ -280,3 +280,5 @@
 
 "bike_type_1"= "Bicycle";
 "bike_type_2"= "Cargo bike";
+
+"network_error_text" = "Network error occured";

@@ -56,6 +56,10 @@
 		4C0E15B917608596006F81C1 /* greenroute_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15AB17608596006F81C1 /* greenroute_grey@2x.png */; };
 		4C0E15BA17608596006F81C1 /* greenroute_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15AC17608596006F81C1 /* greenroute_white.png */; };
 		4C0E15BB17608596006F81C1 /* greenroute_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15AD17608596006F81C1 /* greenroute_white@2x.png */; };
+		4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E15BD1760A9AE006F81C1 /* SMNetworkErrorView.m */; };
+		4C0E15C01760A9AE006F81C1 /* SMNetworkErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15BE1760A9AE006F81C1 /* SMNetworkErrorView.xib */; };
+		4C0E15C31760B3AD006F81C1 /* warning_popup_bgr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15C11760B3AD006F81C1 /* warning_popup_bgr.png */; };
+		4C0E15C41760B3AD006F81C1 /* warning_popup_bgr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E15C21760B3AD006F81C1 /* warning_popup_bgr@2x.png */; };
 		4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C11374316BFF9EF007F483F /* SMCalloutView.m */; };
 		4C11374616BFF9EF007F483F /* SMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C11374416BFF9EF007F483F /* SMCalloutView.xib */; };
 		4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0016B188C4001545C7 /* AddressBook.framework */; };
@@ -624,6 +628,11 @@
 		4C0E15AB17608596006F81C1 /* greenroute_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenroute_grey@2x.png"; sourceTree = "<group>"; };
 		4C0E15AC17608596006F81C1 /* greenroute_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenroute_white.png; sourceTree = "<group>"; };
 		4C0E15AD17608596006F81C1 /* greenroute_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenroute_white@2x.png"; sourceTree = "<group>"; };
+		4C0E15BC1760A9AE006F81C1 /* SMNetworkErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNetworkErrorView.h; sourceTree = "<group>"; };
+		4C0E15BD1760A9AE006F81C1 /* SMNetworkErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNetworkErrorView.m; sourceTree = "<group>"; };
+		4C0E15BE1760A9AE006F81C1 /* SMNetworkErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMNetworkErrorView.xib; sourceTree = "<group>"; };
+		4C0E15C11760B3AD006F81C1 /* warning_popup_bgr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning_popup_bgr.png; sourceTree = "<group>"; };
+		4C0E15C21760B3AD006F81C1 /* warning_popup_bgr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning_popup_bgr@2x.png"; sourceTree = "<group>"; };
 		4C11374216BFF9EF007F483F /* SMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCalloutView.h; sourceTree = "<group>"; };
 		4C11374316BFF9EF007F483F /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
@@ -1318,6 +1327,8 @@
 		4C365DE116F361FE00A836B3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4C0E15C11760B3AD006F81C1 /* warning_popup_bgr.png */,
+				4C0E15C21760B3AD006F81C1 /* warning_popup_bgr@2x.png */,
 				4C0E15A017608596006F81C1 /* normal_grey.png */,
 				4C0E15A117608596006F81C1 /* normal_grey@2x.png */,
 				4C0E15A217608596006F81C1 /* normal_white.png */,
@@ -1920,6 +1931,9 @@
 				4C8B69E0171D9BF700FA256D /* SMPatternedButton.m */,
 				4C0E159D17608333006F81C1 /* SMRouteTypeSelectCell.h */,
 				4C0E159E17608333006F81C1 /* SMRouteTypeSelectCell.m */,
+				4C0E15BC1760A9AE006F81C1 /* SMNetworkErrorView.h */,
+				4C0E15BD1760A9AE006F81C1 /* SMNetworkErrorView.m */,
+				4C0E15BE1760A9AE006F81C1 /* SMNetworkErrorView.xib */,
 			);
 			name = Views;
 			path = ibikecph/Views;
@@ -2611,6 +2625,9 @@
 				4C0E15B917608596006F81C1 /* greenroute_grey@2x.png in Resources */,
 				4C0E15BA17608596006F81C1 /* greenroute_white.png in Resources */,
 				4C0E15BB17608596006F81C1 /* greenroute_white@2x.png in Resources */,
+				4C0E15C01760A9AE006F81C1 /* SMNetworkErrorView.xib in Resources */,
+				4C0E15C31760B3AD006F81C1 /* warning_popup_bgr.png in Resources */,
+				4C0E15C41760B3AD006F81C1 /* warning_popup_bgr@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2690,6 +2707,7 @@
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
 				4C1DB17C175C9B4900E5C00D /* Reachability.m in Sources */,
 				4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */,
+				4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

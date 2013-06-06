@@ -14,7 +14,7 @@
 
 - (void)request:(SMAPIRequest*)req completedWithResult:(NSDictionary*)result;
 - (void)request:(SMAPIRequest*)req failedWithError:(NSError*)error;
-
+- (void)serverNotReachable;
 @end
 
 @interface SMAPIRequest : NSObject <NSURLConnectionDataDelegate, NSURLConnectionDelegate>

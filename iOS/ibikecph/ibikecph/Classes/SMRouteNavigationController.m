@@ -49,6 +49,7 @@ typedef enum {
     CGFloat touchOffset;
     BOOL overviewShown;
     RMUserTrackingMode oldTrackingMode;
+    BOOL shouldShowOverview;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *cargoHandleImageView;
 @property (weak, nonatomic) IBOutlet UITableView *cargoTableView;
@@ -75,6 +76,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    shouldShowOverview = NO;
+    
     self.osrmServer = OSRM_SERVER;
     self.pulling = NO;
 
@@ -100,7 +103,7 @@ typedef enum {
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     [self.mpView setTriggerUpdateOnHeadingChange:NO];
     [self.mpView setDisplayHeadingCalibration:NO];
-    [self.mpView setEnableBouncing:TRUE];
+    [self.mpView setEnableBouncing:NO];
     [self.mpView setRoutingDelegate:nil];
     
     [self.mpView setZoom:DEFAULT_MAP_ZOOM];
@@ -245,6 +248,20 @@ typedef enum {
 }
 
 - (void)showRouteOverview {
+    oldTrackingMode = RMUserTrackingModeNone;
+    [self setDirectionsState:directionsHidden];
+//    [self.mpView setZoom:DEFAULT_MAP_ZOOM];
+    for (RMAnnotation *annotation in self.mpView.annotations) {
+        if ([annotation.annotationType isEqualToString:@"path"]) {
+            [self.mpView removeAnnotation:annotation];
+        }
+    }
+    [routeOverview setHidden:NO];
+    [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        routeOverview.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        
+    }];
     overviewShown = YES;
     self.currentlyRouting = NO;
     [progressView setHidden:YES];
@@ -344,6 +361,11 @@ typedef enum {
 }
 
 - (void)newRouteType {
+    oldTrackingMode = RMUserTrackingModeNone;
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    self.route.delegate = nil;
+    self.route = nil;
+    self.mpView.delegate = nil;
     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
     [r setAuxParam:@"startRoute"];
     [r setOsrmServer:self.osrmServer];
@@ -817,7 +839,24 @@ typedef enum {
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.3f animations:^{
             [recalculatingView setAlpha:0.0f];
-            [noConnectionView setAlpha:1.0f];
+//            [noConnectionView setAlpha:1.0f];
+        }];
+        
+        SMNetworkErrorView * v = [SMNetworkErrorView getFromNib];
+        CGRect frame = v.frame;
+        frame.origin.x = roundf((self.view.frame.size.width - v.frame.size.width) / 2.0f);
+        frame.origin.y = roundf((self.view.frame.size.height - v.frame.size.height) / 2.0f);
+        [v setFrame: frame];
+        [v setAlpha:0.0f];
+        [self.view addSubview:v];
+        [UIView animateWithDuration:ERROR_FADE animations:^{
+            v.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:ERROR_FADE delay:ERROR_WAIT options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                v.alpha = 0.0f;
+            } completion:^(BOOL finished) {
+                [v removeFromSuperview];
+            }];
         }];
     });
 }
@@ -1363,8 +1402,18 @@ typedef enum {
         debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);
     } else if (object == centerView && [keyPath isEqualToString:@"frame"]) {
         if (centerView.frame.origin.x > 0.0f) {
-            [blockingView setAlpha:1.0f];
+            if (blockingView.alpha == 0.0f) {
+                oldTrackingMode = self.mpView.userTrackingMode;
+                [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+                [blockingView setAlpha:1.0f];
+                for (id v in self.mpView.subviews) {
+                    if ([v isKindOfClass:[SMCalloutView class]]) {
+                        [v removeFromSuperview];
+                    }
+                }
+            }
         } else {
+            [self.mpView setUserTrackingMode:oldTrackingMode];
             [blockingView setAlpha:0.0f];
         }
     }
@@ -1399,23 +1448,16 @@ typedef enum {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:nil message:translateString(@"error_route_not_found") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
         } else {
-            for (RMAnnotation *annotation in self.mpView.annotations) {
-                if ([annotation.annotationType isEqualToString:@"path"]) {
-                    [self.mpView removeAnnotation:annotation];
-                }
+            self.jsonRoot = jsonRoot;
+            if (self.startLocation && self.endLocation) {
+                [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
             }
-            [self showRouteOverview];
             [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 CGRect frame = centerView.frame;
                 frame.origin.x = centerView.startPos;
                 [centerView setFrame:frame];
             } completion:^(BOOL finished) {
-                
             }];
-            self.jsonRoot = jsonRoot;
-            if (self.startLocation && self.endLocation) {
-                [self start:self.startLocation.coordinate end:self.endLocation.coordinate withJSON:self.jsonRoot];
-            }
         }
     }
 }
@@ -1423,5 +1465,22 @@ typedef enum {
 - (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
 }
 
-
+- (void)serverNotReachable {
+    SMNetworkErrorView * v = [SMNetworkErrorView getFromNib];
+    CGRect frame = v.frame;
+    frame.origin.x = roundf((self.view.frame.size.width - v.frame.size.width) / 2.0f);
+    frame.origin.y = roundf((self.view.frame.size.height - v.frame.size.height) / 2.0f);
+    [v setFrame: frame];
+    [v setAlpha:0.0f];
+    [self.view addSubview:v];
+    [UIView animateWithDuration:ERROR_FADE animations:^{
+        v.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:ERROR_FADE delay:ERROR_WAIT options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            v.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [v removeFromSuperview];
+        }];
+    }];
+}
 @end

@@ -155,6 +155,10 @@
 
 #pragma mark - api delegate
 
+- (void)serverNotReachable {
+
+}
+
 -(void)request:(SMAPIRequest *)req failedWithError:(NSError *)error {
     NSLog(@"%@", error);
 //    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];

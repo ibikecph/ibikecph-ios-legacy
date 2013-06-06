@@ -15,6 +15,7 @@
 
 - (void)request:(SMRequestOSRM*)req finishedWithResult:(id)res;
 - (void)request:(SMRequestOSRM*)req failedWithError:(NSError*)error;
+- (void)serverNotReachable;
 
 @end
 

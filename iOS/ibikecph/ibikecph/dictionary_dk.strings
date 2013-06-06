@@ -269,3 +269,5 @@
 
 "bike_type_1"= "Cykel";
 "bike_type_2"= "Ladcykel";
+
+"network_error_text" = "Network error occured";

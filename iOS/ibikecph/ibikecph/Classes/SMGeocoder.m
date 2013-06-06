@@ -138,11 +138,11 @@
 }
 
 + (void)reverseGeocode:(CLLocationCoordinate2D)coord completionHandler:(void (^)(NSDictionary * response, NSError* error)) handler {
-    if (USE_APPLE_GEOCODER) {
-        [SMGeocoder appleReverseGeocode:coord completionHandler:handler];
-    } else {
+//    if (USE_APPLE_GEOCODER) {
+//        [SMGeocoder appleReverseGeocode:coord completionHandler:handler];
+//    } else {
         [SMGeocoder oiorestReverseGeocode:coord completionHandler:handler];
-    }
+//    }
 }
 
 @end

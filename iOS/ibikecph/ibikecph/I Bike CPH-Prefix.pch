@@ -21,6 +21,7 @@
     #import "SMUtil.h"
     #import "SMCustomButton.h"
     #import "SMPatternedButton.h"
+    #import "SMNetworkErrorView.h"
 #endif
 
 #if DISTRIBUTION_VERSION
@@ -34,6 +35,9 @@
 #define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]
 
 #define ORG_NAME @"ibikecph"
+
+#define ERROR_FADE 0.2f
+#define ERROR_WAIT 2.0f
 
 //#ifdef WORLD_ROUTING
 //    #define OSRM_SERVER @"http://router.project-osrm.org"
