@@ -128,6 +128,7 @@
 #define API_LIST_HISTORY @{@"service" : @"routes", @"transferMethod" : @"GET",  @"headers" : API_DEFAULT_HEADERS}
 #define API_ADD_HISTORY @{@"service" : @"routes", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 
+#define API_SORT_FAVORITES @{@"service" : @"favourites/reorder", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
 
 #define kFAVORITES_CHANGED @"favoritesChanged"
 

@@ -34,6 +34,7 @@
 
 #import "DAKeyboardControl.h"
 #import "SMFavoritesUtil.h"
+#import "SMAPIRequest.h"
 
 typedef enum {
     menuFavorites = 0,
@@ -49,7 +50,7 @@ typedef enum {
     typeNone
 } FavoriteType;
 
-@interface SMViewController () {
+@interface SMViewController () <SMAPIRequestDelegate>{
     MenuType menuOpen;
     
     FavoriteType currentFav;
@@ -85,6 +86,8 @@ typedef enum {
 @property (nonatomic, strong) NSString * favName;
 
 @property (nonatomic, strong) SMFavoritesUtil * favs;
+
+@property (nonatomic, strong) SMAPIRequest * request;
 @end
 
 @implementation SMViewController
@@ -919,6 +922,17 @@ typedef enum {
 
 - (IBAction)stopEdit:(id)sender {
     [tblMenu setEditing:NO];
+    int i = 0;
+    NSMutableArray * arr = [NSMutableArray array];
+    for (NSDictionary * d in self.favoritesList) {
+        [arr addObject:@{
+         @"id" : [d objectForKey:@"id"],
+         @"position" : [NSString stringWithFormat:@"%d", i]
+         }];
+        i += 1;
+    }
+    self.request = [[SMAPIRequest alloc] initWithDelegeate:self];
+    [self.request executeRequest:API_SORT_FAVORITES withParams:@{@"auth_token" : [self.appDelegate.appSettings objectForKey:@"auth_token"], @"pos_ary" : arr}];
 }
 
 - (void)trackingOn {
@@ -1554,6 +1568,12 @@ typedef enum {
 #pragma mark - smfavorites delegate
 
 - (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data {
+    
+}
+
+#pragma mark - api request delegate
+
+- (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
     
 }
 

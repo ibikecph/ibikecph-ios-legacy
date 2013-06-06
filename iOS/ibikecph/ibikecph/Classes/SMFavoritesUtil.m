@@ -156,8 +156,9 @@
 #pragma mark - api delegate
 
 -(void)request:(SMAPIRequest *)req failedWithError:(NSError *)error {
-    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-    [av show];
+    NSLog(@"%@", error);
+//    UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+//    [av show];
     if (self.delegate && [self.delegate respondsToSelector:@selector(favoritesOperation:failedWithError:)]) {
         [self.delegate favoritesOperation:self failedWithError:error];
     }
