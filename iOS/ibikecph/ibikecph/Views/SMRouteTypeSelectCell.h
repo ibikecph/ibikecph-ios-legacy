@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMRouteTypeSelectCell : UITableViewCell
+@interface SMRouteTypeSelectCell : UITableViewCell {
+    
+    __weak IBOutlet UIImageView *cellImage;
+    __weak IBOutlet UILabel *cellText;
+}
+
++ (CGFloat)getHeight;
+- (void)setupCellWithData:(NSDictionary*)data;
 
 @end

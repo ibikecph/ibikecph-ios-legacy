@@ -33,7 +33,7 @@
 
 #import "SMDirectionsFooter.h"
 #import "SMSearchHistory.h"
-
+#import "SMRouteTypeSelectCell.h"
 
 
 typedef enum {
@@ -941,13 +941,9 @@ typedef enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView==self.cargoTableView){
-        UITableViewCell* cell= [tableView dequeueReusableCellWithIdentifier:@"cargoCell"];
+        SMRouteTypeSelectCell* cell= [tableView dequeueReusableCellWithIdentifier:@"cargoCell"];
         NSDictionary* cargoItem= [self.cargoItems objectAtIndex:indexPath.row];
-        cell.textLabel.text= [cargoItem objectForKey:@"name"];
-        cell.imageView.image= [UIImage imageNamed:[cargoItem objectForKey:@"image"]];
-        if ([[cargoItem objectForKey:@"server"] isEqualToString:self.osrmServer]) {
-            [cell setSelected:YES];
-        }
+        [cell setupCellWithData:cargoItem];
         return cell;
     }else{
         int i = [indexPath row];
@@ -976,7 +972,7 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView==self.cargoTableView){
-        return 50;
+        return [SMRouteTypeSelectCell getHeight];
     }else{
         SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:indexPath.row];
         if (indexPath.row == 0) {
