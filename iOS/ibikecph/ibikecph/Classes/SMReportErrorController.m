@@ -140,8 +140,8 @@
 }
 
 - (IBAction)sendReport:(id)sender {
-    [self sendEmail];
-//    [self sendAPIReport:nil];
+//    [self sendEmail];
+    [self sendAPIReport:nil];
 }
 
 
