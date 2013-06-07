@@ -160,6 +160,7 @@ typedef enum {
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
     }
+    [self.mapFade setFrame:self.mpView.frame];
 }
 
 
@@ -1153,27 +1154,43 @@ typedef enum {
         case directionsFullscreen:
             if (newY > lastDirectionsPos + 20.0f) {
                 [self setDirectionsState:directionsNormal];
+                self.cargoHandleImageView.hidden = NO;
+                buttonTrackUser.hidden = NO;
             } else {
                 [self setDirectionsState:directionsFullscreen];
+                self.cargoHandleImageView.hidden = YES;
+                buttonTrackUser.hidden = YES;
             }
             break;
         case directionsNormal:
             if (newY > lastDirectionsPos + 20.0f) {
                 [self setDirectionsState:directionsMini];
+                self.cargoHandleImageView.hidden = NO;
+                buttonTrackUser.hidden = NO;
             } else if (newY < lastDirectionsPos - 20.0f) {
                 [self setDirectionsState:directionsFullscreen];
+                self.cargoHandleImageView.hidden = YES;
+                buttonTrackUser.hidden = YES;
             } else {
                 [self setDirectionsState:directionsNormal];
+                self.cargoHandleImageView.hidden = NO;
+                buttonTrackUser.hidden = NO;
             }
             break;
         case directionsMini:
             if (newY < lastDirectionsPos - 20.0f) {
                 [self setDirectionsState:directionsNormal];
+                self.cargoHandleImageView.hidden = NO;
+                buttonTrackUser.hidden = YES;
             } else {
                 [self setDirectionsState:directionsMini];
+                self.cargoHandleImageView.hidden = NO;
+                buttonTrackUser.hidden = NO;
             }
             break;
         case directionsHidden:
+            self.cargoHandleImageView.hidden = NO;
+            buttonTrackUser.hidden = NO;
             break;
         default:
             break;
@@ -1188,7 +1205,6 @@ typedef enum {
         self.pulling = NO;
         float newY = [sender locationInView:self.view].y;
         [self setNewDirections:newY];
-
         [self.mpView setUserTrackingMode:oldTrackingMode];
     } else if (sender.state == UIGestureRecognizerStateChanged) {
         self.pulling = YES;
@@ -1201,6 +1217,8 @@ typedef enum {
         [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
         touchOffset = [sender locationInView:instructionsView].y;
         [swipableView setHidden:YES];
+        [self.cargoHandleImageView setHidden:YES];
+        [buttonTrackUser setHidden:YES];
     }
 }
 
@@ -1392,13 +1410,13 @@ typedef enum {
             [closeButton setImage:[UIImage imageNamed:@"btnCloseDark"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor whiteColor]];
             [labelTimeLeft setTextColor:[UIColor whiteColor]];
-            [buttonTrackUser setHidden:YES];
+//            [buttonTrackUser setHidden:YES];
         } else {
             [arrivalBG setImage:[UIImage imageNamed:@"distance_white"]];
             [closeButton setImage:[UIImage imageNamed:@"btnClose"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor darkGrayColor]];
             [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
-            [buttonTrackUser setHidden:NO];
+//            [buttonTrackUser setHidden:NO];
         }
         
         debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);

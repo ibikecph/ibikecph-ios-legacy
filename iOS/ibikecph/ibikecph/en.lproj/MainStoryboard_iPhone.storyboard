@@ -2111,6 +2111,11 @@
                                                     <outlet property="delegate" destination="m0B-4B-35u" id="B5z-sg-vLq"/>
                                                 </connections>
                                             </view>
+                                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="YHo-2f-hkS">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0sb-SH-s8A" customClass="SMGPSTrackButton">
                                                 <rect key="frame" x="258" y="483" width="55" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -2127,11 +2132,6 @@
                                                     <action selector="trackUser:" destination="m0B-4B-35u" eventType="touchUpInside" id="tuK-ZD-nUx"/>
                                                 </connections>
                                             </button>
-                                            <view hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="YHo-2f-hkS">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -3552,6 +3552,14 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
+                <relationship kind="action" name="buttonPressed:"/>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideFinishView:"/>
+                <relationship kind="action" name="hideStopView:"/>
+                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="reportError:"/>
+                <relationship kind="action" name="startRouting:"/>
+                <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="blockingView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
