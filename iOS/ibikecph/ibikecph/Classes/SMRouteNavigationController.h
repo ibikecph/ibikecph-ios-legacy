@@ -13,7 +13,7 @@
 #import "FlickableView.h"
 #import "SMRequestOSRM.h"
 
-@interface SMRouteNavigationController : SMTranslatedViewController <RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate, ViewTapDelegate, SMRequestOSRMDelegate> {
+@interface SMRouteNavigationController : SMTranslatedViewController <UIGestureRecognizerDelegate,RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate, ViewTapDelegate, SMRequestOSRMDelegate> {
     __weak IBOutlet UITableView *tblDirections;
     __weak IBOutlet UIView *instructionsView;
     __weak IBOutlet UIView *minimizedInstructionsView;
@@ -43,6 +43,7 @@
     __weak IBOutlet UIView *routeOverviewBottom;
     __weak IBOutlet FlickableView *centerView;
     __weak IBOutlet UIView *blockingView;
+    __weak IBOutlet UIView *mapContainer;
 }
 
 @property BOOL currentlyRouting;

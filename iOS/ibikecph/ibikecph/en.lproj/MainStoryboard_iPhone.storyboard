@@ -2101,36 +2101,43 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="gyv-zh-lni" customClass="RMMapView">
+                                    <view contentMode="scaleToFill" id="QUG-vO-bMD" userLabel="map container">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="YHo-2f-hkS">
+                                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="gyv-zh-lni" customClass="RMMapView">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0sb-SH-s8A" customClass="SMGPSTrackButton">
+                                                        <rect key="frame" x="258" y="483" width="55" height="55"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <state key="normal">
+                                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <state key="disabled" image="icon_locate_me.png"/>
+                                                        <state key="highlighted">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="trackUser:" destination="m0B-4B-35u" eventType="touchUpInside" id="tuK-ZD-nUx"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="m0B-4B-35u" id="B5z-sg-vLq"/>
+                                                </connections>
+                                            </view>
+                                            <view hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="YHo-2f-hkS">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0sb-SH-s8A" customClass="SMGPSTrackButton">
-                                                <rect key="frame" x="258" y="483" width="55" height="55"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="disabled" image="icon_locate_me.png"/>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="trackUser:" destination="m0B-4B-35u" eventType="touchUpInside" id="tuK-ZD-nUx"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="m0B-4B-35u" id="B5z-sg-vLq"/>
-                                        </connections>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" id="OXh-z0-rmJ" userLabel="Small Directions View">
                                         <rect key="frame" x="30" y="447" width="260" height="101"/>
@@ -2566,22 +2573,16 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="good_ride" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eJO-Me-a7C">
-                                                <rect key="frame" x="44" y="13" width="233" height="21"/>
+                                                <rect key="frame" x="44" y="13" width="233" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                                 <color key="textColor" red="0.86274509799999999" green="0.1176470588" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="you_have_reached_your_destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3ec-Kr-dpH">
-                                                <rect key="frame" x="26" y="33" width="269" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="asasasasasa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oQF-jz-nf2">
-                                                <rect key="frame" x="6" y="51" width="308" height="21"/>
+                                                <rect key="frame" x="6" y="46" width="308" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -2597,10 +2598,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="no_connection.png" id="xk9-Ph-nIz">
-                                        <rect key="frame" x="280" y="69" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -2625,10 +2622,10 @@
                         <outlet property="instructionsView" destination="Oxx-Mn-VT8" id="0sI-N8-HJZ"/>
                         <outlet property="labelDistanceToNextTurn" destination="rUH-ju-UbN" id="bPq-SE-1US"/>
                         <outlet property="labelTimeLeft" destination="lUh-yF-WfB" id="VyN-w1-wQd"/>
+                        <outlet property="mapContainer" destination="QUG-vO-bMD" id="ga5-ET-U9G"/>
                         <outlet property="mapFade" destination="YHo-2f-hkS" id="dmb-Y0-BO1"/>
                         <outlet property="minimizedInstructionsView" destination="OXh-z0-rmJ" id="wO9-Ky-2oJ"/>
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
-                        <outlet property="noConnectionView" destination="xk9-Ph-nIz" id="N6F-Pn-Kxi"/>
                         <outlet property="overviewDestination" destination="dMz-a6-dcA" id="h7R-e7-ylQ"/>
                         <outlet property="overviewTimeDistance" destination="yyu-vq-Lpe" id="RPn-wa-ev5"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
@@ -3325,7 +3322,6 @@
         <image name="loginFacebook.png" width="216" height="45"/>
         <image name="loginFacebookPressed.png" width="216" height="45"/>
         <image name="mover.png" width="20" height="12"/>
-        <image name="no_connection.png" width="24" height="24"/>
         <image name="normalDirectionsBG.png" width="320" height="105"/>
         <image name="overviewBG.png" width="320" height="106"/>
         <image name="profile.png" width="22" height="22"/>
@@ -3554,13 +3550,9 @@
         <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
             <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
                 <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="hideStopView:"/>
                 <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="reportError:"/>
-                <relationship kind="action" name="startRouting:"/>
                 <relationship kind="action" name="trackUser:"/>
                 <relationship kind="outlet" name="arrivalBG" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="blockingView" candidateClass="UIView"/>
@@ -3580,6 +3572,7 @@
                 <relationship kind="outlet" name="labelDistanceLeft" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelDistanceToNextTurn" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="labelTimeLeft" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mapContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
                 <relationship kind="outlet" name="minimizedInstructionsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>

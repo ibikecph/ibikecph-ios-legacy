@@ -257,7 +257,7 @@ typedef enum {
     frame.origin.y = dropPinView.frame.origin.y - 65.0f;
     [buttonTrackUser setFrame:frame];
 
-    
+    [self.view removeKeyboardControl];
     [super viewWillDisappear:animated];
     
 }

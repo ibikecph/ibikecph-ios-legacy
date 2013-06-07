@@ -64,6 +64,7 @@
 		4C11374616BFF9EF007F483F /* SMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C11374416BFF9EF007F483F /* SMCalloutView.xib */; };
 		4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0016B188C4001545C7 /* AddressBook.framework */; };
 		4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16ED0116B188C4001545C7 /* AddressBookUI.framework */; };
+		4C1D27B21761BE9C00018196 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1D27B11761BE9C00018196 /* Security.framework */; };
 		4C1DB17C175C9B4900E5C00D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1DB17B175C9B4900E5C00D /* Reachability.m */; };
 		4C24BD3116F60C7A0043F28B /* overviewBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2D16F60C7A0043F28B /* overviewBG.png */; };
 		4C24BD3216F60C7A0043F28B /* overviewBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C24BD2E16F60C7A0043F28B /* overviewBG@2x.png */; };
@@ -638,6 +639,7 @@
 		4C11374416BFF9EF007F483F /* SMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMCalloutView.xib; sourceTree = "<group>"; };
 		4C16ED0016B188C4001545C7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		4C16ED0116B188C4001545C7 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		4C1D27B11761BE9C00018196 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4C1DB17A175C9B4900E5C00D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4C1DB17B175C9B4900E5C00D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C24BD2D16F60C7A0043F28B /* overviewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewBG.png; sourceTree = "<group>"; };
@@ -1178,6 +1180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C1D27B21761BE9C00018196 /* Security.framework in Frameworks */,
 				F62D81AD175CE5C4007DF0FA /* FacebookSDK.framework in Frameworks */,
 				4C693ABC16F74E8B00B63475 /* MobileCoreServices.framework in Frameworks */,
 				4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */,
@@ -1725,6 +1728,7 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
+				4C1D27B11761BE9C00018196 /* Security.framework */,
 				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
 				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,

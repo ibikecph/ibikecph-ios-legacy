@@ -212,6 +212,7 @@ typedef enum {
     routeOverviewBottom = nil;
     centerView = nil;
     blockingView = nil;
+    mapContainer = nil;
     [super viewDidUnload];
 }
 
@@ -227,7 +228,7 @@ typedef enum {
 #define LONGITUDE_PADDING 0.10f
 
 - (void)setupMapSize:(BOOL)heading {
-    CGRect frame = self.mpView.frame;
+    CGRect frame = mapContainer.frame;
     if (overviewShown) {
         frame.size.height = routeOverview.frame.origin.y + 1.0f;
     } else if ((heading == NO) || self.pulling) {
@@ -239,7 +240,7 @@ typedef enum {
             frame.size.height = (self.view.frame.size.height - frame.origin.y - 102.0f) * 1.36f;
         }
     }
-    [self.mpView setFrame:frame];
+    [mapContainer setFrame:frame];
     
     frame = buttonTrackUser.frame;
     frame.origin.y = instructionsView.frame.origin.y - 65.0f;
@@ -347,6 +348,7 @@ typedef enum {
     [labelTimeLeft setText:expectedArrivalTime(self.route.estimatedTimeForRoute)];
 
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollowWithHeading];
+    [self.mpView rotateMap:self.route.lastCorrectedHeading];
 
     [self renderMinimizedDirectionsViewFromInstruction];
     
@@ -1076,7 +1078,7 @@ typedef enum {
             frame.size.height = instructionsView.frame.size.height - tblDirections.frame.origin.y;
             [tblDirections setFrame:frame];
             [tblDirections setScrollEnabled:YES];
-            CGFloat newY = self.mpView.frame.origin.y + MAX_TABLE;
+            CGFloat newY = mapContainer.frame.origin.y + MAX_TABLE;
             [self repositionInstructionsView:newY + 1];
             lastDirectionsPos = newY + 1;
         }
@@ -1372,7 +1374,7 @@ typedef enum {
             [self setupMapSize:NO];
         } else if (self.mpView.userTrackingMode == RMUserTrackingModeFollowWithHeading) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateFollowingWithHeading];
-            [self setupMapSize:YES];
+            [self setupMapSize:NO]; // set to YES to center
         } else if (self.mpView.userTrackingMode == RMUserTrackingModeNone) {
             [buttonTrackUser newGpsTrackState:SMGPSTrackButtonStateNotFollowing];
             [self setupMapSize:NO];
