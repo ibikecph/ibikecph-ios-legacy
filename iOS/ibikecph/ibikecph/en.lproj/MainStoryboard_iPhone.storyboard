@@ -3538,6 +3538,13 @@
         <class className="SMReportErrorController" superclassName="SMTranslatedViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SMReportErrorController.h"/>
             <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="hideKeyboard:"/>
+                <relationship kind="action" name="pickerCancel:"/>
+                <relationship kind="action" name="pickerDone:"/>
+                <relationship kind="action" name="sendAPIReport:"/>
+                <relationship kind="action" name="sendReport:"/>
+                <relationship kind="action" name="showHidePicker:"/>
                 <relationship kind="outlet" name="bottomView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="btnSelectRouteSegment" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
