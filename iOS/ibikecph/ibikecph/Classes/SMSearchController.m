@@ -348,10 +348,6 @@
         }
     }    
     
-    
-    
-    
-
     for (NSDictionary * d in arr) {
         [r addObject:d];
     }

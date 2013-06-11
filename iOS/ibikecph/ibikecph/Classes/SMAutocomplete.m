@@ -206,10 +206,16 @@ typedef enum {
     NSString* nameKey= @"navn";
     NSString* zipKey= @"kode";
     NSString* distanceKey= @"afstand";
+    NSString* codeKey= @"kode";
+    NSString* municipalityKey= @"kommune";
+
     completeType= autocompleteKortforsyningen;
 
     if ([SMLocationManager instance].hasValidLocation) {
-        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://kortforsyningen.kms.dk/?servicename=RestGeokeys&method=adresse&vejnavn=Ar*&husnr=1&geop=%lf,%lf&georef=EPSG:4326", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        NSString* URLString= [[NSString stringWithFormat:@"http://kortforsyningen.kms.dk/?servicename=RestGeokeys&method=adresse&vejnavn=%@*&husnr=1&geop=%lf,%lf&georef=EPSG:4326&outgeoref=EPSG:4326&login=nikolamarkovic&password=spoiledmilk",
+            [self.srchString urlEncode], [SMLocationManager instance].lastValidLocation.coordinate.longitude, [SMLocationManager instance].lastValidLocation.coordinate.latitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
         [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse* response, NSData* data, NSError* error){
 
             NSError* jsonError;
@@ -220,22 +226,56 @@ typedef enum {
                 NSDictionary* json= [NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
 
                 NSLog(@"Received data %@", json);
-                NSMutableDictionary * val = [NSMutableDictionary dictionaryWithDictionary: @{@"source" : @"autocomplete",
-                                              @"subsource" : @"Kortforsyningen",
-                                              @"order" : @4
-                                              }];
+                if(!json){
+                    NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                }
+                
                 NSMutableArray* addressArray= [NSMutableArray new];
                 for (NSString* key in json.allKeys) {
                     if ([key isEqualToString:@"features"]) {
                         NSArray* features= [json objectForKey:key]; // array of features (dictionaries)
                         for(NSDictionary* feature in features){
+                            NSMutableDictionary * val = [NSMutableDictionary dictionaryWithDictionary: @{@"source" : @"autocomplete",
+                                                         @"subsource" : @"oiorest",
+                                                         @"order" : @2
+                                                         }];
+                            
+                            NSDictionary* geometryInfo= [feature objectForKey:@"geometry"];
                             NSDictionary* attributes=[feature objectForKey:@"attributes"];
+                            NSDictionary* municipalityInfo= [attributes objectForKey:municipalityKey];
                             NSDictionary* distanceInfo= [attributes objectForKey:distanceKey];
                             NSDictionary* info= [attributes objectForKey:@"vej"];
                             
-                            [val setObject:[info objectForKey:nameKey] forKey:@"name"];
+                            NSString* streetName= [info objectForKey:nameKey];
+                            if(!streetName)
+                                continue;
+                            
+                            NSString* municipalityName= [municipalityInfo objectForKey:nameKey];
+                                if(!municipalityName)
+                                    municipalityName= @"";
+                            
+                            NSString* municipalityCode= [municipalityInfo objectForKey:codeKey];
+                                if(municipalityCode)
+                                    municipalityCode= @"";
+                            
+                            [val setObject:[NSString stringWithFormat:@"%@ , %@ %@, Danmark", streetName,
+                                                                                            municipalityCode,
+                                                                                            municipalityName]
+                                    forKey:@"name"];
+                            [val setObject:[NSString stringWithFormat:@"%@ , %@ %@, Danmark", streetName,
+                                            municipalityCode,
+                                            municipalityName]
+                                    forKey:@"address"];
+
+//                            [val setObject:[geometryInfo objectForKey:@"x"] forKey:@"lng"];
+//                            [val setObject:[geometryInfo objectForKey:@"y"] forKey:@"lat"];
                             [val setObject:[info objectForKey:zipKey] forKey:@"zip"];
                             [val setObject:[distanceInfo objectForKey:distanceKey] forKey:@"distance"];
+                            [val setObject:[NSNumber numberWithInteger:[SMUtil pointsForName:[NSString stringWithFormat:@"%@ , %@ %@, Danmark", streetName,
+                                                                                              municipalityCode,
+                                                                                              municipalityName] andAddress:[NSString stringWithFormat:@"%@ , %@ %@, Danmark", streetName,
+                                                                                                                            municipalityCode,
+                                                                                                                            municipalityName] andTerms:self.srchString]] forKey:@"relevance"];
                             [addressArray addObject:val];
                         }
                         
