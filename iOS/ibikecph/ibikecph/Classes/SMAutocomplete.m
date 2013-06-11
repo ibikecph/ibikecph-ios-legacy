@@ -266,7 +266,7 @@ typedef enum {
                                             municipalityCode,
                                             municipalityName]
                                     forKey:@"address"];
-
+                            [val setObject:streetName forKey:@"street"];
 //                            [val setObject:[geometryInfo objectForKey:@"x"] forKey:@"lng"];
 //                            [val setObject:[geometryInfo objectForKey:@"y"] forKey:@"lat"];
                             [val setObject:[info objectForKey:zipKey] forKey:@"zip"];

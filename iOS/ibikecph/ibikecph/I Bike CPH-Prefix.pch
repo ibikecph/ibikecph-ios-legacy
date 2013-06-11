@@ -51,9 +51,9 @@
 #define OSRM_SERVERS @[@{@"name" : translateString(@"bike_type_1"), @"image" : @"normal_grey", @"imageHighlighted" : @"normal_white", @"server" : OSRM_SERVER}, @{@"name" : translateString(@"bike_type_2"), @"image" :  @"cargo_grey", @"imageHighlighted" : @"cargo_white", @"server" : OSRM_SERVER_CARGO}]
 
 //#ifdef WORLD_ROUTING
-#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
+//#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
 //#else
-//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
+#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
 //#endif
 
 

@@ -405,7 +405,7 @@
         [r insertObject:@{
          @"name" : CURRENT_POSITION_STRING,
          @"address" : CURRENT_POSITION_STRING,
-         @"startDate" : [NSDate date],
+         @"1Date" : [NSDate date],
          @"endDate" : [NSDate date],
          @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
          @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
