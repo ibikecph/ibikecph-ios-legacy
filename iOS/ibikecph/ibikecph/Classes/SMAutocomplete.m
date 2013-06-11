@@ -13,7 +13,8 @@
 
 typedef enum {
     autocompleteOiorest,
-    autocompleteFoursquare
+    autocompleteFoursquare,
+    autocompleteKortforsyningen
 } AutocompleteType;
 
 @interface SMAutocomplete() {
@@ -37,8 +38,9 @@ typedef enum {
 - (void)getAutocomplete:(NSString*)str {
     self.srchString = str;
     self.resultsArr = [NSMutableArray array];
-    [self getFoursquareAutocomplete];
-    [self getOiorestAutocomplete];
+//    [self getFoursquareAutocomplete];
+//    [self getOiorestAutocomplete];
+    [self getKortforsyningenAutocomplete];
 }
 
 - (void)getOiorestAutocomplete {
@@ -200,7 +202,83 @@ typedef enum {
     }
 }
 
+- (void)getKortforsyningenAutocomplete{
+    NSString* nameKey= @"navn";
+    NSString* zipKey= @"kode";
+    NSString* distanceKey= @"afstand";
+    completeType= autocompleteKortforsyningen;
 
+    if ([SMLocationManager instance].hasValidLocation) {
+        NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:[[NSString stringWithFormat:@"http://kortforsyningen.kms.dk/?servicename=RestGeokeys&method=adresse&vejnavn=Ar*&husnr=1&geop=%lf,%lf&georef=EPSG:4326", [SMLocationManager instance].lastValidLocation.coordinate.latitude, [SMLocationManager instance].lastValidLocation.coordinate.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse* response, NSData* data, NSError* error){
+
+            NSError* jsonError;
+                
+            if ([data length] > 0 && error == nil){
+
+                
+                NSDictionary* json= [NSJSONSerialization JSONObjectWithData:data options:nil error:&error];
+
+                NSLog(@"Received data %@", json);
+                NSMutableDictionary * val = [NSMutableDictionary dictionaryWithDictionary: @{@"source" : @"autocomplete",
+                                              @"subsource" : @"Kortforsyningen",
+                                              @"order" : @4
+                                              }];
+                NSMutableArray* addressArray= [NSMutableArray new];
+                for (NSString* key in json.allKeys) {
+                    if ([key isEqualToString:@"features"]) {
+                        NSArray* features= [json objectForKey:key]; // array of features (dictionaries)
+                        for(NSDictionary* feature in features){
+                            NSDictionary* attributes=[feature objectForKey:@"attributes"];
+                            NSDictionary* distanceInfo= [attributes objectForKey:distanceKey];
+                            NSDictionary* info= [attributes objectForKey:@"vej"];
+                            
+                            [val setObject:[info objectForKey:nameKey] forKey:@"name"];
+                            [val setObject:[info objectForKey:zipKey] forKey:@"zip"];
+                            [val setObject:[distanceInfo objectForKey:distanceKey] forKey:@"distance"];
+                            [addressArray addObject:val];
+                        }
+                        
+                    }
+                }
+                
+                [addressArray sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2){
+                    long first= ((NSNumber*)[obj1 objectForKey:@"distance"]).longValue;
+                    long second= ((NSNumber*)[obj2 objectForKey:@"distance"]).longValue;
+                    
+                    if(first<second)
+                        return NSOrderedAscending;
+                    else if(first>second)
+                        return NSOrderedDescending;
+                    else
+                        return NSOrderedSame;
+                }];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    @synchronized(self.resultsArr) {
+                        [self.resultsArr addObjectsFromArray:addressArray];
+                        [self.resultsArr sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+                            return [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
+                        }];
+                    }
+                    if (self.delegate) {
+                        [self.delegate autocompleteEntriesFound:self.resultsArr forString:self.srchString];
+                    }
+                });
+
+            }else if ([data length] == 0 && error == nil)
+                NSLog(@"Empty reply");
+            else if (error != nil && error.code == NSURLErrorTimedOut)
+                NSLog(@"Timed out");
+            else if (error != nil){
+                NSLog(@"Error %@",jsonError.localizedDescription);
+            }
+
+        } ];
+    }else{
+        
+    }
+}
 
 
 @end

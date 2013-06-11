@@ -11,7 +11,6 @@
 #import "SMUtil.h"
 #import "SMSearchHistory.h"
 
-
 @interface SMAppDelegate(HockeyProtocols) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
 @property (nonatomic, strong) NSMutableDictionary * fbDict;
 @end
@@ -86,7 +85,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController  = initialViewController;
     [self.window makeKeyAndVisible];
-    
     
     return YES;
 }

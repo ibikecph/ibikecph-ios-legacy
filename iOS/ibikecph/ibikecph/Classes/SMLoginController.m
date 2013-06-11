@@ -87,7 +87,7 @@
               * handle FB login
               */
              SMAppDelegate * appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-             NSString *accessToken = appDelegate.session.accessTokenData.accessToken;
+             NSString *accessToken = appDelegate.session.accessToken;
              
              [self doFBLogin:accessToken];
          } else {

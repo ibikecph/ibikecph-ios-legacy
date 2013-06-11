@@ -19,5 +19,5 @@
 - (void)getAutocomplete:(NSString*)str;
 - (void)getOiorestAutocomplete;
 - (void)getFoursquareAutocomplete;
-
+- (void)getKortforsyningenAutocomplete;
 @end
