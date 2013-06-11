@@ -496,8 +496,6 @@
 		4CD53D5A16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
 		4CD53D5C16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
 		4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
-		4CDA6A5216F0863700FE2A19 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA692216F0863600FE2A19 /* LICENSE */; };
-		4CDA6A5316F0863700FE2A19 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA692316F0863600FE2A19 /* README */; };
 		4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA6B2916F086CD00FE2A19 /* libGoogleAnalytics.a */; };
 		4CDA6B2C16F086CD00FE2A19 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA6B2A16F086CD00FE2A19 /* libGoogleAnalytics_debug.a */; };
 		4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */; };
@@ -1127,9 +1125,6 @@
 		4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../../../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4CDA691D16F0860700FE2A19 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
 		4CDA691E16F0860700FE2A19 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
-		4CDA692116F0863600FE2A19 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
-		4CDA692216F0863600FE2A19 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		4CDA692316F0863600FE2A19 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4CDA6B2416F086CD00FE2A19 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		4CDA6B2516F086CD00FE2A19 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		4CDA6B2616F086CD00FE2A19 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -1172,7 +1167,7 @@
 		C0C94745173BF47500FE834D /* field_email_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field_email_icon.png; sourceTree = "<group>"; };
 		C0C94746173BF47500FE834D /* field_password_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field_password_icon.png; sourceTree = "<group>"; };
 		F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1853,7 +1848,6 @@
 				4C31FF2E1717FF8300DA4983 /* UIImage-Categories */,
 				4C365DD116F320C000A836B3 /* TTTAttributedLabel */,
 				4CDA6B2316F086CD00FE2A19 /* GA v2.04b2 */,
-				4CDA692016F0863600FE2A19 /* FacebookSDK */,
 				4CDA691C16F0860700FE2A19 /* DAKeyboardControl */,
 				4C06BA6216E88B60001B7312 /* DAKeyboardControl */,
 			);
@@ -2072,17 +2066,6 @@
 			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
 			sourceTree = "<group>";
 		};
-		4CDA692016F0863600FE2A19 /* FacebookSDK */ = {
-			isa = PBXGroup;
-			children = (
-				4CDA692116F0863600FE2A19 /* FacebookSDK.framework */,
-				4CDA692216F0863600FE2A19 /* LICENSE */,
-				4CDA692316F0863600FE2A19 /* README */,
-			);
-			name = FacebookSDK;
-			path = ../../../../../FacebookSDK;
-			sourceTree = SOURCE_ROOT;
-		};
 		4CDA6B2316F086CD00FE2A19 /* GA v2.04b2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2239,8 +2222,6 @@
 				4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */,
 				4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */,
 				4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */,
-				4CDA6A5216F0863700FE2A19 /* LICENSE in Resources */,
-				4CDA6A5316F0863700FE2A19 /* README in Resources */,
 				4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */,
 				4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */,
 				4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */,
