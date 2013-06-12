@@ -281,8 +281,19 @@ typedef enum {
     [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
     
     NSArray * a = [self.destination componentsSeparatedByString:@","];
-    [overviewDestination setText:[a objectAtIndex:0]];
+    NSString* testStreet= @"AVEryLongAddressThatCannotFit";
+//    [overviewDestination setText:[a objectAtIndex:0]];
+    [overviewDestination setText:testStreet];
 
+
+    CGSize singleLineSize= overviewDestination.frame.size;
+    singleLineSize.height= singleLineSize.height/2;
+    NSInteger characterCountInFirstLine= [self fitString:testStreet intoLabel:overviewDestination size:singleLineSize];
+    if(characterCountInFirstLine<testStreet.length){
+        NSString* newValue= [self splitString:testStreet lastCharacterIndex:characterCountInFirstLine-1];
+        
+    }
+    
     
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
     CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
@@ -332,6 +343,50 @@ typedef enum {
         debugLog(@"error in trackEvent");
     }
     
+}
+
+-(NSString*)splitString:(NSString*)str lastCharacterIndex:(int)index{
+    NSMutableString* newStr= [NSMutableString stringWithString:str];
+    for(int i=index; i>0; i++){
+        if( ![self isVowel:[str substringWithRange:NSMakeRange(index, 1)]]){
+            [newStr insertString:@"-" atIndex:i];
+            return newStr;
+        }
+    }
+    return newStr;
+}
+
+-(BOOL)isVowel:(NSString*)chr{
+    return [chr isEqualToString:@"a"] || [chr isEqualToString:@"e"] || [chr isEqualToString:@"i"] || [chr isEqualToString:@"o"] || [chr isEqualToString:@"u"] || [chr isEqualToString:@"æ"] || [chr isEqualToString:@"ø"] || [chr isEqualToString:@"å"]; 
+
+}
+
+-(NSArray*)splitIndicesForString:(NSString*)str{
+    return nil;
+}
+
+- (NSUInteger)fitString:(NSString *)string intoLabel:(UILabel *)label size:(CGSize)size
+{
+    UIFont *font           = label.font;
+    UILineBreakMode mode   = label.lineBreakMode;
+    
+    
+    CGSize  sizeConstraint = CGSizeMake(size.width, CGFLOAT_MAX);
+    
+    if ([string sizeWithFont:font constrainedToSize:sizeConstraint lineBreakMode:mode].height > size.height)
+    {
+        NSString *adjustedString;
+        
+        for (NSUInteger i = 1; i < [string length]; i++)
+        {
+            adjustedString = [string substringToIndex:i];
+            
+            if ([adjustedString sizeWithFont:font constrainedToSize:sizeConstraint lineBreakMode:mode].height > size.height)
+                return i - 1;
+        }
+    }
+    
+    return [string length];
 }
 
 - (IBAction)startRouting:(id)sender {
@@ -998,7 +1053,7 @@ typedef enum {
              * Replace "Destination reached" message with your address
              */
             if (turn.drivingDirection == 15) {
-                turn.descriptionString = self.destination;
+                turn.descriptionString = @"AVeryLongDestinationThatCantFit";
                 turn.wayName = self.destination;
             }
             if (i == 0)
