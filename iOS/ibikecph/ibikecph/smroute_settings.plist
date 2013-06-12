@@ -22,19 +22,5 @@
 	<string>50</string>
 	<key>OIOREST_AUTOCOMPLETE_SEARCH_RADIUS</key>
 	<string>20000</string>
-	<key>GOOGLE_ANALYTICS_KEY</key>
-	<string>UA-32719126-2</string>
-	<key>GOOGLE_API_KEY</key>
-	<string>AIzaSyAZwBZgYS-61R-gIvp4GtnekJGGrIKh0Dk</string>
-	<key>FOURSQUARE_ID</key>
-	<string>AFXG5WVI4UTINRGVJZ52ZAWRK454EN4J3FZRJB03J4ZMXQX1</string>
-	<key>FOURSQUARE_SECRET</key>
-	<string>D2EU4WKSQ2WHQGOK4FJVNRDZUJ4S4YTZVBO1FM4V03NRJWYK</string>
-	<key>HOCKEYAPP_BETA_IDENTIFIER</key>
-	<string>1817c1e050c09560ff329120cc64b2f8</string>
-	<key>HOCKEYAPP_LIVE_IDENTIFIER</key>
-	<string>1817c1e050c09560ff329120cc64b2f8</string>
-	<key>FB_APP_ID</key>
-	<string>478150322233312</string>
 </dict>
 </plist>

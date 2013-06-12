@@ -375,9 +375,8 @@ typedef enum {
               * handle FB login
               */
              SMAppDelegate * appDelegate = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-             //NOTE:(Rasko) this change needs review
-//             NSString *accessToken = appDelegate.session.accessTokenData.accessToken;
-             NSString *accessToken = appDelegate.session.accessToken;
+             NSString *accessToken = appDelegate.session.accessTokenData.accessToken;
+
 
              [self doFBLogin:accessToken];
          } else {

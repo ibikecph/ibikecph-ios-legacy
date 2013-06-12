@@ -16,7 +16,7 @@
     #import "NSString+URLEncode.h"
     #import "GAI.h"
     #import "SMCustomCheckbox.h"
-//    #import "keys.h"
+    #import "keys.h"
     #import "SMTranslatedViewController.h"
     #import "SMUtil.h"
     #import "SMCustomButton.h"

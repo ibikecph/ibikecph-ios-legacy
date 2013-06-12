@@ -528,6 +528,7 @@
 		C09AB437176890100098AA9C /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB430176890100098AA9C /* NSString+URLEncode.m */; };
 		C09AB438176890100098AA9C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB433176890100098AA9C /* Reachability.m */; };
 		C09AB439176890100098AA9C /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB435176890100098AA9C /* SMTranslation.m */; };
+		C09AB43B17689B6B0098AA9C /* smroute_settings_private.plist in Resources */ = {isa = PBXBuildFile; fileRef = C09AB43A17689B6B0098AA9C /* smroute_settings_private.plist */; };
 		C0C94732173BAEFE00FE834D /* red_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C94730173BAEFE00FE834D /* red_btn_pressed.png */; };
 		C0C94733173BAEFE00FE834D /* red_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C94731173BAEFE00FE834D /* red_btn.png */; };
 		C0C9473D173BC0D100FE834D /* fb_linked_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C9473C173BC0D100FE834D /* fb_linked_icon.png */; };
@@ -1167,6 +1168,7 @@
 		C09AB433176890100098AA9C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		C09AB434176890100098AA9C /* SMTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslation.h; sourceTree = "<group>"; };
 		C09AB435176890100098AA9C /* SMTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslation.m; sourceTree = "<group>"; };
+		C09AB43A17689B6B0098AA9C /* smroute_settings_private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smroute_settings_private.plist; sourceTree = "<group>"; };
 		C0C94730173BAEFE00FE834D /* red_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_btn_pressed.png; sourceTree = "<group>"; };
 		C0C94731173BAEFE00FE834D /* red_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_btn.png; sourceTree = "<group>"; };
 		C0C9473C173BC0D100FE834D /* fb_linked_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_linked_icon.png; sourceTree = "<group>"; };
@@ -1778,6 +1780,7 @@
 		4C73D21516AEDCDA00AED42A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C09AB43A17689B6B0098AA9C /* smroute_settings_private.plist */,
 				C09AB42917688AC40098AA9C /* smroute_settings.plist */,
 				4C3B3EB5170493CC00F098AD /* routeme.plist */,
 				4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */,
@@ -2646,6 +2649,7 @@
 				4C0E15C41760B3AD006F81C1 /* warning_popup_bgr@2x.png in Resources */,
 				F68F9DE71765CDC500578FFE /* FBUserSettingsViewResources.bundle in Resources */,
 				C09AB42A17688AC40098AA9C /* smroute_settings.plist in Resources */,
+				C09AB43B17689B6B0098AA9C /* smroute_settings_private.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
