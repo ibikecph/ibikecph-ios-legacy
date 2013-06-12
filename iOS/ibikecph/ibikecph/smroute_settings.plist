@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GEOCODING_SEARCH_RADIUS</key>
+	<real>5000</real>
+	<key>USE_APPLE_GEOCODER</key>
+	<true/>
+	<key>OSRM_ADDRESS</key>
+	<string>routes.ibikecph.dk</string>
+	<key>OSRM_SERVER</key>
+	<string>http://routes.ibikecph.dk</string>
+	<key>OSRM_SERVER_CARGO</key>
+	<string>http://routes.ibikecph.dk/cargobike</string>
+	<key>PLACES_SEARCH_RADIUS</key>
+	<string>20000</string>
+	<key>FOURSQUARE_SEARCH_RADIUS</key>
+	<string>20000</string>
+	<key>PLACES_LANGUAGE</key>
+	<string>da</string>
+	<key>OIOREST_SEARCH_RADIUS</key>
+	<string>50</string>
+	<key>OIOREST_AUTOCOMPLETE_SEARCH_RADIUS</key>
+	<string>20000</string>
+	<key>GOOGLE_ANALYTICS_KEY</key>
+	<string>UA-32719126-2</string>
+	<key>GOOGLE_API_KEY</key>
+	<string>AIzaSyAZwBZgYS-61R-gIvp4GtnekJGGrIKh0Dk</string>
+	<key>FOURSQUARE_ID</key>
+	<string>AFXG5WVI4UTINRGVJZ52ZAWRK454EN4J3FZRJB03J4ZMXQX1</string>
+	<key>FOURSQUARE_SECRET</key>
+	<string>D2EU4WKSQ2WHQGOK4FJVNRDZUJ4S4YTZVBO1FM4V03NRJWYK</string>
+	<key>HOCKEYAPP_BETA_IDENTIFIER</key>
+	<string>1817c1e050c09560ff329120cc64b2f8</string>
+	<key>HOCKEYAPP_LIVE_IDENTIFIER</key>
+	<string>1817c1e050c09560ff329120cc64b2f8</string>
+	<key>FB_APP_ID</key>
+	<string>478150322233312</string>
+</dict>
+</plist>
