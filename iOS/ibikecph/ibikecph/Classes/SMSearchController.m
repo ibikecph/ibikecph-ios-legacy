@@ -18,6 +18,7 @@
 #import "TTTAttributedLabel.h"
 #import "SMLocationManager.h"
 #import "SMUtil.h"
+#import "SMRouteUtils.h"
 #import "SMRequestOSRM.h"
 #import "SMFavoritesUtil.h"
 
@@ -362,7 +363,7 @@
                 break;
             }
         }
-        if (found == NO && [SMUtil pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+        if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
             [r addObject:d];
         }
     }
@@ -376,7 +377,7 @@
                 break;
             }
         }
-        if (found == NO && [SMUtil pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+        if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
             [r addObject:d];
         }
     }

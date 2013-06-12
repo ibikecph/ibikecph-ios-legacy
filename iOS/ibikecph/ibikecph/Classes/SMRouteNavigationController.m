@@ -27,6 +27,7 @@
 #import "SMReportErrorController.h"
 
 #import "SMUtil.h"
+#import "SMRouteUtils.h"
 
 #import "SMAnnotation.h"
 #import "SMSwipableView.h"
@@ -480,7 +481,7 @@ typedef enum {
                              @"fromLocation" : [NSKeyedArchiver archivedDataWithRootObject:self.startLocation],
                              @"toLocation" : [NSKeyedArchiver archivedDataWithRootObject:self.endLocation]
                              };
-        BOOL x = [d writeToFile:[SMUtil routeFilenameFromTimestampForExtension:@"plist"] atomically:YES];
+        BOOL x = [d writeToFile:[SMRouteUtils routeFilenameFromTimestampForExtension:@"plist"] atomically:YES];
         if (x == NO) {
             NSLog(@"Route not saved!");
         }

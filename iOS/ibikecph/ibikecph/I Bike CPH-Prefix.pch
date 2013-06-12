@@ -16,12 +16,14 @@
     #import "NSString+URLEncode.h"
     #import "GAI.h"
     #import "SMCustomCheckbox.h"
-    #import "keys.h"
+//    #import "keys.h"
     #import "SMTranslatedViewController.h"
     #import "SMUtil.h"
     #import "SMCustomButton.h"
     #import "SMPatternedButton.h"
     #import "SMNetworkErrorView.h"
+    #import "SMRouteConsts.h"
+    #import "SMRouteUtils.h"
 #endif
 
 #if DISTRIBUTION_VERSION
@@ -39,31 +41,31 @@
 #define ERROR_FADE 0.2f
 #define ERROR_WAIT 2.0f
 
-//#ifdef WORLD_ROUTING
-//    #define OSRM_SERVER @"http://router.project-osrm.org"
-#define OSRM_ADDRESS @"routes.ibikecph.dk"
-//#else
-    #define OSRM_SERVER @"http://routes.ibikecph.dk"
-    #define OSRM_SERVER_CARGO @"http://routes.ibikecph.dk/cargobike"
-//#endif
+////#ifdef WORLD_ROUTING
+////    #define OSRM_SERVER @"http://router.project-osrm.org"
+//#define OSRM_ADDRESS @"routes.ibikecph.dk"
+////#else
+//    #define OSRM_SERVER @"http://routes.ibikecph.dk"
+//    #define OSRM_SERVER_CARGO @"http://routes.ibikecph.dk/cargobike"
+////#endif
 
 
 #define OSRM_SERVERS @[@{@"name" : translateString(@"bike_type_1"), @"image" : @"normal_grey", @"imageHighlighted" : @"normal_white", @"server" : OSRM_SERVER}, @{@"name" : translateString(@"bike_type_2"), @"image" :  @"cargo_grey", @"imageHighlighted" : @"cargo_white", @"server" : OSRM_SERVER_CARGO}]
 
-//#ifdef WORLD_ROUTING
-//#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
-//#else
-#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
-//#endif
+////#ifdef WORLD_ROUTING
+////#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
+////#else
+//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
+////#endif
 
 
-#define TIME_FORMAT @"HH.mm"
-#define TIME_DAYS_SHORT @"d"
-#define TIME_HOURS_SHORT @"h"
-#define TIME_MINUTES_SHORT @"min"
-#define TIME_SECONDS_SHORT @"s"
-#define DISTANCE_KM_SHORT @"km"
-#define DISTANCE_M_SHORT @"m"
+//#define TIME_FORMAT @"HH.mm"
+//#define TIME_DAYS_SHORT @"d"
+//#define TIME_HOURS_SHORT @"h"
+//#define TIME_MINUTES_SHORT @"min"
+//#define TIME_SECONDS_SHORT @"s"
+//#define DISTANCE_KM_SHORT @"km"
+//#define DISTANCE_M_SHORT @"m"
 
 #define CALENDAR_MAX_DAYS 15
 
@@ -83,13 +85,13 @@
 #define PATH_COLOR [UIColor colorWithRed:0.0f/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0f]
 #define PATH_OPACITY 0.8f
 
-#define GEOCODING_SEARCH_RADIUS 50000.0f
-
-#define PLACES_SEARCH_RADIUS @"20000"
-#define FOURSQUARE_SEARCH_RADIUS @"20000"
-#define PLACES_LANGUAGE @"da"
-#define OIOREST_SEARCH_RADIUS @"50"
-#define OIOREST_AUTOCOMPLETE_SEARCH_RADIUS @"20000"
+//#define GEOCODING_SEARCH_RADIUS 50000.0f
+//
+//#define PLACES_SEARCH_RADIUS @"20000"
+//#define FOURSQUARE_SEARCH_RADIUS @"20000"
+//#define PLACES_LANGUAGE @"da"
+//#define OIOREST_SEARCH_RADIUS @"50"
+//#define OIOREST_AUTOCOMPLETE_SEARCH_RADIUS @"20000"
 
 #define GOOGLE_ANALYTICS_DISPATCH_INTERVAL 120
 #define GOOGLE_ANALYTICS_SAMPLE_RATE 100
@@ -100,7 +102,7 @@
 #define WAYPOINT_FONT_SIZE 20.0f
 #define INSTRUCTIONS_LABEL_WIDTH 194.0f
 
-#define USE_APPLE_GEOCODER YES
+//#define USE_APPLE_GEOCODER YES
 
 #define MIN_DISTANCE_FOR_RECALCULATION 20.0
 
