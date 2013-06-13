@@ -215,6 +215,7 @@ typedef enum {
     centerView = nil;
     blockingView = nil;
     mapContainer = nil;
+    overviewDestinationBottom = nil;
     [super viewDidUnload];
 }
 
@@ -281,18 +282,32 @@ typedef enum {
     [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
     
     NSArray * a = [self.destination componentsSeparatedByString:@","];
-    NSString* testStreet= @"AVEryLongAddressThatCannotFit";
+    NSString* streetName= [a objectAtIndex:0];
 //    [overviewDestination setText:[a objectAtIndex:0]];
-    [overviewDestination setText:testStreet];
-
-
-    CGSize singleLineSize= overviewDestination.frame.size;
-    singleLineSize.height= singleLineSize.height/2;
-    NSInteger characterCountInFirstLine= [self fitString:testStreet intoLabel:overviewDestination size:singleLineSize];
-    if(characterCountInFirstLine<testStreet.length){
-        NSString* newValue= [self splitString:testStreet lastCharacterIndex:characterCountInFirstLine-1];
+//    [overviewDestination setText:testStreet];
+    overviewDestination.lineBreakMode= UILineBreakModeCharacterWrap;
+    overviewDestinationBottom.lineBreakMode= UILineBreakModeTailTruncation;
+    
+    
+    if(streetName){
+        NSArray* splittedString= [self splitString:streetName];
         
+        [overviewDestination setText:[splittedString objectAtIndex:0]];
+        
+        if(splittedString.count>1){
+            [overviewDestinationBottom setText:[splittedString objectAtIndex:1]];
+        }
+    }else{
+       overviewDestination.text= @"";
+        overviewDestinationBottom.text= @"";
     }
+    
+//    NSInteger characterCountInFirstLine= [self fitString:testStreet intoLabel:overviewDestination size:singleLineSize];
+//    if(characterCountInFirstLine<testStreet.length){
+    
+//        NSString* newValue= [self splitString:testStreet lastCharacterIndex:characterCountInFirstLine-1];
+//        [overviewDestination setText:newValue];
+//    }
     
     
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
@@ -345,11 +360,104 @@ typedef enum {
     
 }
 
+-(NSArray*)splitString:(NSString*)str{
+    // split into words
+    NSMutableArray* words= [[NSMutableArray alloc] initWithArray:[str componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]]];
+    NSString* base= [words objectAtIndex:0];
+    int splitWordIndex= -1;
+    
+    if(![self string:base fitsLabelWidth:overviewDestination] ){
+        splitWordIndex= 0;
+    }else{
+        NSString* newStr= [NSString stringWithString:base];
+        for(int i=1; i<words.count; i++){
+            // append the next word
+            NSString* newWord= [words objectAtIndex:i];
+            newStr= [newStr stringByAppendingFormat:@" %@",newWord];
+            
+            // check if it fits the first line
+            if(![self string:newStr fitsLabelWidth:overviewDestination]){
+                splitWordIndex= i;
+                break;
+            }
+        }
+    }
+
+    if(splitWordIndex==-1){
+        // everything can fit the single line
+        return [NSArray arrayWithObject:str];
+    }
+    
+    NSString* newWord= [words objectAtIndex:splitWordIndex];
+    NSString* newStr= [NSString stringWithString:base];
+    for(int i=1; i<=splitWordIndex; i++){
+        newStr= [newStr stringByAppendingFormat:@" %@",[words objectAtIndex:i]];
+    }
+
+    // get the index where the string should be clipped
+    int clipIndex= [self fitString:newStr intoLabel:overviewDestination size:overviewDestination.frame.size];
+    int index= (splitWordIndex==0)?clipIndex : newWord.length-(newStr.length-clipIndex);
+    
+    BOOL noSplit= NO;
+    if([self isStringSplittable:newWord atIndex:index]){
+        [words replaceObjectAtIndex:splitWordIndex withObject:[self splitString:newWord lastCharacterIndex:index]];
+    }else{
+//        NSString* lastWord= [words objectAtIndex:splitWordIndex-1];
+//        [words replaceObjectAtIndex:splitWordIndex-1 withObject:[lastWord stringByAppendingString:@"\r\n"]];
+//        splitWordIndex= -1;
+        noSplit= YES;
+    }
+
+    NSString* topString= @"";
+    NSString* bottomString= @"";
+    NSString* hyphenedString= [words objectAtIndex:splitWordIndex];
+    int toIndex= splitWordIndex;
+    int fromIndex= splitWordIndex+1;
+    if(noSplit){
+        fromIndex--;
+    }
+    for(int i=0; i<toIndex; i++){
+        topString= [topString stringByAppendingFormat:@"%@%@",[words objectAtIndex:i],(i==toIndex-1)?@"":@" "];
+    }
+
+    NSRange range= [hyphenedString rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"-"]];
+    if(!noSplit){
+        topString= [topString stringByAppendingString:[hyphenedString substringToIndex:range.location+1]];
+        bottomString= [bottomString stringByAppendingFormat:@"%@ ",[hyphenedString substringFromIndex:range.location+1]];
+    }
+
+
+    for(int i=fromIndex; i<words.count; i++){
+        bottomString= [bottomString stringByAppendingFormat:@"%@%@",[words objectAtIndex:i],( i==words.count-1)?@"":@" "];
+    }
+    NSArray* arr= [NSArray arrayWithObjects:topString, bottomString, nil];
+    
+    return arr;
+}
+
+-(BOOL)isStringSplittable:(NSString*)str atIndex:(int)index{
+    return str.length>=4 && index>0 && index<str.length-2;
+}
+-(BOOL)string:(NSString*)str fitsLabelWidth:(UILabel*)lbl{
+    return [str sizeWithFont:lbl.font].width <= lbl.frame.size.width;
+}
+
 -(NSString*)splitString:(NSString*)str lastCharacterIndex:(int)index{
     NSMutableString* newStr= [NSMutableString stringWithString:str];
-    for(int i=index; i>0; i++){
-        if( ![self isVowel:[str substringWithRange:NSMakeRange(index, 1)]]){
-            [newStr insertString:@"-" atIndex:i];
+    
+    if (index<0)
+        return nil;
+    
+    for(int i=index; i>0; i--){
+        NSString* subStr= [str substringWithRange:NSMakeRange(i, 1)];
+        // don't check for vowels if the substring is nil
+        if(!subStr)
+            continue;
+        // check if the substring ends with a vowel
+        if( ![self isVowel:subStr]){
+            // if not, we split the string at the index
+            [newStr insertString:@"-" atIndex:i+1];
+
             return newStr;
         }
     }
@@ -357,6 +465,8 @@ typedef enum {
 }
 
 -(BOOL)isVowel:(NSString*)chr{
+    if(!chr)
+        return NO;
     return [chr isEqualToString:@"a"] || [chr isEqualToString:@"e"] || [chr isEqualToString:@"i"] || [chr isEqualToString:@"o"] || [chr isEqualToString:@"u"] || [chr isEqualToString:@"æ"] || [chr isEqualToString:@"ø"] || [chr isEqualToString:@"å"]; 
 
 }
@@ -368,20 +478,21 @@ typedef enum {
 - (NSUInteger)fitString:(NSString *)string intoLabel:(UILabel *)label size:(CGSize)size
 {
     UIFont *font           = label.font;
-    UILineBreakMode mode   = label.lineBreakMode;
+//    UILineBreakMode mode   = label.lineBreakMode;
     
     
-    CGSize  sizeConstraint = CGSizeMake(size.width, CGFLOAT_MAX);
-    
-    if ([string sizeWithFont:font constrainedToSize:sizeConstraint lineBreakMode:mode].height > size.height)
+//    CGSize  sizeConstraint = CGSizeMake(size.width, CGFLOAT_MAX);
+
+    CGSize sizeForString= [string sizeWithFont:font];
+    if (sizeForString.width >= size.width-1) // sizeWithFont rounding
     {
         NSString *adjustedString;
         
         for (NSUInteger i = 1; i < [string length]; i++)
         {
-            adjustedString = [string substringToIndex:i];
-            
-            if ([adjustedString sizeWithFont:font constrainedToSize:sizeConstraint lineBreakMode:mode].height > size.height)
+            adjustedString = [[string substringToIndex:i] stringByAppendingFormat:@"-"];
+            CGSize sizeWithFont= [adjustedString sizeWithFont:font];
+            if (sizeWithFont.width >= size.width-1)
                 return i - 1;
         }
     }

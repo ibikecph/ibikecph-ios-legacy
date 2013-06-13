@@ -2426,8 +2426,15 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="A" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dMz-a6-dcA">
-                                                <rect key="frame" x="13" y="12" width="210" height="55"/>
+                                                <rect key="frame" x="13" y="12" width="210" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qgy-Am-Zt3">
+                                                <rect key="frame" x="13" y="40" width="210" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="23"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2628,6 +2635,7 @@
                         <outlet property="mpView" destination="gyv-zh-lni" id="sgV-NY-teB"/>
                         <outlet property="noConnectionView" destination="xk9-Ph-nIz" id="N6F-Pn-Kxi"/>
                         <outlet property="overviewDestination" destination="dMz-a6-dcA" id="h7R-e7-ylQ"/>
+                        <outlet property="overviewDestinationBottom" destination="Qgy-Am-Zt3" id="GuP-RU-xKQ"/>
                         <outlet property="overviewTimeDistance" destination="yyu-vq-Lpe" id="RPn-wa-ev5"/>
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
                         <outlet property="recalculatingView" destination="3vS-az-zZ1" id="nhe-Qd-HZW"/>
@@ -3375,153 +3383,6 @@
         <image name="white_btn.png" width="11" height="11"/>
         <image name="white_btn_pressed.png" width="11" height="11"/>
     </resources>
-    <classes>
-        <class className="FlickableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickableView.h"/>
-        </class>
-        <class className="GAITrackedViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GAITrackedViewController.h"/>
-        </class>
-        <class className="SMAboutController" superclassName="SMTranslatedViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMAboutController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrlView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="SMCustomCheckbox" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMCustomCheckbox.h"/>
-        </class>
-        <class className="SMDirectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SMDirectionTopCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMDirectionTopCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imgDirection" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblDistance" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblWayname" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SMEmptyFavoritesCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEmptyFavoritesCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addFavoritesSymbol" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="addFavoritesText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SMEnterRouteCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="iconImage" candidateClass="AsyncImageView"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="TTTAttributedLabel"/>
-            </relationships>
-        </class>
-        <class className="SMEnterRouteController" superclassName="SMTranslatedViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMEnterRouteController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="fromLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="locationArrow" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swapButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tblView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toLabel" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SMGPSTrackButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMGPSTrackButton.h"/>
-        </class>
-        <class className="SMMenuCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMMenuCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellBG" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="editBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="text" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SMPatternedButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMPatternedButton.h"/>
-        </class>
-        <class className="SMRouteNavigationController" superclassName="SMTranslatedViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMRouteNavigationController.h"/>
-            <relationships>
-                <relationship kind="action" name="buttonPressed:"/>
-                <relationship kind="action" name="goBack:"/>
-                <relationship kind="action" name="hideFinishView:"/>
-                <relationship kind="action" name="hideStopView:"/>
-                <relationship kind="action" name="onPanGestureDirections:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="reportError:"/>
-                <relationship kind="action" name="startRouting:"/>
-                <relationship kind="action" name="trackUser:"/>
-                <relationship kind="outlet" name="cargoHandleImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="cargoTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="mapFade" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mpView" candidateClass="RMMapView"/>
-            </relationships>
-        </class>
-        <class className="SMTranslatedViewController" superclassName="GAITrackedViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMTranslatedViewController.h"/>
-        </class>
-        <class className="SMViewController" superclassName="SMTranslatedViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="accHeader" candidateClass="UIView"/>
-                <relationship kind="outlet" name="account_label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="addFavAddress" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="addFavFavoriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addFavHomeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addFavName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="addFavSchoolButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addFavWorkButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="addMenu" candidateClass="UIView"/>
-                <relationship kind="outlet" name="addSaveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="blockingView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="buttonTrackUser" candidateClass="SMGPSTrackButton"/>
-                <relationship kind="outlet" name="centerView" candidateClass="FlickableView"/>
-                <relationship kind="outlet" name="debugLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dropPinView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="editDeleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="editSaveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="editTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fadeView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="favEditDone" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="favEditStart" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="favHeader" candidateClass="UIView"/>
-                <relationship kind="outlet" name="findRouteBig" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="findRouteSmall" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infHeader" candidateClass="UIView"/>
-                <relationship kind="outlet" name="mainMenu" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuBtn" candidateClass="UIView"/>
-                <relationship kind="outlet" name="menuView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="pinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="routeStreet" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tableFooter" candidateClass="SMAddFavoriteCell"/>
-                <relationship kind="outlet" name="tblMenu" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SMViewMoreCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SMViewMoreCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="buttonLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TTTAttributedLabel" superclassName="UILabel">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TTTAttributedLabel.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
