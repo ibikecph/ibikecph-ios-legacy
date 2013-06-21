@@ -6,7 +6,7 @@
 <ul>
   <li><a href="https://github.com/ibikecph/route-me">Route-Me (I Bike CPH fork)</a></li>
   <li><a href="https://github.com/ibikecph/routing-engine">Routing engine</a></li>
-  <li><a href="https://github.com/downloads/facebook/facebook-ios-sdk/FacebookSDK-3.1.1.pkg">Facebook SDK</a></li>
+  <li><a href="https://developers.facebook.com/resources/facebook-ios-sdk-current.pkg">Facebook SDK</a></li>
   <li><a href="http://dl.google.com/dl/gaformobileapps/GoogleAnalyticsiOS.zip">Google Analytics SDK</a></li>
   <li><a href="https://github.com/danielamitay/DAKeyboardControl">DAKeyboardControl</a></li>
   <li><a href="https://github.com/mattt/TTTAttributedLabel">TTTAttributedLabel</a></li>
