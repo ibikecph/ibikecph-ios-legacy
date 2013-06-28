@@ -103,6 +103,9 @@
         // Create a new, logged out session.
         appDelegate.session = [[FBSession alloc] initWithPermissions:@[@"email"]];
     }
+    if (appDelegate.session.state == FBSessionStateCreatedOpening) {
+        appDelegate.session = [[FBSession alloc] initWithPermissions:@[@"email"]];
+    }
     if (appDelegate.session.isOpen) {
         [self getFBData];
     } else {
