@@ -1185,9 +1185,9 @@ typedef enum {
     }else{
         SMTurnInstruction *turn = (SMTurnInstruction *)[self.route.turnInstructions objectAtIndex:indexPath.row];
         if (indexPath.row == 0) {
-            return [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+            return [SMDirectionTopCell getHeightForDescription:[turn descriptionString] andWayname:turn.shortDescriptionString];
         } else {
-            return [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.wayName];
+            return [SMDirectionCell getHeightForDescription:[turn descriptionString] andWayname:turn.shortDescriptionString];
         }
     }
 }

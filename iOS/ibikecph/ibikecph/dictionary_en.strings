@@ -282,3 +282,7 @@
 "bike_type_2"= "Cargo bike";
 
 "network_error_text" = "Network error occured";
+
+"vehicle_2" = "Walk";
+"vehicle_3" = "Ferry";
+"vehicle_4" = "Train";
