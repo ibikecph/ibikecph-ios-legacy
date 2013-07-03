@@ -1,11 +1,3 @@
-/*
- dictionary_dk.strings
- I Bike CPH
- 
- Created by Ivan Pavlovic on 31/01/2013.
- Copyright (c) 2013 City of Copenhagen. All rights reserved.
- */
-
 "current_position" = "Nuværende position";
 "today" = "I dag";
 "tomorrow" = "I morgen";
@@ -75,7 +67,7 @@
 "{highway:tertiary}" = "gade";
 "{highway:tertiary_link}" = "gade";
 "{highway:living_street}" = "gade";
-"{highway:pedestrian}" = "Gågade";
+"{highway:pedestrian}" = "gågade";
 "{highway:residential}" = "gade";
 "{highway:unclassified}" = "gade";
 "{highway:service}" = "vej/sti";
@@ -98,7 +90,7 @@
 "error_address_not_found" = "Adressens lokation kan ikke findes!";
 "error_from_address_not_found" = "START adressens lokation kan ikke findes!";
 "error_to_address_not_found" = "SLUT adressens lokation kan ikke findes!";
-"error_invalid_email" = "Ugyldig e-mail!";
+"error_invalid_email" = "Ugyldig email!";
 "error_invalid_to_address" = "Destinationsadressen er ugyldig!";
 
 "route_stop_title" = "Vil du afslutte ruten?";
@@ -107,7 +99,7 @@
 "report_wrong_address" = "Forkert vejnavn";
 "report_road_closed" = "Vejen er spærret";
 "report_one_way" = "Vejen er ensrettet";
-"report_illegal_turn" = "Ruten er ulovligt";
+"report_illegal_turn" = "Ruten er ulovlig";
 "report_wrong_instruction" = "Forkert instruktion";
 "report_other" = "Andet";
 
@@ -136,7 +128,7 @@
 "ibikecph_route_planner" = "Cykelruteplanlægger";
 "Cancel" = "Fortryd";
 "calculating_new_route" = "Beregner ny rute...";
-"Distance" = "Distance";
+"Distance" = "Afstand";
 "Time" = "Tid";
 "you_have_arrived_to" = "Du er nu fremme ved";
 "to_homepage" = "Til forsiden";
@@ -146,7 +138,7 @@
 "hello_cyclist" = "Hej cyklist";
 "thanks_for_testing_text" = "Tak fordi du hjælper os med at teste.";
 "start_text" = "Cykelruteplanlæggeren.\nVi er glade for, at du hjælper os med at teste app’en, og for at vi kan komme i kontakt med dig, vil vi gerne bede om din email-adresse:";
-"e_mail_address" = "E-mail adresse";
+"e_mail_address" = "email adresse";
 "start_app" = "Start";
 "notify_me_when_fixed" = "Få besked når fejlen er udbedret";
 "report" = "Rapporter";
@@ -160,7 +152,7 @@
 "show_less" = "VIS MINDRE";
 
 "good_ride" = "Godt kørt!";
-"hope_you_had_a_good_trip" = "Håber du havde en god tur.";
+"hope_you_had_a_good_trip" = "Vi håber du havde en god tur.";
 "back_ride" = "TILBAGE";
 "stop_ride" = "AFSLUT RUTEN";
 "ride_report_a_problem" = "RAPPORTER ET PROBLEM";
@@ -229,8 +221,8 @@
 "account_repeat_placeholder" = "Gentag ny adgangskode";
 
 
-"login_error_fields" = "Du skal indtaste både din email og din adgangskode!";
-"register_error_fields" = "Du skal udfylde alle felter!";
+"login_error_fields" = "Både din email og din adgangskode skal være indtastet!";
+"register_error_fields" = "Alle felter skal være udfyldt!";
 "register_error_passwords" = "Din adgangskode er forkert!";
 
 "error_not_logged_in" = "Du skal være logget ind";
@@ -248,30 +240,30 @@
 
 "account_login" = "LOG IND";
 "favorites_login" = "Du har ingen favoritter, men du kan hurtigt tilføje en, hvis du logger ind.";
-"fb_login_error" = "Error while using FB to log in.";
 
-"account_is_linked_to_facebook" = "Din konto er linked til Facebook";
+"fb_login_error" = "Facebook login fejl!";
+"account_is_linked_to_facebook" = "Din konto er linket til Facebook";
 "please_login" = "Du skal logge ind";
 "or" = "eller";
 
-"current_position_cant_be_destination" = "You can't use current position as destination!";
+"current_position_cant_be_destination" = "Det er ikke muligt at anvende nuværende position som destination!";
 
-"register_error_passwords_short" = "Your passwords is too short";
-"register_error_invalid_email" = "Email address is not valid";
+"register_error_passwords_short" = "Din adgangskode er for kort";
+"register_error_invalid_email" = "Din email adresse er ikke gyldig";
 
-"register_successful" = "Account created. A message with a confirmation link has been sent to your email address. Please open the link to activate your account.";
+"register_successful" = "Konto oprettet. En bekræftelse er blevet sendt til din email-adresse, følg venligst linket i emailen for at aktivere din konto.";
 
-"account_not_saved" = "You have unsaved changes.";
-"account_cancel" = "Cancel";
-"account_dont_save" = "Don't save";
+"account_not_saved" = "Dine ændringer blev ikke gemt.";
+"account_cancel" = "Annullere";
+"account_dont_save" = "Gem ikke";
 
 "you_have_reached_your_destination" = "Du har nået din destination";
 
 "bike_type_1"= "Cykel";
 "bike_type_2"= "Ladcykel";
 
-"network_error_text" = "Network error occured";
+"network_error_text" = "Netværks fejl opstod";
 
-"vehicle_2" = "Walk";
-"vehicle_3" = "Ferry";
-"vehicle_4" = "Train";
+"vehicle_2" = "Gå";
+"vehicle_3" = "Færge";
+"vehicle_4" = "Tog";

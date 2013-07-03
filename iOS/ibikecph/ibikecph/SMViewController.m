@@ -1089,10 +1089,11 @@ typedef enum {
 //                [cell.text setTextColor:[UIColor greenColor]];
             } else {
                 [cell.addFavoritesText setText:translateString(@"favorites_login")];                
-                [cell.addFavoritesText setTextColor:[UIColor colorWithRed:96.0f/255.0f green:96.0f/255.0f blue:96.0f/255.0f alpha:1.0f]];
+//                [cell.addFavoritesText setTextColor:[UIColor colorWithRed:96.0f/255.0f green:96.0f/255.0f blue:96.0f/255.0f alpha:1.0f]];
+                [cell.addFavoritesText setTextColor:[UIColor colorWithRed:123.0f/255.0f green:123.0f/255.0f blue:123.0f/255.0f alpha:1.0f]];
                 [cell.text setTextColor:[UIColor colorWithRed:123.0f/255.0f green:123.0f/255.0f blue:123.0f/255.0f alpha:1.0f]];
 //                [cell.text setTextColor:[UIColor redColor]];
-                [cell.addFavoritesSymbol setImage:[UIImage imageNamed:@"fav_plus_none"]];
+                [cell.addFavoritesSymbol setImage:[UIImage imageNamed:@"fav_plus_none_grey"]];
 
             }
             

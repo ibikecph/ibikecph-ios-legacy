@@ -151,6 +151,25 @@ typedef enum {
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
     
+    CGFloat maxSize = self.view.frame.size.height - 160.0f;
+    if (self.mapFade.frame.size.height > maxSize) {
+        [self.mapFade setAlpha:0.0f];
+    } else {
+        [self.mapFade setAlpha: 0.8f - ((self.mapFade.frame.size.height - MAX_TABLE) * 0.8f / (maxSize - MAX_TABLE))];
+    }
+    
+    if (self.mapFade.alpha > 0.7f) {
+        [arrivalBG setImage:[UIImage imageNamed:@"distance_black"]];
+        [closeButton setImage:[UIImage imageNamed:@"btnCloseDark"] forState:UIControlStateNormal];
+        [labelDistanceLeft setTextColor:[UIColor whiteColor]];
+        [labelTimeLeft setTextColor:[UIColor whiteColor]];
+    } else {
+        [arrivalBG setImage:[UIImage imageNamed:@"distance_white"]];
+        [closeButton setImage:[UIImage imageNamed:@"btnClose"] forState:UIControlStateNormal];
+        [labelDistanceLeft setTextColor:[UIColor darkGrayColor]];
+        [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -161,7 +180,7 @@ typedef enum {
     } else {
         [UIApplication sharedApplication].idleTimerDisabled = NO;
     }
-    [self.mapFade setFrame:self.mpView.frame];
+//    [self.mapFade setFrame:self.mpView.frame];
 }
 
 
@@ -1348,7 +1367,7 @@ typedef enum {
             if (newY < lastDirectionsPos - 20.0f) {
                 [self setDirectionsState:directionsNormal];
                 self.cargoHandleImageView.hidden = NO;
-                buttonTrackUser.hidden = YES;
+                buttonTrackUser.hidden = NO;
             } else {
                 [self setDirectionsState:directionsMini];
                 self.cargoHandleImageView.hidden = NO;
@@ -1577,13 +1596,11 @@ typedef enum {
             [closeButton setImage:[UIImage imageNamed:@"btnCloseDark"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor whiteColor]];
             [labelTimeLeft setTextColor:[UIColor whiteColor]];
-//            [buttonTrackUser setHidden:YES];
         } else {
             [arrivalBG setImage:[UIImage imageNamed:@"distance_white"]];
             [closeButton setImage:[UIImage imageNamed:@"btnClose"] forState:UIControlStateNormal];
             [labelDistanceLeft setTextColor:[UIColor darkGrayColor]];
             [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
-//            [buttonTrackUser setHidden:NO];
         }
         
         debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);

@@ -29,7 +29,7 @@
     hasChanged = NO;
 //	[[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    [scrlView setContentSize:CGSizeMake(320.0f, 517.0f)];
+    [scrlView setContentSize:scrlView.frame.size];
     
     /**
      * rounded corners for images

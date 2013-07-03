@@ -267,23 +267,23 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="6fq-sT-tGF" userLabel="dialog view">
-                                <rect key="frame" x="42" y="240" width="237" height="143"/>
+                                <rect key="frame" x="39" y="240" width="240" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="scaleToFill" image="splashDialog.png" id="LPK-Al-iIg">
-                                        <rect key="frame" x="5" y="36" width="226" height="107"/>
+                                        <rect key="frame" x="0.0" y="20" width="240" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iO8-td-ZgU">
-                                        <rect key="frame" x="55" y="52" width="151" height="21"/>
+                                        <rect key="frame" x="55" y="48" width="151" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4s-Mv-sSx">
-                                        <rect key="frame" x="20" y="73" width="197" height="50"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="create_account_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="k4s-Mv-sSx">
+                                        <rect key="frame" x="20" y="72" width="201" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1057,11 +1057,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeEnterInputBG.png" id="8Ve-e3-enN">
-                                <rect key="frame" x="0.0" y="51" width="320" height="95"/>
+                                <rect key="frame" x="0.0" y="55" width="320" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g79-IU-cul">
-                                <rect key="frame" x="267" y="79" width="43" height="39"/>
+                                <rect key="frame" x="267" y="83" width="43" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button" image="routeEnterSwitchIcon.png">
@@ -1076,7 +1076,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AcZ-kE-3wX">
-                                <rect key="frame" x="0.0" y="145" width="320" height="423"/>
+                                <rect key="frame" x="0.0" y="149" width="320" height="419"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1304,7 +1304,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PBs-dj-9tX">
-                                <rect key="frame" x="52" y="66" width="217" height="21"/>
+                                <rect key="frame" x="52" y="70" width="217" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.36784904229999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -1314,13 +1314,13 @@
                                 </connections>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Indtast vej, gade, post nr. " minimumFontSize="17" id="mPP-cU-gxa">
-                                <rect key="frame" x="52" y="106" width="229" height="30"/>
+                                <rect key="frame" x="52" y="110" width="229" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="70M-mc-O0l">
-                                <rect key="frame" x="0.0" y="101" width="281" height="44"/>
+                                <rect key="frame" x="0.0" y="105" width="281" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1335,7 +1335,7 @@
                                 </connections>
                             </button>
                             <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeEnterLocateIcon.png" id="whr-md-Ife">
-                                <rect key="frame" x="52" y="69" width="15" height="15"/>
+                                <rect key="frame" x="52" y="73" width="15" height="15"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="routeEnterLogo.png" id="ZA2-Ss-SYV">
@@ -1491,7 +1491,7 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OXY-yw-VcU">
-                                                                            <rect key="frame" x="20" y="20" width="200" height="71"/>
+                                                                            <rect key="frame" x="20" y="20" width="220" height="71"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1870,7 +1870,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TG1-MO-gGo" customClass="SMPatternedButton">
-                                                <rect key="frame" x="237" y="19" width="75" height="75"/>
+                                                <rect key="frame" x="233" y="23" width="75" height="75"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -1887,7 +1887,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4lL-I3-Nhc" userLabel="add favorites btn">
-                                                <rect key="frame" x="0.0" y="19" width="37" height="77"/>
+                                                <rect key="frame" x="0.0" y="22" width="37" height="77"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" backgroundImage="drop_pin_add_fav_btn.png">
@@ -1903,8 +1903,8 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JL5-QE-QrC">
-                                                <rect key="frame" x="50" y="19" width="179" height="75"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <rect key="frame" x="50" y="0.0" width="179" height="113"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1931,7 +1931,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="htC-Kc-NK1">
-                                        <rect key="frame" x="257" y="39" width="45" height="45"/>
+                                        <rect key="frame" x="257" y="40" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
@@ -2777,16 +2777,20 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="profile_default_image.png" id="4Lm-0X-cMq">
+                                                <rect key="frame" x="120" y="13" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="edit_my_account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UyT-jY-TZa">
                                                 <rect key="frame" x="30" y="3" width="260" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="IkI-zi-vhi">
+                                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="IkI-zi-vhi">
                                                 <rect key="frame" x="120" y="13" width="80" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="input_field__scalable.png" id="rzJ-HF-Mdy">
                                                 <rect key="frame" x="41" y="113" width="238" height="35"/>
@@ -2826,7 +2830,8 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cEp-SS-MUD" customClass="SMPatternedButton">
                                                 <rect key="frame" x="85" y="457" width="151" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="delete_my_account" backgroundImage="red_btn.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2891,15 +2896,15 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="field_user_icon.png" id="SHG-My-jA7">
-                                                <rect key="frame" x="251" y="117" width="27" height="27"/>
+                                                <rect key="frame" x="248" y="117" width="27" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="field_email_icon.png" id="9ig-3z-JI0">
-                                                <rect key="frame" x="251" y="162" width="27" height="27"/>
+                                                <rect key="frame" x="248" y="162" width="27" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="field_password_icon.png" id="B9R-bV-TDR">
-                                                <rect key="frame" x="251" y="208" width="27" height="27"/>
+                                                <rect key="frame" x="248" y="208" width="27" height="27"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="FIb-XE-RO1">
@@ -3137,10 +3142,14 @@
                                 <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="HY5-1r-ABs">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="profile_default_image.png" id="egE-ZZ-bSw">
+                                        <rect key="frame" x="120" y="13" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="HY5-1r-ABs">
                                         <rect key="frame" x="120" y="13" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="input_field__scalable.png" id="NbI-Gd-aOx">
                                         <rect key="frame" x="41" y="113" width="238" height="35"/>
@@ -3335,6 +3344,7 @@
         <image name="normalDirectionsBG.png" width="320" height="105"/>
         <image name="overviewBG.png" width="320" height="106"/>
         <image name="profile.png" width="22" height="22"/>
+        <image name="profile_default_image.png" width="80" height="80"/>
         <image name="pullHandle.png" width="42" height="25"/>
         <image name="radioChecked.png" width="22" height="22"/>
         <image name="radioUnchecked.png" width="22" height="22"/>
@@ -3372,7 +3382,7 @@
         <image name="routeStopOverlay.png" width="320" height="212"/>
         <image name="skip.png" width="22" height="22"/>
         <image name="smallDirectionsBG.png" width="76" height="76"/>
-        <image name="splashDialog.png" width="226" height="107"/>
+        <image name="splashDialog.png" width="240" height="130"/>
         <image name="splash_bg_btn_blue.png" width="1" height="60"/>
         <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
         <image name="splash_bg_btn_red.png" width="1" height="60"/>
