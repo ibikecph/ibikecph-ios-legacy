@@ -258,7 +258,7 @@
         } else if ([req.requestIdentifier isEqualToString:@"updateUser"]) {
             debugLog(@"User updated!!!");
             hasChanged = NO;
-            self.userData = @{@"name" : name.text, @"email" : email.text, @"password" : @"", @"repeatPassword" : @"", @"image" : regularImage.image};            
+            self.userData = @{@"name" : name.text, @"email" : email.text, @"password" : @"", @"repeatPassword" : @"", @"image" : regularImage.image?regularImage.image:[[UIImage alloc] init]};
             if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Account" withAction:@"Save" withLabel:@"Data" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
