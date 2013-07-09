@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>GEOCODING_SEARCH_RADIUS</key>
-	<real>5000</real>
+	<real>250</real>
 	<key>USE_APPLE_GEOCODER</key>
 	<true/>
 	<key>OSRM_ADDRESS</key>

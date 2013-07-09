@@ -136,6 +136,10 @@ typedef enum {
     [self.cargoTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     
     [centerView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    
+    CGRect frame = self.mpView.frame;
+    frame.size.height = 0.0f;
+    [self.mapFade setFrame:frame];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
