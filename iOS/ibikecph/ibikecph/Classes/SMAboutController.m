@@ -25,6 +25,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    CGSize size = [aboutText.text sizeWithFont:aboutText.font constrainedToSize:CGSizeMake(aboutText.frame.size.width, 100000.0f) lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect frame = aboutText.frame;
+    frame.size.height = size.height + 50.0f;
+    aboutText.frame = frame;
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, aboutText.frame.origin.y + aboutText.frame.size.height)];
+}
+
 #pragma mark - button actions
 
 - (IBAction)goBack:(id)sender {
@@ -33,6 +42,7 @@
 
 - (void)viewDidUnload {
     scrlView = nil;
+    aboutText = nil;
     [super viewDidUnload];
 }
 @end

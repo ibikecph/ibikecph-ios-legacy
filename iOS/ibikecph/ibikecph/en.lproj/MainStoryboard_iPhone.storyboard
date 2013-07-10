@@ -1041,6 +1041,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="aboutText" destination="VKV-gN-rs2" id="N5b-vN-94L"/>
                         <outlet property="scrlView" destination="pPf-vR-37x" id="hfu-A2-QWx"/>
                     </connections>
                 </viewController>
