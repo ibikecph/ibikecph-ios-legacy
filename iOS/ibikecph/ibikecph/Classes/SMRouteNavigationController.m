@@ -381,6 +381,10 @@ typedef enum {
         debugLog(@"error in trackEvent");
     }
     
+    CGRect fr = self.mapFade.frame;
+    fr.size.height = 0.0f;
+    self.mapFade.frame = fr;
+
 }
 
 -(NSArray*)splitString:(NSString*)str{
@@ -542,6 +546,9 @@ typedef enum {
     [self.mpView rotateMap:self.route.lastCorrectedHeading];
 
     [self renderMinimizedDirectionsViewFromInstruction];
+    CGRect frame = self.mapFade.frame;
+    frame.size.height = 0.0f;
+    self.mapFade.frame = frame;
     
     [recalculatingView setAlpha:1.0f];
     [UIView animateWithDuration:0.3f animations:^{
@@ -563,6 +570,9 @@ typedef enum {
     [r setAuxParam:@"startRoute"];
     [r setOsrmServer:self.osrmServer];
     [r getRouteFrom:self.startLocation.coordinate to:self.endLocation.coordinate via:nil];
+    CGRect fr = self.mapFade.frame;
+    fr.size.height = 0.0f;
+    self.mapFade.frame = fr;
 }
 
 - (void) start:(CLLocationCoordinate2D)from end:(CLLocationCoordinate2D)to  withJSON:(id)jsonRoot{
@@ -948,6 +958,11 @@ typedef enum {
     }
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeFollow];
+    
+    CGRect fr = self.mapFade.frame;
+    fr.size.height = 0.0f;
+    self.mapFade.frame = fr;
+
     
     CGRect frame = finishView.frame;
     frame.origin.y = self.view.frame.size.height;
