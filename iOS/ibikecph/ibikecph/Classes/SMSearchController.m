@@ -289,7 +289,7 @@
     } else {
         if ([s length] >= 2) {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
-            [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:0.5f];
+            [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:1.5f];
         } else if ([s length] >= 1) {
             NSMutableArray * r = [NSMutableArray array];
             if (self.shouldAllowCurrentPosition) {
@@ -325,99 +325,110 @@
 #pragma mark - smautocomplete delegate
 
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
-    [self hideFade];
-
-    SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
-    NSMutableArray * r = [NSMutableArray array];
-    
-    if ([str isEqualToString:@""]) {
-        self.searchResults = r;
-        [tblView reloadData];
-        [tblFade setAlpha:0.0f];
-        return;
-    }
-    
-    if ([[str lowercaseString] isEqualToString:[searchField.text lowercaseString]] == NO) {
-        return;
-    }
-    
-    self.terms = [NSMutableArray array];
-    self.srchString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    for (NSString * str in [self.srchString componentsSeparatedByString:@" "]) {
-        if ([self.terms indexOfObject:str] == NSNotFound) {
-            [self.terms addObject:str];
-        }
-    }    
-    
-    for (NSDictionary * d in arr) {
-        [r addObject:d];
-    }
-    
+    @synchronized(self.searchResults) {
+        [self hideFade];
         
-    for (int i = 0; i < [self.favorites count]; i++) {
-        BOOL found = NO;
-        NSDictionary * d = [self.favorites objectAtIndex:i];
-        for (NSDictionary * d1 in r) {
-            if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
-                found = YES;
-                break;
+        SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
+        NSMutableArray * r = [NSMutableArray array];
+        
+        if ([str isEqualToString:@""]) {
+            self.searchResults = r;
+            [tblView reloadData];
+            [tblFade setAlpha:0.0f];
+            return;
+        }
+        
+        if ([[str lowercaseString] isEqualToString:[searchField.text lowercaseString]] == NO) {
+            return;
+        }
+        
+        self.terms = [NSMutableArray array];
+        self.srchString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        for (NSString * str in [self.srchString componentsSeparatedByString:@" "]) {
+            if ([self.terms indexOfObject:str] == NSNotFound) {
+                [self.terms addObject:str];
             }
         }
-        if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
-            [r addObject:d];
-        }
-    }
-    
-    for (int i = 0; i < [appd.searchHistory count]; i++) {
-        BOOL found = NO;
-        NSDictionary * d = [appd.searchHistory objectAtIndex:i];
-        for (NSDictionary * d1 in r) {
-            if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
-                found = YES;
-                break;
+        
+        for (NSDictionary * d in arr) {
+            BOOL found = NO;
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO) {
+                [r addObject:d];                
             }
         }
-        if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
-            [r addObject:d];
+        
+        
+        for (int i = 0; i < [self.favorites count]; i++) {
+            BOOL found = NO;
+            NSDictionary * d = [self.favorites objectAtIndex:i];
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+                [r addObject:d];
+            }
         }
-    }
-    
-    [r sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-        NSComparisonResult cmp = [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
-        if (cmp == NSOrderedSame) {
-            cmp = [[obj2 objectForKey:@"relevance"] compare:[obj1 objectForKey:@"relevance"]];
+        
+        for (int i = 0; i < [appd.searchHistory count]; i++) {
+            BOOL found = NO;
+            NSDictionary * d = [appd.searchHistory objectAtIndex:i];
+            for (NSDictionary * d1 in r) {
+                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                    found = YES;
+                    break;
+                }
+            }
+            if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+                [r addObject:d];
+            }
+        }
+        
+        [r sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
+            NSComparisonResult cmp = [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
             if (cmp == NSOrderedSame) {
-                if ([obj1 objectForKey:@"lat"] && [obj1 objectForKey:@"long"] && [obj2 objectForKey:@"lat"] && [obj2 objectForKey:@"long"] && [SMLocationManager instance].hasValidLocation) {
-                    CGFloat dist1 = [[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue]  longitude:[[obj1 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
-                    CGFloat dist2 = [[[CLLocation alloc] initWithLatitude:[[obj2 objectForKey:@"lat"] doubleValue]  longitude:[[obj2 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
-                    
-                    if (dist1 > dist2) {
-                        cmp = NSOrderedDescending;
-                    } else if (dist1 < dist2) {
-                        cmp = NSOrderedAscending;
+                cmp = [[obj2 objectForKey:@"relevance"] compare:[obj1 objectForKey:@"relevance"]];
+                if (cmp == NSOrderedSame) {
+                    if ([obj1 objectForKey:@"lat"] && [obj1 objectForKey:@"long"] && [obj2 objectForKey:@"lat"] && [obj2 objectForKey:@"long"] && [SMLocationManager instance].hasValidLocation) {
+                        CGFloat dist1 = [[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue]  longitude:[[obj1 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
+                        CGFloat dist2 = [[[CLLocation alloc] initWithLatitude:[[obj2 objectForKey:@"lat"] doubleValue]  longitude:[[obj2 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
+                        
+                        if (dist1 > dist2) {
+                            cmp = NSOrderedDescending;
+                        } else if (dist1 < dist2) {
+                            cmp = NSOrderedAscending;
+                        }
                     }
                 }
             }
+            return cmp;
+        }];
+        
+        if (self.shouldAllowCurrentPosition) {
+            [r insertObject:@{
+             @"name" : CURRENT_POSITION_STRING,
+             @"address" : CURRENT_POSITION_STRING,
+             @"1Date" : [NSDate date],
+             @"endDate" : [NSDate date],
+             @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+             @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+             @"source" : @"currentPosition",
+             } atIndex:0];        
         }
-        return cmp;
-    }];
-
-    if (self.shouldAllowCurrentPosition) {
-        [r insertObject:@{
-         @"name" : CURRENT_POSITION_STRING,
-         @"address" : CURRENT_POSITION_STRING,
-         @"1Date" : [NSDate date],
-         @"endDate" : [NSDate date],
-         @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
-         @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
-         @"source" : @"currentPosition",
-         } atIndex:0];        
+        
+        
+        self.searchResults = r;
+        [tblView reloadData];
+        [tblFade setAlpha:0.0f];
     }
-
-    
-    self.searchResults = r;
-    [tblView reloadData];
-    [tblFade setAlpha:0.0f];
 }
 
 #pragma mark - osrm request delegate
