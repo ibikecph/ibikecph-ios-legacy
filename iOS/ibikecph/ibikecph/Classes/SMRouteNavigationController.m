@@ -277,7 +277,7 @@ typedef enum {
 - (void)showRouteOverview {
     oldTrackingMode = RMUserTrackingModeNone;
     [self setDirectionsState:directionsHidden];
-//    [self.mpView setZoom:DEFAULT_MAP_ZOOM];
+    [self.mpView rotateMap:0];
     for (RMAnnotation *annotation in self.mpView.annotations) {
         if ([annotation.annotationType isEqualToString:@"path"]) {
             [self.mpView removeAnnotation:annotation];
@@ -332,7 +332,22 @@ typedef enum {
 //        [overviewDestination setText:newValue];
 //    }
     
+//    [self performSelector:@selector(zoomOut:) withObject:coordinates afterDelay:1.0f];
+    [self zoomOut:coordinates];
     
+    [self performSelector:@selector(zoomOut:) withObject:coordinates afterDelay:1.0f];
+    
+    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
+        debugLog(@"error in trackEvent");
+    }
+    
+    CGRect fr = self.mapFade.frame;
+    fr.size.height = 0.0f;
+    self.mapFade.frame = fr;
+
+}
+
+- (void)zoomOut:(NSDictionary*)coordinates {
     CLLocationCoordinate2D ne = ((CLLocation*)[coordinates objectForKey:@"neCoordinate"]).coordinate;
     CLLocationCoordinate2D sw = ((CLLocation*)[coordinates objectForKey:@"swCoordinate"]).coordinate;
     
@@ -345,13 +360,13 @@ typedef enum {
     
     
     BOOL topLeftObscured =(
-    (ne.latitude - self.route.locationStart.latitude < borderCheck*latDiff &&  self.route.locationStart.longitude - sw.longitude < borderCheck*lonDiff) ||
-    (ne.latitude - self.route.locationEnd.latitude < borderCheck*latDiff &&  self.route.locationEnd.longitude - sw.longitude < borderCheck*lonDiff)
+                           (ne.latitude - self.route.locationStart.latitude < borderCheck*latDiff &&  self.route.locationStart.longitude - sw.longitude < borderCheck*lonDiff) ||
+                           (ne.latitude - self.route.locationEnd.latitude < borderCheck*latDiff &&  self.route.locationEnd.longitude - sw.longitude < borderCheck*lonDiff)
                            );
-
+    
     BOOL bottomRightObscured =(
-    (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff) ||
-    (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff)
+                               (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff) ||
+                               (self.route.locationStart.latitude - sw.latitude < borderCheck*latDiff && ne.longitude - self.route.locationStart.longitude < borderCheck*lonDiff)
                                );
     
     if(topLeftObscured) {
@@ -369,22 +384,13 @@ typedef enum {
     
     ne.latitude +=  latDiff * LATITUDE_PADDING * 1.75f;
     ne.longitude += lonDiff * LONGITUDE_PADDING;
-
+    
     sw.latitude -= latDiff * LATITUDE_PADDING;
     sw.longitude -= lonDiff * LONGITUDE_PADDING;
-
+    
     
     [self.mpView setCenterCoordinate:CLLocationCoordinate2DMake((ne.latitude+sw.latitude) / 2.0, (ne.longitude+sw.longitude) / 2.0)];
     [self.mpView zoomWithLatitudeLongitudeBoundsSouthWest:sw northEast:ne animated:YES];
-    
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
-        debugLog(@"error in trackEvent");
-    }
-    
-    CGRect fr = self.mapFade.frame;
-    fr.size.height = 0.0f;
-    self.mapFade.frame = fr;
-
 }
 
 -(NSArray*)splitString:(NSString*)str{
@@ -1202,8 +1208,9 @@ typedef enum {
              * Replace "Destination reached" message with your address
              */
             if (turn.drivingDirection == 15) {
-                turn.descriptionString = @"AVeryLongDestinationThatCantFit";
-                turn.wayName = self.destination;
+//                turn.descriptionString = @"AVeryLongDestinationThatCantFit";
+//                turn.wayName = self.destination;
+                turn.shortDescriptionString = turn.descriptionString;
             }
             if (i == 0)
                 [(SMDirectionTopCell *)cell renderViewFromInstruction:turn];

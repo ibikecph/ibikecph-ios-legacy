@@ -737,6 +737,14 @@ typedef enum {
 
 - (IBAction)saveFavorite:(id)sender {
    
+    NSMutableArray * favs = [SMFavoritesUtil getFavorites];
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"name == %@", addFavName.text];
+    NSArray * arr = [favs filteredArrayUsingPredicate:pred];
+    if (arr.count > 0) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:translateString(@"error_duplicate_favorite_name") delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [av show];
+        return;
+    }
         
     if (self.locDict && [self.locDict objectForKey:@"address"] && [addFavName.text isEqualToString:@""] == NO) {
         if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {

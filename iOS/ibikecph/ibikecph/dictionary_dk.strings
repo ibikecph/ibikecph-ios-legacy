@@ -84,7 +84,7 @@
 "new_route" = "Ny rute";
 "Stop" = "Stop";
 
-"Error" = "Error";
+"Error" = "Fejl";
 "OK" = "OK";
 "error_no_gps_location" = "Ingen GPS lokation!";
 "error_address_not_found" = "Adressens lokation kan ikke findes!";
@@ -204,7 +204,7 @@
 "logout" = "LOG UD";
 
 "thank_you_for_feedback" = "Tak for din feedback";
-"feedback_text" = "Din feedback er blevet afsendt. Tak for hjælpen!\n\nDu kan deltage i opfølgning og diskussion af nye funktioner på www.ibikecph.dk/feedback.";
+"feedback_text" = "Din feedback er blevet afsendt.\n\nDu kan deltage i opfølgning og diskussion af nye funktioner på www.ibikecph.dk/feedback.";
 "report_sent" = "FEEDBACKEN ER AFSENDT";
 
 "home_find_route" = "SØG RUTE";
@@ -229,6 +229,7 @@
 "report_error_problem_not_selected" = "Vælg venligst et problem";
 "report_error_step_not_selected" = "Vælg venligst et trin i ruten";
 
+"error_duplicate_favorite_name" = "Du har allerede en favorit med dette navn. Omdøb din favorit og gem igen.";
 "start_route" = "START";
 
 
