@@ -33,6 +33,7 @@ typedef enum {
 @property (nonatomic, strong) SMAPIRequest * apr;
 @property (nonatomic, strong) UIImage * profileImage;
 @property (nonatomic, strong) SMFavoritesUtil * favfetch;
+@property (nonatomic, strong) SMAPIRequest * locale;
 @end
 
 
@@ -56,7 +57,7 @@ typedef enum {
         [sh setDelegate:self.appDelegate];
         [sh fetchSearchHistoryFromServer];
         [[SMFavoritesUtil instance] fetchFavoritesFromServer];
-    }
+    }    
 }
 
 - (void)viewDidUnload {

@@ -108,6 +108,14 @@
         for (NSDictionary * d in [service objectForKey:@"headers"]) {
             [req setValue:[d objectForKey:@"value"] forHTTPHeaderField:[d objectForKey:@"key"]];
         }
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString * language = [defaults stringForKey:@"appLanguage"];
+        if ([language isEqualToString:@"en"]) {
+            [req setValue:@"en" forHTTPHeaderField:@"LANGUAGE_CODE"];
+        } else if ([language isEqualToString:@"dk"]) {
+            [req setValue:@"da" forHTTPHeaderField:@"LANGUAGE_CODE"];
+        }
 
         if (self.conn) {
             [self.conn cancel];
@@ -136,6 +144,15 @@
         for (NSDictionary * d in [service objectForKey:@"headers"]) {
             [req setValue:[d objectForKey:@"value"] forHTTPHeaderField:[d objectForKey:@"key"]];
         }
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString * language = [defaults stringForKey:@"appLanguage"];
+        if ([language isEqualToString:@"en"]) {
+            [req setValue:@"en" forHTTPHeaderField:@"LANGUAGE_CODE"];
+        } else if ([language isEqualToString:@"dk"]) {
+            [req setValue:@"da" forHTTPHeaderField:@"LANGUAGE_CODE"];
+        }
+
         
         if (self.conn) {
             [self.conn cancel];
