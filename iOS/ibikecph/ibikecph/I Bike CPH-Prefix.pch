@@ -112,8 +112,8 @@
 
 #define MAX_TURNS 4
 
-#define API_ADDRESS @"ibikecph-staging.herokuapp.com"
-#define API_SERVER @"http://ibikecph-staging.herokuapp.com/api"
+#define API_ADDRESS @"www.ibikecph.dk"
+#define API_SERVER @"http://www.ibikecph.dk/api"
 #define API_DEFAULT_ACCEPT @{@"key": @"Accept", @"value" : @"application/vnd.ibikecph.v1"}
 #define API_DEFAULT_HEADERS @[API_DEFAULT_ACCEPT, @{@"key": @"Content-Type", @"value" : @"application/json"}]
 
