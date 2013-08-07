@@ -489,7 +489,7 @@ typedef enum {
             } else {
                 [pinButton setSelected:NO];
             }
-            if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [self.appDelegate.appSettings isKindOfClass:[NSString class]] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
+            if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isKindOfClass:[NSString class]] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
                 pinButton.enabled = YES;
             }
             
