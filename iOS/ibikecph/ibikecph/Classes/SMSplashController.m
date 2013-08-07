@@ -474,6 +474,7 @@ typedef enum {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[error description] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
     }
+    [self.apr hideWaitingView];
 }
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
@@ -509,6 +510,7 @@ typedef enum {
     } else {
         UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
         [av show];
+        [req hideWaitingView];
     }
 }
 
