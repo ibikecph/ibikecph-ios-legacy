@@ -6,6 +6,14 @@
   Copyright (c) 2013 City of Copenhagen. All rights reserved.
 */
 
+/*
+ dictionary_dk.strings
+ I Bike CPH
+ 
+ Created by Ivan Pavlovic on 31/01/2013.
+ Copyright (c) 2013 City of Copenhagen. All rights reserved.
+ */
+
 "current_position" = "Current position";
 "today" = "Today";
 "tomorrow" = "Tomorrow";
@@ -445,12 +453,6 @@
 "report_send" = "SEND REPORT";
 "describe_problem" = "DESCRIBE A PROBLEM";
 "logout" = "LOG OUT";
-
-"thank_you_for_feedback" = "Thank you for your feedback";
-"feedback_text" = "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-"report_sent" = "FEEDBACK SENT";
-"report_enter_email_address_placeholder" = "Enter you email address";
-"home_find_route" = "FIND ROUTE";
 
 "about_text" = "The I Bike CPH app is the City of Copenhagen’s mobile route planner for everyone cycling in Copenhagen. The app is part of Copenhagen's goal of becoming the world's best bicycle city. The app knows the nice shortcuts in Copenhagen, which parks you’re allowed to bicycle through and where you’re allowed to ride against the one way direction for cars.\n\nThe app uses map data from the crowd-sourced OpenStreetMap (OSM), which is continuously updated, for example when a new bicycle bridge opens. The City of Copenhagen has contributed to OpenStreetMap with quality assurance of the bicycle data for the Copenhagen area.\n\nThe map is specifically adapted to cyclists. Motorways are toned down, whereas cobblestones are highlighted so you can avoid bumpy rides. The map also includes things like bicycle barriers, so you know where you cannot pass with your cargo bike.\n\nNote: The directions offered by the I Bike CPH app are only suggestions - remember to adhere to traffic laws and use a phone holder if you use the app while riding.\n\nGetting Started:\nYou can choose where to go in two ways:\n\nLocate on map: Find the place on the map and hold down your finger until a pin is placed on the map. The nearest address will be displayed at the bottom. Select 'Start' to calculate the route from your current location to the destination.\n\nSearch by address: Click on the magnifying glass in the upper right corner. Enter the destination address and click 'Go'. Then click 'Start' to calculate the route.\n\nWhen the route is displayed, click 'Start' to activate GPS navigation. While your ride, turn instructions will be shown at the bottom. Estimated arrival time is shown in the upper right corner, next to the small flag.\n\nRoutes for cargo bikes:\nWhen you have calculated a route or GPS navigation is active, you can click the small black bar with three dots at the bottom left to select the type of route. When cargo bike is selected, the route will avoid steps, barriers and cobblestones, and the estimated travel time will be adjusted to cargo bikes.\n\nShow location:\nPress the button with an arrow in the lower-right corner to see where you are on the map. The map will follow your location, until you manually pan the map. The function is enabled when the arrow is blue.\n\nRead more:\nThe app includes additional features, like the ability to save favorite locations. Read more about the map and features on www.ibikecph.dk/about.\n\nHave a nice ride and thank you for cycling!";
 "about_ibikecph_title" = "ABOUT I BIKE CPH";
