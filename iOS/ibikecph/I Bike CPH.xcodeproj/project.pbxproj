@@ -1112,6 +1112,8 @@
 		4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterRouteController.m; sourceTree = "<group>"; };
 		4CC9515316F0D76D00DC7AF8 /* SMSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSearchCell.h; sourceTree = "<group>"; };
 		4CC9515416F0D76D00DC7AF8 /* SMSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSearchCell.m; sourceTree = "<group>"; };
+		4CD399A017B3898500E04D13 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		4CD399A117B3898500E04D13 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_heading.png; sourceTree = "<group>"; };
 		4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_heading@2x.png"; sourceTree = "<group>"; };
 		4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_no_tracking.png; sourceTree = "<group>"; };
@@ -2180,6 +2182,7 @@
 				"zh-Hans",
 				"da-DK",
 				Base,
+				da,
 			);
 			mainGroup = 4C73D1FF16AEDCDA00AED42A;
 			productRefGroup = 4C73D20B16AEDCDA00AED42A /* Products */;
@@ -2759,6 +2762,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F68C64251768B5B3009B4A21 /* en */,
+				4CD399A017B3898500E04D13 /* da */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -2767,6 +2771,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4C73D21816AEDCDA00AED42A /* en */,
+				4CD399A117B3898500E04D13 /* da */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2836,7 +2841,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
@@ -2863,7 +2868,7 @@
 					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35D47EAA-973E-4FEB-8784-CC211B5A3957";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
