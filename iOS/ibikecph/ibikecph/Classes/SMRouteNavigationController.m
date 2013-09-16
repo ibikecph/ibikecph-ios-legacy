@@ -854,7 +854,7 @@ typedef enum {
     [av show];
 }
 
-- (void)startRoute {
+- (void)startRoute:(SMRoute *)route {
     if (overviewShown) {
         return;
     }
