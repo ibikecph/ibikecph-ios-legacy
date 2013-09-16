@@ -1274,8 +1274,8 @@ typedef enum {
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString *)src toAddress:(NSString *)dst withJSON:(id)jsonRoot{
     CLLocation * start = [[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude];
     CLLocation * end = [[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude];    
-    self.destination = dst;
-    self.source = src;
+    self.destination = (dst == nil ? @"" : dst);
+    self.source = (src == nil ? @"" : src);
     self.jsonRoot = jsonRoot;
     if (self.navigationController.topViewController == self) {
         [self performSegueWithIdentifier:@"goToNavigationView" sender:@{@"start" : start, @"end" : end}];
