@@ -21,4 +21,14 @@
     self.trackedViewName = NSStringFromClass([self class]);
 }
 
+- (void)moveView {
+//    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+//        [self.view setClipsToBounds:YES];
+//        CGRect frame = self.view.bounds;
+//        frame.origin.y = -20.0f;
+//        frame.size.height -= 40.0f;
+//        self.view.bounds = frame;
+//    }
+}
+
 @end

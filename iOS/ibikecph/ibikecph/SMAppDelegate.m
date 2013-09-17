@@ -86,6 +86,10 @@
     self.window.rootViewController  = initialViewController;
     [self.window makeKeyAndVisible];
     
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    }
+    
     return YES;
 }
 							

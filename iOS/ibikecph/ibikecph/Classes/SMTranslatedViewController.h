@@ -14,4 +14,7 @@
 
 @property (nonatomic, weak) SMAppDelegate * appDelegate;
 
+
+- (void)moveView;
+
 @end

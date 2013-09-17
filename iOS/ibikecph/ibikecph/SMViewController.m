@@ -109,7 +109,9 @@ typedef enum {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
+    }
     
     [RMMapView class];
     
@@ -159,7 +161,6 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(favoritesChanged:) name:kFAVORITES_CHANGED object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidToken:) name:@"invalidToken" object:nil];
-    
     
     [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:0.0f andPullView:menuBtn];
     [centerView addPullView:blockingView];
@@ -617,6 +618,7 @@ typedef enum {
             frame.origin.x = 260.0f;
             [centerView setFrame:frame];
         } completion:^(BOOL finished) {
+            [self setNeedsStatusBarAppearanceUpdate];
             blockingView.alpha = 1.0f;
         }];
     } else {
@@ -625,6 +627,7 @@ typedef enum {
             frame.origin.x = 0.0f;
             [centerView setFrame:frame];
         } completion:^(BOOL finished) {
+            [self setNeedsStatusBarAppearanceUpdate];
             blockingView.alpha = 0.0f;
         }];        
     }    
@@ -1511,7 +1514,9 @@ typedef enum {
                 [self openMenu:menuFavorites];
             }];
         }
-        
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            [self setNeedsStatusBarAppearanceUpdate];
+        }
     }
 }
 
@@ -1608,6 +1613,16 @@ typedef enum {
             [v removeFromSuperview];
         }];
     }];
+}
+
+#pragma mark - statusbar style
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    if (centerView.frame.origin.x == 0.0f) {
+        return UIStatusBarStyleDefault;
+    } else {
+        return UIStatusBarStyleLightContent;
+    }
 }
 
 @end
