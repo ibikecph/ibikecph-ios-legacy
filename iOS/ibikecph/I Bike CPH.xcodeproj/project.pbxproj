@@ -545,6 +545,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4C42400317E89A7400C2FCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
+			remoteInfo = MapView;
+		};
+		4C42400A17E89A7400C2FCC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E5A459016F0DFC200B55C04;
+			remoteInfo = HockeySDKTests;
+		};
 		4CA06F3716EF8BE4007603B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
@@ -2061,6 +2075,7 @@
 			children = (
 				4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */,
 				4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */,
+				4C42400B17E89A7400C2FCC0 /* HockeySDKTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2144,6 +2159,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4C42400417E89A7400C2FCC0 /* PBXTargetDependency */,
 			);
 			name = "I Bike CPH";
 			productName = iBike;
@@ -2205,6 +2221,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4C42400B17E89A7400C2FCC0 /* HockeySDKTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HockeySDKTests.octest;
+			remoteRef = 4C42400A17E89A7400C2FCC0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2756,6 +2779,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C42400417E89A7400C2FCC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MapView;
+			targetProxy = 4C42400317E89A7400C2FCC0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */ = {
