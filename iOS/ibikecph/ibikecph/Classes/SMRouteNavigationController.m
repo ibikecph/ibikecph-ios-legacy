@@ -454,7 +454,7 @@ typedef enum {
     }
 
     NSRange range= [hyphenedString rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"-"]];
-    if(!noSplit){
+    if(!noSplit && range.location != NSNotFound){
         topString= [topString stringByAppendingString:[hyphenedString substringToIndex:range.location+1]];
         bottomString= [bottomString stringByAppendingFormat:@"%@ ",[hyphenedString substringFromIndex:range.location+1]];
     }

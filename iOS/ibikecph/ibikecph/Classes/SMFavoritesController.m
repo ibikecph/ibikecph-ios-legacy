@@ -217,4 +217,10 @@ typedef enum {
     }
 }
 
+#pragma mark - statusbar style
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end

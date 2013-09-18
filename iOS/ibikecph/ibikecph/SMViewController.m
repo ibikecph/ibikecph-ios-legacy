@@ -35,6 +35,7 @@
 #import "DAKeyboardControl.h"
 #import "SMFavoritesUtil.h"
 #import "SMAPIRequest.h"
+#import "UIView+LocateSubview.h"
 
 typedef enum {
     menuFavorites = 0,
@@ -229,7 +230,11 @@ typedef enum {
     self.findFrom = @"";
     self.findTo = @"";
     
+#if DEBUG
     [debugLabel setText:BUILD_STRING];
+#else
+    [debugLabel setText:@""];
+#endif
     
     findRouteSmall.alpha = 1.0f;
     findRouteBig.alpha = 0.0f;
@@ -1207,34 +1212,36 @@ typedef enum {
 
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	//	Grip customization code goes in here...
-	for(UIView* view in cell.subviews) {
-		if([[[view class] description] isEqualToString:@"UITableViewCellReorderControl"]) {
-			UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(view.frame), CGRectGetMaxY(view.frame))];
-			[resizedGripView addSubview:view];
-			[cell addSubview:resizedGripView];
-            
-			CGSize sizeDifference = CGSizeMake(resizedGripView.frame.size.width - view.frame.size.width, resizedGripView.frame.size.height - view.frame.size.height);
-			CGSize transformRatio = CGSizeMake(resizedGripView.frame.size.width / view.frame.size.width, resizedGripView.frame.size.height / view.frame.size.height);
-            
-			//	Original transform
-			CGAffineTransform transform = CGAffineTransformIdentity;
-            
-			//	Scale custom view so grip will fill entire cell
-			transform = CGAffineTransformScale(transform, transformRatio.width, transformRatio.height);
-            
-			//	Move custom view so the grip's top left aligns with the cell's top left
-			transform = CGAffineTransformTranslate(transform, -sizeDifference.width / 2.0, -sizeDifference.height / 2.0);
-            
-			[resizedGripView setTransform:transform];
-            
-			for(UIImageView* cellGrip in view.subviews)
-			{
-				if([cellGrip isKindOfClass:[UIImageView class]])
-					[cellGrip setImage:nil];
-			}
-		}
-	}
+    UIView* view = [cell subviewWithClassName:@"UITableViewCellReorderControl"];
+    
+    if (view) {
+        UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(view.frame), CGRectGetMaxY(view.frame))];
+        [resizedGripView addSubview:view];
+        [cell addSubview:resizedGripView];
+        
+        CGSize sizeDifference = CGSizeMake(resizedGripView.frame.size.width - view.frame.size.width, resizedGripView.frame.size.height - view.frame.size.height);
+        CGSize transformRatio = CGSizeMake(resizedGripView.frame.size.width / view.frame.size.width, resizedGripView.frame.size.height / view.frame.size.height);
+        
+        //	Original transform
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        
+        //	Scale custom view so grip will fill entire cell
+        transform = CGAffineTransformScale(transform, transformRatio.width, transformRatio.height);
+        
+        //	Move custom view so the grip's top left aligns with the cell's top left
+        transform = CGAffineTransformTranslate(transform, -sizeDifference.width / 2.0, -sizeDifference.height / 2.0);
+        
+        [resizedGripView setTransform:transform];
+        
+        for(UIImageView* cellGrip in view.subviews) {
+            if([cellGrip isKindOfClass:[UIImageView class]]) {
+                [cellGrip setImage:nil];
+            }
+        }
+    }
+
+
+
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
