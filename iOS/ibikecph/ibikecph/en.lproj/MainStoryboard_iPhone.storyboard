@@ -541,7 +541,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
-                                <rect key="frame" x="0.0" y="71" width="320" height="434"/>
+                                <rect key="frame" x="0.0" y="70.999999999999986" width="320" height="434"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
@@ -1139,7 +1139,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="buttonLabel" destination="Zwy-mW-ZZA" id="UlL-Ev-C7x"/>
                                         </connections>
@@ -3295,10 +3295,40 @@
         <image name="accountLogout.png" width="83" height="36"/>
         <image name="autocompleteHeader.png" width="152" height="4"/>
         <image name="back_arrow_btn_black.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black_press.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black_press.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black_press.png" width="46" height="34"/>
+        <image name="back_arrow_btn_black_press.png" width="46" height="34"/>
         <image name="back_arrow_btn_black_press.png" width="46" height="34"/>
         <image name="back_arrow_btn_white.png" width="47" height="37"/>
         <image name="back_arrow_btn_white_press.png" width="37" height="29"/>
         <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
+        <image name="blue_btn_pressed.png" width="11" height="11"/>
         <image name="blue_btn_pressed.png" width="11" height="11"/>
         <image name="bottom_divider_vertical.png" width="2" height="2"/>
         <image name="btnClose.png" width="43" height="43"/>
@@ -3307,70 +3337,123 @@
         <image name="cloud_red_splash.png" width="128" height="76"/>
         <image name="distance_white.png" width="91" height="35"/>
         <image name="divider_side_menu_btn.png" width="1" height="2"/>
+        <image name="divider_side_menu_btn.png" width="1" height="2"/>
         <image name="drop_pin_add_fav_btn.png" width="37" height="77"/>
         <image name="drop_pin_add_fav_btn_active.png" width="37" height="77"/>
         <image name="drop_pin_add_fav_btn_press.png" width="37" height="77"/>
+        <image name="drop_pin_start_bgr.png" width="320" height="113"/>
         <image name="drop_pin_start_bgr.png" width="320" height="113"/>
         <image name="drop_shadow_sliding_image.png" width="5" height="1"/>
         <image name="favAdd.png" width="22" height="22"/>
         <image name="favEdit.png" width="22" height="22"/>
         <image name="favEditBtn.png" width="33" height="33"/>
         <image name="favEditBtnPressed.png" width="33" height="33"/>
+        <image name="favEditBtnPressed.png" width="33" height="33"/>
         <image name="favEditDeleteButton.png" width="82" height="45"/>
         <image name="favEditDoneBtn.png" width="72" height="33"/>
         <image name="favHomeBlack.png" width="22" height="22"/>
         <image name="favListRow.png" width="260" height="45"/>
+        <image name="favListRow.png" width="260" height="45"/>
+        <image name="favListRow.png" width="260" height="45"/>
+        <image name="favListRow.png" width="260" height="45"/>
         <image name="favSearch_Name_icon.png" width="17" height="21"/>
         <image name="favSearch_icon.png" width="17" height="21"/>
         <image name="favStarWhiteLarge.png" width="22" height="22"/>
+        <image name="favStarWhiteLarge.png" width="22" height="22"/>
         <image name="favTypeFavoriteButton.png" width="85" height="85"/>
+        <image name="favTypeFavoriteButtonPressed.png" width="85" height="85"/>
         <image name="favTypeFavoriteButtonPressed.png" width="85" height="85"/>
         <image name="favTypeHomeButton.png" width="85" height="85"/>
         <image name="favTypeHomeButtonPressed.png" width="85" height="85"/>
+        <image name="favTypeHomeButtonPressed.png" width="85" height="85"/>
         <image name="favTypeSchoolButton.png" width="85" height="85"/>
         <image name="favTypeSchoolButtonPressed.png" width="85" height="85"/>
+        <image name="favTypeSchoolButtonPressed.png" width="85" height="85"/>
         <image name="favTypeWorkButton.png" width="85" height="85"/>
+        <image name="favTypeWorkButtonPressed.png" width="85" height="85"/>
         <image name="favTypeWorkButtonPressed.png" width="85" height="85"/>
         <image name="favWorkBlack.png" width="22" height="22"/>
         <image name="favoritesInput.png" width="306" height="119"/>
         <image name="fb_linked_icon.png" width="54" height="54"/>
         <image name="field_email_icon.png" width="54" height="54"/>
+        <image name="field_email_icon.png" width="54" height="54"/>
+        <image name="field_email_icon.png" width="54" height="54"/>
+        <image name="field_password_icon.png" width="54" height="54"/>
+        <image name="field_password_icon.png" width="54" height="54"/>
         <image name="field_password_icon.png" width="54" height="54"/>
         <image name="field_user_icon.png" width="54" height="54"/>
+        <image name="field_user_icon.png" width="54" height="54"/>
+        <image name="findRouteCalendar.png" width="21" height="22"/>
+        <image name="findRouteCalendar.png" width="21" height="22"/>
+        <image name="findRouteCalendar.png" width="21" height="22"/>
+        <image name="findRouteCalendar.png" width="21" height="22"/>
+        <image name="findRouteCalendar.png" width="21" height="22"/>
         <image name="findRouteCalendar.png" width="21" height="22"/>
         <image name="gray_btn.png" width="11" height="11"/>
         <image name="gray_btn_pressed.png" width="11" height="11"/>
         <image name="homeSearchSmall.png" width="45" height="45"/>
         <image name="home_btn_active.png" width="80" height="80"/>
         <image name="home_btn_inactive.png" width="80" height="80"/>
+        <image name="home_btn_inactive.png" width="80" height="80"/>
+        <image name="icon_locate_me.png" width="55" height="55"/>
         <image name="icon_locate_me.png" width="55" height="55"/>
         <image name="info.png" width="22" height="22"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
+        <image name="input_field__scalable.png" width="11" height="11"/>
         <image name="input_field__scalable.png" width="11" height="11"/>
         <image name="leftArrow.png" width="7" height="12"/>
         <image name="loginBG.png" width="320" height="318"/>
         <image name="loginFacebook.png" width="216" height="45"/>
+        <image name="loginFacebook.png" width="216" height="45"/>
+        <image name="loginFacebookPressed.png" width="216" height="45"/>
+        <image name="loginFacebookPressed.png" width="216" height="45"/>
+        <image name="loginFacebookPressed.png" width="216" height="45"/>
         <image name="loginFacebookPressed.png" width="216" height="45"/>
         <image name="mover.png" width="20" height="12"/>
         <image name="no_connection.png" width="24" height="24"/>
         <image name="normalDirectionsBG.png" width="320" height="105"/>
+        <image name="normalDirectionsBG.png" width="320" height="105"/>
         <image name="overviewBG.png" width="320" height="106"/>
         <image name="profile.png" width="22" height="22"/>
+        <image name="profile_default_image.png" width="80" height="80"/>
         <image name="profile_default_image.png" width="80" height="80"/>
         <image name="pullHandle.png" width="42" height="25"/>
         <image name="radioChecked.png" width="22" height="22"/>
         <image name="radioUnchecked.png" width="22" height="22"/>
         <image name="red_btn.png" width="22" height="22"/>
+        <image name="red_btn.png" width="22" height="22"/>
         <image name="red_btn_pressed.png" width="22" height="22"/>
+        <image name="red_btn_pressed.png" width="22" height="22"/>
+        <image name="register.png" width="22" height="22"/>
+        <image name="register.png" width="22" height="22"/>
         <image name="register.png" width="22" height="22"/>
         <image name="registerBG.png" width="320" height="457"/>
         <image name="reportBottom.png" width="320" height="64"/>
         <image name="reportBulb.png" width="82" height="121"/>
         <image name="reportClose.png" width="47" height="36"/>
+        <image name="reportClose.png" width="47" height="36"/>
         <image name="reportClose_pressed.png" width="47" height="36"/>
+        <image name="reportClose_pressed.png" width="47" height="36"/>
+        <image name="reportHeaderBG.png" width="320" height="51"/>
+        <image name="reportHeaderBG.png" width="320" height="51"/>
+        <image name="reportHeaderBG.png" width="320" height="51"/>
+        <image name="reportHeaderBG.png" width="320" height="51"/>
+        <image name="reportHeaderBG.png" width="320" height="51"/>
         <image name="reportHeaderBG.png" width="320" height="51"/>
         <image name="reportPulldown.png" width="286" height="44"/>
         <image name="reportTextView.png" width="285" height="65"/>
         <image name="rightArrow.png" width="7" height="12"/>
+        <image name="routeComplete_close_btn.png" width="23" height="23"/>
         <image name="routeComplete_close_btn.png" width="23" height="23"/>
         <image name="routeComplete_report_problem.png" width="320" height="38"/>
         <image name="routeComplete_report_problem_press.png" width="320" height="38"/>
@@ -3392,16 +3475,34 @@
         <image name="routeEnterViewMoreRow.png" width="320" height="47"/>
         <image name="routeStopOverlay.png" width="320" height="212"/>
         <image name="skip.png" width="22" height="22"/>
+        <image name="skip.png" width="22" height="22"/>
+        <image name="skip.png" width="22" height="22"/>
+        <image name="skip.png" width="22" height="22"/>
+        <image name="skip.png" width="22" height="22"/>
+        <image name="skip.png" width="22" height="22"/>
         <image name="smallDirectionsBG.png" width="76" height="76"/>
         <image name="splashDialog.png" width="240" height="130"/>
         <image name="splash_bg_btn_blue.png" width="1" height="60"/>
+        <image name="splash_bg_btn_blue.png" width="1" height="60"/>
+        <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
+        <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
+        <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
         <image name="splash_bg_btn_blue_pressed.png" width="1" height="60"/>
         <image name="splash_bg_btn_red.png" width="1" height="60"/>
+        <image name="splash_bg_btn_red_pressed.png" width="1" height="60"/>
         <image name="splash_bg_btn_red_pressed.png" width="1" height="60"/>
         <image name="splash_cloud.png" width="124" height="137"/>
         <image name="splash_exclamation.png" width="91" height="88"/>
         <image name="splash_rider.png" width="277" height="478"/>
         <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn.png" width="11" height="11"/>
+        <image name="white_btn_pressed.png" width="11" height="11"/>
+        <image name="white_btn_pressed.png" width="11" height="11"/>
+        <image name="white_btn_pressed.png" width="11" height="11"/>
+        <image name="white_btn_pressed.png" width="11" height="11"/>
         <image name="white_btn_pressed.png" width="11" height="11"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -3411,6 +3512,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="SAG-9b-Vbu"/>
-        <segue reference="wAx-WK-VM3"/>
+        <segue reference="DqZ-cl-vTA"/>
     </inferredMetricsTieBreakers>
 </document>
