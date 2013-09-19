@@ -1215,9 +1215,11 @@ typedef enum {
     UIView* view = [cell subviewWithClassName:@"UITableViewCellReorderControl"];
     
     if (view) {
+        [view setExclusiveTouch:NO];
         UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(view.frame), CGRectGetMaxY(view.frame))];
         [resizedGripView addSubview:view];
         [cell addSubview:resizedGripView];
+        
         
         CGSize sizeDifference = CGSizeMake(resizedGripView.frame.size.width - view.frame.size.width, resizedGripView.frame.size.height - view.frame.size.height);
         CGSize transformRatio = CGSizeMake(resizedGripView.frame.size.width / view.frame.size.width, resizedGripView.frame.size.height / view.frame.size.height);
@@ -1232,16 +1234,23 @@ typedef enum {
         transform = CGAffineTransformTranslate(transform, -sizeDifference.width / 2.0, -sizeDifference.height / 2.0);
         
         [resizedGripView setTransform:transform];
-        
+
         for(UIImageView* cellGrip in view.subviews) {
             if([cellGrip isKindOfClass:[UIImageView class]]) {
                 [cellGrip setImage:nil];
             }
         }
+        
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake(208.0f, 0.0f, 52.0f, cell.frame.size.height)];
+        [btn setTag:indexPath.row];
+        [btn addTarget:self action:@selector(rowSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btn];
     }
+}
 
-
-
+- (IBAction)rowSelected:(id)sender {
+    [self tableView:tblMenu didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:((UIButton*)sender).tag inSection:0]];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
