@@ -1852,6 +1852,11 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="9Tc-N5-o1b">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="FSD-PE-lob" customClass="SMGPSTrackButton">
                                         <rect key="frame" x="252" y="500" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -2006,6 +2011,7 @@
                         <outlet property="mpView" destination="ofn-G7-PqS" id="mIK-V5-6Hq"/>
                         <outlet property="pinButton" destination="4lL-I3-Nhc" id="FWG-Uw-UrG"/>
                         <outlet property="routeStreet" destination="JL5-QE-QrC" id="3ly-qa-A7K"/>
+                        <outlet property="statusbarView" destination="9Tc-N5-o1b" id="KMG-gJ-zGz"/>
                         <outlet property="tblMenu" destination="ofH-TZ-2iy" id="o1p-ii-wKQ"/>
                         <segue destination="m0B-4B-35u" kind="push" identifier="goToNavigationView" id="BMy-9M-oqz"/>
                         <segue destination="jJY-5g-gJF" kind="push" identifier="openAbout" id="Ntu-Ti-mms"/>
@@ -2140,6 +2146,11 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="HPL-Pl-sdZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" id="OXh-z0-rmJ" userLabel="Small Directions View">
                                         <rect key="frame" x="128" y="524" width="64" height="44"/>
@@ -2643,6 +2654,7 @@
                         <outlet property="progressView" destination="VcC-Op-m4E" id="cQp-aF-eaT"/>
                         <outlet property="recalculatingView" destination="3vS-az-zZ1" id="nhe-Qd-HZW"/>
                         <outlet property="routeOverview" destination="xVR-by-V8U" id="95y-xR-Uey"/>
+                        <outlet property="statusbarView" destination="HPL-Pl-sdZ" id="Fvn-NP-VQH"/>
                         <outlet property="stopView" destination="NU9-z4-bIO" id="HZP-dk-Yhw"/>
                         <outlet property="swipableView" destination="tFt-Yo-08s" id="e2P-kr-ebF"/>
                         <outlet property="swipeLeftArrow" destination="s80-Dd-vil" id="YVS-wM-onE"/>

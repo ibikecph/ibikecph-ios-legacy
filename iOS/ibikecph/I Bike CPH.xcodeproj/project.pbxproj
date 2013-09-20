@@ -1089,7 +1089,6 @@
 		4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LocateSubview.m"; sourceTree = "<group>"; };
 		4CB15BDF172929F000C3BB1E /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
 		4CB15BE0172929F000C3BB1E /* no_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connection@2x.png"; sourceTree = "<group>"; };
-		4CBDCEA017EB3E3200D6C01F /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
 		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
@@ -1130,6 +1129,7 @@
 		4CC9514C16F0C80B00DC7AF8 /* SMEnterRouteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEnterRouteController.m; sourceTree = "<group>"; };
 		4CC9515316F0D76D00DC7AF8 /* SMSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSearchCell.h; sourceTree = "<group>"; };
 		4CC9515416F0D76D00DC7AF8 /* SMSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSearchCell.m; sourceTree = "<group>"; };
+		4CCB1B1417EC6CEB00902AA9 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4CD399A117B3898500E04D13 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CD53D5216DFB53A00DB90E4 /* icon_locate_heading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_locate_heading.png; sourceTree = "<group>"; };
 		4CD53D5316DFB53A00DB90E4 /* icon_locate_heading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_heading@2x.png"; sourceTree = "<group>"; };
@@ -2799,7 +2799,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F68C64251768B5B3009B4A21 /* en */,
-				4CBDCEA017EB3E3200D6C01F /* da */,
+				4CCB1B1417EC6CEB00902AA9 /* da */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

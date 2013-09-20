@@ -45,6 +45,7 @@
     __weak IBOutlet FlickableView *centerView;
     __weak IBOutlet UIView *blockingView;
     __weak IBOutlet UIView *mapContainer;
+    __weak IBOutlet UIView *statusbarView;
 }
 
 @property BOOL currentlyRouting;

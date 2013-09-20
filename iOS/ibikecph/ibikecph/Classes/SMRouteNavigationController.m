@@ -144,6 +144,12 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        statusbarView.hidden = YES;
+    }
+
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleBlackTranslucent];
     
@@ -1713,4 +1719,15 @@ typedef enum {
         }];
     }];
 }
+
+#pragma mark - statusbar style
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    //    if (centerView.frame.origin.x == 0.0f) {
+    //        return UIStatusBarStyleDefault;
+    //    } else {
+    return UIStatusBarStyleLightContent;
+    //    }
+}
+
 @end
