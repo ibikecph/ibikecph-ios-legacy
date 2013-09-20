@@ -79,8 +79,8 @@
 #define MAX_HEIGHT_FOR_EVENTS_TABLE 170.0f
 #define MAIL_RECIPIENTS @[@"support+00c86bd0c75940dcb863bbca9fa33313@feedback.hockeyapp.net", @"emil.tin@tmf.kk.dk"]
 #define ZOOM_TO_TURN_DURATION 4 // in seconds
-#define DEFAULT_MAP_ZOOM 18.5
-#define DEFAULT_TURN_ZOOM 18.5
+#define DEFAULT_MAP_ZOOM 17
+#define DEFAULT_TURN_ZOOM 17
 #define MAX_MAP_ZOOM 20
 #define PATH_COLOR [UIColor colorWithRed:0.0f/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0f]
 #define PATH_OPACITY 0.8f
