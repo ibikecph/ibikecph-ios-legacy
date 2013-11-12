@@ -280,7 +280,7 @@ typedef enum {
         
         NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)",CURRENT_POSITION_STRING, [[d objectForKey:@"startLat"] doubleValue], [[d objectForKey:@"startLong"] doubleValue], [d objectForKey:@"destination"], [[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]];
         debugLog(@"%@", st);
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Resume" withLabel:st withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Route:" withAction:@"Resume" withLabel:st withValue:0]) {
             debugLog(@"error in trackPageview");
         }
         
@@ -574,13 +574,13 @@ typedef enum {
     if ([arr count] > 0) {
         [pinButton setSelected:NO];
         [fv deleteFavoriteFromServer:[arr objectAtIndex:0]];
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
         }        
     } else {
         [pinButton setSelected:YES];
         [fv addFavoriteToServer:d];
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
         }
     }
@@ -794,7 +794,7 @@ typedef enum {
             [self addFavoriteHide:nil];
             
             
-            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+            if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"New" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
         } else {
@@ -811,7 +811,7 @@ typedef enum {
         [fv deleteFavoriteFromServer:@{
          @"id" : [[self.favoritesList objectAtIndex:self.locIndex] objectForKey:@"id"]
          }];
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
         }
         [self addFavoriteHide:nil];
@@ -865,7 +865,7 @@ typedef enum {
         SMFavoritesUtil * fv = [SMFavoritesUtil instance];
         [fv editFavorite:dict];
         [self addFavoriteHide:nil];
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"Save" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
         }
     } else {
@@ -1157,7 +1157,7 @@ typedef enum {
                     CLLocation * cEnd = [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] floatValue] longitude:[[currentRow objectForKey:@"long"] floatValue]];
                     CLLocation * cStart = [[CLLocation alloc] initWithLatitude:[SMLocationManager instance].lastValidLocation.coordinate.latitude longitude:[SMLocationManager instance].lastValidLocation.coordinate.longitude];
                     
-                    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Menu" withLabel:@"Favorites" withValue:0]) {
+                    if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Menu" withLabel:@"Favorites" withValue:0]) {
                         debugLog(@"error in trackEvent");
                     }
                     
@@ -1385,7 +1385,7 @@ typedef enum {
      */
     NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", @"", cStart.coordinate.latitude, cStart.coordinate.longitude, @"", cEnd.coordinate.latitude, cEnd.coordinate.longitude];
     debugLog(@"%@", st);
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
         debugLog(@"error in trackPageview");
     }
     self.startName = CURRENT_POSITION_STRING;
@@ -1452,7 +1452,7 @@ typedef enum {
         
         NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", @"", s.coordinate.latitude, s.coordinate.longitude, @"", e.coordinate.latitude, e.coordinate.longitude];
         debugLog(@"%@", st);
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Route:" withAction:@"Pin" withLabel:st withValue:0]) {
             debugLog(@"error in trackPageview");
         }
         

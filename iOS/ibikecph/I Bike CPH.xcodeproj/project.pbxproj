@@ -457,6 +457,9 @@
 		4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */; };
 		4CC388A616E77A4800E7C884 /* tokenNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC388A016E77A4800E7C884 /* tokenNormal.png */; };
 		4CC388A816E77A4800E7C884 /* tokenNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC388A116E77A4800E7C884 /* tokenNormal@2x.png */; };
+		4CC7DB7118326C3900885F69 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC7DB4F18326C3800885F69 /* libGoogleAnalyticsServices.a */; };
+		4CC7DB7718326E1400885F69 /* SMAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7DB7618326E1400885F69 /* SMAnalytics.m */; };
+		4CC7DB7918326F2200885F69 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CC7DB7818326F2200885F69 /* libz.dylib */; };
 		4CC8521B16FB4B2B009EA0E7 /* checkboxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8520516FB4B2B009EA0E7 /* checkboxChecked.png */; };
 		4CC8521C16FB4B2B009EA0E7 /* checkboxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8520616FB4B2B009EA0E7 /* checkboxChecked@2x.png */; };
 		4CC8521D16FB4B2B009EA0E7 /* checkboxUnchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC8520716FB4B2B009EA0E7 /* checkboxUnchecked.png */; };
@@ -493,8 +496,6 @@
 		4CD53D5A16DFB53A00DB90E4 /* icon_locate_no_tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5416DFB53A00DB90E4 /* icon_locate_no_tracking.png */; };
 		4CD53D5C16DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */; };
 		4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */; };
-		4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA6B2916F086CD00FE2A19 /* libGoogleAnalytics.a */; };
-		4CDA6B2C16F086CD00FE2A19 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CDA6B2A16F086CD00FE2A19 /* libGoogleAnalytics_debug.a */; };
 		4CDA6B2D16F0898300FE2A19 /* dictionary_en.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */; };
 		4CDA6B2F16F08E9D00FE2A19 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CDA6B2E16F08E9D00FE2A19 /* Settings.bundle */; };
 		4CDD1E3217553AF500E45101 /* drop_pin_add_fav_btn_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CDD1E2C17553AF500E45101 /* drop_pin_add_fav_btn_active.png */; };
@@ -1098,6 +1099,17 @@
 		4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenHighlighted@2x.png"; sourceTree = "<group>"; };
 		4CC388A016E77A4800E7C884 /* tokenNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenNormal.png; sourceTree = "<group>"; };
 		4CC388A116E77A4800E7C884 /* tokenNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tokenNormal@2x.png"; sourceTree = "<group>"; };
+		4CC7DB4718326C3800885F69 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		4CC7DB4818326C3800885F69 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		4CC7DB4918326C3800885F69 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		4CC7DB4A18326C3800885F69 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		4CC7DB4B18326C3800885F69 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		4CC7DB4C18326C3800885F69 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		4CC7DB4D18326C3800885F69 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
+		4CC7DB4F18326C3800885F69 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		4CC7DB7518326E1400885F69 /* SMAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAnalytics.h; sourceTree = "<group>"; };
+		4CC7DB7618326E1400885F69 /* SMAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAnalytics.m; sourceTree = "<group>"; };
+		4CC7DB7818326F2200885F69 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4CC8520516FB4B2B009EA0E7 /* checkboxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxChecked.png; sourceTree = "<group>"; };
 		4CC8520616FB4B2B009EA0E7 /* checkboxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkboxChecked@2x.png"; sourceTree = "<group>"; };
 		4CC8520716FB4B2B009EA0E7 /* checkboxUnchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkboxUnchecked.png; sourceTree = "<group>"; };
@@ -1142,13 +1154,6 @@
 		4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../../../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4CDA691D16F0860700FE2A19 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
 		4CDA691E16F0860700FE2A19 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
-		4CDA6B2416F086CD00FE2A19 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		4CDA6B2516F086CD00FE2A19 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		4CDA6B2616F086CD00FE2A19 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		4CDA6B2716F086CD00FE2A19 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
-		4CDA6B2816F086CD00FE2A19 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
-		4CDA6B2916F086CD00FE2A19 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		4CDA6B2A16F086CD00FE2A19 /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		4CDA6B2E16F08E9D00FE2A19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4CDD1E2C17553AF500E45101 /* drop_pin_add_fav_btn_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop_pin_add_fav_btn_active.png; sourceTree = "<group>"; };
 		4CDD1E2D17553AF500E45101 /* drop_pin_add_fav_btn_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drop_pin_add_fav_btn_active@2x.png"; sourceTree = "<group>"; };
@@ -1216,6 +1221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC7DB7918326F2200885F69 /* libz.dylib in Frameworks */,
 				4C1D27B21761BE9C00018196 /* Security.framework in Frameworks */,
 				4C693ABC16F74E8B00B63475 /* MobileCoreServices.framework in Frameworks */,
 				4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */,
@@ -1228,6 +1234,7 @@
 				4CF7E29C16B6B57F0082078E /* Accounts.framework in Frameworks */,
 				4CF7E29D16B6B57F0082078E /* AdSupport.framework in Frameworks */,
 				4CF7E29E16B6B57F0082078E /* Social.framework in Frameworks */,
+				4CC7DB7118326C3900885F69 /* libGoogleAnalyticsServices.a in Frameworks */,
 				4BA915CB16AFF7E4004E04A4 /* libsqlite3.dylib in Frameworks */,
 				4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */,
 				4CF7E29416B68D830082078E /* EventKitUI.framework in Frameworks */,
@@ -1239,8 +1246,6 @@
 				4C73D21116AEDCDA00AED42A /* Foundation.framework in Frameworks */,
 				4C73D21316AEDCDA00AED42A /* CoreGraphics.framework in Frameworks */,
 				4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
-				4CDA6B2B16F086CD00FE2A19 /* libGoogleAnalytics.a in Frameworks */,
-				4CDA6B2C16F086CD00FE2A19 /* libGoogleAnalytics_debug.a in Frameworks */,
 				F68F9DEB1765CEF900578FFE /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1778,6 +1783,7 @@
 		4C73D20D16AEDCDA00AED42A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4CC7DB7818326F2200885F69 /* libz.dylib */,
 				4C1D27B11761BE9C00018196 /* Security.framework */,
 				F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */,
 				F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */,
@@ -1877,6 +1883,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */,
 				4C24F993183222170047703F /* Address Parser */,
 				4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */,
 				4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */,
@@ -1884,9 +1891,10 @@
 				4C31FF3F1718037200DA4983 /* Base64 */,
 				4C31FF2E1717FF8300DA4983 /* UIImage-Categories */,
 				4C365DD116F320C000A836B3 /* TTTAttributedLabel */,
-				4CDA6B2316F086CD00FE2A19 /* GA v2.04b2 */,
 				4CDA691C16F0860700FE2A19 /* DAKeyboardControl */,
 				4C06BA6216E88B60001B7312 /* DAKeyboardControl */,
+				4CC7DB7518326E1400885F69 /* SMAnalytics.h */,
+				4CC7DB7618326E1400885F69 /* SMAnalytics.m */,
 			);
 			name = Libs;
 			path = ibikecph/Libs;
@@ -2106,6 +2114,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */ = {
+			isa = PBXGroup;
+			children = (
+				4CC7DB1A18326C3800885F69 /* GoogleAnalytics */,
+				4CC7DB4F18326C3800885F69 /* libGoogleAnalyticsServices.a */,
+			);
+			name = GoogleAnalytics_3.02;
+			path = ../../../../../GoogleAnalytics_3.02;
+			sourceTree = "<group>";
+		};
+		4CC7DB1A18326C3800885F69 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4CC7DB4618326C3800885F69 /* Library */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		4CC7DB4618326C3800885F69 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4CC7DB4718326C3800885F69 /* GAI.h */,
+				4CC7DB4818326C3800885F69 /* GAIDictionaryBuilder.h */,
+				4CC7DB4918326C3800885F69 /* GAIFields.h */,
+				4CC7DB4A18326C3800885F69 /* GAILogger.h */,
+				4CC7DB4B18326C3800885F69 /* GAITrackedViewController.h */,
+				4CC7DB4C18326C3800885F69 /* GAITracker.h */,
+				4CC7DB4D18326C3800885F69 /* libGoogleAnalytics_debug.a */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		4CDA691C16F0860700FE2A19 /* DAKeyboardControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2114,21 +2154,6 @@
 			);
 			name = DAKeyboardControl;
 			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
-			sourceTree = "<group>";
-		};
-		4CDA6B2316F086CD00FE2A19 /* GA v2.04b2 */ = {
-			isa = PBXGroup;
-			children = (
-				4CDA6B2416F086CD00FE2A19 /* GAI.h */,
-				4CDA6B2516F086CD00FE2A19 /* GAITrackedViewController.h */,
-				4CDA6B2616F086CD00FE2A19 /* GAITracker.h */,
-				4CDA6B2716F086CD00FE2A19 /* GAITransaction.h */,
-				4CDA6B2816F086CD00FE2A19 /* GAITransactionItem.h */,
-				4CDA6B2916F086CD00FE2A19 /* libGoogleAnalytics.a */,
-				4CDA6B2A16F086CD00FE2A19 /* libGoogleAnalytics_debug.a */,
-			);
-			name = "GA v2.04b2";
-			path = "../../../../../GoogleAnalyticsiOS_2.0beta4 2/Library";
 			sourceTree = "<group>";
 		};
 		C09AB42B176890100098AA9C /* global-utils */ = {
@@ -2783,6 +2808,7 @@
 				4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */,
 				4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */,
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
+				4CC7DB7718326E1400885F69 /* SMAnalytics.m in Sources */,
 				4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */,
 				4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */,
 				C09AB41E17687E6F0098AA9C /* SMAutocomplete.m in Sources */,
@@ -2898,8 +2924,7 @@
 					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
-					"\"$(SRCROOT)/../../../../../FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -2910,13 +2935,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GA\\ v2.0b4",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35D47EAA-973E-4FEB-8784-CC211B5A3957";
@@ -2937,8 +2962,7 @@
 					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
-					"\"$(SRCROOT)/../../../../../FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -2949,13 +2973,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GA\\ v2.0b4",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "442EE0F4-A430-4227-AD84-C77E6DE13E61";
@@ -3001,8 +3025,7 @@
 					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
-					"\"$(SRCROOT)/../../../../../FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -3010,13 +3033,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GA\\ v2.0b4",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/GA v2.0b4\"/**",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "442EE0F4-A430-4227-AD84-C77E6DE13E61";

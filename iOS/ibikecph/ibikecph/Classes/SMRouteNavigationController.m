@@ -343,7 +343,7 @@ typedef enum {
     
     [self performSelector:@selector(zoomOut:) withObject:coordinates afterDelay:1.0f];
     
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Overview" withLabel:self.destination withValue:0]) {
         debugLog(@"error in trackEvent");
     }
     
@@ -566,7 +566,7 @@ typedef enum {
     [UIView animateWithDuration:0.3f animations:^{
         [recalculatingView setAlpha:0.0f];
     }];
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Start" withLabel:self.destination withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Start" withLabel:self.destination withValue:0]) {
         debugLog(@"error in trackEvent");
     }
 
@@ -965,7 +965,7 @@ typedef enum {
     //        [self showRouteTravelled];
     
     
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Finished" withLabel:self.destination withValue:0]) {
         debugLog(@"error in trackEvent");
     }
     

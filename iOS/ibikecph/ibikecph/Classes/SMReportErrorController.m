@@ -77,7 +77,7 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Report" withAction:@"Start" withLabel:@"" withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Report" withAction:@"Start" withLabel:@"" withValue:0]) {
         debugLog(@"error in trackEvent");
     }
 
@@ -395,7 +395,7 @@
 
 - (void)request:(SMAPIRequest *)req completedWithResult:(NSDictionary *)result {
     if ([[result objectForKey:@"success"] boolValue]) {
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Report" withAction:@"Completed" withLabel:@"" withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Report" withAction:@"Completed" withLabel:@"" withValue:0]) {
             debugLog(@"error in trackEvent");
         }
 

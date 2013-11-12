@@ -224,7 +224,7 @@ typedef enum {
         [passwordField setText:@""];
         [passwordRepeatField setText:@""];
         currentDialog = dialogNone;
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Cancel" withLabel:loginEmail.text withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Register" withAction:@"Cancel" withLabel:loginEmail.text withValue:0]) {
             debugLog(@"error in trackEvent");
         }
     }];
@@ -263,7 +263,7 @@ typedef enum {
             [registerView setAlpha:1.0f];
         } completion:^(BOOL finished) {
             currentDialog = dialogRegister;
-            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Start" withLabel:loginEmail.text withValue:0]) {
+            if (![SMAnalytics trackEventWithCategory:@"Register" withAction:@"Start" withLabel:loginEmail.text withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
         }];
@@ -503,7 +503,7 @@ typedef enum {
             UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"" message:translateString(@"register_successful") delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
             [av show];
             [self hideRegister:nil];
-            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
+            if (![SMAnalytics trackEventWithCategory:@"Register" withAction:@"Completed" withLabel:loginEmail.text withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
         }

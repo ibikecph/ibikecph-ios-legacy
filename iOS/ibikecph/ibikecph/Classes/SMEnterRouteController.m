@@ -97,7 +97,7 @@ typedef enum {
     [self setGroupedList:@[saved, last]];
     [tblView reloadData];
 
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"" withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"" withValue:0]) {
         debugLog(@"error in trackEvent");
     }
 
@@ -181,7 +181,7 @@ typedef enum {
     }
     
     if ([[self.fromData objectForKey:@"name"] isEqualToString:CURRENT_POSITION_STRING] == NO) {
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"From" withLabel:[self.fromData objectForKey:@"name"] withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"From" withLabel:[self.fromData objectForKey:@"name"] withValue:0]) {
             debugLog(@"error in trackEvent");
         }
     }
@@ -199,7 +199,7 @@ typedef enum {
     
     NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", fromLabel.text, s.coordinate.latitude, s.coordinate.longitude, toLabel.text, e.coordinate.latitude, e.coordinate.longitude];
     debugLog(@"%@", st);
-    if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
+    if (![SMAnalytics trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
         debugLog(@"error in trackPageview");
     }
     SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
@@ -248,7 +248,7 @@ typedef enum {
         
         NSString * st = [NSString stringWithFormat:@"Start: %@ (%f,%f) End: %@ (%f,%f)", fromLabel.text, s.coordinate.latitude, s.coordinate.longitude, toLabel.text, e.coordinate.latitude, e.coordinate.longitude];
         debugLog(@"%@", st);
-        if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
+        if (![SMAnalytics trackEventWithCategory:@"Route:" withAction:@"Finder" withLabel:st withValue:0]) {
             debugLog(@"error in trackPageview");
         }
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
@@ -496,11 +496,11 @@ typedef enum {
         [self openCloseSection:indexPath.section];
     } else {
         if (indexPath.section == 0) {
-            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Favorites" withValue:0]) {
+            if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Favorites" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
         } else {
-            if (![[GAI sharedInstance].defaultTracker trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Recent" withValue:0]) {
+            if (![SMAnalytics trackEventWithCategory:@"Route" withAction:@"Search" withLabel:@"Recent" withValue:0]) {
                 debugLog(@"error in trackEvent");
             }
         }
