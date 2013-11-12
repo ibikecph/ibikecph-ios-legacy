@@ -24,6 +24,7 @@
     #import "SMNetworkErrorView.h"
     #import "SMRouteConsts.h"
     #import "SMRouteUtils.h"
+    #import "SMAddressParser.h"
 #endif
 
 #if DISTRIBUTION_VERSION
