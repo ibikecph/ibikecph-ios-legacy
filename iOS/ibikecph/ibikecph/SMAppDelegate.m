@@ -92,8 +92,6 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     }
     
-    [SMAddressParser parseTest];
-    
     return YES;
 }
 							
