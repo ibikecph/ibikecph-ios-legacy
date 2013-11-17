@@ -24,5 +24,7 @@
 	<string>20000</string>
 	<key>KORT_SERVICE</key>
 	<string>RestGeokeys_v2</string>
+	<key>KORT_MAX_RESULTS</key>
+	<string>10</string>
 </dict>
 </plist>

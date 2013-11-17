@@ -505,6 +505,12 @@
 		4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */; };
 		4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E30418338A0000DF296C /* SMAddressParser.m */; };
+		4CED218F183945C400EBBF22 /* SMAPIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED218C183945C400EBBF22 /* SMAPIOperation.m */; };
+		4CED2190183945C400EBBF22 /* SMAPIQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED218E183945C400EBBF22 /* SMAPIQueue.m */; };
+		4CED2193183948B200EBBF22 /* SMFoursquareOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */; };
+		4CED2196183948C200EBBF22 /* SMKMSStreetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */; };
+		4CED2199183948D200EBBF22 /* SMKMSPlacesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */; };
+		4CED219F18394E7C00EBBF22 /* SMKMSAddressOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */; };
 		4CF7E28B16B68D170082078E /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
 		4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29116B68D830082078E /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4CF7E29416B68D830082078E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29216B68D830082078E /* EventKitUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -554,13 +560,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
 			remoteInfo = MapView;
-		};
-		4C42400A17E89A7400C2FCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1E5A459016F0DFC200B55C04;
-			remoteInfo = HockeySDKTests;
 		};
 		4CA06F3716EF8BE4007603B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1161,6 +1160,18 @@
 		4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRadioUncheckedCell.m; sourceTree = "<group>"; };
 		4CE8E30318338A0000DF296C /* SMAddressParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddressParser.h; sourceTree = "<group>"; };
 		4CE8E30418338A0000DF296C /* SMAddressParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddressParser.m; sourceTree = "<group>"; };
+		4CED218B183945C400EBBF22 /* SMAPIOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIOperation.h; sourceTree = "<group>"; };
+		4CED218C183945C400EBBF22 /* SMAPIOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIOperation.m; sourceTree = "<group>"; };
+		4CED218D183945C400EBBF22 /* SMAPIQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIQueue.h; sourceTree = "<group>"; };
+		4CED218E183945C400EBBF22 /* SMAPIQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIQueue.m; sourceTree = "<group>"; };
+		4CED2191183948B200EBBF22 /* SMFoursquareOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMFoursquareOperation.h; sourceTree = "<group>"; };
+		4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFoursquareOperation.m; sourceTree = "<group>"; };
+		4CED2194183948C200EBBF22 /* SMKMSStreetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSStreetOperation.h; sourceTree = "<group>"; };
+		4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSStreetOperation.m; sourceTree = "<group>"; };
+		4CED2197183948D200EBBF22 /* SMKMSPlacesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSPlacesOperation.h; sourceTree = "<group>"; };
+		4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSPlacesOperation.m; sourceTree = "<group>"; };
+		4CED219D18394E7C00EBBF22 /* SMKMSAddressOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSAddressOperation.h; sourceTree = "<group>"; };
+		4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSAddressOperation.m; sourceTree = "<group>"; };
 		4CF7E28916B68D170082078E /* SMEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEvents.h; sourceTree = "<group>"; };
 		4CF7E28A16B68D170082078E /* SMEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEvents.m; sourceTree = "<group>"; };
 		4CF7E29116B68D830082078E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -1213,7 +1224,7 @@
 		F68C641E1768A946009B4A21 /* smroute_settings_private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smroute_settings_private.plist; sourceTree = "<group>"; };
 		F68C64251768B5B3009B4A21 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2006,6 +2017,7 @@
 		4C8546BE16E64D3B004E8902 /* routing-engine */ = {
 			isa = PBXGroup;
 			children = (
+				4CED218A183945C400EBBF22 /* APIQueue */,
 				C09AB41B17687E6F0098AA9C /* SMRouteConsts.h */,
 				C09AB41717687E6F0098AA9C /* SMAutocomplete.h */,
 				C09AB41117687E6E0098AA9C /* SMAutocomplete.m */,
@@ -2092,7 +2104,6 @@
 			children = (
 				4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */,
 				4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */,
-				4C42400B17E89A7400C2FCC0 /* HockeySDKTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2154,7 +2165,26 @@
 				4CE8E30418338A0000DF296C /* SMAddressParser.m */,
 			);
 			name = AddressParser;
-			path = ../../../../../../AddressParser/AddressParser;
+			path = ../../../../../AddressParser/AddressParser;
+			sourceTree = "<group>";
+		};
+		4CED218A183945C400EBBF22 /* APIQueue */ = {
+			isa = PBXGroup;
+			children = (
+				4CED218B183945C400EBBF22 /* SMAPIOperation.h */,
+				4CED218C183945C400EBBF22 /* SMAPIOperation.m */,
+				4CED218D183945C400EBBF22 /* SMAPIQueue.h */,
+				4CED218E183945C400EBBF22 /* SMAPIQueue.m */,
+				4CED2191183948B200EBBF22 /* SMFoursquareOperation.h */,
+				4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */,
+				4CED2194183948C200EBBF22 /* SMKMSStreetOperation.h */,
+				4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */,
+				4CED2197183948D200EBBF22 /* SMKMSPlacesOperation.h */,
+				4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */,
+				4CED219D18394E7C00EBBF22 /* SMKMSAddressOperation.h */,
+				4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */,
+			);
+			path = APIQueue;
 			sourceTree = "<group>";
 		};
 		C09AB42B176890100098AA9C /* global-utils */ = {
@@ -2265,13 +2295,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4C42400B17E89A7400C2FCC0 /* HockeySDKTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = HockeySDKTests.octest;
-			remoteRef = 4C42400A17E89A7400C2FCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2763,10 +2786,12 @@
 				4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */,
 				4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */,
 				4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */,
+				4CED2190183945C400EBBF22 /* SMAPIQueue.m in Sources */,
 				4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */,
 				4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */,
 				4C64781E16C1366C00D055DC /* SMReportErrorController.m in Sources */,
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
+				4CED2199183948D200EBBF22 /* SMKMSPlacesOperation.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
 				4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */,
 				4BB6F95616DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */,
@@ -2778,18 +2803,21 @@
 				4C8546C916E64D3B004E8902 /* SMLocationManager.m in Sources */,
 				4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */,
 				4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
+				4CED2193183948B200EBBF22 /* SMFoursquareOperation.m in Sources */,
 				4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
 				4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */,
 				4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */,
 				4CC9515516F0D76D00DC7AF8 /* SMSearchCell.m in Sources */,
 				4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */,
 				4C34509416F1E53000562E20 /* SMSearchController.m in Sources */,
+				4CED2196183948C200EBBF22 /* SMKMSStreetOperation.m in Sources */,
 				4C8DF76A16F229CB007EC9FE /* SMViewMoreCell.m in Sources */,
 				4C365DD416F320C000A836B3 /* TTTAttributedLabel.m in Sources */,
 				4C365DDB16F3434200A836B3 /* SMMenuCell.m in Sources */,
 				4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */,
 				4C693A8E16F72B3E00B63475 /* SMFavoritesController.m in Sources */,
 				4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */,
+				4CED219F18394E7C00EBBF22 /* SMKMSAddressOperation.m in Sources */,
 				4C8C541716F9AA4D009A2738 /* SMAddFavoriteCell.m in Sources */,
 				4C8C541A16F9AA62009A2738 /* SMEmptyFavoritesCell.m in Sources */,
 				4C8C544916FA100B009A2738 /* SMSearchTwoRowCell.m in Sources */,
@@ -2809,6 +2837,7 @@
 				4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */,
 				4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */,
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
+				4CED218F183945C400EBBF22 /* SMAPIOperation.m in Sources */,
 				4CC7DB7718326E1400885F69 /* SMAnalytics.m in Sources */,
 				4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */,
 				4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */,
@@ -2945,7 +2974,7 @@
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "35D47EAA-973E-4FEB-8784-CC211B5A3957";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2E9FA4A9-85CF-46B6-B075-249A376DBD08";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

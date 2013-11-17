@@ -21,9 +21,11 @@
 #import "SMRouteUtils.h"
 #import "SMRequestOSRM.h"
 #import "SMFavoritesUtil.h"
+#import "SMAPIQueue.h"
 
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
+@property (nonatomic, strong) NSMutableArray * tempSearch;
 @property (nonatomic, strong) NSDictionary * locationData;
 @property (nonatomic, strong) SMAutocomplete * autocomp;
 @property (nonatomic, strong) NSArray * favorites;
@@ -31,6 +33,8 @@
 @property (nonatomic, strong) NSMutableArray * terms;
 @property (nonatomic, strong) NSString * srchString;
 @property (nonatomic, strong) SMRequestOSRM * req;
+
+@property (nonatomic, strong) SMAPIQueue * queue;
 @end
 
 @implementation SMSearchController
@@ -63,6 +67,10 @@
     tblView = nil;
     tblFade = nil;
     searchField = nil;
+    
+    [self.queue stopAllRequests];
+    self.queue = nil;
+    
     [super viewDidUnload];
 }
 
@@ -73,6 +81,9 @@
     [tblView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [searchField becomeFirstResponder];
     [self setFavorites:[SMFavoritesUtil getFavorites]];
+    
+    self.queue = [[SMAPIQueue alloc] initWithMaxOperations:3];
+    self.queue.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -220,9 +231,19 @@
 
 #pragma mark - custom methods 
 
+- (void)stopAll {
+    self.searchResults = @[];
+    self.tempSearch = [NSMutableArray array];
+    [self.queue stopAllRequests];
+}
+
 - (void)delayedAutocomplete:(NSString*)text {
+    [self stopAll];
     [tblFade setAlpha:1.0f];
-    [self.autocomp getAutocomplete:text];
+    [tblView reloadData];
+    [self.queue addTasks:[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+//    [self.autocomp getAutocomplete:text];
 }
 
 - (void)showFade {
@@ -300,26 +321,30 @@
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
     if ([s isEqualToString:@""]) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
+        [self stopAll];
         [self autocompleteEntriesFound:@[] forString:@""];
     } else {
         if ([s length] >= 2) {
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
             [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:1.5f];
         } else if ([s length] >= 1) {
-            NSMutableArray * r = [NSMutableArray array];
-            if (self.shouldAllowCurrentPosition) {
-                [r insertObject:@{
-                 @"name" : CURRENT_POSITION_STRING,
-                 @"address" : CURRENT_POSITION_STRING,
-                 @"startDate" : [NSDate date],
-                 @"endDate" : [NSDate date],
-                 @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
-                 @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
-                 @"source" : @"currentPosition",
-                 } atIndex:0];
-            }
-            self.searchResults = r;
-            [tblView reloadData];
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
+            [self stopAll];
+            [self autocompleteEntriesFound:@[] forString:@""];
+//            NSMutableArray * r = [NSMutableArray array];
+//            if (self.shouldAllowCurrentPosition) {
+//                [r insertObject:@{
+//                 @"name" : CURRENT_POSITION_STRING,
+//                 @"address" : CURRENT_POSITION_STRING,
+//                 @"startDate" : [NSDate date],
+//                 @"endDate" : [NSDate date],
+//                 @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+//                 @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+//                 @"source" : @"currentPosition",
+//                 } atIndex:0];
+//            }
+//            self.searchResults = r;
+//            [tblView reloadData];
         }
     }
     return YES;
@@ -353,9 +378,9 @@
             return;
         }
         
-        if ([[str lowercaseString] isEqualToString:[searchField.text lowercaseString]] == NO) {
-            return;
-        }
+//        if ([[str lowercaseString] isEqualToString:[searchField.text lowercaseString]] == NO) {
+//            return;
+//        }
         
         self.terms = [NSMutableArray array];
         self.srchString = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -431,7 +456,7 @@
             [r insertObject:@{
              @"name" : CURRENT_POSITION_STRING,
              @"address" : CURRENT_POSITION_STRING,
-             @"1Date" : [NSDate date],
+             @"startDate" : [NSDate date],
              @"endDate" : [NSDate date],
              @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
              @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
@@ -515,5 +540,15 @@
 //    [self.destinationPin showCallout];
 }
 
+#pragma mark - api operation delegate
+
+-(void)queuedRequest:(SMAPIOperation *)object failedWithError:(NSError *)error {
+    [self autocompleteEntriesFound:self.tempSearch forString:object.searchString];
+}
+
+- (void)queuedRequest:(SMAPIOperation *)object finishedWithResult:(id)result {
+    [self.tempSearch addObjectsFromArray:result];
+    [self autocompleteEntriesFound:self.tempSearch forString:object.searchString];
+}
 
 @end
