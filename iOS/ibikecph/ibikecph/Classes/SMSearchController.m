@@ -135,7 +135,28 @@
             }
             return mutableAttributedString;
         }];
-        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+        
+        [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+            
+            cell.nameLabel.textColor = [UIColor lightGrayColor];
+            if (boldRange.length == 0) {
+                boldRange = NSMakeRange(0, [cell.nameLabel.text length]);
+            }
+            
+            UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+            
+            CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+            
+            if (font) {
+                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                CFRelease(font);
+                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+            }
+            return mutableAttributedString;
+        }];
+        
+//        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
         [cell setImageWithData:currentRow];
         return cell;
     } else {
@@ -433,23 +454,35 @@
         }
         
         [r sortUsingComparator:^NSComparisonResult(NSDictionary* obj1, NSDictionary* obj2) {
-            NSComparisonResult cmp = [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
-            if (cmp == NSOrderedSame) {
-                cmp = [[obj2 objectForKey:@"relevance"] compare:[obj1 objectForKey:@"relevance"]];
-                if (cmp == NSOrderedSame) {
-                    if ([obj1 objectForKey:@"lat"] && [obj1 objectForKey:@"long"] && [obj2 objectForKey:@"lat"] && [obj2 objectForKey:@"long"] && [SMLocationManager instance].hasValidLocation) {
-                        CGFloat dist1 = [[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue]  longitude:[[obj1 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
-                        CGFloat dist2 = [[[CLLocation alloc] initWithLatitude:[[obj2 objectForKey:@"lat"] doubleValue]  longitude:[[obj2 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
-                        
-                        if (dist1 > dist2) {
-                            cmp = NSOrderedDescending;
-                        } else if (dist1 < dist2) {
-                            cmp = NSOrderedAscending;
-                        }
+//            NSComparisonResult cmp = [[obj1 objectForKey:@"order"] compare:[obj2 objectForKey:@"order"]];
+//            if (cmp == NSOrderedSame) {
+//                cmp = [[obj2 objectForKey:@"relevance"] compare:[obj1 objectForKey:@"relevance"]];
+//                if (cmp == NSOrderedSame) {
+                
+                    double dist1 = 0.0f;
+                    double dist2 = 0.0f;
+                    if ([obj1 objectForKey:@"distance"]) {
+                        dist1 = [[obj1 objectForKey:@"distance"] doubleValue];
+                    } else if ([obj1 objectForKey:@"lat"] && [obj1 objectForKey:@"long"]) {
+                        dist1 = [[[CLLocation alloc] initWithLatitude:[[obj1 objectForKey:@"lat"] doubleValue]  longitude:[[obj1 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
                     }
-                }
-            }
-            return cmp;
+                    
+                    if ([obj2 objectForKey:@"distance"]) {
+                        dist2 = [[obj2 objectForKey:@"distance"] doubleValue];
+                    } else if ([obj2 objectForKey:@"lat"] && [obj2 objectForKey:@"long"]) {
+                        dist2 = [[[CLLocation alloc] initWithLatitude:[[obj2 objectForKey:@"lat"] doubleValue]  longitude:[[obj2 objectForKey:@"long"] doubleValue]] distanceFromLocation:[SMLocationManager instance].lastValidLocation];
+                    }
+                    
+                    if (dist1 > dist2) {
+                        return NSOrderedDescending;
+                    } else if (dist1 < dist2) {
+                        return NSOrderedAscending;
+                    } else {
+                        return [[obj2 objectForKey:@"relevance"] compare:[obj1 objectForKey:@"relevance"]];
+                    }
+//                }
+//            }
+//            return NSOrderedSame;
         }];
         
         if (self.shouldAllowCurrentPosition) {
