@@ -145,7 +145,7 @@
             
             cell.nameLabel.textColor = [UIColor lightGrayColor];
             if (boldRange.length == 0 || boldRange.location == NSNotFound) {
-                boldRange = NSMakeRange(0, [cell.nameLabel.text length]);
+                boldRange = NSMakeRange(0, [[mutableAttributedString string] length]);
             }
             
             UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
@@ -159,8 +159,6 @@
             }
             return mutableAttributedString;
         }];
-        
-//        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
         [cell setImageWithData:currentRow];
         return cell;
     } else {
@@ -257,18 +255,16 @@
 #pragma mark - custom methods 
 
 - (void)stopAll {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
     self.searchResults = @[];
     self.tempSearch = [NSMutableArray array];
     [self.queue stopAllRequests];
 }
 
 - (void)delayedAutocomplete:(NSString*)text {
-    [self stopAll];
     [tblFade setAlpha:1.0f];
     [tblView reloadData];
     [self.queue addTasks:[text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    
-//    [self.autocomp getAutocomplete:text];
 }
 
 - (void)showFade {
@@ -276,7 +272,10 @@
 }
 
 - (void)hideFade {
-    [tblFade setAlpha:0.0f];
+    [UIView animateKeyframesWithDuration:0.2f delay:1.0f options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+        tblFade.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+    }];
 }
 
 - (void)checkLocation {
@@ -344,33 +343,30 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
-    if ([s isEqualToString:@""]) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
-        [self stopAll];
-        [self autocompleteEntriesFound:@[] forString:@""];
-    } else {
-        if ([s length] >= 2) {
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
-            [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:1.5f];
-        } else if ([s length] >= 1) {
-            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAutocomplete:) object:nil];
-            [self stopAll];
-            [self autocompleteEntriesFound:@[] forString:@""];
-//            NSMutableArray * r = [NSMutableArray array];
-//            if (self.shouldAllowCurrentPosition) {
-//                [r insertObject:@{
-//                 @"name" : CURRENT_POSITION_STRING,
-//                 @"address" : CURRENT_POSITION_STRING,
-//                 @"startDate" : [NSDate date],
-//                 @"endDate" : [NSDate date],
-//                 @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
-//                 @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
-//                 @"source" : @"currentPosition",
-//                 } atIndex:0];
-//            }
-//            self.searchResults = r;
-//            [tblView reloadData];
+    [self stopAll];
+    if ([s length] >= 2) {
+        [self delayedAutocomplete:s];
+//        [self performSelector:@selector(delayedAutocomplete:) withObject:s afterDelay:0.5f];
+    } else if ([s length] == 1) {
+        NSMutableArray * r = [NSMutableArray array];
+        if (self.shouldAllowCurrentPosition) {
+            [r insertObject:@{
+                              @"name" : CURRENT_POSITION_STRING,
+                              @"address" : CURRENT_POSITION_STRING,
+                              @"startDate" : [NSDate date],
+                              @"endDate" : [NSDate date],
+                              @"lat" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.latitude],
+                              @"long" : [NSNumber numberWithDouble:[SMLocationManager instance].lastValidLocation.coordinate.longitude],
+                              @"source" : @"currentPosition",
+                              } atIndex:0];
         }
+        self.searchResults = r;
+        [tblView reloadData];
+        tblFade.alpha = 0.0f;
+    } else {
+        self.searchResults = @[];
+        [tblView reloadData];
+        tblFade.alpha = 0.0f;
     }
     return YES;
 }
@@ -391,7 +387,6 @@
 
 - (void)autocompleteEntriesFound:(NSArray *)arr forString:(NSString*) str {
     @synchronized(self.searchResults) {
-        [self hideFade];
         
         SMAppDelegate * appd = (SMAppDelegate*)[UIApplication sharedApplication].delegate;
         NSMutableArray * r = [NSMutableArray array];
@@ -581,11 +576,21 @@
 
 -(void)queuedRequest:(SMAPIOperation *)object failedWithError:(NSError *)error {
     [self autocompleteEntriesFound:self.tempSearch forString:object.searchString];
+//    @synchronized(self.queue) {
+//        if ([self.queue.queue operationCount] == 0) {
+            [self hideFade];
+//        }
+//    }
 }
 
 - (void)queuedRequest:(SMAPIOperation *)object finishedWithResult:(id)result {
     [self.tempSearch addObjectsFromArray:result];
     [self autocompleteEntriesFound:self.tempSearch forString:object.searchString];
+//    @synchronized(self.queue) {
+//        if ([self.queue.queue operationCount] == 0) {
+            [self hideFade];
+//        }
+//    }
 }
 
 @end
