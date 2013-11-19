@@ -119,19 +119,23 @@
     NSString * identifier;
 
     SMSearchCell * cell;
-    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"]) {
+    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"] || [[currentRow objectForKey:@"subsource"] isEqualToString:@"places"])) {
         identifier = @"searchTwoRowsCell";
         SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         [cell.addressLabel setText:[currentRow objectForKey:@"address"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
             NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
-            UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
             
-            CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-            
-            if (font) {
-                [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
-                CFRelease(font);
-                [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+            if (boldRange.length > 0 && boldRange.location != NSNotFound) {
+                UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                
+                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                
+                if (font) {
+                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                    CFRelease(font);
+                    [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                }
+
             }
             return mutableAttributedString;
         }];
@@ -140,7 +144,7 @@
             NSRange boldRange = [[mutableAttributedString string] rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
             
             cell.nameLabel.textColor = [UIColor lightGrayColor];
-            if (boldRange.length == 0) {
+            if (boldRange.length == 0 || boldRange.location == NSNotFound) {
                 boldRange = NSMakeRange(0, [cell.nameLabel.text length]);
             }
             
