@@ -349,6 +349,7 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    self.locationData = nil;
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
     [self stopAll];
     if ([s length] >= 2) {
@@ -379,6 +380,7 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
+    self.locationData = nil;
     textField.text = @"";
     [self autocompleteEntriesFound:@[] forString:@""];
     self.locationData = nil;
