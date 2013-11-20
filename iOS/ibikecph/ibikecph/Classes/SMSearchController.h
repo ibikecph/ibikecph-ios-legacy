@@ -28,5 +28,6 @@
 @property (nonatomic, strong) NSString * searchText;
 @property (nonatomic, weak) id<SMSearchDelegate> delegate;
 @property BOOL shouldAllowCurrentPosition;
+@property (nonatomic, strong) NSDictionary * locationData;
 
 @end

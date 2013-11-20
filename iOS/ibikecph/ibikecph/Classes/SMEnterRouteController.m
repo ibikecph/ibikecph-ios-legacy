@@ -217,6 +217,7 @@ typedef enum {
                 [destViewController setShouldAllowCurrentPosition:YES];
                 if (self.fromData && [[self.fromData objectForKey:@"source"] isEqualToString:@"currentPosition"] == NO) {
                     [destViewController setSearchText:fromLabel.text];
+                    destViewController.locationData = self.fromData;
                 } else {
                     [destViewController setSearchText:@""];
                 }
@@ -224,6 +225,7 @@ typedef enum {
                 break;
             case fieldTo:
                 [destViewController setShouldAllowCurrentPosition:NO];
+                destViewController.locationData = self.toData;
                 [destViewController setSearchText:toLabel.text];
                 break;
             default:

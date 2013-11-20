@@ -26,7 +26,6 @@
 @interface SMSearchController ()
 @property (nonatomic, strong) NSArray * searchResults;
 @property (nonatomic, strong) NSMutableArray * tempSearch;
-@property (nonatomic, strong) NSDictionary * locationData;
 @property (nonatomic, strong) SMAutocomplete * autocomp;
 @property (nonatomic, strong) NSArray * favorites;
 
@@ -284,27 +283,35 @@
             
         } else {
             [tblFade setAlpha:1.0f];
-            [SMGeocoder geocode:searchField.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                if ([placemarks count] > 0) {
-                    MKPlacemark *coord = [placemarks objectAtIndex:0];
+            if (self.locationData && [self.locationData objectForKey:@"location"]) {
+                if (self.delegate) {
+                    [self.delegate locationFound:self.locationData];
                     [self dismissModalViewControllerAnimated:YES];
-                    if (self.delegate) {
-                        [self.delegate locationFound:@{
-                         @"name" : searchField.text,
-                         @"address" : searchField.text,
-                         @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude],
-                         @"source" : @"typedIn"
-                         }];
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                    });
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                    });
                 }
-            }];
+                [self hideFade];
+            } else {
+                [SMGeocoder geocode:searchField.text completionHandler:^(NSArray *placemarks, NSError *error) {
+                    if ([placemarks count] > 0) {
+                        MKPlacemark *coord = [placemarks objectAtIndex:0];
+                        [self dismissModalViewControllerAnimated:YES];
+                        if (self.delegate) {
+                            [self.delegate locationFound:@{
+                                                           @"name" : searchField.text,
+                                                           @"address" : searchField.text,
+                                                           @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude],
+                                                           @"source" : @"typedIn"
+                                                           }];
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                        });
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+                        });
+                    }
+                }];
+            }
         }
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
