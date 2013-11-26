@@ -2951,7 +2951,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
@@ -2966,6 +2966,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2989,7 +2990,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
@@ -3004,6 +3005,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -3052,7 +3054,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
 					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
@@ -3064,6 +3066,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
+					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
