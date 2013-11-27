@@ -187,19 +187,19 @@
                     [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
                 }
             }
-            if (found == NO) {
-                NSRange boldRange = NSMakeRange(0, [[mutableAttributedString string] length]);
-                
-                UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
-                
-                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-                
-                if (font) {
-                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
-                    CFRelease(font);
-                    [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
-                }
-            }
+//            if (found == NO) {
+//                NSRange boldRange = NSMakeRange(0, [[mutableAttributedString string] length]);
+//                
+//                UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+//                
+//                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+//                
+//                if (font) {
+//                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+//                    CFRelease(font);
+//                    [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+//                }
+//            }
          
             return mutableAttributedString;
         }];
@@ -318,7 +318,7 @@
 }
 
 - (void)hideFade {
-    [UIView animateKeyframesWithDuration:0.2f delay:1.0f options:UIViewKeyframeAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:0.2f delay:1.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         tblFade.alpha = 0.0f;
     } completion:^(BOOL finished) {
     }];
@@ -399,8 +399,10 @@
 #pragma mark - textfield delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    self.locationData = nil;
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
+    if ([[s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] == NO) {
+        self.locationData = nil;
+    }
     [self stopAll];
     if ([s length] >= 2) {
         [self delayedAutocomplete:s];
@@ -507,6 +509,7 @@
                 }
             }
             if (found == NO && [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str] > 0) {
+                debugLog(@"Object: %@\nString: %@\npoints: %d\n", d, str, [SMRouteUtils pointsForName:[d objectForKey:@"name"] andAddress:[d objectForKey:@"address"] andTerms:str]);
                 [r addObject:d];
             }
         }
