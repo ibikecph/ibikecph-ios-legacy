@@ -350,6 +350,10 @@ typedef enum {
     CGRect fr = self.mapFade.frame;
     fr.size.height = 0.0f;
     self.mapFade.frame = fr;
+    
+    [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
+    [self.mpView setShowsUserLocation:YES];
+
 
 }
 
@@ -1552,7 +1556,7 @@ typedef enum {
                      * we also start updating the swipable view
                      */
                     self.updateSwipableView = YES;
-                    if (reload) {
+                    if (reload && overviewShown == NO) {
                         [self resetZoomTurn];                        
                     }
                 } else {
