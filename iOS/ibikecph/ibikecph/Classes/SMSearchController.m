@@ -168,7 +168,7 @@
         }];
         
         [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-            BOOL found = NO;
+//            BOOL found = NO;
             for (NSString * srch in words) {
                 NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
                 
