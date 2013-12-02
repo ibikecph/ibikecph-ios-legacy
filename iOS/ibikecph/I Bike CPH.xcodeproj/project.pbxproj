@@ -410,6 +410,7 @@
 		4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5635E173D34990000D0BD /* SMSearchHistory.m */; };
 		4CA63E63175FB1DD008837BD /* cargo_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E61175FB1DD008837BD /* cargo_slider.png */; };
 		4CA63E64175FB1DD008837BD /* cargo_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */; };
+		4CA8871E184CC988001255B6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA8871D184CC988001255B6 /* FacebookSDK.framework */; };
 		4CAF3D03171FE581003C05AA /* favTypeFavoriteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */; };
 		4CAF3D04171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFC171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png */; };
 		4CAF3D05171FE581003C05AA /* favTypeHomeButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFD171FE581003C05AA /* favTypeHomeButtonPressed.png */; };
@@ -550,7 +551,6 @@
 		F68C641F1768A946009B4A21 /* smroute_settings_private.plist in Resources */ = {isa = PBXBuildFile; fileRef = F68C641E1768A946009B4A21 /* smroute_settings_private.plist */; };
 		F68C64231768B453009B4A21 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */; };
 		F68F9DE71765CDC500578FFE /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */; };
-		F68F9DEB1765CEF900578FFE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -574,6 +574,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1E59550A15B6F45800A03429;
 			remoteInfo = HockeySDKResources;
+		};
+		4CA8871B184CC962001255B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E5A459016F0DFC200B55C04;
+			remoteInfo = HockeySDKTests;
 		};
 		4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1046,6 +1053,7 @@
 		4CA5635E173D34990000D0BD /* SMSearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSearchHistory.m; sourceTree = "<group>"; };
 		4CA63E61175FB1DD008837BD /* cargo_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargo_slider.png; sourceTree = "<group>"; };
 		4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cargo_slider@2x.png"; sourceTree = "<group>"; };
+		4CA8871D184CC988001255B6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favTypeFavoriteButtonPressed.png; sourceTree = "<group>"; };
 		4CAF3CFC171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favTypeFavoriteButtonPressed@2x.png"; sourceTree = "<group>"; };
 		4CAF3CFD171FE581003C05AA /* favTypeHomeButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favTypeHomeButtonPressed.png; sourceTree = "<group>"; };
@@ -1224,7 +1232,6 @@
 		F68C641E1768A946009B4A21 /* smroute_settings_private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smroute_settings_private.plist; sourceTree = "<group>"; };
 		F68C64251768B5B3009B4A21 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1253,11 +1260,11 @@
 				4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */,
 				4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */,
 				4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */,
+				4CA8871E184CC988001255B6 /* FacebookSDK.framework in Frameworks */,
 				4C73D20F16AEDCDA00AED42A /* UIKit.framework in Frameworks */,
 				4C73D21116AEDCDA00AED42A /* Foundation.framework in Frameworks */,
 				4C73D21316AEDCDA00AED42A /* CoreGraphics.framework in Frameworks */,
 				4CDA5D2016EF4C2B0079AA5E /* CrashReporter.framework in Frameworks */,
-				F68F9DEB1765CEF900578FFE /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1786,8 +1793,8 @@
 			isa = PBXGroup;
 			children = (
 				4CC7DB7818326F2200885F69 /* libz.dylib */,
+				4CA8871D184CC988001255B6 /* FacebookSDK.framework */,
 				4C1D27B11761BE9C00018196 /* Security.framework */,
-				F68F9DEA1765CEF900578FFE /* FacebookSDK.framework */,
 				F68F9DE61765CDC500578FFE /* FBUserSettingsViewResources.bundle */,
 				4C693ABB16F74E8B00B63475 /* MobileCoreServices.framework */,
 				4C365DD516F323BB00A836B3 /* CoreText.framework */,
@@ -2104,6 +2111,7 @@
 			children = (
 				4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */,
 				4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */,
+				4CA8871C184CC962001255B6 /* HockeySDKTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2307,6 +2315,13 @@
 			fileType = wrapper.cfbundle;
 			path = HockeySDKResources.bundle;
 			remoteRef = 4CA06F3916EF8BE4007603B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4CA8871C184CC962001255B6 /* HockeySDKTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HockeySDKTests.octest;
+			remoteRef = 4CA8871B184CC962001255B6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4CAF95C316D50B3A002C047B /* libMapView.a */ = {
@@ -2951,10 +2966,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -2966,7 +2981,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -2990,10 +3005,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -3005,7 +3020,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -3054,10 +3069,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"\"$(SRCROOT)/../../../HockeySDK-iOS/Vendor\"",
-					"\"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics\"/**",
+					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
+					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -3066,7 +3081,7 @@
 					"$(SRCROOT)/ibikecph/Libs/MapView/**",
 					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"\"$(SRCROOT)/ibikecph/Libs/FacebookSDK\"/**",
+					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;

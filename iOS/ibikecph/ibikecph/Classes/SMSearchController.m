@@ -173,9 +173,9 @@
                 NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
                 
                 cell.nameLabel.textColor = [UIColor lightGrayColor];
-                if (boldRange.length != 0 && boldRange.location != NSNotFound) {
-                    found = YES;
-                }
+//                if (boldRange.length != 0 && boldRange.location != NSNotFound) {
+//                    found = YES;
+//                }
                 
                 UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
                 
