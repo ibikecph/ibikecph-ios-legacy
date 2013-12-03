@@ -142,7 +142,73 @@
     
     
     SMSearchCell * cell;
-    if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"] || [[currentRow objectForKey:@"subsource"] isEqualToString:@"places"])) {
+    if ([currentRow objectForKey:@"line1"]) {
+        if ([currentRow objectForKey:@"line2"] && [[currentRow objectForKey:@"line2"] isEqualToString:@""] == NO) {
+            identifier = @"searchTwoRowsCell";
+            SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            [cell.addressLabel setText:[currentRow objectForKey:@"line2"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    
+                    if (boldRange.length > 0 && boldRange.location != NSNotFound) {
+                        UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.addressLabel.font.pointSize];
+                        
+                        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                        
+                        if (font) {
+                            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                            CFRelease(font);
+                            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                        }
+                        
+                    }
+                }
+                
+                return mutableAttributedString;
+            }];
+            
+            [cell.nameLabel setText:[currentRow objectForKey:@"line1"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    
+                    cell.nameLabel.textColor = [UIColor lightGrayColor];
+                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                    
+                    if (font) {
+                        [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                        CFRelease(font);
+                        [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                    }
+                }
+                return mutableAttributedString;
+            }];
+            [cell setImageWithData:currentRow];
+            return cell;
+        } else {
+            identifier = @"searchCell";
+            SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            
+            [cell.nameLabel setText:[currentRow objectForKey:@"line1"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                    
+                    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                    
+                    if (font) {
+                        [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                        CFRelease(font);
+                        [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                    }
+                }
+                return mutableAttributedString;
+            }];
+            [cell setImageWithData:currentRow];
+            return cell;
+        }
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"] || [[currentRow objectForKey:@"subsource"] isEqualToString:@"places"]) && [[currentRow objectForKey:@"address"] isEqualToString:@""] == NO) {
         identifier = @"searchTwoRowsCell";
         SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         [cell.addressLabel setText:[currentRow objectForKey:@"address"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
@@ -151,7 +217,7 @@
                 NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
                 
                 if (boldRange.length > 0 && boldRange.location != NSNotFound) {
-                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.addressLabel.font.pointSize];
                     
                     CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
                     
@@ -168,17 +234,11 @@
         }];
         
         [cell.nameLabel setText:[currentRow objectForKey:@"name"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
-//            BOOL found = NO;
             for (NSString * srch in words) {
                 NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
                 
                 cell.nameLabel.textColor = [UIColor lightGrayColor];
-//                if (boldRange.length != 0 && boldRange.location != NSNotFound) {
-//                    found = YES;
-//                }
-                
                 UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
-                
                 CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
                 
                 if (font) {
@@ -187,24 +247,79 @@
                     [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
                 }
             }
-//            if (found == NO) {
-//                NSRange boldRange = NSMakeRange(0, [[mutableAttributedString string] length]);
-//                
-//                UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
-//                
-//                CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
-//                
-//                if (font) {
-//                    [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
-//                    CFRelease(font);
-//                    [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
-//                }
-//            }
-         
             return mutableAttributedString;
         }];
         [cell setImageWithData:currentRow];
         return cell;
+    } else if ([currentRow objectForKey:@"address"] && [[currentRow objectForKey:@"address"] isEqualToString:@""] == NO){
+        NSDictionary * d = [SMAddressParser parseAddress:[currentRow objectForKey:@"address"]];
+        NSString * line1 = [[NSString stringWithFormat:@"%@ %@", [d objectForKey:@"street"], [d objectForKey:@"number"]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString * line2 = [[NSString stringWithFormat:@"%@ %@", [d objectForKey:@"zip"], [d objectForKey:@"city"]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (line2 && [line2 isEqualToString:@""] == NO) {
+            identifier = @"searchTwoRowsCell";
+            SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            [cell.addressLabel setText:line2 afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    
+                    if (boldRange.length > 0 && boldRange.location != NSNotFound) {
+                        UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.addressLabel.font.pointSize];
+                        
+                        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                        
+                        if (font) {
+                            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                            CFRelease(font);
+                            [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                        }
+                        
+                    }
+                }
+                
+                return mutableAttributedString;
+            }];
+            
+            [cell.nameLabel setText:line1 afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    
+                    cell.nameLabel.textColor = [UIColor lightGrayColor];
+                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                    
+                    if (font) {
+                        [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                        CFRelease(font);
+                        [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                    }
+                }
+                return mutableAttributedString;
+            }];
+            [cell setImageWithData:currentRow];
+            return cell;
+        } else {
+            identifier = @"searchCell";
+            SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            
+            [cell.nameLabel setText:[currentRow objectForKey:@"line1"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+                for (NSString * srch in words) {
+                    NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
+                    UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
+                    
+                    CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+                    
+                    if (font) {
+                        [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:boldRange];
+                        CFRelease(font);
+                        [mutableAttributedString addAttribute:(NSString *)kCTForegroundColorAttributeName value:[UIColor colorWithWhite:0.0f alpha:1.0f] range:boldRange];
+                    }
+                }
+                return mutableAttributedString;
+            }];
+            [cell setImageWithData:currentRow];
+            return cell;
+        }
     } else {
         identifier = @"searchCell";
         SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -230,10 +345,7 @@
         }
         [cell setImageWithData:currentRow];
         return cell;
-    }    
-    
-//    [cell setImageWithData:currentRow];
-    
+    }
     return cell;
 }
 
