@@ -18,7 +18,7 @@
 
 @end
 
-@interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate, SMRequestOSRMDelegate, SMNearbyPlacesDelegate, SMAPIOperationDelegate>{
+@interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate, SMAPIOperationDelegate>{
     
     __weak IBOutlet UITableView *tblView;
     __weak IBOutlet UIView *tblFade;

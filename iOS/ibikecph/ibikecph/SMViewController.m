@@ -295,24 +295,7 @@ typedef enum {
         SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
         [r setRequestIdentifier:@"rowSelectRoute"];
         [r setAuxParam:[d objectForKey:@"destination"]];
-        [r findNearestPointForStart:cStart andEnd:cEnd];        
-        
-//        /**
-//         * drop pin
-//         */
-//        CLLocation * loc = [[CLLocation alloc] initWithLatitude:[[d objectForKey:@"endLat"] doubleValue] longitude:[[d objectForKey:@"endLong"] doubleValue]];
-//        
-//        SMRequestOSRM * r2 = [[SMRequestOSRM alloc] initWithDelegate:self];
-//        [r2 setRequestIdentifier:@"getNearestForPinDrop"];
-//        [r2 findNearestPointForLocation:loc];
-//        
-//        [self.mpView removeAllAnnotations];
-//        SMAnnotation *endMarkerAnnotation = [SMAnnotation annotationWithMapView:self.mpView coordinate:CLLocationCoordinate2DMake([[d objectForKey:@"endLat"] doubleValue], [[d objectForKey:@"endLong"] doubleValue]) andTitle:@""];
-//        endMarkerAnnotation.annotationType = @"marker";
-//        endMarkerAnnotation.annotationIcon = [UIImage imageNamed:@"markerFinish"];
-//        endMarkerAnnotation.anchorPoint = CGPointMake(0.5, 0.5);
-//        [self.mpView addAnnotation:endMarkerAnnotation];
-//        [self setDestinationPin:endMarkerAnnotation];
+        [r findNearestPointForStart:cStart andEnd:cEnd];                
     } else {
         [self.mpView addObserver:self forKeyPath:@"userTrackingMode" options:0 context:nil];
         [tblMenu addObserver:self forKeyPath:@"editing" options:0 context:nil];

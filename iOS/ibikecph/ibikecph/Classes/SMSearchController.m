@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) NSMutableArray * terms;
 @property (nonatomic, strong) NSString * srchString;
-@property (nonatomic, strong) SMRequestOSRM * req;
+//@property (nonatomic, strong) SMRequestOSRM * req;
 
 @property (nonatomic, strong) SMAPIQueue * queue;
 @end
@@ -208,6 +208,12 @@
             [cell setImageWithData:currentRow];
             return cell;
         }
+    } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
+        identifier = @"searchCell";
+        SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        [cell.nameLabel setText:[currentRow objectForKey:@"name"]];
+        [cell setImageWithData:currentRow];
+        return cell;
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && ([[currentRow objectForKey:@"subsource"] isEqualToString:@"foursquare"] || [[currentRow objectForKey:@"subsource"] isEqualToString:@"places"]) && [[currentRow objectForKey:@"address"] isEqualToString:@""] == NO) {
         identifier = @"searchTwoRowsCell";
         SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -253,8 +259,23 @@
         return cell;
     } else if ([currentRow objectForKey:@"address"] && [[currentRow objectForKey:@"address"] isEqualToString:@""] == NO){
         NSDictionary * d = [SMAddressParser parseAddress:[currentRow objectForKey:@"address"]];
-        NSString * line1 = [[NSString stringWithFormat:@"%@ %@", [d objectForKey:@"street"], [d objectForKey:@"number"]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSString * line2 = [[NSString stringWithFormat:@"%@ %@", [d objectForKey:@"zip"], [d objectForKey:@"city"]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSMutableArray * arr = [NSMutableArray array];
+        if ([d objectForKey:@"street"]) {
+            [arr addObject:[[d objectForKey:@"street"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        }
+        if ([d objectForKey:@"number"]) {
+            [arr addObject:[[d objectForKey:@"number"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        }
+        NSString * line1 = [arr componentsJoinedByString:@" "];
+        
+        arr = [NSMutableArray array];
+        if ([d objectForKey:@"zip"]) {
+            [arr addObject:[[d objectForKey:@"zip"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        }
+        if ([d objectForKey:@"city"]) {
+            [arr addObject:[[d objectForKey:@"city"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        }
+        NSString * line2 = [arr componentsJoinedByString:@" "];        
         if (line2 && [line2 isEqualToString:@""] == NO) {
             identifier = @"searchTwoRowsCell";
             SMSearchTwoRowCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -302,7 +323,7 @@
             identifier = @"searchCell";
             SMSearchCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
             
-            [cell.nameLabel setText:[currentRow objectForKey:@"line1"] afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+            [cell.nameLabel setText:line1 afterInheritingLabelAttributesAndConfiguringWithBlock:^NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
                 for (NSString * srch in words) {
                     NSRange boldRange = [[mutableAttributedString string] rangeOfString:srch options:NSCaseInsensitiveSearch];
                     UIFont *boldSystemFont = [UIFont systemFontOfSize:cell.nameLabel.font.pointSize];
@@ -379,9 +400,22 @@
         
         
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
-        SMRequestOSRM * r = [[SMRequestOSRM alloc] initWithDelegate:self];
-        [r setRequestIdentifier:@"getNearestForPinDrop"];
-        [r findNearestPointForLocation:[[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]]];
+        if ([SMLocationManager instance].hasValidLocation) {
+            CLLocation * loc = [SMLocationManager instance].lastValidLocation;
+            if (loc) {
+                [self setLocationData:@{
+                                        @"name" : CURRENT_POSITION_STRING,
+                                        @"address" : CURRENT_POSITION_STRING,
+                                        @"location" : loc,
+                                        @"source" : @"currentPosition",
+                                        @"subsource" : @""
+                                        }];
+                if (self.delegate) {
+                    [self.delegate locationFound:self.locationData];
+                }
+                [self goBack:nil];
+            }            
+        }
     } else {
         if ([currentRow objectForKey:@"subsource"]) {
             [self setLocationData:@{
@@ -675,75 +709,6 @@
         [tblView reloadData];
         [tblFade setAlpha:0.0f];
     }
-}
-
-#pragma mark - osrm request delegate
-
-- (void)request:(SMRequestOSRM *)req finishedWithResult:(id)res {
-    if ([req.requestIdentifier isEqualToString:@"getNearestForPinDrop"]) {
-        NSDictionary * r = res;
-        CLLocation * coord;
-        if ([r objectForKey:@"mapped_coordinate"] && [[r objectForKey:@"mapped_coordinate"] isKindOfClass:[NSArray class]] && ([[r objectForKey:@"mapped_coordinate"] count] > 1)) {
-            coord = [[CLLocation alloc] initWithLatitude:[[[r objectForKey:@"mapped_coordinate"] objectAtIndex:0] doubleValue] longitude:[[[r objectForKey:@"mapped_coordinate"] objectAtIndex:1] doubleValue]];
-        } else {
-            coord = req.coord;
-        }
-        SMNearbyPlaces * np = [[SMNearbyPlaces alloc] initWithDelegate:self];
-        [np findPlacesForLocation:[[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude]];
-    }
-}
-
-- (void)request:(SMRequestOSRM *)req failedWithError:(NSError *)error {
-}
-
-- (void)serverNotReachable {
-    SMNetworkErrorView * v = [SMNetworkErrorView getFromNib];
-    CGRect frame = v.frame;
-    frame.origin.x = roundf((self.view.frame.size.width - v.frame.size.width) / 2.0f);
-    frame.origin.y = roundf((self.view.frame.size.height - v.frame.size.height) / 2.0f);
-    [v setFrame: frame];
-    [v setAlpha:0.0f];
-    [self.view addSubview:v];
-    [UIView animateWithDuration:ERROR_FADE animations:^{
-        v.alpha = 1.0f;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:ERROR_FADE delay:ERROR_WAIT options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            v.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            [v removeFromSuperview];
-        }];
-    }];
-}
-
-
-#pragma mark - nearby places delegate
-
-- (void) nearbyPlaces:(SMNearbyPlaces *)owner foundLocations:(NSArray *)locations {
-    NSMutableArray * arr = [NSMutableArray array];
-    if ([[owner.title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
-        [arr addObject:[owner.title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    }
-    if ([[owner.subtitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""] == NO) {
-        [arr addObject:[owner.subtitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    }
-    NSString * s = [arr componentsJoinedByString:@", "];
-    [self setLocationData:@{
-     @"name" : CURRENT_POSITION_STRING,
-     @"address" : ([s isEqualToString:@""]?CURRENT_POSITION_STRING:s),
-     @"location" : owner.coord,
-     @"source" : @"currentPosition",
-     @"subsource" : @""
-     }];
-    if (self.delegate) {
-        [self.delegate locationFound:self.locationData];
-    }
-    [self goBack:nil];
-//    [self.destinationPin setNearbyObjects:locations];
-//    [self.destinationPin setSubtitle:owner.subtitle];
-//    [self.destinationPin setTitle:owner.title];
-//    [self.destinationPin setDelegate:self];
-//    [self.destinationPin setRoutingCoordinate:owner.coord];
-//    [self.destinationPin showCallout];
 }
 
 #pragma mark - api operation delegate

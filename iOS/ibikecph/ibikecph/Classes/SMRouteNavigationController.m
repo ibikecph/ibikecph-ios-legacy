@@ -135,8 +135,6 @@ typedef enum {
     [self.cargoTableView reloadData];
     [self.cargoTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     
-    [centerView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-    
     CGRect frame = self.mpView.frame;
     frame.size.height = 0.0f;
     [self.mapFade setFrame:frame];
@@ -180,6 +178,7 @@ typedef enum {
         [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
     }
     
+    [centerView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -195,17 +194,18 @@ typedef enum {
 
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [centerView removeObserver:self forKeyPath:@"frame"];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"currentlyRouting" context:nil];
     [swipableView removeObserver:self forKeyPath:@"hidden" context:nil];
     [self.mpView removeObserver:self forKeyPath:@"userTrackingMode" context:nil];
     [self.mpView removeObserver:self forKeyPath:@"zoom" context:nil];
+    [self.mapFade removeObserver:self forKeyPath:@"frame"];
     [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {
-    [centerView removeObserver:self forKeyPath:@"frame"];
     self.mpView.delegate = nil;
     self.mpView = nil;
     self.route.delegate = nil;
