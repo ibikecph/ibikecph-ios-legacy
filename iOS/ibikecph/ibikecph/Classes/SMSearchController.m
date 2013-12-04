@@ -414,7 +414,7 @@
                     [self.delegate locationFound:self.locationData];
                 }
                 [self goBack:nil];
-            }            
+            }
         }
     } else {
         if ([currentRow objectForKey:@"subsource"]) {

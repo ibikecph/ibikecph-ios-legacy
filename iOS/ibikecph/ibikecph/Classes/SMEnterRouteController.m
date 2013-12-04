@@ -492,6 +492,18 @@ typedef enum {
     [tblView reloadData];
 }
 
+- (NSString*)textFromData:(NSDictionary*)data {
+    NSMutableArray * arr = [NSMutableArray array];
+    [arr addObject:[data objectForKey:@"name"]];
+    if ([data objectForKey:@"address"] && [[data objectForKey:@"name"] isEqualToString:[data objectForKey:@"address"]] == NO) {
+        NSString * s = [[data objectForKey:@"address"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([s isEqualToString:@""] == NO) {
+            [arr addObject:s];
+        }
+    }
+    return [arr componentsJoinedByString:@", "];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self isCountButton:indexPath]) {
@@ -507,7 +519,7 @@ typedef enum {
             }
         }
         NSDictionary * currentRow = [[self.groupedList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        [toLabel setText:[currentRow objectForKey:@"name"]];
+        [toLabel setText:[self textFromData:currentRow]];
         [self setToData:@{
          @"name" : [currentRow objectForKey:@"name"],
          @"address" : [currentRow objectForKey:@"address"],
@@ -556,7 +568,7 @@ typedef enum {
     switch (delegateField) {
         case fieldTo:
             [self setToData:locationDict];
-            [toLabel setText:[self.toData objectForKey:@"name"]];
+            [toLabel setText:[self textFromData:locationDict]];
             break;
         case fieldFrom:
             [self setFromData:locationDict];
@@ -567,7 +579,7 @@ typedef enum {
                 [swapButton setEnabled:YES];
             }
             
-            [fromLabel setText:[self.fromData objectForKey:@"name"]];
+            [fromLabel setText:[self textFromData:locationDict]];
             if ([[locationDict objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
                 [locationArrow setHidden:NO];
                 CGRect frame = fromLabel.frame;
