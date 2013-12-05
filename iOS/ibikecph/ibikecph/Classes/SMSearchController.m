@@ -375,30 +375,31 @@
     NSDictionary * currentRow = [self.searchResults objectAtIndex:indexPath.row];
     [searchField setText:[currentRow objectForKey:@"name"]];
     
+    if ([currentRow objectForKey:@"subsource"]) {
+        [self setLocationData:@{
+                                @"name" : [currentRow objectForKey:@"name"],
+                                @"address" : [currentRow objectForKey:@"address"],
+                                @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+                                @"source" : [currentRow objectForKey:@"source"],
+                                @"subsource" : [currentRow objectForKey:@"subsource"]
+                                }];
+    } else {
+        [self setLocationData:@{
+                                @"name" : [currentRow objectForKey:@"name"],
+                                @"address" : [currentRow objectForKey:@"address"],
+                                @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+                                @"source" : [currentRow objectForKey:@"source"]
+                                }];
+    }
+
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"oiorest"]) {
-        if ([currentRow objectForKey:@"lat"] && [currentRow objectForKey:@"long"] && ([[currentRow objectForKey:@"lat"] doubleValue] != 0 || [[currentRow objectForKey:@"long"] doubleValue] != 0)) {
-            [self setLocationData:@{
-                                    @"name" : [currentRow objectForKey:@"name"],
-                                    @"address" : [currentRow objectForKey:@"address"],
-                                    @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
-                                    @"source" : [currentRow objectForKey:@"source"],
-                                    @"subsource" : [currentRow objectForKey:@"subsource"]
-                                    }];
-            if (self.delegate) {
-                [self.delegate locationFound:self.locationData];
-            }
-            [self goBack:nil];
+        searchField.text = [currentRow objectForKey:@"address"];
+        NSString * street = [currentRow objectForKey:@"street"];
+        if(street.length > 0){
+            [self setCaretForSearchFieldOnPosition:[NSNumber numberWithInt:street.length+1]];
         } else {
-            searchField.text = [currentRow objectForKey:@"address"];
-            NSString * street = [currentRow objectForKey:@"street"];
-            if(street.length > 0){
-                [self setCaretForSearchFieldOnPosition:[NSNumber numberWithInt:street.length+1]];
-            } else {
-                [self checkLocation];
-            }            
+            [self checkLocation];
         }
-        
-        
     } else if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
         if ([SMLocationManager instance].hasValidLocation) {
             CLLocation * loc = [SMLocationManager instance].lastValidLocation;
@@ -417,22 +418,6 @@
             }
         }
     } else {
-        if ([currentRow objectForKey:@"subsource"]) {
-            [self setLocationData:@{
-             @"name" : [currentRow objectForKey:@"name"],
-             @"address" : [currentRow objectForKey:@"address"],
-             @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
-             @"source" : [currentRow objectForKey:@"source"],
-             @"subsource" : [currentRow objectForKey:@"subsource"]
-             }];
-        } else {
-            [self setLocationData:@{
-             @"name" : [currentRow objectForKey:@"name"],
-             @"address" : [currentRow objectForKey:@"address"],
-             @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
-             @"source" : [currentRow objectForKey:@"source"]
-             }];
-        }
         if (self.delegate) {
             [self.delegate locationFound:self.locationData];
         }

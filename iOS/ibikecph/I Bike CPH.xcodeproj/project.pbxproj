@@ -10,11 +10,11 @@
 		4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7DC93316BA847C00198F72 /* SMUtil.m */; };
 		4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7DC93916BBD73A00198F72 /* SMDirectionCell.m */; };
 		4BA5295E16D52634000CA4A2 /* SMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5294F16D522ED000CA4A2 /* SMAnnotation.m */; };
-		4BA5296E16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */; };
+		4BA5296E16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA5296D16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx */; };
 		4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915C816AFF798004E04A4 /* CoreLocation.framework */; };
 		4BA915CB16AFF7E4004E04A4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */; };
 		4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA915CC16AFF809004E04A4 /* QuartzCore.framework */; };
-		4BA915E916B0097C004E04A4 /* kopenhagen_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */; };
+		4BA915E916B0097C004E04A4 /* copenhagen_withtimestamps.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */; };
 		4BA9161C16B14629004E04A4 /* LoadingTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9161816B14629004E04A4 /* LoadingTile.png */; };
 		4BA9161D16B14629004E04A4 /* LoadingTileZoom.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9161916B14629004E04A4 /* LoadingTileZoom.png */; };
 		4BA9164616B14F02004E04A4 /* HeadingAngleSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA9163C16B14F01004E04A4 /* HeadingAngleSmall.png */; };
@@ -602,11 +602,11 @@
 		4BA5295716D5230B000CA4A2 /* AsyncImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		4BA5295C16D5255E000CA4A2 /* SMCustomCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCustomCheckbox.h; sourceTree = "<group>"; };
 		4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMCustomCheckbox.m; sourceTree = "<group>"; };
-		4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = kopenhagen2_withtimestamps.gpx; sourceTree = "<group>"; };
+		4BA5296D16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = copenhagen2_withtimestamps.gpx; sourceTree = "<group>"; };
 		4BA915C816AFF798004E04A4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4BA915CA16AFF7E4004E04A4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		4BA915CC16AFF809004E04A4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = kopenhagen_withtimestamps.gpx; sourceTree = "<group>"; };
+		4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = copenhagen_withtimestamps.gpx; sourceTree = "<group>"; };
 		4BA9161816B14629004E04A4 /* LoadingTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoadingTile.png; path = ../Libs/MapView/Map/Resources/LoadingTile.png; sourceTree = "<group>"; };
 		4BA9161916B14629004E04A4 /* LoadingTileZoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LoadingTileZoom.png; path = ../Libs/MapView/Map/Resources/LoadingTileZoom.png; sourceTree = "<group>"; };
 		4BA9163C16B14F01004E04A4 /* HeadingAngleSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HeadingAngleSmall.png; path = ../Libs/MapView/Map/Resources/HeadingAngleSmall.png; sourceTree = "<group>"; };
@@ -930,7 +930,6 @@
 		4C7AA2FA172AC81800B62557 /* distance_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance_black@2x.png"; sourceTree = "<group>"; };
 		4C7AA2FB172AC81800B62557 /* distance_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance_white.png; sourceTree = "<group>"; };
 		4C7AA2FC172AC81800B62557 /* distance_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance_white@2x.png"; sourceTree = "<group>"; };
-		4C7F18C2184E391700C3FE92 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C8546BF16E64D3B004E8902 /* SMGPSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGPSUtil.h; sourceTree = "<group>"; };
 		4C8546C016E64D3B004E8902 /* SMGPSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSUtil.m; sourceTree = "<group>"; };
 		4C8546C116E64D3B004E8902 /* SMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
@@ -1099,6 +1098,7 @@
 		4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LocateSubview.m"; sourceTree = "<group>"; };
 		4CB15BDF172929F000C3BB1E /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
 		4CB15BE0172929F000C3BB1E /* no_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connection@2x.png"; sourceTree = "<group>"; };
+		4CB8B6881850D19900A2CEE1 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
 		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
@@ -1772,8 +1772,8 @@
 			children = (
 				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
-				4BA915E816B0097C004E04A4 /* kopenhagen_withtimestamps.gpx */,
-				4BA5296D16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx */,
+				4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */,
+				4BA5296D16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx */,
 				4C73D21416AEDCDA00AED42A /* I Bike CPH */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
 				4C73D20D16AEDCDA00AED42A /* Frameworks */,
@@ -2351,7 +2351,7 @@
 				4BA9161C16B14629004E04A4 /* LoadingTile.png in Resources */,
 				4BA9161D16B14629004E04A4 /* LoadingTileZoom.png in Resources */,
 				4C73D21916AEDCDA00AED42A /* InfoPlist.strings in Resources */,
-				4BA915E916B0097C004E04A4 /* kopenhagen_withtimestamps.gpx in Resources */,
+				4BA915E916B0097C004E04A4 /* copenhagen_withtimestamps.gpx in Resources */,
 				4C90469A16B963A0004BA3DD /* findRouteBike.png in Resources */,
 				4C90469B16B963A0004BA3DD /* findRouteBike@2x.png in Resources */,
 				4C90469C16B963A0004BA3DD /* findRouteCalendar.png in Resources */,
@@ -2368,7 +2368,7 @@
 				4C90C66616C54C430095B5EF /* icon_locate_me@2x.png in Resources */,
 				4C77EF7F16CB8DF50062360C /* icon.png in Resources */,
 				4C77EF8016CB8DF50062360C /* icon@2x.png in Resources */,
-				4BA5296E16D63840000CA4A2 /* kopenhagen2_withtimestamps.gpx in Resources */,
+				4BA5296E16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx in Resources */,
 				4C09001716DE448300DCAB64 /* SMSwipableView.xib in Resources */,
 				4CD53D5616DFB53A00DB90E4 /* icon_locate_heading.png in Resources */,
 				4CD53D5816DFB53A00DB90E4 /* icon_locate_heading@2x.png in Resources */,
@@ -2884,7 +2884,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F68C64251768B5B3009B4A21 /* en */,
-				4C7F18C2184E391700C3FE92 /* da */,
+				4CB8B6881850D19900A2CEE1 /* da */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

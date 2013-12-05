@@ -297,7 +297,17 @@ typedef enum {
     }];
     overviewShown = YES;
     self.currentlyRouting = NO;
-    [progressView setHidden:YES];
+    
+    /**
+     * hide this if time should not be shown
+     */
+    [progressView setHidden:NO];
+    [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
+    [labelTimeLeft setText:expectedArrivalTime(self.route.estimatedTimeForRoute)];
+    /**
+     * end hide
+     */
+    
     [self setDirectionsState:directionsNormal];
     // Display new path
     NSDictionary * coordinates = [self addRouteAnnotation:self.route];
@@ -798,37 +808,64 @@ typedef enum {
 }
 
 - (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
-   if (self.currentlyRouting && self.route && userLocation) {
-       [self.route visitLocation:userLocation.location];
-       
-       [self setDirectionsState:currentDirectionsState];
-       
-       [self reloadFirstSwipableView];
-       
-       [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
-       
-       CGFloat percent = 0;
-       @try {
-           if ((self.route.distanceLeft + self.route.tripDistance) > 0) {
-               percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);               
-           }
-       }
-       @catch (NSException *exception) {
-           percent = 0;
-       }
-       @finally {
-           
-       }
-       
-       if (self.route) {
-           
-       }
-       
-       CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
-       [labelTimeLeft setText:expectedArrivalTime(time)];
+    [self.route visitLocation:userLocation.location];
+    
+    [self setDirectionsState:currentDirectionsState];
+    
+    [self reloadFirstSwipableView];
+    
+    [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
+    
+    CGFloat percent = 0;
+    @try {
+        if ((self.route.distanceLeft + self.route.tripDistance) > 0) {
+            percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);
+        }
+    }
+    @catch (NSException *exception) {
+        percent = 0;
+    }
+    @finally {
+        
+    }
+    
+    if (self.route) {
+        
+    }
+    
+    CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
+    [labelTimeLeft setText:expectedArrivalTime(time)];
+    if (self.currentlyRouting && self.route && userLocation) {
+//       [self.route visitLocation:userLocation.location];
+//       
+//       [self setDirectionsState:currentDirectionsState];
+//       
+//       [self reloadFirstSwipableView];
+//       
+//       [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
+//       
+//       CGFloat percent = 0;
+//       @try {
+//           if ((self.route.distanceLeft + self.route.tripDistance) > 0) {
+//               percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);               
+//           }
+//       }
+//       @catch (NSException *exception) {
+//           percent = 0;
+//       }
+//       @finally {
+//           
+//       }
+//       
+//       if (self.route) {
+//           
+//       }
+//       
+//       CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
+//       [labelTimeLeft setText:expectedArrivalTime(time)];
 
-       [tblDirections reloadData];
-       [self renderMinimizedDirectionsViewFromInstruction];
+        [tblDirections reloadData];
+        [self renderMinimizedDirectionsViewFromInstruction];
     }
 }
 
@@ -1094,12 +1131,16 @@ typedef enum {
 - (IBAction)hideFinishView:(id)sender {
     [UIView animateWithDuration:0.4f animations:^{
         [finishFadeView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+//        [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:centerView.frame.origin.x andPullView:self.cargoHandleImageView];
     }];
 }
 
 - (IBAction)hideStopView:(id)sender {
     [UIView animateWithDuration:0.4f animations:^{
         [stopView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+//        [centerView setupForHorizontalSwipeWithStart:0.0f andEnd:260.0f andStart:centerView.frame.origin.x andPullView:self.cargoHandleImageView];
     }];
 }
 
@@ -1122,7 +1163,7 @@ typedef enum {
     [UIView animateWithDuration:0.4f animations:^{
         [stopView setAlpha:1.0f];
     } completion:^(BOOL finished) {
-    }];    
+    }];
 }
 
 - (void)trackingOn {

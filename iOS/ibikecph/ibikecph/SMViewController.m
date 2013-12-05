@@ -1177,7 +1177,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     if (tableView == tblMenu) {
-        if ([self.favoritesList count] == 0) {
+        if ([self.favoritesList count] <= 1) {
             return;
         }
         NSDictionary * src = [self.favoritesList objectAtIndex:sourceIndexPath.row];
@@ -1227,6 +1227,12 @@ typedef enum {
                 [cellGrip setImage:nil];
             }
         }
+
+        UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn2 setFrame:CGRectMake(52.0f, 0.0f, 156.0f, cell.frame.size.height)];
+        [btn2 setTag:indexPath.row];
+        [cell addSubview:btn2];
+
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(208.0f, 0.0f, 52.0f, cell.frame.size.height)];
