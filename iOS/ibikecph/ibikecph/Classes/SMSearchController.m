@@ -468,27 +468,28 @@
                 }
                 [self hideFade];
             } else {
-                [SMGeocoder geocode:searchField.text completionHandler:^(NSArray *placemarks, NSError *error) {
-                    if ([placemarks count] > 0) {
-                        MKPlacemark *coord = [placemarks objectAtIndex:0];
-                        [self goBack:nil];
-                        if (self.delegate) {
-                            [self.delegate locationFound:@{
-                                                           @"name" : searchField.text,
-                                                           @"address" : searchField.text,
-                                                           @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude],
-                                                           @"source" : @"typedIn"
-                                                           }];
-                        }
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                        });
-                    } else {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
-                        });
-                    }
-                }];
+                [self hideFade];
+//                [SMGeocoder geocode:searchField.text completionHandler:^(NSArray *placemarks, NSError *error) {
+//                    if ([placemarks count] > 0) {
+//                        MKPlacemark *coord = [placemarks objectAtIndex:0];
+//                        [self goBack:nil];
+//                        if (self.delegate) {
+//                            [self.delegate locationFound:@{
+//                                                           @"name" : searchField.text,
+//                                                           @"address" : searchField.text,
+//                                                           @"location" : [[CLLocation alloc] initWithLatitude:coord.coordinate.latitude longitude:coord.coordinate.longitude],
+//                                                           @"source" : @"typedIn"
+//                                                           }];
+//                        }
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+//                        });
+//                    } else {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            [self performSelector:@selector(hideFade) withObject:nil afterDelay:0.01f];
+//                        });
+//                    }
+//                }];
             }
         }
     } else {

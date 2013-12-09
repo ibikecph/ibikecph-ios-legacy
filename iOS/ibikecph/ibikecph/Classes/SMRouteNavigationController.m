@@ -301,7 +301,7 @@ typedef enum {
     /**
      * hide this if time should not be shown
      */
-    [progressView setHidden:NO];
+    [progressView setHidden:YES];
     [labelDistanceLeft setText:formatDistance(self.route.estimatedRouteDistance)];
     [labelTimeLeft setText:expectedArrivalTime(self.route.estimatedTimeForRoute)];
     /**
@@ -318,12 +318,10 @@ typedef enum {
     
     [routeOverview setFrame:instructionsView.frame];
     
-    [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, via %@", formatDistance(self.route.estimatedRouteDistance), self.route.longestStreet]];
+    [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, %0.f min, via %@", formatDistance(self.route.estimatedRouteDistance), ceilf(self.route.estimatedTimeForRoute / 60.0f), self.route.longestStreet]];
     
     NSArray * a = [self.destination componentsSeparatedByString:@","];
     NSString* streetName= [a objectAtIndex:0];
-//    [overviewDestination setText:[a objectAtIndex:0]];
-//    [overviewDestination setText:testStreet];
     overviewDestination.lineBreakMode= UILineBreakModeCharacterWrap;
     overviewDestinationBottom.lineBreakMode= UILineBreakModeTailTruncation;
     
@@ -341,14 +339,6 @@ typedef enum {
         overviewDestinationBottom.text= @"";
     }
     
-//    NSInteger characterCountInFirstLine= [self fitString:testStreet intoLabel:overviewDestination size:singleLineSize];
-//    if(characterCountInFirstLine<testStreet.length){
-    
-//        NSString* newValue= [self splitString:testStreet lastCharacterIndex:characterCountInFirstLine-1];
-//        [overviewDestination setText:newValue];
-//    }
-    
-//    [self performSelector:@selector(zoomOut:) withObject:coordinates afterDelay:1.0f];
     [self zoomOut:coordinates];
     
     [self performSelector:@selector(zoomOut:) withObject:coordinates afterDelay:1.0f];
@@ -362,7 +352,7 @@ typedef enum {
     self.mapFade.frame = fr;
     
     [self.mpView setUserTrackingMode:RMUserTrackingModeNone];
-    [self.mpView setShowsUserLocation:YES];
+//    [self.mpView setShowsUserLocation:YES];
 
 
 }
@@ -807,7 +797,7 @@ typedef enum {
     return nil;
 }
 
-- (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
+- (void)updateData:(RMUserLocation *)userLocation {
     [self.route visitLocation:userLocation.location];
     
     [self setDirectionsState:currentDirectionsState];
@@ -829,40 +819,19 @@ typedef enum {
         
     }
     
-    if (self.route) {
-        
-    }
     
     CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
     [labelTimeLeft setText:expectedArrivalTime(time)];
+}
+
+- (void)mapView:(RMMapView *)mapView didUpdateUserLocation:(RMUserLocation *)userLocation {
+    
+//    if (self.route) {
+//        [overviewTimeDistance setText:[NSString stringWithFormat:@"%@, %0.f min, via %@", formatDistance(self.route.estimatedRouteDistance), ceilf(time / 60.0f), self.route.longestStreet]];
+//    }
+
     if (self.currentlyRouting && self.route && userLocation) {
-//       [self.route visitLocation:userLocation.location];
-//       
-//       [self setDirectionsState:currentDirectionsState];
-//       
-//       [self reloadFirstSwipableView];
-//       
-//       [labelDistanceLeft setText:formatDistance(self.route.distanceLeft)];
-//       
-//       CGFloat percent = 0;
-//       @try {
-//           if ((self.route.distanceLeft + self.route.tripDistance) > 0) {
-//               percent = self.route.tripDistance / (self.route.distanceLeft + self.route.tripDistance);               
-//           }
-//       }
-//       @catch (NSException *exception) {
-//           percent = 0;
-//       }
-//       @finally {
-//           
-//       }
-//       
-//       if (self.route) {
-//           
-//       }
-//       
-//       CGFloat time = self.route.distanceLeft * self.route.estimatedTimeForRoute / self.route.estimatedRouteDistance;
-//       [labelTimeLeft setText:expectedArrivalTime(time)];
+        [self updateData:userLocation];
 
         [tblDirections reloadData];
         [self renderMinimizedDirectionsViewFromInstruction];

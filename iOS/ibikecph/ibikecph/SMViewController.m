@@ -538,8 +538,8 @@ typedef enum {
     [self hidePinDrop];
 }
 
-- (IBAction)pinAddToFavorites:(id)sender {
-    
+- (void)delayedAddPin {
+    [pinButton setEnabled:NO];
     NSDictionary * d = @{
                          @"name" : routeStreet.text,
                          @"address" : routeStreet.text,
@@ -554,12 +554,13 @@ typedef enum {
     NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF.name = %@ AND SELF.address = %@", routeStreet.text, routeStreet.text];
     NSArray * arr = [[SMFavoritesUtil getFavorites] filteredArrayUsingPredicate:pred];
     SMFavoritesUtil * fv = [SMFavoritesUtil instance];
+    fv.delegate = self;
     if ([arr count] > 0) {
         [pinButton setSelected:NO];
         [fv deleteFavoriteFromServer:[arr objectAtIndex:0]];
         if (![SMAnalytics trackEventWithCategory:@"Favorites" withAction:@"Delete" withLabel:[NSString stringWithFormat:@"%@ - (%f, %f)", addFavName.text, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude, ((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude] withValue:0]) {
             debugLog(@"error in trackEvent");
-        }        
+        }
     } else {
         [pinButton setSelected:YES];
         [fv addFavoriteToServer:d];
@@ -567,6 +568,11 @@ typedef enum {
             debugLog(@"error in trackEvent");
         }
     }
+}
+
+- (IBAction)pinAddToFavorites:(id)sender {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAddPin) object:nil];
+    [self performSelector:@selector(delayedAddPin) withObject:nil afterDelay:0.2f];
 }
 
 - (void)showPinDrop {
@@ -1197,13 +1203,13 @@ typedef enum {
     return NO;
 }
 
-
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     UIView* view = [cell subviewWithClassName:@"UITableViewCellReorderControl"];
     
     if (view) {
         [view setExclusiveTouch:NO];
         UIView* resizedGripView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetMaxX(view.frame), CGRectGetMaxY(view.frame))];
+        resizedGripView.exclusiveTouch = YES;
         [resizedGripView addSubview:view];
         [cell addSubview:resizedGripView];
         
@@ -1232,13 +1238,13 @@ typedef enum {
         [btn2 setFrame:CGRectMake(52.0f, 0.0f, 156.0f, cell.frame.size.height)];
         [btn2 setTag:indexPath.row];
         [cell addSubview:btn2];
-
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(208.0f, 0.0f, 52.0f, cell.frame.size.height)];
         [btn setTag:indexPath.row];
         [btn addTarget:self action:@selector(rowSelected:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btn];
+        
     }
 }
 
@@ -1596,7 +1602,7 @@ typedef enum {
 #pragma mark - smfavorites delegate
 
 - (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data {
-    
+    pinButton.enabled = YES;
 }
 
 #pragma mark - api request delegate
