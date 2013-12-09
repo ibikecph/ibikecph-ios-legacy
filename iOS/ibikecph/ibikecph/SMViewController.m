@@ -55,6 +55,7 @@ typedef enum {
     MenuType menuOpen;
     
     FavoriteType currentFav;
+    BOOL pinWorking;
 }
 
 @property (nonatomic, strong) SMContacts *contacts;
@@ -108,6 +109,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    pinWorking = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 
     if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
@@ -484,6 +486,7 @@ typedef enum {
             }
             if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isKindOfClass:[NSString class]] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
                 pinButton.enabled = YES;
+                
             }
             
 //            [self.destinationPin setSubtitle:@""];
@@ -539,7 +542,6 @@ typedef enum {
 }
 
 - (void)delayedAddPin {
-    [pinButton setEnabled:NO];
     NSDictionary * d = @{
                          @"name" : routeStreet.text,
                          @"address" : routeStreet.text,
@@ -571,8 +573,11 @@ typedef enum {
 }
 
 - (IBAction)pinAddToFavorites:(id)sender {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAddPin) object:nil];
-    [self performSelector:@selector(delayedAddPin) withObject:nil afterDelay:0.2f];
+    if (pinWorking == NO) {
+        pinWorking = YES;
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAddPin) object:nil];
+        [self performSelector:@selector(delayedAddPin) withObject:nil afterDelay:0.2f];
+    }
 }
 
 - (void)showPinDrop {
@@ -581,7 +586,8 @@ typedef enum {
     [dropPinView setFrame:frame];
     [dropPinView setHidden:NO];
     routeStreet.text = @"";
-    [pinButton setEnabled:NO];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAddPin) object:nil];
+    pinWorking = NO;
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         CGRect frame = dropPinView.frame;
         frame.origin.y = centerView.frame.size.height - dropPinView.frame.size.height;
@@ -1413,6 +1419,7 @@ typedef enum {
         [pinButton setSelected:NO];
     }
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"] && [[self.appDelegate.appSettings objectForKey:@"auth_token"] isEqualToString:@""] == NO) {
+        pinWorking = NO;
         pinButton.enabled = YES;
     }
     
@@ -1602,7 +1609,7 @@ typedef enum {
 #pragma mark - smfavorites delegate
 
 - (void)favoritesOperationFinishedSuccessfully:(id)req withData:(id)data {
-    pinButton.enabled = YES;
+    pinWorking = NO;
 }
 
 #pragma mark - api request delegate
