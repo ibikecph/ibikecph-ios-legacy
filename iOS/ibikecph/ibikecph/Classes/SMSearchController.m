@@ -70,7 +70,6 @@
     
     [self.queue stopAllRequests];
     self.queue = nil;
-    
     [super viewDidUnload];
 }
 
@@ -84,6 +83,21 @@
     
     self.queue = [[SMAPIQueue alloc] initWithMaxOperations:3];
     self.queue.delegate = self;
+    
+    [self setReturnKey];
+    
+}
+
+- (void)setReturnKey {
+    if (self.locationData) {
+        [searchField setReturnKeyType:UIReturnKeyGo];
+        [searchField resignFirstResponder];
+        [searchField becomeFirstResponder];
+    } else {
+        [searchField setReturnKeyType:UIReturnKeyDone];
+        [searchField resignFirstResponder];
+        [searchField becomeFirstResponder];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -391,6 +405,7 @@
                                 @"source" : [currentRow objectForKey:@"source"]
                                 }];
     }
+    [self setReturnKey];
 
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"oiorest"]) {
         searchField.text = [currentRow objectForKey:@"address"];
@@ -469,6 +484,42 @@
                 [self hideFade];
             } else {
                 [self hideFade];
+                if (self.searchResults && self.searchResults.count > 0) {
+                    NSDictionary * currentRow = [self.searchResults objectAtIndex:0];
+                    if ([[currentRow objectForKey:@"source"] isEqualToString:@"currentPosition"]) {
+                        currentRow = nil;
+                         if (self.searchResults && self.searchResults.count > 1) {
+                             currentRow = [self.searchResults objectAtIndex:1];
+                         }
+                    }
+                    if (currentRow) {
+                        [searchField setText:[currentRow objectForKey:@"name"]];
+                        
+                        if ([currentRow objectForKey:@"subsource"]) {
+                            [self setLocationData:@{
+                                                    @"name" : [currentRow objectForKey:@"name"],
+                                                    @"address" : [currentRow objectForKey:@"address"],
+                                                    @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+                                                    @"source" : [currentRow objectForKey:@"source"],
+                                                    @"subsource" : [currentRow objectForKey:@"subsource"]
+                                                    }];
+                        } else {
+                            [self setLocationData:@{
+                                                    @"name" : [currentRow objectForKey:@"name"],
+                                                    @"address" : [currentRow objectForKey:@"address"],
+                                                    @"location" : [[CLLocation alloc] initWithLatitude:[[currentRow objectForKey:@"lat"] doubleValue] longitude:[[currentRow objectForKey:@"long"] doubleValue]],
+                                                    @"source" : [currentRow objectForKey:@"source"]
+                                                    }];
+                        }
+                        if (self.delegate) {
+                            [self.delegate locationFound:self.locationData];
+                            [self goBack:nil];
+                        }
+                    }
+
+                }
+                
+                
 //                [SMGeocoder geocode:searchField.text completionHandler:^(NSArray *placemarks, NSError *error) {
 //                    if ([placemarks count] > 0) {
 //                        MKPlacemark *coord = [placemarks objectAtIndex:0];
@@ -534,6 +585,7 @@
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
     if ([[s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] == NO) {
         self.locationData = nil;
+        [self setReturnKey];
     }
     [self stopAll];
     if ([s length] >= 2) {
@@ -565,6 +617,7 @@
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
     self.locationData = nil;
+    [self setReturnKey];
     textField.text = @"";
     [self autocompleteEntriesFound:@[] forString:@""];
     self.locationData = nil;
@@ -717,5 +770,6 @@
 //        }
 //    }
 }
+
 
 @end
