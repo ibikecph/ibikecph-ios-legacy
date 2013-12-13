@@ -589,6 +589,7 @@ typedef enum {
     routeStreet.text = @"";
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedAddPin) object:nil];
     pinWorking = NO;
+    pinButton.enabled = NO;
     [UIView animateWithDuration:0.4f delay:0.0f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         CGRect frame = dropPinView.frame;
         frame.origin.y = centerView.frame.size.height - dropPinView.frame.size.height;
