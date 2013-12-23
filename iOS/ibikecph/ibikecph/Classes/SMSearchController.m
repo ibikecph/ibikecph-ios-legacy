@@ -585,7 +585,7 @@
     NSString * s = [[textField.text stringByReplacingCharactersInRange:range withString:string] capitalizedString];
     if ([[s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:[textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]] == NO) {
         self.locationData = nil;
-        [self setReturnKey];
+//        [self setReturnKey];
     }
     [self stopAll];
     if ([s length] >= 2) {
@@ -659,7 +659,7 @@
         for (NSDictionary * d in arr) {
             BOOL found = NO;
             for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                if ([[d1 objectForKey:@"name"] isEqualToString:[d objectForKey:@"name"]] && [[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
                     found = YES;
                     break;
                 }
@@ -674,7 +674,7 @@
             BOOL found = NO;
             NSDictionary * d = [self.favorites objectAtIndex:i];
             for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                if ([[d1 objectForKey:@"name"] isEqualToString:[d objectForKey:@"name"]] && [[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
                     found = YES;
                     break;
                 }
@@ -688,7 +688,7 @@
             BOOL found = NO;
             NSDictionary * d = [appd.searchHistory objectAtIndex:i];
             for (NSDictionary * d1 in r) {
-                if ([[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
+                if ([[d1 objectForKey:@"name"] isEqualToString:[d objectForKey:@"name"]] && [[d1 objectForKey:@"address"] isEqualToString:[d objectForKey:@"address"]]) {
                     found = YES;
                     break;
                 }
