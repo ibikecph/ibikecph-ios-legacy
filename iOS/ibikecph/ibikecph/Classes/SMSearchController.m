@@ -410,7 +410,9 @@
     if ([[currentRow objectForKey:@"source"] isEqualToString:@"autocomplete"] && [[currentRow objectForKey:@"subsource"] isEqualToString:@"oiorest"]) {
         searchField.text = [currentRow objectForKey:@"address"];
         NSString * street = [currentRow objectForKey:@"street"];
-        if(street.length > 0){
+        if(street.length > 0) {
+            [self stopAll];
+            [self delayedAutocomplete:searchField.text];
             [self setCaretForSearchFieldOnPosition:[NSNumber numberWithInt:street.length+1]];
         } else {
             [self checkLocation];

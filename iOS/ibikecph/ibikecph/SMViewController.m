@@ -852,8 +852,8 @@ typedef enum {
                                 @"endDate" : [NSDate date],
                                 @"source" : @"favorites",
                                 @"subsource" : favType,
-                                @"lat" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude],
-                                @"long" : [NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude],
+                                @"lat" : [self.locDict objectForKey:@"location"]?[NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.latitude]:[self.locDict objectForKey:@"lat"],
+                                @"long" : [self.locDict objectForKey:@"location"]?[NSNumber numberWithDouble:((CLLocation*)[self.locDict objectForKey:@"location"]).coordinate.longitude]:[self.locDict objectForKey:@"long"],
                                 @"order" : @0
                                 };
         
@@ -1244,7 +1244,7 @@ typedef enum {
 
         UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn2 setFrame:CGRectMake(52.0f, 0.0f, 156.0f, cell.frame.size.height)];
-        [btn2 setTag:indexPath.row];
+        [btn2 setTag:10001];
         [cell addSubview:btn2];
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1253,6 +1253,11 @@ typedef enum {
         [btn addTarget:self action:@selector(rowSelected:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btn];
         
+    } else {
+        UIView * v = [cell viewWithTag:10001];
+        if (v) {
+            [v removeFromSuperview];
+        }
     }
 }
 
