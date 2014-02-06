@@ -8,7 +8,9 @@
 
 #import "SMAboutController.h"
 
-@interface SMAboutController ()
+@interface SMAboutController () {
+    __weak IBOutlet UILabel *debugLabel;
+}
 
 @end
 
@@ -32,7 +34,19 @@
     CGRect frame = aboutText.frame;
     frame.size.height = size.height + 50.0f;
     aboutText.frame = frame;
-    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, aboutText.frame.origin.y + aboutText.frame.size.height)];
+    
+    frame = debugLabel.frame;
+    frame.origin.y = CGRectGetMaxY(aboutText.frame) + 5.0f;
+    debugLabel.frame = frame;
+    
+    [scrlView setContentSize:CGSizeMake(scrlView.frame.size.width, CGRectGetMaxY(debugLabel.frame) + 5.0f)];
+    
+#if DEBUG
+    [debugLabel setText:BUILD_STRING];
+#else
+    [debugLabel setText:@""];
+#endif
+
 }
 
 #pragma mark - button actions

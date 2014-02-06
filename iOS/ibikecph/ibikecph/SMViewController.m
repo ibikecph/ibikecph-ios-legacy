@@ -188,7 +188,6 @@ typedef enum {
     dropPinView = nil;
     tblMenu = nil;
     fadeView = nil;
-    debugLabel = nil;
     buttonTrackUser = nil;
     favHeader = nil;
     accHeader = nil;
@@ -236,11 +235,11 @@ typedef enum {
     self.findFrom = @"";
     self.findTo = @"";
     
-#if DEBUG
-    [debugLabel setText:BUILD_STRING];
-#else
-    [debugLabel setText:@""];
-#endif
+//#if DEBUG
+//    [debugLabel setText:BUILD_STRING];
+//#else
+//    [debugLabel setText:@""];
+//#endif
     
     findRouteSmall.alpha = 1.0f;
     findRouteBig.alpha = 0.0f;
@@ -1064,36 +1063,34 @@ typedef enum {
                 [cell.text setText:[currentRow objectForKey:@"name"]];
                 return cell;
             } else {
-//                if (indexPath.row < [self.favoritesList count]) {
-                    NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
-                    SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
-                    [cell.image setContentMode:UIViewContentModeCenter];
-                    [cell setDelegate:self];
+                NSDictionary * currentRow = [self.favoritesList objectAtIndex:indexPath.row];
+                SMMenuCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesCell"];
+                [cell.image setContentMode:UIViewContentModeCenter];
+                [cell setDelegate:self];
                 [cell setIndentationLevel:2];
-                    if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
-                        [cell.image setImage:[UIImage imageNamed:@"favHomeGrey"]];
-                        [cell.image setHighlightedImage:[UIImage imageNamed:@"favHomeWhite"]];
-                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
-                        [cell.image setImage:[UIImage imageNamed:@"favWorkGrey"]];
-                        [cell.image setHighlightedImage:[UIImage imageNamed:@"favWorkWhite"]];
-                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
-                        [cell.image setImage:[UIImage imageNamed:@"favSchoolGrey"]];
-                        [cell.image setHighlightedImage:[UIImage imageNamed:@"favSchoolWhite"]];
-                    } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
-                        [cell.image setImage:[UIImage imageNamed:@"favStarGreySmall"]];
-                        [cell.image setHighlightedImage:[UIImage imageNamed:@"favStarWhiteSmall"]];
-                    } else {
-                        [cell.image setImage:nil];
-                    }
-                    [cell.editBtn setHidden:YES];
-                    [cell.text setText:[currentRow objectForKey:@"name"]];
-                    return cell;
-//                } else {
-//                    SMAddFavoriteCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesAddCell"];
-//                    [cell.image setContentMode:UIViewContentModeCenter];
-//                    [cell.text setText:translateString(@"cell_add_favorite")];
-//                    return cell;
-//                }
+                if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"home"]) {
+                    [cell.image setImage:[UIImage imageNamed:@"favHomeGrey"]];
+                    [cell.image setHighlightedImage:[UIImage imageNamed:@"favHomeWhite"]];
+                } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"work"]) {
+                    [cell.image setImage:[UIImage imageNamed:@"favWorkGrey"]];
+                    [cell.image setHighlightedImage:[UIImage imageNamed:@"favWorkWhite"]];
+                } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"school"]) {
+                    [cell.image setImage:[UIImage imageNamed:@"favSchoolGrey"]];
+                    [cell.image setHighlightedImage:[UIImage imageNamed:@"favSchoolWhite"]];
+                } else if ([[currentRow objectForKey:@"subsource"] isEqualToString:@"favorite"]) {
+                    [cell.image setImage:[UIImage imageNamed:@"favStarGreySmall"]];
+                    [cell.image setHighlightedImage:[UIImage imageNamed:@"favStarWhiteSmall"]];
+                } else {
+                    [cell.image setImage:nil];
+                }
+                [cell.editBtn setHidden:YES];
+                [cell.text setText:[currentRow objectForKey:@"name"]];
+                
+                UIView * v = [cell viewWithTag:10001];
+                if (v) {
+                    [v removeFromSuperview];
+                }
+                return cell;
             }
         } else {
             SMEmptyFavoritesCell * cell = [tableView dequeueReusableCellWithIdentifier:@"favoritesEmptyCell"];
@@ -1242,10 +1239,14 @@ typedef enum {
             }
         }
 
-        UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn2 setFrame:CGRectMake(52.0f, 0.0f, 156.0f, cell.frame.size.height)];
-        [btn2 setTag:10001];
-        [cell addSubview:btn2];
+        UIView * v = [cell viewWithTag:10001];
+        if (v == nil) {
+            UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btn2 setFrame:CGRectMake(52.0f, 0.0f, 156.0f, cell.frame.size.height)];
+            [btn2 setTag:10001];
+            [cell addSubview:btn2];
+        }
+
         
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(208.0f, 0.0f, 52.0f, cell.frame.size.height)];

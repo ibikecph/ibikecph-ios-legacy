@@ -899,6 +899,7 @@
 		4C6C083D16C3DFA1002EA499 /* markerStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markerStart.png; sourceTree = "<group>"; };
 		4C6C083E16C3DFA1002EA499 /* markerStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerStart@2x.png"; sourceTree = "<group>"; };
 		4C6C47F016CD3C3300E57F59 /* dictionary_en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = dictionary_en.strings; sourceTree = "<group>"; };
+		4C70B89218A397370012A689 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4C73A1EB16B284B500050349 /* SMContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContacts.h; sourceTree = "<group>"; };
 		4C73A1EC16B284B500050349 /* SMContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContacts.m; sourceTree = "<group>"; };
 		4C73A1F716B2900600050349 /* SMContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContactsCell.h; sourceTree = "<group>"; };
@@ -1098,7 +1099,6 @@
 		4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LocateSubview.m"; sourceTree = "<group>"; };
 		4CB15BDF172929F000C3BB1E /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
 		4CB15BE0172929F000C3BB1E /* no_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connection@2x.png"; sourceTree = "<group>"; };
-		4CB8B6881850D19900A2CEE1 /* da */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = da; path = da.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
 		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
@@ -2884,7 +2884,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F68C64251768B5B3009B4A21 /* en */,
-				4CB8B6881850D19900A2CEE1 /* da */,
+				4C70B89218A397370012A689 /* da */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

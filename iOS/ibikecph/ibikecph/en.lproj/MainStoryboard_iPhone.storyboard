@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="P1j-kR-ci6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="P1j-kR-ci6">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -541,7 +541,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
-                                <rect key="frame" x="0.0" y="70.999997368654547" width="320" height="434"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="434"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
@@ -1023,14 +1023,20 @@
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" id="pPf-vR-37x">
-                                <rect key="frame" x="15" y="170" width="290" height="408"/>
+                                <rect key="frame" x="15" y="170" width="290" height="398"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="about_text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VKV-gN-rs2">
-                                        <rect key="frame" x="15" y="10" width="265" height="358"/>
+                                        <rect key="frame" x="15" y="10" width="265" height="348"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="YAQ-I7-pis">
+                                        <rect key="frame" x="22" y="367" width="247" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1050,6 +1056,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="aboutText" destination="VKV-gN-rs2" id="N5b-vN-94L"/>
+                        <outlet property="debugLabel" destination="YAQ-I7-pis" id="WRR-bZ-ZnR"/>
                         <outlet property="scrlView" destination="pPf-vR-37x" id="hfu-A2-QWx"/>
                     </connections>
                 </viewController>
@@ -1828,13 +1835,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" id="iqL-K9-CLg">
-                                        <rect key="frame" x="6" y="548" width="247" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="drop_shadow_sliding_image.png" id="aQl-EY-jry">
                                         <rect key="frame" x="255" y="0.0" width="5" height="569"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
@@ -1994,7 +1994,6 @@
                         <outlet property="blockingView" destination="4qF-59-xup" id="e3h-Tq-I0b"/>
                         <outlet property="buttonTrackUser" destination="FSD-PE-lob" id="4qY-o9-1Ks"/>
                         <outlet property="centerView" destination="3yz-md-642" id="d3k-J0-6bV"/>
-                        <outlet property="debugLabel" destination="iqL-K9-CLg" id="8MO-mv-N9W"/>
                         <outlet property="dropPinView" destination="Uzp-UI-Y81" id="hC9-Vg-x5o"/>
                         <outlet property="editDeleteButton" destination="aBa-l6-O1e" id="Hm8-YJ-bD2"/>
                         <outlet property="editSaveButton" destination="FOo-D7-YWg" id="iOL-c0-uNc"/>

@@ -41,7 +41,6 @@ typedef enum {
     
     __weak IBOutlet UITableView *tblMenu;
     __weak IBOutlet UIView *fadeView;
-    __weak IBOutlet UILabel *debugLabel;
 
     __weak IBOutlet SMGPSTrackButton *buttonTrackUser;
     __weak IBOutlet UIView *favHeader;
