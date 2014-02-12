@@ -487,9 +487,9 @@
 
 "fb_login_error" = "Error while using FB to log in.";
 
-"account_is_linked_to_facebook" = "Din konto er linked til Facebook";
-"please_login" = "Du skal logge ind";
-"or" = "eller";
+"account_is_linked_to_facebook" = "Account is linked to Facebook.";
+"please_login" = "Please log in";
+"or" = "or";
 
 "current_position_cant_be_destination" = "You can't use current position as destination!";
 
