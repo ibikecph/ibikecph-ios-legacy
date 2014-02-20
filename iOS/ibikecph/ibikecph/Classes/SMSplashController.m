@@ -508,8 +508,13 @@ typedef enum {
             }
         }
     } else {
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
-        [av show];
+        if ([result objectForKey:@"info_title"]) {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:[result objectForKey:@"info_title"] message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        } else {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:translateString(@"Error") message:[result objectForKey:@"info"] delegate:nil cancelButtonTitle:translateString(@"OK") otherButtonTitles:nil];
+            [av show];
+        }
         [req hideWaitingView];
     }
 }
