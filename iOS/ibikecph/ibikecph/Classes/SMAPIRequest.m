@@ -109,6 +109,8 @@
             [req setValue:[d objectForKey:@"value"] forHTTPHeaderField:[d objectForKey:@"key"]];
         }
         
+        debugLog(@"*** Headers: %@", req.allHTTPHeaderFields);
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString * language = [defaults stringForKey:@"appLanguage"];
         if ([language isEqualToString:@"en"]) {
@@ -145,6 +147,8 @@
             [req setValue:[d objectForKey:@"value"] forHTTPHeaderField:[d objectForKey:@"key"]];
         }
         
+        debugLog(@"*** %@ %@", [service objectForKey:@"transferMethod"], req.URL);
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString * language = [defaults stringForKey:@"appLanguage"];
         if ([language isEqualToString:@"en"]) {
@@ -153,6 +157,7 @@
             [req setValue:@"da" forHTTPHeaderField:@"LANGUAGE_CODE"];
         }
 
+        debugLog(@"*** Headers: %@", req.allHTTPHeaderFields);
         
         if (self.conn) {
             [self.conn cancel];

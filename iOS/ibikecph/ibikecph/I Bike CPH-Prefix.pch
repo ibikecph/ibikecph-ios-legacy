@@ -113,6 +113,9 @@
 
 #define BUILD_VERSION [NSString stringWithUTF8String:__DATE__" "__TIME__"\x0"]
 
+#define BUNDLE_VERSION [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*) kCFBundleVersionKey]
+#define USER_AGENT [NSString stringWithFormat:@"IBikeCPH/%@/iOS", BUNDLE_VERSION]
+
 #define BUILD_STRING [NSString stringWithFormat:@"%@: %@", translateString(@"Build"), BUILD_VERSION]
 
 #define MAX_TURNS 4
@@ -122,7 +125,8 @@
 #define API_SERVER @"http://www.ibikecph.dk/api"
 
 #define API_DEFAULT_ACCEPT @{@"key": @"Accept", @"value" : @"application/vnd.ibikecph.v1"}
-#define API_DEFAULT_HEADERS @[API_DEFAULT_ACCEPT, @{@"key": @"Content-Type", @"value" : @"application/json"}]
+#define API_USER_AGENT @{@"key": @"User-Agent", @"value" : USER_AGENT}
+#define API_DEFAULT_HEADERS @[API_DEFAULT_ACCEPT, API_USER_AGENT, @{@"key": @"Content-Type", @"value" : @"application/json"}]
 
 #define API_LOGIN @{@"service" : @"login", @"transferMethod" : @"POST", @"headers" : API_DEFAULT_HEADERS}
 #define API_REGISTER @{@"service" : @"users", @"transferMethod" : @"POST",  @"headers" : API_DEFAULT_HEADERS}
