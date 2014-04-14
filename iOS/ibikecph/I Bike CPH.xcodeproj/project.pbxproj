@@ -153,6 +153,8 @@
 		4C45EBD4174CA6E000CC41EE /* routeComplete_report_problem.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C45EBC4174CA6E000CC41EE /* routeComplete_report_problem.png */; };
 		4C45EBD5174CA6E000CC41EE /* routeComplete_report_problem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C45EBC5174CA6E000CC41EE /* routeComplete_report_problem@2x.png */; };
 		4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C45EBE0174CB2B100CC41EE /* FlickableView.m */; };
+		4C47321A18FBCE0D00C0E0BE /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C47321818FBCE0D00C0E0BE /* icon-80.png */; };
+		4C47321B18FBCE0D00C0E0BE /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C47321918FBCE0D00C0E0BE /* icon-120.png */; };
 		4C4C08B817212BC40059D0C0 /* reportClose_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4C08B617212BC30059D0C0 /* reportClose_pressed.png */; };
 		4C4C08B917212BC40059D0C0 /* reportClose_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4C08B717212BC40059D0C0 /* reportClose_pressed@2x.png */; };
 		4C4C08C317214E760059D0C0 /* white_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C4C08BF17214E760059D0C0 /* white_btn_pressed.png */; };
@@ -561,6 +563,13 @@
 			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
 			remoteInfo = MapView;
 		};
+		4C47322118FBCE0D00C0E0BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E5A459016F0DFC200B55C04;
+			remoteInfo = HockeySDKTests;
+		};
 		4CA06F3716EF8BE4007603B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
@@ -755,6 +764,8 @@
 		4C45EBC5174CA6E000CC41EE /* routeComplete_report_problem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "routeComplete_report_problem@2x.png"; sourceTree = "<group>"; };
 		4C45EBDF174CB2B100CC41EE /* FlickableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickableView.h; sourceTree = "<group>"; };
 		4C45EBE0174CB2B100CC41EE /* FlickableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickableView.m; sourceTree = "<group>"; };
+		4C47321818FBCE0D00C0E0BE /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
+		4C47321918FBCE0D00C0E0BE /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		4C48641216F0994600F01A7C /* ibikecph.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; lineEnding = 0; path = ibikecph.xcconfig; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xcconfig; };
 		4C4C08B617212BC30059D0C0 /* reportClose_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportClose_pressed.png; sourceTree = "<group>"; };
 		4C4C08B717212BC40059D0C0 /* reportClose_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reportClose_pressed@2x.png"; sourceTree = "<group>"; };
@@ -1997,6 +2008,8 @@
 		4C77EF7C16CB8DF50062360C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				4C47321818FBCE0D00C0E0BE /* icon-80.png */,
+				4C47321918FBCE0D00C0E0BE /* icon-120.png */,
 				4C647A6A179982E300249804 /* iTunesArtwork */,
 				4C647A6B179982E400249804 /* iTunesArtwork@2x */,
 				4C7AA2F3172A799300B62557 /* Default.png */,
@@ -2104,6 +2117,7 @@
 			children = (
 				4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */,
 				4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */,
+				4C47322218FBCE0D00C0E0BE /* HockeySDKTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2295,6 +2309,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4C47322218FBCE0D00C0E0BE /* HockeySDKTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HockeySDKTests.octest;
+			remoteRef = 4C47322118FBCE0D00C0E0BE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -2331,6 +2352,7 @@
 				4BA9164B16B14F02004E04A4 /* TrackingDotHalo@2x.png in Resources */,
 				4BA9164C16B14F02004E04A4 /* TrackingHeading.png in Resources */,
 				4BA9164D16B14F02004E04A4 /* TrackingHeading@2x.png in Resources */,
+				4C47321B18FBCE0D00C0E0BE /* icon-120.png in Resources */,
 				4BA9164E16B14F02004E04A4 /* TrackingLocation.png in Resources */,
 				4BA9164F16B14F02004E04A4 /* TrackingLocation@2x.png in Resources */,
 				4BA9161C16B14629004E04A4 /* LoadingTile.png in Resources */,
@@ -2439,6 +2461,7 @@
 				4C9D04C916FAFE81002FA308 /* routeEnterLocateIcon.png in Resources */,
 				4C9D04CA16FAFE81002FA308 /* routeEnterLocateIcon@2x.png in Resources */,
 				4C9D04CB16FAFE81002FA308 /* routeEnterLogo.png in Resources */,
+				4C47321A18FBCE0D00C0E0BE /* icon-80.png in Resources */,
 				4C9D04CC16FAFE81002FA308 /* routeEnterLogo@2x.png in Resources */,
 				4C9D04CD16FAFE81002FA308 /* routeEnterMiddleRow.png in Resources */,
 				4C9D04CE16FAFE81002FA308 /* routeEnterMiddleRow@2x.png in Resources */,
