@@ -257,6 +257,7 @@
 
 "bike_type_1"= "Bicycle";
 "bike_type_2"= "Cargo bike";
+"bike_type_3"= "Alternative/Green";
 
 "network_error_text" = "Network error occured";
 

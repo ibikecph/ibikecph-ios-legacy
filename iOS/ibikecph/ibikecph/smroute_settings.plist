@@ -12,6 +12,8 @@
 	<string>http://routes.ibikecph.dk</string>
 	<key>OSRM_SERVER_CARGO</key>
 	<string>http://routes.ibikecph.dk/cargobike</string>
+	<key>OSRM_SERVER_GREEN</key>
+	<string>http://routes.ibikecph.dk/cargobike</string>
 	<key>PLACES_SEARCH_RADIUS</key>
 	<string>20000</string>
 	<key>FOURSQUARE_SEARCH_RADIUS</key>
