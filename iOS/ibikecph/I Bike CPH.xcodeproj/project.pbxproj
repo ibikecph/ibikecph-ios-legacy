@@ -413,6 +413,8 @@
 		4CA63E63175FB1DD008837BD /* cargo_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E61175FB1DD008837BD /* cargo_slider.png */; };
 		4CA63E64175FB1DD008837BD /* cargo_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */; };
 		4CA8871E184CC988001255B6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA8871D184CC988001255B6 /* FacebookSDK.framework */; };
+		4CA9E40C1980F54A0058FCDB /* testing.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4CA9E40B1980F54A0058FCDB /* testing.gpx */; };
+		4CA9E4131980FCA60058FCDB /* test2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4CA9E4121980FCA60058FCDB /* test2.gpx */; };
 		4CAF3D03171FE581003C05AA /* favTypeFavoriteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */; };
 		4CAF3D04171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFC171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png */; };
 		4CAF3D05171FE581003C05AA /* favTypeHomeButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFD171FE581003C05AA /* favTypeHomeButtonPressed.png */; };
@@ -1059,6 +1061,8 @@
 		4CA63E61175FB1DD008837BD /* cargo_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargo_slider.png; sourceTree = "<group>"; };
 		4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cargo_slider@2x.png"; sourceTree = "<group>"; };
 		4CA8871D184CC988001255B6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		4CA9E40B1980F54A0058FCDB /* testing.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testing.gpx; sourceTree = "<group>"; };
+		4CA9E4121980FCA60058FCDB /* test2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test2.gpx; sourceTree = "<group>"; };
 		4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favTypeFavoriteButtonPressed.png; sourceTree = "<group>"; };
 		4CAF3CFC171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favTypeFavoriteButtonPressed@2x.png"; sourceTree = "<group>"; };
 		4CAF3CFD171FE581003C05AA /* favTypeHomeButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favTypeHomeButtonPressed.png; sourceTree = "<group>"; };
@@ -1774,8 +1778,10 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
+				4CA9E4121980FCA60058FCDB /* test2.gpx */,
 				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
+				4CA9E40B1980F54A0058FCDB /* testing.gpx */,
 				4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */,
 				4BA5296D16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx */,
 				4C73D21416AEDCDA00AED42A /* I Bike CPH */,
@@ -2433,6 +2439,7 @@
 				4C2D081F16F8A7E2005BD83C /* favReorder.png in Resources */,
 				4C2D082016F8A7E2005BD83C /* favReorder@2x.png in Resources */,
 				4C8C542916F9C11E009A2738 /* favAddBG.png in Resources */,
+				4CA9E4131980FCA60058FCDB /* test2.gpx in Resources */,
 				4C8C542A16F9C11E009A2738 /* favAddBG@2x.png in Resources */,
 				4C8C542B16F9C11E009A2738 /* favEmptyBG.png in Resources */,
 				4C8C542C16F9C11E009A2738 /* favEmptyBG@2x.png in Resources */,
@@ -2582,6 +2589,7 @@
 				4C632DDA1701E9780027E2D9 /* white-left-ward.png in Resources */,
 				4C632DDB1701E9780027E2D9 /* white-left-ward@2x.png in Resources */,
 				4C632DDC1701E9780027E2D9 /* white-left.png in Resources */,
+				4CA9E40C1980F54A0058FCDB /* testing.gpx in Resources */,
 				4C632DDD1701E9780027E2D9 /* white-left@2x.png in Resources */,
 				4C632DDE1701E9780027E2D9 /* white-location.png in Resources */,
 				4C632DDF1701E9780027E2D9 /* white-location@2x.png in Resources */,
