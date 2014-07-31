@@ -7,9 +7,9 @@
 	<key>USE_APPLE_GEOCODER</key>
 	<true/>
 	<key>OSRM_ADDRESS</key>
-	<string>routes.ibikecph.dk</string>
+	<string>router.project-osrm.org</string>
 	<key>OSRM_SERVER</key>
-	<string>http://routes.ibikecph.dk</string>
+	<string>http://router.project-osrm.org</string>
 	<key>OSRM_SERVER_CARGO</key>
 	<string>http://routes.ibikecph.dk/cargobike</string>
 	<key>OSRM_SERVER_GREEN</key>
@@ -32,5 +32,7 @@
 	<string>RestGeokeys_v2</string>
 	<key>KORT_MAX_RESULTS</key>
 	<string>10</string>
+	<key>ROUTE_POLYLINE_PRECISION</key>
+	<real>1000000</real>
 </dict>
 </plist>

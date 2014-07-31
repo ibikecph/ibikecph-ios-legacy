@@ -59,21 +59,6 @@
 @{@"name" : translateString(@"bike_type_2"), @"image" :  @"cargo_grey", @"imageHighlighted" : @"cargo_white", @"server" : OSRM_SERVER_CARGO},\
 @{@"name" : translateString(@"bike_type_3"), @"image" :  @"green_grey", @"imageHighlighted" : @"green_white", @"server" : OSRM_SERVER_GREEN}]
 
-////#ifdef WORLD_ROUTING
-////#define TILE_SOURCE [[RMOpenStreetMapSource alloc] init]
-////#else
-//#define TILE_SOURCE [[SMiBikeCPHMapTileSource alloc] init]
-////#endif
-
-
-//#define TIME_FORMAT @"HH.mm"
-//#define TIME_DAYS_SHORT @"d"
-//#define TIME_HOURS_SHORT @"h"
-//#define TIME_MINUTES_SHORT @"min"
-//#define TIME_SECONDS_SHORT @"s"
-//#define DISTANCE_KM_SHORT @"km"
-//#define DISTANCE_M_SHORT @"m"
-
 #define CALENDAR_MAX_DAYS 15
 
 //#ifdef ENGLISH_VERSION

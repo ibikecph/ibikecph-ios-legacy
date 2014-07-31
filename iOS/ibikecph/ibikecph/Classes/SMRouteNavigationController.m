@@ -910,12 +910,11 @@ typedef enum {
         
         if (firstElementRemoved) {
             if ([tblDirections numberOfRowsInSection:0] > 0) {
-                [tblDirections deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+                [tblDirections reloadData];
+//                [tblDirections deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
             }
         }
         
-//        if (self.route.turnInstructions.count < self.directionsShownCount && self.directionsShownCount <= 3) 
-//            [self showDirections:self.route.turnInstructions.count];
         [self setDirectionsState:currentDirectionsState];
         
         [tblDirections performSelector:@selector(reloadData) withObject:nil afterDelay:0.4];        

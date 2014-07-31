@@ -2979,7 +2979,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ivan Pavlovic (33TUQRZ37E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
@@ -3006,7 +3006,7 @@
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2E9FA4A9-85CF-46B6-B075-249A376DBD08";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A544FD60-D588-4C31-B6C1-550D82A53FEC";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3019,7 +3019,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
@@ -3046,7 +3046,7 @@
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "442EE0F4-A430-4227-AD84-C77E6DE13E61";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3084,7 +3084,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Spoiled Milk Aps";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
@@ -3108,7 +3108,7 @@
 					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "442EE0F4-A430-4227-AD84-C77E6DE13E61";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
