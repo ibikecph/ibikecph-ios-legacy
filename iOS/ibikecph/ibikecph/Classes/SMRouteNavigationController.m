@@ -35,6 +35,7 @@
 #import "SMDirectionsFooter.h"
 #import "SMSearchHistory.h"
 #import "SMRouteTypeSelectCell.h"
+#import "SMDebugViewController.h"
 
 
 typedef enum {
@@ -51,6 +52,7 @@ typedef enum {
     BOOL overviewShown;
     RMUserTrackingMode oldTrackingMode;
     BOOL shouldShowOverview;
+    __weak IBOutlet UIView *debugConsole;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *cargoHandleImageView;
 @property (weak, nonatomic) IBOutlet UITableView *cargoTableView;
@@ -138,6 +140,17 @@ typedef enum {
     CGRect frame = self.mpView.frame;
     frame.size.height = 0.0f;
     [self.mapFade setFrame:frame];
+    
+    SMDebugViewController * dbvc = [SMDebugViewController new];
+    frame = debugConsole.frame;
+    frame.origin = CGPointZero;
+    dbvc.view.frame = frame;
+    
+    [dbvc willMoveToParentViewController:self];
+    [debugConsole addSubview:dbvc.view];
+    [self addChildViewController:dbvc];
+    [dbvc didMoveToParentViewController:self];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -1511,7 +1524,7 @@ typedef enum {
         [swipableView setContentSize:CGSizeMake(self.view.frame.size.width * ([self.instructionsForScrollview count]), swipableView.frame.size.height)];
         if (instr) {
             NSInteger pos = [self.instructionsForScrollview indexOfObject:instr];
-            NSLog(@"*** Pos: %d Start:%d", pos, start);
+//            NSLog(@"*** Pos: %d Start:%d", pos, start);
             if (pos != NSNotFound && pos > 0) {
                 [swipableView setContentOffset:CGPointMake(pos*self.view.frame.size.width, 0.0f) animated:YES];
             } else {
@@ -1648,7 +1661,7 @@ typedef enum {
             [labelTimeLeft setTextColor:[UIColor darkGrayColor]];
         }
         
-        debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);
+//        debugLog(@"size: %f maxSize: %f alpha: %f", self.mapFade.frame.size.height, maxSize, self.mapFade.alpha);
     } else if (object == centerView && [keyPath isEqualToString:@"frame"]) {
         if (centerView.frame.origin.x > 0.0f) {
             if (blockingView.alpha == 0.0f) {

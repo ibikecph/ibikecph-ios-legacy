@@ -541,7 +541,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
-                                <rect key="frame" x="0.0" y="71" width="320" height="433.99999909918552"/>
+                                <rect key="frame" x="0.0" y="70.999998693608006" width="320" height="434"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
@@ -2623,6 +2623,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="F84-V6-yD2">
+                                <rect key="frame" x="0.0" y="67" width="320" height="145"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -2636,6 +2641,7 @@
                         <outlet property="cargoTableView" destination="z28-dm-KuL" id="sWz-kx-MHx"/>
                         <outlet property="centerView" destination="hfo-B8-rtL" id="PVA-ov-3E6"/>
                         <outlet property="closeButton" destination="4UD-TE-YRq" id="upU-WM-kAw"/>
+                        <outlet property="debugConsole" destination="F84-V6-yD2" id="dzJ-s8-sdX"/>
                         <outlet property="finishStreet" destination="oQF-jz-nf2" id="5Fm-3q-fyu"/>
                         <outlet property="finishView" destination="GMP-BY-LiW" id="rKM-Ua-NmU"/>
                         <outlet property="imgNextTurnDirection" destination="axZ-Q5-ohy" id="aaW-j6-FMZ"/>
@@ -3299,6 +3305,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Une-hj-UYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2765" y="226"/>
+        </scene>
+        <!--Debug View Controller-->
+        <scene sceneID="XzR-XQ-NOc">
+            <objects>
+                <viewController storyboardIdentifier="SMDebugViewController" id="ivm-5r-TFN" customClass="SMDebugViewController" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="fuh-ID-ZGB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" text="DEBUG" id="EYz-fM-8zb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ivm-5r-TFN" id="J24-6S-1Ev"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.66000000000000003" colorSpace="calibratedRGB"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="190"/>
+                    <connections>
+                        <outlet property="textLog" destination="EYz-fM-8zb" id="aVd-7m-ncY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3C-sW-XPZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1807" y="-24"/>
         </scene>
     </scenes>
     <resources>

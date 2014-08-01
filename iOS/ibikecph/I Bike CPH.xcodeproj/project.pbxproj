@@ -456,6 +456,7 @@
 		4CB0DAB117E9F21D0006F519 /* UIView+LocateSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */; };
 		4CB15BE1172929F000C3BB1E /* no_connection.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15BDF172929F000C3BB1E /* no_connection.png */; };
 		4CB15BE2172929F000C3BB1E /* no_connection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB15BE0172929F000C3BB1E /* no_connection@2x.png */; };
+		4CB1EA38198B93A6000499EE /* SMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1EA37198B93A6000499EE /* SMDebugViewController.m */; };
 		4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */; };
 		4CC388A216E77A4800E7C884 /* tokenHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */; };
 		4CC388A416E77A4800E7C884 /* tokenHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CC3889F16E77A4800E7C884 /* tokenHighlighted@2x.png */; };
@@ -1107,6 +1108,8 @@
 		4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LocateSubview.m"; sourceTree = "<group>"; };
 		4CB15BDF172929F000C3BB1E /* no_connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_connection.png; sourceTree = "<group>"; };
 		4CB15BE0172929F000C3BB1E /* no_connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_connection@2x.png"; sourceTree = "<group>"; };
+		4CB1EA36198B93A6000499EE /* SMDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDebugViewController.h; sourceTree = "<group>"; };
+		4CB1EA37198B93A6000499EE /* SMDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDebugViewController.m; sourceTree = "<group>"; };
 		4CC3889916E750A200E7C884 /* SMTokenizedTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTokenizedTextField.h; sourceTree = "<group>"; };
 		4CC3889A16E750A200E7C884 /* SMTokenizedTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTokenizedTextField.m; sourceTree = "<group>"; };
 		4CC3889E16E77A4800E7C884 /* tokenHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tokenHighlighted.png; sourceTree = "<group>"; };
@@ -2082,6 +2085,8 @@
 				4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */,
 				4C64781C16C1366C00D055DC /* SMReportErrorController.h */,
 				4C64781D16C1366C00D055DC /* SMReportErrorController.m */,
+				4CB1EA36198B93A6000499EE /* SMDebugViewController.h */,
+				4CB1EA37198B93A6000499EE /* SMDebugViewController.m */,
 			);
 			name = "Turn by  Turn & Navigation";
 			sourceTree = "<group>";
@@ -2813,6 +2818,7 @@
 				4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */,
 				4C8BB09B16B7D2BC00F1ADF2 /* SMEventsHeader.m in Sources */,
 				4C8BB0A216B80D2000F1ADF2 /* SMRouteNavigationController.m in Sources */,
+				4CB1EA38198B93A6000499EE /* SMDebugViewController.m in Sources */,
 				4C90469216B96295004BA3DD /* SMAutocompleteCell.m in Sources */,
 				4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */,
 				4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */,
