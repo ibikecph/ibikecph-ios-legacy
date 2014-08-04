@@ -921,11 +921,13 @@ typedef enum {
         
         [self reloadSwipableView];
         
-        if (firstElementRemoved) {
-            if ([tblDirections numberOfRowsInSection:0] > 0) {
-                [tblDirections reloadData];
-//                [tblDirections deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
-            }
+        if ([tblDirections numberOfRowsInSection:0] > 0) {
+            [tblDirections reloadData];
+//            NSMutableArray * arr = [NSMutableArray array];
+//            for (NSUInteger i = 0; i < self.route.turnInstructions.count; i++) {
+//                [arr addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+//            }
+//            [tblDirections reloadRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationLeft];
         }
         
         [self setDirectionsState:currentDirectionsState];
