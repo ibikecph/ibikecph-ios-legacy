@@ -16,3 +16,6 @@
 [submodule "iOS/ibikecph/ibikecph/Libs/UIImage-Categories"]
 	path = iOS/ibikecph/ibikecph/Libs/UIImage-Categories
 	url = https://github.com/ivan-pavlovic/UIImage-Categories.git
+[submodule "iOS/ibikecph/ibikecph/Libs/route-me"]
+	path = iOS/ibikecph/ibikecph/Libs/route-me
+	url = https://github.com/ibikecph/route-me.git
