@@ -529,7 +529,6 @@
 		4CE8D7BA16F3985D00D0213D /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */; };
 		4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */; };
-		4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E30418338A0000DF296C /* SMAddressParser.m */; };
 		4CF7E28B16B68D170082078E /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
 		4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29116B68D830082078E /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4CF7E29416B68D830082078E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29216B68D830082078E /* EventKitUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -1216,8 +1215,6 @@
 		4CE84E8216C404A3006931CC /* SMRadioCheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRadioCheckedCell.m; sourceTree = "<group>"; };
 		4CE84E8416C404B9006931CC /* SMRadioUncheckedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRadioUncheckedCell.h; sourceTree = "<group>"; };
 		4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRadioUncheckedCell.m; sourceTree = "<group>"; };
-		4CE8E30318338A0000DF296C /* SMAddressParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddressParser.h; sourceTree = "<group>"; };
-		4CE8E30418338A0000DF296C /* SMAddressParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddressParser.m; sourceTree = "<group>"; };
 		4CF7E28916B68D170082078E /* SMEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEvents.h; sourceTree = "<group>"; };
 		4CF7E28A16B68D170082078E /* SMEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEvents.m; sourceTree = "<group>"; };
 		4CF7E29116B68D830082078E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -1912,7 +1909,6 @@
 			isa = PBXGroup;
 			children = (
 				4C7969E11990CEFB00574ABC /* routing-engine */,
-				4CE8E2F818338A0000DF296C /* AddressParser */,
 				4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */,
 				4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */,
 				4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */,
@@ -2239,16 +2235,6 @@
 			);
 			name = DAKeyboardControl;
 			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
-			sourceTree = "<group>";
-		};
-		4CE8E2F818338A0000DF296C /* AddressParser */ = {
-			isa = PBXGroup;
-			children = (
-				4CE8E30318338A0000DF296C /* SMAddressParser.h */,
-				4CE8E30418338A0000DF296C /* SMAddressParser.m */,
-			);
-			name = AddressParser;
-			path = ../../../../../AddressParser/AddressParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2862,7 +2848,6 @@
 				4C365DDB16F3434200A836B3 /* SMMenuCell.m in Sources */,
 				4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */,
 				4C693A8E16F72B3E00B63475 /* SMFavoritesController.m in Sources */,
-				4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */,
 				4C8C541716F9AA4D009A2738 /* SMAddFavoriteCell.m in Sources */,
 				4C8C541A16F9AA62009A2738 /* SMEmptyFavoritesCell.m in Sources */,
 				4C796A1A1990CEFB00574ABC /* NSString+URLEncode.m in Sources */,
