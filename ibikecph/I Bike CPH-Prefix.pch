@@ -31,13 +31,6 @@
     #import "SMAnalytics.h"
 #endif
 
-#if DISTRIBUTION_VERSION
-#define debugLog(args...)    // NO logs
-#else
-#define debugLog(args...)    NSLog(@"%@", [NSString stringWithFormat: args]);
-#define locLog(args...)    [[NSNotificationCenter defaultCenter] postNotificationName:@"notificationAddDebugText" object:nil userInfo:@{@"text" : [NSString stringWithFormat: args]}];
-#endif
-
 #define translateString(txt) [SMTranslation decodeString:(txt)]
 
 #define CURRENT_POSITION_STRING [SMTranslation decodeString:@"current_position"]

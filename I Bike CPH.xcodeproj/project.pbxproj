@@ -1723,11 +1723,11 @@
 		4C73D1FF16AEDCDA00AED42A = {
 			isa = PBXGroup;
 			children = (
-				4CA9E4121980FCA60058FCDB /* test2.gpx */,
 				4C796C821990DE5700574ABC /* MapView.xcodeproj */,
 				4CA9E40B1980F54A0058FCDB /* HockeySDK.xcodeproj */,
 				4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */,
 				4BA5296D16D63840000CA4A2 /* copenhagen2_withtimestamps.gpx */,
+				4CA9E4121980FCA60058FCDB /* test2.gpx */,
 				4C73D21416AEDCDA00AED42A /* I Bike CPH */,
 				4C73D23916AEDD3F00AED42A /* Libs */,
 				4C73D20D16AEDCDA00AED42A /* Frameworks */,
