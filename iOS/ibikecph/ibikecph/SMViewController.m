@@ -643,7 +643,7 @@ typedef enum {
 }
 
 - (IBAction)editFavoriteShow:(id)sender {
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
     }];
 
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
@@ -676,8 +676,9 @@ typedef enum {
 }
 
 - (IBAction)addFavoriteShow:(id)sender {
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
     }];
+
 
     if ([self.appDelegate.appSettings objectForKey:@"auth_token"]) {
         self.locDict = nil;

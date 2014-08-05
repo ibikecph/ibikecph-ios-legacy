@@ -58,15 +58,11 @@
     
 //    UITableView * tableView = tblView;
     UIScrollView * scr = scrlView;
-    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+    
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
         CGRect frame = scr.frame;
         frame.size.height = keyboardFrameInView.origin.y;
         scr.frame = frame;
-
-//        CGRect frame = tableView.frame;
-//        frame.size.height = keyboardFrameInView.origin.y;
-//        tableView.frame = frame;
-
     }];
     
     [tblView reloadData];

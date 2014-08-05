@@ -47,9 +47,9 @@ typedef enum {
         [self.view setAlpha:0.0f];
         [self performSegueWithIdentifier:@"favoritesToMain" sender:nil];
     } else {
-        [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing) {
         }];
-    }   
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

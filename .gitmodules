@@ -10,3 +10,9 @@
 [submodule "iOS/ibikecph/ibikecph/Libs/Base64"]
 	path = iOS/ibikecph/ibikecph/Libs/Base64
 	url = https://github.com/nicklockwood/Base64.git
+[submodule "iOS/ibikecph/ibikecph/Libs/TTTAttributedLabel"]
+	path = iOS/ibikecph/ibikecph/Libs/TTTAttributedLabel
+	url = https://github.com/mattt/TTTAttributedLabel.git
+[submodule "iOS/ibikecph/ibikecph/Libs/UIImage-Categories"]
+	path = iOS/ibikecph/ibikecph/Libs/UIImage-Categories
+	url = https://github.com/ivan-pavlovic/UIImage-Categories.git
