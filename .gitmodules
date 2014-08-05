@@ -7,3 +7,6 @@
 [submodule "iOS/ibikecph/ibikecph/Libs/DAKeyboardControl"]
 	path = iOS/ibikecph/ibikecph/Libs/DAKeyboardControl
 	url = https://github.com/danielamitay/DAKeyboardControl.git
+[submodule "iOS/ibikecph/ibikecph/Libs/Base64"]
+	path = iOS/ibikecph/ibikecph/Libs/Base64
+	url = https://github.com/nicklockwood/Base64.git
