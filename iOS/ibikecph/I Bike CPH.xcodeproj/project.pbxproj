@@ -527,7 +527,6 @@
 		4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8216C404A3006931CC /* SMRadioCheckedCell.m */; };
 		4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */; };
 		4CE8D7BA16F3985D00D0213D /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA06F3816EF8BE4007603B4 /* libHockeySDK.a */; };
-		4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */; };
 		4CF7E28B16B68D170082078E /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
 		4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29116B68D830082078E /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -561,13 +560,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4C42400317E89A7400C2FCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
-			remoteInfo = MapView;
-		};
 		4C47322118FBCE0D00C0E0BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
@@ -588,13 +580,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1E59550A15B6F45800A03429;
 			remoteInfo = HockeySDKResources;
-		};
-		4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 17F31EFA1331050A00122B16;
-			remoteInfo = MapView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1141,7 +1126,6 @@
 		4CAF3D45172035DD003C05AA /* favHomeBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favHomeBlack@2x.png"; sourceTree = "<group>"; };
 		4CAF3D46172035DD003C05AA /* favWorkBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favWorkBlack.png; sourceTree = "<group>"; };
 		4CAF3D47172035DE003C05AA /* favWorkBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favWorkBlack@2x.png"; sourceTree = "<group>"; };
-		4CAF95BE16D50B39002C047B /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = "../../../route-me/MapView/MapView.xcodeproj"; sourceTree = "<group>"; };
 		4CAF95C516D50E2E002C047B /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = keys.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LocateSubview.h"; sourceTree = "<group>"; };
 		4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LocateSubview.m"; sourceTree = "<group>"; };
@@ -1255,7 +1239,6 @@
 				4CC7DB7918326F2200885F69 /* libz.dylib in Frameworks */,
 				4C1D27B21761BE9C00018196 /* Security.framework in Frameworks */,
 				4C693ABC16F74E8B00B63475 /* MobileCoreServices.framework in Frameworks */,
-				4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */,
 				4CE8D7BA16F3985D00D0213D /* libHockeySDK.a in Frameworks */,
 				4C365DD616F323BB00A836B3 /* CoreText.framework in Frameworks */,
 				4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */,
@@ -1739,7 +1722,6 @@
 			isa = PBXGroup;
 			children = (
 				4CA9E4121980FCA60058FCDB /* test2.gpx */,
-				4CAF95BE16D50B39002C047B /* MapView.xcodeproj */,
 				4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */,
 				4CA9E40B1980F54A0058FCDB /* testing.gpx */,
 				4BA915E816B0097C004E04A4 /* copenhagen_withtimestamps.gpx */,
@@ -2193,14 +2175,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4CAF95BF16D50B39002C047B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4CAF95C316D50B3A002C047B /* libMapView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2247,7 +2221,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4C42400417E89A7400C2FCC0 /* PBXTargetDependency */,
 			);
 			name = "I Bike CPH";
 			productName = iBike;
@@ -2296,10 +2269,6 @@
 					ProductGroup = 4CA06F3116EF8BE4007603B4 /* Products */;
 					ProjectRef = 4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */;
 				},
-				{
-					ProductGroup = 4CAF95BF16D50B39002C047B /* Products */;
-					ProjectRef = 4CAF95BE16D50B39002C047B /* MapView.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -2328,13 +2297,6 @@
 			fileType = wrapper.cfbundle;
 			path = HockeySDKResources.bundle;
 			remoteRef = 4CA06F3916EF8BE4007603B4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4CAF95C316D50B3A002C047B /* libMapView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMapView.a;
-			remoteRef = 4CAF95C216D50B3A002C047B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2883,14 +2845,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4C42400417E89A7400C2FCC0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = MapView;
-			targetProxy = 4C42400317E89A7400C2FCC0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4C48641616F099BE00F01A7C /* MainStoryboard_iPhone.storyboard */ = {
