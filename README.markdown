@@ -10,7 +10,7 @@
 
 
 <h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Build</b></h2>
-<p><b>Facebook SDK:</b>  install Facebook SDK and then copy or link ~/Documents/FacebookSDK/ into main project</p>
-<p><b>Google Analytics:</b>  copy or link Library/* into main project</p>
+<p><b>Facebook SDK:</b>  install Facebook SDK and then copy or link ~/Documents/FacebookSDK/ into main project. The best place to create a link would be Libs folder using:<br/> <b>ln -s path_to_FacebookSDK_folder FacebookSDK</b></p>
+<p><b>Google Analytics:</b>  copy or link Library/* into main project. The best place to create a link would be Libs folder using:<br/> <b>ln -s path_to_Google_Analytics_folder GoogleAnalytics</b></p>
 </body>
 </html>
