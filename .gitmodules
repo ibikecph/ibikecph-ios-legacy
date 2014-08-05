@@ -1,0 +1,21 @@
+[submodule "ibikecph/Libs/AddressParser"]
+	path = ibikecph/Libs/AddressParser
+	url = https://github.com/ivan-pavlovic/AddressParser
+[submodule "ibikecph/Libs/Base64"]
+	path = ibikecph/Libs/Base64
+	url = https://github.com/nicklockwood/Base64.git
+[submodule "ibikecph/Libs/UIImage-Categories"]
+	path = ibikecph/Libs/UIImage-Categories
+	url = https://github.com/ivan-pavlovic/UIImage-Categories.git
+[submodule "ibikecph/Libs/TTTAttributedLabel"]
+	path = ibikecph/Libs/TTTAttributedLabel
+	url = https://github.com/mattt/TTTAttributedLabel.git
+[submodule "ibikecph/Libs/DAKeyboardControl"]
+	path = ibikecph/Libs/DAKeyboardControl
+	url = https://github.com/danielamitay/DAKeyboardControl.git
+[submodule "ibikecph/Libs/routing-engine"]
+	path = ibikecph/Libs/routing-engine
+	url = https://github.com/ibikecph/routing-engine.git
+[submodule "ibikecph/Libs/route-me"]
+	path = ibikecph/Libs/route-me
+	url = https://github.com/ibikecph/route-me.git
