@@ -105,7 +105,6 @@
 		4C31FF371717FF8300DA4983 /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C31FF311717FF8300DA4983 /* UIImage+Alpha.m */; };
 		4C31FF381717FF8300DA4983 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C31FF331717FF8300DA4983 /* UIImage+Resize.m */; };
 		4C31FF391717FF8300DA4983 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C31FF351717FF8300DA4983 /* UIImage+RoundedCorner.m */; };
-		4C31FF421718037200DA4983 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C31FF411718037200DA4983 /* Base64.m */; };
 		4C33BF65170AC57C00F55CEC /* warningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33BF63170AC57C00F55CEC /* warningIcon.png */; };
 		4C33BF66170AC57C00F55CEC /* warningIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C33BF64170AC57C00F55CEC /* warningIcon@2x.png */; };
 		4C33BF72170AC88800F55CEC /* SMDirectionsFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C33BF70170AC88800F55CEC /* SMDirectionsFooter.m */; };
@@ -714,8 +713,6 @@
 		4C31FF331717FF8300DA4983 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		4C31FF341717FF8300DA4983 /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		4C31FF351717FF8300DA4983 /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
-		4C31FF401718037200DA4983 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
-		4C31FF411718037200DA4983 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		4C33BF63170AC57C00F55CEC /* warningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningIcon.png; sourceTree = "<group>"; };
 		4C33BF64170AC57C00F55CEC /* warningIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warningIcon@2x.png"; sourceTree = "<group>"; };
 		4C33BF6F170AC88800F55CEC /* SMDirectionsFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDirectionsFooter.h; sourceTree = "<group>"; };
@@ -1350,16 +1347,6 @@
 			path = "../../../../../UIImage-Categories";
 			sourceTree = "<group>";
 		};
-		4C31FF3F1718037200DA4983 /* Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				4C31FF401718037200DA4983 /* Base64.h */,
-				4C31FF411718037200DA4983 /* Base64.m */,
-			);
-			name = Base64;
-			path = ../../../../../Base64/Base64;
-			sourceTree = "<group>";
-		};
 		4C365DD116F320C000A836B3 /* TTTAttributedLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1906,7 +1893,6 @@
 				4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */,
 				4CB0DAB017E9F21D0006F519 /* UIView+LocateSubview.m */,
 				4C45EBDE174CB2B100CC41EE /* Flickable View */,
-				4C31FF3F1718037200DA4983 /* Base64 */,
 				4C31FF2E1717FF8300DA4983 /* UIImage-Categories */,
 				4C365DD116F320C000A836B3 /* TTTAttributedLabel */,
 				4CC7DB7518326E1400885F69 /* SMAnalytics.h */,
@@ -2864,7 +2850,6 @@
 				4C796A181990CEFB00574ABC /* SMKMSStreetOperation.m in Sources */,
 				4C31FF381717FF8300DA4983 /* UIImage+Resize.m in Sources */,
 				4C31FF391717FF8300DA4983 /* UIImage+RoundedCorner.m in Sources */,
-				4C31FF421718037200DA4983 /* Base64.m in Sources */,
 				4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */,
 				4CB0DAB117E9F21D0006F519 /* UIView+LocateSubview.m in Sources */,
 				4C8B69E1171D9BF700FA256D /* SMPatternedButton.m in Sources */,
