@@ -33,7 +33,6 @@
 		4C044D3E16DB735B00C0303C /* SMTranslatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */; };
 		4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295D16D5255E000CA4A2 /* SMCustomCheckbox.m */; };
 		4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA5295716D5230B000CA4A2 /* AsyncImageView.m */; };
-		4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */; };
 		4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C09001216DE446600DCAB64 /* SMSwipableView.m */; };
 		4C09001716DE448300DCAB64 /* SMSwipableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C09001616DE448300DCAB64 /* SMSwipableView.xib */; };
 		4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0E159E17608333006F81C1 /* SMRouteTypeSelectCell.m */; };
@@ -635,8 +634,6 @@
 		4C0375AB173ED51500D2D98E /* SMRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRegisterController.m; sourceTree = "<group>"; };
 		4C044D3C16DB735B00C0303C /* SMTranslatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslatedViewController.h; sourceTree = "<group>"; };
 		4C044D3D16DB735B00C0303C /* SMTranslatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslatedViewController.m; sourceTree = "<group>"; };
-		4C06BA6316E88B60001B7312 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
-		4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4C09001116DE446600DCAB64 /* SMSwipableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwipableView.h; sourceTree = "<group>"; };
 		4C09001216DE446600DCAB64 /* SMSwipableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwipableView.m; sourceTree = "<group>"; };
 		4C09001616DE448300DCAB64 /* SMSwipableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMSwipableView.xib; sourceTree = "<group>"; };
@@ -1209,8 +1206,6 @@
 		4CD53D5516DFB53A00DB90E4 /* icon_locate_no_tracking@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_locate_no_tracking@2x.png"; sourceTree = "<group>"; };
 		4CDA5D1F16EF4C2B0079AA5E /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "../../../HockeySDK-iOS/Vendor/CrashReporter.framework"; sourceTree = "<group>"; };
 		4CDA5D2716EF4FA20079AA5E /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../../../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		4CDA691D16F0860700FE2A19 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
-		4CDA691E16F0860700FE2A19 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4CDA6B2E16F08E9D00FE2A19 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4CDD1E2C17553AF500E45101 /* drop_pin_add_fav_btn_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drop_pin_add_fav_btn_active.png; sourceTree = "<group>"; };
 		4CDD1E2D17553AF500E45101 /* drop_pin_add_fav_btn_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drop_pin_add_fav_btn_active@2x.png"; sourceTree = "<group>"; };
@@ -1335,16 +1330,6 @@
 				4BA9161916B14629004E04A4 /* LoadingTileZoom.png */,
 			);
 			name = "route-me";
-			sourceTree = "<group>";
-		};
-		4C06BA6216E88B60001B7312 /* DAKeyboardControl */ = {
-			isa = PBXGroup;
-			children = (
-				4C06BA6316E88B60001B7312 /* DAKeyboardControl.h */,
-				4C06BA6416E88B60001B7312 /* DAKeyboardControl.m */,
-			);
-			name = DAKeyboardControl;
-			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
 			sourceTree = "<group>";
 		};
 		4C31FF2E1717FF8300DA4983 /* UIImage-Categories */ = {
@@ -1920,8 +1905,6 @@
 				4C31FF3F1718037200DA4983 /* Base64 */,
 				4C31FF2E1717FF8300DA4983 /* UIImage-Categories */,
 				4C365DD116F320C000A836B3 /* TTTAttributedLabel */,
-				4CDA691C16F0860700FE2A19 /* DAKeyboardControl */,
-				4C06BA6216E88B60001B7312 /* DAKeyboardControl */,
 				4CC7DB7518326E1400885F69 /* SMAnalytics.h */,
 				4CC7DB7618326E1400885F69 /* SMAnalytics.m */,
 			);
@@ -2238,16 +2221,6 @@
 				4CC7DB4D18326C3800885F69 /* libGoogleAnalytics_debug.a */,
 			);
 			path = Library;
-			sourceTree = "<group>";
-		};
-		4CDA691C16F0860700FE2A19 /* DAKeyboardControl */ = {
-			isa = PBXGroup;
-			children = (
-				4CDA691D16F0860700FE2A19 /* DAKeyboardControl.h */,
-				4CDA691E16F0860700FE2A19 /* DAKeyboardControl.m */,
-			);
-			name = DAKeyboardControl;
-			path = ../../../../../DAKeyboardControl/DAKeyboardControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2851,7 +2824,6 @@
 				4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */,
 				4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */,
 				4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
-				4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */,
 				4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */,
 				4CC9515516F0D76D00DC7AF8 /* SMSearchCell.m in Sources */,
 				4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */,
