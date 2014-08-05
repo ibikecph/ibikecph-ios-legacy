@@ -326,6 +326,7 @@
 		4C796A271990CEFB00574ABC /* SMRouteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */; };
 		4C796A281990CEFB00574ABC /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A111990CEFB00574ABC /* SMTurnInstruction.m */; };
 		4C796A3A1990D8BD00574ABC /* SMAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A391990D8BD00574ABC /* SMAddressParser.m */; };
+		4C796A3E1990D9E400574ABC /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A3D1990D9E400574ABC /* DAKeyboardControl.m */; };
 		4C7AA2F2172A78B200B62557 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */; };
 		4C7AA2F5172A799300B62557 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F3172A799300B62557 /* Default.png */; };
 		4C7AA2F6172A799300B62557 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F4172A799300B62557 /* Default@2x.png */; };
@@ -977,6 +978,8 @@
 		4C796A111990CEFB00574ABC /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
 		4C796A381990D8BD00574ABC /* SMAddressParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMAddressParser.h; path = AddressParser/AddressParser/SMAddressParser.h; sourceTree = "<group>"; };
 		4C796A391990D8BD00574ABC /* SMAddressParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMAddressParser.m; path = AddressParser/AddressParser/SMAddressParser.m; sourceTree = "<group>"; };
+		4C796A3C1990D9E400574ABC /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		4C796A3D1990D9E400574ABC /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C7AA2F3172A799300B62557 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4C7AA2F4172A799300B62557 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1896,6 +1899,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C796A3B1990D9E300574ABC /* DAKeyboardControl */,
 				4C796A371990D8AE00574ABC /* AddressParser */,
 				4C7969E11990CEFB00574ABC /* routing-engine */,
 				4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */,
@@ -2115,6 +2119,16 @@
 				4C796A391990D8BD00574ABC /* SMAddressParser.m */,
 			);
 			name = AddressParser;
+			sourceTree = "<group>";
+		};
+		4C796A3B1990D9E300574ABC /* DAKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				4C796A3C1990D9E400574ABC /* DAKeyboardControl.h */,
+				4C796A3D1990D9E400574ABC /* DAKeyboardControl.m */,
+			);
+			name = DAKeyboardControl;
+			path = DAKeyboardControl/DAKeyboardControl;
 			sourceTree = "<group>";
 		};
 		4C90468816B91140004BA3DD /* Contacts & Events */ = {
@@ -2803,6 +2817,7 @@
 				4C8BB09B16B7D2BC00F1ADF2 /* SMEventsHeader.m in Sources */,
 				4C8BB0A216B80D2000F1ADF2 /* SMRouteNavigationController.m in Sources */,
 				4CB1EA38198B93A6000499EE /* SMDebugViewController.m in Sources */,
+				4C796A3E1990D9E400574ABC /* DAKeyboardControl.m in Sources */,
 				4C90469216B96295004BA3DD /* SMAutocompleteCell.m in Sources */,
 				4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */,
 				4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */,

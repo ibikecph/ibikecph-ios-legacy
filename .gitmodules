@@ -4,3 +4,6 @@
 [submodule "iOS/ibikecph/ibikecph/Libs/AddressParser"]
 	path = iOS/ibikecph/ibikecph/Libs/AddressParser
 	url = https://github.com/ivan-pavlovic/AddressParser.git
+[submodule "iOS/ibikecph/ibikecph/Libs/DAKeyboardControl"]
+	path = iOS/ibikecph/ibikecph/Libs/DAKeyboardControl
+	url = https://github.com/danielamitay/DAKeyboardControl.git
