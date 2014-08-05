@@ -15,8 +15,14 @@
 
 
 <h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Run</b></h2>
+
 <p>In order to run the app you'll need to create a <b>smroute_settings_private.plist</b> in ibikecph folder. A file called <b>EXAMPLE_smroute_settings_private.plist</b> has been placed in the same folder to get you started. Just copy it to <b>smroute_settings_private.plist</b> and change the info. <b>
-<br/>DO NOT CHANGE THE EXAMPLE FILE AND COMMIT IT. YOUR LOGIN INFO WILL END UP IN THE REPOSITORY FOR ALL TO SEE.</b></p>
+
+<br/>DO NOT CHANGE THE EXAMPLE FILE AND COMMIT IT. YOUR LOGIN INFO WILL END UP IN THE REPOSITORY FOR ALL TO SEE.</b>
+
+<br/><br/>Also, you'll need to edit <b>smroute_settings.plist</b> in ibikecph folder. You should not commit changes to this file.<b>
+
+</p>
 
 
 </body>
