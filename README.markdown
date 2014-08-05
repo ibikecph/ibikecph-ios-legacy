@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Dependent Libraries</b></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 24.0px Helvetica"><b>Depencies</b></h2>
 <p>The I Bike CPH project makes use of several sub-libraries, listed below. For additional dependencies consult the documentation of relevant libraries.</p>
 <p>See the individual license files in the sub-libraries for more information on each.</p>
 <ul>
