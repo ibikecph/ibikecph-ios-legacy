@@ -303,6 +303,29 @@
 		4C77EF8016CB8DF50062360C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C77EF7E16CB8DF50062360C /* icon@2x.png */; };
 		4C77EF8316CB8E7B0062360C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8116CB8E7B0062360C /* CoreData.framework */; };
 		4C77EF8416CB8E7B0062360C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */; };
+		4C796A121990CEFB00574ABC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4C7969E21990CEFB00574ABC /* .gitignore */; };
+		4C796A131990CEFB00574ABC /* SMAPIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969E51990CEFB00574ABC /* SMAPIOperation.m */; };
+		4C796A141990CEFB00574ABC /* SMAPIQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969E71990CEFB00574ABC /* SMAPIQueue.m */; };
+		4C796A151990CEFB00574ABC /* SMFoursquareOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969E91990CEFB00574ABC /* SMFoursquareOperation.m */; };
+		4C796A161990CEFB00574ABC /* SMKMSAddressOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969EB1990CEFB00574ABC /* SMKMSAddressOperation.m */; };
+		4C796A171990CEFB00574ABC /* SMKMSPlacesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969ED1990CEFB00574ABC /* SMKMSPlacesOperation.m */; };
+		4C796A181990CEFB00574ABC /* SMKMSStreetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969EF1990CEFB00574ABC /* SMKMSStreetOperation.m */; };
+		4C796A191990CEFB00574ABC /* NSString+Relevance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969F31990CEFB00574ABC /* NSString+Relevance.m */; };
+		4C796A1A1990CEFB00574ABC /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969F51990CEFB00574ABC /* NSString+URLEncode.m */; };
+		4C796A1B1990CEFB00574ABC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969F81990CEFB00574ABC /* Reachability.m */; };
+		4C796A1C1990CEFB00574ABC /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969FA1990CEFB00574ABC /* SMTranslation.m */; };
+		4C796A1D1990CEFB00574ABC /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 4C7969FB1990CEFB00574ABC /* README.markdown */; };
+		4C796A1E1990CEFB00574ABC /* SMAutocomplete.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969FD1990CEFB00574ABC /* SMAutocomplete.m */; };
+		4C796A1F1990CEFB00574ABC /* SMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7969FF1990CEFB00574ABC /* SMGeocoder.m */; };
+		4C796A201990CEFB00574ABC /* SMGPSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A011990CEFB00574ABC /* SMGPSUtil.m */; };
+		4C796A211990CEFB00574ABC /* SMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A031990CEFB00574ABC /* SMLocationManager.m */; };
+		4C796A221990CEFB00574ABC /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A051990CEFB00574ABC /* SMNearbyPlaces.m */; };
+		4C796A231990CEFB00574ABC /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A071990CEFB00574ABC /* SMRequestOSRM.m */; };
+		4C796A241990CEFB00574ABC /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A091990CEFB00574ABC /* SMRoute.m */; };
+		4C796A251990CEFB00574ABC /* smroute_settings_example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C796A0A1990CEFB00574ABC /* smroute_settings_example.plist */; };
+		4C796A261990CEFB00574ABC /* SMRouteSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A0D1990CEFB00574ABC /* SMRouteSettings.m */; };
+		4C796A271990CEFB00574ABC /* SMRouteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */; };
+		4C796A281990CEFB00574ABC /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A111990CEFB00574ABC /* SMTurnInstruction.m */; };
 		4C7AA2F2172A78B200B62557 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */; };
 		4C7AA2F5172A799300B62557 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F3172A799300B62557 /* Default.png */; };
 		4C7AA2F6172A799300B62557 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F4172A799300B62557 /* Default@2x.png */; };
@@ -310,10 +333,6 @@
 		4C7AA2FE172AC81800B62557 /* distance_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2FA172AC81800B62557 /* distance_black@2x.png */; };
 		4C7AA2FF172AC81800B62557 /* distance_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2FB172AC81800B62557 /* distance_white.png */; };
 		4C7AA300172AC81800B62557 /* distance_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2FC172AC81800B62557 /* distance_white@2x.png */; };
-		4C8546C716E64D3B004E8902 /* SMGPSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C016E64D3B004E8902 /* SMGPSUtil.m */; };
-		4C8546C916E64D3B004E8902 /* SMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C216E64D3B004E8902 /* SMLocationManager.m */; };
-		4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C416E64D3B004E8902 /* SMRoute.m */; };
-		4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8546C616E64D3B004E8902 /* SMTurnInstruction.m */; };
 		4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C86E05E16F6264A00ECEA61 /* SMSplashController.m */; };
 		4C86E06A16F62C4000ECEA61 /* quitRouteOverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */; };
 		4C86E06B16F62C4000ECEA61 /* quitRouteOverlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C86E06316F62C4000ECEA61 /* quitRouteOverlay@2x.png */; };
@@ -511,12 +530,6 @@
 		4CE8D7BB16F3986300D0213D /* libMapView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CAF95C316D50B3A002C047B /* libMapView.a */; };
 		4CE8D7BD16F3987B00D0213D /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4CA06F3A16EF8BE4007603B4 /* HockeySDKResources.bundle */; };
 		4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8E30418338A0000DF296C /* SMAddressParser.m */; };
-		4CED218F183945C400EBBF22 /* SMAPIOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED218C183945C400EBBF22 /* SMAPIOperation.m */; };
-		4CED2190183945C400EBBF22 /* SMAPIQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED218E183945C400EBBF22 /* SMAPIQueue.m */; };
-		4CED2193183948B200EBBF22 /* SMFoursquareOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */; };
-		4CED2196183948C200EBBF22 /* SMKMSStreetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */; };
-		4CED2199183948D200EBBF22 /* SMKMSPlacesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */; };
-		4CED219F18394E7C00EBBF22 /* SMKMSAddressOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */; };
 		4CF7E28B16B68D170082078E /* SMEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF7E28A16B68D170082078E /* SMEvents.m */; };
 		4CF7E29316B68D830082078E /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29116B68D830082078E /* EventKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4CF7E29416B68D830082078E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF7E29216B68D830082078E /* EventKitUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -535,17 +548,7 @@
 		C0705DE2173D43C9005F7954 /* field_user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C0705DE1173D43C8005F7954 /* field_user_icon.png */; };
 		C07BF60B1741165D0020D86A /* fav_plus_none.png in Resources */ = {isa = PBXBuildFile; fileRef = C07BF6091741165D0020D86A /* fav_plus_none.png */; };
 		C07BF60C1741165D0020D86A /* fav_plus_none@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C07BF60A1741165D0020D86A /* fav_plus_none@2x.png */; };
-		C09AB41E17687E6F0098AA9C /* SMAutocomplete.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41117687E6E0098AA9C /* SMAutocomplete.m */; };
-		C09AB41F17687E6F0098AA9C /* SMGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41217687E6F0098AA9C /* SMGeocoder.m */; };
-		C09AB42017687E6F0098AA9C /* SMNearbyPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41317687E6F0098AA9C /* SMNearbyPlaces.m */; };
-		C09AB42117687E6F0098AA9C /* SMRequestOSRM.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41417687E6F0098AA9C /* SMRequestOSRM.m */; };
-		C09AB42217687E6F0098AA9C /* SMRouteSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41517687E6F0098AA9C /* SMRouteSettings.m */; };
-		C09AB42317687E6F0098AA9C /* SMRouteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB41617687E6F0098AA9C /* SMRouteUtils.m */; };
 		C09AB42A17688AC40098AA9C /* smroute_settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = C09AB42917688AC40098AA9C /* smroute_settings.plist */; };
-		C09AB436176890100098AA9C /* NSString+Relevance.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB42E176890100098AA9C /* NSString+Relevance.m */; };
-		C09AB437176890100098AA9C /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB430176890100098AA9C /* NSString+URLEncode.m */; };
-		C09AB438176890100098AA9C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB433176890100098AA9C /* Reachability.m */; };
-		C09AB439176890100098AA9C /* SMTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = C09AB435176890100098AA9C /* SMTranslation.m */; };
 		C0C94732173BAEFE00FE834D /* red_btn_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C94730173BAEFE00FE834D /* red_btn_pressed.png */; };
 		C0C94733173BAEFE00FE834D /* red_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C94731173BAEFE00FE834D /* red_btn.png */; };
 		C0C9473D173BC0D100FE834D /* fb_linked_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C0C9473C173BC0D100FE834D /* fb_linked_icon.png */; };
@@ -931,6 +934,50 @@
 		4C77EF7E16CB8DF50062360C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		4C77EF8116CB8E7B0062360C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4C77EF8216CB8E7B0062360C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4C7969E21990CEFB00574ABC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4C7969E41990CEFB00574ABC /* SMAPIOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIOperation.h; sourceTree = "<group>"; };
+		4C7969E51990CEFB00574ABC /* SMAPIOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIOperation.m; sourceTree = "<group>"; };
+		4C7969E61990CEFB00574ABC /* SMAPIQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIQueue.h; sourceTree = "<group>"; };
+		4C7969E71990CEFB00574ABC /* SMAPIQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIQueue.m; sourceTree = "<group>"; };
+		4C7969E81990CEFB00574ABC /* SMFoursquareOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMFoursquareOperation.h; sourceTree = "<group>"; };
+		4C7969E91990CEFB00574ABC /* SMFoursquareOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFoursquareOperation.m; sourceTree = "<group>"; };
+		4C7969EA1990CEFB00574ABC /* SMKMSAddressOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSAddressOperation.h; sourceTree = "<group>"; };
+		4C7969EB1990CEFB00574ABC /* SMKMSAddressOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSAddressOperation.m; sourceTree = "<group>"; };
+		4C7969EC1990CEFB00574ABC /* SMKMSPlacesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSPlacesOperation.h; sourceTree = "<group>"; };
+		4C7969ED1990CEFB00574ABC /* SMKMSPlacesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSPlacesOperation.m; sourceTree = "<group>"; };
+		4C7969EE1990CEFB00574ABC /* SMKMSStreetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSStreetOperation.h; sourceTree = "<group>"; };
+		4C7969EF1990CEFB00574ABC /* SMKMSStreetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSStreetOperation.m; sourceTree = "<group>"; };
+		4C7969F21990CEFB00574ABC /* NSString+Relevance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Relevance.h"; sourceTree = "<group>"; };
+		4C7969F31990CEFB00574ABC /* NSString+Relevance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Relevance.m"; sourceTree = "<group>"; };
+		4C7969F41990CEFB00574ABC /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		4C7969F51990CEFB00574ABC /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
+		4C7969F71990CEFB00574ABC /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4C7969F81990CEFB00574ABC /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		4C7969F91990CEFB00574ABC /* SMTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslation.h; sourceTree = "<group>"; };
+		4C7969FA1990CEFB00574ABC /* SMTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslation.m; sourceTree = "<group>"; };
+		4C7969FB1990CEFB00574ABC /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		4C7969FC1990CEFB00574ABC /* SMAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocomplete.h; sourceTree = "<group>"; };
+		4C7969FD1990CEFB00574ABC /* SMAutocomplete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAutocomplete.m; sourceTree = "<group>"; };
+		4C7969FE1990CEFB00574ABC /* SMGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGeocoder.h; sourceTree = "<group>"; };
+		4C7969FF1990CEFB00574ABC /* SMGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGeocoder.m; sourceTree = "<group>"; };
+		4C796A001990CEFB00574ABC /* SMGPSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGPSUtil.h; sourceTree = "<group>"; };
+		4C796A011990CEFB00574ABC /* SMGPSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSUtil.m; sourceTree = "<group>"; };
+		4C796A021990CEFB00574ABC /* SMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
+		4C796A031990CEFB00574ABC /* SMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLocationManager.m; sourceTree = "<group>"; };
+		4C796A041990CEFB00574ABC /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNearbyPlaces.h; sourceTree = "<group>"; };
+		4C796A051990CEFB00574ABC /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNearbyPlaces.m; sourceTree = "<group>"; };
+		4C796A061990CEFB00574ABC /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRequestOSRM.h; sourceTree = "<group>"; };
+		4C796A071990CEFB00574ABC /* SMRequestOSRM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRequestOSRM.m; sourceTree = "<group>"; };
+		4C796A081990CEFB00574ABC /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
+		4C796A091990CEFB00574ABC /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
+		4C796A0A1990CEFB00574ABC /* smroute_settings_example.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smroute_settings_example.plist; sourceTree = "<group>"; };
+		4C796A0B1990CEFB00574ABC /* SMRouteConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteConsts.h; sourceTree = "<group>"; };
+		4C796A0C1990CEFB00574ABC /* SMRouteSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteSettings.h; sourceTree = "<group>"; };
+		4C796A0D1990CEFB00574ABC /* SMRouteSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteSettings.m; sourceTree = "<group>"; };
+		4C796A0E1990CEFB00574ABC /* SMRouteUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteUtils.h; sourceTree = "<group>"; };
+		4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteUtils.m; sourceTree = "<group>"; };
+		4C796A101990CEFB00574ABC /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
+		4C796A111990CEFB00574ABC /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
 		4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C7AA2F3172A799300B62557 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4C7AA2F4172A799300B62557 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -938,14 +985,6 @@
 		4C7AA2FA172AC81800B62557 /* distance_black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance_black@2x.png"; sourceTree = "<group>"; };
 		4C7AA2FB172AC81800B62557 /* distance_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = distance_white.png; sourceTree = "<group>"; };
 		4C7AA2FC172AC81800B62557 /* distance_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance_white@2x.png"; sourceTree = "<group>"; };
-		4C8546BF16E64D3B004E8902 /* SMGPSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGPSUtil.h; sourceTree = "<group>"; };
-		4C8546C016E64D3B004E8902 /* SMGPSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGPSUtil.m; sourceTree = "<group>"; };
-		4C8546C116E64D3B004E8902 /* SMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLocationManager.h; sourceTree = "<group>"; };
-		4C8546C216E64D3B004E8902 /* SMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLocationManager.m; sourceTree = "<group>"; };
-		4C8546C316E64D3B004E8902 /* SMRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRoute.h; sourceTree = "<group>"; };
-		4C8546C416E64D3B004E8902 /* SMRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRoute.m; sourceTree = "<group>"; };
-		4C8546C516E64D3B004E8902 /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
-		4C8546C616E64D3B004E8902 /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
 		4C86E05D16F6264A00ECEA61 /* SMSplashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSplashController.h; sourceTree = "<group>"; };
 		4C86E05E16F6264A00ECEA61 /* SMSplashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSplashController.m; sourceTree = "<group>"; };
 		4C86E06216F62C4000ECEA61 /* quitRouteOverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quitRouteOverlay.png; sourceTree = "<group>"; };
@@ -1179,18 +1218,6 @@
 		4CE84E8516C404B9006931CC /* SMRadioUncheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRadioUncheckedCell.m; sourceTree = "<group>"; };
 		4CE8E30318338A0000DF296C /* SMAddressParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAddressParser.h; sourceTree = "<group>"; };
 		4CE8E30418338A0000DF296C /* SMAddressParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAddressParser.m; sourceTree = "<group>"; };
-		4CED218B183945C400EBBF22 /* SMAPIOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIOperation.h; sourceTree = "<group>"; };
-		4CED218C183945C400EBBF22 /* SMAPIOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIOperation.m; sourceTree = "<group>"; };
-		4CED218D183945C400EBBF22 /* SMAPIQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAPIQueue.h; sourceTree = "<group>"; };
-		4CED218E183945C400EBBF22 /* SMAPIQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAPIQueue.m; sourceTree = "<group>"; };
-		4CED2191183948B200EBBF22 /* SMFoursquareOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMFoursquareOperation.h; sourceTree = "<group>"; };
-		4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMFoursquareOperation.m; sourceTree = "<group>"; };
-		4CED2194183948C200EBBF22 /* SMKMSStreetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSStreetOperation.h; sourceTree = "<group>"; };
-		4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSStreetOperation.m; sourceTree = "<group>"; };
-		4CED2197183948D200EBBF22 /* SMKMSPlacesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSPlacesOperation.h; sourceTree = "<group>"; };
-		4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSPlacesOperation.m; sourceTree = "<group>"; };
-		4CED219D18394E7C00EBBF22 /* SMKMSAddressOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMKMSAddressOperation.h; sourceTree = "<group>"; };
-		4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMKMSAddressOperation.m; sourceTree = "<group>"; };
 		4CF7E28916B68D170082078E /* SMEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMEvents.h; sourceTree = "<group>"; };
 		4CF7E28A16B68D170082078E /* SMEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMEvents.m; sourceTree = "<group>"; };
 		4CF7E29116B68D830082078E /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -1210,28 +1237,7 @@
 		C0705DE1173D43C8005F7954 /* field_user_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = field_user_icon.png; sourceTree = "<group>"; };
 		C07BF6091741165D0020D86A /* fav_plus_none.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fav_plus_none.png; sourceTree = "<group>"; };
 		C07BF60A1741165D0020D86A /* fav_plus_none@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fav_plus_none@2x.png"; sourceTree = "<group>"; };
-		C09AB41117687E6E0098AA9C /* SMAutocomplete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMAutocomplete.m; sourceTree = "<group>"; };
-		C09AB41217687E6F0098AA9C /* SMGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMGeocoder.m; sourceTree = "<group>"; };
-		C09AB41317687E6F0098AA9C /* SMNearbyPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNearbyPlaces.m; sourceTree = "<group>"; };
-		C09AB41417687E6F0098AA9C /* SMRequestOSRM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRequestOSRM.m; sourceTree = "<group>"; };
-		C09AB41517687E6F0098AA9C /* SMRouteSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteSettings.m; sourceTree = "<group>"; };
-		C09AB41617687E6F0098AA9C /* SMRouteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteUtils.m; sourceTree = "<group>"; };
-		C09AB41717687E6F0098AA9C /* SMAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMAutocomplete.h; sourceTree = "<group>"; };
-		C09AB41817687E6F0098AA9C /* SMGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMGeocoder.h; sourceTree = "<group>"; };
-		C09AB41917687E6F0098AA9C /* SMNearbyPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNearbyPlaces.h; sourceTree = "<group>"; };
-		C09AB41A17687E6F0098AA9C /* SMRequestOSRM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRequestOSRM.h; sourceTree = "<group>"; };
-		C09AB41B17687E6F0098AA9C /* SMRouteConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteConsts.h; sourceTree = "<group>"; };
-		C09AB41C17687E6F0098AA9C /* SMRouteSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteSettings.h; sourceTree = "<group>"; };
-		C09AB41D17687E6F0098AA9C /* SMRouteUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRouteUtils.h; sourceTree = "<group>"; };
 		C09AB42917688AC40098AA9C /* smroute_settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = smroute_settings.plist; sourceTree = "<group>"; };
-		C09AB42D176890100098AA9C /* NSString+Relevance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSString+Relevance.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		C09AB42E176890100098AA9C /* NSString+Relevance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+Relevance.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		C09AB42F176890100098AA9C /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
-		C09AB430176890100098AA9C /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
-		C09AB432176890100098AA9C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		C09AB433176890100098AA9C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		C09AB434176890100098AA9C /* SMTranslation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTranslation.h; sourceTree = "<group>"; };
-		C09AB435176890100098AA9C /* SMTranslation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTranslation.m; sourceTree = "<group>"; };
 		C0C94730173BAEFE00FE834D /* red_btn_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_btn_pressed.png; sourceTree = "<group>"; };
 		C0C94731173BAEFE00FE834D /* red_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_btn.png; sourceTree = "<group>"; };
 		C0C9473C173BC0D100FE834D /* fb_linked_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_linked_icon.png; sourceTree = "<group>"; };
@@ -1905,6 +1911,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C7969E11990CEFB00574ABC /* routing-engine */,
 				4CE8E2F818338A0000DF296C /* AddressParser */,
 				4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */,
 				4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */,
@@ -1925,7 +1932,6 @@
 		4C73D23A16AEDD3F00AED42A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C09AB42B176890100098AA9C /* global-utils */,
 				4C73FD69170C36E200199E9C /* API */,
 				4C9D152216BAB94700B73393 /* Menus */,
 				4C90468B16B94E96004BA3DD /* Autocomplete */,
@@ -2036,34 +2042,87 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		4C8546BE16E64D3B004E8902 /* routing-engine */ = {
+		4C7969E11990CEFB00574ABC /* routing-engine */ = {
 			isa = PBXGroup;
 			children = (
-				4CED218A183945C400EBBF22 /* APIQueue */,
-				C09AB41B17687E6F0098AA9C /* SMRouteConsts.h */,
-				C09AB41717687E6F0098AA9C /* SMAutocomplete.h */,
-				C09AB41117687E6E0098AA9C /* SMAutocomplete.m */,
-				C09AB41817687E6F0098AA9C /* SMGeocoder.h */,
-				C09AB41217687E6F0098AA9C /* SMGeocoder.m */,
-				C09AB41917687E6F0098AA9C /* SMNearbyPlaces.h */,
-				C09AB41317687E6F0098AA9C /* SMNearbyPlaces.m */,
-				C09AB41A17687E6F0098AA9C /* SMRequestOSRM.h */,
-				C09AB41417687E6F0098AA9C /* SMRequestOSRM.m */,
-				C09AB41C17687E6F0098AA9C /* SMRouteSettings.h */,
-				C09AB41517687E6F0098AA9C /* SMRouteSettings.m */,
-				C09AB41D17687E6F0098AA9C /* SMRouteUtils.h */,
-				C09AB41617687E6F0098AA9C /* SMRouteUtils.m */,
-				4C8546BF16E64D3B004E8902 /* SMGPSUtil.h */,
-				4C8546C016E64D3B004E8902 /* SMGPSUtil.m */,
-				4C8546C116E64D3B004E8902 /* SMLocationManager.h */,
-				4C8546C216E64D3B004E8902 /* SMLocationManager.m */,
-				4C8546C316E64D3B004E8902 /* SMRoute.h */,
-				4C8546C416E64D3B004E8902 /* SMRoute.m */,
-				4C8546C516E64D3B004E8902 /* SMTurnInstruction.h */,
-				4C8546C616E64D3B004E8902 /* SMTurnInstruction.m */,
+				4C7969E21990CEFB00574ABC /* .gitignore */,
+				4C7969E31990CEFB00574ABC /* APIQueue */,
+				4C7969F01990CEFB00574ABC /* global-utils */,
+				4C7969FB1990CEFB00574ABC /* README.markdown */,
+				4C7969FC1990CEFB00574ABC /* SMAutocomplete.h */,
+				4C7969FD1990CEFB00574ABC /* SMAutocomplete.m */,
+				4C7969FE1990CEFB00574ABC /* SMGeocoder.h */,
+				4C7969FF1990CEFB00574ABC /* SMGeocoder.m */,
+				4C796A001990CEFB00574ABC /* SMGPSUtil.h */,
+				4C796A011990CEFB00574ABC /* SMGPSUtil.m */,
+				4C796A021990CEFB00574ABC /* SMLocationManager.h */,
+				4C796A031990CEFB00574ABC /* SMLocationManager.m */,
+				4C796A041990CEFB00574ABC /* SMNearbyPlaces.h */,
+				4C796A051990CEFB00574ABC /* SMNearbyPlaces.m */,
+				4C796A061990CEFB00574ABC /* SMRequestOSRM.h */,
+				4C796A071990CEFB00574ABC /* SMRequestOSRM.m */,
+				4C796A081990CEFB00574ABC /* SMRoute.h */,
+				4C796A091990CEFB00574ABC /* SMRoute.m */,
+				4C796A0A1990CEFB00574ABC /* smroute_settings_example.plist */,
+				4C796A0B1990CEFB00574ABC /* SMRouteConsts.h */,
+				4C796A0C1990CEFB00574ABC /* SMRouteSettings.h */,
+				4C796A0D1990CEFB00574ABC /* SMRouteSettings.m */,
+				4C796A0E1990CEFB00574ABC /* SMRouteUtils.h */,
+				4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */,
+				4C796A101990CEFB00574ABC /* SMTurnInstruction.h */,
+				4C796A111990CEFB00574ABC /* SMTurnInstruction.m */,
 			);
-			name = "routing-engine";
-			path = "../../../../../routing-engine";
+			path = "routing-engine";
+			sourceTree = "<group>";
+		};
+		4C7969E31990CEFB00574ABC /* APIQueue */ = {
+			isa = PBXGroup;
+			children = (
+				4C7969E41990CEFB00574ABC /* SMAPIOperation.h */,
+				4C7969E51990CEFB00574ABC /* SMAPIOperation.m */,
+				4C7969E61990CEFB00574ABC /* SMAPIQueue.h */,
+				4C7969E71990CEFB00574ABC /* SMAPIQueue.m */,
+				4C7969E81990CEFB00574ABC /* SMFoursquareOperation.h */,
+				4C7969E91990CEFB00574ABC /* SMFoursquareOperation.m */,
+				4C7969EA1990CEFB00574ABC /* SMKMSAddressOperation.h */,
+				4C7969EB1990CEFB00574ABC /* SMKMSAddressOperation.m */,
+				4C7969EC1990CEFB00574ABC /* SMKMSPlacesOperation.h */,
+				4C7969ED1990CEFB00574ABC /* SMKMSPlacesOperation.m */,
+				4C7969EE1990CEFB00574ABC /* SMKMSStreetOperation.h */,
+				4C7969EF1990CEFB00574ABC /* SMKMSStreetOperation.m */,
+			);
+			path = APIQueue;
+			sourceTree = "<group>";
+		};
+		4C7969F01990CEFB00574ABC /* global-utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C7969F11990CEFB00574ABC /* NSString-Categories */,
+				4C7969F61990CEFB00574ABC /* Reachability */,
+				4C7969F91990CEFB00574ABC /* SMTranslation.h */,
+				4C7969FA1990CEFB00574ABC /* SMTranslation.m */,
+			);
+			path = "global-utils";
+			sourceTree = "<group>";
+		};
+		4C7969F11990CEFB00574ABC /* NSString-Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4C7969F21990CEFB00574ABC /* NSString+Relevance.h */,
+				4C7969F31990CEFB00574ABC /* NSString+Relevance.m */,
+				4C7969F41990CEFB00574ABC /* NSString+URLEncode.h */,
+				4C7969F51990CEFB00574ABC /* NSString+URLEncode.m */,
+			);
+			path = "NSString-Categories";
+			sourceTree = "<group>";
+		};
+		4C7969F61990CEFB00574ABC /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				4C7969F71990CEFB00574ABC /* Reachability.h */,
+				4C7969F81990CEFB00574ABC /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		4C90468816B91140004BA3DD /* Contacts & Events */ = {
@@ -2080,7 +2139,6 @@
 		4C90468916B91154004BA3DD /* Turn by  Turn & Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				4C8546BE16E64D3B004E8902 /* routing-engine */,
 				4C8BB0A016B80D2000F1ADF2 /* SMRouteNavigationController.h */,
 				4C8BB0A116B80D2000F1ADF2 /* SMRouteNavigationController.m */,
 				4C64781C16C1366C00D055DC /* SMReportErrorController.h */,
@@ -2191,57 +2249,6 @@
 			);
 			name = AddressParser;
 			path = ../../../../../AddressParser/AddressParser;
-			sourceTree = "<group>";
-		};
-		4CED218A183945C400EBBF22 /* APIQueue */ = {
-			isa = PBXGroup;
-			children = (
-				4CED218B183945C400EBBF22 /* SMAPIOperation.h */,
-				4CED218C183945C400EBBF22 /* SMAPIOperation.m */,
-				4CED218D183945C400EBBF22 /* SMAPIQueue.h */,
-				4CED218E183945C400EBBF22 /* SMAPIQueue.m */,
-				4CED2191183948B200EBBF22 /* SMFoursquareOperation.h */,
-				4CED2192183948B200EBBF22 /* SMFoursquareOperation.m */,
-				4CED2194183948C200EBBF22 /* SMKMSStreetOperation.h */,
-				4CED2195183948C200EBBF22 /* SMKMSStreetOperation.m */,
-				4CED2197183948D200EBBF22 /* SMKMSPlacesOperation.h */,
-				4CED2198183948D200EBBF22 /* SMKMSPlacesOperation.m */,
-				4CED219D18394E7C00EBBF22 /* SMKMSAddressOperation.h */,
-				4CED219E18394E7C00EBBF22 /* SMKMSAddressOperation.m */,
-			);
-			path = APIQueue;
-			sourceTree = "<group>";
-		};
-		C09AB42B176890100098AA9C /* global-utils */ = {
-			isa = PBXGroup;
-			children = (
-				C09AB42C176890100098AA9C /* NSString-Categories */,
-				C09AB431176890100098AA9C /* Reachability */,
-				C09AB434176890100098AA9C /* SMTranslation.h */,
-				C09AB435176890100098AA9C /* SMTranslation.m */,
-			);
-			name = "global-utils";
-			path = "../../../../../routing-engine/global-utils";
-			sourceTree = "<group>";
-		};
-		C09AB42C176890100098AA9C /* NSString-Categories */ = {
-			isa = PBXGroup;
-			children = (
-				C09AB42D176890100098AA9C /* NSString+Relevance.h */,
-				C09AB42E176890100098AA9C /* NSString+Relevance.m */,
-				C09AB42F176890100098AA9C /* NSString+URLEncode.h */,
-				C09AB430176890100098AA9C /* NSString+URLEncode.m */,
-			);
-			path = "NSString-Categories";
-			sourceTree = "<group>";
-		};
-		C09AB431176890100098AA9C /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				C09AB432176890100098AA9C /* Reachability.h */,
-				C09AB433176890100098AA9C /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2465,6 +2472,7 @@
 				4C9D04C116FAFE81002FA308 /* routeEnterBack.png in Resources */,
 				4C9D04C216FAFE81002FA308 /* routeEnterBack@2x.png in Resources */,
 				4C9D04C316FAFE81002FA308 /* routeEnterBottomRow.png in Resources */,
+				4C796A251990CEFB00574ABC /* smroute_settings_example.plist in Resources */,
 				4C9D04C416FAFE81002FA308 /* routeEnterBottomRow@2x.png in Resources */,
 				4C9D04C516FAFE81002FA308 /* routeEnterHeader.png in Resources */,
 				4C9D04C616FAFE81002FA308 /* routeEnterHeader@2x.png in Resources */,
@@ -2475,6 +2483,7 @@
 				4C9D04CB16FAFE81002FA308 /* routeEnterLogo.png in Resources */,
 				4C47321A18FBCE0D00C0E0BE /* icon-80.png in Resources */,
 				4C9D04CC16FAFE81002FA308 /* routeEnterLogo@2x.png in Resources */,
+				4C796A1D1990CEFB00574ABC /* README.markdown in Resources */,
 				4C9D04CD16FAFE81002FA308 /* routeEnterMiddleRow.png in Resources */,
 				4C9D04CE16FAFE81002FA308 /* routeEnterMiddleRow@2x.png in Resources */,
 				4C9D04CF16FAFE81002FA308 /* routeEnterStart_active.png in Resources */,
@@ -2665,6 +2674,7 @@
 				4CAF3D03171FE581003C05AA /* favTypeFavoriteButtonPressed.png in Resources */,
 				4CAF3D04171FE581003C05AA /* favTypeFavoriteButtonPressed@2x.png in Resources */,
 				4CAF3D05171FE581003C05AA /* favTypeHomeButtonPressed.png in Resources */,
+				4C796A121990CEFB00574ABC /* .gitignore in Resources */,
 				4CAF3D06171FE581003C05AA /* favTypeHomeButtonPressed@2x.png in Resources */,
 				4CAF3D07171FE581003C05AA /* favTypeSchoolButtonPressed.png in Resources */,
 				4CAF3D08171FE581003C05AA /* favTypeSchoolButtonPressed@2x.png in Resources */,
@@ -2810,9 +2820,11 @@
 				4C73D21B16AEDCDA00AED42A /* main.m in Sources */,
 				4C73D21F16AEDCDA00AED42A /* SMAppDelegate.m in Sources */,
 				4C73D22E16AEDCDA00AED42A /* SMViewController.m in Sources */,
+				4C796A1B1990CEFB00574ABC /* Reachability.m in Sources */,
 				4C73A1ED16B284B500050349 /* SMContacts.m in Sources */,
 				4C73A1FA16B2900600050349 /* SMContactsCell.m in Sources */,
 				4C73A21016B29BAD00050349 /* SMContactsHeader.m in Sources */,
+				4C796A171990CEFB00574ABC /* SMKMSPlacesOperation.m in Sources */,
 				4CF7E28B16B68D170082078E /* SMEvents.m in Sources */,
 				4C8BB07D16B7D06D00F1ADF2 /* SMEventsCalendarCell.m in Sources */,
 				4C8BB08216B7D08000F1ADF2 /* SMEventsFacebookCell.m in Sources */,
@@ -2822,72 +2834,70 @@
 				4C90469216B96295004BA3DD /* SMAutocompleteCell.m in Sources */,
 				4B7DC93416BA847C00198F72 /* SMUtil.m in Sources */,
 				4C9D152516BAB96C00B73393 /* SMSettingsController.m in Sources */,
+				4C796A161990CEFB00574ABC /* SMKMSAddressOperation.m in Sources */,
 				4C9D152816BAB97D00B73393 /* SMAboutController.m in Sources */,
-				4CED2190183945C400EBBF22 /* SMAPIQueue.m in Sources */,
 				4B7DC93B16BBD73A00198F72 /* SMDirectionCell.m in Sources */,
+				4C796A1E1990CEFB00574ABC /* SMAutocomplete.m in Sources */,
 				4C11374516BFF9EF007F483F /* SMCalloutView.m in Sources */,
 				4C64781E16C1366C00D055DC /* SMReportErrorController.m in Sources */,
+				4C796A131990CEFB00574ABC /* SMAPIOperation.m in Sources */,
 				4BCDAFF716C2808A00E0C313 /* SMDirectionTopCell.m in Sources */,
-				4CED2199183948D200EBBF22 /* SMKMSPlacesOperation.m in Sources */,
 				4CE84E8316C404A3006931CC /* SMRadioCheckedCell.m in Sources */,
 				4CE84E8616C404B9006931CC /* SMRadioUncheckedCell.m in Sources */,
 				4BB6F95616DB6CCE004A3889 /* SMGPSTrackButton.m in Sources */,
 				4C044D3E16DB735B00C0303C /* SMTranslatedViewController.m in Sources */,
+				4C796A201990CEFB00574ABC /* SMGPSUtil.m in Sources */,
 				4C044D4116DB7AE000C0303C /* SMCustomCheckbox.m in Sources */,
+				4C796A231990CEFB00574ABC /* SMRequestOSRM.m in Sources */,
 				4C044D4516DB7B0700C0303C /* AsyncImageView.m in Sources */,
 				4C09001316DE446600DCAB64 /* SMSwipableView.m in Sources */,
-				4C8546C716E64D3B004E8902 /* SMGPSUtil.m in Sources */,
-				4C8546C916E64D3B004E8902 /* SMLocationManager.m in Sources */,
-				4C8546CB16E64D3B004E8902 /* SMRoute.m in Sources */,
-				4C8546CD16E64D3B004E8902 /* SMTurnInstruction.m in Sources */,
-				4CED2193183948B200EBBF22 /* SMFoursquareOperation.m in Sources */,
 				4CC3889B16E750A200E7C884 /* SMTokenizedTextField.m in Sources */,
 				4C06BA6516E88B60001B7312 /* DAKeyboardControl.m in Sources */,
 				4CC9514D16F0C80B00DC7AF8 /* SMEnterRouteController.m in Sources */,
 				4CC9515516F0D76D00DC7AF8 /* SMSearchCell.m in Sources */,
 				4C34508416F1D68C00562E20 /* SMAutocompleteHeader.m in Sources */,
 				4C34509416F1E53000562E20 /* SMSearchController.m in Sources */,
-				4CED2196183948C200EBBF22 /* SMKMSStreetOperation.m in Sources */,
 				4C8DF76A16F229CB007EC9FE /* SMViewMoreCell.m in Sources */,
 				4C365DD416F320C000A836B3 /* TTTAttributedLabel.m in Sources */,
 				4C365DDB16F3434200A836B3 /* SMMenuCell.m in Sources */,
 				4C86E05F16F6264A00ECEA61 /* SMSplashController.m in Sources */,
 				4C693A8E16F72B3E00B63475 /* SMFavoritesController.m in Sources */,
 				4CE8E30E18338A0000DF296C /* SMAddressParser.m in Sources */,
-				4CED219F18394E7C00EBBF22 /* SMKMSAddressOperation.m in Sources */,
 				4C8C541716F9AA4D009A2738 /* SMAddFavoriteCell.m in Sources */,
 				4C8C541A16F9AA62009A2738 /* SMEmptyFavoritesCell.m in Sources */,
+				4C796A1A1990CEFB00574ABC /* NSString+URLEncode.m in Sources */,
 				4C8C544916FA100B009A2738 /* SMSearchTwoRowCell.m in Sources */,
+				4C796A271990CEFB00574ABC /* SMRouteUtils.m in Sources */,
+				4C796A211990CEFB00574ABC /* SMLocationManager.m in Sources */,
 				4C8C544C16FA11A4009A2738 /* SMEnterRouteCell.m in Sources */,
 				4CC8523816FB5822009EA0E7 /* SMAccountController.m in Sources */,
+				4C796A141990CEFB00574ABC /* SMAPIQueue.m in Sources */,
 				4C33BF72170AC88800F55CEC /* SMDirectionsFooter.m in Sources */,
+				4C796A241990CEFB00574ABC /* SMRoute.m in Sources */,
 				4C73FD6C170C370700199E9C /* SMAPIRequest.m in Sources */,
 				4C31FF371717FF8300DA4983 /* UIImage+Alpha.m in Sources */,
+				4C796A181990CEFB00574ABC /* SMKMSStreetOperation.m in Sources */,
 				4C31FF381717FF8300DA4983 /* UIImage+Resize.m in Sources */,
 				4C31FF391717FF8300DA4983 /* UIImage+RoundedCorner.m in Sources */,
 				4C31FF421718037200DA4983 /* Base64.m in Sources */,
 				4C8B69D6171D885C00FA256D /* SMCustomButton.m in Sources */,
 				4CB0DAB117E9F21D0006F519 /* UIView+LocateSubview.m in Sources */,
 				4C8B69E1171D9BF700FA256D /* SMPatternedButton.m in Sources */,
+				4C796A151990CEFB00574ABC /* SMFoursquareOperation.m in Sources */,
 				4C929AB81728026500DBAB5C /* SMFavoritesUtil.m in Sources */,
 				C0C94742173BE40E00FE834D /* SMLoginController.m in Sources */,
 				4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */,
 				4C0375AC173ED51500D2D98E /* SMRegisterController.m in Sources */,
+				4C796A221990CEFB00574ABC /* SMNearbyPlaces.m in Sources */,
+				4C796A261990CEFB00574ABC /* SMRouteSettings.m in Sources */,
+				4C796A191990CEFB00574ABC /* NSString+Relevance.m in Sources */,
+				4C796A281990CEFB00574ABC /* SMTurnInstruction.m in Sources */,
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
-				4CED218F183945C400EBBF22 /* SMAPIOperation.m in Sources */,
 				4CC7DB7718326E1400885F69 /* SMAnalytics.m in Sources */,
+				4C796A1C1990CEFB00574ABC /* SMTranslation.m in Sources */,
 				4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */,
 				4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */,
-				C09AB41E17687E6F0098AA9C /* SMAutocomplete.m in Sources */,
-				C09AB41F17687E6F0098AA9C /* SMGeocoder.m in Sources */,
-				C09AB42017687E6F0098AA9C /* SMNearbyPlaces.m in Sources */,
-				C09AB42117687E6F0098AA9C /* SMRequestOSRM.m in Sources */,
-				C09AB42217687E6F0098AA9C /* SMRouteSettings.m in Sources */,
-				C09AB42317687E6F0098AA9C /* SMRouteUtils.m in Sources */,
-				C09AB436176890100098AA9C /* NSString+Relevance.m in Sources */,
-				C09AB437176890100098AA9C /* NSString+URLEncode.m in Sources */,
-				C09AB438176890100098AA9C /* Reachability.m in Sources */,
-				C09AB439176890100098AA9C /* SMTranslation.m in Sources */,
+				4C796A1F1990CEFB00574ABC /* SMGeocoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2988,10 +2998,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -2999,17 +3006,12 @@
 					"DEBUG=1",
 					TEST_VERSION,
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/ibikecph/Libs/**";
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A544FD60-D588-4C31-B6C1-550D82A53FEC";
@@ -3028,10 +3030,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
@@ -3039,17 +3038,12 @@
 					TEST_VERSION,
 					"DEBUG=1",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/ibikecph/Libs/**";
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
@@ -3093,25 +3087,17 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Vendor",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ibikecph/I Bike CPH-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/ibikecph/Libs/MapView/**",
-					"$(SRCROOT)/ibikecph/Libs/HockeySDK-iOS/Classes",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics",
-					"$(SRCROOT)/ibikecph/Libs/FacebookSDK/**",
-				);
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/ibikecph/Libs/**";
 				INFOPLIST_FILE = "$(SRCROOT)/ibikecph/I Bike CPH-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/ibikecph/Libs/GoogleAnalytics/**",
+					"$(SRCROOT)/ibikecph/Libs/**",
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";

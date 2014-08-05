@@ -47,19 +47,6 @@
 #define ERROR_FADE 0.2f
 #define ERROR_WAIT 2.0f
 
-////#ifdef WORLD_ROUTING
-////    #define OSRM_SERVER @"http://router.project-osrm.org"
-//#define OSRM_ADDRESS @"routes.ibikecph.dk"
-////#else
-//    #define OSRM_SERVER @"http://routes.ibikecph.dk"
-//    #define OSRM_SERVER_CARGO @"http://routes.ibikecph.dk/cargobike"
-////#endif
-
-
-#define OSRM_SERVERS @[@{@"name" : translateString(@"bike_type_1"), @"image" : @"normal_grey", @"imageHighlighted" : @"normal_white", @"server" : OSRM_SERVER}, \
-@{@"name" : translateString(@"bike_type_2"), @"image" :  @"cargo_grey", @"imageHighlighted" : @"cargo_white", @"server" : OSRM_SERVER_CARGO},\
-@{@"name" : translateString(@"bike_type_3"), @"image" :  @"green_grey", @"imageHighlighted" : @"green_white", @"server" : OSRM_SERVER_GREEN}]
-
 #define CALENDAR_MAX_DAYS 15
 
 //#ifdef ENGLISH_VERSION

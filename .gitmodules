@@ -1,0 +1,3 @@
+[submodule "iOS/ibikecph/ibikecph/Libs/routing-engine"]
+	path = iOS/ibikecph/ibikecph/Libs/routing-engine
+	url = https://github.com/ibikecph/routing-engine.git
