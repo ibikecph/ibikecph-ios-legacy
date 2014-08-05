@@ -326,6 +326,7 @@
 		4C796A261990CEFB00574ABC /* SMRouteSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A0D1990CEFB00574ABC /* SMRouteSettings.m */; };
 		4C796A271990CEFB00574ABC /* SMRouteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */; };
 		4C796A281990CEFB00574ABC /* SMTurnInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A111990CEFB00574ABC /* SMTurnInstruction.m */; };
+		4C796A3A1990D8BD00574ABC /* SMAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C796A391990D8BD00574ABC /* SMAddressParser.m */; };
 		4C7AA2F2172A78B200B62557 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */; };
 		4C7AA2F5172A799300B62557 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F3172A799300B62557 /* Default.png */; };
 		4C7AA2F6172A799300B62557 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7AA2F4172A799300B62557 /* Default@2x.png */; };
@@ -977,6 +978,8 @@
 		4C796A0F1990CEFB00574ABC /* SMRouteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRouteUtils.m; sourceTree = "<group>"; };
 		4C796A101990CEFB00574ABC /* SMTurnInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTurnInstruction.h; sourceTree = "<group>"; };
 		4C796A111990CEFB00574ABC /* SMTurnInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTurnInstruction.m; sourceTree = "<group>"; };
+		4C796A381990D8BD00574ABC /* SMAddressParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMAddressParser.h; path = AddressParser/AddressParser/SMAddressParser.h; sourceTree = "<group>"; };
+		4C796A391990D8BD00574ABC /* SMAddressParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMAddressParser.m; path = AddressParser/AddressParser/SMAddressParser.m; sourceTree = "<group>"; };
 		4C7AA2F1172A78B200B62557 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4C7AA2F3172A799300B62557 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4C7AA2F4172A799300B62557 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -1908,6 +1911,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				4C796A371990D8AE00574ABC /* AddressParser */,
 				4C7969E11990CEFB00574ABC /* routing-engine */,
 				4CC7DB1918326C3800885F69 /* GoogleAnalytics_3.02 */,
 				4CB0DAAF17E9F21D0006F519 /* UIView+LocateSubview.h */,
@@ -2119,6 +2123,15 @@
 				4C7969F81990CEFB00574ABC /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		4C796A371990D8AE00574ABC /* AddressParser */ = {
+			isa = PBXGroup;
+			children = (
+				4C796A381990D8BD00574ABC /* SMAddressParser.h */,
+				4C796A391990D8BD00574ABC /* SMAddressParser.m */,
+			);
+			name = AddressParser;
 			sourceTree = "<group>";
 		};
 		4C90468816B91140004BA3DD /* Contacts & Events */ = {
@@ -2879,6 +2892,7 @@
 				4C796A281990CEFB00574ABC /* SMTurnInstruction.m in Sources */,
 				4C45EBE1174CB2B100CC41EE /* FlickableView.m in Sources */,
 				4CC7DB7718326E1400885F69 /* SMAnalytics.m in Sources */,
+				4C796A3A1990D8BD00574ABC /* SMAddressParser.m in Sources */,
 				4C796A1C1990CEFB00574ABC /* SMTranslation.m in Sources */,
 				4C0E159F17608333006F81C1 /* SMRouteTypeSelectCell.m in Sources */,
 				4C0E15BF1760A9AE006F81C1 /* SMNetworkErrorView.m in Sources */,

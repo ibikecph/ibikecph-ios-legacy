@@ -1,3 +1,6 @@
 [submodule "iOS/ibikecph/ibikecph/Libs/routing-engine"]
 	path = iOS/ibikecph/ibikecph/Libs/routing-engine
 	url = https://github.com/ibikecph/routing-engine.git
+[submodule "iOS/ibikecph/ibikecph/Libs/AddressParser"]
+	path = iOS/ibikecph/ibikecph/Libs/AddressParser
+	url = https://github.com/ivan-pavlovic/AddressParser.git
