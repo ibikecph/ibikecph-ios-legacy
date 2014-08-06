@@ -255,9 +255,9 @@
 
 "you_have_reached_your_destination" = "Du har nået din destination";
 
-"bike_type_1"= "Cykel";
-"bike_type_2"= "Ladcykel";
-"bike_type_3"= "Alternative/Green";
+"bike_type_1"= "Kom hurtigt frem";
+"bike_type_2"= "God til ladcykel";
+"bike_type_3"= "Nyd det grønne";
 
 "network_error_text" = "Netværks fejl opstod";
 

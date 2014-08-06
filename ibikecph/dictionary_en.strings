@@ -255,9 +255,9 @@
 
 "you_have_reached_your_destination" = "You have reached your destination";
 
-"bike_type_1"= "Bicycle";
-"bike_type_2"= "Cargo bike";
-"bike_type_3"= "Alternative/Green";
+"bike_type_1"= "Get there fast";
+"bike_type_2"= "Fit for cargobikes";
+"bike_type_3"= "Enjoy the greenery";
 
 "network_error_text" = "Network error occured";
 
