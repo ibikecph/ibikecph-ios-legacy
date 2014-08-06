@@ -1618,7 +1618,9 @@ typedef enum {
             [self setDirectionsState:directionsHidden];
             [minimizedInstructionsView setHidden:YES];
             [progressView setHidden:YES];
-            [UIApplication sharedApplication].idleTimerDisabled = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [UIApplication sharedApplication].idleTimerDisabled = NO;
+            });
         }
     } else if (object == swipableView && [keyPath isEqualToString:@"hidden"]) {
         /**
