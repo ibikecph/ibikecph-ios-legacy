@@ -541,7 +541,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="25B-42-qvk">
-                                <rect key="frame" x="0.0" y="71" width="320" height="433.99999810667032"/>
+                                <rect key="frame" x="0.0" y="70.999997721348862" width="320" height="434"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j99-Al-KRw">
@@ -2689,7 +2689,7 @@
                 <viewController id="1Y3-EV-nwd" customClass="SMAccountController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xCF-Sb-fFz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="reportHeaderBG.png" id="hmc-Cv-pYV">
                                 <rect key="frame" x="0.0" y="20" width="320" height="51"/>
@@ -2764,7 +2764,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ovb-1M-nRj" customClass="SMCustomButton">
-                                        <rect key="frame" x="87" y="416" width="147" height="45"/>
+                                        <rect key="frame" x="87" y="436" width="147" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -2792,7 +2792,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                             <view contentMode="scaleToFill" id="Xb1-cg-7BP" userLabel="regular">
                                 <rect key="frame" x="0.0" y="70" width="320" height="498"/>
@@ -2854,7 +2854,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cEp-SS-MUD" customClass="SMPatternedButton">
-                                                <rect key="frame" x="85" y="416" width="151" height="45"/>
+                                                <rect key="frame" x="85" y="436" width="151" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <rect key="contentStretch" x="0.5" y="0.5" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -2941,7 +2941,7 @@
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -2963,7 +2963,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uVL-Gc-PbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2249" y="203"/>
+            <point key="canvasLocation" x="-2338" y="226"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="LyM-Yu-csn">
