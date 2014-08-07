@@ -969,7 +969,9 @@ typedef enum {
     /**
      * enable screen time out
      */
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
+    });
     /**
      * remove delegate so we don't correct position and heading any more
      */
