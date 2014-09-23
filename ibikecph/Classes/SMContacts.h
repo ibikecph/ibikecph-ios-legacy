@@ -17,6 +17,11 @@
 - (void)addressBookHelper:(SMContacts*)helper finishedLoading:(NSArray*)contacts;
 @end
 
+/**
+ * \ingroup libs
+ * Contact list import
+ */
+
 @interface SMContacts : NSObject
 
 @property (nonatomic, weak) id<SMContactsDelegate> delegate;

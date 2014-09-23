@@ -32,6 +32,11 @@ typedef enum {
     screenContacts
 } CurrentScreenType;
 
+/**
+ * \ingroup screens
+ * Main app view
+ */
+
 @interface SMViewController : SMTranslatedViewController <RMMapViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, EnterRouteDelegate, UIGestureRecognizerDelegate, SMAnnotationActionDelegate, SMNearbyPlacesDelegate, SMRequestOSRMDelegate, SMMenuCellDelegate, SMSearchDelegate, UITextFieldDelegate, ViewTapDelegate, SMFavoritesDelegate>  {
     IBOutlet UIView *menuView;
     __weak IBOutlet FlickableView *centerView;

@@ -14,6 +14,10 @@
 @property (nonatomic, strong) NSString * token;
 @end
 
+/**
+ * \ingroup libs
+ * Tokenized text field
+ */
 
 @interface SMTokenizedTextField : UIView <UITextFieldDelegate, UIScrollViewDelegate>
 

@@ -10,6 +10,10 @@
 #import <MessageUI/MessageUI.h>
 #import "SMAPIRequest.h"
 
+/**
+ * \ingroup screens
+ * Report an error screen
+ */
 @interface SMReportErrorController : SMTranslatedViewController <UIPickerViewDataSource, UIPickerViewDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, SMAPIRequestDelegate> {
     
     __weak IBOutlet UIButton *btnSelectRouteSegment;

@@ -9,6 +9,11 @@
 #import "SMTranslatedViewController.h"
 #import "SMAPIRequest.h"
 
+/**
+ * \ingroup screens
+ * Account screen
+ */
+
 @interface SMAccountController : SMTranslatedViewController <UITextFieldDelegate, SMAPIRequestDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate>{
     
     __weak IBOutlet UIImageView *fbImage;

@@ -13,6 +13,11 @@
 #import "FlickableView.h"
 #import "SMRequestOSRM.h"
 
+/**
+ * \ingroup screens
+ * Main turn-by-turn navigation screen
+ */
+
 @interface SMRouteNavigationController : SMTranslatedViewController <UIGestureRecognizerDelegate,RMMapViewDelegate, SMRouteDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, UIScrollViewDelegate, RouteDelegate, ViewTapDelegate, SMRequestOSRMDelegate> {
     __weak IBOutlet UITableView *tblDirections;
     __weak IBOutlet UIView *instructionsView;

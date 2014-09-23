@@ -9,6 +9,11 @@
 #import "SMTranslatedViewController.h"
 #import "SMAPIRequest.h"
 
+/**
+ * \ingroup screens
+ * Login from menu
+ */
+
 @interface SMLoginController : SMTranslatedViewController<SMAPIRequestDelegate, UITextFieldDelegate> {
     __weak IBOutlet UITextField *loginEmail;
     __weak IBOutlet UITextField *loginPassword;

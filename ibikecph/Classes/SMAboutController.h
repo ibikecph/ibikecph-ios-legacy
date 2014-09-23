@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+/**
+ * \ingroup screens
+ * About screen
+ */
 @interface SMAboutController : SMTranslatedViewController {
     __weak IBOutlet UIScrollView *scrlView;
     __weak IBOutlet UILabel *aboutText;

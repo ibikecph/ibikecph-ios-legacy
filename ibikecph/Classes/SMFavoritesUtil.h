@@ -17,6 +17,11 @@
 - (void)favoritesOperation:(id)req failedWithError:(NSError*)error;
 @end
 
+/**
+ * \ingroup libs
+ * Fetches/saves favorites
+ */
+
 @interface SMFavoritesUtil : NSObject <SMAPIRequestDelegate>
 
 @property (nonatomic, weak) id<SMFavoritesDelegate>delegate;

@@ -15,6 +15,10 @@
 - (void)annotationActivated:(SMAnnotation*)annotation;
 @end
 
+/**
+ * \ingroup map
+ * Custom annotation
+ */
 @interface SMAnnotation : RMAnnotation <SMCalloutDelegate>
 
 @property (nonatomic, weak) id<SMAnnotationActionDelegate> delegate;

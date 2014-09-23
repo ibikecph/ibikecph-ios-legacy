@@ -10,6 +10,12 @@
 #import "SMAppDelegate.h"
 #import "GAITrackedViewController.h"
 
+/**
+ * \ingroup libs
+ * Base class for all the views
+ *
+ * Handles translation
+ */
 @interface SMTranslatedViewController : GAITrackedViewController
 
 @property (nonatomic, weak) SMAppDelegate * appDelegate;

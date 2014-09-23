@@ -10,12 +10,21 @@
 #import "SMRequestOSRM.h"
 #import "SMSearchController.h"
 
+
+/**
+ * Route picker delegate methods
+ */
 @protocol EnterRouteDelegate <NSObject>
 
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString*)src toAddress:(NSString*)dst;
 - (void)findRouteFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to fromAddress:(NSString*)src toAddress:(NSString*)dst withJSON:(id)jsonRoot;
 
 @end
+
+/**
+ * \ingroup screens
+ * From/To address picker
+ */
 
 @interface SMEnterRouteController : SMTranslatedViewController <SMRequestOSRMDelegate, UITableViewDataSource, UITableViewDelegate, SMSearchDelegate>{
     

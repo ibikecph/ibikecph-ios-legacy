@@ -21,6 +21,11 @@ typedef enum _registrationValidationResult{
 - (void)viewTapped:(id)view;
 @end
 
+/**
+ * \ingroup libs
+ * Various utils
+ */
+
 @interface SMUtil : NSObject
 
 
@@ -44,8 +49,13 @@ typedef enum _registrationValidationResult{
 //
 //+ (NSInteger)pointsForName:(NSString*)name andAddress:(NSString*)address andTerms:(NSString*)srchString;
 
+/**
+ * check if email is valid
+ */
 + (BOOL) isEmailValid:(NSString*) email;
-
+/**
+ * registration validation
+ */
 + (eRegistrationValidationResult) validateRegistrationName:(NSString*)name Email:(NSString*) email Password:(NSString*) pass AndRepeatedPassword:(NSString*)repPass;
 
 @end

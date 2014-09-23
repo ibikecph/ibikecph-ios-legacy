@@ -9,6 +9,11 @@
 #import "SMTranslatedViewController.h"
 #import "SMAPIRequest.h"
 
+/**
+ * \ingroup screens
+ * Register from menu
+ */
+
 @interface SMRegisterController : SMTranslatedViewController <SMAPIRequestDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     __weak IBOutlet UIScrollView *scrlView;
     __weak IBOutlet UITextField *registerName;

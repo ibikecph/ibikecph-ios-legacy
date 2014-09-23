@@ -9,6 +9,11 @@
 #import "SMTranslatedViewController.h"
 #import "SMSearchController.h"
 
+/**
+ * \ingroup screens
+ * Favorites list
+ */
+
 @interface SMFavoritesController : SMTranslatedViewController <UITextFieldDelegate, SMSearchDelegate> {
     
     __weak IBOutlet UITextField *favoriteHome;

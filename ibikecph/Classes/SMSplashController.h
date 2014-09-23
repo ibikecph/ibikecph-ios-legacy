@@ -10,6 +10,12 @@
 #import "SMAPIRequest.h"
 #import "SMFavoritesUtil.h"
 
+/**
+ * \ingroup screens
+ * Splash screen controller
+ *
+ * Handles (auto)login and register
+ */
 @interface SMSplashController : SMTranslatedViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SMAPIRequestDelegate, SMFavoritesDelegate>{
     
     __weak IBOutlet UIView *registerView;

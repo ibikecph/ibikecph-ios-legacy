@@ -15,6 +15,10 @@
 
 @interface SMEvents : NSObject
 
+/**
+ * \ingroup libs
+ * Events (FB + local) import
+ */
 @property (nonatomic, weak) id<SMEventsDelegate> delegate;
 
 - (void)getLocalEvents;

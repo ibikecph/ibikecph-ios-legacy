@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * \ingroup screens
+ * Settings screen
+ */
 @interface SMSettingsController : SMTranslatedViewController
 
 @end

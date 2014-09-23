@@ -18,6 +18,10 @@
 
 @end
 
+/**
+ * \ingroup screens
+ * Address search screen
+ */
 @interface SMSearchController : SMTranslatedViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SMAutocompleteDelegate, SMAPIOperationDelegate>{
     
     __weak IBOutlet UITableView *tblView;

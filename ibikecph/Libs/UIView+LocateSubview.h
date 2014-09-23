@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * \ingroup libs
+ * 
+ */
+
 @interface UIView (LocateSubview)
 
+/**
+ * locate subview with a specified class name
+ */
 - (UIView*)subviewWithClassName:(NSString*) className;
 
 @end

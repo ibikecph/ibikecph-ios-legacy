@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ * \ingroup libs
+ * Flickable view
+ *
+ * handles pull gesture used to swipe the main screen away revealing a menu under it
+ */
+
 @interface FlickableView : UIView <UIGestureRecognizerDelegate>
 
 @property CGFloat startPos;

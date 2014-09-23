@@ -112,6 +112,9 @@ typedef enum {
 
 #pragma mark - button actions
 
+/**
+ * Login with e-mail
+ */
 - (IBAction)doLogin:(id)sender {
     [loginEmail resignFirstResponder];
     [loginPassword resignFirstResponder];
@@ -130,6 +133,9 @@ typedef enum {
     [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"email": loginEmail.text, @"password": loginPassword.text}}];
 }
 
+/**
+ * Login with facebook
+ */
 - (IBAction)doFBLogin:(NSString*)fbToken {
     SMAPIRequest * ap = [[SMAPIRequest alloc] initWithDelegeate:self];
     [self setApr:ap];
@@ -139,6 +145,9 @@ typedef enum {
     [self.apr executeRequest:API_LOGIN withParams:@{@"user": @{ @"fb_token": fbToken, @"account_source" : ORG_NAME}}];
 }
 
+/**
+ * Registration
+ */
 - (IBAction)doRegister:(id)sender {
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
