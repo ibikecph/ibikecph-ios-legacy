@@ -9,11 +9,11 @@
 	<key>OSRM_ADDRESS</key>
 	<string>router.project-osrm.org</string>
 	<key>OSRM_SERVER</key>
-	<string>http://routes.ibikecph.dk/fast</string>
+	<string>http://routes.ibikecph.dk/v1.1/fast</string>
 	<key>OSRM_SERVER_CARGO</key>
-	<string>http://routes.ibikecph.dk/cargo</string>
+	<string>http://routes.ibikecph.dk/v1.1/cargo</string>
 	<key>OSRM_SERVER_GREEN</key>
-	<string>http://routes.ibikecph.dk/green</string>
+	<string>http://routes.ibikecph.dk/v1.1/green</string>
 	<key>PLACES_SEARCH_RADIUS</key>
 	<string>20000</string>
 	<key>FOURSQUARE_SEARCH_RADIUS</key>
@@ -33,6 +33,6 @@
 	<key>KORT_MAX_RESULTS</key>
 	<string>10</string>
 	<key>ROUTE_POLYLINE_PRECISION</key>
-	<real>100000</real>
+	<real>1000000</real>
 </dict>
 </plist>
