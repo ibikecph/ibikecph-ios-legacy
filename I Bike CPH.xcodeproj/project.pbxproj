@@ -108,7 +108,6 @@
 		4C365DF116F361FE00A836B3 /* btnCloseDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C365DE516F361FE00A836B3 /* btnCloseDark@2x.png */; };
 		4C3A5C5819911D170054DA76 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3A5C5719911D170054DA76 /* FacebookSDK.framework */; };
 		4C3A5C5C19911DB70054DA76 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3A5C5B19911DB70054DA76 /* CrashReporter.framework */; };
-		4C3A5CB519911DEF0054DA76 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C3A5C9319911DEF0054DA76 /* libGoogleAnalyticsServices.a */; };
 		4C3B3C0817043EA800F098AD /* SMAddFavoriteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */; };
 		4C3B3EB6170493CC00F098AD /* routeme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C3B3EB5170493CC00F098AD /* routeme.plist */; };
 		4C3E709C174E132C0023A621 /* favSearch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C3E7094174E132C0023A621 /* favSearch_icon.png */; };
@@ -442,6 +441,8 @@
 		4CA5635F173D34990000D0BD /* SMSearchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA5635E173D34990000D0BD /* SMSearchHistory.m */; };
 		4CA63E63175FB1DD008837BD /* cargo_slider.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E61175FB1DD008837BD /* cargo_slider.png */; };
 		4CA63E64175FB1DD008837BD /* cargo_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */; };
+		4CA76FC919DC3AA800F79652 /* GoogleAnalytics in Resources */ = {isa = PBXBuildFile; fileRef = 4CA76FC719DC3AA800F79652 /* GoogleAnalytics */; };
+		4CA76FCA19DC3AA800F79652 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA76FC819DC3AA800F79652 /* libGoogleAnalyticsServices.a */; };
 		4CA9E40C1980F54A0058FCDB /* HockeySDK.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 4CA9E40B1980F54A0058FCDB /* HockeySDK.xcodeproj */; };
 		4CA9E4131980FCA60058FCDB /* test2.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4CA9E4121980FCA60058FCDB /* test2.gpx */; };
 		4CAF3D03171FE581003C05AA /* favTypeFavoriteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */; };
@@ -736,13 +737,6 @@
 		4C365DE516F361FE00A836B3 /* btnCloseDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnCloseDark@2x.png"; sourceTree = "<group>"; };
 		4C3A5C5719911D170054DA76 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		4C3A5C5B19911DB70054DA76 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "ibikecph/Libs/HockeySDK-iOS/Vendor/CrashReporter.framework"; sourceTree = "<group>"; };
-		4C3A5C8B19911DEF0054DA76 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		4C3A5C8C19911DEF0054DA76 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		4C3A5C8D19911DEF0054DA76 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		4C3A5C8E19911DEF0054DA76 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		4C3A5C8F19911DEF0054DA76 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		4C3A5C9019911DEF0054DA76 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		4C3A5C9319911DEF0054DA76 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		4C3B3C0717043EA800F098AD /* SMAddFavoriteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMAddFavoriteCell.xib; sourceTree = "<group>"; };
 		4C3B3EB5170493CC00F098AD /* routeme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = routeme.plist; sourceTree = "<group>"; };
 		4C3E7094174E132C0023A621 /* favSearch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favSearch_icon.png; sourceTree = "<group>"; };
@@ -1136,6 +1130,18 @@
 		4CA5635E173D34990000D0BD /* SMSearchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSearchHistory.m; sourceTree = "<group>"; };
 		4CA63E61175FB1DD008837BD /* cargo_slider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cargo_slider.png; sourceTree = "<group>"; };
 		4CA63E62175FB1DD008837BD /* cargo_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cargo_slider@2x.png"; sourceTree = "<group>"; };
+		4CA76FBD19DC3AA800F79652 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		4CA76FBE19DC3AA800F79652 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		4CA76FBF19DC3AA800F79652 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		4CA76FC019DC3AA800F79652 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		4CA76FC119DC3AA800F79652 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		4CA76FC219DC3AA800F79652 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		4CA76FC319DC3AA800F79652 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		4CA76FC419DC3AA800F79652 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		4CA76FC519DC3AA800F79652 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		4CA76FC619DC3AA800F79652 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		4CA76FC719DC3AA800F79652 /* GoogleAnalytics */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GoogleAnalytics; sourceTree = "<group>"; };
+		4CA76FC819DC3AA800F79652 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		4CA9E40B1980F54A0058FCDB /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "../HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = "<group>"; };
 		4CA9E4121980FCA60058FCDB /* test2.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test2.gpx; sourceTree = "<group>"; };
 		4CAF3CFB171FE581003C05AA /* favTypeFavoriteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favTypeFavoriteButtonPressed.png; sourceTree = "<group>"; };
@@ -1278,6 +1284,7 @@
 				4CF9D0FC19910B01004B1BFE /* libHockeySDK.a in Frameworks */,
 				4C796E551990DFDA00574ABC /* libMapView.a in Frameworks */,
 				4CC7DB7918326F2200885F69 /* libz.dylib in Frameworks */,
+				4CA76FCA19DC3AA800F79652 /* libGoogleAnalyticsServices.a in Frameworks */,
 				4C1D27B21761BE9C00018196 /* Security.framework in Frameworks */,
 				4C693ABC16F74E8B00B63475 /* MobileCoreServices.framework in Frameworks */,
 				4C365DD616F323BB00A836B3 /* CoreText.framework in Frameworks */,
@@ -1294,7 +1301,6 @@
 				4C16ED0216B188C4001545C7 /* AddressBook.framework in Frameworks */,
 				4C16ED0316B188C4001545C7 /* AddressBookUI.framework in Frameworks */,
 				4C3A5C5C19911DB70054DA76 /* CrashReporter.framework in Frameworks */,
-				4C3A5CB519911DEF0054DA76 /* libGoogleAnalyticsServices.a in Frameworks */,
 				4BA915CD16AFF809004E04A4 /* QuartzCore.framework in Frameworks */,
 				4BA915C916AFF798004E04A4 /* CoreLocation.framework in Frameworks */,
 				4C73D20F16AEDCDA00AED42A /* UIKit.framework in Frameworks */,
@@ -1672,37 +1678,6 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		4C3A5C5D19911DEF0054DA76 /* GoogleAnalytics_3.02 */ = {
-			isa = PBXGroup;
-			children = (
-				4C3A5C5E19911DEF0054DA76 /* GoogleAnalytics */,
-				4C3A5C9319911DEF0054DA76 /* libGoogleAnalyticsServices.a */,
-			);
-			name = GoogleAnalytics_3.02;
-			path = ../../../GoogleAnalytics_3.02;
-			sourceTree = "<group>";
-		};
-		4C3A5C5E19911DEF0054DA76 /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				4C3A5C8A19911DEF0054DA76 /* Library */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		4C3A5C8A19911DEF0054DA76 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				4C3A5C8B19911DEF0054DA76 /* GAI.h */,
-				4C3A5C8C19911DEF0054DA76 /* GAIDictionaryBuilder.h */,
-				4C3A5C8D19911DEF0054DA76 /* GAIFields.h */,
-				4C3A5C8E19911DEF0054DA76 /* GAILogger.h */,
-				4C3A5C8F19911DEF0054DA76 /* GAITrackedViewController.h */,
-				4C3A5C9019911DEF0054DA76 /* GAITracker.h */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
 		4C45EBDE174CB2B100CC41EE /* Flickable View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1921,7 +1896,7 @@
 		4C73D23916AEDD3F00AED42A /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A5C5D19911DEF0054DA76 /* GoogleAnalytics_3.02 */,
+				4CA76FBC19DC3AA800F79652 /* GoogleAnalyticsServicesiOS_3.09 */,
 				4C796A471990DB3000574ABC /* UIImage-Categories */,
 				4C796A431990DB2300574ABC /* TTTAttributedLabel */,
 				4C796A3F1990DA8200574ABC /* Base64 */,
@@ -2250,6 +2225,26 @@
 			name = Menus;
 			sourceTree = "<group>";
 		};
+		4CA76FBC19DC3AA800F79652 /* GoogleAnalyticsServicesiOS_3.09 */ = {
+			isa = PBXGroup;
+			children = (
+				4CA76FBD19DC3AA800F79652 /* GAI.h */,
+				4CA76FBE19DC3AA800F79652 /* GAIDictionaryBuilder.h */,
+				4CA76FBF19DC3AA800F79652 /* GAIEcommerceFields.h */,
+				4CA76FC019DC3AA800F79652 /* GAIEcommerceProduct.h */,
+				4CA76FC119DC3AA800F79652 /* GAIEcommerceProductAction.h */,
+				4CA76FC219DC3AA800F79652 /* GAIEcommercePromotion.h */,
+				4CA76FC319DC3AA800F79652 /* GAIFields.h */,
+				4CA76FC419DC3AA800F79652 /* GAILogger.h */,
+				4CA76FC519DC3AA800F79652 /* GAITrackedViewController.h */,
+				4CA76FC619DC3AA800F79652 /* GAITracker.h */,
+				4CA76FC719DC3AA800F79652 /* GoogleAnalytics */,
+				4CA76FC819DC3AA800F79652 /* libGoogleAnalyticsServices.a */,
+			);
+			name = GoogleAnalyticsServicesiOS_3.09;
+			path = ../../../GoogleAnalyticsServicesiOS_3.09;
+			sourceTree = "<group>";
+		};
 		4CFCC9E619910AB300A9067B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2422,6 +2417,7 @@
 				4C86E06A16F62C4000ECEA61 /* quitRouteOverlay.png in Resources */,
 				4C86E06B16F62C4000ECEA61 /* quitRouteOverlay@2x.png in Resources */,
 				4C830F2419920C87009815BF /* TrackingDotHalo@2x.png in Resources */,
+				4CA76FC919DC3AA800F79652 /* GoogleAnalytics in Resources */,
 				4C86E06C16F62C4000ECEA61 /* routeFinishedOverlay.png in Resources */,
 				4C830F2619920C87009815BF /* TrackingHeading@2x.png in Resources */,
 				4C86E06D16F62C4000ECEA61 /* routeFinishedOverlay@2x.png in Resources */,
@@ -2962,6 +2958,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2982,7 +2983,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F75FE8C0-2E2E-4176-BC9C-98BC2B0D6781";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2993,6 +2994,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3019,6 +3025,11 @@
 			baseConfigurationReference = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3046,11 +3057,13 @@
 					"$(PROJECT_DIR)/ibikecph/Libs/route-me/MapView/**",
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02/GoogleAnalytics/Library,
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02,
+					/Users/ivanpavlovic/Prog/GIT/GoogleAnalyticsServicesiOS_3.09,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A544FD60-D588-4C31-B6C1-550D82A53FEC";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3060,6 +3073,11 @@
 			baseConfigurationReference = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3087,11 +3105,12 @@
 					"$(PROJECT_DIR)/ibikecph/Libs/route-me/MapView/**",
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02/GoogleAnalytics/Library,
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02,
+					/Users/ivanpavlovic/Prog/GIT/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3100,6 +3119,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3126,6 +3150,11 @@
 			baseConfigurationReference = 4C48641216F0994600F01A7C /* ibikecph.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					arm64,
+					armv7s,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3150,11 +3179,12 @@
 					"$(PROJECT_DIR)/ibikecph/Libs/route-me/MapView/**",
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02/GoogleAnalytics/Library,
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02,
+					/Users/ivanpavlovic/Prog/GIT/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
