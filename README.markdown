@@ -25,7 +25,7 @@
 
 </p>
 
-<p>For more info take a look at the <a href="https://github.com/ibikecph/ibikecph-app/wiki">Wiki</a>
+<p><h2>For more info take a look at the <a href="https://github.com/ibikecph/ibikecph-app/wiki">Wiki</a></h2></p>
 
 </body>
 </html>
