@@ -1,6 +1,6 @@
 [submodule "ibikecph/Libs/AddressParser"]
 	path = ibikecph/Libs/AddressParser
-	url = https://github.com/ivan-pavlovic/AddressParser
+url=https://github.com/ibikecph/AddressParser
 [submodule "ibikecph/Libs/Base64"]
 	path = ibikecph/Libs/Base64
 	url = https://github.com/nicklockwood/Base64.git
