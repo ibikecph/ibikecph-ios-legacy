@@ -3059,7 +3059,7 @@
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalytics_3.02,
 					/Users/ivanpavlovic/Prog/GIT/GoogleAnalyticsServicesiOS_3.09,
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A544FD60-D588-4C31-B6C1-550D82A53FEC";
 				TARGETED_DEVICE_FAMILY = 1;
