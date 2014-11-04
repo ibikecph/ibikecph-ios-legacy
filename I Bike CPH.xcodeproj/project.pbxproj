@@ -3026,7 +3026,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = (
-					arm64,
 					armv7s,
 					armv7,
 				);
@@ -3063,7 +3062,7 @@
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A544FD60-D588-4C31-B6C1-550D82A53FEC";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3074,7 +3073,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = (
-					arm64,
 					armv7s,
 					armv7,
 				);
@@ -3110,7 +3108,7 @@
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3151,7 +3149,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = (
-					arm64,
 					armv7s,
 					armv7,
 				);
@@ -3184,7 +3181,7 @@
 				PRODUCT_NAME = "I Bike CPH";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ACF23EA3-D1E4-4C6C-9C4B-2A167B7E1A94";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
